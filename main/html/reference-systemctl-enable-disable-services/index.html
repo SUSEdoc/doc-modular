@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Enabling and disabling systemd services</title><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" /><link rel="stylesheet" type="text/css" href="static/css/style.css" /><link rel="stylesheet" type="text/css" href="static/css/highlight.css" />
+<meta name="title" content="Enabling and disabling systemd services" />
+<meta name="description" content="This document applies to the following products and product versions:" />
+<meta name="book-title" content="Enabling and disabling systemd services" />
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi" />
+<meta name="tracker-type" content="bsc" />
+<meta name="tracker-bsc-assignee" content="carla.schroder@suse.com" />
+<meta name="tracker-bsc-component" content="Smart Docs" />
+<meta name="tracker-bsc-product" content="Documentation" />
+<meta property="og:title" content="Enabling and disabling systemd services" />
+<meta property="og:description" content="This document applies to the following products and product versions:" />
+<meta property="og:type" content="article" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Enabling and disabling systemd services" />
+<meta name="twitter:description" content="This document applies to the following products and product versions:" />
+<link rel="home" href="index.html" title="Enabling and disabling systemd services" />
+<script type="text/javascript">
+
+if ( window.location.protocol.toLowerCase() != 'file:' ) {
+  document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>');
+};
+
+</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css" /></noscript><script src="static/js/jquery-1.10.2.min.js" type="text/javascript"></script><script src="static/js/script.js" type="text/javascript"></script><script src="static/js/highlight.min.js" type="text/javascript"></script><script>
+
+$(document).ready(function() {
+  $('.verbatim-wrap.highlight').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+hljs.configure({
+  useBR: false
+});
+
+</script></head><body class="draft offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-navigation">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><div id="_outer-wrap"><div id="_white-bg" style="background-color: #E11;"><div id="_header"><div id="_logo"><img src="static/images/logo.svg" alt="Logo" /></div><div class="crumbs"><a class="single-crumb" href="index.html"><span class="single-contents-icon"></span>Enabling and disabling systemd services</a><div class="bubble-corner active-contents"></div></div><div class="clearme"></div></div></div><div id="_fixed-header-wrap" style="background-color: #E11;" class="inactive"><div id="_fixed-header"><div class="crumbs"><a class="single-crumb" href="index.html"><span class="single-contents-icon"></span>Show Contents: Enabling and disabling systemd services</a></div><div class="buttons"><a class="top-button button" href="#">Top</a><div class="clearme"></div></div><div class="clearme"></div></div><div class="active-contents bubble"><div class="bubble-container"><div id="_bubble-toc"><ol><li class="inactive"><a href="index.html#environment-systemd-enable-disable-services"><span class="number">1 </span><span class="name">Environment</span></a></li><li class="inactive"><a href="index.html#systemctl-enable-disable-services"><span class="number">2 </span><span class="name">Enabling and disabling services with systemctl</span></a></li><li class="inactive"><a href="index.html#id-1.4"><span class="number">3 </span><span class="name">systemctl commands to enable, disable, and mask services</span></a></li></ol></div><div class="clearme"></div></div></div></div><div id="_toc-bubble-wrap"></div><div id="_content" class="draft "><div class="documentation"><div xml:lang="en" class="article " id="reference-systemctl-enable-disable-services" lang="en"><div class="titlepage"><div><div><h1 class="title">Enabling and disabling systemd services</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>03/08/2022</div></div></div><div class="line"><div class="toc"><dl><dt><span class="section"><a href="index.html#environment-systemd-enable-disable-services"><span class="number">1 </span><span class="name">Environment</span></a></span></dt><dt><span class="section"><a href="index.html#systemctl-enable-disable-services"><span class="number">2 </span><span class="name">Enabling and disabling services with systemctl</span></a></span></dt><dt><span class="section"><a href="index.html#id-1.4"><span class="number">3 </span><span class="name">systemctl commands to enable, disable, and mask services</span></a></span></dt></dl></div></div><div class="sect1" id="environment-systemd-enable-disable-services"><div class="titlepage"><div><div><h2 class="title"><span class="number">1 </span><span xmlns:dm="urn:x-suse:ns:docmanager" class="name">Environment</span> <a title="Permalink" class="permalink" href="index.html#environment-systemd-enable-disable-services">#</a></h2><div class="doc-status"><ul><li><span class="ds-label">File Name: </span>reference-systemctl-enable-disable-services.xml</li><li><span class="ds-label">ID: </span>environment-systemd-enable-disable-services</li></ul></div></div></div></div><p>This document applies to the following products and product versions:</p><div class="itemizedlist "><ul class="itemizedlist"><li class="listitem "><p>SUSE Linux Enterprise Server 15 SP3, 15 SP2, 15 SP1, 15 GA, 12 SP5, 12 SP4, 12 SP3</p></li><li class="listitem "><p>SUSE Linux Enterprise Server for SAP Applications 15 SP3, 15 SP2, 15 SP1, 15 GA, 12 SP5, 12 SP4, 12 SP3</p></li><li class="listitem "><p>SUSE Linux Enterprise High Availability Extension 15 SP3, 15 SP2, 15 SP1, 15 GA, 12 SP5, 12 SP4, 12 SP3</p></li><li class="listitem "><p>SUSE Linux Enterprise High Performance Computing 15 SP3, 15 SP2, 15 SP1, 15 GA</p></li><li class="listitem "><p>SUSE Linux Enterprise Desktop 15 SP3, 15 SP2, 15 SP1, 15 GA, 12 SP5, 12 SP4, 12 SP3</p></li><li class="listitem "><p>SUSE Linux Enterprise Real Time 15 SP3, 15 SP2, 15 SP1, 15 GA, 12 SP5, 12 SP4, 12 SP3</p></li></ul></div></div><div class="sect1" id="systemctl-enable-disable-services"><div class="titlepage"><div><div><h2 class="title"><span class="number">2 </span><span xmlns:dm="urn:x-suse:ns:docmanager" class="name">Enabling and disabling services with systemctl</span> <a title="Permalink" class="permalink" href="index.html#systemctl-enable-disable-services">#</a></h2><div class="doc-status"><ul><li><span class="ds-label">File Name: </span>reference-systemctl-enable-disable-services.xml</li><li><span class="ds-label">ID: </span>systemctl-enable-disable-services</li></ul></div></div></div></div><p>
+    <code class="command">systemctl</code> is the <code class="systemitem">systemd</code> command for controlling
+    how services start on a Linux system. A service can be enabled, disabled, or
+    masked, and it can be configured to start at boot, on-demand, manually, or
+    prevented from starting under any circumstances.
+  </p><p>
+    Enabling a service means it will start at boot. Disabling a service
+    means it will not start at boot, but can be started manually, or as a
+    dependency of another service. Enabling or disabling a running service
+    does not automatically change its current state; if it is running it will
+    continue to run, and if it is not running it will not start. When you
+    enable or disable a service you have the option to stop or start the service
+    with a separate command, or to enable/disable and start/stop with a single command.
+  </p><p>
+    A masked service cannot be started by any means, and must be unmasked to
+    be usable.
+  </p></div><div class="sect1" id="id-1.4"><div class="titlepage"><div><div><h2 class="title"><span class="number">3 </span><span xmlns:dm="urn:x-suse:ns:docmanager" class="name">systemctl commands to enable, disable, and mask services</span> <a title="Permalink" class="permalink" href="index.html#id-1.4">#</a></h2><div class="doc-status"><ul><li><span class="ds-label">File Name: </span>reference-systemctl-enable-disable-services.xml</li><li><span class="ds-label">ID: </span><span class="ds-message">no ID found</span></li></ul></div></div></div></div><div class="variablelist "><dl class="variablelist"><dt id="id-1.4.2.1"><span class="term "><code class="command">systemctl is-enabled <em class="replaceable ">SERVICE-NAME</em></code></span></dt><dd><p>
+      Check if a service is enabled or disabled.
+     </p></dd><dt id="id-1.4.2.2"><span class="term "><code class="command">systemctl status <em class="replaceable ">SERVICE-NAME</em></code></span></dt><dd><p>
+      Check if a service is running, stopped, enabled, or masked, and display the most recent log entries.
+     </p></dd><dt id="id-1.4.2.3"><span class="term "><code class="command">systemctl enable <em class="replaceable ">SERVICE-NAME</em></code></span></dt><dd><p>
+      Enable a service, without starting it. It will start automatically at
+      the next system restart, or it can be started manually, or as a dependency
+      of another service.
+     </p></dd><dt id="id-1.4.2.4"><span class="term "><code class="command">systemctl enable --now <em class="replaceable ">SERVICE-NAME</em></code></span></dt><dd><p>
+      Enable a service and start it immediately.
+     </p></dd><dt id="id-1.4.2.5"><span class="term "><code class="command">systemctl disable <em class="replaceable ">SERVICE-NAME</em></code></span></dt><dd><p>
+      Disable a service. If it is running, it will continue to run until it
+      is stopped manually. It will not start at the next system restart, but
+      can be started manually, or as a dependency of another service.
+     </p></dd><dt id="id-1.4.2.6"><span class="term "><code class="command">systemctl disable --now <em class="replaceable ">SERVICE-NAME</em></code></span></dt><dd><p>
+      Disable a service and stop it immediately.
+     </p></dd><dt id="id-1.4.2.7"><span class="term "><code class="command">systemctl re-enable <em class="replaceable ">SERVICE-NAME</em></code></span></dt><dd><p>
+      Stop and restart a service, and restore its default start behavior.
+     </p></dd><dt id="id-1.4.2.8"><span class="term "><code class="command">systemctl mask <em class="replaceable ">SERVICE-NAME</em></code></span></dt><dd><p>
+      Mask the service so that it cannot be started by any means. It must be
+      stopped manually, or it will continue to run, possibly in an
+      inconsistent state. The <code class="command">mask</code> command does not take
+      the <code class="command">--now</code> option.
+     </p></dd><dt id="id-1.4.2.9"><span class="term "><code class="command">systemctl unmask <em class="replaceable ">SERVICE-NAME</em></code></span></dt><dd><p>
+      Unmask the service. It will start after a system restart, or start it
+      manually. The <code class="command">unmask</code> command does not take the
+      <code class="command">--now</code> option.
+     </p></dd></dl></div><p>
+   See xref linkend="FOO" to learn how to stop, start, restart, and reload
+   services manually.
+ </p></div></div></div><div class="page-bottom"><div class="_share-print"><div class="online-contents share"><strong>Share this page: </strong><span class="share-buttons"><span class="_share-fb bottom-button">Facebook</span><span class="spacer"> • </span><span class="_share-in bottom-button">LinkedIn</span><span class="spacer"> • </span><span class="_share-tw bottom-button">Twitter</span><span class="spacer"> • </span><span class="_share-mail bottom-button">E-Mail</span></span></div><div class="print"><span class="_print-button bottom-button">Print this page</span></div><div class="clearme"></div></div></div></div><div id="_inward"></div></div><div id="_footer-wrap"><div id="_footer"><p>©
+        2022 
+        SUSE</p><ul><li><a href="https://jobs.suse.com/" target="_top">Careers</a></li><li><a href="https://www.suse.com/company/legal/" target="_top">Legal</a></li><li><a href="https://www.suse.com/company/about/" target="_top">About</a></li><li><a href="https://www.suse.com/contact/" target="_top">Contact Us</a></li></ul></div></div></body></html>
