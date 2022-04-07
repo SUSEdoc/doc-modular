@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Working with sudo</title><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" /><link rel="stylesheet" type="text/css" href="static/css/style.css" /><link rel="stylesheet" type="text/css" href="static/css/highlight.css" />
-<meta name="title" content="Working with sudo" />
-<meta name="description" content="This document applies to the following products and product versions:" />
-<meta name="book-title" content="Working with sudo" />
-<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi" />
-<meta name="tracker-type" content="bsc" />
-<meta name="tracker-bsc-assignee" content="julia.faltenbacher@suse.com" />
-<meta name="tracker-bsc-component" content="Smart Docs" />
-<meta name="tracker-bsc-product" content="Documentation" />
-<meta name="keywords" content="sudo, su, root user, sudo configuration, visudo" /><meta property="og:title" content="Working with sudo" />
-<meta property="og:description" content="This document applies to the following products and product versions:" />
-<meta property="og:type" content="article" />
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Working with sudo" />
-<meta name="twitter:description" content="This document applies to the following products and product versions:" />
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><title>Working with sudo</title><link rel="stylesheet" type="text/css" href="static/css/style.css"/>
+<meta name="title" content="Working with sudo"/>
+<meta name="description" content="This document applies to the following products and product versions:"/>
+<meta name="book-title" content="Working with sudo"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="julia.faltenbacher@suse.com"/>
+<meta name="tracker-bsc-component" content="Smart Docs"/>
+<meta name="tracker-bsc-product" content="Documentation"/>
+<meta name="keywords" content="sudo, su, root user, sudo configuration, visudo"/><meta property="og:title" content="Working with sudo"/>
+<meta property="og:description" content="This document applies to the following products and product versions:"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Working with sudo"/>
+<meta name="twitter:description" content="This document applies to the following products and product versions:"/>
 
 <script type="text/javascript">
 
@@ -21,7 +21,7 @@ if ( window.location.protocol.toLowerCase() != 'file:' ) {
   document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>');
 };
 
-</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css" /></noscript><script src="static/js/jquery-1.10.2.min.js" type="text/javascript"></script><script src="static/js/script.js" type="text/javascript"></script><script src="static/js/highlight.min.js" type="text/javascript"></script><script>
+</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"/></noscript><script src="static/js/jquery-1.10.2.min.js" type="text/javascript"> </script><script src="static/js/script.js" type="text/javascript"> </script><script src="static/js/highlight.min.js" type="text/javascript"> </script><script>
 
 $(document).ready(function() {
   $('.verbatim-wrap.highlight').each(function(i, block) {
@@ -32,37 +32,37 @@ hljs.configure({
   useBR: false
 });
 
-</script></head><body class="draft single offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><div id="_outer-wrap"><div id="_white-bg" style="background-color: #E11;"><div id="_header"><div id="_logo"><img src="static/images/logo.svg" alt="Logo" /></div><div class="crumbs inactive"><a class="single-crumb" href="#task-working-sudo" accesskey="c"><span class="single-contents-icon"></span>Working with sudo</a><div class="bubble-corner active-contents"></div></div><div class="clearme"></div></div></div><div id="_fixed-header-wrap" style="background-color: #E11;" class="inactive"><div id="_fixed-header"><div class="crumbs inactive"><a class="single-crumb" href="#task-working-sudo" accesskey="c"><span class="single-contents-icon"></span>Show Contents: Working with sudo</a></div><div class="buttons"><a class="top-button button" href="#">Top</a><div class="clearme"></div></div><div class="clearme"></div></div><div class="active-contents bubble"><div class="bubble-container"><div id="_bubble-toc"><ol><li class="inactive"><a href="#task-working-sudo-environment"><span class="number">1 </span><span class="name">Environment</span></a></li><li class="inactive"><a href="#task-working-sudo-intro"><span class="number">2 </span><span class="name">Introduction</span></a></li><li class="inactive"><a href="#task-working-sudo-requirements"><span class="number">3 </span><span class="name">Requirements</span></a></li><li class="inactive"><a href="#task-working-sudo-single-command"><span class="number">4 </span><span class="name">Running a single command</span></a></li><li class="inactive"><a href="#task-working-sudo-start-shell"><span class="number">5 </span><span class="name">Starting a shell</span></a></li><li class="inactive"><a href="#task-working-sudo-usecases"><span class="number">6 </span><span class="name"><code class="command">sudo</code> use cases</span></a></li><li class="inactive"><a href="#task-working-sudo-troubleshooting"><span class="number">7 </span><span class="name">Troubleshooting</span></a></li><li class="inactive"><a href="#task-working-sudo-next-steps"><span class="number">8 </span><span class="name">Next steps</span></a></li><li class="inactive"><a href="#task-working-sudo-related-topics"><span class="number">9 </span><span class="name">Related topics</span></a></li></ol></div><div class="clearme"></div></div></div></div><div id="_toc-bubble-wrap"></div><div id="_content" class="draft "><div class="documentation"><div xml:lang="en" class="article " id="task-working-sudo" lang="en"><div class="titlepage"><div><div><h1 class="title">Working with <code class="command">sudo</code></h1></div><div class="date"><span class="imprint-label">Publication Date: </span>03/30/2022</div></div></div><div class="line"><div class="toc"><dl><dt><span class="section"><a href="#task-working-sudo-environment"><span class="number">1 </span><span class="name">Environment</span></a></span></dt><dt><span class="section"><a href="#task-working-sudo-intro"><span class="number">2 </span><span class="name">Introduction</span></a></span></dt><dt><span class="section"><a href="#task-working-sudo-requirements"><span class="number">3 </span><span class="name">Requirements</span></a></span></dt><dt><span class="section"><a href="#task-working-sudo-single-command"><span class="number">4 </span><span class="name">Running a single command</span></a></span></dt><dt><span class="section"><a href="#task-working-sudo-start-shell"><span class="number">5 </span><span class="name">Starting a shell</span></a></span></dt><dt><span class="section"><a href="#task-working-sudo-usecases"><span class="number">6 </span><span class="name"><code class="command">sudo</code> use cases</span></a></span></dt><dt><span class="section"><a href="#task-working-sudo-troubleshooting"><span class="number">7 </span><span class="name">Troubleshooting</span></a></span></dt><dt><span class="section"><a href="#task-working-sudo-next-steps"><span class="number">8 </span><span class="name">Next steps</span></a></span></dt><dt><span class="section"><a href="#task-working-sudo-related-topics"><span class="number">9 </span><span class="name">Related topics</span></a></span></dt></dl></div></div><div class="sect1" id="task-working-sudo-environment"><div class="titlepage"><div><div><h2 class="title"><span class="number">1 </span><span xmlns:dm="urn:x-suse:ns:docmanager" class="name">Environment</span> <a title="Permalink" class="permalink" href="#task-working-sudo-environment">#</a></h2><div class="doc-status"><ul><li><span class="ds-label">File Name: </span>task-working-sudo.xml</li><li><span class="ds-label">ID: </span>task-working-sudo-environment</li></ul></div></div></div></div><p>This document applies to the following products and product versions:</p><div class="itemizedlist "><ul class="itemizedlist"><li class="listitem "><p>SUSE Linux Enterprise Server 15 SP3, 15 SP2, 15 SP1, 15 GA</p></li><li class="listitem "><p>SUSE Linux Enterprise Server for SAP Applications 15 SP3, 15 SP2, 15 SP1, 15 GA</p></li><li class="listitem "><p>SUSE Linux Enterprise High Availability Extension 15 SP3, 15 SP2, 15 SP1, 15 GA</p></li><li class="listitem "><p>SUSE Linux Enterprise High Performance Computing 15 SP3, 15 SP2, 15 SP1, 15 GA</p></li><li class="listitem "><p>SUSE Linux Enterprise Desktop 15 SP3, 15 SP2, 15 SP1, 15 GA</p></li><li class="listitem "><p>SUSE Linux Enterprise Real Time 15 SP3, 15 SP2, 15 SP1, 15 GA</p></li></ul></div></div><div class="sect1" id="task-working-sudo-intro"><div class="titlepage"><div><div><h2 class="title"><span class="number">2 </span><span xmlns:dm="urn:x-suse:ns:docmanager" class="name">Introduction</span> <a title="Permalink" class="permalink" href="#task-working-sudo-intro">#</a></h2><div class="doc-status"><ul><li><span class="ds-label">File Name: </span>task-working-sudo.xml</li><li><span class="ds-label">ID: </span>task-working-sudo-intro</li></ul></div></div></div></div><p>
+</script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#task-working-sudo">Working with sudo</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="task-working-sudo" data-id-title="Working with sudo"><div class="titlepage"><div><div><h1 class="title">Working with <code class="command">sudo</code></h1></div><div class="date"><span class="imprint-label">Publication Date: </span>04/07/2022</div></div></div><section class="sect1" id="task-working-sudo-environment" data-id-title="Environment"><div class="titlepage"><div><div><h2 class="title"><span class="title-number">1 </span><span class="title-name">Environment</span> <a title="Permalink" class="permalink" href="#task-working-sudo-environment">#</a></h2></div></div></div><p>This document applies to the following products and product versions:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>SUSE Linux Enterprise Server 15 SP3, 15 SP2, 15 SP1, 15 GA</p></li><li class="listitem"><p>SUSE Linux Enterprise Server for SAP Applications 15 SP3, 15 SP2, 15 SP1, 15 GA</p></li><li class="listitem"><p>SUSE Linux Enterprise High Availability Extension 15 SP3, 15 SP2, 15 SP1, 15 GA</p></li><li class="listitem"><p>SUSE Linux Enterprise High Performance Computing 15 SP3, 15 SP2, 15 SP1, 15 GA</p></li><li class="listitem"><p>SUSE Linux Enterprise Desktop 15 SP3, 15 SP2, 15 SP1, 15 GA</p></li><li class="listitem"><p>SUSE Linux Enterprise Real Time 15 SP3, 15 SP2, 15 SP1, 15 GA</p></li></ul></div></section><section class="sect1" id="task-working-sudo-intro" data-id-title="Introduction"><div class="titlepage"><div><div><h2 class="title"><span class="title-number">2 </span><span class="title-name">Introduction</span> <a title="Permalink" class="permalink" href="#task-working-sudo-intro">#</a></h2></div></div></div><p>
     The following article explains the basic usage of the command <code class="command">sudo</code>.
-   </p></div><div class="sect1" id="task-working-sudo-requirements"><div class="titlepage"><div><div><h2 class="title"><span class="number">3 </span><span xmlns:dm="urn:x-suse:ns:docmanager" class="name">Requirements</span> <a title="Permalink" class="permalink" href="#task-working-sudo-requirements">#</a></h2><div class="doc-status"><ul><li><span class="ds-label">File Name: </span>task-working-sudo.xml</li><li><span class="ds-label">ID: </span>task-working-sudo-requirements</li></ul></div></div></div></div><p>
-   To use <code class="command">sudo</code>, you need to have the <span class="productname ">sudo</span> package
+   </p></section><section class="sect1" id="task-working-sudo-requirements" data-id-title="Requirements"><div class="titlepage"><div><div><h2 class="title"><span class="title-number">3 </span><span class="title-name">Requirements</span> <a title="Permalink" class="permalink" href="#task-working-sudo-requirements">#</a></h2></div></div></div><p>
+   To use <code class="command">sudo</code>, you need to have the <span class="productname">sudo</span> package
    installed which is usually available by default on PRODUCT.
-  </p></div><div class="sect1" id="task-working-sudo-single-command"><div class="titlepage"><div><div><h2 class="title"><span class="number">4 </span><span xmlns:dm="urn:x-suse:ns:docmanager" class="name">Running a single command</span> <a title="Permalink" class="permalink" href="#task-working-sudo-single-command">#</a></h2><div class="doc-status"><ul><li><span class="ds-label">File Name: </span>task-working-sudo.xml</li><li><span class="ds-label">ID: </span>task-working-sudo-single-command</li></ul></div></div></div></div><p>
+  </p></section><section class="sect1" id="task-working-sudo-single-command" data-id-title="Running a single command"><div class="titlepage"><div><div><h2 class="title"><span class="title-number">4 </span><span class="title-name">Running a single command</span> <a title="Permalink" class="permalink" href="#task-working-sudo-single-command">#</a></h2></div></div></div><p>
     As a regular user, you can run any command as <code class="systemitem">root</code> by
     adding <code class="command">sudo</code> before it. This prompts you to provide the <code class="systemitem">root</code>
     password. If authenticated successfully, this runs the command as
     <code class="systemitem">root</code>:
-   </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">tux &gt; </code><code class="command">id -un</code><span id="co-sudo-usage-id"></span><span class="callout">1</span>
+   </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">tux &gt; </code><code class="command">id -un</code><span class="callout" id="co-sudo-usage-id">1</span>
 tux
 <code class="prompt user">tux &gt; </code><code class="command">sudo</code> <code class="command">id -un</code>
-root's password:<span id="co-sudo-usage-pw"></span><span class="callout">2</span>
+root's password:<span class="callout" id="co-sudo-usage-pw">2</span>
 root
 <code class="prompt user">tux &gt; </code><code class="command">id -un</code>
-tux<span id="co-sudo-usage-after"></span><span class="callout">3</span>
+tux<span class="callout" id="co-sudo-usage-after">3</span>
 <code class="prompt user">tux &gt; </code><code class="command">sudo</code> <code class="command">id -un</code>
-<span id="co-sudo-usage-nopw"></span><span class="callout">4</span>
-root</pre></div><div class="calloutlist "><table border="0" summary="Callout list"><tr><td width="5%" valign="top" align="left"><p><a href="#co-sudo-usage-id"><span class="callout">1</span></a> </p></td><td valign="top" align="left"><p>
+<span class="callout" id="co-sudo-usage-nopw">4</span>
+root</pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-sudo-usage-id"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
       The <code class="command">id -un</code> command prints the login name of the
       current user.
-     </p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#co-sudo-usage-pw"><span class="callout">2</span></a> </p></td><td valign="top" align="left"><p>
+     </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-sudo-usage-pw"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
       The password is not shown during input, neither as clear text nor as
       masking characters.
-     </p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#co-sudo-usage-after"><span class="callout">3</span></a> </p></td><td valign="top" align="left"><p>
+     </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-sudo-usage-after"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
       Only commands that start with <code class="command">sudo</code> run with elevated privileges.
-     </p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#co-sudo-usage-nopw"><span class="callout">4</span></a> </p></td><td valign="top" align="left"><p>
+     </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-sudo-usage-nopw"><span class="callout">4</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
       The elevated privileges persist for a certain period of time, so you
       do not have to provide the <code class="systemitem">root</code> again.
-     </p></td></tr></table></div><div id="id-1.5.5" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg" /><h6>Tip: I/O redirection</h6><p>
+     </p></td></tr></table></div><div id="id-1.5.5" data-id-title="I/O redirection" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><h6>Tip: I/O redirection</h6><p>
      When using <code class="command">sudo</code>, I/O redirection does not work:
     </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">tux &gt; </code><code class="command">sudo</code> echo s &gt; /proc/sysrq-trigger
 bash: /proc/sysrq-trigger: Permission denied
@@ -74,12 +74,12 @@ bash: /proc/1/maps: Permission denied</pre></div><p>
      redirection with elevated privileges, either start a shell as in <a class="xref" href="#task-working-sudo-start-shell" title="5. Starting a shell">Section 5, “Starting a shell”</a> or use the <code class="command">dd</code>
      utility:
     </p><div class="verbatim-wrap"><pre class="screen">echo s | sudo dd of=/proc/sysrq-trigger
-sudo dd if=/proc/1/maps | cat</pre></div></div></div><div class="sect1" id="task-working-sudo-start-shell"><div class="titlepage"><div><div><h2 class="title"><span class="number">5 </span><span xmlns:dm="urn:x-suse:ns:docmanager" class="name">Starting a shell</span> <a title="Permalink" class="permalink" href="#task-working-sudo-start-shell">#</a></h2><div class="doc-status"><ul><li><span class="ds-label">File Name: </span>task-working-sudo.xml</li><li><span class="ds-label">ID: </span>task-working-sudo-start-shell</li></ul></div></div></div></div><p>
+sudo dd if=/proc/1/maps | cat</pre></div></div></section><section class="sect1" id="task-working-sudo-start-shell" data-id-title="Starting a shell"><div class="titlepage"><div><div><h2 class="title"><span class="title-number">5 </span><span class="title-name">Starting a shell</span> <a title="Permalink" class="permalink" href="#task-working-sudo-start-shell">#</a></h2></div></div></div><p>
     Using <code class="command">sudo</code> every time to run a command with elevated privileges is not
     always practical.  While you can use the <code class="command">sudo bash</code>
     command, it is recommended to use one of the built-in mechanisms to start a
     shell:
-   </p><div class="variablelist "><dl class="variablelist"><dt id="id-1.6.3.1"><span class="term "><code class="command">sudo -s (<em class="replaceable ">COMMAND</em>)</code>
+   </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.6.3.1"><span class="term"><code class="command">sudo -s (<em class="replaceable">COMMAND</em>)</code>
      </span></dt><dd><p>
        Starts a shell specified by the <code class="envar">SHELL</code> environment
        variable or the target user's default shell. If a command is specified, it
@@ -88,7 +88,7 @@ sudo dd if=/proc/1/maps | cat</pre></div></div></div><div class="sect1" id="task
       </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">tux:~ &gt; </code>sudo -s
 root's password:
 <code class="prompt user">root:/home/tux # </code>exit
-<code class="prompt user">tux:~ &gt; </code></pre></div></dd><dt id="id-1.6.3.2"><span class="term "><code class="command">sudo -i (<em class="replaceable ">COMMAND</em>)</code>
+<code class="prompt user">tux:~ &gt; </code></pre></div></dd><dt id="id-1.6.3.2"><span class="term"><code class="command">sudo -i (<em class="replaceable">COMMAND</em>)</code>
      </span></dt><dd><p>
        Similar to <code class="option">-s</code>, but starts the shell as a login shell. This
        means that the shell's start-up files (<code class="filename">.profile</code>
@@ -97,36 +97,36 @@ root's password:
       </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">tux:~ &gt; </code>sudo -i
 root's password:
 <code class="prompt user">root:~ # </code>exit
-<code class="prompt user">tux:~ &gt; </code></pre></div></dd></dl></div><div id="id-1.6.4" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg" /><h6>Tip: Environment variables</h6><p>
+<code class="prompt user">tux:~ &gt; </code></pre></div></dd></dl></div><div id="id-1.6.4" data-id-title="Environment variables" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><h6>Tip: Environment variables</h6><p>
      By default, <code class="command">sudo</code> does not propagate environment variables. This behavior
      can be changed using the <code class="option">env_reset</code> option 
-    </p></div></div><div class="sect1" id="task-working-sudo-usecases"><div class="titlepage"><div><div><h2 class="title"><span class="number">6 </span><span xmlns:dm="urn:x-suse:ns:docmanager" class="name"><code class="command">sudo</code> use cases</span> <a title="Permalink" class="permalink" href="#task-working-sudo-usecases">#</a></h2><div class="doc-status"><ul><li><span class="ds-label">File Name: </span>task-working-sudo.xml</li><li><span class="ds-label">ID: </span>task-working-sudo-usecases</li></ul></div></div></div></div><p>
+    </p></div></section><section class="sect1" id="task-working-sudo-usecases" data-id-title="sudo use cases"><div class="titlepage"><div><div><h2 class="title"><span class="title-number">6 </span><span class="title-name"><code class="command">sudo</code> use cases</span> <a title="Permalink" class="permalink" href="#task-working-sudo-usecases">#</a></h2></div></div></div><p>
    While the default configuration works for standard usage scenarios, you can
    customize the default configuration to meet your specific needs.
-  </p><div class="sect2" id="task-working-sudo-usecases-userpw"><div class="titlepage"><div><div><h3 class="title"><span class="number">6.1 </span><span xmlns:dm="urn:x-suse:ns:docmanager" class="name">Using <code class="command">sudo</code> without <code class="systemitem">root</code> password</span> <a title="Permalink" class="permalink" href="#task-working-sudo-usecases-userpw">#</a></h3><div class="doc-status"><ul><li><span class="ds-label">File Name: </span>task-working-sudo.xml</li><li><span class="ds-label">ID: </span>task-working-sudo-usecases-userpw</li></ul></div></div></div></div><p>
-    Modern <span class="productname ">Unix</span> systems generally use user groups as
+  </p><section class="sect2" id="task-working-sudo-usecases-userpw" data-id-title="Using sudo without root password"><div class="titlepage"><div><div><h3 class="title"><span class="title-number">6.1 </span><span class="title-name">Using <code class="command">sudo</code> without <code class="systemitem">root</code> password</span> <a title="Permalink" class="permalink" href="#task-working-sudo-usecases-userpw">#</a></h3></div></div></div><p>
+    Modern <span class="productname">Unix</span> systems generally use user groups as
     a security protocol to control access privileges. The group
     <code class="systemitem">wheel</code> is a special user group
     to control access to the <code class="command">su</code> or <code class="command">sudo</code> command.
     By design, members of the group <code class="systemitem">wheel</code> can run all commands with <code class="command">sudo</code> as
     <code class="systemitem">root</code>. The following procedure explains how to add a user account to
     the <code class="systemitem">wheel</code> group.
-   </p><div class="procedure "><div class="procedure-contents"><ol class="procedure" type="1"><li class="step "><p>
+   </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
       Add your user account to the group
       <code class="systemitem">wheel</code>.
      </p><p>
       If your user account is not already a member of the <code class="systemitem">wheel</code> group, add it:
-      </p><div class="verbatim-wrap"><pre class="screen">sudo usermod -a -G wheel <em class="replaceable ">USERNAME</em></pre></div><p>
+      </p><div class="verbatim-wrap"><pre class="screen">sudo usermod -a -G wheel <em class="replaceable">USERNAME</em></pre></div><p>
       Log out and log in
       again to enable the change. Verify that the change was successful by
-      running the <code class="command">groups <em class="replaceable ">USERNAME</em></code>
+      running the <code class="command">groups <em class="replaceable">USERNAME</em></code>
       command.
-     </p></li><li class="step "><p>
+     </p></li><li class="step"><p>
       Authenticate with the user account's normal password.
      </p><p>
       Create the file <code class="filename">/etc/sudoers.d/userpw</code> using the
       following command:
-     </p><div class="verbatim-wrap"><pre class="screen">visudo -f /etc/sudoers.d/userpw</pre></div></li><li class="step "><p>Add the following line:</p><div class="verbatim-wrap"><pre class="screen">Defaults !targetpw</pre></div></li><li class="step "><p>
+     </p><div class="verbatim-wrap"><pre class="screen">visudo -f /etc/sudoers.d/userpw</pre></div></li><li class="step"><p>Add the following line:</p><div class="verbatim-wrap"><pre class="screen">Defaults !targetpw</pre></div></li><li class="step"><p>
       Select a new default rule.
      </p><p>
       Depending on whether you want users to re-enter their passwords,
@@ -136,15 +136,15 @@ root's password:
 # %wheel ALL=(ALL) ALL
 
 ## Same thing without a password
-# %wheel ALL=(ALL) NOPASSWD: ALL</pre></div></li><li class="step "><p>
+# %wheel ALL=(ALL) NOPASSWD: ALL</pre></div></li><li class="step"><p>
       Make the default rule more restrictive.
      </p><p>
       Comment out or remove the allow-everything rule in
       <code class="filename">/etc/sudoers</code>:
-     </p><div class="verbatim-wrap"><pre class="screen">ALL     ALL=(ALL) ALL   # WARNING! Only use this together with 'Defaults targetpw'</pre></div><div id="id-1.7.3.3.5.4" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg" /><h6>Warning: Dangerous rule in sudoers</h6><p>
+     </p><div class="verbatim-wrap"><pre class="screen">ALL     ALL=(ALL) ALL   # WARNING! Only use this together with 'Defaults targetpw'</pre></div><div id="id-1.7.3.3.5.4" data-id-title="Dangerous rule in sudoers" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><h6>Warning: Dangerous rule in sudoers</h6><p>
        Do not skip this step. Otherwise <span class="emphasis"><em>any</em></span> user can
        execute <span class="emphasis"><em>any</em></span> command as <code class="systemitem">root</code>!
-      </p></div></li><li class="step "><p>
+      </p></div></li><li class="step"><p>
       Test the configuration.
      </p><p>
       Run <code class="command">sudo</code> as member and non-member of
@@ -157,7 +157,7 @@ root
 <code class="prompt user">wilber:~ &gt; </code>groups
 users
 <code class="prompt user">wilber:~ &gt; </code>sudo id -un
-wilber is not in the sudoers file.  This incident will be reported.</pre></div></li></ol></div></div></div><div class="sect2" id="task-working-sudo-usecases-xorg"><div class="titlepage"><div><div><h3 class="title"><span class="number">6.2 </span><span xmlns:dm="urn:x-suse:ns:docmanager" class="name">Using <code class="command">sudo</code> with X.Org applications</span> <a title="Permalink" class="permalink" href="#task-working-sudo-usecases-xorg">#</a></h3><div class="doc-status"><ul><li><span class="ds-label">File Name: </span>task-working-sudo.xml</li><li><span class="ds-label">ID: </span>task-working-sudo-usecases-xorg</li></ul></div></div></div></div><p>
+wilber is not in the sudoers file.  This incident will be reported.</pre></div></li></ol></div></div></section><section class="sect2" id="task-working-sudo-usecases-xorg" data-id-title="Using sudo with X.Org applications"><div class="titlepage"><div><div><h3 class="title"><span class="title-number">6.2 </span><span class="title-name">Using <code class="command">sudo</code> with X.Org applications</span> <a title="Permalink" class="permalink" href="#task-working-sudo-usecases-xorg">#</a></h3></div></div></div><p>
     Starting graphical applications with <code class="command">sudo</code> usually results in the following
     error:
    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">tux &gt; </code><code class="command">sudo</code> xterm
@@ -168,29 +168,28 @@ xterm: DISPLAY is not set</pre></div><p>
     following command:
    </p><div class="verbatim-wrap"><pre class="screen">xhost si:localuser:root</pre></div><p>
     The command below removes the granted access:
-   </p><div class="verbatim-wrap"><pre class="screen">xhost -si:localuser:root</pre></div><div id="id-1.7.4.8" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg" /><h6>Warning: Potential security issue</h6><p>
+   </p><div class="verbatim-wrap"><pre class="screen">xhost -si:localuser:root</pre></div><div id="id-1.7.4.8" data-id-title="Potential security issue" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><h6>Warning: Potential security issue</h6><p>
      Running graphical applications with root privileges has security
      implications. It is recommended to enable root access for a graphical
      application only as an exception. It is also recommended to revoke
      the granted root access as soon as the graphical application is closed.
-    </p></div></div></div><div class="sect1" id="task-working-sudo-troubleshooting"><div class="titlepage"><div><div><h2 class="title"><span class="number">7 </span><span xmlns:dm="urn:x-suse:ns:docmanager" class="name">Troubleshooting</span> <a title="Permalink" class="permalink" href="#task-working-sudo-troubleshooting">#</a></h2><div class="doc-status"><ul><li><span class="ds-label">File Name: </span>task-working-sudo.xml</li><li><span class="ds-label">ID: </span>task-working-sudo-troubleshooting</li></ul></div></div></div></div><p>
+    </p></div></section></section><section class="sect1" id="task-working-sudo-troubleshooting" data-id-title="Troubleshooting"><div class="titlepage"><div><div><h2 class="title"><span class="title-number">7 </span><span class="title-name">Troubleshooting</span> <a title="Permalink" class="permalink" href="#task-working-sudo-troubleshooting">#</a></h2></div></div></div><p>
     The following instructions help you to fix any issues.
-   </p><div class="sect2" id="task-working-sudo-troubleshooting-unlock"><div class="titlepage"><div><div><h3 class="title"><span class="number">7.1 </span><span xmlns:dm="urn:x-suse:ns:docmanager" class="name">Unlocking yourself</span> <a title="Permalink" class="permalink" href="#task-working-sudo-troubleshooting-unlock">#</a></h3><div class="doc-status"><ul><li><span class="ds-label">File Name: </span>task-working-sudo.xml</li><li><span class="ds-label">ID: </span>task-working-sudo-troubleshooting-unlock</li></ul></div></div></div></div><p>
+   </p><section class="sect2" id="task-working-sudo-troubleshooting-unlock" data-id-title="Unlocking yourself"><div class="titlepage"><div><div><h3 class="title"><span class="title-number">7.1 </span><span class="title-name">Unlocking yourself</span> <a title="Permalink" class="permalink" href="#task-working-sudo-troubleshooting-unlock">#</a></h3></div></div></div><p>
    If you accidentally locked yourself out of <code class="command">sudo</code>, do the following:
-  </p><div class="procedure "><div class="procedure-contents"><ol class="procedure" type="1"><li class="step "><p>
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
      Start a root shell with <code class="command">su -</code>.
-    </p></li><li class="step "><p>
+    </p></li><li class="step"><p>
      Enter the <code class="systemitem">root</code> password.
-    </p></li><li class="step "><p>
+    </p></li><li class="step"><p>
      Run <code class="command">visudo</code>.
-    </p><p>A file is opened.</p></li><li class="step "><p>
+    </p><p>A file is opened.</p></li><li class="step"><p>
      Fix all the syntax errors mentioned in the file.
     </p></li></ol></div></div><p>
    Your user is unlocked again.
-  </p></div></div><div class="sect1" id="task-working-sudo-next-steps"><div class="titlepage"><div><div><h2 class="title"><span class="number">8 </span><span xmlns:dm="urn:x-suse:ns:docmanager" class="name">Next steps</span> <a title="Permalink" class="permalink" href="#task-working-sudo-next-steps">#</a></h2><div class="doc-status"><ul><li><span class="ds-label">File Name: </span>task-working-sudo.xml</li><li><span class="ds-label">ID: </span>task-working-sudo-next-steps</li></ul></div></div></div></div><div class="itemizedlist "><ul class="itemizedlist"><li class="listitem "><p>
-     <em class="citetitle ">Configuring <code class="command">sudo</code></em>
-    </p></li></ul></div></div><div class="sect1" id="task-working-sudo-related-topics"><div class="titlepage"><div><div><h2 class="title"><span class="number">9 </span><span xmlns:dm="urn:x-suse:ns:docmanager" class="name">Related topics</span> <a title="Permalink" class="permalink" href="#task-working-sudo-related-topics">#</a></h2><div class="doc-status"><ul><li><span class="ds-label">File Name: </span>task-working-sudo.xml</li><li><span class="ds-label">ID: </span>task-working-sudo-related-topics</li></ul></div></div></div></div><div class="itemizedlist "><ul class="itemizedlist"><li class="listitem "><p>
-     <em class="citetitle "><code class="command">sudo</code>: basic concept</em>
-    </p></li></ul></div></div></div></div><div class="page-bottom"><div class="_share-print"><div class="online-contents share"><strong>Share this page: </strong><span class="share-buttons"><span class="_share-fb bottom-button">Facebook</span><span class="spacer"> • </span><span class="_share-in bottom-button">LinkedIn</span><span class="spacer"> • </span><span class="_share-tw bottom-button">Twitter</span><span class="spacer"> • </span><span class="_share-mail bottom-button">E-Mail</span></span></div><div class="print"><span class="_print-button bottom-button">Print this page</span></div><div class="clearme"></div></div></div></div><div id="_inward"></div></div><div id="_footer-wrap"><div id="_footer"><p>©
-        2022 
-        SUSE</p><ul><li><a href="https://jobs.suse.com/" target="_top">Careers</a></li><li><a href="https://www.suse.com/company/legal/" target="_top">Legal</a></li><li><a href="https://www.suse.com/company/about/" target="_top">About</a></li><li><a href="https://www.suse.com/contact/" target="_top">Contact Us</a></li></ul></div></div></body></html>
+  </p></section></section><section class="sect1" id="task-working-sudo-next-steps" data-id-title="Next steps"><div class="titlepage"><div><div><h2 class="title"><span class="title-number">8 </span><span class="title-name">Next steps</span> <a title="Permalink" class="permalink" href="#task-working-sudo-next-steps">#</a></h2></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     <em class="citetitle">Configuring <code class="command">sudo</code></em>
+    </p></li></ul></div></section><section class="sect1" id="task-working-sudo-related-topics" data-id-title="Related topics"><div class="titlepage"><div><div><h2 class="title"><span class="title-number">9 </span><span class="title-name">Related topics</span> <a title="Permalink" class="permalink" href="#task-working-sudo-related-topics">#</a></h2></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     <em class="citetitle"><code class="command">sudo</code>: basic concept</em>
+    </p></li></ul></div></section></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="#task-working-sudo-environment"><span class="title-number">1 </span><span class="title-name">Environment</span></a></span></li><li><span class="section"><a href="#task-working-sudo-intro"><span class="title-number">2 </span><span class="title-name">Introduction</span></a></span></li><li><span class="section"><a href="#task-working-sudo-requirements"><span class="title-number">3 </span><span class="title-name">Requirements</span></a></span></li><li><span class="section"><a href="#task-working-sudo-single-command"><span class="title-number">4 </span><span class="title-name">Running a single command</span></a></span></li><li><span class="section"><a href="#task-working-sudo-start-shell"><span class="title-number">5 </span><span class="title-name">Starting a shell</span></a></span></li><li><span class="section"><a href="#task-working-sudo-usecases"><span class="title-number">6 </span><span class="title-name"><code class="command">sudo</code> use cases</span></a></span></li><li><span class="section"><a href="#task-working-sudo-troubleshooting"><span class="title-number">7 </span><span class="title-name">Troubleshooting</span></a></span></li><li><span class="section"><a href="#task-working-sudo-next-steps"><span class="title-number">8 </span><span class="title-name">Next steps</span></a></span></li><li><span class="section"><a href="#task-working-sudo-related-topics"><span class="title-number">9 </span><span class="title-name">Related topics</span></a></span></li></ul></div><div class="side-title">Give feedback</div><ul class="feedback" id="_give-feedback"><li><a id="_feedback-reportbug" href="#" rel="nofollow" target="_blank">Report an issue</a></li></ul><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-fb" href="#" title="Facebook"> </a></li><li><a id="_share-in" href="#" title="LinkedIn"> </a></li><li><a id="_share-tw" href="#" title="Twitter"> </a></li><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE
+                 2022</span></div></div></footer></body></html>
