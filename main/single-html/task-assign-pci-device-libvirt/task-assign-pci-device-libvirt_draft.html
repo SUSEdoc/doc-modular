@@ -32,7 +32,7 @@ hljs.configure({
   useBR: false
 });
 
-</script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#task-assign-pci-device-libvirt">Assigning a PCI device to a virtual machine</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="task-assign-pci-device-libvirt" data-id-title="Assigning a PCI device to a virtual machine"><div class="titlepage"><div><div><h1 class="title">Assigning a PCI device to a virtual machine</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>04/28/2022</div></div></div><section class="sect1" id="environment-assign-pci-device-libvirt" data-id-title="Environment"><div class="titlepage"><div><div><h2 class="title"><span class="title-number">1 </span><span class="title-name">Environment</span> <a title="Permalink" class="permalink" href="#environment-assign-pci-device-libvirt">#</a></h2></div></div></div><p>
+</script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#task-assign-pci-device-libvirt">Assigning a PCI device to a virtual machine</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="task-assign-pci-device-libvirt" data-id-title="Assigning a PCI device to a virtual machine"><div class="titlepage"><div><div><h1 class="title">Assigning a PCI device to a virtual machine</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>05/05/2022</div></div></div><section class="sect1" id="environment-assign-pci-device-libvirt" data-id-title="Environment"><div class="titlepage"><div><div><h2 class="title"><span class="title-number">1 </span><span class="title-name">Environment</span> <a title="Permalink" class="permalink" href="#environment-assign-pci-device-libvirt">#</a></h2></div></div></div><p>
    This document applies to the following product and product versions:
   </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
      SUSE Linux Enterprise Server 15 SP3, 15 SP2, 15 SP1, 15 GA,
@@ -64,7 +64,7 @@ hljs.configure({
   </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
      Identify the host PCI device to assign to the VM Guest. The following
      example identifies a DEC network card:
-    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">tux &gt; </code><code class="command">sudo</code> <code class="command">lspci -nn</code>
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">lspci -nn</code>
 [...]
 <span class="bold"><strong>03:07.0</strong></span> Ethernet controller [0200]: Digital Equipment Corporation DECchip \
 21140 [FasterNet] [1011:0009] (rev 22)
@@ -76,7 +76,7 @@ hljs.configure({
      <em class="replaceable">ID</em>, replace the colon and the period in the
      device ID (<code class="literal">03:07.0</code>) with underscores. Prefix the result
      with <span class="quote">“<span class="quote">pci_0000_</span>”</span>: <code class="literal">pci_0000_03_07_0</code>.
-    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">tux &gt; </code><code class="command">sudo</code> <code class="command">virsh nodedev-dumpxml pci_0000_03_07_0</code>
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">virsh nodedev-dumpxml pci_0000_03_07_0</code>
 &lt;device&gt;
   &lt;name&gt;pci_0000_03_07_0&lt;/name&gt;
   &lt;path&gt;/sys/devices/pci0000:00/0000:00:14.4/0000:03:07.0&lt;/path&gt;
@@ -97,7 +97,7 @@ hljs.configure({
      Write down the values for domain, bus, and function.
     </p></li><li class="step"><p>
      Detach the device from the host system:
-    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">tux &gt; </code><code class="command">sudo</code> <code class="command">virsh nodedev-detach pci_0000_03_07_0</code>
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">virsh nodedev-detach pci_0000_03_07_0</code>
   Device pci_0000_03_07_0 detached</pre></div><div id="id-1.5.3.3.3" data-id-title="Multi-function PCI devices" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><h6>Tip: Multi-function PCI devices</h6><p>
       When using a multi-function PCI device that does not support FLR
       (function level reset) or PM (power management) reset, you need to detach
@@ -109,7 +109,7 @@ hljs.configure({
      Convert the domain, bus, slot, and function values from decimal to
      hexadecimal. In this example, domain = 0, bus = 3, slot = 7, and function
      = 0. Ensure that the values are inserted in the right order:
-    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">tux &gt; </code><code class="command">printf "&lt;address domain='0x%x' bus='0x%x' slot='0x%x' function='0x%x'/&gt;\n" 0 3 7 0</code></pre></div><p>
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">printf "&lt;address domain='0x%x' bus='0x%x' slot='0x%x' function='0x%x'/&gt;\n" 0 3 7 0</code></pre></div><p>
      This results in:
     </p><div class="verbatim-wrap"><pre class="screen">&lt;address domain='0x0' bus='0x3' slot='0x7' function='0x0'/&gt;</pre></div></li><li class="step"><p>
      Run <code class="command">virsh edit</code> on your domain, and add the following
@@ -142,17 +142,17 @@ hljs.configure({
      the related driver with the <code class="command">virsh nodedev-detach</code> and
      <code class="command">virsh nodedev-reattach</code> commands. Prior to starting the
      VM Guest you need to detach the device from the host by running
-    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">tux &gt; </code><code class="command">sudo</code> virsh nodedev-detach <em class="replaceable">pci_0000_03_07_0</em></pre></div><p>
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> virsh nodedev-detach <em class="replaceable">pci_0000_03_07_0</em></pre></div><p>
      When the VM Guest is not running, you can make the device available for
      the host by running
-    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">tux &gt; </code><code class="command">sudo</code> virsh nodedev-reattach <em class="replaceable">pci_0000_03_07_0</em></pre></div></li><li class="step"><p>
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> virsh nodedev-reattach <em class="replaceable">pci_0000_03_07_0</em></pre></div></li><li class="step"><p>
      Shut down the VM Guest:
-    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">tux &gt; </code><code class="command">sudo</code> shutdown -h now</pre></div></li><li class="step"><p>
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> shutdown -h now</pre></div></li><li class="step"><p>
      If SELinux is running on the VM Host Server, you need to allow managing the PCI
      device configuration:
-    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">tux &gt; </code><code class="command">sudo</code> <code class="command">setsebool -P virt_use_sysfs 1</code></pre></div></li><li class="step"><p>
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">setsebool -P virt_use_sysfs 1</code></pre></div></li><li class="step"><p>
      Start your VM Guest to make the assigned PCI device available:
-    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">tux &gt; </code><code class="command">sudo</code> <code class="command">virsh start <em class="replaceable">VM_NAME</em></code></pre></div></li></ol></div></div><div id="id-1.5.4" data-id-title="SLES11 SP4 KVM guests" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><h6>Important: SLES11 SP4 KVM guests</h6><p>
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">virsh start <em class="replaceable">VM_NAME</em></code></pre></div></li></ol></div></div><div id="id-1.5.4" data-id-title="SLES11 SP4 KVM guests" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><h6>Important: SLES11 SP4 KVM guests</h6><p>
     On a newer QEMU machine type (pc-i440fx-2.0 or higher) with SLES11 SP4
     KVM guests, the <code class="systemitem">acpiphp</code> module
     is not loaded by default in the guest. This module must be loaded to enable

@@ -32,7 +32,7 @@ hljs.configure({
   useBR: false
 });
 
-</script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#task-set-up-uefi-http-boot-server">Setting up a UEFI HTTP Boot server</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="task-set-up-uefi-http-boot-server" data-id-title="Setting up a UEFI HTTP Boot server"><div class="titlepage"><div><div><h1 class="title">Setting up a UEFI HTTP Boot server</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>04/28/2022</div></div></div><section class="sect1" id="environment-set-up-uefi-http-boot-server" data-id-title="Environment"><div class="titlepage"><div><div><h2 class="title"><span class="title-number">1 </span><span class="title-name">Environment</span> <a title="Permalink" class="permalink" href="#environment-set-up-uefi-http-boot-server">#</a></h2></div></div></div><p>This document applies to the following product and product versions:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>SUSE Linux Enterprise Server 15 SP3, 15 SP2, 15 SP1, 15 GA, 12 SP5, 12 SP4, 12 SP3</p></li></ul></div></section><section class="sect1" id="introduction-set-up-uefi-http-boot-server" data-id-title="Introduction"><div class="titlepage"><div><div><h2 class="title"><span class="title-number">2 </span><span class="title-name">Introduction</span> <a title="Permalink" class="permalink" href="#introduction-set-up-uefi-http-boot-server">#</a></h2></div></div></div><p>
+</script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#task-set-up-uefi-http-boot-server">Setting up a UEFI HTTP Boot server</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="task-set-up-uefi-http-boot-server" data-id-title="Setting up a UEFI HTTP Boot server"><div class="titlepage"><div><div><h1 class="title">Setting up a UEFI HTTP Boot server</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>05/05/2022</div></div></div><section class="sect1" id="environment-set-up-uefi-http-boot-server" data-id-title="Environment"><div class="titlepage"><div><div><h2 class="title"><span class="title-number">1 </span><span class="title-name">Environment</span> <a title="Permalink" class="permalink" href="#environment-set-up-uefi-http-boot-server">#</a></h2></div></div></div><p>This document applies to the following product and product versions:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>SUSE Linux Enterprise Server 15 SP3, 15 SP2, 15 SP1, 15 GA, 12 SP5, 12 SP4, 12 SP3</p></li></ul></div></section><section class="sect1" id="introduction-set-up-uefi-http-boot-server" data-id-title="Introduction"><div class="titlepage"><div><div><h2 class="title"><span class="title-number">2 </span><span class="title-name">Introduction</span> <a title="Permalink" class="permalink" href="#introduction-set-up-uefi-http-boot-server">#</a></h2></div></div></div><p>
    HTTP Boot can remotely install operating systems from an HTTP URL. While PXE
    can only deploy images to servers in a local subnet, HTTP Boot can deploy
    images to servers across different subnets in routed networks, and can
@@ -54,7 +54,7 @@ hljs.configure({
    values for your server.
   </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
      Install the <span class="package">dnsmasq</span> package:
-    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">tux &gt; </code><code class="command">sudo zypper install dnsmasq</code></pre></div></li><li class="step"><p>
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo zypper install dnsmasq</code></pre></div></li><li class="step"><p>
      Add the following lines to the <code class="filename">/etc/dnsmasq.conf</code> file:
     </p><div class="verbatim-wrap"><pre class="screen">interface=eth0
 addn-hosts=/etc/hosts.conf</pre></div></li><li class="step"><p>
@@ -63,17 +63,17 @@ addn-hosts=/etc/hosts.conf</pre></div></li><li class="step"><p>
     </p><div class="verbatim-wrap"><pre class="screen"><em class="replaceable">192.168.111.1 www.httpboot.local
 2001:db8:f00f:cafe::1 www.httpboot.local</em></pre></div></li><li class="step"><p>
      Enable and start the DNS server:
-    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">tux &gt; </code><code class="command">sudo systemctl enable --now dnsmasq</code></pre></div></li></ol></div></div><div id="id-1.5.4" data-id-title="Use the shim boot loader" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><h6>Note: Use the <span class="productname">shim</span> boot loader</h6><p>
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo systemctl enable --now dnsmasq</code></pre></div></li></ol></div></div><div id="id-1.5.4" data-id-title="Use the shim boot loader" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><h6>Note: Use the <span class="productname">shim</span> boot loader</h6><p>
     Because of a change in UEFI 2.7, we recommend using a shim boot loader from
     SUSE Linux Enterprise 15 or newer to avoid potential errors caused by the additional DNS
     node.
    </p></div></section><section class="sect1" id="configure-http-set-up-uefi-http-boot-server" data-id-title="Configuring the HTTP server"><div class="titlepage"><div><div><h2 class="title"><span class="title-number">5 </span><span class="title-name">Configuring the HTTP server</span> <a title="Permalink" class="permalink" href="#configure-http-set-up-uefi-http-boot-server">#</a></h2></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
      Install the <span class="package">apache2</span> package:
-    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">tux &gt; </code><code class="command">sudo zypper install apache2</code></pre></div></li><li class="step"><p>
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo zypper install apache2</code></pre></div></li><li class="step"><p>
      In the root directory of the HTTP Boot server (<code class="literal">/srv/www/htdocs/</code>),
      create a subdirectory for the installation content. For example,
      <code class="literal">/srv/www/htdocs/sle/</code>:
-    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">tux &gt; </code><code class="command">sudo mkdir /srv/www/htdocs/sle</code></pre></div></li><li class="step"><p>
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo mkdir /srv/www/htdocs/sle</code></pre></div></li><li class="step"><p>
      Copy or extract all of the files from the ISO to the new directory.
     </p></li><li class="step"><p>
      To configure the boot menu, edit the
@@ -95,12 +95,12 @@ addn-hosts=/etc/hosts.conf</pre></div></li><li class="step"><p>
   initrdefi /sle/boot/x86_64/loader/initrd
  }</pre></div></li><li class="step"><p>
      Enable and start <code class="literal">apache2</code>:
-    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">tux &gt; </code><code class="command">sudo systemctl enable --now apache2</code></pre></div></li></ol></div></div></section><section class="sect1" id="configure-dhcp-set-up-uefi-http-boot-server" data-id-title="Configuring the DHCP server"><div class="titlepage"><div><div><h2 class="title"><span class="title-number">6 </span><span class="title-name">Configuring the DHCP server</span> <a title="Permalink" class="permalink" href="#configure-dhcp-set-up-uefi-http-boot-server">#</a></h2></div></div></div><p>
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo systemctl enable --now apache2</code></pre></div></li></ol></div></div></section><section class="sect1" id="configure-dhcp-set-up-uefi-http-boot-server" data-id-title="Configuring the DHCP server"><div class="titlepage"><div><div><h2 class="title"><span class="title-number">6 </span><span class="title-name">Configuring the DHCP server</span> <a title="Permalink" class="permalink" href="#configure-dhcp-set-up-uefi-http-boot-server">#</a></h2></div></div></div><p>
    In this procedure, replace the example IP addresses and subnets with the
    appropriate values for your system.
   </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
      Install the <span class="package">dhcp-server</span> package:
-    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">tux &gt; </code><code class="command">sudo zypper install dhcp-server</code></pre></div></li><li class="step"><p>
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo zypper install dhcp-server</code></pre></div></li><li class="step"><p>
      Edit the <code class="filename">/etc/sysconfig/dhcpd</code> file to specify the
      network interface for the DHCPv4 and DHCPv6 servers:
     </p><div class="verbatim-wrap"><pre class="screen">DHCPD_INTERFACE="eth0"
@@ -145,8 +145,8 @@ subnet6 2001:db8:f00f:cafe::/64 {
          to identify an HTTP Boot offer.
         </p></td></tr></table></div></li><li class="step"><p>
      Start the DHCP servers:
-    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">tux &gt; </code><code class="command">sudo systemctl enable --now dhcpd</code>
-<code class="prompt user">tux &gt; </code><code class="command">sudo systemctl enable --now dhcpd6</code></pre></div></li></ol></div></div></section><section class="sect1" id="enable-ssl-set-up-uefi-http-boot-server" data-id-title="Enabling SSL support for the HTTP server (optional)"><div class="titlepage"><div><div><h2 class="title"><span class="title-number">7 </span><span class="title-name">Enabling SSL support for the HTTP server (optional)</span> <a title="Permalink" class="permalink" href="#enable-ssl-set-up-uefi-http-boot-server">#</a></h2></div></div></div><p>
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo systemctl enable --now dhcpd</code>
+<code class="prompt user">&gt; </code><code class="command">sudo systemctl enable --now dhcpd6</code></pre></div></li></ol></div></div></section><section class="sect1" id="enable-ssl-set-up-uefi-http-boot-server" data-id-title="Enabling SSL support for the HTTP server (optional)"><div class="titlepage"><div><div><h2 class="title"><span class="title-number">7 </span><span class="title-name">Enabling SSL support for the HTTP server (optional)</span> <a title="Permalink" class="permalink" href="#enable-ssl-set-up-uefi-http-boot-server">#</a></h2></div></div></div><p>
    HTTPS Boot is only supported on SUSE Linux Enterprise 15 and newer. To use HTTPS Boot, you
    must convert an SSL certificate into the <code class="literal">DER</code>
    format and enroll it into the client's firmware.
@@ -155,7 +155,7 @@ subnet6 2001:db8:f00f:cafe::/64 {
    your server.
   </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
      Convert the certificate into the <code class="literal">DER</code> format:
-    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">tux &gt; </code><code class="command">sudo openssl x509 -in <em class="replaceable">CERTIFICATE</em>.crt -outform der -out <em class="replaceable">CERTIFICATE</em>.der</code></pre></div></li><li class="step"><p>
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo openssl x509 -in <em class="replaceable">CERTIFICATE</em>.crt -outform der -out <em class="replaceable">CERTIFICATE</em>.der</code></pre></div></li><li class="step"><p>
      Enroll the server certificate into the client firmware. The procedure
      for enrolling the converted certificate depends on the client. For some
      hardware, you must enroll the certificate manually using an external
@@ -168,31 +168,31 @@ subnet6 2001:db8:f00f:cafe::/64 {
     </p><div class="verbatim-wrap"><pre class="screen">APACHE_SERVER_FLAGS="SSL"</pre></div></li><li class="step"><p>
      In the same file, ensure that the <code class="literal">ssl</code> module appears in
      the <code class="literal">APACHE_MODULES</code> list:
-    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">tux &gt; </code><code class="command">sudo grep 'APACHE_MODULES.*ssl' /etc/sysconfig/apache2</code>
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo grep 'APACHE_MODULES.*ssl' /etc/sysconfig/apache2</code>
 <span class="bold"><strong>APACHE_MODULES</strong></span>="actions alias auth_basic authn_core authn_file authz_host
 authz_groupfile authz_core authz_user autoindex cgi dir env expires include
 log_config mime negotiation setenvif <span class="bold"><strong>ssl</strong></span> socache_shmcb userdir reqtimeout"</pre></div></li><li class="step"><p>
      Copy the private key and the certificate to the
      <code class="filename">/etc/apache2/</code> directory:
-    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">tux &gt; </code><code class="command">sudo cp server.key /etc/apache2/ssl.key/</code>
-<code class="prompt user">tux &gt; </code><code class="command">sudo chown wwwrun /etc/apache2/ssl.key/server.key</code>
-<code class="prompt user">tux &gt; </code><code class="command">sudo chmod 600 /etc/apache2/ssl.key/server.key</code>
-<code class="prompt user">tux &gt; </code><code class="command">sudo cp server.crt /etc/apache2/ssl.crt/</code></pre></div></li><li class="step"><p>
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo cp server.key /etc/apache2/ssl.key/</code>
+<code class="prompt user">&gt; </code><code class="command">sudo chown wwwrun /etc/apache2/ssl.key/server.key</code>
+<code class="prompt user">&gt; </code><code class="command">sudo chmod 600 /etc/apache2/ssl.key/server.key</code>
+<code class="prompt user">&gt; </code><code class="command">sudo cp server.crt /etc/apache2/ssl.crt/</code></pre></div></li><li class="step"><p>
      Create the SSL vhost configuration:
-    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">tux &gt; </code><code class="command">sudo cp /etc/apache2/vhosts.d/vhost-ssl.template /etc/apache2/vhosts.d/vhost-ssl.conf</code></pre></div></li><li class="step"><p>
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo cp /etc/apache2/vhosts.d/vhost-ssl.template /etc/apache2/vhosts.d/vhost-ssl.conf</code></pre></div></li><li class="step"><p>
      Edit the <code class="filename">/etc/apache2/vhosts.d/vhost-ssl.conf</code> file to
      change the private key and the certificate to the following values:
     </p><div class="verbatim-wrap"><pre class="screen">SSLCertificateFile /etc/apache2/ssl.crt/server.crt
 SSLCertificateKeyFile /etc/apache2/ssl.key/server.key</pre></div></li><li class="step"><p>
      Restart Apache to activate the SSL support:
-    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">tux &gt; </code><code class="command">sudo systemctl restart apache2</code></pre></div></li><li class="step"><p>
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo systemctl restart apache2</code></pre></div></li><li class="step"><p>
      Replace the <code class="literal">http://</code> prefix with
      <code class="literal">https://</code> in the <code class="filename">/etc/dhcpd.conf</code>
      and <code class="filename">/etc/dhcpd6.conf</code> files:
     </p><div class="verbatim-wrap"><pre class="screen">filename "http<span class="bold"><strong>s</strong></span>://www.httpboot.local/sle/EFI/BOOT/bootx64.efi";</pre></div><div class="verbatim-wrap"><pre class="screen">option dhcp6.bootfile-url "http<span class="bold"><strong>s</strong></span>://www.httpboot.local/sle/EFI/BOOT/bootx64.efi";</pre></div></li><li class="step"><p>
      Restart the DHCP servers:
-    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">tux &gt; </code><code class="command">sudo systemctl restart dhcpd</code>
-<code class="prompt user">tux &gt; </code><code class="command">sudo systemctl restart dhcpd6</code></pre></div></li></ol></div></div></section><section class="sect1" id="summary-set-up-uefi-http-boot-server" data-id-title="Summary"><div class="titlepage"><div><div><h2 class="title"><span class="title-number">8 </span><span class="title-name">Summary</span> <a title="Permalink" class="permalink" href="#summary-set-up-uefi-http-boot-server">#</a></h2></div></div></div><p>
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo systemctl restart dhcpd</code>
+<code class="prompt user">&gt; </code><code class="command">sudo systemctl restart dhcpd6</code></pre></div></li></ol></div></div></section><section class="sect1" id="summary-set-up-uefi-http-boot-server" data-id-title="Summary"><div class="titlepage"><div><div><h2 class="title"><span class="title-number">8 </span><span class="title-name">Summary</span> <a title="Permalink" class="permalink" href="#summary-set-up-uefi-http-boot-server">#</a></h2></div></div></div><p>
    You can now use this server to remotely install operating systems on clients
    that support HTTP Boot. Consult the relevant documentation for information
    on how to enable HTTP Boot on client machines.
