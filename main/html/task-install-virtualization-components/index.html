@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><title>Installing virtualization components</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style.css"/>
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
+<meta name="title" content="Installing virtualization components"/>
+<meta name="description" content="This document applies to the following products and pr…"/>
+<meta name="book-title" content="Installing virtualization components"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="assignee@suse.com"/>
+<meta name="tracker-bsc-component" content="Smart Docs"/>
+<meta name="tracker-bsc-product" content="Documentation"/>
+<meta name="publisher" content="SUSE"/><meta property="og:title" content="Installing virtualization components"/>
+<meta property="og:description" content="This document applies to the following products and product versions:"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Installing virtualization components"/>
+<meta name="twitter:description" content="This document applies to the following products and product versions:"/>
+<script type="text/javascript">
+
+if ( window.location.protocol.toLowerCase() != 'file:' ) {
+  document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>');
+};
+
+</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"/></noscript><script src="static/js/jquery-1.12.4.min.js" type="text/javascript"> </script><script src="static/js/script.js" type="text/javascript"> </script><script src="static/js/highlight.min.js" type="text/javascript"> </script><script>
+
+$(document).ready(function() {
+  $('.verbatim-wrap.highlight').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+hljs.configure({
+  useBR: false
+});
+
+</script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Installing virtualization components</a></div></div><main id="_content"><nav id="_side-toc-overall" class="side-toc"><div class="side-title">Installing virtualization components</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="task-install-virtualization-components" data-id-title="Installing virtualization components"><div class="titlepage"><div><div><h1 class="title">Installing virtualization components</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>07 Feb 2024</div></div></div><section class="sect1" id="environment-install-virtualization-components" data-id-title="Environment"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Environment</span></span> <a title="Permalink" class="permalink" href="index.html#environment-install-virtualization-components">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   This document applies to the following products and product versions:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     SUSE Linux Enterprise Server 15 SP5, 15 SP4, 15 SP3
+    </p></li></ul></div></section><section class="sect1" id="introduction-install-virtualization-components" data-id-title="Introduction"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Introduction</span></span> <a title="Permalink" class="permalink" href="index.html#introduction-install-virtualization-components">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   In order to run a virtualization server (VM Host Server) that can host one or more
+   guest systems (VM Guests), you need to install required virtualization
+   components on the server. These components vary depending on which
+   virtualization technology you want to use.
+  </p></section><section class="sect1" id="requirements-install-virtualization-components" data-id-title="Requirements"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Requirements</span></span> <a title="Permalink" class="permalink" href="index.html#requirements-install-virtualization-components">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     A physical server that complies with hardware limits described in FIXME
+     (https://susedoc.github.io/doc-sle/main/html/SLES-virtualization/cha-virt-support.html)
+     with access to <span class="phrase"><span class="phrase">SUSE Linux</span></span> installation repositories.
+    </p></li></ul></div></section><section class="sect1" id="install-virtualization-components" data-id-title="Installing virtualization components"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Installing virtualization components</span></span> <a title="Permalink" class="permalink" href="index.html#install-virtualization-components">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   You can install the virtualization tools required to run a VM Host Server in one
+   of the following ways:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     By selecting a specific system role during <span class="phrase"><span class="phrase">SUSE Linux</span></span> installation on
+     the VM Host Server
+    </p></li><li class="listitem"><p>
+     By running the <span class="emphasis"><em>YaST Virtualization</em></span> module on an
+     already installed and running <span class="phrase"><span class="phrase">SUSE Linux</span></span>.
+    </p></li><li class="listitem"><p>
+     By installing specific installation patterns on an already installed and
+     running <span class="phrase"><span class="phrase">SUSE Linux</span></span>.
+    </p></li></ul></div><section class="sect2" id="install-virtualization-components-system-role" data-id-title="Specifying a system role"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.1 </span><span class="title-name">Specifying a system role</span></span> <a title="Permalink" class="permalink" href="index.html#install-virtualization-components-system-role">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    You can install all the tools required for virtualization during the
+    installation of <span class="phrase"><span class="phrase">SUSE Linux</span></span> on the VM Host Server. During the installation you
+    will be presented with the <span class="guimenu">System Role</span> screen.
+   </p><div class="figure" id="id-1.5.4.3"><div class="figure-contents"><div class="mediaobject"><a href="images/virt-system-roles.png"><img src="images/virt-system-roles.png" width="75%" alt="System Role screen" title="System Role screen"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 1: </span><span class="title-name">System Role screen </span></span><a title="Permalink" class="permalink" href="index.html#id-1.5.4.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><p>
+    Here you can select either the <span class="guimenu">KVM Virtualization Host</span>
+    or the <span class="guimenu">Xen Virtualization Host</span> roles. The appropriate
+    software selection and setup will be automatically performed during
+    <span class="phrase"><span class="phrase">SUSE Linux</span></span> installation.
+   </p><div id="id-1.5.4.5" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
+     Both virtualization system roles will create a dedicated
+     <code class="filename">/var/lib/libvirt</code> partition, and enable the
+     <code class="systemitem">firewalld</code> and Kdump services.
+    </p></div></section><section class="sect2" id="install-virtualization-components-yast" data-id-title="Running the YaST Virtualization module"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.2 </span><span class="title-name">Running the <span class="emphasis"><em>YaST Virtualization</em></span> module</span></span> <a title="Permalink" class="permalink" href="index.html#install-virtualization-components-yast">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Depending on the scope of <span class="phrase"><span class="phrase">SUSE Linux</span></span> installation on the VM Host Server, none
+    of the virtualization tools may be installed on your system. They will be
+    automatically installed when configuring the hypervisor with the
+    <span class="emphasis"><em>YaST Virtualization</em></span> module.
+   </p><div id="id-1.5.5.3" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
+     The <span class="emphasis"><em>YaST Virtualization</em></span> module is included in the
+     <span class="package">yast2-vm</span> package. Verify it is installed on the
+     VM Host Server before installing virtualization components.
+    </p></div><div class="procedure" id="id-1.5.5.4" data-id-title="Installing the KVM environment"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 1: </span><span class="title-name">Installing the KVM environment </span></span><a title="Permalink" class="permalink" href="index.html#id-1.5.5.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><p>
+     To install the KVM virtualization environment and related tools, proceed
+     as follows:
+    </p><ol class="procedure" type="1"><li class="step"><p>
+      Start YaST and select <span class="guimenu">Virtualization</span> › <span class="guimenu">Install Hypervisor and Tools</span>.
+     </p></li><li class="step"><p>
+      Select <span class="guimenu">KVM server</span> for a minimal installation of
+      QEMU and KVM environment. Select <span class="guimenu">KVM tools</span> if
+      you want to use the <code class="systemitem">libvirt</code>-based management stack as well. Confirm
+      with <span class="guimenu">Accept</span>.
+     </p></li><li class="step"><p>
+      YaST offers to automatically configure a network bridge on the
+      VM Host Server. It ensures proper networking capabilities of the VM Guest.
+      Agree to do so by selecting <span class="guimenu">Yes</span>, otherwise choose
+      <span class="guimenu">No</span>.
+     </p></li><li class="step"><p>
+      After the setup has been finished, you can start creating and configuring
+      VM Guests. Rebooting the VM Host Server is not required.
+     </p></li></ol></div></div><div class="procedure" id="id-1.5.5.5" data-id-title="Installing the Xen environment"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 2: </span><span class="title-name">Installing the Xen environment </span></span><a title="Permalink" class="permalink" href="index.html#id-1.5.5.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><p>
+     To install the Xen virtualization environment, proceed as follows:
+    </p><ol class="procedure" type="1"><li class="step"><p>
+      Start YaST and select<span class="guimenu">Virtualization</span> › <span class="guimenu">Install Hypervisor and Tools</span>.
+     </p></li><li class="step"><p>
+      Select <span class="guimenu">Xen server</span> for a minimal installation of
+      Xen environment. Select <span class="guimenu">Xen tools</span> if you want to
+      use the <code class="systemitem">libvirt</code>-based management stack as well. Confirm with
+      <span class="guimenu">Accept</span>.
+     </p></li><li class="step"><p>
+      YaST offers to automatically configure a network bridge on the
+      VM Host Server. It ensures proper networking capabilities of the VM Guest.
+      Agree to do so by selecting <span class="guimenu">Yes</span>, otherwise choose
+      <span class="guimenu">No</span>.
+     </p></li><li class="step"><p>
+      After the setup has been finished, you need to reboot the machine with
+      the <span class="emphasis"><em>Xen kernel</em></span>.
+     </p><div id="id-1.5.5.5.6.2" data-id-title="Default boot kernel" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Default boot kernel</div><p>
+       If everything works as expected, change the default boot kernel with
+       YaST and make the Xen-enabled kernel the default. For more
+       information about changing the default kernel, see FIXME
+       <code class="literal">sec-grub2-yast2-config</code>.
+      </p></div></li></ol></div></div></section><section class="sect2" id="install-virtualization-components-pattern" data-id-title="Installing specific installation patterns"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.3 </span><span class="title-name">Installing specific installation patterns</span></span> <a title="Permalink" class="permalink" href="index.html#install-virtualization-components-pattern">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Related software packages from <span class="phrase"><span class="phrase">SUSE Linux</span></span> software repositories are
+    organized into <span class="emphasis"><em>installation patterns</em></span>. You can use
+    these patterns to install specific virtualization components on an already
+    running <span class="phrase"><span class="phrase">SUSE Linux</span></span>. Use <code class="command">zypper</code> to install them:
+   </p><div class="verbatim-wrap"><pre class="screen">zypper install -t pattern <em class="replaceable">PATTERN_NAME</em></pre></div><p>
+    To install the KVM environment, consider the following patterns:
+   </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.5.6.5.1"><span class="term"><code class="literal">kvm_server</code></span></dt><dd><p>
+       Installs basic VM Host Server with the KVM and QEMU environments.
+      </p></dd><dt id="id-1.5.6.5.2"><span class="term"><code class="literal">kvm_tools</code></span></dt><dd><p>
+       Installs <code class="systemitem">libvirt</code> tools for managing and monitoring VM Guests in KVM
+       environment.
+      </p></dd></dl></div><p>
+    To install the Xen environment, consider the following patterns:
+   </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.5.6.7.1"><span class="term"><code class="literal">xen_server</code></span></dt><dd><p>
+       Installs a basic Xen VM Host Server.
+      </p></dd><dt id="id-1.5.6.7.2"><span class="term"><code class="literal">xen_tools</code></span></dt><dd><p>
+       Installs <code class="systemitem">libvirt</code> tools for managing and monitoring VM Guests in Xen
+       environment.
+      </p></dd></dl></div></section></section><section class="sect1" id="summary-install-virtualization-components" data-id-title="Summary"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Summary</span></span> <a title="Permalink" class="permalink" href="index.html#summary-install-virtualization-components">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   After installing virtualization components on the server, you will be able
+   to create, run, and manage virtual machines using your preferred
+   virtualization environment.
+  </p></section><section class="sect1" id="next-install-virtualization-components" data-id-title="Next steps"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Next steps</span></span> <a title="Permalink" class="permalink" href="index.html#next-install-virtualization-components">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     Managing VMs with <code class="systemitem">libvirt</code>.
+    </p></li><li class="listitem"><p>
+     Managing VMs with KVM.
+    </p></li><li class="listitem"><p>
+     Managing VMs with Xen.
+    </p></li></ul></div></section><section class="sect1" id="related-install-virtualization-components" data-id-title="Related topics"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Related topics</span></span> <a title="Permalink" class="permalink" href="index.html#related-install-virtualization-components">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     Architecture support / HW requirements
+    </p></li><li class="listitem"><p>
+     Book “Deployment Guide”, Chapter 8 “Installation steps”
+    </p></li><li class="listitem"><p>
+     GRUB configuration
+    </p></li><li class="listitem"><p>
+     Virtual networking (network bridge)
+    </p></li></ul></div></section></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#environment-install-virtualization-components"><span class="title-number">1 </span><span class="title-name">Environment</span></a></span></li><li><span class="section"><a href="index.html#introduction-install-virtualization-components"><span class="title-number">2 </span><span class="title-name">Introduction</span></a></span></li><li><span class="section"><a href="index.html#requirements-install-virtualization-components"><span class="title-number">3 </span><span class="title-name">Requirements</span></a></span></li><li><span class="section"><a href="index.html#install-virtualization-components"><span class="title-number">4 </span><span class="title-name">Installing virtualization components</span></a></span></li><li><span class="section"><a href="index.html#summary-install-virtualization-components"><span class="title-number">5 </span><span class="title-name">Summary</span></a></span></li><li><span class="section"><a href="index.html#next-install-virtualization-components"><span class="title-number">6 </span><span class="title-name">Next steps</span></a></span></li><li><span class="section"><a href="index.html#related-install-virtualization-components"><span class="title-number">7 </span><span class="title-name">Related topics</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-fb" href="#" title="Facebook"> </a></li><li><a id="_share-in" href="#" title="LinkedIn"> </a></li><li><a id="_share-tw" href="#" title="Twitter/X"> </a></li><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE
+                 2024</span></div></div></footer></body></html>
