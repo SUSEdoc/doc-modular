@@ -456,7 +456,7 @@ ExecStart=/usr/local/bin/helloworld.sh</pre></div><div class="calloutlist"><tabl
 <code class="prompt user">&gt; </code>systemctl --user enable ~/.config/systemd/user/helloworld.timer
 <code class="prompt user">&gt; </code>systemctl --user list-timers
 <code class="prompt user">&gt; </code>journalctl --user -u helloworld.*
-<code class="prompt user">&gt; </code>systemctl-analyze ~/.config/systemd/user/helloworld.timer</pre></div></li></ul></div><div id="id-1.9.9.4" data-id-title="User timers only run during an active session" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: User timers only run during an active session</div><p>
+<code class="prompt user">&gt; </code>systemd-analyze verify ~/.config/systemd/user/helloworld.timer</pre></div></li></ul></div><div id="id-1.9.9.4" data-id-title="User timers only run during an active session" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: User timers only run during an active session</div><p>
       As with other <code class="systemitem">systemd</code> services started as a regular user, user timers only run when the
       user is logged in. Instead, to start user timers at boot time and keep them running after
       logout, enable <span class="emphasis"><em>lingering</em></span> for each affected user:
