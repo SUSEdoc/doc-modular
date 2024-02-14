@@ -32,7 +32,7 @@ hljs.configure({
   useBR: false
 });
 
-</script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Introduction to systemd Basics</a></div></div><main id="_content"><nav id="_side-toc-overall" class="side-toc"><div class="side-title">Introduction to <code class="systemitem">systemd</code> Basics</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="systemd-services" data-id-title="Introduction to systemd Basics"><div class="titlepage"><div><div><h1 class="title">Introduction to <code class="systemitem">systemd</code> Basics</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>07 Feb 2024</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+</script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Introduction to systemd Basics</a></div></div><main id="_content"><nav id="_side-toc-overall" class="side-toc"><div class="side-title">Introduction to <code class="systemitem">systemd</code> Basics</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="systemd-services" data-id-title="Introduction to systemd Basics"><div class="titlepage"><div><div><h1 class="title">Introduction to <code class="systemitem">systemd</code> Basics</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>14 Feb 2024</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
                 <code class="systemitem">systemd</code> is used to manage system settings and services.
                 <code class="systemitem">systemd</code> organizes tasks into components called <span class="emphasis"><em>units</em></span> and groups of units into <span class="emphasis"><em>targets</em></span>.
 
@@ -204,47 +204,75 @@ Order dependencies specify the order in which units must be started.
            You can control user services with the <code class="command">systemctl --user</code> command.
           </p></li><li class="listitem"><p>
            They run with the user's permissions. </p></li></ul></div></section><section xml:lang="en" class="sect1" id="systemctl-commands" data-id-title="systemctl commands"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name"><code class="command">systemctl</code> commands</span></span> <a title="Permalink" class="permalink" href="index.html#systemctl-commands">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
-      The <code class="command">systemctl</code> command is used to examine and control the state of
-      <code class="systemitem">systemd</code> and service manager.
-      </p></div></div></div></div><p>You can use the following common <code class="command">systemctl</code> commands and refer to
-      the <span class="emphasis"><em>man systemctl</em></span> page.</p><div class="variablelist"><div class="title-container"><div class="variablelist-title-wrap"><div class="variablelist-title"><span class="title-number-name"><span class="title-name">Viewing <code class="systemitem">systemd</code> information </span></span><a title="Permalink" class="permalink" href="index.html#id-1.9.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><dl class="variablelist"><dt id="id-1.9.3.2"><span class="term">systemctl list-units</span></dt><dd><p>
+        The <code class="command">systemctl</code> command is used to examine and control
+        the state of <code class="systemitem">systemd</code> and service manager.
+      </p></div></div></div></div><p>
+    You can use the following common <code class="command">systemctl</code> commands and
+    refer to the <span class="emphasis"><em>man systemctl</em></span> page.
+  </p><section class="sect2" id="systemctl-commands-view-information" data-id-title="Viewing systemd information"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">8.1 </span><span class="title-name">Viewing <code class="systemitem">systemd</code> information</span></span> <a title="Permalink" class="permalink" href="index.html#systemctl-commands-view-information">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      To view information about <code class="systemitem">systemd</code> components, you can use the following
+      commands:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.9.3.3.1"><span class="term">systemctl list-units</span></dt><dd><p>
             Lists the <code class="systemitem">systemd</code> units. You can use the optional arguments:
-            <code class="command">--state=running</code> to show the active units and <code class="command">--type=service</code> to
-            show the exited and active units.
-          </p></dd><dt id="id-1.9.3.3"><span class="term">systemctl list-unit-files</span></dt><dd><p>
-            Lists the <code class="systemitem">systemd</code> units and the status, such as static, generated, disabled, alias, masked, and enabled.
-          </p></dd><dt id="id-1.9.3.4"><span class="term">systemctl list-dependencies</span></dt><dd><p>
+            <code class="command">--state=running</code> to show the active units and
+            <code class="command">--type=service</code> to show the exited and active
+            units.
+          </p></dd><dt id="id-1.9.3.3.2"><span class="term">systemctl list-unit-files</span></dt><dd><p>
+            Lists the <code class="systemitem">systemd</code> units and the status, such as static,
+            generated, disabled, alias, masked, and enabled.
+          </p></dd><dt id="id-1.9.3.3.3"><span class="term">systemctl list-dependencies</span></dt><dd><p>
             Lists the dependency tree.
-          </p></dd><dt id="id-1.9.3.5"><span class="term">systemctl list-dependencies <em class="replaceable">UNIT_FILE</em></span></dt><dd><p>
-          Lists the dependencies of a unit file.
-        </p></dd></dl></div><div class="variablelist"><div class="title-container"><div class="variablelist-title-wrap"><div class="variablelist-title"><span class="title-number-name"><span class="title-name">Managing <code class="systemitem">systemd</code> services </span></span><a title="Permalink" class="permalink" href="index.html#id-1.9.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><dl class="variablelist"><dt id="id-1.9.4.2"><span class="term">systemctl status <em class="replaceable">SERVICE</em></span></dt><dd><p>
-      Checks the status of the specific service.
-    </p></dd><dt id="id-1.9.4.3"><span class="term">systemctl show <em class="replaceable">SERVICE</em></span></dt><dd><p>
-    Displays the service information.
-  </p></dd><dt id="id-1.9.4.4"><span class="term">systemctl start <em class="replaceable">SERVICE</em></span></dt><dd><p>
-    Instead of manually starting the service, use the <code class="command">start</code> command.
-    When a change is made to the configuration file, the related service must be started again.
-  </p></dd><dt id="id-1.9.4.5"><span class="term">systemctl stop <em class="replaceable">SERVICE</em></span></dt><dd><p>
-    Stops a specific running service.
-  </p></dd><dt id="id-1.9.4.6"><span class="term">systemctl restart <em class="replaceable">SERVICE</em></span></dt><dd><p>
-    Instead of manually restarting the service, use the <code class="command">restart</code> command.
-    When a change is made to the configuration file, the related service must be restarted again.
-  </p></dd><dt id="id-1.9.4.7"><span class="term">systemctl enable <em class="replaceable">SERVICE</em></span></dt><dd><p>
-    Enables the service on boot.
-  </p></dd><dt id="id-1.9.4.8"><span class="term">systemctl disable <em class="replaceable">SERVICE</em></span></dt><dd><p>
-    Disables the service on boot.
-  </p></dd><dt id="id-1.9.4.9"><span class="term">systemctl reload-or-restart <em class="replaceable">SERVICE</em></span></dt><dd><p>
-    Reload the service if it supports reloading, otherwise it restarts the service.
-    If the service is not running, it is restarted.
-  </p></dd><dt id="id-1.9.4.10"><span class="term">systemctl mask <em class="replaceable">SERVICE</em></span></dt><dd><p>
-    When a service is masked, this means the unit file is symlinked to <code class="filename">/dev/null</code>.
-  A symlink for a masked service is created from <code class="filename">/etc/systemd/system</code> to point to <code class="filename">/dev/null</code>.
-  This makes it impossible to load the service even if another enabled service requires it. It must be stopped manually, or
-  it continues to run in the background. You can use <code class="command">--runtime</code> option to only mask temporarily until the next
-  reboot of the system.
-  </p><div class="verbatim-wrap"><pre class="screen">Created symlink /etc/systemd/system/FOSSLinux.service → /dev/null.</pre></div></dd><dt id="id-1.9.4.11"><span class="term">systemctl unmask <em class="replaceable">SERVICE</em></span></dt><dd><p>
-   Unmasks the service. It is effective when the system is started or restarted manually.
-  </p></dd></dl></div><div class="variablelist"><div class="title-container"><div class="variablelist-title-wrap"><div class="variablelist-title"><span class="title-number-name"><span class="title-name">Managing system states </span></span><a title="Permalink" class="permalink" href="index.html#id-1.9.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><dl class="variablelist"><dt id="id-1.9.5.2"><span class="term">systemctl reboot</span></dt><dd><p>Reboots the system <code class="literal">reboot.target</code>.</p></dd><dt id="id-1.9.5.3"><span class="term">systemctl poweroff</span></dt><dd><p>Powers off the system <code class="literal">poweroff.target</code>.</p></dd><dt id="id-1.9.5.4"><span class="term">systemctl emergency</span></dt><dd><p>Goes into the emergency mode <code class="literal">emergency.target</code>.</p></dd><dt id="id-1.9.5.5"><span class="term">systemctl default</span></dt><dd><p>Goes back to default target <code class="literal">multi-user.target</code>.</p></dd></dl></div></section><section xml:lang="en" class="sect1" id="systemd-troubleshooting" data-id-title="systemd troubleshooting"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">9 </span><span class="title-name"><code class="systemitem">systemd</code> troubleshooting</span></span> <a title="Permalink" class="permalink" href="index.html#systemd-troubleshooting">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>You can use the following troubleshooting tips to identify and resolve issues
+          </p></dd><dt id="id-1.9.3.3.4"><span class="term">systemctl list-dependencies <em class="replaceable">UNIT_FILE</em></span></dt><dd><p>
+            Lists the dependencies of a unit file.
+          </p></dd></dl></div></section><section class="sect2" id="systemctl-commands-managing-services" data-id-title="Managing systemd services"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">8.2 </span><span class="title-name">Managing <code class="systemitem">systemd</code> services</span></span> <a title="Permalink" class="permalink" href="index.html#systemctl-commands-managing-services">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The <code class="command">systemctl</code> command enables you to perform the
+      following tasks with services.
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.9.4.3.1"><span class="term">systemctl status <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Checks the status of the specific service.
+          </p></dd><dt id="id-1.9.4.3.2"><span class="term">systemctl show <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Displays the service information.
+          </p></dd><dt id="id-1.9.4.3.3"><span class="term">systemctl start <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Instead of manually starting the service, use the
+            <code class="command">start</code> command. When a change is made to the
+            configuration file, the related service must be started again.
+          </p></dd><dt id="id-1.9.4.3.4"><span class="term">systemctl stop <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Stops a specific running service.
+          </p></dd><dt id="id-1.9.4.3.5"><span class="term">systemctl restart <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Instead of manually restarting the service, use the
+            <code class="command">restart</code> command. When a change is made to the
+            configuration file, the related service must be restarted again.
+          </p></dd><dt id="id-1.9.4.3.6"><span class="term">systemctl enable <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Enables the service on boot.
+          </p></dd><dt id="id-1.9.4.3.7"><span class="term">systemctl disable <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Disables the service on boot.
+          </p></dd><dt id="id-1.9.4.3.8"><span class="term">systemctl reload-or-restart <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Reload the service if it supports reloading, otherwise it restarts
+            the service. If the service is not running, it is restarted.
+          </p></dd><dt id="id-1.9.4.3.9"><span class="term">systemctl mask <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            When a service is masked, this means the unit file is symlinked to
+            <code class="filename">/dev/null</code>. A symlink for a masked service is
+            created from <code class="filename">/etc/systemd/system</code> to point to
+            <code class="filename">/dev/null</code>. This makes it impossible to load
+            the service even if another enabled service requires it. It must be
+            stopped manually, or it continues to run in the background. You can
+            use <code class="command">--runtime</code> option to only mask temporarily
+            until the next reboot of the system.
+          </p><div class="verbatim-wrap"><pre class="screen">Created symlink /etc/systemd/system/FOSSLinux.service → /dev/null.</pre></div></dd><dt id="id-1.9.4.3.10"><span class="term">systemctl unmask <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Unmasks the service. It is effective when the system is started or
+            restarted manually.
+          </p></dd></dl></div></section><section class="sect2" id="systemctl-commands-managing-states" data-id-title="Managing system states"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">8.3 </span><span class="title-name">Managing system states</span></span> <a title="Permalink" class="permalink" href="index.html#systemctl-commands-managing-states">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The <code class="command">systemctl</code> command enables you to perform power
+      management processes on your system, like restarting, shutting down and
+      so on, as described below.
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.9.5.3.1"><span class="term">systemctl reboot</span></dt><dd><p>
+            Reboots the system <code class="literal">reboot.target</code>.
+          </p></dd><dt id="id-1.9.5.3.2"><span class="term">systemctl poweroff</span></dt><dd><p>
+            Powers off the system <code class="literal">poweroff.target</code>.
+          </p></dd><dt id="id-1.9.5.3.3"><span class="term">systemctl emergency</span></dt><dd><p>
+            Goes into the emergency mode <code class="literal">emergency.target</code>.
+          </p></dd><dt id="id-1.9.5.3.4"><span class="term">systemctl default</span></dt><dd><p>
+            Goes back to default target <code class="literal">multi-user.target</code>.
+          </p></dd></dl></div></section></section><section xml:lang="en" class="sect1" id="systemd-troubleshooting" data-id-title="systemd troubleshooting"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">9 </span><span class="title-name"><code class="systemitem">systemd</code> troubleshooting</span></span> <a title="Permalink" class="permalink" href="index.html#systemd-troubleshooting">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>You can use the following troubleshooting tips to identify and resolve issues
   with <code class="systemitem">systemd</code> services and ensure a smooth system operation.
   </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.10.3.1"><span class="term"><span class="emphasis"><em>Check the syntax of your <code class="systemitem">systemd</code> unit file with the
         <code class="command">systemd-analyze verify <em class="replaceable">SERVICE</em></code></em></span></span></dt><dd><p>Before starting or enabling a <code class="systemitem">systemd</code> service, check the syntax of the unit file to ensure there are no errors.
