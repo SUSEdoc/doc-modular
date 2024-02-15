@@ -58,7 +58,7 @@ hljs.configure({
       </p></li><li class="listitem"><p>
       The supplied <code class="systemitem">jeos-firstboot</code> wizard runs on the
       first boot and allows you to configure basic settings, such as system
-      locales and the root password.
+      locales and the <code class="systemitem">root</code> password.
      </p><p>
       Instead of <code class="systemitem">jeos-firstboot</code>, SLES Minimal VM for OpenStack
       uses <code class="systemitem">cloud-init</code> for configuring OpenStack instances.
@@ -68,7 +68,7 @@ hljs.configure({
      </p></li><li class="listitem"><p>
       The default network configuration is set to use DHCP.
      </p></li><li class="listitem"><p>
-       The system automatically creates a Btrfs snapshot after the initial configuration has been completed. The latter means that you can easily revert all subsequent
+       The system automatically creates a Btrfs snapshot after the initial configuration has been completed. This means that you can easily revert all subsequent
        changes, if necessary.
       </p></li><li class="listitem"><p>
       SLES Minimal VM images use the
@@ -80,7 +80,7 @@ hljs.configure({
     There are several significant differences between SLES Minimal VM and SUSE Linux Enterprise Server.
   </p><div class="variablelist" id="vl-minvm-sles-diff"><dl class="variablelist"><dt id="id-1.4.3.1"><span class="term">JeOS Firstboot</span></dt><dd><p>
           SLES Minimal VM comes with the <span class="package">JeOS Firstboot</span> tool (except
-          SLES Minimal VM for OpenStack which uses <span class="package">cloud-init</span>) that
+          SLES Minimal VM for OpenStack that uses <span class="package">cloud-init</span>) that
           can be used to configure basic settings during the first boot. This
           includes keyboard layout, time zone, and <code class="systemitem">root</code>
           password.
@@ -140,10 +140,10 @@ hljs.configure({
           steps:
         </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
               Install the <span class="package">systemd-coredump</span> package, which
-              contains <code class="filename">/usr/lib/sysctl.d/50-coredump.conf</code>
+              contains <code class="filename">/usr/lib/sysctl.d/50-coredump.conf</code>.
             </p></li><li class="listitem"><p>
               Reboot the system or use the <code class="command">sysctl --system</code>
-              command to enable coredumps.
+              command to enable core dumps.
             </p></li></ul></div><p>
           For further information, refer to
           <a class="link" href="https://documentation.suse.com/sles/html/SLES-all/cha-tuning-systemd-coredump.html" target="_blank">https://documentation.suse.com/sles/html/SLES-all/cha-tuning-systemd-coredump.html</a>.
@@ -191,7 +191,7 @@ hljs.configure({
           <em class="replaceable">LOCALE</em> with the desired language locale,
           for example, <code class="literal">de_DE.UTF-8</code>).
         </p><p>
-          Keep in mind that do this, you need to have a SUSE subscription and
+          Keep in mind that to do this, you need to have a SUSE subscription and
           register the VM using the <code class="command">SUSEConnect -e
           <em class="replaceable">EMAIL</em> -r
           <em class="replaceable">REGISTRATION_CODE</em></code> command.
@@ -204,7 +204,7 @@ hljs.configure({
         </p></li><li class="step"><p>
           Specify the desired time zone.
         </p></li><li class="step"><p>
-          When prompted, specify and confirm the desired root password.
+          When prompted, specify and confirm the desired <code class="systemitem">root</code> password.
         </p></li><li class="step"><p>
           As the last step, you are instructed to register your system. If you
           only plan to test SLES Minimal VM, you can skip registration.
@@ -214,14 +214,14 @@ hljs.configure({
           during the setup procedure.
         </p></li></ol></div></div><div id="id-1.6.3.6" data-id-title="Installing product patches after first boot" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Installing product patches after first boot</div><p>
         After SLES Minimal VM has been successfully installed and registered, we highly
-        recommend to install the latest available online updates.
+        recommend installing the latest available online updates.
       </p></div></section><section class="sect2" id="minimal-vm-cumbustion" data-id-title="Running and configuring SLES Minimal VM automatically using Combustion"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.2 </span><span class="title-name">Running and configuring SLES Minimal VM automatically using Combustion</span></span> <a title="Permalink" class="permalink" href="index.html#minimal-vm-cumbustion">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
       SLES Minimal VM comes with the Combustion configuration tool that makes it
       possible to automatically configure the system on first boot using a
       dedicated script file. This can be particularly useful when you need to
       deploy multiple virtual machines with an identical initial configuration.
     </p><p>
-      To trigger the Combustion tool in KVM, use the
+      To trigger the Combustion tool in QEMU, use the
       <code class="command">qemu</code> command with the <em class="parameter">fw_cfg</em>
       parameter that specifies the location of the <code class="filename">script</code>
       file.
@@ -255,7 +255,7 @@ hljs.configure({
       JeOS Firstboot tool, and you can log in to the system as <code class="systemitem">root</code>
       using the password you generated earlier.
     </p><div id="id-1.6.4.10" data-id-title="Combustion documentation" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Combustion documentation</div><p>
-    For more information for using Combustion, refer to <a class="link" href="https://documentation.suse.com/sle-micro/html/SLE-Micro-all/cha-images-combustion.html" target="_blank">https://documentation.suse.com/sle-micro/html/SLE-Micro-all/cha-images-combustion.html</a>
+    For more information on using Combustion, refer to <a class="link" href="https://documentation.suse.com/sle-micro/html/SLE-Micro-all/cha-images-combustion.html" target="_blank">https://documentation.suse.com/sle-micro/html/SLE-Micro-all/cha-images-combustion.html</a>.
     </p></div></section></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p> Copyright© 2006–2024
  SUSE LLC and contributors.
   All rights reserved. </p><p>
