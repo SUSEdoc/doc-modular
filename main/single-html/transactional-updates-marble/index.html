@@ -21,7 +21,7 @@ if ( window.location.protocol.toLowerCase() != 'file:' ) {
   document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>');
 };
 
-</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"/></noscript><script src="static/js/jquery-1.12.4.min.js" type="text/javascript"> </script><script src="static/js/script.js" type="text/javascript"> </script><script src="static/js/highlight.min.js" type="text/javascript"> </script><script>
+</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"/></noscript><script src="static/js/script-purejs.js" type="text/javascript"> </script><script src="static/js/highlight.min.js" type="text/javascript"> </script><script>
 
 $(document).ready(function() {
   $('.verbatim-wrap.highlight').each(function(i, block) {
@@ -32,16 +32,18 @@ hljs.configure({
   useBR: false
 });
 
-</script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#transactional-updates">Administering SLE Micro using the transactional-update command</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="transactional-updates" data-id-title="Administering SLE Micro using the transactional-update command"><div class="titlepage"><div><div><h1 class="title">Administering <span class="phrase"><span class="phrase">SLE Micro</span></span> using the <code class="command">transactional-update</code> command</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>15 Feb 2024</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
-              The <code class="command">transactional-update</code> command enables you to modify a read-only file system. The 
-              modifications are performed in a separate snapshot and do not influence the running
-              system until you boot into the snapshot.
-            </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
-              You want to administer <span class="phrase"><span class="phrase">SLE Micro</span></span>.
-            </p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
+</script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#transactional-updates">Administering SLE Micro using the transactional-update command</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="transactional-updates" data-id-title="Administering SLE Micro using the transactional-update command"><div class="titlepage"><div><div><h1 class="title">Administering <span class="phrase"><span class="phrase">SLE Micro</span></span> using the <code class="command">transactional-update</code> command</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>19 Feb 2024</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+                The <code class="command">transactional-update</code> command enables you to modify a read-only file
+                system. The modifications are performed in a separate snapshot
+                and do not influence the running system until you boot into the
+                snapshot.
+              </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
+                You want to administer <span class="phrase"><span class="phrase">SLE Micro</span></span> and manage its updates, minimizing the risk of system downtime due to update failures while ensuring easy rollbacks.
+              </p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
                 It takes less than 30 minutes to understand the <code class="command">transactional-update</code> command.
               </p></dd><dt id="id-1.1.12.1.4"><span class="term">GOAL</span></dt><dd><p>
-                You will understand how the <code class="command">transactional-update</code> works and how you can use it to administer your system.
+                You will understand how <code class="command">transactional-update</code> works and how you can use it
+                to administer your system.
               </p></dd><dt id="id-1.1.12.1.5"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
                     A running instance of <span class="phrase"><span class="phrase">SLE Micro</span></span>
                   </p></li><li class="listitem"><p>
@@ -53,6 +55,13 @@ hljs.configure({
       example, by using the <code class="command">zypper</code> command. Instead,
       <span class="phrase"><span class="phrase">SLE Micro</span></span> introduces <span class="emphasis"><em>transactional updates</em></span>
       that allow you to apply one or more changes to the root file system.
+    </p><p>
+      The default <code class="command">transactional-update</code> behavior is to create a new snapshot from the current
+      root file system after each change. To apply the changes, you need to
+      reboot the host. You cannot run the <code class="command">transactional-update</code> command multiple times without
+      rebooting to add more changes to the snapshot. This action creates
+      separate independent snapshots that do not include changes from the
+      previous snapshots.
     </p></section><section class="sect2" id="how-transactional-update-works" data-id-title="How do transactional updates work?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">How do transactional updates work?</span></span> <a title="Permalink" class="permalink" href="#how-transactional-update-works">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
       Each time you call the <code class="command">transactional-update</code> command to change your system—either
       to install a package, perform an update, or apply a patch—the
@@ -90,55 +99,7 @@ hljs.configure({
       included in the snapshot. However, some directories
       are not included in the snapshot but are accessible inside the <code class="command">transactional-update</code>
       environment, for example, the <code class="filename">/root</code> directory.
-    </p></section><section xml:lang="en" class="sect2" id="transactional-update-no-reboot" data-id-title="Applying multiple changes using transactional-update without rebooting"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.5 </span><span class="title-name">Applying multiple changes using <code class="command">transactional-update</code> without rebooting</span></span> <a title="Permalink" class="permalink" href="#transactional-update-no-reboot">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
-        The <code class="command">transactional-update</code> command applies changes to the root file system on a
-        transactional system.
-      </p></div></div></div></div><p>
-    The default <code class="command">transactional-update</code> behavior is to create a new snapshot from the current
-    root file system after each change. To apply the changes, you need to reboot
-    the host. You cannot run the <code class="command">transactional-update</code> command multiple times without
-    rebooting to add more changes to the snapshot, because this creates
-    separate independent snapshots that do not include changes from the
-    previous snapshots.
-  </p><p>
-    To make multiple changes to the root file system, you have several options, which are
-    described in the following sections:
-  </p><section class="sect3" id="transactional-update-continue-option" data-id-title="The transactional-update --continue option"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">1.5.1 </span><span class="title-name">The <code class="command">transactional-update</code> <code class="option">--continue</code> option</span></span> <a title="Permalink" class="permalink" href="#transactional-update-continue-option">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
-      Use the <code class="command">transactional-update</code> command together with the <code class="option">--continue</code>
-      option to make multiple changes without rebooting. A separate snapshot is
-      created on each run that contains all changes from the previous snapshot,
-      plus your new changes. The final snapshot includes all changes. To apply
-      them, reboot the system and your final snapshot becomes the new root file
-      system.
-    </p></section><section class="sect3" id="transactional-update-run" data-id-title="The transactional-update run command"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">1.5.2 </span><span class="title-name">The <code class="command">transactional-update run</code> command</span></span> <a title="Permalink" class="permalink" href="#transactional-update-run">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
-      The <code class="command">transactional-update</code> <code class="command">run</code> command normally runs only a single
-      command. However, you can use it to run multiple commands in one
-      transactional session by concatenating them within a command shell such as
-      <code class="command">bash</code>, for example:
-    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">transactional-update run bash -c 'ls &amp;&amp; date; if [ true ]; then echo -n "Hello "; echo '\''world'\''; fi'</code></pre></div><div id="id-1.2.6.5.4" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
-        The <code class="command">transactional-update run</code> command has the same limitations as the <code class="command">transactional-update shell</code>
-        command described in <a class="xref" href="#transactional-update-shell" title="1.5.3. The transactional-update shell">Section 1.5.3, “The <code class="command">transactional-update</code> shell”</a>
-        except that the entered commands are logged in the
-        <code class="filename">/var/log/transactional-update.log</code> file.
-      </p></div></section><section class="sect3" id="transactional-update-shell" data-id-title="The transactional-update shell"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">1.5.3 </span><span class="title-name">The <code class="command">transactional-update</code> shell</span></span> <a title="Permalink" class="permalink" href="#transactional-update-shell">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
-      The <code class="command">transactional-update shell</code> command opens a shell in the transactional-update
-      environment. In the shell, you can enter almost any Linux command to make
-      changes to the file system, for example, install multiple packages with
-      the <code class="command">zypper</code> command or perform changes to files that
-      are part of the read-only file system. You can also verify that the
-      changes you previously made with the <code class="command">transactional-update</code> command are correct.
-    </p><div id="id-1.2.6.6.3" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important</div><p>
-        The transactional shell has several limitations. For example, you
-        cannot operate start or stop services using <code class="systemitem">systemd</code> commands, or
-        modify the <code class="filename">/var</code> partition because it is not
-        mounted. Also, commands entered during a shell session are not logged
-        in the <code class="filename">/transactional-update.log</code> file.
-      </p></div><p>
-      All changes that you make to the file system are part of a single
-      snapshot. After you finish making changes to the file system and leave
-      the shell with the <code class="command">exit</code> command, you need to reboot
-      the host to apply the changes.
-    </p></section></section></section><section xml:lang="en" class="sect1" id="reference-transactional-update-usage" data-id-title="Usage of the transactional-update command"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Usage of the <code class="command">transactional-update</code> command</span></span> <a title="Permalink" class="permalink" href="#reference-transactional-update-usage">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+    </p></section></section><section xml:lang="en" class="sect1" id="reference-transactional-update-usage" data-id-title="Usage of the transactional-update command"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Usage of the <code class="command">transactional-update</code> command</span></span> <a title="Permalink" class="permalink" href="#reference-transactional-update-usage">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
         The <code class="command">transactional-update</code> command enables the atomic installation or removal of
         updates. Updates are applied only if all can be successfully installed.
         <code class="command">transactional-update</code> creates a snapshot of your system and uses it to update the
@@ -159,14 +120,14 @@ hljs.configure({
         </p></dd><dt id="transactional-update-continue"><span class="term"><code class="option">--continue [<em class="replaceable">number</em>], -c</code></span></dt><dd><p>
           The <code class="option">--continue</code> option is for making multiple changes
           to the root file system without rebooting. Refer to
-          <a class="xref" href="#transactional-update-no-reboot" title="1.5. Applying multiple changes using transactional-update without rebooting">Section 1.5, “Applying multiple changes using <code class="command">transactional-update</code> without rebooting”</a> for more details.
+          <a class="xref" href="#transactional-update-no-reboot" title="3. Applying multiple changes without rebooting">Section 3, “Applying multiple changes without rebooting”</a> for more details.
         </p><p>
           Another useful feature of the <code class="option">--continue</code> option is
           that you may select any existing snapshot as the base for your new
           snapshot. The following example demonstrates running <code class="command">transactional-update</code> to
           install a new package in a snapshot based on snapshot 13, and then
           running it again to install another package:
-        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">transactional-update pkg install <em class="replaceable">package_1</em></code></pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">transactional-update --continue 13 pkg install <em class="replaceable">package_2</em></code></pre></div></dd><dt id="id-1.3.6.5"><span class="term"><code class="option">--no-selfupdate</code></span></dt><dd><p>
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">transactional-update pkg install <em class="replaceable">package_1</em></code></pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">transactional-update --continue 13 pkg install <em class="replaceable">package_2</em></code></pre></div></dd><dt id="id-1.3.6.5"><span class="term"><code class="option">--no-selfupdate</code></span></dt><dd><p>
           Disables self-updating of <code class="command">transactional-update</code>.
         </p></dd><dt id="id-1.3.6.6"><span class="term"><code class="option">--drop-if-no-change, -d</code></span></dt><dd><p>
           Discards the snapshot created by <code class="command">transactional-update</code> if there were no changes to
@@ -179,121 +140,84 @@ hljs.configure({
           Prints help for the <code class="command">transactional-update</code> command.
         </p></dd><dt id="id-1.3.6.9"><span class="term"><code class="option">--version</code></span></dt><dd><p>
           Displays the version of the <code class="command">transactional-update</code> command.
-        </p></dd></dl></div><p>
-    The general commands are the following:
-  </p><div class="variablelist"><div class="title-container"><div class="variablelist-title-wrap"><div class="variablelist-title"><span class="title-number-name"><span class="title-name">General commands </span></span><a title="Permalink" class="permalink" href="#id-1.3.8">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><dl class="variablelist"><dt id="id-1.3.8.2"><span class="term"><code class="command">cleanup-snapshots</code></span></dt><dd><p>
-          The command marks all unused snapshots that are intended to be
-          removed.
-        </p></dd><dt id="id-1.3.8.3"><span class="term"><code class="command">cleanup-overlays</code></span></dt><dd><p>
-          The command removes all unused overlay layers of <code class="filename">
-          /etc</code>.
-        </p></dd><dt id="id-1.3.8.4"><span class="term"><code class="command">cleanup</code></span></dt><dd><p>
+        </p></dd></dl></div><section class="sect2" id="transactional-update-general" data-id-title="General commands"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">General commands</span></span> <a title="Permalink" class="permalink" href="#transactional-update-general">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      This section lists general purpose commands of <code class="command">transactional-update</code>.
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.3.7.3.1"><span class="term"><code class="command">grub.cfg</code></span></dt><dd><p>
+            Use this command to rebuild the GRUB boot loader configuration file.
+          </p></dd><dt id="id-1.3.7.3.2"><span class="term"><code class="command">bootloader</code></span></dt><dd><p>
+            The command reinstalls the boot loader.
+          </p></dd><dt id="id-1.3.7.3.3"><span class="term"><code class="command">initrd</code></span></dt><dd><p>
+            Use the command to rebuild <code class="literal">initrd</code>.
+          </p></dd><dt id="id-1.3.7.3.4"><span class="term"><code class="command">kdump</code></span></dt><dd><p>
+            In case you perform changes to your hardware or storage, you may need
+            to rebuild the Kdump initrd.
+          </p></dd><dt id="id-1.3.7.3.5"><span class="term"><code class="command">shell</code></span></dt><dd><p>
+            Opens a read-write shell in the new snapshot before exiting. The
+            command is typically used for debugging purposes.
+          </p></dd><dt id="id-1.3.7.3.6"><span class="term"><code class="command">reboot</code></span></dt><dd><p>
+            The system reboots after the <code class="command">transactional-update</code> command is complete.
+          </p></dd><dt id="id-1.3.7.3.7"><span class="term"><code class="command">run <em class="replaceable">&lt;command&gt;</em></code></span></dt><dd><p>
+            Runs the provided command in a new snapshot.
+          </p></dd><dt id="id-1.3.7.3.8"><span class="term"><code class="command">setup-selinux</code></span></dt><dd><p>
+            Installs and enables targeted SELinux policy.
+          </p></dd></dl></div></section></section><section xml:lang="en" class="sect1" id="transactional-update-no-reboot" data-id-title="Applying multiple changes without rebooting"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Applying multiple changes without rebooting</span></span> <a title="Permalink" class="permalink" href="#transactional-update-no-reboot">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        The <code class="command">transactional-update</code> command applies changes to the root file system on a
+        transactional system. The default behavior is to create a new snapshot
+        from the current root file system after each change and reboot to apply
+        the changes.
+      </p></div></div></div></div><p>
+    To make multiple changes to the root file system without rebooting, you have
+    several options, which are described in the following sections:
+  </p><section class="sect2" id="transactional-update-continue-option" data-id-title="The transactional-update --continue option"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.1 </span><span class="title-name">The <code class="command">transactional-update</code> <code class="option">--continue</code> option</span></span> <a title="Permalink" class="permalink" href="#transactional-update-continue-option">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Use the <code class="command">transactional-update</code> command together with the <code class="option">--continue</code>
+      option to make multiple changes without rebooting. A separate snapshot is
+      created on each run that contains all changes from the previous snapshot,
+      plus your new changes. The final snapshot includes all changes. To apply
+      them, reboot the system and your final snapshot becomes the new root file
+      system.
+    </p></section><section class="sect2" id="transactional-update-run" data-id-title="The transactional-update run command"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.2 </span><span class="title-name">The <code class="command">transactional-update run</code> command</span></span> <a title="Permalink" class="permalink" href="#transactional-update-run">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The <code class="command">transactional-update</code> <code class="command">run</code> command normally runs only a single
+      command. However, you can use it to run multiple commands in one
+      transactional session by concatenating them within a command shell such as
+      <code class="command">bash</code>, for example:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">transactional-update run bash -c 'ls &amp;&amp; date; if [ true ]; then echo -n "Hello "; echo '\''world'\''; fi'</code></pre></div><div id="id-1.4.4.4" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+        The <code class="command">transactional-update run</code> command has the same limitations as the <code class="command">transactional-update shell</code>
+        command described in <a class="xref" href="#transactional-update-shell" title="3.3. The transactional-update shell">Section 3.3, “The <code class="command">transactional-update</code> shell”</a>
+        except that the entered commands are logged in the
+        <code class="filename">/var/log/transactional-update.log</code> file.
+      </p></div></section><section class="sect2" id="transactional-update-shell" data-id-title="The transactional-update shell"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.3 </span><span class="title-name">The <code class="command">transactional-update</code> shell</span></span> <a title="Permalink" class="permalink" href="#transactional-update-shell">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The <code class="command">transactional-update shell</code> command opens a shell in the transactional-update
+      environment. In the shell, you can enter almost any Linux command to make
+      changes to the file system, for example, install multiple packages with
+      the <code class="command">zypper</code> command or perform changes to files that
+      are part of the read-only file system. You can also verify that the
+      changes you previously made with the <code class="command">transactional-update</code> command are correct.
+    </p><div id="id-1.4.5.3" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important</div><p>
+        The transactional shell has several limitations. For example, you
+        cannot operate start or stop services using <code class="systemitem">systemd</code> commands, or
+        modify the <code class="filename">/var</code> partition because it is not
+        mounted. Also, commands entered during a shell session are not logged
+        in the <code class="filename">/transactional-update.log</code> file.
+      </p></div><p>
+      All changes that you make to the file system are part of a single
+      snapshot. After you finish making changes to the file system and leave
+      the shell with the <code class="command">exit</code> command, you need to reboot
+      the host to apply the changes.
+    </p></section></section><section xml:lang="en" class="sect1" id="tr-up-cleanup" data-id-title="Performing snapshots cleanup"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Performing snapshots cleanup</span></span> <a title="Permalink" class="permalink" href="#tr-up-cleanup">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        You can use <code class="command">transactional-update</code> to clean unused file system snapshots and
+        unreferenced <code class="filename">/etc</code> overlay directories.
+      </p></div></div></div></div><p>
+    <code class="command">transactional-update</code> recognizes the following cleanup commands:
+  </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.5.3.1"><span class="term"><code class="command">cleanup-snapshots</code></span></dt><dd><p>
+          The command marks all unused snapshots for removal by Snapper.
+        </p></dd><dt id="id-1.5.3.2"><span class="term"><code class="command">cleanup-overlays</code></span></dt><dd><p>
+          The command removes all unused overlay layers of
+          <code class="filename">/etc</code> in the <code class="filename">/var/lib/overlay</code>
+          directory.
+        </p></dd><dt id="id-1.5.3.3"><span class="term"><code class="command">cleanup</code></span></dt><dd><p>
           The command combines the <code class="command">cleanup-snapshots</code> and
           <code class="command">cleanup-overlays</code> commands.
-        </p></dd><dt id="id-1.3.8.5"><span class="term"><code class="command">grub.cfg</code></span></dt><dd><p>
-          Use this command to rebuild the GRUB boot loader configuration file.
-        </p></dd><dt id="id-1.3.8.6"><span class="term"><code class="command">bootloader</code></span></dt><dd><p>
-          The command reinstalls the boot loader.
-        </p></dd><dt id="id-1.3.8.7"><span class="term"><code class="command">initrd</code></span></dt><dd><p>
-          Use the command to rebuild <code class="literal">initrd</code>.
-        </p></dd><dt id="id-1.3.8.8"><span class="term"><code class="command">kdump</code></span></dt><dd><p>
-          In case you perform changes to your hardware or storage, you may need
-          to rebuild the Kdump initrd.
-        </p></dd><dt id="id-1.3.8.9"><span class="term"><code class="command">shell</code></span></dt><dd><p>
-          Opens a read-write shell in the new snapshot before exiting. The
-          command is typically used for debugging purposes.
-        </p></dd><dt id="id-1.3.8.10"><span class="term"><code class="command">reboot</code></span></dt><dd><p>
-          The system reboots after the <code class="command">transactional-update</code> command is complete.
-        </p></dd><dt id="id-1.3.8.11"><span class="term"><code class="command">run <em class="replaceable">&lt;command&gt;</em></code></span></dt><dd><p>
-          Runs the provided command in a new snapshot.
-        </p></dd><dt id="id-1.3.8.12"><span class="term"><code class="command">setup-selinux</code></span></dt><dd><p>
-          Installs and enables targeted SELinux policy.
-        </p></dd></dl></div><p>
-    The package commands are the following:
-  </p><div class="variablelist"><div class="title-container"><div class="variablelist-title-wrap"><div class="variablelist-title"><span class="title-number-name"><span class="title-name">Package commands </span></span><a title="Permalink" class="permalink" href="#id-1.3.10">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><dl class="variablelist"><dt id="id-1.3.10.2"><span class="term"><code class="command">dup</code></span></dt><dd><p>
-          Performs upgrade of your system. The default option for this command
-          is <code class="option">--non-interactive</code>.
-        </p></dd><dt id="id-1.3.10.3"><span class="term"><code class="command">migration</code></span></dt><dd><p>
-          The command migrates your system to a selected target. Typically, it
-          is used to upgrade your system if it has been registered via SUSE Customer Center.
-        </p></dd><dt id="id-1.3.10.4"><span class="term"><code class="command">patch</code></span></dt><dd><p>
-          Checks for available patches and installs them. The default option
-          for this command is <code class="option">--non-interactive</code>.
-        </p></dd><dt id="id-1.3.10.5"><span class="term"><code class="command">pkg install</code></span></dt><dd><p>
-          Installs individual packages from the available channels using the
-          <code class="command">zypper install</code> command. This command can also be
-          used to install Program Temporary Fix (PTF) RPM files. The default
-          option for this command is <code class="option">--interactive</code>.
-        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">transactional-update pkg install <em class="replaceable">package_name</em></code></pre></div><p>
-          or
-        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">transactional-update pkg install <em class="replaceable">rpm1 rpm2</em></code></pre></div><p>
-          Or, to install a software pattern:
-        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">transactional-update pkg install -t pattern <em class="replaceable">pattern_name</em></code></pre></div></dd><dt id="id-1.3.10.6"><span class="term"><code class="command">pkg remove</code></span></dt><dd><p>
-          Removes individual packages from the active snapshot using the
-          <code class="command">zypper remove</code> command. This command can also be
-          used to remove PTF RPM files. The default option for this command is
-          <code class="option"> --interactive</code>.
-        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">transactional-update pkg remove <em class="replaceable">package_name</em></code></pre></div></dd><dt id="id-1.3.10.7"><span class="term"><code class="command">pkg update</code></span></dt><dd><p>
-          Updates individual packages from the active snapshot using the
-          <code class="command">zypper update</code> command. Only packages that are part
-          of the snapshot of the base file system can be updated. The default
-          option for this command is <code class="option">--interactive</code>.
-        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">transactional-update pkg update <em class="replaceable">package_name</em></code></pre></div></dd><dt id="id-1.3.10.8"><span class="term"><code class="command">register</code></span></dt><dd><p>
-          Registers or deregisters your system. For a complete usage
-          description, refer to
-          <a class="xref" href="#sec-register-command" title="2.1. The register command">Section 2.1, “The <code class="command">register</code> command”</a>.
-        </p></dd><dt id="id-1.3.10.9"><span class="term"><code class="command">up</code></span></dt><dd><p>
-          Updates installed packages to newer versions. The default option for
-          this command is <code class="option">--non-interactive</code>.
-        </p></dd></dl></div><p>
-    The stand-alone commands are the following:
-  </p><div class="variablelist"><div class="title-container"><div class="variablelist-title-wrap"><div class="variablelist-title"><span class="title-number-name"><span class="title-name">Stand-alone commands </span></span><a title="Permalink" class="permalink" href="#id-1.3.12">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><dl class="variablelist"><dt id="id-1.3.12.2"><span class="term"><code class="command">rollback <em class="replaceable">&lt;snapshot number&gt;</em></code></span></dt><dd><p>
-          This sets the default subvolume. The current system is set as the new
-          default root file system. If you specify a number, that snapshot is
-          used as the default root file system. On a read-only file system, it
-          does not create any additional snapshots.
-        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">transactional-update rollback <em class="replaceable">snapshot_number</em></code></pre></div></dd><dt id="id-1.3.12.3"><span class="term"><code class="command">rollback last</code></span></dt><dd><p>
-          This command sets the last known to be working snapshot as the
-          default.
-        </p></dd></dl></div><section class="sect2" id="sec-register-command" data-id-title="The register command"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">The <code class="command">register</code> command</span></span> <a title="Permalink" class="permalink" href="#sec-register-command">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
-      The <code class="command">register</code> command enables you to handle all tasks
-      regarding registration and subscription management. You can supply the
-      following options:
-    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.3.13.3.1"><span class="term"><code class="option">--list-extensions</code></span></dt><dd><p>
-            With this option, the command lists available extensions for your
-            system. You can use the output to find a product identifier for
-            product activation.
-          </p></dd><dt id="id-1.3.13.3.2"><span class="term"><code class="option">-p, --product</code></span></dt><dd><p>
-            Use this option to specify a product for activation. The product
-            identifier has the following format: <span class="emphasis"><em>
-            &lt;name&gt;/&lt;version&gt;/&lt;architecture&gt;</em></span>, for
-            example, <code class="literal">sle-module-live-patching/15.3/x86_64</code>.
-            The corresponding command has the following form:
-          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>transactional-update register -p sle-module-live-patching/15.3/x86_64</pre></div></dd><dt id="id-1.3.13.3.3"><span class="term"><code class="option">-r, --regcode</code></span></dt><dd><p>
-            Register your system with the registration code provided. The
-            command registers the subscription and enables software
-            repositories.
-          </p></dd><dt id="id-1.3.13.3.4"><span class="term"><code class="option">-d, --de-register</code></span></dt><dd><p>
-            The option deregisters the system, or when used along with the
-            <code class="literal">-p</code> option, deregisters an extension.
-          </p></dd><dt id="id-1.3.13.3.5"><span class="term"><code class="option">-e, --email</code></span></dt><dd><p>
-            Specify an email address that is used in SUSE Customer Center for registration.
-          </p></dd><dt id="id-1.3.13.3.6"><span class="term"><code class="option">--url</code></span></dt><dd><p>
-            Specify the URL of your registration server. The URL is stored in
-            the configuration and is used in subsequent command invocations.
-            For example:
-          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>transactional-update register --url https://scc.suse.com</pre></div></dd><dt id="id-1.3.13.3.7"><span class="term"><code class="option">-s, --status</code></span></dt><dd><p>
-            Displays the current registration status in JSON format.
-          </p></dd><dt id="id-1.3.13.3.8"><span class="term"><code class="option">--write-config</code></span></dt><dd><p>
-            Writes the provided options value to the <code class="filename">
-            /etc/SUSEConnect</code> configuration file.
-          </p></dd><dt id="id-1.3.13.3.9"><span class="term"><code class="option">--cleanup</code></span></dt><dd><p>
-            Removes old system credentials.
-          </p></dd><dt id="id-1.3.13.3.10"><span class="term"><code class="option">--version</code></span></dt><dd><p>
-            Prints the version.
-          </p></dd><dt id="id-1.3.13.3.11"><span class="term"><code class="option">--help</code></span></dt><dd><p>
-            Displays the usage of the command.
-          </p></dd></dl></div></section><section xml:lang="en" class="sect2" id="tr-up-cleanup" data-id-title="Performing snapshots cleanup"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.2 </span><span class="title-name">Performing snapshots cleanup</span></span> <a title="Permalink" class="permalink" href="#tr-up-cleanup">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+        </p></dd></dl></div><section class="sect2" id="tr-up-cleanup-how-it-works" data-id-title="How the cleanup works"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.1 </span><span class="title-name">How the cleanup works</span></span> <a title="Permalink" class="permalink" href="#tr-up-cleanup-how-it-works">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
       If you run the command <code class="command">transactional-update cleanup</code>,
       all old snapshots without a cleanup algorithm will have one set. All
       important snapshots are also marked. The command also removes all
@@ -304,10 +228,10 @@ hljs.configure({
       will be deleted according to the rules configured in
       <code class="filename">/etc/snapper/configs/root</code> by the following
       parameters:
-    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.3.14.4.1"><span class="term">NUMBER_MIN_AGE</span></dt><dd><p>
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.5.4.4.1"><span class="term">NUMBER_MIN_AGE</span></dt><dd><p>
             Defines the minimum age of a snapshot (in seconds) that can be
             automatically removed.
-          </p></dd><dt id="id-1.3.14.4.2"><span class="term">NUMBER_LIMIT/NUMBER_LIMIT_IMPORTANT</span></dt><dd><p>
+          </p></dd><dt id="id-1.5.4.4.2"><span class="term">NUMBER_LIMIT/NUMBER_LIMIT_IMPORTANT</span></dt><dd><p>
             Defines the maximum count of stored snapshots. The cleaning
             algorithms delete snapshots above the specified maximum value,
             without taking into account the snapshot and file system space. The
@@ -315,7 +239,90 @@ hljs.configure({
             limits for the snapshot and file system are reached.
           </p></dd></dl></div><p>
       The snapshot cleanup is also regularly performed by <code class="systemitem">systemd</code>.
-    </p></section></section><section xml:lang="en" class="sect1" id="tr-up-rollback" data-id-title="Performing system rollback"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Performing system rollback</span></span> <a title="Permalink" class="permalink" href="#tr-up-rollback">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+    </p></section></section><section xml:lang="en" class="sect1" id="transactional-update-registering-product" data-id-title="Registering products"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Registering products</span></span> <a title="Permalink" class="permalink" href="#transactional-update-registering-product">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        You can use the <code class="command">transactional-update register</code> command
+        to handle all tasks regarding product registration and its subscription
+        management. You can supply the following options:
+      </p></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.6.2.1"><span class="term"><code class="option">--list-extensions</code></span></dt><dd><p>
+          With this option, the command lists available extensions for your
+          system. You can use the output to find a product identifier for
+          product activation.
+        </p></dd><dt id="id-1.6.2.2"><span class="term"><code class="option">-p, --product</code></span></dt><dd><p>
+          Use this option to specify a product for activation. The product
+          identifier has the following format: <span class="emphasis"><em>
+          &lt;name&gt;/&lt;version&gt;/&lt;architecture&gt;</em></span>, for
+          example, <code class="literal">sle-module-live-patching/15.3/x86_64</code>. The
+          corresponding command has the following form:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> transactional-update register -p sle-module-live-patching/15.3/x86_64</pre></div></dd><dt id="id-1.6.2.3"><span class="term"><code class="option">-r, --regcode</code></span></dt><dd><p>
+          Register your system with the registration code provided. The command
+          registers the subscription and enables software repositories.
+        </p></dd><dt id="id-1.6.2.4"><span class="term"><code class="option">-d, --de-register</code></span></dt><dd><p>
+          The option deregisters the system, or when used along with the
+          <code class="literal">-p</code> option, deregisters an extension.
+        </p></dd><dt id="id-1.6.2.5"><span class="term"><code class="option">-e, --email</code></span></dt><dd><p>
+          Specify an email address that is used in SUSE Customer Center for registration.
+        </p></dd><dt id="id-1.6.2.6"><span class="term"><code class="option">--url</code></span></dt><dd><p>
+          Specify the URL of your registration server. The URL is stored in the
+          configuration and is used in subsequent command invocations. For
+          example:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> transactional-update register --url https://scc.suse.com</pre></div></dd><dt id="id-1.6.2.7"><span class="term"><code class="option">-s, --status</code></span></dt><dd><p>
+          Displays the current registration status in JSON format.
+        </p></dd><dt id="id-1.6.2.8"><span class="term"><code class="option">--write-config</code></span></dt><dd><p>
+          Writes the provided options value to the <code class="filename">
+          /etc/SUSEConnect</code> configuration file.
+        </p></dd><dt id="id-1.6.2.9"><span class="term"><code class="option">--cleanup</code></span></dt><dd><p>
+          Removes old system credentials.
+        </p></dd><dt id="id-1.6.2.10"><span class="term"><code class="option">--version</code></span></dt><dd><p>
+          Prints the version.
+        </p></dd><dt id="id-1.6.2.11"><span class="term"><code class="option">--help</code></span></dt><dd><p>
+          Displays the usage of the command.
+        </p></dd></dl></div></section><section xml:lang="en" class="sect1" id="transactional-update-managing-software" data-id-title="Managing software packages"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Managing software packages</span></span> <a title="Permalink" class="permalink" href="#transactional-update-managing-software">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        You can use <code class="command">transactional-update</code> to install, update or remove software packages.
+      </p></div></div></div></div><p>
+    <span class="phrase"><span class="phrase">SLE Micro</span></span> obtains software packages from repositories that are
+    available after the product registration. <span class="phrase">Except for
+    the main repository, <span class="phrase"><span class="phrase">SLE Micro</span></span> can access an extra repository with
+    a collection of unsupported packages provided as a convenience for
+    customers, mainly for testing and development purposes.</span>
+  </p><p>
+    <code class="command">transactional-update</code> uses the following commands to manage software packages.
+  </p><div id="id-1.7.4" data-id-title="The pkg command and Zypper options" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: The <code class="command">pkg</code> command and Zypper options</div><p>
+      With <code class="command">transactional-update pkg</code> commands, you can use any
+      Zypper option that corresponds to the used subcommand. For example,
+      <code class="command">transactional-update pkg install</code> understands all
+      options that <code class="command">zypper install</code> does.
+    </p></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.7.5.1"><span class="term"><code class="command">pkg install</code></span></dt><dd><p>
+          Installs individual packages from the available channels using the
+          <code class="command">zypper install</code> command. This command can also be
+          used to install Program Temporary Fix (PTF) RPM files. The default
+          option for this command is <code class="option">--interactive</code>.
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">transactional-update pkg install <em class="replaceable">package_name</em></code></pre></div><p>
+          or
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">transactional-update pkg install <em class="replaceable">rpm1 rpm2</em></code></pre></div><p>
+          Or, to install a software pattern:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">transactional-update pkg install -t pattern <em class="replaceable">pattern_name</em></code></pre></div></dd><dt id="id-1.7.5.2"><span class="term"><code class="command">pkg remove</code></span></dt><dd><p>
+          Removes individual packages from the active snapshot using the
+          <code class="command">zypper remove</code> command. This command can also be
+          used to remove PTF RPM files. The default option for this command is
+          <code class="option"> --interactive</code>.
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">transactional-update pkg remove <em class="replaceable">package_name</em></code></pre></div></dd><dt id="id-1.7.5.3"><span class="term"><code class="command">pkg update</code></span></dt><dd><p>
+          Updates individual packages from the active snapshot using the
+          <code class="command">zypper update</code> command. Only packages that are part
+          of the snapshot of the base file system can be updated. The default
+          option for this command is <code class="option">--interactive</code>.
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">transactional-update pkg update <em class="replaceable">package_name</em></code></pre></div></dd><dt id="id-1.7.5.4"><span class="term"><code class="command">patch</code></span></dt><dd><p>
+          Checks for available patches and installs them. The default option for
+          this command is <code class="option">--non-interactive</code>.
+        </p></dd><dt id="id-1.7.5.5"><span class="term"><code class="command">dup</code></span></dt><dd><p>
+          Performs an upgrade of your system. The default option for this command
+          is <code class="option">--non-interactive</code>.
+        </p></dd><dt id="id-1.7.5.6"><span class="term"><code class="command">up</code></span></dt><dd><p>
+          Updates installed packages to newer versions. The default option for
+          this command is <code class="option">--non-interactive</code>.
+        </p></dd><dt id="id-1.7.5.7"><span class="term"><code class="command">migration</code></span></dt><dd><p>
+          The command migrates your system to a selected target. Typically, it
+          is used to upgrade your system if it has been registered via SUSE Customer Center.
+        </p></dd></dl></div></section><section xml:lang="en" class="sect1" id="tr-up-rollback" data-id-title="Performing system rollback"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Performing system rollback</span></span> <a title="Permalink" class="permalink" href="#tr-up-rollback">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
       GRUB 2 enables booting from btrfs snapshots and thus allows you to use
       any older functional snapshot in case the new snapshot does not work
       correctly.
@@ -323,11 +330,11 @@ hljs.configure({
       When booting a snapshot, the parts of the file system included in the
       snapshot are mounted read-only; all other file systems and parts that are
       excluded from snapshots are mounted read-write and can be modified.
-    </p><div id="id-1.4.3" data-id-title="Rolling back to a specific installation state" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Rolling back to a specific installation state</div><p>
+    </p><div id="id-1.8.3" data-id-title="Rolling back to a specific installation state" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Rolling back to a specific installation state</div><p>
         An initial bootable snapshot is created at the end of the initial
         system installation. You can go back to that state at any time by
         booting this snapshot. The snapshot can be identified by the
-        description <code class="literal">first root filesytem</code>.
+        description <code class="literal">first root file system</code>.
       </p></div><p>
       There are two methods to perform a system rollback.
     </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
@@ -341,16 +348,17 @@ hljs.configure({
       If your current snapshot is functional, you can use the following
       procedure for a system rollback.
     </p><div class="procedure" id="proc-running-snapshot" data-id-title="Rollback from a running system"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 2: </span><span class="title-name">Rollback from a running system </span></span><a title="Permalink" class="permalink" href="#proc-running-snapshot">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
-          Choose the snapshot that should be set as default and run:
-        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>snapper list</pre></div><p>
-          to get a list of snapshots. Note the number of the snapshot
-          to be set as default.
-        </p></li><li class="step"><p>
-          Set the snapshot as default by running:
-        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>transactional-update rollback <em class="replaceable">snapshot_number</em></pre></div><p>
+          Identify the snapshot that should be set as the default one and note
+          its number.
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> snapper list</pre></div></li><li class="step"><p>
+          Set the snapshot as default.
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> transactional-update rollback <em class="replaceable">snapshot_number</em></pre></div><p>
           If you omit the <em class="replaceable">snapshot number</em>, the
           current snapshot will be set as default.
-        </p></li><li class="step"><p>
+        </p><div id="id-1.8.7.3.4" data-id-title="Setting the last working snapshot" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Setting the last working snapshot</div><p>
+            To set the last working snapshot as the default one, run
+            <code class="command">rollback last</code>.
+          </p></div></li><li class="step"><p>
           Reboot your system to boot into the new default snapshot.
         </p></li></ol></div></div><p>
       The following procedure is used in case the current snapshot is broken
@@ -371,9 +379,9 @@ hljs.configure({
         </p><p>
           If the snapshot works as expected, you can perform the rollback by
           running the following command:
-        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">transactional-update rollback</code></pre></div><p>
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">transactional-update rollback</code></pre></div><p>
           And reboot afterwards.
-        </p></li></ol></div></div></section><section xml:lang="en" class="sect1" id="tr-up-automatic-updates" data-id-title="Managing automatic transactional updates"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Managing automatic transactional updates</span></span> <a title="Permalink" class="permalink" href="#tr-up-automatic-updates">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+        </p></li></ol></div></div></section><section xml:lang="en" class="sect1" id="tr-up-automatic-updates" data-id-title="Managing automatic transactional updates"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name">Managing automatic transactional updates</span></span> <a title="Permalink" class="permalink" href="#tr-up-automatic-updates">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
       Automatic updates are controlled by <code class="command">systemd.timer</code>
       that runs once per day. This applies all updates and informs
       <code class="command">rebootmgrd</code> that the machine should be rebooted. You
@@ -381,7 +389,7 @@ hljs.configure({
       documentation.
     </p><p>
       You can disable automatic transactional updates with this command:
-    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">systemctl --now disable transactional-update.timer</code></pre></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p> Copyright© 2006–2024
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">systemctl --now disable transactional-update.timer</code></pre></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">9 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p> Copyright© 2006–2024
  SUSE LLC and contributors.
   All rights reserved. </p><p>
     Permission is granted to copy, distribute and/or modify this document under the terms of the
@@ -402,9 +410,9 @@ hljs.configure({
   Fifth Floor, Boston, MA 02110-1301 USA. Everyone is permitted to copy and
   distribute verbatim copies of this license document, but changing it is not
   allowed.
- </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.7.3"><span class="name">
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.3"><span class="name">
     0. PREAMBLE
-  </span><a title="Permalink" class="permalink" href="#id-1.7.3">#</a></h5></div><p>
+  </span><a title="Permalink" class="permalink" href="#id-1.11.3">#</a></h5></div><p>
   The purpose of this License is to make a manual, textbook, or other
   functional and useful document "free" in the sense of freedom: to assure
   everyone the effective freedom to copy and redistribute it, with or without
@@ -425,9 +433,9 @@ hljs.configure({
   work, regardless of subject matter or whether it is published as a printed
   book. We recommend this License principally for works whose purpose is
   instruction or reference.
- </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.7.7"><span class="name">
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.7"><span class="name">
     1. APPLICABILITY AND DEFINITIONS
-  </span><a title="Permalink" class="permalink" href="#id-1.7.7">#</a></h5></div><p>
+  </span><a title="Permalink" class="permalink" href="#id-1.11.7">#</a></h5></div><p>
   This License applies to any manual or other work, in any medium, that
   contains a notice placed by the copyright holder saying it can be distributed
   under the terms of this License. Such a notice grants a world-wide,
@@ -506,9 +514,9 @@ hljs.configure({
   considered to be included by reference in this License, but only as regards
   disclaiming warranties: any other implication that these Warranty Disclaimers
   may have is void and has no effect on the meaning of this License.
- </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.7.18"><span class="name">
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.18"><span class="name">
     2. VERBATIM COPYING
-  </span><a title="Permalink" class="permalink" href="#id-1.7.18">#</a></h5></div><p>
+  </span><a title="Permalink" class="permalink" href="#id-1.11.18">#</a></h5></div><p>
   You may copy and distribute the Document in any medium, either commercially
   or non-commercially, provided that this License, the copyright notices, and
   the license notice saying this License applies to the Document are reproduced
@@ -520,9 +528,9 @@ hljs.configure({
  </p><p>
   You may also lend copies, under the same conditions stated above, and you may
   publicly display copies.
- </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.7.21"><span class="name">
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.21"><span class="name">
     3. COPYING IN QUANTITY
-  </span><a title="Permalink" class="permalink" href="#id-1.7.21">#</a></h5></div><p>
+  </span><a title="Permalink" class="permalink" href="#id-1.11.21">#</a></h5></div><p>
   If you publish printed copies (or copies in media that commonly have printed
   covers) of the Document, numbering more than 100, and the Document's license
   notice requires Cover Texts, you must enclose the copies in covers that
@@ -554,9 +562,9 @@ hljs.configure({
   It is requested, but not required, that you contact the authors of the
   Document well before redistributing any large number of copies, to give them
   a chance to provide you with an updated version of the Document.
- </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.7.26"><span class="name">
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.26"><span class="name">
     4. MODIFICATIONS
-  </span><a title="Permalink" class="permalink" href="#id-1.7.26">#</a></h5></div><p>
+  </span><a title="Permalink" class="permalink" href="#id-1.11.26">#</a></h5></div><p>
   You may copy and distribute a Modified Version of the Document under the
   conditions of sections 2 and 3 above, provided that you release the Modified
   Version under precisely this License, with the Modified Version filling the
@@ -650,9 +658,9 @@ hljs.configure({
   The author(s) and publisher(s) of the Document do not by this License give
   permission to use their names for publicity for or to assert or imply
   endorsement of any Modified Version.
- </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.7.33"><span class="name">
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.33"><span class="name">
     5. COMBINING DOCUMENTS
-  </span><a title="Permalink" class="permalink" href="#id-1.7.33">#</a></h5></div><p>
+  </span><a title="Permalink" class="permalink" href="#id-1.11.33">#</a></h5></div><p>
   You may combine the Document with other documents released under this
   License, under the terms defined in section 4 above for modified versions,
   provided that you include in the combination all of the Invariant Sections of
@@ -673,9 +681,9 @@ hljs.configure({
   various original documents, forming one section Entitled "History"; likewise
   combine any sections Entitled "Acknowledgements", and any sections Entitled
   "Dedications". You must delete all sections Entitled "Endorsements".
- </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.7.37"><span class="name">
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.37"><span class="name">
     6. COLLECTIONS OF DOCUMENTS
-  </span><a title="Permalink" class="permalink" href="#id-1.7.37">#</a></h5></div><p>
+  </span><a title="Permalink" class="permalink" href="#id-1.11.37">#</a></h5></div><p>
   You may make a collection consisting of the Document and other documents
   released under this License, and replace the individual copies of this
   License in the various documents with a single copy that is included in the
@@ -686,9 +694,9 @@ hljs.configure({
   individually under this License, provided you insert a copy of this License
   into the extracted document, and follow this License in all other respects
   regarding verbatim copying of that document.
- </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.7.40"><span class="name">
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.40"><span class="name">
     7. AGGREGATION WITH INDEPENDENT WORKS
-  </span><a title="Permalink" class="permalink" href="#id-1.7.40">#</a></h5></div><p>
+  </span><a title="Permalink" class="permalink" href="#id-1.11.40">#</a></h5></div><p>
   A compilation of the Document or its derivatives with other separate and
   independent documents or works, in or on a volume of a storage or
   distribution medium, is called an "aggregate" if the copyright resulting from
@@ -703,9 +711,9 @@ hljs.configure({
   the Document within the aggregate, or the electronic equivalent of covers if
   the Document is in electronic form. Otherwise they must appear on printed
   covers that bracket the whole aggregate.
- </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.7.43"><span class="name">
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.43"><span class="name">
     8. TRANSLATION
-  </span><a title="Permalink" class="permalink" href="#id-1.7.43">#</a></h5></div><p>
+  </span><a title="Permalink" class="permalink" href="#id-1.11.43">#</a></h5></div><p>
   Translation is considered a kind of modification, so you may distribute
   translations of the Document under the terms of section 4. Replacing
   Invariant Sections with translations requires special permission from their
@@ -721,18 +729,18 @@ hljs.configure({
   If a section in the Document is Entitled "Acknowledgements", "Dedications",
   or "History", the requirement (section 4) to Preserve its Title (section 1)
   will typically require changing the actual title.
- </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.7.46"><span class="name">
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.46"><span class="name">
     9. TERMINATION
-  </span><a title="Permalink" class="permalink" href="#id-1.7.46">#</a></h5></div><p>
+  </span><a title="Permalink" class="permalink" href="#id-1.11.46">#</a></h5></div><p>
   You may not copy, modify, sublicense, or distribute the Document except as
   expressly provided for under this License. Any other attempt to copy, modify,
   sublicense or distribute the Document is void, and will automatically
   terminate your rights under this License. However, parties who have received
   copies, or rights, from you under this License will not have their licenses
   terminated so long as such parties remain in full compliance.
- </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.7.48"><span class="name">
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.48"><span class="name">
     10. FUTURE REVISIONS OF THIS LICENSE
-  </span><a title="Permalink" class="permalink" href="#id-1.7.48">#</a></h5></div><p>
+  </span><a title="Permalink" class="permalink" href="#id-1.11.48">#</a></h5></div><p>
   The Free Software Foundation may publish new, revised versions of the GNU
   Free Documentation License from time to time. Such new versions will be
   similar in spirit to the present version, but may differ in detail to address
@@ -746,9 +754,9 @@ hljs.configure({
   been published (not as a draft) by the Free Software Foundation. If the
   Document does not specify a version number of this License, you may choose
   any version ever published (not as a draft) by the Free Software Foundation.
- </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.7.51"><span class="name">
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.51"><span class="name">
     ADDENDUM: How to use this License for your documents
-  </span><a title="Permalink" class="permalink" href="#id-1.7.51">#</a></h5></div><div class="verbatim-wrap"><pre class="screen">Copyright (c) YEAR YOUR NAME.
+  </span><a title="Permalink" class="permalink" href="#id-1.11.51">#</a></h5></div><div class="verbatim-wrap"><pre class="screen">Copyright (c) YEAR YOUR NAME.
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.2
 or any later version published by the Free Software Foundation;
@@ -766,5 +774,5 @@ Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.</pre></d
   releasing these examples in parallel under your choice of free software
   license, such as the GNU General Public License, to permit their use in free
   software.
-</p></section></div></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="#concept-transactional-update"><span class="title-number">1 </span><span class="title-name">Transactional updates</span></a></span></li><li><span class="section"><a href="#reference-transactional-update-usage"><span class="title-number">2 </span><span class="title-name">Usage of the <code class="command">transactional-update</code> command</span></a></span></li><li><span class="section"><a href="#tr-up-rollback"><span class="title-number">3 </span><span class="title-name">Performing system rollback</span></a></span></li><li><span class="section"><a href="#tr-up-automatic-updates"><span class="title-number">4 </span><span class="title-name">Managing automatic transactional updates</span></a></span></li><li><span class="section"><a href="#legal-disclaimer"><span class="title-number">5 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="#doc-gfdl-license"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-fb" href="#" title="Facebook"> </a></li><li><a id="_share-in" href="#" title="LinkedIn"> </a></li><li><a id="_share-tw" href="#" title="Twitter/X"> </a></li><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE
+</p></section></div></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="#concept-transactional-update"><span class="title-number">1 </span><span class="title-name">Transactional updates</span></a></span></li><li><span class="section"><a href="#reference-transactional-update-usage"><span class="title-number">2 </span><span class="title-name">Usage of the <code class="command">transactional-update</code> command</span></a></span></li><li><span class="section"><a href="#transactional-update-no-reboot"><span class="title-number">3 </span><span class="title-name">Applying multiple changes without rebooting</span></a></span></li><li><span class="section"><a href="#tr-up-cleanup"><span class="title-number">4 </span><span class="title-name">Performing snapshots cleanup</span></a></span></li><li><span class="section"><a href="#transactional-update-registering-product"><span class="title-number">5 </span><span class="title-name">Registering products</span></a></span></li><li><span class="section"><a href="#transactional-update-managing-software"><span class="title-number">6 </span><span class="title-name">Managing software packages</span></a></span></li><li><span class="section"><a href="#tr-up-rollback"><span class="title-number">7 </span><span class="title-name">Performing system rollback</span></a></span></li><li><span class="section"><a href="#tr-up-automatic-updates"><span class="title-number">8 </span><span class="title-name">Managing automatic transactional updates</span></a></span></li><li><span class="section"><a href="#legal-disclaimer"><span class="title-number">9 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="#doc-gfdl-license"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-fb" href="#" title="Facebook"> </a></li><li><a id="_share-in" href="#" title="LinkedIn"> </a></li><li><a id="_share-tw" href="#" title="Twitter/X"> </a></li><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE
                  2024</span></div></div></footer></body></html>
