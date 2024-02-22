@@ -3476,7 +3476,8 @@ Wed 2022-10-27 08:33:04 CEST 14h   left Tue 2022-10-26 08:33:04 CEST 9h ago    s
           template:
         </p><div class="verbatim-wrap"><pre class="screen">OnCalendar=DayOfWeek<span class="callout" id="systemd-timer-real-dayofweek">1</span> Year-Month-Day<span class="callout" id="systemd-timer-real-date">2</span> Hour:Minute:Second<span class="callout" id="systemd-timer-real-time">3</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#systemd-timer-real-dayofweek"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
               Day of week. Possible values are <code class="literal">Sun</code>,
-              <code class="literal">Mon</code>,<code class="literal">Tue</code>,<code class="literal">Wed</code>,<code class="literal">Thu</code>,<code class="literal">Sat</code>.
+              <code class="literal">Mon</code>, <code class="literal">Tue</code>,
+              <code class="literal">Wed</code>, <code class="literal">Thu</code>, <code class="literal">Fri</code>, <code class="literal">Sat</code>.
               Leave out to ignore the day of the week.
             </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#systemd-timer-real-date"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
               Date. Specify month and day by two digits, year by four digits. Each value can be
@@ -3800,9 +3801,9 @@ WantedBy=multi-user.target</pre></div></div></div></div></section><section xml:l
       For example:
     </p><div class="complex-example"><div class="example" id="id-1.9.11.3.3" data-id-title="systemd timer file cutout containing a non-fatal error"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 8.7: </span><span class="title-name"><code class="systemitem">systemd</code> timer file cutout containing a non-fatal error </span></span><a title="Permalink" class="permalink" href="#id-1.9.11.3.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">[Timer]
 OnBootSec=5min
-OnCalendar=Mon..Fri 10:00
+OnClendar=Mon..Fri 10:00
 Unit=helloworld.service</pre></div><p>
-        Line 3 contains a syntax error (<code class="literal">OnCalendar</code> instead of
+        Line 3 contains a syntax error (<code class="literal">OnClendar</code> instead of
         <code class="literal">OnCalendar</code>). Since the <code class="literal">[Timer]</code> section contains a
         second timer entry (OnBoot), the error is not critical and is silently ignored. As a
         consequence, the Monday to Friday trigger is not executed. The only way to detect the
