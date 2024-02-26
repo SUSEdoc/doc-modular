@@ -48,89 +48,13 @@ hljs.configure({
           Deployed <span class="phrase"><span class="phrase">ALP Dolomite</span></span>.
         </p></li><li class="listitem"><p>
           Installed and enabled Podman.
-        </p></li></ul></div></section><section xml:lang="en" class="sect1" id="task-run-firewalld-with-podman" data-id-title="Running firewalld using Podman"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5.2 </span><span class="title-name">Running <code class="systemitem">firewalld</code> using Podman</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#task-run-firewalld-with-podman">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
-        This article describes how to run a containerized <code class="systemitem">firewalld</code> on
-        <span class="phrase"><span class="phrase">SUSE <span class="phrase"><span class="phrase">ALP Dolomite</span></span></span></span> using Podman. This workload adds
-        firewall capability to <span class="phrase"><span class="phrase">ALP Dolomite</span></span> to define the trust level of
-        network connections or interfaces.
-      </p><div id="id-1.6.3.1.3.2" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important</div><p>
-          The <code class="systemitem">firewalld</code> container needs access to the host network and needs
-          to run as a privileged container. The container image uses the system
-          dbus instance. Therefore, you need to install <span class="package">dbus</span>
-          and <span class="package">polkit</span> configuration files first.
-        </p></div></div></div></div></div><section class="sect2" id="alp-running-firewalld" data-id-title="Running the firewalld workload"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.2.1 </span><span class="title-name">Running the <code class="systemitem">firewalld</code> workload</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#alp-running-firewalld">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
-          Identify the <code class="systemitem">firewalld</code> workload image:
-        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>podman search firewalld
-[...]
-registry.opensuse.org/suse/alp/workloads/tumbleweed_images/suse/alp/workloads/firewalld</pre></div></li><li class="step"><p>
-          Verify that <span class="package">firewalld</span> is not installed in the host
-          system. Remove it, if necessary, and reboot the <span class="phrase"><span class="phrase">ALP Dolomite</span></span>
-          host:
-        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>transactional-update pkg remove firewalld
-reboot</pre></div></li><li class="step"><p>
-          Initialize the environment:
-        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>podman container runlabel install \
-registry.opensuse.org/suse/alp/workloads/tumbleweed_images/suse/alp/workloads/firewalld</pre></div><p>
-          The command prepares the system and creates the following files on
-          the host system:
-        </p><div class="verbatim-wrap"><pre class="screen">/etc/dbus-1/system.d/FirewallD.conf
-/etc/polkit-1/actions/org.fedoraproject.FirewallD1.policy <span class="callout" id="alp-firewalld-polkit-policy">1</span>
-/etc/systemd/system/firewalld.service <span class="callout" id="alp-firewalld-systemd">2</span>
-/etc/default/container-firewalld
-/usr/local/bin/firewall-cmd <span class="callout" id="alp-firewalld-config">3</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#alp-firewalld-polkit-policy"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
-              The <span class="package">polkit</span> policy file will only be installed
-              if <span class="package">polkit</span> itself is installed. It may be
-              necessary to restart the
-              <code class="systemitem">dbus</code> and
-              <code class="systemitem">polkit</code> daemon afterwards.
-            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#alp-firewalld-systemd"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
-              The <code class="systemitem">systemd</code> service and the corresponding configuration file
-              <code class="filename">/etc/default/container-firewalld</code> allow to
-              start and stop the container using <code class="systemitem">systemd</code> if Podman is used
-              as a container manager.
-            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#alp-firewalld-config"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
-              <code class="command">/usr/local/bin/firewall-cmd</code> is a wrapper to
-              call the <code class="command">firewall-cmd</code> inside the container.
-              Docker and Podman are supported.
-            </p></td></tr></table></div></li><li class="step"><p>
-          Run the container:
-        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>podman container runlabel run \
- registry.opensuse.org/suse/alp/workloads/tumbleweed_images/suse/alp/workloads/firewalld</pre></div><p>
-          The command will run the container as a privileged container with the
-          host network. Additionally, <code class="filename">/etc/firewalld</code> and
-          the <code class="systemitem">dbus</code> socket are mounted
-          into the container.
-        </p><div id="id-1.6.3.2.2.4.4" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
-            If your container manager is Podman, you can operate <code class="systemitem">firewalld</code>
-            by using its <code class="systemitem">systemd</code> unit files, for example:
-          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>systemctl start firewalld</pre></div></div></li><li class="step"><p>
-          Optionally, you can remove the <code class="systemitem">firewalld</code> workload and clean the
-          environment from all related files. Configuration files are left on
-          the system.
-        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>podman container runlabel uninstall \
- registry.opensuse.org/suse/alp/workloads/tumbleweed_images/suse/alp/workloads/firewalld</pre></div></li></ol></div></div><section class="sect3" id="alp-manage-firewalld-instance" data-id-title="Managing the firewalld instance"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.2.1.1 </span><span class="title-name">Managing the <code class="systemitem">firewalld</code> instance</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#alp-manage-firewalld-instance">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
-        After the <code class="systemitem">firewalld</code> container is started, you can manage its instance
-        in two ways. You can manually call its client application via the
-        <code class="command">podman exec</code> command, for example:
-      </p><div class="verbatim-wrap"><pre class="screen">podman exec firewalld firewall-cmd <em class="replaceable">OPTIONS</em></pre></div><p>
-        Alternatively, you can use a shorter syntax by running the
-        <code class="command">firewall-cmd</code> wrapper script.
-      </p></section><section class="sect3" id="alp-firewalld-documentation" data-id-title="firewalld manual pages"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.2.1.2 </span><span class="title-name"><code class="systemitem">firewalld</code> manual pages</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#alp-firewalld-documentation">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
-        To read the <code class="systemitem">firewalld</code> manual page, run the following command:
-      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>podman run -i --rm \
- registry.opensuse.org/suse/alp/workloads/tumbleweed_images/suse/alp/workloads/firewalld \
- man firewalld</pre></div><p>
-        To read the <code class="command">firewall-cmd</code> manual page, run the
-        following command:
-      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>podman run -i --rm \
- registry.opensuse.org/suse/alp/workloads/tumbleweed_images/suse/alp/workloads/firewalld \
- man firewall-cmd</pre></div></section></section></section><section xml:lang="en" class="sect1" id="task-run-grafana-with-podman" data-id-title="Running the Grafana workload using Podman"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5.3 </span><span class="title-name">Running the Grafana workload using Podman</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#task-run-grafana-with-podman">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        </p></li></ul></div></section><section xml:lang="en" class="sect1" id="task-run-grafana-with-podman" data-id-title="Running the Grafana workload using Podman"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5.2 </span><span class="title-name">Running the Grafana workload using Podman</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#task-run-grafana-with-podman">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
         This article describes how to run the Grafana visualization tool on
         <span class="phrase"><span class="phrase">SUSE <span class="phrase"><span class="phrase">ALP Dolomite</span></span></span></span>. This workload adds a Web-based
         dashboard to the <span class="phrase"><span class="phrase">ALP Dolomite</span></span> host that lets you query, monitor,
         visualize and better understand existing data residing on any client
         host.
-      </p></div></div></div></div><section class="sect2" id="alp-starting-grafana" data-id-title="Starting the Grafana workload"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.3.1 </span><span class="title-name">Starting the Grafana workload</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#alp-starting-grafana">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      </p></div></div></div></div><section class="sect2" id="alp-starting-grafana" data-id-title="Starting the Grafana workload"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.2.1 </span><span class="title-name">Starting the Grafana workload</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#alp-starting-grafana">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
       This section describes how to start the Grafana workload, set up a
       client so that we can test it with real data, and configure the Grafana
       Web application to visualize the client's data.
@@ -146,14 +70,14 @@ registry.opensuse.org/suse/alp/workloads/tumbleweed_containerfiles/suse/alp/work
           image:
         </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>grafana-container-manage.sh create</pre></div></li><li class="step"><p>
           Start the container with the Grafana server:
-        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>grafana-container-manage.sh start</pre></div></li></ol></div></div></section><section class="sect2" id="alp-setting-grafana-client" data-id-title="Setting up a Grafana client"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.3.2 </span><span class="title-name">Setting up a Grafana client</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#alp-setting-grafana-client">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>grafana-container-manage.sh start</pre></div></li></ol></div></div></section><section class="sect2" id="alp-setting-grafana-client" data-id-title="Setting up a Grafana client"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.2.2 </span><span class="title-name">Setting up a Grafana client</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#alp-setting-grafana-client">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
       To test Grafana, you need to set up a client that will provide real
       data to the Grafana server.
     </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
           Log in to the client host and install the
           <span class="package">golang-github-prometheus-node_exporter</span> and
           <span class="package">golang-github-prometheus-prometheus</span> packages:
-        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>zypper in golang-github-prometheus-node_exporter golang-github-prometheus-prometheus</pre></div><div id="id-1.6.4.3.3.1.3" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>zypper in golang-github-prometheus-node_exporter golang-github-prometheus-prometheus</pre></div><div id="id-1.6.3.3.3.1.3" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
             If your Grafana server and client hosts are virtualized by a
             KVM containerized workload, use the <code class="option">--network</code>
             option while creating the POD because the
@@ -163,7 +87,7 @@ registry.opensuse.org/suse/alp/workloads/tumbleweed_containerfiles/suse/alp/work
           </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>virsh net-dhcp-leases default</pre></div></div></li><li class="step"><p>
           Restart the Prometheus services on the client host:
         </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>systemctl restart prometheus-node_exporter.service
-<code class="prompt root"># </code>systemctl restart prometheus</pre></div></li></ol></div></div></section><section class="sect2" id="alp-setting-grafana-web" data-id-title="Configuring the Grafana Web application"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.3.3 </span><span class="title-name">Configuring the Grafana Web application</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#alp-setting-grafana-web">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+<code class="prompt root"># </code>systemctl restart prometheus</pre></div></li></ol></div></div></section><section class="sect2" id="alp-setting-grafana-web" data-id-title="Configuring the Grafana Web application"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.2.3 </span><span class="title-name">Configuring the Grafana Web application</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#alp-setting-grafana-web">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
       To configure a data source for the Grafana Web dashboard, follow these
       steps:
     </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
@@ -177,17 +101,17 @@ registry.opensuse.org/suse/alp/workloads/tumbleweed_containerfiles/suse/alp/work
           Add the Prometheus data source provided by the client. In the left
           panel, hover your mouse over the gear icon and select <span class="guimenu">Data
           sources</span>.
-        </p><div class="figure" id="id-1.6.4.4.3.3.2"><div class="figure-contents"><div class="mediaobject"><a href="images/alp-grafana-data-sources.png"><img src="images/alp-grafana-data-sources.png" width="25%" alt="Grafana data sources" title="Grafana data sources"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 5.1: </span><span class="title-name">Grafana data sources </span></span><a title="Permalink" class="permalink" href="available-alp-workloads.html#id-1.6.4.4.3.3.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></li><li class="step"><p>
+        </p><div class="figure" id="id-1.6.3.4.3.3.2"><div class="figure-contents"><div class="mediaobject"><a href="images/alp-grafana-data-sources.png"><img src="images/alp-grafana-data-sources.png" width="25%" alt="Grafana data sources" title="Grafana data sources"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 5.1: </span><span class="title-name">Grafana data sources </span></span><a title="Permalink" class="permalink" href="available-alp-workloads.html#id-1.6.3.4.3.3.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></li><li class="step"><p>
           Click <span class="guimenu">Add data source</span> and select
           <span class="guimenu">Prometheus</span>. Fill the <span class="guimenu">URL</span>
           field with the URL of the client where the Prometheus service runs
           on port 9090, for example:
-        </p><div class="figure" id="id-1.6.4.4.3.4.2"><div class="figure-contents"><div class="mediaobject"><a href="images/alp-grafana-prometheus-url.png"><img src="images/alp-grafana-prometheus-url.png" width="75%" alt="Prometheus URL configuration in Grafana" title="Prometheus URL configuration in Grafana"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 5.2: </span><span class="title-name">Prometheus URL configuration in Grafana </span></span><a title="Permalink" class="permalink" href="available-alp-workloads.html#id-1.6.4.4.3.4.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><p>
+        </p><div class="figure" id="id-1.6.3.4.3.4.2"><div class="figure-contents"><div class="mediaobject"><a href="images/alp-grafana-prometheus-url.png"><img src="images/alp-grafana-prometheus-url.png" width="75%" alt="Prometheus URL configuration in Grafana" title="Prometheus URL configuration in Grafana"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 5.2: </span><span class="title-name">Prometheus URL configuration in Grafana </span></span><a title="Permalink" class="permalink" href="available-alp-workloads.html#id-1.6.3.4.3.4.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><p>
           Confirm with <span class="guimenu">Save &amp; test</span>
         </p></li><li class="step"><p>
           Create a dashboard based on Prometheus data. Hover your mouse over
           the plus sign in the left panel and select <span class="guimenu">Import</span>.
-        </p><div class="figure" id="id-1.6.4.4.3.5.2"><div class="figure-contents"><div class="mediaobject"><a href="images/alp-grafana-pimport-dashboard.png"><img src="images/alp-grafana-pimport-dashboard.png" width="25%" alt="Creating Grafana dashboard" title="Creating Grafana dashboard"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 5.3: </span><span class="title-name">Creating a Grafana dashboard </span></span><a title="Permalink" class="permalink" href="available-alp-workloads.html#id-1.6.4.4.3.5.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></li><li class="step"><p>
+        </p><div class="figure" id="id-1.6.3.4.3.5.2"><div class="figure-contents"><div class="mediaobject"><a href="images/alp-grafana-pimport-dashboard.png"><img src="images/alp-grafana-pimport-dashboard.png" width="25%" alt="Creating Grafana dashboard" title="Creating Grafana dashboard"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 5.3: </span><span class="title-name">Creating a Grafana dashboard </span></span><a title="Permalink" class="permalink" href="available-alp-workloads.html#id-1.6.3.4.3.5.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></li><li class="step"><p>
           Enter <code class="literal">405</code> as the dashboard ID and confirm with
           <span class="guimenu">Load</span>.
         </p></li><li class="step"><p>
@@ -196,47 +120,47 @@ registry.opensuse.org/suse/alp/workloads/tumbleweed_containerfiles/suse/alp/work
           <span class="guimenu">Import</span>.
         </p></li><li class="step"><p>
           Grafana shows your newly created dashboard.
-        </p><div class="figure" id="id-1.6.4.4.3.8.2"><div class="figure-contents"><div class="mediaobject"><a href="images/alp-grafana-dashboard.png"><img src="images/alp-grafana-dashboard.png" width="100%" alt="New Grafana dashboard" title="New Grafana dashboard"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 5.4: </span><span class="title-name">New Grafana dashboard </span></span><a title="Permalink" class="permalink" href="available-alp-workloads.html#id-1.6.4.4.3.8.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></li></ol></div></div></section><section xml:lang="en" class="sect2" id="reference-grafana-container-manage" data-id-title="Usage of the grafana-container-manage.sh script"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.3.4 </span><span class="title-name">Usage of the <code class="command">grafana-container-manage.sh</code> script</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#reference-grafana-container-manage">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        </p><div class="figure" id="id-1.6.3.4.3.8.2"><div class="figure-contents"><div class="mediaobject"><a href="images/alp-grafana-dashboard.png"><img src="images/alp-grafana-dashboard.png" width="100%" alt="New Grafana dashboard" title="New Grafana dashboard"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 5.4: </span><span class="title-name">New Grafana dashboard </span></span><a title="Permalink" class="permalink" href="available-alp-workloads.html#id-1.6.3.4.3.8.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></li></ol></div></div></section><section xml:lang="en" class="sect2" id="reference-grafana-container-manage" data-id-title="Usage of the grafana-container-manage.sh script"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.2.4 </span><span class="title-name">Usage of the <code class="command">grafana-container-manage.sh</code> script</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#reference-grafana-container-manage">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
         The <code class="command">grafana-container-manage.sh</code> script is used to
         manage the Grafana container on <span class="phrase"><span class="phrase">SUSE <span class="phrase"><span class="phrase">ALP Dolomite</span></span></span></span>.
         This article lists each subcommand of the script and describes its
         purpose.
-      </p></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.6.4.5.2.1"><span class="term"><code class="command">grafana-container-manage.sh create</code></span></dt><dd><p>
+      </p></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.6.3.5.2.1"><span class="term"><code class="command">grafana-container-manage.sh create</code></span></dt><dd><p>
           Pulls the Grafana image and creates the corresponding container.
-        </p></dd><dt id="id-1.6.4.5.2.2"><span class="term"><code class="command">grafana-container-manage.sh install</code></span></dt><dd><p>
+        </p></dd><dt id="id-1.6.3.5.2.2"><span class="term"><code class="command">grafana-container-manage.sh install</code></span></dt><dd><p>
           Installs additional files that are required to manage the
           <code class="literal">grafana</code> container.
-        </p></dd><dt id="id-1.6.4.5.2.3"><span class="term"><code class="command">grafana-container-manage.sh start</code></span></dt><dd><p>
+        </p></dd><dt id="id-1.6.3.5.2.3"><span class="term"><code class="command">grafana-container-manage.sh start</code></span></dt><dd><p>
           Starts the container called <code class="literal">grafana</code>.
-        </p></dd><dt id="id-1.6.4.5.2.4"><span class="term"><code class="command">grafana-container-manage.sh uninstall</code></span></dt><dd><p>
+        </p></dd><dt id="id-1.6.3.5.2.4"><span class="term"><code class="command">grafana-container-manage.sh uninstall</code></span></dt><dd><p>
           Uninstalls all files on the host that were required to manage the
           <code class="literal">grafana</code> container.
-        </p></dd><dt id="id-1.6.4.5.2.5"><span class="term"><code class="command">grafana-container-manage.sh stop</code></span></dt><dd><p>
+        </p></dd><dt id="id-1.6.3.5.2.5"><span class="term"><code class="command">grafana-container-manage.sh stop</code></span></dt><dd><p>
           Stops the <code class="literal">grafana</code> container.
-        </p></dd><dt id="id-1.6.4.5.2.6"><span class="term"><code class="command">grafana-container-manage.sh rm</code></span></dt><dd><p>
+        </p></dd><dt id="id-1.6.3.5.2.6"><span class="term"><code class="command">grafana-container-manage.sh rm</code></span></dt><dd><p>
           Deletes the <code class="literal">grafana</code> container.
-        </p></dd><dt id="id-1.6.4.5.2.7"><span class="term"><code class="command">grafana-container-manage.sh rmcache</code></span></dt><dd><p>
+        </p></dd><dt id="id-1.6.3.5.2.7"><span class="term"><code class="command">grafana-container-manage.sh rmcache</code></span></dt><dd><p>
           Removes the container image in cache.
-        </p></dd><dt id="id-1.6.4.5.2.8"><span class="term"><code class="command">grafana-container-manage.sh </code></span></dt><dd><p>
+        </p></dd><dt id="id-1.6.3.5.2.8"><span class="term"><code class="command">grafana-container-manage.sh </code></span></dt><dd><p>
           Runs the <code class="literal">grafana</code> container.
-        </p></dd><dt id="id-1.6.4.5.2.9"><span class="term"><code class="command">grafana-container-manage.sh bash</code></span></dt><dd><p>
+        </p></dd><dt id="id-1.6.3.5.2.9"><span class="term"><code class="command">grafana-container-manage.sh bash</code></span></dt><dd><p>
           Runs the <code class="command">bash</code> shell inside the
           <code class="literal">grafana</code> container.
-        </p></dd><dt id="id-1.6.4.5.2.10"><span class="term"><code class="command">grafana-container-manage.sh logs</code></span></dt><dd><p>
+        </p></dd><dt id="id-1.6.3.5.2.10"><span class="term"><code class="command">grafana-container-manage.sh logs</code></span></dt><dd><p>
           Displays log messages of the <code class="literal">grafana</code> container.
-        </p></dd></dl></div></section></section><section xml:lang="en" class="sect1" id="task-run-neuvector-with-podman" data-id-title="Running the NeuVector workload using Podman"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5.4 </span><span class="title-name">Running the NeuVector workload using Podman</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#task-run-neuvector-with-podman">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        </p></dd></dl></div></section></section><section xml:lang="en" class="sect1" id="task-run-neuvector-with-podman" data-id-title="Running the NeuVector workload using Podman"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5.3 </span><span class="title-name">Running the NeuVector workload using Podman</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#task-run-neuvector-with-podman">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
         NeuVector is a powerful container security platform that includes
         end-to-end vulnerability scanning and complete runtime protection for
         containers, pods and hosts. This article describes how to run
         NeuVector on <span class="phrase"><span class="phrase">SUSE <span class="phrase"><span class="phrase">ALP Dolomite</span></span></span></span>.
-      </p><div id="id-1.6.5.1.3.2" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important</div><p>
+      </p><div id="id-1.6.4.1.3.2" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important</div><p>
           NeuVector requires SELinux to be set into the
           <span class="emphasis"><em>permissive</em></span> mode by running the following
           command:
         </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>setenforce 0</pre></div><p>
           You can find more details about SELinux in
           <a class="xref" href="alp-deployment.html#alp-post-deploy-selinux" title="2.5.3. SELinux">Section 2.5.3, “SELinux”</a>.
-        </p></div></div></div></div></div><section class="sect2" id="starting-neuvector" data-id-title="Starting NeuVector"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.4.1 </span><span class="title-name">Starting NeuVector</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#starting-neuvector">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        </p></div></div></div></div></div><section class="sect2" id="starting-neuvector" data-id-title="Starting NeuVector"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.3.1 </span><span class="title-name">Starting NeuVector</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#starting-neuvector">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
           Identify the NeuVector workload image:
         </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>podman search neuvector
 [...]
@@ -253,14 +177,14 @@ registry.opensuse.org/suse/alp/workloads/tumbleweed_containerfiles/suse/alp/work
           You need to accept the warning about the self-signed SSL certificate
           and log in with the following default credentials:
           <code class="literal">admin</code> / <code class="literal">admin</code>.
-        </p></li></ol></div></div></section><section class="sect2" id="uninstalling-neuvector" data-id-title="Uninstalling NeuVector"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.4.2 </span><span class="title-name">Uninstalling NeuVector</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#uninstalling-neuvector">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        </p></li></ol></div></div></section><section class="sect2" id="uninstalling-neuvector" data-id-title="Uninstalling NeuVector"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.3.2 </span><span class="title-name">Uninstalling NeuVector</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#uninstalling-neuvector">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
       To uninstall NeuVector, run the following command:
     </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>podman container runlabel uninstall \
-  registry.opensuse.org/suse/alp/workloads/bci_containerfiles/suse/alp/workloads/neuvector-demo:latest</pre></div></section></section><section xml:lang="en" class="sect1" id="task-run-ansible-with-podman" data-id-title="Running the Ansible workload using Podman"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5.5 </span><span class="title-name">Running the Ansible workload using Podman</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#task-run-ansible-with-podman">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+  registry.opensuse.org/suse/alp/workloads/bci_containerfiles/suse/alp/workloads/neuvector-demo:latest</pre></div></section></section><section xml:lang="en" class="sect1" id="task-run-ansible-with-podman" data-id-title="Running the Ansible workload using Podman"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5.4 </span><span class="title-name">Running the Ansible workload using Podman</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#task-run-ansible-with-podman">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
         Ansible is a suite of tools for managing and provisioning data
         centers via definition files. This article describes how to run
         Ansible on <span class="phrase"><span class="phrase">SUSE <span class="phrase"><span class="phrase">ALP Dolomite</span></span></span></span>.
-      </p><div id="id-1.6.6.1.3.2" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important</div><p>
+      </p><div id="id-1.6.5.1.3.2" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important</div><p>
           <span class="package">python3-lxml</span> and <span class="package">python3-rpm</span>
           packages are required for Ansible to interact with <code class="systemitem">libvirt</code> and
           gather package facts. The <span class="package">kernel-default-base</span>
@@ -268,7 +192,7 @@ registry.opensuse.org/suse/alp/workloads/tumbleweed_containerfiles/suse/alp/work
           <code class="command">nmcli</code> operations, such as creating bonded
           interfaces. Replace it with <span class="package">kernel-default</span>:
         </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">transactional-update pkg install python3-rpm python3-lxml kernel-default -kernel-default-base</code>
-<code class="prompt root"># </code><code class="command">shutdown -r now</code></pre></div></div></div></div></div></div><section class="sect2" id="starting-ansible" data-id-title="Installing Ansible commands"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.5.1 </span><span class="title-name">Installing Ansible commands</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#starting-ansible">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+<code class="prompt root"># </code><code class="command">shutdown -r now</code></pre></div></div></div></div></div></div><section class="sect2" id="starting-ansible" data-id-title="Installing Ansible commands"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.4.1 </span><span class="title-name">Installing Ansible commands</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#starting-ansible">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
           Identify the Ansible workload image:
         </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>podman search ansible
 [...]
@@ -279,7 +203,7 @@ registry.opensuse.org/suse/alp/workloads/tumbleweed_containerfiles/suse/alp/work
               <code class="filename">/usr/local/bin</code> directory. Run the following
               command to install Ansible commands for <code class="systemitem">root</code>:
             </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>podman container runlabel install \
-  registry.opensuse.org/suse/alp/workloads/tumbleweed_containerfiles/suse/alp/workloads/ansible:latest</pre></div><div id="id-1.6.6.2.2.2.2.1.3" data-id-title="Example Ansible playbooks" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Example Ansible playbooks</div><p>
+  registry.opensuse.org/suse/alp/workloads/tumbleweed_containerfiles/suse/alp/workloads/ansible:latest</pre></div><div id="id-1.6.5.2.2.2.2.1.3" data-id-title="Example Ansible playbooks" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Example Ansible playbooks</div><p>
                 If you installed the Ansible commands as <code class="systemitem">root</code>, you can
                 find example playbooks in the
                 <code class="filename">/usr/local/share/ansible-container/examples</code>
@@ -321,13 +245,13 @@ registry.opensuse.org/suse/alp/workloads/tumbleweed_containerfiles/suse/alp/work
           ansible-test
         </p></li><li class="listitem"><p>
           ansible-vault
-        </p></li></ul></div></section><section class="sect2" id="uninstalling-ansible" data-id-title="Uninstalling Ansible"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.5.2 </span><span class="title-name">Uninstalling Ansible</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#uninstalling-ansible">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        </p></li></ul></div></section><section class="sect2" id="uninstalling-ansible" data-id-title="Uninstalling Ansible"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.4.2 </span><span class="title-name">Uninstalling Ansible</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#uninstalling-ansible">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
       To uninstall Ansible as <code class="systemitem">root</code>, run the following command:
     </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>podman container runlabel uninstall \
   registry.opensuse.org/suse/alp/workloads/tumbleweed_containerfiles/suse/alp/workloads/ansible:latest</pre></div><p>
       To uninstall Ansible as non-<code class="systemitem">root</code>, run the following commands:
     </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>cd &amp;&amp; podman container runlabel user-uninstall \
-  registry.opensuse.org/suse/alp/workloads/tumbleweed_containerfiles/suse/alp/workloads/ansible:latest</pre></div></section><section class="sect2" id="ansible-operation-ssh" data-id-title="Operation via SSH"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.5.3 </span><span class="title-name">Operation via SSH</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#ansible-operation-ssh">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+  registry.opensuse.org/suse/alp/workloads/tumbleweed_containerfiles/suse/alp/workloads/ansible:latest</pre></div></section><section class="sect2" id="ansible-operation-ssh" data-id-title="Operation via SSH"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.4.3 </span><span class="title-name">Operation via SSH</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#ansible-operation-ssh">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
       Because Ansible is running inside a container, the default localhost
       environment is the container itself and not the system hosting the
       container instance. Therefore, any changes made to the localhost
@@ -355,9 +279,9 @@ registry.opensuse.org/suse/alp/workloads/tumbleweed_containerfiles/suse/alp/work
 [...]
     },
     "changed": false
-}</pre></div><div id="id-1.6.6.4.7" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
+}</pre></div><div id="id-1.6.5.4.7" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
         The inventory record may also contain other hosts to be managed.
-      </p></div><div id="id-1.6.6.4.8" data-id-title="Set up SSH keys" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Set up SSH keys</div><p>
+      </p></div><div id="id-1.6.5.4.8" data-id-title="Set up SSH keys" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Set up SSH keys</div><p>
         The container must be able to connect to the system being managed. The
         following conditions must be fulfilled:
       </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
@@ -375,13 +299,13 @@ registry.opensuse.org/suse/alp/workloads/tumbleweed_containerfiles/suse/alp/work
       </p><p>
         Note that the SSH access can be validated with the <code class="command">ssh
         localhost</code> command.
-      </p></div></section><section xml:lang="en" class="sect2" id="reference-ansible-playbook-examples" data-id-title="Examples of Ansible playbooks"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.5.4 </span><span class="title-name">Examples of Ansible playbooks</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#reference-ansible-playbook-examples">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><section class="sect3" id="reference-ansible-introduction" data-id-title="Introduction"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.5.4.1 </span><span class="title-name">Introduction</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#reference-ansible-introduction">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      </p></div></section><section xml:lang="en" class="sect2" id="reference-ansible-playbook-examples" data-id-title="Examples of Ansible playbooks"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.4.4 </span><span class="title-name">Examples of Ansible playbooks</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#reference-ansible-playbook-examples">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><section class="sect3" id="reference-ansible-introduction" data-id-title="Introduction"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.4.4.1 </span><span class="title-name">Introduction</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#reference-ansible-introduction">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
       On the <span class="phrase"><span class="phrase">ALP Dolomite</span></span> system where the Ansible workload container
       has been installed using the <code class="literal">install</code> runlabel (refer
-      to <a class="xref" href="available-alp-workloads.html#starting-ansible" title="5.5.1. Installing Ansible commands">Section 5.5.1, “Installing Ansible commands”</a> for more details), the examples are
+      to <a class="xref" href="available-alp-workloads.html#starting-ansible" title="5.4.1. Installing Ansible commands">Section 5.4.1, “Installing Ansible commands”</a> for more details), the examples are
       available in
       <code class="filename">/usr/local/share/ansible-container/examples/ansible</code>.
-    </p></section><section class="sect3" id="alp-ansible-playbook-test" data-id-title="Simple Ansible test"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.5.4.2 </span><span class="title-name">Simple Ansible test</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#alp-ansible-playbook-test">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    </p></section><section class="sect3" id="alp-ansible-playbook-test" data-id-title="Simple Ansible test"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.4.4.2 </span><span class="title-name">Simple Ansible test</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#alp-ansible-playbook-test">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
       The <code class="filename">playbook.yml</code> playbook tests several common
       Ansible operations, such as gathering facts and testing for installed
       packages. To invoke the play, change to the directory
@@ -390,7 +314,7 @@ registry.opensuse.org/suse/alp/workloads/tumbleweed_containerfiles/suse/alp/work
     </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ansible-playbook playbook.yml</code>
 ...
 PLAY RECAP *********************************************************************
-alphost    : ok=8 changed=1 unreachable=0 failed=0 skipped=0 rescued=0 ignored=0</pre></div></section><section class="sect3" id="alp-ansible-networking-example" data-id-title="Drive nmcli to change system networking"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.5.4.3 </span><span class="title-name">Drive <code class="command">nmcli</code> to change system networking</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#alp-ansible-networking-example">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+alphost    : ok=8 changed=1 unreachable=0 failed=0 skipped=0 rescued=0 ignored=0</pre></div></section><section class="sect3" id="alp-ansible-networking-example" data-id-title="Drive nmcli to change system networking"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.4.4.3 </span><span class="title-name">Drive <code class="command">nmcli</code> to change system networking</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#alp-ansible-networking-example">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
       The <code class="filename">network.yml</code> playbook uses the
       <code class="literal">community.general.nmcli</code> plugin to test common network
       operations, such as assigning static IP addresses to NICs or creating
@@ -413,59 +337,12 @@ ok: [alphost] =&gt; (item={'name': 'enp2s0', 'ifname': 'enp2s0', 'ip4': '192.168
 ok: [alphost] =&gt; (item={'name': 'enp3s0', 'ifname': 'enp3s0', 'ip4': '192.168.181.4/24', 'gw4': '192.168.181.2', 'dns4': ['8.8.8.8']})
 
 PLAY RECAP ***************************************************************************************************************
-alphost                    : ok=9    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0</pre></div></section><section class="sect3" id="alp-ansible-libvirt-host" data-id-title="Set up ALP Dolomite as a libvirt host"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.5.4.4 </span><span class="title-name">Set up <span class="phrase"><span class="phrase">ALP Dolomite</span></span> as a <code class="systemitem">libvirt</code> host</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#alp-ansible-libvirt-host">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
-      The <code class="filename">setup_libvirt_host.yml</code> playbook installs the
-      <code class="literal">kvm-container</code> workload and enables the <code class="systemitem">libvirtd</code>
-      <code class="systemitem">systemd</code> service. To invoke the play, change to the directory
-      <code class="filename">/usr/local/share/ansible-container/examples/ansible</code>
-      and enter the following command:
-    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ansible-playbook setup_libvirt_host.yml</code>
-...
-PLAY RECAP *********************************************************************
-alphost    : ok=9 changed=2 unreachable=0 failed=0 skipped=4 rescued=0 ignored=0
-
-<code class="prompt user">&gt; </code><code class="command">sudo</code> /usr/local/bin/virsh list --all
-using /etc/kvm-container.conf as configuration file
-+ podman exec -ti libvirtd virsh list --all
-Authorization not available.
-Check if polkit service is running or see debug message for more information.</pre></div><div id="id-1.6.6.5.5.4" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
-        If the required kernel and supporting packages are not already
-        installed, a reboot is required to complete the installation of missing
-        packages. Follow the directions generated by the playbook. After the
-        reboot has completed successfully, rerun the playbook to finish the
-        setup of the <code class="systemitem">libvirtd</code> service.
-      </p></div></section><section class="sect3" id="alp-ansible-tumbleweed-vm" data-id-title="Create an openSUSE Tumbleweed appliance VM"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.5.4.5 </span><span class="title-name">Create an openSUSE Tumbleweed appliance VM</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#alp-ansible-tumbleweed-vm">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
-      The
-      
-      playbook creates and starts a <code class="systemitem">libvirt</code> managed VM called
-      <code class="literal">tumbleweed</code> that is based on the latest available openSUSE Tumbleweed
-      appliance VM image.
-    </p><p>
-      It uses the <code class="filename">setup_libvirt_host.yml</code> playbook (see
-      <a class="xref" href="available-alp-workloads.html#alp-ansible-libvirt-host" title="5.5.4.4. Set up ALP Dolomite as a libvirt host">Section 5.5.4.4, “Set up <span class="phrase"><span class="phrase">ALP Dolomite</span></span> as a <code class="systemitem">libvirt</code> host”</a>) to ensure that the
-      <span class="phrase"><span class="phrase">ALP Dolomite</span></span> host is ready to manage VMs before creating the new
-      one. It may fail prompting you to reboot before running the playbook
-      again to finish setting up <code class="systemitem">libvirt</code> and creating the VM.
-    </p><p>
-      To invoke the play, change to the directory
-      <code class="filename">/usr/local/share/ansible-container/examples/ansible</code>
-      and enter the following command:
-    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ansible-playbook create_tumbleweed_vm.yml</code>
-...
-TASK [Query list of libvirt VMs] ***********************************************
-ok: [alphost]
-
-TASK [Show that Tumbleweed appliance has been created] *************************
-ok: [alphost] =&gt; {
-    "msg": "Running VMs: tumbleweed"
-}
-
-PLAY RECAP *********************************************************************</pre></div></section></section></section><section xml:lang="en" class="sect1" id="kea-dhcp-running-with-podman" data-id-title="Running the Kea DHCP server using Podman"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5.6 </span><span class="title-name">Running the Kea DHCP server using Podman</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#kea-dhcp-running-with-podman">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+alphost                    : ok=9    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0</pre></div></section></section></section><section xml:lang="en" class="sect1" id="kea-dhcp-running-with-podman" data-id-title="Running the Kea DHCP server using Podman"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5.5 </span><span class="title-name">Running the Kea DHCP server using Podman</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#kea-dhcp-running-with-podman">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
         Kea is an open-source DHCP server that supports both DHCPv4 and
         DHCPv6 protocols. It provides IPv6 prefix delegation, host reservations
         optionally stored in a database, PXE boot, high-availability setup and
         other features.
-      </p></div></div></div></div><section class="sect2" id="kea-dhcp-run-procedure" data-id-title="Deploying and running the Kea workload"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.6.1 </span><span class="title-name">Deploying and running the Kea workload</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#kea-dhcp-run-procedure">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+      </p></div></div></div></div><section class="sect2" id="kea-dhcp-run-procedure" data-id-title="Deploying and running the Kea workload"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.5.1 </span><span class="title-name">Deploying and running the Kea workload</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#kea-dhcp-run-procedure">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
           Identify the Kea DHCP server container image:
         </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">podman search kea</code>
 [...]
@@ -489,7 +366,7 @@ registry.opensuse.org/suse/alp/workloads/tumbleweed_containerfiles/suse/alp/work
             </p></li></ul></div></li><li class="step"><p>
           Run the Kea DHCP server. You can run it either using <code class="systemitem">systemd</code> unit
           files, or manually.
-        </p><div id="id-1.6.7.2.2.4.2" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
+        </p><div id="id-1.6.6.2.2.4.2" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
             To run DHCP server with <code class="systemitem">firewalld</code> active, you need to add
             exception rules based on the version of DHCP you're using.
           </p><p>
@@ -512,22 +389,22 @@ registry.opensuse.org/suse/alp/workloads/tumbleweed_containerfiles/suse/alp/work
           command removes all Kea-related files except for the configuration
           directory and its content:
         </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">podman container runlabel uninstall \
-registry.opensuse.org/suse/alp/workloads/tumbleweed_containerfiles/suse/alp/workloads/kea:latest</code></pre></div><div id="id-1.6.7.2.2.5.3" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
+registry.opensuse.org/suse/alp/workloads/tumbleweed_containerfiles/suse/alp/workloads/kea:latest</code></pre></div><div id="id-1.6.6.2.2.5.3" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
             The <code class="literal">purge</code> runlabel removes the Kea
             configuration directory <code class="filename">/etc/kea</code> but leaves
             the rest of Kea deployment in place:
           </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">podman container runlabel purge \
-registry.opensuse.org/suse/alp/workloads/tumbleweed_containerfiles/suse/alp/workloads/kea:latest</code></pre></div></div></li></ol></div></div></section><section class="sect2" id="kea-dhcp-configuration-files" data-id-title="Configuration files"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.6.2 </span><span class="title-name">Configuration files</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#kea-dhcp-configuration-files">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+registry.opensuse.org/suse/alp/workloads/tumbleweed_containerfiles/suse/alp/workloads/kea:latest</code></pre></div></div></li></ol></div></div></section><section class="sect2" id="kea-dhcp-configuration-files" data-id-title="Configuration files"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.5.2 </span><span class="title-name">Configuration files</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#kea-dhcp-configuration-files">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
       The Kea configuration files—<code class="filename">kea-dhcp4.conf</code>
       and <code class="filename">kea-dhcp6.conf</code>—are located in the
       <code class="filename">/etc/kea</code> directory. They include the default
       configuration. You can find detailed information about configuring the
       DHCP server in the official documentation at
       <a class="link" href="https://kea.readthedocs.io/" target="_blank">https://kea.readthedocs.io/</a>.
-    </p><div id="id-1.6.7.3.3" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
+    </p><div id="id-1.6.6.3.3" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
         If you modify configuration files, run <code class="command">keactrl
         reload</code> to apply them to running servers.
-      </p></div></section><section class="sect2" id="kea-dhcp-keactrl" data-id-title="The keactrl wrapper"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.6.3 </span><span class="title-name">The <code class="command">keactrl</code> wrapper</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#kea-dhcp-keactrl">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      </p></div></section><section class="sect2" id="kea-dhcp-keactrl" data-id-title="The keactrl wrapper"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.5.3 </span><span class="title-name">The <code class="command">keactrl</code> wrapper</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#kea-dhcp-keactrl">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
       The installed <code class="command">keactrl</code> wrapper uses the original
       <code class="command">keactrl</code> tool to send commands to deployed containers.
       It uses the same options as the original tool with one exception: the
@@ -535,7 +412,7 @@ registry.opensuse.org/suse/alp/workloads/tumbleweed_containerfiles/suse/alp/work
       (<code class="option">-s dhcp4</code>) or DHCPv6 (<code class="option">-s dhcp6</code>). If
       <code class="option">-s</code> is not specified, <code class="command">keactrl</code> sends
       commands to both servers if they are started.
-    </p></section></section><section xml:lang="en" class="sect1" id="glue-alp-workloads-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5.7 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#glue-alp-workloads-more-info">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+    </p></section></section><section xml:lang="en" class="sect1" id="glue-alp-workloads-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5.6 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="available-alp-workloads.html#glue-alp-workloads-more-info">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
         The general concept of Podman is described in
         <a class="xref" href="concept-containers-podman.html" title="Chapter 4. Containers and Podman">Chapter 4, <em>Containers and Podman</em></a>.
       </p></li><li class="listitem"><p>
@@ -570,5 +447,5 @@ registry.opensuse.org/suse/alp/workloads/tumbleweed_containerfiles/suse/alp/work
         <code class="literal">install</code> runlabel, the examples are available in the
         <code class="filename">/usr/local/share/ansible-container/examples/ansible</code>
         directory.
-      </p></li></ul></div></section></section><nav class="bottom-pagination"><div><a class="pagination-link prev" href="concept-containers-podman.html"><span class="pagination-relation">Previous</span><span class="pagination-label"><span class="title-number">Chapter 4 </span>Containers and Podman</span></a> </div><div><a class="pagination-link next" href="concept-virt-scenario.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Chapter 6 </span>Creating customized VMs using <code class="command">virt-scenario</code></span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="available-alp-workloads.html#suse-workload-common-requirements"><span class="title-number">5.1 </span><span class="title-name">Common requirements</span></a></span></li><li><span class="section"><a href="available-alp-workloads.html#task-run-firewalld-with-podman"><span class="title-number">5.2 </span><span class="title-name">Running <code class="systemitem">firewalld</code> using Podman</span></a></span></li><li><span class="section"><a href="available-alp-workloads.html#task-run-grafana-with-podman"><span class="title-number">5.3 </span><span class="title-name">Running the Grafana workload using Podman</span></a></span></li><li><span class="section"><a href="available-alp-workloads.html#task-run-neuvector-with-podman"><span class="title-number">5.4 </span><span class="title-name">Running the NeuVector workload using Podman</span></a></span></li><li><span class="section"><a href="available-alp-workloads.html#task-run-ansible-with-podman"><span class="title-number">5.5 </span><span class="title-name">Running the Ansible workload using Podman</span></a></span></li><li><span class="section"><a href="available-alp-workloads.html#kea-dhcp-running-with-podman"><span class="title-number">5.6 </span><span class="title-name">Running the Kea DHCP server using Podman</span></a></span></li><li><span class="section"><a href="available-alp-workloads.html#glue-alp-workloads-more-info"><span class="title-number">5.7 </span><span class="title-name">For more information</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-fb" href="#" title="Facebook"> </a></li><li><a id="_share-in" href="#" title="LinkedIn"> </a></li><li><a id="_share-tw" href="#" title="Twitter/X"> </a></li><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE
+      </p></li></ul></div></section></section><nav class="bottom-pagination"><div><a class="pagination-link prev" href="concept-containers-podman.html"><span class="pagination-relation">Previous</span><span class="pagination-label"><span class="title-number">Chapter 4 </span>Containers and Podman</span></a> </div><div><a class="pagination-link next" href="concept-virt-scenario.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Chapter 6 </span>Creating customized VMs using <code class="command">virt-scenario</code></span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="available-alp-workloads.html#suse-workload-common-requirements"><span class="title-number">5.1 </span><span class="title-name">Common requirements</span></a></span></li><li><span class="section"><a href="available-alp-workloads.html#task-run-grafana-with-podman"><span class="title-number">5.2 </span><span class="title-name">Running the Grafana workload using Podman</span></a></span></li><li><span class="section"><a href="available-alp-workloads.html#task-run-neuvector-with-podman"><span class="title-number">5.3 </span><span class="title-name">Running the NeuVector workload using Podman</span></a></span></li><li><span class="section"><a href="available-alp-workloads.html#task-run-ansible-with-podman"><span class="title-number">5.4 </span><span class="title-name">Running the Ansible workload using Podman</span></a></span></li><li><span class="section"><a href="available-alp-workloads.html#kea-dhcp-running-with-podman"><span class="title-number">5.5 </span><span class="title-name">Running the Kea DHCP server using Podman</span></a></span></li><li><span class="section"><a href="available-alp-workloads.html#glue-alp-workloads-more-info"><span class="title-number">5.6 </span><span class="title-name">For more information</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-fb" href="#" title="Facebook"> </a></li><li><a id="_share-in" href="#" title="LinkedIn"> </a></li><li><a id="_share-tw" href="#" title="Twitter/X"> </a></li><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE
                  2024</span></div></div></footer></body></html>
