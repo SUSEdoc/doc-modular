@@ -2,7 +2,7 @@
 <!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Configuring Superuser Privileges with sudo</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style.css"/>
 <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
 <meta name="title" content="Configuring Superuser Privileges with sudo"/>
-<meta name="description" content="Learn how to delegate superuser privileges with sudo."/>
+<meta name="description" content="Get familiar with the basics of sudo configuration and learn how to delegate superuser privileges with sudo."/>
 <meta name="book-title" content="Configuring Superuser Privileges with sudo"/>
 <meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
 <meta name="tracker-type" content="bsc"/>
@@ -10,11 +10,11 @@
 <meta name="tracker-bsc-component" content="Documentation"/>
 <meta name="tracker-bsc-product" content="SUSE Linux Enterprise Micro 6.0"/>
 <meta name="publisher" content="SUSE"/><meta name="DC.creator" content="jana.jaeger@suse.com"/><meta property="og:title" content="Configuring superuser privileges with sudo"/>
-<meta property="og:description" content="Learn how to configure superuser privileges with sudo"/>
+<meta property="og:description" content="Learn about sudo basics and how to delegate root privileges"/>
 <meta property="og:type" content="article"/>
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Configuring superuser privileges&#10;with sudo"/>
-<meta name="twitter:description" content="Learn how to configure superuser privileges with sudo"/>
+<meta name="twitter:title" content="Configuring superuser privileges with sudo"/>
+<meta name="twitter:description" content="Learn about sudo basics and how to delegate root privileges"/>
 <script type="application/ld+json">{
     "@context": "http://schema.org",
     "@type": ["TechArticle"],
@@ -30,7 +30,7 @@
 
     "headline": "Configuring superuser privileges with sudo",
   
-    "description": "Learn how to delegate superuser privileges with sudo.",
+    "description": "Get familiar with the basics of sudo configuration and learn how to delegate superuser privileges with sudo.",
       
     "author": [
       {
@@ -48,15 +48,15 @@
     "about": [
       {
         "@type": "Thing",
-        "name": "Systems Management"
-      },
-      {
-        "@type": "Thing",
-        "name": "Configuration"
+        "name": "Authentication"
       },
       {
         "@type": "Thing",
         "name": "Security"
+      },
+      {
+        "@type": "Thing",
+        "name": "Systems Management"
       }
     ],
   
@@ -64,9 +64,21 @@
       
       { "@type": "SoftwareApplication",
         "name": "SUSE Linux Enterprise Micro",
-        
+        "softwareVersion": "6.0",
         "applicationCategory": "Operating System",
-        "operatingSystem": "Linux"
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, IBM LinuxONE, Arm, POWER"
+        
+      }
+      ,
+      
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server",
+        "softwareVersion": "15 SP6",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, IBM LinuxONE, Arm, POWER"
+        
       }
       
     ],
@@ -104,25 +116,25 @@ hljs.configure({
   useBR: false
 });
 
-</script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#sudo-configure-superuser-privileges">Configuring Superuser Privileges with sudo</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="sudo-configure-superuser-privileges" data-id-title="Configuring Superuser Privileges with sudo"><div class="titlepage"><div><div><h1 class="title">Configuring Superuser Privileges with <code class="command">sudo</code></h1></div><div class="date"><span class="imprint-label">Publication Date: </span>11 Oct 2024</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.11.1.1"><span class="term">WHAT?</span></dt><dd><p>
+</script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#sudo-configure-superuser-privileges">Configuring Superuser Privileges with sudo</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="sudo-configure-superuser-privileges" data-id-title="Configuring Superuser Privileges with sudo"><div class="titlepage"><div><div><h1 class="title">Configuring Superuser Privileges with <code class="command">sudo</code></h1></div><div class="date"><span class="imprint-label">Publication Date: </span>11 Oct 2024</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
               Get familiar with the basics of <code class="command">sudo</code> configuration and learn how
               to delegate superuser privileges with <code class="command">sudo</code>.
-            </p></dd><dt id="id-1.1.11.1.2"><span class="term">WHY?</span></dt><dd><p>
+            </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
               Some commands require administrator or <code class="systemitem">root</code> privileges.
               Using <code class="command">sudo</code>, you can delegate the privileges to execute these
               commands to certain users or groups.
-            </p></dd><dt id="id-1.1.11.1.3"><span class="term">EFFORT</span></dt><dd><p>
+            </p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
                 It takes you up to 20 minutes to read through this article.
                 Writing your first <code class="command">sudo</code> configuration rule only takes a few
                 minutes, but establishing a functioning  <code class="command">sudo</code> configuration
                 that works across your environment will take considerably longer,
                 depending on the complexity of your setup.
-              </p></dd><dt id="id-1.1.11.1.4"><span class="term">GOAL</span></dt><dd><p>
+              </p></dd><dt id="id-1.1.12.1.4"><span class="term">GOAL</span></dt><dd><p>
                 Understand the basic aspects of <code class="command">sudo</code> configuration. Address
                 common use cases for <code class="command">sudo</code> configuration. Learn how to work
                 with users, user groups and aliases in <code class="command">sudo</code> setups.
                 Familiarize yourself with <code class="command">sudo</code> best practices and troubleshooting.
-              </p></dd><dt id="id-1.1.11.1.5"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+              </p></dd><dt id="id-1.1.12.1.5"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
                     Basic understanding of <code class="command">sudo</code>.
                   </p></li><li class="listitem"><p>
                     <code class="systemitem">root</code> privileges. For information on how to use <code class="command">sudo</code>
