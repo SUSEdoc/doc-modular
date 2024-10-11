@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><title>Managing network bonding devices</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style.css"/>
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
+<meta name="title" content="Managing network bonding devices"/>
+<meta name="description" content="This article explains how to configure network bonding, and how to hotplug new devices into the bond."/>
+<meta name="book-title" content="Managing network bonding devices"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="tahlia.richardson@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.0"/>
+<meta name="publisher" content="SUSE"/><meta name="category" content="."/><meta name="DCTERMS.modified" content="2023-10-05"/><meta name="DC.creator" content="tahlia.richardson@suse.com"/><meta property="og:title" content="Managing network bonding devices"/>
+<meta property="og:description" content="Learn how to configure and manage network bonding"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Managing network bonding devices"/>
+<meta name="twitter:description" content="Learn how to configure and manage network bonding"/>
+<script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    
+     "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    
+    "inLanguage": "en",
+    
+
+    "headline": "Managing network bonding devices",
+  
+    "description": "This article explains how to configure network bonding, and how to hotplug new devices into the bond.",
+      
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    ],
+      
+    "dateModified": "2023-10-05T00:00+02:00",
+      
+    "datePublished": "2023-10-05T00:00+02:00",
+      
+    "articleSection": [ 
+        "Network"
+        
+    ],
+    
+
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Maintenance"
+      },
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      }
+    ],
+  
+    "mentions": [
+      
+      { "@type": "SoftwareApplication",
+        "name": "ALP DolomiteSUSE Linux Enterprise MicroSUSE Linux Enterprise MicroSUSE Linux Enterprise Server",
+        "softwareVersion": "16.0",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER"
+        
+      }
+      
+    ],
+    
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><script type="text/javascript">
+
+if ( window.location.protocol.toLowerCase() != 'file:' ) {
+  document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>');
+};
+
+</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"/></noscript><script src="static/js/script-purejs.js" type="text/javascript"> </script><script src="static/js/highlight.min.js" type="text/javascript"> </script><script>
+
+$(document).ready(function() {
+  $('.verbatim-wrap.highlight').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+hljs.configure({
+  useBR: false
+});
+
+</script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Managing network bonding devices</a></div></div><main id="_content"><nav id="_side-toc-overall" class="side-toc"><div class="side-title">Managing network bonding devices</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="network-bond-managing-devices" data-id-title="Managing network bonding devices"><div class="titlepage"><div><div><h1 class="title">Managing network bonding devices</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>27 Sep 2024</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.14.1.1"><span class="term">WHAT?</span></dt><dd><p>
+              Combine two or more network interfaces into a single bonded device.
+            </p></dd><dt id="id-1.1.14.1.2"><span class="term">WHY?</span></dt><dd><p>
+              Network bonding can increase bandwidth and/or provide redundancy.
+            </p></dd><dt id="id-1.1.14.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                Approximately 15 minutes to read and understand the content.
+              </p></dd><dt id="id-1.1.14.1.4"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Network connection </p></li><li class="listitem"><p>Basic understanding of networking and IP addresses</p></li><li class="listitem"><p>
+                  Existing network interfaces to include in the bonded device
+                </p></li><li class="listitem"><p>
+                  Switch support, depending on the bonding mode
+                </p></li></ul></div></dd></dl></div><p>
+        This article is about network <span class="emphasis"><em>bonding</em></span>.
+        To configure network <span class="emphasis"><em>teaming</em></span>, see
+        <a class="link" href="https://documentation.suse.com/smart/network/html/network-team-managing-devices/index.html" target="_blank">
+        Managing network teaming devices</a>.
+      </p></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History" hreflang="en" href="rh-network-bond-managing-devices.html" target="_blank">Revision History: Managing network bonding devices</a></div></div></div></div><section xml:lang="en" class="sect1" id="network-bond-configure" data-id-title="Configuring network bonding"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Configuring network bonding</span></span> <a title="Permalink" class="permalink" href="index.html#network-bond-configure">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Network bonding combines two or more network interfaces into a single bonded device to
+        increase bandwidth and/or provide redundancy. You can configure network bonding with YaST
+        or by manually creating <code class="filename">ifcfg</code> files. The behavior of the bonded device
+        is configured using <span class="emphasis"><em>bonding modes</em></span>.
+      </p></div></div></div></div><section class="sect2" id="network-bond-requirements" data-id-title="Requirements"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">Requirements</span></span> <a title="Permalink" class="permalink" href="index.html#network-bond-requirements">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          Network connection
+        </p></li><li class="listitem"><p>
+          Basic understanding of networking and IP addresses
+        </p></li><li class="listitem"><p>
+          Existing network interfaces to include in the bonded device
+        </p></li><li class="listitem"><p>
+          Switch support, depending on the bonding mode
+        </p></li></ul></div></section><section class="sect2" id="network-bond-restrictions" data-id-title="Restrictions"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Restrictions</span></span> <a title="Permalink" class="permalink" href="index.html#network-bond-restrictions">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.3.2.1"><span class="term">Do not split bonds over multiple switches</span></dt><dd><p>
+            In most hardware setups, all network interfaces in a bonded device must be connected to
+            the same switch. For more information, consult your switch vendor documentation.
+          </p></dd><dt id="id-1.2.3.2.2"><span class="term">IBM POWER: Bonding modes 5 and 6 (<code class="literal">balance-tlb</code> and
+        <code class="literal">balance-alb</code>) unsupported by ibmveth</span></dt><dd><p>
+            The bonding drivers in <code class="literal">tlb</code> mode and <code class="literal">alb</code> mode send
+            Ethernet Loopback packets with both the source and destination MAC addresses listed as
+            the Virtual Ethernet MAC address. These packets are not supported by Power firmware.
+            Therefore, bonding modes 5 and 6 are unsupported by ibmveth.
+          </p></dd><dt id="id-1.2.3.2.3"><span class="term">Bonding and virtualization</span></dt><dd><p>
+            Bonded devices are made up of multiple network interfaces. In most configurations
+            you should only configure bonding in the host. Virtual interfaces to guests are then
+            created as a bridge with the bonded devices, simplifying guest creation and deployment.
+          </p><p>
+            It is possible, but not recommended, to configure bonding in a guest. When configuring
+            bonding in a guest, you must assign multiple interfaces to the guest and configure the
+            host without bonding. You must also be careful to configure the host and its network
+            bridges so that you do not mix bonding in the host and guests.
+          </p></dd></dl></div></section><section class="sect2" id="network-bond-modes" data-id-title="Bonding modes"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.3 </span><span class="title-name">Bonding modes</span></span> <a title="Permalink" class="permalink" href="index.html#network-bond-modes">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The following bonding modes are available:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.4.3.1"><span class="term">(<span class="guimenu">0</span>) <span class="guimenu">balance-rr</span></span></dt><dd><p>
+            Packets are transmitted in round-robin fashion from the first to the last available
+            interface. Provides fault tolerance and load balancing. Requires switch support.
+            Certain switches might fail with this mode.
+          </p></dd><dt id="id-1.2.4.3.2"><span class="term">(<span class="guimenu">1</span>) <span class="guimenu">active-backup</span></span></dt><dd><p>
+            Only one network interface is active. If it fails, a different interface becomes active.
+            Provides fault tolerance. This is the default mode. No specific switch support is required.
+          </p></dd><dt id="id-1.2.4.3.3"><span class="term">(<span class="guimenu">2</span>) <span class="guimenu">balance-xor</span></span></dt><dd><p>
+            Traffic is split between all available interfaces based on the number of interfaces
+            included in the bonded device. Provides fault tolerance and load balancing. Requires
+            switch support. Certain switches might fail with this mode.
+          </p></dd><dt id="id-1.2.4.3.4"><span class="term">(<span class="guimenu">3</span>) <span class="guimenu">broadcast</span></span></dt><dd><p>
+            All traffic is broadcast on all interfaces. Provides fault tolerance.
+            Requires switch support. Certain switches might fail with this mode. If possible,
+            use mode <span class="guimenu">1</span> instead, or use this mode to provide sniffing capability
+            by connecting each member of the bond to a different switch or device.
+          </p></dd><dt id="id-1.2.4.3.5"><span class="term">(<span class="guimenu">4</span>) <span class="guimenu">802.3ad</span></span></dt><dd><p>
+            Also called <span class="emphasis"><em>LACP</em></span>. All interfaces in the LACP group must share the
+            same speed and duplex settings, and must be connected to the same switch. Provides
+            fault tolerance and load balancing. Requires <code class="command">ethtool</code> support in the
+            interface drivers, and a switch that supports and is configured for IEEE 802.3ad Dynamic
+            link aggregation. If your switch supports it, this is the preferred mode.
+          </p></dd><dt id="id-1.2.4.3.6"><span class="term">(<span class="guimenu">5</span>) <span class="guimenu">balance-tlb</span></span></dt><dd><p>
+            Adaptive transmit load balancing. Provides fault tolerance and load balancing. Requires
+            <code class="command">ethtool</code> support in the interface drivers. No specific switch support
+            is required, but certain switches might fail with this mode.
+          </p></dd><dt id="id-1.2.4.3.7"><span class="term">(<span class="guimenu">6</span>) <span class="guimenu">balance-alb</span></span></dt><dd><p>
+            Adaptive load balancing. Provides fault tolerance and load balancing. Requires
+            <code class="command">ethtool</code> support in the interface drivers. No specific switch support
+            is required, but certain switches might fail with this mode.
+          </p></dd></dl></div><p>
+      Consult your hardware manual to check which modes your switch supports.
+    </p><p>
+      For a more detailed description of the modes, see
+      <a class="link" href="https://www.kernel.org/doc/Documentation/networking/bonding.txt" target="_blank">https://www.kernel.org/doc/Documentation/networking/bonding.txt</a>.
+    </p></section><section class="sect2" id="network-bond-configure-with-yast" data-id-title="Configuring network bonding with YaST"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.4 </span><span class="title-name">Configuring network bonding with YaST</span></span> <a title="Permalink" class="permalink" href="index.html#network-bond-configure-with-yast">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Start the graphical version of YaST, or run the command <code class="command">yast2</code> to
+          start YaST in text mode.
+        </p></li><li class="step"><p>
+          Select <span class="guimenu">System</span> › <span class="guimenu">Network Settings</span>.
+        </p></li><li class="step"><p>
+          Select <span class="guimenu">Add</span> and change the <span class="guimenu">Device Type</span> to
+          <span class="guimenu">Bonding</span>.
+        </p></li><li class="step"><p>
+          Select <span class="guimenu">Next</span> to open the <span class="guimenu">Network Card Setup</span> menu.
+        </p></li><li class="step"><p>
+          In the <span class="guimenu">Address</span> tab, select how to assign an IP address to the bonded
+          device:
+        </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+              <span class="guimenu">Dynamic Address</span>: Automatically assign a dynamic IP address.
+              The default setup is to use DHCP with both IPv4 and IPv6. You can change these
+              settings if required.
+            </p></li><li class="listitem"><p>
+              <span class="guimenu">Statically Assigned IP Address</span>: Manually assign an
+              <span class="guimenu">IP Address</span>, <span class="guimenu">Subnet Mask</span>, and
+              <span class="guimenu">Hostname</span>.
+            </p></li><li class="listitem"><p>
+              Do not use <span class="guimenu">No Link and IP Setup</span>. This option is only used for
+              individual network interfaces that will be added to a bonded device.
+            </p></li></ul></div></li><li class="step"><p>
+          In the <span class="guimenu">Bond Ports</span> tab, select the network interfaces to include in the
+          bonded device by activating the check boxes.
+        </p></li><li class="step"><p>
+          From the <span class="guimenu">Bond Driver Options</span> drop-down box, choose a bonding mode.
+          The default mode is <code class="literal">active-backup</code>.
+        </p><div id="id-1.2.5.2.7.2" class="admonition important compact"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><p>
+            Do not remove <code class="literal">miimon=100</code>. Without this parameter, data integrity
+            is not checked regularly.
+          </p></div></li><li class="step"><p>
+          Select <span class="guimenu">Next</span>.
+        </p></li><li class="step"><p>
+          If you are prompted to adapt the existing configuration for bonding, select
+          <span class="guimenu">Continue</span>.
+        </p></li><li class="step"><p>
+          Select <span class="guimenu">OK</span> to create the bonded device.
+        </p></li><li class="step"><p>
+          Select <span class="guimenu">Quit</span> or press <span class="keycap">F9</span> to close YaST.
+        </p></li></ol></div></div></section><section class="sect2" id="network-bond-configure-with-ifcfg" data-id-title="Configuring network bonding with ifcfg"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.5 </span><span class="title-name">Configuring network bonding with <code class="literal">ifcfg</code></span></span> <a title="Permalink" class="permalink" href="index.html#network-bond-configure-with-ifcfg">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Create a configuration file named <code class="filename">/etc/sysconfig/network/ifcfg-bond0</code>.
+          If you need more than one bonded device, give them ascending numbers.
+          For more information, see <code class="command">man ifcfg</code>, <code class="command">man ifcfg-bonding</code>,
+          and <code class="filename">/etc/sysconfig/network/ifcfg.template</code>.
+        </p><p>
+          In the configuration file, define the following parameters:
+        </p><div class="verbatim-wrap"><pre class="screen">STARTMODE=<em class="replaceable">MODE</em><span class="callout" id="co-bond-startmode">1</span>
+BOOTPROTO=<em class="replaceable">IP_ASSIGNMENT</em><span class="callout" id="co-bond-bootproto">2</span>
+IPADDR=<em class="replaceable">IPv4_ADDRESS</em><span class="callout" id="co-bond-ip-addresses">3</span>
+IPADDR6=<em class="replaceable">IPv6_ADDRESS</em><a class="xref" href="index.html#co-bond-ip-addresses"><span class="callout">3</span></a>
+
+BONDING_MASTER="yes"<span class="callout" id="co-bond-identifier">4</span>
+
+BONDING_SLAVE0="<em class="replaceable">FIRST_DEVICE_NAME</em>"<span class="callout" id="co-bond-dev">5</span>
+BONDING_SLAVE1="<em class="replaceable">SECOND_DEVICE_NAME</em>"<a class="xref" href="index.html#co-bond-dev"><span class="callout">5</span></a>
+
+BONDING_MODULE_OPTS="mode=<em class="replaceable">BONDING_MODE</em><span class="callout" id="co-bond-mode">6</span> miimon=100"<span class="callout" id="co-bond-miimon">7</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-bond-startmode"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Defines how the bonded device starts. Use <code class="literal">auto</code> to start the
+              interface automatically on every reboot, or use <code class="literal">manual</code> to prevent
+              the interface from starting automatically.
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-bond-bootproto"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Defines how IP addresses are assigned to the bonded device: Use <code class="literal">static</code>
+              to manually assign static IP addresses, or use <code class="literal">dhcp</code> to
+              automatically assign dynamic IP addresses.
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-bond-ip-addresses"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Specifies the IPv4 and IPv6 addresses for the device, if you are manually assigning
+              <code class="literal">static</code> IP addresses.
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-bond-identifier"><span class="callout">4</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Identifies this interface as a bonded device.
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-bond-dev"><span class="callout">5</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Specifies two or more network interfaces to include in the bonded device.
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-bond-mode"><span class="callout">6</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Defines the bonding mode for this interface.
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-bond-miimon"><span class="callout">7</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Specifies how often, in milliseconds, each bond member is inspected for link failures.
+            </p></td></tr></table></div><div class="example" id="ex-bond-config" data-id-title="Bond configuration"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 1: </span><span class="title-name">Bond configuration </span></span><a title="Permalink" class="permalink" href="index.html#ex-bond-config">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">STARTMODE=auto
+BOOTPROTO=static
+IPADDR="192.168.1.2/24"
+IPADDR6="fd00:deca:fbad:50::2/64"
+
+BONDING_MASTER="yes"
+
+BONDING_SLAVE0="eth0"
+BONDING_SLAVE1="eth1"
+
+BONDING_MODULE_OPTS="mode=802.3ad miimon=100"</pre></div></div></div></li><li class="step"><p>
+          Back up the existing <code class="filename">ifcfg</code> files for the bond member interfaces,
+          in case you need to restore them later.
+        </p></li><li class="step"><p>
+          Adjust the <code class="filename">ifcfg</code> files for <span class="emphasis"><em>both</em></span>
+          bond member interfaces so that they contain only the following content:
+        </p><div class="verbatim-wrap"><pre class="screen">BOOTPROTO='none' <span class="callout" id="co-network-bond-hotplug-bootproto">1</span>
+STARTMODE='hotplug' <span class="callout" id="co-network-bond-hotplug-startmode">2</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-network-bond-hotplug-bootproto"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              <code class="literal">BOOTPROTO=none</code> uses the <code class="command">ethtool</code>
+              options (when provided), but does not set up the link on startup
+              because the bond member interface is controlled by the bond device.
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-network-bond-hotplug-startmode"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              <code class="literal">STARTMODE=hotplug</code> allows the bond member interface to join the
+              bond automatically when it is available.
+            </p></td></tr></table></div></li><li class="step"><p>
+          Check if everything is included in Wicked's configuration file:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">wicked show-config</code></pre></div></li><li class="step"><p>
+          Start the bonded device:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">wicked ifup all bond0</code></pre></div><p>
+          If you need additional debug information, use the option <code class="option">--debug all</code>
+          after the <code class="command">all</code> subcommand.
+        </p><div id="id-1.2.6.2.5.4" class="admonition important compact"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><p>
+            Do <span class="emphasis"><em>not</em></span> use <code class="command">systemctl</code> to start or stop the
+            bonded device. Always use the <code class="command">wicked</code> command.
+          </p></div></li><li class="step"><p>
+          Check the status of the bonded device:
+        </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+              Get the state of the bonded device from Wicked:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">wicked ifstatus --verbose bond0</code></pre></div></li><li class="listitem"><p>
+              Get the state of the bonded device and the bond members:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ip addr</code></pre></div></li></ul></div><p>
+          Each command shows a slightly different view depending on your needs.
+        </p></li></ol></div></div><p>
+      If you make changes to the <code class="filename">ifcfg-bond0</code> file after starting the device,
+      reload its configuration with the command <code class="command">wicked ifreload bond0</code>.
+    </p></section></section><section xml:lang="en" class="sect1" id="network-bond-enable-hotplug" data-id-title="Enabling hotplugging for network bond members"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Enabling hotplugging for network bond members</span></span> <a title="Permalink" class="permalink" href="index.html#network-bond-enable-hotplug">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        In some network environments (such as High Availability), you might need to replace a bond member
+        interface with a new one, for example, if a network interface has a fault.
+        However, before you can replace the interface, you must configure the networking
+        setup to recognize when a new device is added.
+      </p><p>
+        You can enable hotplugging either manually or with YaST.
+      </p></div></div></div></div><section class="sect2" id="network-bond-enable-hotplug-requirements" data-id-title="Requirements"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">Requirements</span></span> <a title="Permalink" class="permalink" href="index.html#network-bond-enable-hotplug-requirements">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          A bonded device is already configured.
+      </p></li></ul></div></section><section class="sect2" id="network-bond-enable-hotplug-yast" data-id-title="Enabling hotplugging for network bond members with YaST"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.2 </span><span class="title-name">Enabling hotplugging for network bond members with YaST</span></span> <a title="Permalink" class="permalink" href="index.html#network-bond-enable-hotplug-yast">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Start the graphical version of YaST, or run the command <code class="command">yast2</code>
+          to start YaST in text mode.
+        </p></li><li class="step"><p>
+          Select <span class="guimenu">System</span> › <span class="guimenu">Network Settings</span>.
+          The <span class="guimenu">Overview</span> tab shows the existing devices. If devices are already
+          configured in a bond, this is stated in the <span class="guimenu">Note</span> column.
+        </p></li><li class="step" id="network-bond-enable-hotplug-step-edit"><p>
+          Select one of the bond members, then select <span class="guimenu">Edit</span>.
+          The <span class="guimenu">Network Card Setup</span> menu opens.
+        </p></li><li class="step"><p>
+          Switch to the <span class="guimenu">General</span> tab.
+        </p></li><li class="step"><p>
+          Under <span class="guimenu">Udev rules</span>, select <span class="guimenu">Change</span>.
+          A dialog box opens.
+        </p></li><li class="step"><p>
+          In the dialog box, choose the <span class="guimenu">BusID</span> option, then select
+          <span class="guimenu">OK</span>.
+        </p></li><li class="step"><p>
+          Make sure that <span class="guimenu">Activate device</span> is set to <code class="literal">On Hotplug</code>.
+        </p></li><li class="step" id="network-bond-enable-hotplug-step-confirm"><p>
+          Select <span class="guimenu">Next</span> to return to the <span class="guimenu">Network Settings</span> menu.
+          When you select the bond member now, the bottom pane shows the device's details,
+          including the bus ID.
+        </p></li><li class="step"><p>
+          Repeat <a class="xref" href="index.html#network-bond-enable-hotplug-step-edit" title="Step 3">Step 3</a> to
+          <a class="xref" href="index.html#network-bond-enable-hotplug-step-confirm" title="Step 8">Step 8</a> for all bond members.
+        </p></li><li class="step"><p>
+        Select <span class="guimenu">OK</span> to confirm your changes.
+        </p></li><li class="step"><p>
+          Select <span class="guimenu">Quit</span> or press <span class="keycap">F9</span> to close YaST.
+        </p></li></ol></div></div></section><section class="sect2" id="network-bond-enable-hotplug-procedure" data-id-title="Enabling hotplugging for network bond members manually"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.3 </span><span class="title-name">Enabling hotplugging for network bond members manually</span></span> <a title="Permalink" class="permalink" href="index.html#network-bond-enable-hotplug-procedure">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Check that the bond members are configured with <code class="literal">BOOTPROTO=none</code> and
+          <code class="literal">STARTMODE=hotplug</code>. If you configured the bonded device with YaST,
+          this is the default setting.
+        </p></li><li class="step"><p>
+          List the hardware information for the network interfaces. You can use
+          <code class="command">grep</code> to show only the information required for this procedure:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo hwinfo --netcard | grep -E "SysFS BusID|Device File"</code>
+  SysFS BusID: 0000:00:17.0
+  Device File: eth0
+  SysFS BusID: 0000:00:19.0
+  Device File: eth1</pre></div><p>
+          For each bond member, make a note of the associated <code class="literal">SysFS BusID</code>.
+        </p></li><li class="step"><p>
+          Open the file <code class="filename">/etc/udev/rules.d/70-persistent-net.rules</code>.
+          For each bond member, change the value of <code class="literal">KERNELS</code> to match the
+          <code class="literal">SysFS BusID</code> from the previous step. For example:
+        </p><div class="verbatim-wrap"><pre class="screen">SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", <span class="bold"><strong>KERNELS=="0000:00:17.0"</strong></span>,
+ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNEL=="eth*", NAME="eth0"
+
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", <span class="bold"><strong>KERNELS=="0000:00:19.0"</strong></span>,
+ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNEL=="eth*", NAME="eth1"</pre></div><p>
+          This configures the <code class="systemitem">udev</code> rules to match the device by bus ID
+          instead of by MAC address, allowing the bond to detect a new device in the same slot but
+          with a different MAC address.
+        </p></li></ol></div></div></section><section class="sect2" id="network-bond-enable-hotplug-summary" data-id-title="Summary"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.4 </span><span class="title-name">Summary</span></span> <a title="Permalink" class="permalink" href="index.html#network-bond-enable-hotplug-summary">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      When one of the bond member interfaces is removed from the system, the kernel removes it from
+      the bond automatically. When a new card is added to the system, <code class="systemitem">udev</code>
+      uses the bus-based persistent name rule to rename the interface to the name of the bond member,
+      and calls <code class="command">ifup</code> for it. The <code class="command">ifup</code> call automatically joins
+      the new interface into the bond.
+    </p><p>
+      At boot time, <code class="systemitem">network.service</code> does not wait for the hotplugged
+      bond members, but for the bond to become ready, which only requires one available bond member.
+    </p></section></section><section xml:lang="en" class="sect1" id="network-bond-team-remove" data-id-title="Removing a bonded device"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Removing a bonded device</span></span> <a title="Permalink" class="permalink" href="index.html#network-bond-team-remove">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Use this procedure to remove the configuration for a bonded or teamed device and restore
+        the member interfaces to their original, separate configuration.
+      </p><p>
+        The following examples use the device name <code class="systemitem">team0</code>.
+        Replace this with the actual name of your device.
+      </p></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Stop the device:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">wicked ifdown team0</code></pre></div></li><li class="step"><p>
+        Hide the configuration file by renaming it from
+        <code class="filename">/etc/sysconfig/network/ifcfg-team0</code> to
+        <code class="filename">/etc/sysconfig/network/.ifcfg-team0</code>.
+      </p><p>
+        Alternatively, if you definitely do not need the configuration anymore, remove the file
+        instead of renaming it.
+      </p></li><li class="step"><p>
+        To re-enable the network interfaces that were included in the device,
+        restore their original configuration from the backup files.
+      </p></li><li class="step"><p>
+        Reload the network configuration:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">wicked ifreload all</code></pre></div></li><li class="step"><p>
+        Check the status of the remaining network interfaces:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ip addr</code></pre></div></li></ol></div></div></section><section xml:lang="en" class="sect1" id="network-bond-team-comparison" data-id-title="Network bonding or network teaming: feature comparison"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Network bonding or network teaming: feature comparison</span></span> <a title="Permalink" class="permalink" href="index.html#network-bond-team-comparison">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       <span class="emphasis"><em>Network bonding</em></span> and <span class="emphasis"><em>network teaming</em></span>
+       are different methods for combining network connections to provide a single combined
+       interface. Bonding is handled exclusively in the kernel. Teaming includes a small set of
+       kernel modules that provide an interface for <code class="systemitem">teamd</code> instances,
+       but everything else is handled in user space.
+      </p></div></div></div></div><div class="table" id="network-bond-team-comparison-table" data-id-title="Bonding and teaming feature comparison"><div class="title-container"><div class="table-title-wrap"><div class="table-title"><span class="title-number-name"><span class="title-number">Table 1: </span><span class="title-name">Bonding and teaming feature comparison </span></span><a title="Permalink" class="permalink" href="index.html#network-bond-team-comparison-table">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="table-contents"><table style="border-collapse: collapse; border-top: 1px solid ; border-bottom: 1px solid ; border-left: 1px solid ; border-right: 1px solid ; "><colgroup><col class="c1"/><col class="c2"/><col class="c3"/></colgroup><thead><tr><th style="border-right: 1px solid ; border-bottom: 1px solid ; ">Feature</th><th style="border-right: 1px solid ; border-bottom: 1px solid ; ">Bonding</th><th style="border-bottom: 1px solid ; ">Teaming</th></tr></thead><tbody><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">broadcast, round-robin TX policy</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">yes</td><td style="border-bottom: 1px solid ; ">yes</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">active-backup TX policy</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">yes</td><td style="border-bottom: 1px solid ; ">yes</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">LACP (802.3ad) support</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">yes</td><td style="border-bottom: 1px solid ; ">yes</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">hash-based TX policy</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">yes</td><td style="border-bottom: 1px solid ; ">yes</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">user can set hash function</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">no</td><td style="border-bottom: 1px solid ; ">yes</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">TX load-balancing support (TLB)</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">yes</td><td style="border-bottom: 1px solid ; ">yes</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">TX load-balancing support for LACP</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">no</td><td style="border-bottom: 1px solid ; ">yes</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Ethtool link monitoring</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">yes</td><td style="border-bottom: 1px solid ; ">yes</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">ARP link monitoring</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">yes</td><td style="border-bottom: 1px solid ; ">yes</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">NS/NA (IPV6) link monitoring</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">no</td><td style="border-bottom: 1px solid ; ">yes</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">RCU locking on TX/RX paths</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">no</td><td style="border-bottom: 1px solid ; ">yes</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">port prio and stickiness</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">no</td><td style="border-bottom: 1px solid ; ">yes</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">separate per-port link monitoring setup</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">no</td><td style="border-bottom: 1px solid ; ">yes</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">multiple link monitoring setup</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">limited</td><td style="border-bottom: 1px solid ; ">yes</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">VLAN support</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">yes</td><td style="border-bottom: 1px solid ; ">yes</td></tr><tr><td style="border-right: 1px solid ; ">multiple device stacking</td><td style="border-right: 1px solid ; ">yes</td><td>yes</td></tr></tbody></table></div></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p> Copyright© 2006–2024
+ SUSE LLC and contributors.
+  All rights reserved. </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy.  Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#network-bond-configure"><span class="title-number">1 </span><span class="title-name">Configuring network bonding</span></a></span></li><li><span class="section"><a href="index.html#network-bond-enable-hotplug"><span class="title-number">2 </span><span class="title-name">Enabling hotplugging for network bond members</span></a></span></li><li><span class="section"><a href="index.html#network-bond-team-remove"><span class="title-number">3 </span><span class="title-name">Removing a bonded device</span></a></span></li><li><span class="section"><a href="index.html#network-bond-team-comparison"><span class="title-number">4 </span><span class="title-name">Network bonding or network teaming: feature comparison</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">5 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-fb" href="#" title="Facebook"> </a></li><li><a id="_share-in" href="#" title="LinkedIn"> </a></li><li><a id="_share-tw" href="#" title="Twitter/X"> </a></li><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE
+                 2024</span></div></div></footer></body></html>

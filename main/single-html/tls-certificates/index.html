@@ -1,0 +1,1159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Securing Communication with TLS Certificates</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style.css"/>
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
+<meta name="title" content="Securing Communication with TLS Certificates"/>
+<meta name="description" content="TLS certificates help secure network communication between the client and the server"/>
+<meta name="book-title" content="Securing Communication with TLS Certificates"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="tbazant@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.0"/>
+<meta name="publisher" content="SUSE"/><meta name="category" content="."/><meta name="DCTERMS.modified" content="2024-03-26"/><meta name="DC.creator" content="tbazant@suse.com"/><meta property="og:title" content="Securing communication with TLS certificates"/>
+<meta property="og:description" content="Securing communication with TLS certificates"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Securing communication with TLS certificates"/>
+<meta name="twitter:description" content="Securing communication with TLS certificates"/>
+<script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    
+     "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    
+    "inLanguage": "en",
+    
+
+    "headline": "Securing communication with TLS certificates",
+  
+    "description": "TLS certificates help secure network communication between the client and the server",
+      
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    ],
+      
+    "dateModified": "2024-03-26T00:00+02:00",
+      
+    "datePublished": "2024-03-26T00:00+02:00",
+      
+    "articleSection": [ 
+        "Security"
+        
+    ],
+    
+
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Security"
+      }
+    ],
+  
+    "mentions": [
+      
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server",
+        "softwareVersion": "15-SP6",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER"
+        
+      }
+      
+    ],
+    
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<script type="text/javascript">
+
+if ( window.location.protocol.toLowerCase() != 'file:' ) {
+  document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>');
+};
+
+</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"/></noscript><script src="static/js/script-purejs.js" type="text/javascript"> </script><script src="static/js/highlight.min.js" type="text/javascript"> </script><script>
+
+$(document).ready(function() {
+  $('.verbatim-wrap.highlight').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+hljs.configure({
+  useBR: false
+});
+
+</script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#tls-certificates">Securing Communication with TLS Certificates</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="tls-certificates" data-id-title="Securing Communication with TLS Certificates"><div class="titlepage"><div><div><h1 class="title">Securing Communication with TLS Certificates</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>27 Sep 2024</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.14.1.1"><span class="term">WHAT?</span></dt><dd><p>
+                TLS certificates are key elements when establishing secure
+                network communication.
+              </p></dd><dt id="id-1.1.14.1.2"><span class="term">WHY?</span></dt><dd><p>
+                You want to learn how to generate and sign TLS certificates to
+                establish secured network communication.
+              </p></dd><dt id="id-1.1.14.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                One hour is enough to learn how to manage TLS certificates and
+                create a certificate signed by a private CA for a trusted
+                network environment.
+              </p></dd><dt id="id-1.1.14.1.4"><span class="term">GOAL</span></dt><dd><p>
+                You can generate, sign and manage TLS certificates, and include
+                them in the system-wide certificate store.
+              </p></dd><dt id="id-1.1.14.1.5"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+    To perform selected tasks, you need <code class="systemitem">root</code> or <code class="command">sudo</code> privileges.
+  </p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History" hreflang="en" href="rh-tls-certificates.html" target="_blank">Revision History: Securing Communication with TLS Certificates</a></div></div></div></div><section xml:lang="en" class="sect1" id="tls-certificates-introduction" data-id-title="Introduction"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Introduction</span></span> <a title="Permalink" class="permalink" href="#tls-certificates-introduction">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+  Two systems, such as client and server hosts, communicate by exchanging data
+  over the network. To avoid exposing such communication and possibly sensitive
+  data, you can configure the systems to encrypt the mutual communication using
+  <a class="xref" href="#gt-tls-certificate" title="TLS certificate">TLS certificate</a>.
+</p></div></div></div></div><p>
+    This topic introduces basic theory behind establishing encrypted
+    communication.
+  </p><section class="sect2" id="tls-certificates-handshake" data-id-title="How is secure communication established?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">How is secure communication established?</span></span> <a title="Permalink" class="permalink" href="#tls-certificates-handshake">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The following steps illustrate the process of establishing secure
+      communication between the client and the server. The process is often
+      referred to as a <a class="xref" href="#gt-tls-handshake" title="TLS handshake">TLS handshake</a>.
+    </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>
+          <span class="bold"><strong>Client <span class="quote">“<span class="quote">hello</span>”</span>.</strong></span> The TLS handshake is
+          started by the client sending a <code class="literal">ClientHello</code> message
+          to the server. Such message includes information about the
+          <a class="xref" href="#gt-tls" title="TLS">TLS</a> protocol versions and cryptographic
+          algorithms supported by the client, as well as a random value used for
+          generating session keys.
+        </p></li><li class="listitem"><p>
+          <span class="bold"><strong>Server <span class="quote">“<span class="quote">hello</span>”</span>.</strong></span> When the server
+          receives the <code class="literal">ClientHello</code> message, it responds with
+          a <code class="literal">ServerHello</code> message. Such a message includes the
+          TLS protocol version selected by the server, the selected
+          cryptographic algorithm, and a random value. The server also sends its
+          digital certificate that includes the <a class="xref" href="#gt-tls-pubkey" title="public key">public key</a>.
+        </p></li><li class="listitem"><p>
+          <span class="bold"><strong>Certificate verification.</strong></span> After the
+          client receives the server's certificate, the client verifies that it
+          is signed by a trusted CA and that the server's domain name matches
+          the one in the certificate.
+        </p></li><li class="listitem"><p>
+          <span class="bold"><strong>Key exchange.</strong></span> After the server's
+          certificate is successfully verified, the client generates a secret
+          and encrypts it with the server's public key from the certificate.
+          This encrypted secret is sent to the server in a
+          <code class="literal">ClientKeyExchange</code> message.
+        </p></li><li class="listitem"><p>
+          <span class="bold"><strong>Session key generation.</strong></span> Both the
+          client and the server use the exchanged data—client and server
+          random values and the generated secret—to generate a shared
+          session key. This key will be used to encrypt and decrypt data
+          transmitted during the TLS session. Both parties confirm that
+          subsequent messages will be encrypted by sending a
+          <code class="literal">ChangeCipherSpec</code> message.
+        </p></li><li class="listitem"><p>
+          <span class="bold"><strong>Finished.</strong></span> Finally, both the client
+          and the server send a <code class="literal">Finished</code> message to confirm
+          that the TLS handshake is complete. These messages contain a hash of
+          all preceding TLS handshake messages, encrypted with the shared
+          session key. If the hashes match on both sides, the TLS handshake is
+          successful and the secure TLS connection is established.
+        </p></li></ol></div><div class="figure" id="id-1.2.3.4"><div class="figure-contents"><div class="mediaobject"><a href="images/tls-handshake.png"><img src="images/tls-handshake.png" width="75%" alt="TLS handshake procedure" title="TLS handshake procedure"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 1: </span><span class="title-name">TLS handshake procedure </span></span><a title="Permalink" class="permalink" href="#id-1.2.3.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></section><section class="sect2" id="tls-certificates-benefits" data-id-title="Benefits of using secure communication"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Benefits of using secure communication</span></span> <a title="Permalink" class="permalink" href="#tls-certificates-benefits">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Several key benefits of secure communication are:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          <span class="bold"><strong>Confidentiality:</strong></span> Secure communication
+          ensures that sensitive information remains confidential and cannot be
+          accessed by unauthorized parties. This is particularly important for
+          protecting personal data and financial information.
+        </p></li><li class="listitem"><p>
+          <span class="bold"><strong>Integrity:</strong></span> Secure communication
+          guarantees the integrity of transmitted data and ensures that it
+          remains unchanged during transmission. This helps prevent unauthorized
+          modification of data and maintain its accuracy and reliability.
+        </p></li><li class="listitem"><p>
+          <span class="bold"><strong>Authentication:</strong></span> Secure communication
+          allows parties to authenticate each other's identities, verifying that
+          they are who they claim to be. This helps prevent impersonation and
+          ensures that communication is conducted securely between trusted
+          parties.
+        </p></li><li class="listitem"><p>
+          <span class="bold"><strong>Compliance:</strong></span> Secure communication
+          helps organizations follow regulatory requirements and industry
+          standards related to data protection and privacy. Compliance with
+          regulations such as GDPR often requires the implementation of secure
+          communication protocols and practices.
+        </p></li></ul></div></section></section><section class="sect1" id="id-1.3" data-id-title="Issuing and installing TLS certificates"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Issuing and installing TLS certificates</span></span> <a title="Permalink" class="permalink" href="#id-1.3">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+            The following procedures outline the TLS certificate issuance and
+            installation process using both trusted and private CAs.
+          </p></div></div></div></div><section xml:lang="en" class="sect2" id="tls-certificates-installation-procedure-trusted-ca" data-id-title="Using a trusted CA"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">Using a trusted CA</span></span> <a title="Permalink" class="permalink" href="#tls-certificates-installation-procedure-trusted-ca">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        <span class="bold"><strong>Generate a private key.</strong></span> A
+        <a class="xref" href="#gt-tls-privkey" title="private key">private key</a> is required on the server—such as
+        a Web server—that will use the certificate. The key is kept secure
+        and used to sign messages and decrypt data.
+      </p></li><li class="step"><p>
+        <span class="bold"><strong>Create a certificate signing request
+        (CSR).</strong></span> Generate a <a class="xref" href="#gt-tls-csr" title="CSR">CSR</a> using the
+        private key. The CSR contains information about the entity requesting
+        the certificate and the public key that will be included in the
+        certificate.
+      </p></li><li class="step"><p>
+        <span class="bold"><strong>Submit the CSR to a CA signing</strong></span>. The
+        <a class="xref" href="#gt-tls-ca" title="CA">CA</a> verifies the information in the CSR and
+        issues a signed certificate if the request is approved. This step may
+        involve validation of the domain ownership or organization identity,
+        depending on the type of certificate requested.
+      </p></li><li class="step"><p>
+        <span class="bold"><strong>Receive the signed certificate.</strong></span> After
+        the CA approves the CSR, it issues a signed certificate. The certificate
+        includes the digital signature of the CA, the public key of the server,
+        and additional information about the server, such as the domain name or
+        organization.
+      </p></li><li class="step"><p>
+      <span class="bold"><strong>Install the certificate on the server.</strong></span>
+      Install the signed certificate on the server that will use it. This
+      typically involves configuring the server software—such as the
+      Apache Web server—to use the certificate for securing communication.
+    </p></li><li class="step"><p>
+      <span class="bold"><strong>Configure the server and client for secure
+      communication.</strong></span> After the certificate is installed on the
+      server, configure the server and client software to use secure
+      communication protocols, for example, HTTPS that uses the certificate for
+      encryption and authentication.
+    </p></li><li class="step"><p>
+      <span class="bold"><strong>Regular maintenance and renewal.</strong></span>
+      Regularly monitor the validity of the certificate and renew it before it
+      expires. Keep the private key secure and ensure that certificates are
+      properly configured and updated as needed.
+    </p></li></ol></div></div></section><section xml:lang="en" class="sect2" id="tls-certificates-installation-procedure-private-ca" data-id-title="Using a private CA"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.2 </span><span class="title-name">Using a private CA</span></span> <a title="Permalink" class="permalink" href="#tls-certificates-installation-procedure-private-ca">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        <span class="bold"><strong>Create a private certificate authority
+        (CA).</strong></span> A private CA is only needed to sign the server
+        certificate yourself and <span class="emphasis"><em>not</em></span> have it signed by a
+        trusted CA.
+      </p></li><li class="step"><p>
+        <span class="bold"><strong>Generate a private key.</strong></span> A private key
+        is required on the server—such as a Web server—that will use
+        the certificate. The key is kept secure and used to sign messages and
+        decrypt data.
+      </p></li><li class="step"><p>
+        <span class="bold"><strong>Create a certificate signing request
+        (CSR).</strong></span> Generate a CSR using the private key. The CSR contains
+        information about the entity requesting the certificate and the public
+        key that will be included in the certificate.
+      </p></li><li class="step"><p>
+        <span class="bold"><strong>Sign the CSR with your private CA.</strong></span> If
+        you intend to use the TLS certificate for testing or internal purposes,
+        you can sign the CSR yourself by your private CA instead of a publicly
+        trusted CA.
+      </p></li><li class="step"><p>
+      <span class="bold"><strong>Install the certificate on the server.</strong></span>
+      Install the signed certificate on the server that will use it. This
+      typically involves configuring the server software—such as the
+      Apache Web server—to use the certificate for securing communication.
+    </p></li><li class="step"><p>
+      <span class="bold"><strong>Configure the server and client for secure
+      communication.</strong></span> After the certificate is installed on the
+      server, configure the server and client software to use secure
+      communication protocols, for example, HTTPS that uses the certificate for
+      encryption and authentication.
+    </p></li><li class="step"><p>
+      <span class="bold"><strong>Regular maintenance and renewal.</strong></span>
+      Regularly monitor the validity of the certificate and renew it before it
+      expires. Keep the private key secure and ensure that certificates are
+      properly configured and updated as needed.
+    </p></li></ol></div></div></section></section><section xml:lang="en" class="sect1" id="tls-creating-private-ca" data-id-title="Creating a private CA"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Creating a private CA</span></span> <a title="Permalink" class="permalink" href="#tls-creating-private-ca">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    If you do not plan to get the server certificate signed by a trusted CA,
+    create your private CA. Such an approach is fine for testing and
+    internal scenarios, but not for production network applications.
+  </p><div class="procedure"><div class="procedure-contents"><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Requirements </span></span><a title="Permalink" class="permalink" href="#id-1.4.3.1">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+    To perform selected tasks, you need <code class="systemitem">root</code> or <code class="command">sudo</code> privileges.
+  </p></li></ul></div><ol class="procedure" type="1"><li class="step"><p>
+        Generate a private key and a certificate for your private CA. The
+        following command creates a new 2048 bit-long RSA key using the SHA-256
+        hash algorithm. During its creation, you will be asked for an
+        encryption passphrase. Remember the passphrase because you will need it
+        when signing the server CSR with your private CA in <a class="xref" href="#tls-sign-csr-private-ca" title="6. Signing a CSR">Section 6, “Signing a CSR”</a>.
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>openssl req -x509 -sha256 -days 3650 -newkey rsa:2048 \
+-subj "/CN=myRootCA/C=CZ/L=Prague" -keyout myRootCA.key -out myRootCA.crt</pre></div><p>
+        Replace the <code class="option">-subj</code> value with your suitable string.
+      </p></li><li class="step"><p>
+        Secure the private key by restricting its permissions and ownership so
+        that only the <code class="systemitem">root</code> can read it.
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> chown <code class="systemitem">root</code>:<code class="systemitem">root</code> <em class="replaceable">myRootCA.key</em>
+<code class="prompt user">&gt; </code><code class="command">sudo</code> chmod 600 <em class="replaceable">myRootCA.key</em></pre></div></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+        Verify the validity of the CA private key.
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>openssl pkey -check -in <em class="replaceable">myRootCA.key</em>
+Enter pass phrase for myRootCA.key:
+Key is valid
+-----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCq/oAhZ0VGSsGb
+[...]
+8q3vKA+KRtxhMgW1f50U2qo=
+-----END PRIVATE KEY-----</pre></div></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+        Verify your private CA by displaying its basic data. It must include the
+        <code class="literal">CA:TRUE</code> flag.
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>openssl x509 -in <em class="replaceable">myRootCA.crt</em> -text -noout
+Certificate:
+[...]
+    Signature Algorithm: sha256WithRSAEncryption
+    Issuer: CN = myRootCA, C = CZ, L = Prague
+    Validity
+        Not Before: Apr 23 14:41:53 2024 GMT
+        Not After : Apr 17 14:41:53 2029 GMT
+    Subject: CN = myRootCA, C = CZ, L = Prague
+    X509v3 extensions:
+[...]
+        X509v3 Basic Constraints: critical
+          CA:TRUE
+[...]</pre></div></li></ol></div></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Next steps </span></span><a title="Permalink" class="permalink" href="#id-1.4.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        To trust the server certificate, client machines need to know the
+        private CA certificate with which the server's private certificate was
+        signed. Refer to <a class="xref" href="#tls-adding-new-certificates" title="7.3. Adding new CA certificates">Section 7.3, “Adding new CA certificates”</a> for
+        details about storing CA certificates in a system-wide certificate store
+        on the client.
+      </p></li><li class="listitem"><p>
+        Create a server private TLS key as described in
+        <a class="xref" href="#tls-creating-private-key" title="4. Creating a server private key">Section 4, “Creating a server private key”</a>.
+      </p></li></ul></div></section><section xml:lang="en" class="sect1" id="tls-creating-private-key" data-id-title="Creating a server private key"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Creating a server private key</span></span> <a title="Permalink" class="permalink" href="#tls-creating-private-key">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    A server needs a private TLS key to encrypt data required by a client. The
+    following procedure describes how to generate it.
+  </p><div class="procedure"><div class="procedure-contents"><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Requirements </span></span><a title="Permalink" class="permalink" href="#id-1.5.3.1">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+    To perform selected tasks, you need <code class="systemitem">root</code> or <code class="command">sudo</code> privileges.
+  </p></li></ul></div><ol class="procedure" type="1"><li class="step"><p>
+        Generate a private TLS key. The following example generates an
+        unencrypted 256-bit <a class="xref" href="#gt-tls-ecdsa" title="ECDSA">ECDSA</a> key.
+      </p><div id="id-1.5.3.2.2" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
+          You can verify if ECDSA keys are supported by listing its available
+          elliptic curves with the <code class="command">openssl ecparam
+          -list_curves</code> command.
+        </p></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>openssl ecparam -name prime256v1 -genkey -out <em class="replaceable">server.key</em></pre></div><p>
+        The speed of generating the key depends on the hardware, the selected
+        encryption algorithm, and the length of the key.
+      </p></li><li class="step"><p>
+        Move the generated private key to a safe location on the server and
+        secure it by restricting its permissions and ownership so that only the
+        <code class="systemitem">root</code> can read it.
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> chown <code class="systemitem">root</code>:<code class="systemitem">root</code> <em class="replaceable">server.key</em>
+<code class="prompt user">&gt; </code><code class="command">sudo</code> chmod 600 <em class="replaceable">server.key</em></pre></div></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+        Verify the consistency of the private key.
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> openssl pkey -check -in <em class="replaceable">server.key</em>
+Key is valid
+-----BEGIN PRIVATE KEY-----
+MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgUnW551Qru4+pbWqu
+JRXQVFi45N1j+qmx7dEnr+8eox+hRANCAAR+rRLHBGjq2H2jOq09efVt99JB/R7h
+QkDLjVMa9jemVH1g3YiVIEAHyCVjms2rC06lkU1S+z8WsRjh6A/ev8//
+-----END PRIVATE KEY-----</pre></div></li></ol></div></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Next steps </span></span><a title="Permalink" class="permalink" href="#id-1.5.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        Create a certificate signing request (CSR) so that your preferred CA can
+        sign and validate it. Find more details in
+        <a class="xref" href="#tls-creating-certificate-signing-request" title="5. Creating a CSR">Section 5, “Creating a CSR”</a>.
+      </p></li></ul></div></section><section xml:lang="en" class="sect1" id="tls-creating-certificate-signing-request" data-id-title="Creating a CSR"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Creating a CSR</span></span> <a title="Permalink" class="permalink" href="#tls-creating-certificate-signing-request">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    Establishing TLS encrypted communication requires a valid TLS certificate
+    signed by a CA. To obtain such a certificate, you need to create a certificate
+    signing request (CSR).
+  </p><div class="procedure"><div class="procedure-contents"><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">REQUIREMENTS </span></span><a title="Permalink" class="permalink" href="#id-1.6.3.1">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+          You have previously created a private TLS key as described in
+          <a class="xref" href="#tls-creating-private-key" title="4. Creating a server private key">Section 4, “Creating a server private key”</a>.
+        </p></li></ul></div><ol class="procedure" type="1"><li class="step"><p><span class="step-optional">(Optional)</span> 
+        Prepare a configuration template that simplifies the process of creating
+        your CSR, for example:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>cat <em class="replaceable">example_csr.cnf</em>
+[req]
+prompt = no
+distinguished_name = dn
+req_extensions     = re
+
+[dn]
+countryName            = CZ
+localityName           = Prague
+organizationName       = Example organization
+commonName             = www.example.org
+emailAddress           = <code class="systemitem">wilber</code>@example.org
+
+[re]
+extendedKeyUsage = serverAuth,clientAuth
+
+[alt_names]
+DNS.1 = example.org
+DNS.2 = www.example.org
+IP.1 = 10.0.0.5
+IP.2 = 10.0.0.6</pre></div><div id="id-1.6.3.2.3" data-id-title="Exact request matches" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Exact request matches</div><p>
+          The <code class="literal">[alt_names]</code> section can list domain names and
+          IP addresses that must match the URL that the client will request. In
+          the above example, while the following requests will be accepted:
+        </p><div class="verbatim-wrap"><pre class="screen">https://example.org/
+https://www.example.org/
+https://10.0.0.5/
+https://10.0.0.6/</pre></div><p>
+          the request for <code class="literal">https://www2.example.org/</code> will
+          be refused.
+        </p></div></li><li class="step"><ol type="a" class="substeps"><li class="step"><p>
+            If you previously prepared a CSR template, create the CSR using the
+            template and the private key.
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>openssl req -new -key <em class="replaceable">server.key</em> \
+ -config <em class="replaceable">example_csr.cnf</em> \
+ -out <em class="replaceable">server.csr</em></pre></div></li><li class="step"><p>
+            If you did not prepare the CSR template, omit the
+            <code class="option">-config</code> option from the command above.
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>openssl req -new -key <em class="replaceable">server.key</em> -out <em class="replaceable">server.csr</em></pre></div><p>
+            You will be prompted for additional information about the
+            certificate. When asked for a <code class="literal">challenge password</code>
+            and an <code class="literal">optional company name</code>, leave it blank.
+          </p><div id="id-1.6.3.3.1.2.4" data-id-title="Common Name" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Common Name</div><p>
+              The <code class="literal">Common Name (CN)</code> value must be the fully
+              qualified host name of the server host.
+            </p></div><div class="verbatim-wrap"><pre class="screen">You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [AU]:CZ
+State or Province Name (full name) [Some-State]: Czech Republic
+Locality Name (eg, city) []:Prague
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:Example organization
+Organizational Unit Name (eg, section) []:
+Common Name (e.g. server FQDN or YOUR name) []:www.example.org
+Email Address []:wilber@example.org
+
+Please enter the following 'extra' attributes
+to be sent with your certificate request
+A challenge password []:
+An optional company name []:</pre></div></li></ol></li></ol></div></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Next steps </span></span><a title="Permalink" class="permalink" href="#id-1.6.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        Submit the CSR to a CA of your choice. If you want to use the
+        certificate inside a trusted network, you can sign the certificate with
+        your private CA as described in <a class="xref" href="#tls-sign-csr-private-ca" title="6. Signing a CSR">Section 6, “Signing a CSR”</a>.
+      </p></li></ul></div></section><section xml:lang="en" class="sect1" id="tls-sign-csr-private-ca" data-id-title="Signing a CSR"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Signing a CSR</span></span> <a title="Permalink" class="permalink" href="#tls-sign-csr-private-ca">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    Establishing TLS encrypted communication requires that a certificate
+    authority (CA) signs the certificate signing request (CSR). For testing or
+    internal purposes, you can sign the CSR yourself by a private CA.
+  </p><div class="procedure"><div class="procedure-contents"><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">REQUIREMENTS </span></span><a title="Permalink" class="permalink" href="#id-1.7.3.1">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+          You created a private TLS key as described in
+          <a class="xref" href="#tls-creating-private-key" title="4. Creating a server private key">Section 4, “Creating a server private key”</a>.
+        </p></li><li class="listitem"><p>
+          You created a CSR file as described in
+          <a class="xref" href="#tls-creating-certificate-signing-request" title="5. Creating a CSR">Section 5, “Creating a CSR”</a>.
+        </p></li></ul></div><ol class="procedure" type="1"><li class="step"><p><span class="step-optional">(Optional)</span> 
+        Prepare an optional configuration file that specifies additional server
+        and client extensions, for example:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>cat <em class="replaceable">example_ssl_ext.cnf</em>
+[ server-cert ]
+keyUsage = digitalSignature, keyEncipherment
+extendedKeyUsage = serverAuth
+basicConstraints=CA:FALSE
+
+[ client-cert ]
+keyUsage = digitalSignature
+extendedKeyUsage = clientAuth
+basicConstraints=CA:FALSE</pre></div></li><li class="step"><p>
+        Sign the CSR with your private CA, optionally using the extension
+        configuration file. You will be asked for your private CA passphrase
+        that you entered per <a class="xref" href="#tls-creating-private-ca" title="3. Creating a private CA">Section 3, “Creating a private CA”</a>.
+      </p><div class="verbatim-wrap"><pre class="screen">openssl x509 -req -days 730 -in <em class="replaceable">server.csr</em> -out <em class="replaceable">server.crt</em> \
+-CA <em class="replaceable">myRootCA.crt</em> -CAkey <em class="replaceable">myRootCA.key</em> -CAcreateserial \
+-extfile <em class="replaceable">example_ssl_ext.cnf</em> -extensions server-cert</pre></div><p>
+        The certificate remains valid for two years. Adjust the value to your
+        needs. After this period, you must create a new CSR and have a CA sign
+        the certificate.
+      </p><p>
+        The <code class="filename">server.crt</code> file will be created that includes
+        the signed certificate.
+      </p></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+        Verify that the data included in the resulting certificate matches your
+        requirements.
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>openssl x509 -text -noout -in <em class="replaceable">server.crt</em>
+[...]
+Issuer: C = CZ, ST = Some-State, L = Prague, O = Example organization, CN = www.example.org, emailAddress = <code class="systemitem">wilber</code>@example.org
+Validity
+    Not Before: Apr 15 09:18:11 2024 GMT
+    Not After : Apr 15 09:18:11 2026 GMT
+Subject: C = CZ, ST = Some-State, L = Prague, O = Example organization, CN = www.example.org, emailAddress = <code class="systemitem">wilber</code>@example.org
+Subject Public Key Info:
+    Public Key Algorithm: id-ecPublicKey[...]
+X509v3 extensions:
+        X509v3 Key Usage:
+            Digital Signature, Key Encipherment
+        X509v3 Extended Key Usage:
+            TLS Web Server Authentication
+[...]</pre></div></li></ol></div></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Next steps </span></span><a title="Permalink" class="permalink" href="#id-1.7.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        Install the certificate on the server that will use it for providing
+        encrypted content.
+      </p></li></ul></div></section><section xml:lang="en" class="sect1" id="tls-certificates-store" data-id-title="System-wide CA certificate store"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">System-wide CA certificate store</span></span> <a title="Permalink" class="permalink" href="#tls-certificates-store">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    A shared system-wide CA store is a centralized repository for storing
+    trusted root certificates and user-specific certificates on a system. This
+    store is used by software applications and components within the
+    operating system to establish secure connections, validate the authenticity
+    of TLS certificates presented by servers, and verify the identity of
+    individuals or entities. By default, the store contains the Mozilla CA
+    certificate list included in the <span class="package">ca-certificates-mozilla</span>
+    package. You can either update this list or select another certificate list.
+  </p><div id="id-1.8.3" data-id-title="OpenSSL vs NSS certificate store" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: OpenSSL vs NSS certificate store</div><p>
+      By default, there are two different CA certificate stores in
+      <span class="phrase"><span class="phrase">SLES</span></span>: the OpenSSL-based store and the NSS (Network Security
+      System)-based store. Many GUI-based Web browsers—such as
+      Firefox—use the NSS certificate store. To avoid installing CA
+      certificates in both certificate stores, install the plug-in package
+      <span class="package">p11-kit-nss-trust</span> that makes the NSS store look up
+      certificates in the OpenSSL store automatically.
+    </p></div><section class="sect2" id="tls-certificates-store-file-system" data-id-title="Where is the CA certificate store on the file system?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.1 </span><span class="title-name">Where is the CA certificate store on the file system?</span></span> <a title="Permalink" class="permalink" href="#tls-certificates-store-file-system">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      In <span class="phrase"><span class="phrase">SLES</span></span>, the shared system-wide certificate store is located
+      in the following directories:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.8.4.3.1"><span class="term">/usr/share/pki/trust/anchors</span></dt><dd><p>
+            CA certificates trust anchors provided by the system.
+          </p></dd><dt id="id-1.8.4.3.2"><span class="term">/usr/share/pki/trust/blacklist</span></dt><dd><p>
+            Distrusted CA certificates provided by the system.
+          </p></dd><dt id="id-1.8.4.3.3"><span class="term">/etc/pki/trust/anchors</span></dt><dd><p>
+            CA certificates trust anchors provided by the system administrators.
+          </p></dd><dt id="id-1.8.4.3.4"><span class="term">/etc/pki/trust/blacklist</span></dt><dd><p>
+            Distrusted CA certificates provided by the system administrators.
+          </p></dd></dl></div></section><section class="sect2" id="tls-certificates-store-benefits" data-id-title="Benefits of using a system-wide CA certificate store"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.2 </span><span class="title-name">Benefits of using a system-wide CA certificate store</span></span> <a title="Permalink" class="permalink" href="#tls-certificates-store-benefits">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Some of the key benefits of using a shared certificate store are:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          <span class="bold"><strong>Security:</strong></span> Centralizing trusted
+          certificates helps ensure that all applications and services use a
+          consistent set of trusted certificates to verify the authenticity
+          of TLS connections.
+        </p></li><li class="listitem"><p>
+          <span class="bold"><strong>Simplified management:</strong></span> Instead of
+          each application or service maintaining its own list of trusted
+          certificates, they can rely on the system-wide certificate store.
+        </p></li><li class="listitem"><p>
+          <span class="bold"><strong>Ease of update:</strong></span> System administrators
+          can update the trusted certificates in the system-wide store as
+          needed, either manually or through automated mechanisms such as
+          operating system updates. This ensures that systems remain up to date
+          with the latest trusted certificates and security standards.
+        </p></li></ul></div></section><section xml:lang="en" class="sect2" id="tls-adding-new-certificates" data-id-title="Adding new CA certificates"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.3 </span><span class="title-name">Adding new CA certificates</span></span> <a title="Permalink" class="permalink" href="#tls-adding-new-certificates">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    To let applications know about a new private CA certificate on the system,
+    add it to a system-wide certificate store on the client and use
+    the <code class="command">update-ca-certificates</code> command to update the store.
+  </p><div class="procedure"><div class="procedure-contents"><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Requirements </span></span><a title="Permalink" class="permalink" href="#id-1.8.6.3.1">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+          The <span class="package">ca-certificate</span> package is installed on the
+          system.
+        </p></li><li class="listitem"><p>
+          You created a CA certificate as described in
+          <a class="xref" href="#tls-creating-private-ca" title="3. Creating a private CA">Section 3, “Creating a private CA”</a>.
+        </p></li><li class="listitem"><p>
+    To perform selected tasks, you need <code class="systemitem">root</code> or <code class="command">sudo</code> privileges.
+  </p></li></ul></div><ol class="procedure" type="1"><li class="step"><p>
+        Copy the certificate file to the
+        <code class="filename">/etc/pki/trust/anchors</code> directory.
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> cp <em class="replaceable">myRootCA.crt</em> /etc/pki/trust/anchors/</pre></div></li><li class="step"><p>
+        Update the system-wide certificate store.
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> update-ca-certificates</pre></div></li></ol></div></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">For more information </span></span><a title="Permalink" class="permalink" href="#id-1.8.6.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        The <code class="command">man 8 update-ca-certificates</code> manual page.
+      </p></li></ul></div></section></section><section xml:lang="en" class="sect1" id="tls-troubleshooting" data-id-title="Troubleshooting"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name">Troubleshooting</span></span> <a title="Permalink" class="permalink" href="#tls-troubleshooting">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    This topic describes how to examine TLS certificates.
+  </p><section class="sect2" id="tls-troubleshooting-verify-certificates" data-id-title="How do I examine a TLS certificate?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">8.1 </span><span class="title-name">How do I examine a TLS certificate?</span></span> <a title="Permalink" class="permalink" href="#tls-troubleshooting-verify-certificates">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      To review a server certificate that is available locally as a file, use
+      the following command:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>openssl x509 -in <em class="replaceable">server.crt</em> -noout -text
+Certificate:
+  Data:
+      Version: 3 (0x2)
+      Serial Number:
+          6a:43:f5:55:ef:03:ee:0e:23:c8:99:82:71:39:f2:22:1a:da:53:db
+      Signature Algorithm: ecdsa-with-SHA256
+      Issuer:<span class="callout" id="tls-troubleshooting-verify-certificates-issuer">1</span> C = CZ, ST = Some-State, L = Prague, O = Example organization, CN = www.example.org, emailAddress = wilber@example.org
+      Validity<span class="callout" id="tls-troubleshooting-verify-certificates-validity">2</span>
+          Not Before: Apr 15 09:30:31 2024 GMT
+          Not After : May 15 09:30:31 2024 GMT
+      Subject:<span class="callout" id="tls-troubleshooting-verify-certificates-subject">3</span> C = CZ, ST = Some-State, L = Prague, O = Example organization, CN = www.example.org, emailAddress = wilber@example.org
+      Subject Public Key Info:
+          Public Key Algorithm: id-ecPublicKey
+              Public-Key: (256 bit)
+              pub:
+                  04:7e:ad:12:c7:04:68:ea:d8:7d:a3:3a:ad:3d:79:
+[...]
+              ASN1 OID: prime256v1
+              NIST CURVE: P-256
+      X509v3 extensions:
+          X509v3 Subject Alternative Name:<span class="callout" id="tls-troubleshooting-verify-certificates-altname">4</span>
+            DNS:*.example.org, DNS:example.org
+          X509v3 Key Usage:<span class="callout" id="tls-troubleshooting-verify-certificates-keyusage">5</span>
+              Digital Signature, Key Encipherment
+          X509v3 Extended Key Usage:
+              TLS Web Server Authentication
+  Signature Algorithm: ecdsa-with-SHA256
+       30:46:02:21:00:a8:4f:7d:16:f2:93:01:b9:3d:31:e3:c6:6c:
+[...]</pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#tls-troubleshooting-verify-certificates-issuer"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+          Describes who issued the certificate. It shows only the parent-level
+          issuer, not the top-level issuer from the certificate chain.
+        </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#tls-troubleshooting-verify-certificates-validity"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+          Displays certificate validity time.
+        </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#tls-troubleshooting-verify-certificates-subject"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+          Describes the server that uses the certificate. The most important
+          attribute is <code class="literal">CN</code> (Common Name), as it contains the
+          fully qualified domain name of the server that can use this
+          certificate. <code class="literal">CN</code> can contain wildcards, for example,
+          <code class="literal">*.example.org</code>. In this case, the certificate
+          can be used by multiple servers on the same domain
+          <code class="literal">example.org</code>.
+        </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#tls-troubleshooting-verify-certificates-altname"><span class="callout">4</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+          When used, it overrides the subject's <code class="literal">CN</code>
+          specification. It can contain <code class="literal">DNS:</code> entries for
+          domain names and <code class="literal">IP:</code> entries for IP addresses.
+        </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#tls-troubleshooting-verify-certificates-keyusage"><span class="callout">5</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+          Specifies purposes for which the certificate can be used.
+        </p></td></tr></table></div></section><section class="sect2" id="tls-troubleshooting-download-certificate" data-id-title="How do I download server TLS certificate files?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">8.2 </span><span class="title-name">How do I download server TLS certificate files?</span></span> <a title="Permalink" class="permalink" href="#tls-troubleshooting-download-certificate">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The following command downloads just the server certificate from the
+      example server <em class="replaceable">suse.com</em>. Replace it with the
+      domain name of the server you want to examine.
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>echo | openssl s_client -showcerts -connect suse.com:443 2&gt;/dev/null \
+| openssl x509 -out 1.pem</pre></div><p>
+      Most public servers use several subordinate CAs in the certificate chain.
+      To download the whole certificate chain into individual files, use the
+      following command:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>echo | openssl s_client -showcerts -connect suse.com:443 2&gt;/dev/null \
+| awk -v RS="-----BEGIN CERTIFICATE-----" \
+'NR&gt;1{sub(/-----END CERTIFICATE-----.*/,"-----END CERTIFICATE-----"); \
+print RS$0&gt;NR-1".pem"}'</pre></div><p>
+      The command writes all certificate files named increasingly
+      <code class="filename">1.pem</code>, <code class="filename">2.pem</code> and so on, up to
+      the last certificate in the chain.
+    </p></section><section class="sect2" id="tls-troubleshooting-verify-certificates-trust-chain" data-id-title="How do I verify the whole TLS certificate chain?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">8.3 </span><span class="title-name">How do I verify the whole TLS certificate chain?</span></span> <a title="Permalink" class="permalink" href="#tls-troubleshooting-verify-certificates-trust-chain">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The client host normally has a collection of root CAs and verifies the
+      server certificates against them. But the certificate that the server
+      provides can be a subordinate CA. To trust the server's certificate, the
+      client needs to verify its complete
+      <a class="xref" href="#gt-tls-certificate-chain" title="TLS certificate chain">TLS certificate chain</a>. The server sends all
+      certificates as part of its <code class="literal">Server Hello</code> message and
+      you can download them as described in
+      <a class="xref" href="#tls-troubleshooting-download-certificate" title="8.2. How do I download server TLS certificate files?">Section 8.2, “How do I download server TLS certificate files?”</a>.
+    </p><p>
+      The <code class="command">openssl</code> command uses the <code class="option">-subject_hash
+      </code> and <code class="option">-issuer_hash</code> options to retrieve the
+      subject and issuer hashes from a certificate, for example:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>openssl x509 -in 1.pem -noout -issuer_hash
+2401d14f</pre></div><p>
+      The client compares the issuer hash <code class="literal">2401d14f</code> with the
+      issuer hashes of its collection of root CAs. In this case, no root CA has
+      an issuer hash of <code class="literal">2401d14f</code>. As the client cannot trust
+      the server yet, it has to verify the other certificates from the chain as
+      well. Notice that the next certificate in the chain has the
+      <code class="option">-subject_hash</code> identical to the
+      <code class="option">-issuer_hash</code> from the server certificate.
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>openssl x509 -in 2.pem -noout -subject_hash
+2401d14f</pre></div><p>
+      Display the issuer hash of this certificate.
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>openssl x509 -in 2.pem -noout -issuer_hash
+ce5e74ef</pre></div><p>
+      Again, this issuer hash cannot be found among the client's root CAs.
+      Continue with checking the issuer and subject hashes of the next
+      certificates in the chain until you reach the last one. The results are
+      summarized in the following table:
+    </p><div class="figure" id="id-1.9.5.10"><div class="figure-contents"><div class="mediaobject"><a href="images/tls-cert-chain1.png"><img src="images/tls-cert-chain1.png" width="75%" alt="Subject and issuer hashes of a certificate chain" title="Subject and issuer hashes of a certificate chain"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 2: </span><span class="title-name">Subject and issuer hashes of a certificate chain </span></span><a title="Permalink" class="permalink" href="#id-1.9.5.10">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><p>
+      The last issuer hash <code class="literal">f387163d</code> finally has a matching
+      CA:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>ls -l /etc/ssl/certs/f387163d*
+lrwxrwxrwx 1 root root 24 Oct 4 09:55 /etc/ssl/certs/f387163d.0 -&gt; Starfield_Class_2_CA.pem</pre></div><p>
+      If the discovered issuer certificate is valid, you can trust the server as
+      much as you trust the root CAs in your client certificate store.
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>openssl x509 -in /etc/ssl/certs/Starfield_Class_2_CA.pem -noout -dates
+notBefore=Jun 29 17:39:16 2004 GMT
+notAfter=Jun 29 17:39:16 2034 GMT</pre></div><p>
+      To confirm that the certificate is a root CA, check its subject and issuer
+      hashes. Because root CA certificates are self-signed, they have both
+      hashes identical.
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>openssl x509 -in /etc/ssl/certs/Starfield_Class_2_CA.pem -noout -issuer_hash -subject_hash
+f387163d
+f387163d</pre></div><p>
+      The complete certificate chain then looks as follows:
+    </p><div class="figure" id="id-1.9.5.18"><div class="figure-contents"><div class="mediaobject"><a href="images/tls-cert-chain2.png"><img src="images/tls-cert-chain2.png" width="75%" alt="Complete TLS certificate chain" title="Complete TLS certificate chain"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 3: </span><span class="title-name">Subject and issuer hashes of a certificate chain </span></span><a title="Permalink" class="permalink" href="#id-1.9.5.18">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></section></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">9 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p> Copyright© 2006–2024
+ SUSE LLC and contributors.
+  All rights reserved. </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy.  Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section><section xml:lang="en" class="glossary"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number"> </span><span class="title-name">Glossary</span></span> <a title="Permalink" class="permalink" href="#id-1.11">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="line"/><dl><dt id="gt-tls-ca"><span><span class="glossterm">CA</span> <a title="Permalink" class="permalink" href="#gt-tls-ca">#</a></span></dt><dd class="glossdef"><p>
+        A <span class="emphasis"><em>certificate authority</em></span> (CA) responsible for
+        issuing digital certificates that authenticate the identity of
+        individuals, organizations or servers on the Internet. It can be either
+        a publicly trusted CA, such as
+        <a class="link" href="https://letsencrypt.org/" target="_blank">Let's Encrypt</a>, or a
+        private CA in which case you sign the certificate yourself.
+      </p></dd><dt id="gt-tls-csr"><span><span class="glossterm">CSR</span> <a title="Permalink" class="permalink" href="#gt-tls-csr">#</a></span></dt><dd class="glossdef"><p>
+        To have a certificate signed by a CA, you need to generate a public key
+        and send it to the CA for signing. This process is called a
+        <span class="emphasis"><em>certificate signing request</em></span> (CSR).
+      </p></dd><dt id="gt-tls-dh"><span><span class="glossterm">DH key exchange</span> <a title="Permalink" class="permalink" href="#gt-tls-dh">#</a></span></dt><dd class="glossdef"><p>
+        Diffie–Hellman key exchange (DH) is a mathematical method of securely
+        exchanging cryptographic keys over a public channel and was one of the
+        first public-key protocols. It was named after cryptologists Whitfield
+        Diffie and Martin Hellman. DH is one of the earliest practical examples
+        of public key exchange based on a private key and a corresponding public
+        key.
+      </p></dd><dt id="gt-tls-ecdsa"><span><span class="glossterm">ECDSA</span> <a title="Permalink" class="permalink" href="#gt-tls-ecdsa">#</a></span></dt><dd class="glossdef"><p>
+        Elliptic curve digital signature algorithm (ECDSA) is a cryptographic
+        algorithm used to generate digital signatures based on the mathematics
+        of elliptic curves. It is widely used for digital signature generation
+        and verification in cryptographic protocols and applications, including
+        TLS for secure communication over the Internet.
+      </p></dd><dt id="gt-tls-end-entity-ca"><span><span class="glossterm">end-entity certificate</span> <a title="Permalink" class="permalink" href="#gt-tls-end-entity-ca">#</a></span></dt><dd class="glossdef"><p>
+        TLS certificates issued to individual entities such as Web sites,
+        servers or clients. These certificates are signed by subordinate CAs and
+        are used to authenticate and encrypt communication between clients and
+        servers.
+      </p></dd><dt id="gt-tls-openssl"><span><span class="glossterm">Openssl</span> <a title="Permalink" class="permalink" href="#gt-tls-openssl">#</a></span></dt><dd class="glossdef"><p>
+        An open-source software library that provides cryptographic functions
+        and utilities to secure communication. It is used in <span class="phrase"><span class="phrase">SLES</span></span>
+        for implementing secure protocols, such as TLS.
+      </p></dd><dt id="gt-tls-pem"><span><span class="glossterm">PEM</span> <a title="Permalink" class="permalink" href="#gt-tls-pem">#</a></span></dt><dd class="glossdef"><p>
+        A privacy enhanced mail (PEM) file is a commonly used file format for
+        storing cryptographic objects such as certificates, private keys and
+        certificate signing requests.
+      </p></dd><dt id="gt-tls-pfs"><span><span class="glossterm">PFS</span> <a title="Permalink" class="permalink" href="#gt-tls-pfs">#</a></span></dt><dd class="glossdef"><p>
+        Perfect forward secrecy (PFS) is a feature of specific key-agreement
+        protocols assuring that session keys are not compromised even if
+        long-term secrets—such as the private key of the server—used
+        in the session key exchange are compromised.
+      </p></dd><dt id="gt-tls-pki"><span><span class="glossterm">PKI</span> <a title="Permalink" class="permalink" href="#gt-tls-pki">#</a></span></dt><dd class="glossdef"><p>
+        The public key infrastructure (PKI) is a set of policies, processes,
+        software and hardware used to create, manage, distribute, use, store and
+        revoke digital certificates. PKI enables secure communication and
+        authentication over insecure networks, such as the Internet.
+      </p></dd><dt id="gt-tls-privkey"><span><span class="glossterm">private key</span> <a title="Permalink" class="permalink" href="#gt-tls-privkey">#</a></span></dt><dd class="glossdef"><p>
+        A counterpart to the public key in asymmetric cryptography. It is kept
+        secret and known only to the owner of the key pair. When a client
+        connects to a server over TLS, the server sends its digital certificate
+        with a public key. The client uses it to encrypt data, ensuring that
+        only the server's private key can decrypt it.
+      </p></dd><dt id="gt-tls-pubkey"><span><span class="glossterm">public key</span> <a title="Permalink" class="permalink" href="#gt-tls-pubkey">#</a></span></dt><dd class="glossdef"><p>
+        A part of a TLS certificate which acts as a digital identity for the
+        server. When a client connects to the server over TLS, it requests the
+        server's certificate, which contains the public key. The public key is
+        freely distributable and is used for data encryption.
+      </p></dd><dt id="gt-tls-root-ca"><span><span class="glossterm">root CA</span> <a title="Permalink" class="permalink" href="#gt-tls-root-ca">#</a></span></dt><dd class="glossdef"><p>
+        A trusted entity at the top of the certificate chain. It signs
+        subordinate CAs and end-entity CAs. Root certificates are preinstalled
+        in <span class="phrase"><span class="phrase">SLES</span></span> to establish trust.
+      </p></dd><dt id="gt-ssl"><span><span class="glossterm">SSL</span> <a title="Permalink" class="permalink" href="#gt-ssl">#</a></span></dt><dd class="glossdef"><p>
+        <span class="emphasis"><em>Secure socket layer</em></span> (SSL) was the predecessor of
+        the TLS protocol. SSL version 3.0 was replaced by TLS 1.0 in 1999 to
+        address existing vulnerabilities.
+      </p></dd><dt id="gt-tls-subordinate-ca"><span><span class="glossterm">subordinate CA</span> <a title="Permalink" class="permalink" href="#gt-tls-subordinate-ca">#</a></span></dt><dd class="glossdef"><p>
+        CAs that live between the root and end-entity certificates and are used
+        to sign other certificates, including end-entity certificates. Their
+        main purpose is to define and authorize the types of certificates that
+        can be requested from the root CA. For example, there can be different
+        subordinate CAs for different locations, or encryption key types.
+      </p></dd><dt id="gt-tls"><span><span class="glossterm">TLS</span> <a title="Permalink" class="permalink" href="#gt-tls">#</a></span></dt><dd class="glossdef"><p>
+        <span class="emphasis"><em>Transport layer security</em></span> (TLS) is a protocol that
+        provides secure communication between client-server applications. TLS
+        uses asymmetric cryptography with a pair of private and public keys. TLS
+        is the successor to the SSL (Secure Sockets Layer) protocol.
+      </p></dd><dt id="gt-tls-certificate"><span><span class="glossterm">TLS certificate</span> <a title="Permalink" class="permalink" href="#gt-tls-certificate">#</a></span></dt><dd class="glossdef"><p>
+        A digital X.509 certificate that helps to secure communication within a
+        client-server system. Using TLS certificate, the client can authenticate
+        the identity of the server and encrypt their mutual communication. The
+        certificate usually includes information about its issuer (CA), identity
+        of its holder, the associated public key, digital signature, and its
+        validation period.
+      </p></dd><dt id="gt-tls-certificate-chain"><span><span class="glossterm">TLS certificate chain</span> <a title="Permalink" class="permalink" href="#gt-tls-certificate-chain">#</a></span></dt><dd class="glossdef"><p>
+        A series of certificates used to establish the authenticity and
+        trustworthiness of a particular certificate. A certificate chain can
+        consist of the following certificate types: <a class="xref" href="#gt-tls-root-ca" title="root CA">root CA</a>, <a class="xref" href="#gt-tls-subordinate-ca" title="subordinate CA">subordinate CA</a> and
+        <a class="xref" href="#gt-tls-end-entity-ca" title="end-entity certificate">end-entity certificate</a>.
+      </p></dd><dt id="gt-tls-handshake"><span><span class="glossterm">TLS handshake</span> <a title="Permalink" class="permalink" href="#gt-tls-handshake">#</a></span></dt><dd class="glossdef"><p>
+        A series of messages exchanged between the client and the server to
+        establish a secure connection. The process involves negotiating
+        cryptographic parameters, authenticating identities, and agreeing on
+        encryption keys before secure communication can begin.
+      </p></dd><dt id="gt-tls-trust-anchor"><span><span class="glossterm">Trust anchor</span> <a title="Permalink" class="permalink" href="#gt-tls-trust-anchor">#</a></span></dt><dd class="glossdef"><p>
+        Trust anchor is a root certificate that is inherently trusted by a
+        system or application. This root certificate is used to verify the
+        signatures of other certificates in the certificate chain.
+      </p></dd><dt id="gt-tls-x509"><span><span class="glossterm">X.509</span> <a title="Permalink" class="permalink" href="#gt-tls-x509">#</a></span></dt><dd class="glossdef"><p>
+        A standard that defines the format of public key certificates.
+      </p></dd></dl></section><div class="legal-section"><section class="appendix" translate="no" id="doc-gfdl-license" data-id-title="GNU Free Documentation License"><div class="titlepage"><div><div><h1 class="title">GNU Free Documentation License</h1></div></div></div><p>
+  Copyright (C) 2000, 2001, 2002 Free Software Foundation, Inc. 51 Franklin St,
+  Fifth Floor, Boston, MA 02110-1301 USA. Everyone is permitted to copy and
+  distribute verbatim copies of this license document, but changing it is not
+  allowed.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.3"><span class="name">
+    0. PREAMBLE
+  </span><a title="Permalink" class="permalink" href="#id-1.12.3">#</a></h5></div><p>
+  The purpose of this License is to make a manual, textbook, or other
+  functional and useful document "free" in the sense of freedom: to assure
+  everyone the effective freedom to copy and redistribute it, with or without
+  modifying it, either commercially or non-commercially. Secondarily, this
+  License preserves for the author and publisher a way to get credit for their
+  work, while not being considered responsible for modifications made by
+  others.
+ </p><p>
+  This License is a kind of "copyleft", which means that derivative works of
+  the document must themselves be free in the same sense. It complements the
+  GNU General Public License, which is a copyleft license designed for free
+  software.
+ </p><p>
+  We have designed this License to use it for manuals for free software,
+  because free software needs free documentation: a free program should come
+  with manuals providing the same freedoms that the software does. But this
+  License is not limited to software manuals; it can be used for any textual
+  work, regardless of subject matter or whether it is published as a printed
+  book. We recommend this License principally for works whose purpose is
+  instruction or reference.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.7"><span class="name">
+    1. APPLICABILITY AND DEFINITIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.12.7">#</a></h5></div><p>
+  This License applies to any manual or other work, in any medium, that
+  contains a notice placed by the copyright holder saying it can be distributed
+  under the terms of this License. Such a notice grants a world-wide,
+  royalty-free license, unlimited in duration, to use that work under the
+  conditions stated herein. The "Document", below, refers to any such manual or
+  work. Any member of the public is a licensee, and is addressed as "you". You
+  accept the license if you copy, modify or distribute the work in a way
+  requiring permission under copyright law.
+ </p><p>
+  A "Modified Version" of the Document means any work containing the Document
+  or a portion of it, either copied verbatim, or with modifications and/or
+  translated into another language.
+ </p><p>
+  A "Secondary Section" is a named appendix or a front-matter section of the
+  Document that deals exclusively with the relationship of the publishers or
+  authors of the Document to the Document's overall subject (or to related
+  matters) and contains nothing that could fall directly within that overall
+  subject. (Thus, if the Document is in part a textbook of mathematics, a
+  Secondary Section may not explain any mathematics.) The relationship could be
+  a matter of historical connection with the subject or with related matters,
+  or of legal, commercial, philosophical, ethical or political position
+  regarding them.
+ </p><p>
+  The "Invariant Sections" are certain Secondary Sections whose titles are
+  designated, as being those of Invariant Sections, in the notice that says
+  that the Document is released under this License. If a section does not fit
+  the above definition of Secondary then it is not allowed to be designated as
+  Invariant. The Document may contain zero Invariant Sections. If the Document
+  does not identify any Invariant Sections then there are none.
+ </p><p>
+  The "Cover Texts" are certain short passages of text that are listed, as
+  Front-Cover Texts or Back-Cover Texts, in the notice that says that the
+  Document is released under this License. A Front-Cover Text may be at most 5
+  words, and a Back-Cover Text may be at most 25 words.
+ </p><p>
+  A "Transparent" copy of the Document means a machine-readable copy,
+  represented in a format whose specification is available to the general
+  public, that is suitable for revising the document straightforwardly with
+  generic text editors or (for images composed of pixels) generic paint
+  programs or (for drawings) some widely available drawing editor, and that is
+  suitable for input to text formatters or for automatic translation to a
+  variety of formats suitable for input to text formatters. A copy made in an
+  otherwise Transparent file format whose markup, or absence of markup, has
+  been arranged to thwart or discourage subsequent modification by readers is
+  not Transparent. An image format is not Transparent if used for any
+  substantial amount of text. A copy that is not "Transparent" is called
+  "Opaque".
+ </p><p>
+  Examples of suitable formats for Transparent copies include plain ASCII
+  without markup, Texinfo input format, LaTeX input format, SGML or XML using a
+  publicly available DTD, and standard-conforming simple HTML, PostScript or
+  PDF designed for human modification. Examples of transparent image formats
+  include PNG, XCF and JPG. Opaque formats include proprietary formats that can
+  be read and edited only by proprietary word processors, SGML or XML for which
+  the DTD and/or processing tools are not generally available, and the
+  machine-generated HTML, PostScript or PDF produced by some word processors
+  for output purposes only.
+ </p><p>
+  The "Title Page" means, for a printed book, the title page itself, plus such
+  following pages as are needed to hold, legibly, the material this License
+  requires to appear in the title page. For works in formats which do not have
+  any title page as such, "Title Page" means the text near the most prominent
+  appearance of the work's title, preceding the beginning of the body of the
+  text.
+ </p><p>
+  A section "Entitled XYZ" means a named subunit of the Document whose title
+  either is precisely XYZ or contains XYZ in parentheses following text that
+  translates XYZ in another language. (Here XYZ stands for a specific section
+  name mentioned below, such as "Acknowledgements", "Dedications",
+  "Endorsements", or "History".) To "Preserve the Title" of such a section when
+  you modify the Document means that it remains a section "Entitled XYZ"
+  according to this definition.
+ </p><p>
+  The Document may include Warranty Disclaimers next to the notice which states
+  that this License applies to the Document. These Warranty Disclaimers are
+  considered to be included by reference in this License, but only as regards
+  disclaiming warranties: any other implication that these Warranty Disclaimers
+  may have is void and has no effect on the meaning of this License.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.18"><span class="name">
+    2. VERBATIM COPYING
+  </span><a title="Permalink" class="permalink" href="#id-1.12.18">#</a></h5></div><p>
+  You may copy and distribute the Document in any medium, either commercially
+  or non-commercially, provided that this License, the copyright notices, and
+  the license notice saying this License applies to the Document are reproduced
+  in all copies, and that you add no other conditions whatsoever to those of
+  this License. You may not use technical measures to obstruct or control the
+  reading or further copying of the copies you make or distribute. However, you
+  may accept compensation in exchange for copies. If you distribute a large
+  enough number of copies you must also follow the conditions in section 3.
+ </p><p>
+  You may also lend copies, under the same conditions stated above, and you may
+  publicly display copies.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.21"><span class="name">
+    3. COPYING IN QUANTITY
+  </span><a title="Permalink" class="permalink" href="#id-1.12.21">#</a></h5></div><p>
+  If you publish printed copies (or copies in media that commonly have printed
+  covers) of the Document, numbering more than 100, and the Document's license
+  notice requires Cover Texts, you must enclose the copies in covers that
+  carry, clearly and legibly, all these Cover Texts: Front-Cover Texts on the
+  front cover, and Back-Cover Texts on the back cover. Both covers must also
+  clearly and legibly identify you as the publisher of these copies. The front
+  cover must present the full title with all words of the title equally
+  prominent and visible. You may add other material on the covers in addition.
+  Copying with changes limited to the covers, as long as they preserve the
+  title of the Document and satisfy these conditions, can be treated as
+  verbatim copying in other respects.
+ </p><p>
+  If the required texts for either cover are too voluminous to fit legibly, you
+  should put the first ones listed (as many as fit reasonably) on the actual
+  cover, and continue the rest onto adjacent pages.
+ </p><p>
+  If you publish or distribute Opaque copies of the Document numbering more
+  than 100, you must either include a machine-readable Transparent copy along
+  with each Opaque copy, or state in or with each Opaque copy a
+  computer-network location from which the general network-using public has
+  access to download using public-standard network protocols a complete
+  Transparent copy of the Document, free of added material. If you use the
+  latter option, you must take reasonably prudent steps, when you begin
+  distribution of Opaque copies in quantity, to ensure that this Transparent
+  copy will remain thus accessible at the stated location until at least one
+  year after the last time you distribute an Opaque copy (directly or through
+  your agents or retailers) of that edition to the public.
+ </p><p>
+  It is requested, but not required, that you contact the authors of the
+  Document well before redistributing any large number of copies, to give them
+  a chance to provide you with an updated version of the Document.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.26"><span class="name">
+    4. MODIFICATIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.12.26">#</a></h5></div><p>
+  You may copy and distribute a Modified Version of the Document under the
+  conditions of sections 2 and 3 above, provided that you release the Modified
+  Version under precisely this License, with the Modified Version filling the
+  role of the Document, thus licensing distribution and modification of the
+  Modified Version to whoever possesses a copy of it. In addition, you must do
+  these things in the Modified Version:
+ </p><div class="orderedlist"><ol class="orderedlist" type="A"><li class="listitem"><p>
+    Use in the Title Page (and on the covers, if any) a title distinct from
+    that of the Document, and from those of previous versions (which should, if
+    there were any, be listed in the History section of the Document). You may
+    use the same title as a previous version if the original publisher of that
+    version gives permission.
+   </p></li><li class="listitem"><p>
+    List on the Title Page, as authors, one or more persons or entities
+    responsible for authorship of the modifications in the Modified Version,
+    together with at least five of the principal authors of the Document (all
+    of its principal authors, if it has fewer than five), unless they release
+    you from this requirement.
+   </p></li><li class="listitem"><p>
+    State on the Title page the name of the publisher of the Modified Version,
+    as the publisher.
+   </p></li><li class="listitem"><p>
+    Preserve all the copyright notices of the Document.
+   </p></li><li class="listitem"><p>
+    Add an appropriate copyright notice for your modifications adjacent to the
+    other copyright notices.
+   </p></li><li class="listitem"><p>
+    Include, immediately after the copyright notices, a license notice giving
+    the public permission to use the Modified Version under the terms of this
+    License, in the form shown in the Addendum below.
+   </p></li><li class="listitem"><p>
+    Preserve in that license notice the full lists of Invariant Sections and
+    required Cover Texts given in the Document's license notice.
+   </p></li><li class="listitem"><p>
+    Include an unaltered copy of this License.
+   </p></li><li class="listitem"><p>
+    Preserve the section Entitled "History", Preserve its Title, and add to it
+    an item stating at least the title, year, new authors, and publisher of the
+    Modified Version as given on the Title Page. If there is no section
+    Entitled "History" in the Document, create one stating the title, year,
+    authors, and publisher of the Document as given on its Title Page, then add
+    an item describing the Modified Version as stated in the previous sentence.
+   </p></li><li class="listitem"><p>
+    Preserve the network location, if any, given in the Document for public
+    access to a Transparent copy of the Document, and likewise the network
+    locations given in the Document for previous versions it was based on.
+    These may be placed in the "History" section. You may omit a network
+    location for a work that was published at least four years before the
+    Document itself, or if the original publisher of the version it refers to
+    gives permission.
+   </p></li><li class="listitem"><p>
+    For any section Entitled "Acknowledgements" or "Dedications", Preserve the
+    Title of the section, and preserve in the section all the substance and
+    tone of each of the contributor acknowledgements and/or dedications given
+    therein.
+   </p></li><li class="listitem"><p>
+    Preserve all the Invariant Sections of the Document, unaltered in their
+    text and in their titles. Section numbers or the equivalent are not
+    considered part of the section titles.
+   </p></li><li class="listitem"><p>
+    Delete any section Entitled "Endorsements". Such a section may not be
+    included in the Modified Version.
+   </p></li><li class="listitem"><p>
+    Do not retitle any existing section to be Entitled "Endorsements" or to
+    conflict in title with any Invariant Section.
+   </p></li><li class="listitem"><p>
+    Preserve any Warranty Disclaimers.
+   </p></li></ol></div><p>
+  If the Modified Version includes new front-matter sections or appendices that
+  qualify as Secondary Sections and contain no material copied from the
+  Document, you may at your option designate some or all of these sections as
+  invariant. To do this, add their titles to the list of Invariant Sections in
+  the Modified Version's license notice. These titles must be distinct from any
+  other section titles.
+ </p><p>
+  You may add a section Entitled "Endorsements", provided it contains nothing
+  but endorsements of your Modified Version by various parties--for example,
+  statements of peer review or that the text has been approved by an
+  organization as the authoritative definition of a standard.
+ </p><p>
+  You may add a passage of up to five words as a Front-Cover Text, and a
+  passage of up to 25 words as a Back-Cover Text, to the end of the list of
+  Cover Texts in the Modified Version. Only one passage of Front-Cover Text and
+  one of Back-Cover Text may be added by (or through arrangements made by) any
+  one entity. If the Document already includes a cover text for the same cover,
+  previously added by you or by arrangement made by the same entity you are
+  acting on behalf of, you may not add another; but you may replace the old
+  one, on explicit permission from the previous publisher that added the old
+  one.
+ </p><p>
+  The author(s) and publisher(s) of the Document do not by this License give
+  permission to use their names for publicity for or to assert or imply
+  endorsement of any Modified Version.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.33"><span class="name">
+    5. COMBINING DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.12.33">#</a></h5></div><p>
+  You may combine the Document with other documents released under this
+  License, under the terms defined in section 4 above for modified versions,
+  provided that you include in the combination all of the Invariant Sections of
+  all of the original documents, unmodified, and list them all as Invariant
+  Sections of your combined work in its license notice, and that you preserve
+  all their Warranty Disclaimers.
+ </p><p>
+  The combined work need only contain one copy of this License, and multiple
+  identical Invariant Sections may be replaced with a single copy. If there are
+  multiple Invariant Sections with the same name but different contents, make
+  the title of each such section unique by adding at the end of it, in
+  parentheses, the name of the original author or publisher of that section if
+  known, or else a unique number. Make the same adjustment to the section
+  titles in the list of Invariant Sections in the license notice of the
+  combined work.
+ </p><p>
+  In the combination, you must combine any sections Entitled "History" in the
+  various original documents, forming one section Entitled "History"; likewise
+  combine any sections Entitled "Acknowledgements", and any sections Entitled
+  "Dedications". You must delete all sections Entitled "Endorsements".
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.37"><span class="name">
+    6. COLLECTIONS OF DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.12.37">#</a></h5></div><p>
+  You may make a collection consisting of the Document and other documents
+  released under this License, and replace the individual copies of this
+  License in the various documents with a single copy that is included in the
+  collection, provided that you follow the rules of this License for verbatim
+  copying of each of the documents in all other respects.
+ </p><p>
+  You may extract a single document from such a collection, and distribute it
+  individually under this License, provided you insert a copy of this License
+  into the extracted document, and follow this License in all other respects
+  regarding verbatim copying of that document.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.40"><span class="name">
+    7. AGGREGATION WITH INDEPENDENT WORKS
+  </span><a title="Permalink" class="permalink" href="#id-1.12.40">#</a></h5></div><p>
+  A compilation of the Document or its derivatives with other separate and
+  independent documents or works, in or on a volume of a storage or
+  distribution medium, is called an "aggregate" if the copyright resulting from
+  the compilation is not used to limit the legal rights of the compilation's
+  users beyond what the individual works permit. When the Document is included
+  in an aggregate, this License does not apply to the other works in the
+  aggregate which are not themselves derivative works of the Document.
+ </p><p>
+  If the Cover Text requirement of section 3 is applicable to these copies of
+  the Document, then if the Document is less than one half of the entire
+  aggregate, the Document's Cover Texts may be placed on covers that bracket
+  the Document within the aggregate, or the electronic equivalent of covers if
+  the Document is in electronic form. Otherwise they must appear on printed
+  covers that bracket the whole aggregate.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.43"><span class="name">
+    8. TRANSLATION
+  </span><a title="Permalink" class="permalink" href="#id-1.12.43">#</a></h5></div><p>
+  Translation is considered a kind of modification, so you may distribute
+  translations of the Document under the terms of section 4. Replacing
+  Invariant Sections with translations requires special permission from their
+  copyright holders, but you may include translations of some or all Invariant
+  Sections in addition to the original versions of these Invariant Sections.
+  You may include a translation of this License, and all the license notices in
+  the Document, and any Warranty Disclaimers, provided that you also include
+  the original English version of this License and the original versions of
+  those notices and disclaimers. In case of a disagreement between the
+  translation and the original version of this License or a notice or
+  disclaimer, the original version will prevail.
+ </p><p>
+  If a section in the Document is Entitled "Acknowledgements", "Dedications",
+  or "History", the requirement (section 4) to Preserve its Title (section 1)
+  will typically require changing the actual title.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.46"><span class="name">
+    9. TERMINATION
+  </span><a title="Permalink" class="permalink" href="#id-1.12.46">#</a></h5></div><p>
+  You may not copy, modify, sublicense, or distribute the Document except as
+  expressly provided for under this License. Any other attempt to copy, modify,
+  sublicense or distribute the Document is void, and will automatically
+  terminate your rights under this License. However, parties who have received
+  copies, or rights, from you under this License will not have their licenses
+  terminated so long as such parties remain in full compliance.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.48"><span class="name">
+    10. FUTURE REVISIONS OF THIS LICENSE
+  </span><a title="Permalink" class="permalink" href="#id-1.12.48">#</a></h5></div><p>
+  The Free Software Foundation may publish new, revised versions of the GNU
+  Free Documentation License from time to time. Such new versions will be
+  similar in spirit to the present version, but may differ in detail to address
+  new problems or concerns. See
+  <a class="link" href="https://www.gnu.org/copyleft/" target="_blank">https://www.gnu.org/copyleft/</a>.
+ </p><p>
+  Each version of the License is given a distinguishing version number. If the
+  Document specifies that a particular numbered version of this License "or any
+  later version" applies to it, you have the option of following the terms and
+  conditions either of that specified version or of any later version that has
+  been published (not as a draft) by the Free Software Foundation. If the
+  Document does not specify a version number of this License, you may choose
+  any version ever published (not as a draft) by the Free Software Foundation.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.51"><span class="name">
+    ADDENDUM: How to use this License for your documents
+  </span><a title="Permalink" class="permalink" href="#id-1.12.51">#</a></h5></div><div class="verbatim-wrap"><pre class="screen">Copyright (c) YEAR YOUR NAME.
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+A copy of the license is included in the section entitled “GNU
+Free Documentation License”.</pre></div><p>
+  If you have Invariant Sections, Front-Cover Texts and Back-Cover Texts,
+  replace the “with...Texts.” line with this:
+ </p><div class="verbatim-wrap"><pre class="screen">with the Invariant Sections being LIST THEIR TITLES, with the
+Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.</pre></div><p>
+  If you have Invariant Sections without Cover Texts, or some other combination
+  of the three, merge those two alternatives to suit the situation.
+ </p><p>
+  If your document contains nontrivial examples of program code, we recommend
+  releasing these examples in parallel under your choice of free software
+  license, such as the GNU General Public License, to permit their use in free
+  software.
+</p></section></div></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="#tls-certificates-introduction"><span class="title-number">1 </span><span class="title-name">Introduction</span></a></span></li><li><span class="section"><a href="#id-1.3"><span class="title-number">2 </span><span class="title-name">Issuing and installing TLS certificates</span></a></span></li><li><span class="section"><a href="#tls-creating-private-ca"><span class="title-number">3 </span><span class="title-name">Creating a private CA</span></a></span></li><li><span class="section"><a href="#tls-creating-private-key"><span class="title-number">4 </span><span class="title-name">Creating a server private key</span></a></span></li><li><span class="section"><a href="#tls-creating-certificate-signing-request"><span class="title-number">5 </span><span class="title-name">Creating a CSR</span></a></span></li><li><span class="section"><a href="#tls-sign-csr-private-ca"><span class="title-number">6 </span><span class="title-name">Signing a CSR</span></a></span></li><li><span class="section"><a href="#tls-certificates-store"><span class="title-number">7 </span><span class="title-name">System-wide CA certificate store</span></a></span></li><li><span class="section"><a href="#tls-troubleshooting"><span class="title-number">8 </span><span class="title-name">Troubleshooting</span></a></span></li><li><span class="section"><a href="#legal-disclaimer"><span class="title-number">9 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="glossary"><a href="#id-1.11"><span class="title-name">Glossary</span></a></span></li><li><span class="appendix"><a href="#doc-gfdl-license"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-fb" href="#" title="Facebook"> </a></li><li><a id="_share-in" href="#" title="LinkedIn"> </a></li><li><a id="_share-tw" href="#" title="Twitter/X"> </a></li><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE
+                 2024</span></div></div></footer></body></html>

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><title>Virtualization</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style.css"/>
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
+<meta name="title" content="Virtualization"/>
+<meta name="description" content="Introduction to virtualization"/>
+<meta name="book-title" content="Virtualization"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="tbazant@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.0"/>
+<meta name="publisher" content="SUSE"/><meta name="category" content="."/><meta name="DCTERMS.modified" content="2037-11-16"/><meta name="DC.creator" content="tbazant@suse.com"/><meta property="og:title" content="Introduction to virtualization"/>
+<meta property="og:description" content="Introduction to virtualization"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Introduction to virtualization"/>
+<meta name="twitter:description" content="Introduction to virtualization"/>
+<script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    
+     "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    
+    "inLanguage": "en",
+    
+
+    "headline": "Introduction to virtualization",
+  
+    "description": "Introduction to virtualization",
+      
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    ],
+      
+    "dateModified": "2054-11-14T00:00+02:00",
+      
+    "datePublished": "2054-11-14T00:00+02:00",
+      
+    "articleSection": [ 
+        "Virtualization"
+        
+    ],
+    
+
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Virtualization"
+      }
+    ],
+  
+    "mentions": [
+      
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server",
+        "softwareVersion": "16.0",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER"
+        
+      }
+      
+    ],
+    
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><script type="text/javascript">
+
+if ( window.location.protocol.toLowerCase() != 'file:' ) {
+  document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>');
+};
+
+</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"/></noscript><script src="static/js/script-purejs.js" type="text/javascript"> </script><script src="static/js/highlight.min.js" type="text/javascript"> </script><script>
+
+$(document).ready(function() {
+  $('.verbatim-wrap.highlight').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+hljs.configure({
+  useBR: false
+});
+
+</script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Virtualization</a></div></div><main id="_content"><nav id="_side-toc-overall" class="side-toc"><div class="side-title">Virtualization</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="virtualization" data-id-title="Virtualization"><div class="titlepage"><div><div><h1 class="title">Virtualization</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>27 Sep 2024</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.14.1.1"><span class="term">WHAT?</span></dt><dd><p>
+                By means of virtualization, you can run multiple virtual machines on a single
+                bare-metal host.
+              </p></dd><dt id="id-1.1.14.1.2"><span class="term">WHY?</span></dt><dd><p>
+                Sharing host hardware between multiple virtualized guests significantly saves
+                resources.
+              </p></dd><dt id="id-1.1.14.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                It takes less than 15 minutes of your time to understand the concept of
+                virtualization.
+              </p></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History" hreflang="en" href="rh-virtualization.html" target="_blank">Revision History: Virtualization</a></div></div></div></div><section xml:lang="en" class="sect1" id="virtualization-introduction" data-id-title="Introduction to virtualization"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Introduction to virtualization</span></span> <a title="Permalink" class="permalink" href="index.html#virtualization-introduction">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Virtualization is a technology that provides a way for a machine (VM Host Server) to run another
+        operating system (VM Guest) on top of the host operating system.
+      </p></div></div></div></div><section class="sect2" id="how-it-works-virtualization" data-id-title="How does virtualization work?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">How does virtualization work?</span></span> <a title="Permalink" class="permalink" href="index.html#how-it-works-virtualization">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The primary component of VM Host Server that enables virtualization is a
+      <span class="emphasis"><em>hypervisor</em></span>. A hypervisor is a layer of software that runs directly on
+      VM Host Server's hardware. It controls platform resources, sharing them among multiple VM Guests
+      and their operating systems by presenting virtualized hardware interfaces to each VM Guest.
+      <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> offers two types of hypervisors: KVM and Xen.
+    </p><div class="figure" id="virtualization-schema"><div class="figure-contents"><div class="mediaobject"><a href="images/virtualization-schema.png"><img src="images/virtualization-schema.png" alt="A general schema of virtualization" title="A general schema of virtualization"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 1: </span><span class="title-name">A general schema of virtualization </span></span><a title="Permalink" class="permalink" href="index.html#virtualization-schema">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></section><section class="sect2" id="benefits-virtualization" data-id-title="Benefits of virtualization"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Benefits of virtualization</span></span> <a title="Permalink" class="permalink" href="index.html#benefits-virtualization">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Virtualization brings a lot of advantages while providing the same service as a hardware
+      server.
+    </p><p>
+      Virtualization reduces the cost of your infrastructure. Servers are mainly used to provide a
+      service to a customer. A virtualized operating system can provide the same service but with
+      the following advantages:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          Less hardware: you can run several operating systems on one host, therefore all hardware
+          maintenance is reduced.
+        </p></li><li class="listitem"><p>
+          Less power/cooling: less hardware means you do not need to invest more in electric power,
+          backup power, and cooling if you need more service.
+        </p></li><li class="listitem"><p>
+          Save space: your data center space is saved because you do not need more hardware servers
+          (fewer servers than services running).
+        </p></li><li class="listitem"><p>
+          Less management: using a VM Guest simplifies the administration of your infrastructure.
+        </p></li><li class="listitem"><p>
+          Agility and productivity: virtualization provides <span class="emphasis"><em>migration</em></span>
+          capabilities, <span class="emphasis"><em>live migration</em></span> and <span class="emphasis"><em>snapshots</em></span>.
+          These features reduce downtime and bring an easy way to move your service from one place
+          to another without any service interruption.
+        </p></li></ul></div></section></section><section xml:lang="en" class="sect1" id="virtualization-modes" data-id-title="Virtualization modes"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Virtualization modes</span></span> <a title="Permalink" class="permalink" href="index.html#virtualization-modes">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Virtualization is a technology that provides a way for a machine (VM Host Server) to run another
+        operating system (VM Guest) on top of the host operating system. There are two basic modes
+        of hosting VM Guests on virtual machines—<span class="emphasis"><em>full virtualization</em></span>
+        mode and <span class="emphasis"><em>paravirtual</em></span> mode.
+      </p></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="virtualization-mode-full"><span class="term">Full virtualization (FV)</span></dt><dd><p>
+          FV lets virtual machines run unmodified operating systems. It uses either Binary
+          Translation or hardware-assisted virtualization technology, such as AMD* Virtualization
+          or Intel* Virtualization Technology, to improve performance on processors that support
+          it. In FV mode, VM Guest is also called the <span class="emphasis"><em>Hardware Virtual
+          Machine</em></span> (HVM).
+        </p><div id="id-1.3.2.1.2.2" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
+            Certain guest operating systems hosted in full virtualization mode can be configured to
+            use drivers from the SUSE Virtual Machine Drivers Pack (VMDP) instead of drivers
+            included in the operating system. Running virtual machine drivers improves performance
+            on guest operating systems, such as Windows Server 2003.
+          </p></div></dd><dt id="id-1.3.2.2"><span class="term">Paravirtualization (PV)</span></dt><dd><p>
+          PV normally requires that guest operating systems are modified for the virtualization
+          environment. VM Guests running in paravirtual mode have better performance than those
+          running under full virtualization. Operating systems currently modified to run in
+          paravirtual mode are called <span class="emphasis"><em>paravirtualized</em></span> operating systems and
+          include <span class="phrase"><span class="phrase">SLES</span></span>.
+        </p></dd><dt id="id-1.3.2.3"><span class="term">PV on HVM (PVHVM)</span></dt><dd><p>
+          PVHVM enhances HVM (see <a class="xref" href="index.html#virtualization-mode-full">Full virtualization (FV)</a>) with paravirtualized
+          drivers, and handling of paravirtualized interrupts and timers.
+        </p></dd></dl></div></section><section xml:lang="en" class="sect1" id="virtualization-scenarios" data-id-title="Virtualization scenarios"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Virtualization scenarios</span></span> <a title="Permalink" class="permalink" href="index.html#virtualization-scenarios">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Virtualization is a technology that provides a way for a machine (VM Host Server) to run another
+        operating system (VM Guest) on top of the host operating system. Virtualization can
+        provide the following capabilities:
+      </p></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.4.2.1"><span class="term">Server consolidation</span></dt><dd><p>
+          Many servers can be replaced by one physical server, so that hardware is consolidated,
+          and guest operating systems are converted to virtual machines. This also supports running
+          legacy software on new hardware.
+        </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+              Better use of not fully utilized resources.
+            </p></li><li class="listitem"><p>
+              Fewer server locations needed.
+            </p></li><li class="listitem"><p>
+              More efficient use of computer resources with multiple workloads on the same server.
+            </p></li><li class="listitem"><p>
+              Simplifies data center infrastructure.
+            </p></li><li class="listitem"><p>
+              Simplifies moving workloads to other hosts, avoiding service downtime.
+            </p></li><li class="listitem"><p>
+              Faster and more agile virtual machine provisioning.
+            </p></li><li class="listitem"><p>
+              Multiple guest operating systems can run on a single host.
+            </p></li></ul></div></dd><dt id="id-1.4.2.2"><span class="term">Isolation</span></dt><dd><p>
+          Guest operating systems are fully isolated from the host running them. Therefore, if
+          there are problems inside virtual machines, the host is not harmed. Also, problems inside
+          one VM do not affect other VMs. No data is shared between VMs.
+        </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+              Secure Boot can be used for VMs.
+            </p></li><li class="listitem"><p>
+              KSM should be avoided.
+            </p></li><li class="listitem"><p>
+              Individual CPU cores can be assigned to VMs.
+            </p></li><li class="listitem"><p>
+              Hyper-threading (HT) should be disabled to avoid potential security issues.
+            </p></li><li class="listitem"><p>
+              VMs should not share networks, storage, or network hardware.
+            </p></li><li class="listitem"><p>
+              Using advanced hypervisor features, such as PCI pass-through or NUMA, adversely
+              affects VM migration capabilities.
+            </p></li><li class="listitem"><p>
+              Using paravirtualization and <code class="literal">virtio</code> drivers generally improves VM
+              performance and efficiency.
+            </p></li></ul></div><p>
+          AMD provides specific features regarding the security of virtualization.
+
+        </p></dd><dt id="id-1.4.2.3"><span class="term">Disaster recovery</span></dt><dd><p>
+          The hypervisor can make snapshots of VMs, enabling restoration to a known good state, or
+          to any desired earlier state. Since virtualized operating systems are less dependent on
+          hardware configuration than those running directly on bare metal, these snapshots can be
+          restored onto different server hardware so long as it is running the same hypervisor.
+        </p></dd><dt id="id-1.4.2.4"><span class="term">Dynamic load balancing</span></dt><dd><p>
+          Live migration can be used to load balance your services across your infrastructure by
+          moving VMs from busy hosts to those with spare capacity, on demand.
+        </p></dd></dl></div></section><section xml:lang="en" class="sect1" id="glue-alp-containers-podman-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="index.html#glue-alp-containers-podman-more-info">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    For further steps in virtualization, refer to the following sources:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/concept-manage-virtual-machines-libvirt/concept-manage-virtual-machines-libvirt.html" target="_blank">Managing
+        virtual machines with <code class="systemitem">libvirt</code></a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/task-configure-virtual-machine-manager/task-configure-virtual-machine-manager.html" target="_blank">Configuring
+        Virtual Machines with Virtual Machine Manager</a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/vm-assign-pci-device/vm-assign-pci-device.html" target="_blank">Assigning
+        Host Devices to Virtual Machines</a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/virtual-disk-cache-mode-configure/virtual-disk-cache-mode-configure.html" target="_blank">Configuring
+        a Virtual Disk Cache Mode</a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/virt-scenario-creating-customized-vm-guests/index.html" target="_blank">Creating
+        Customized Virtual Machines Using virt-scenario</a>
+      </p></li></ul></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p> Copyright© 2006–2024
+ SUSE LLC and contributors.
+  All rights reserved. </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy.  Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#virtualization-introduction"><span class="title-number">1 </span><span class="title-name">Introduction to virtualization</span></a></span></li><li><span class="section"><a href="index.html#virtualization-modes"><span class="title-number">2 </span><span class="title-name">Virtualization modes</span></a></span></li><li><span class="section"><a href="index.html#virtualization-scenarios"><span class="title-number">3 </span><span class="title-name">Virtualization scenarios</span></a></span></li><li><span class="section"><a href="index.html#glue-alp-containers-podman-more-info"><span class="title-number">4 </span><span class="title-name">For more information</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">5 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-fb" href="#" title="Facebook"> </a></li><li><a id="_share-in" href="#" title="LinkedIn"> </a></li><li><a id="_share-tw" href="#" title="Twitter/X"> </a></li><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE
+                 2024</span></div></div></footer></body></html>

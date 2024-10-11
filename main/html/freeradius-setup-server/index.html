@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><title>Setting Up a FreeRADIUS Server</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style.css"/>
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
+<meta name="title" content="Setting Up a FreeRADIUS Server"/>
+<meta name="description" content="An overview of setting up FreeRADIUS server."/>
+<meta name="book-title" content="Setting Up a FreeRADIUS Server"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="shalaka.harne@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.0"/>
+<meta name="publisher" content="SUSE"/><meta name="category" content="."/><meta name="DCTERMS.modified" content="2023-07-07"/><meta name="DC.creator" content="shalaka.harne@suse.com"/><meta property="og:title" content="Set up a FreeRADIUS Server"/>
+<meta property="og:description" content="Set up FreeRADIUS server."/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Set up a FreeRADIUS Server"/>
+<meta name="twitter:description" content="Set up FreeRADIUS server."/>
+<script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    
+     "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    
+    "inLanguage": "en",
+    
+
+    "headline": "Set up a FreeRADIUS Server",
+  
+    "description": "An overview of setting up FreeRADIUS server.",
+      
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    ],
+      
+    "dateModified": "2023-09-11T00:00+02:00",
+      
+    "datePublished": "2023-09-11T00:00+02:00",
+      
+    "articleSection": [ 
+        "Systems Management"
+        
+    ],
+    
+
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Authentication"
+      }
+    ],
+  
+    "mentions": [
+      
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server",
+        "softwareVersion": "16.0",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER"
+        
+      }
+      
+    ],
+    
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><script type="text/javascript">
+
+if ( window.location.protocol.toLowerCase() != 'file:' ) {
+  document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>');
+};
+
+</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"/></noscript><script src="static/js/script-purejs.js" type="text/javascript"> </script><script src="static/js/highlight.min.js" type="text/javascript"> </script><script>
+
+$(document).ready(function() {
+  $('.verbatim-wrap.highlight').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+hljs.configure({
+  useBR: false
+});
+
+</script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Setting Up a FreeRADIUS Server</a></div></div><main id="_content"><nav id="_side-toc-overall" class="side-toc"><div class="side-title">Setting Up a FreeRADIUS Server</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="freeradius-server" data-id-title="Setting Up a FreeRADIUS Server"><div class="titlepage"><div><div><h1 class="title">Setting Up a FreeRADIUS Server</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>27 Sep 2024</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.14.1.1"><span class="term">WHAT?</span></dt><dd><p>
+              FreeRADIUS is the open source RADIUS server implementation for AAA (Authentication, Authorization, and Accounting).
+            </p></dd><dt id="id-1.1.14.1.2"><span class="term">WHY?</span></dt><dd><p>
+              This article provides a complete overview of the FreeRADIUS server setup and basic FreeRADIUS configuration for testing.
+            </p></dd><dt id="id-1.1.14.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                 It takes 15 minutes to install and configure FreeRADIUS. You need up to an hour to fully understand the FreeRADIUS architecture and functionality.
+              </p></dd><dt id="id-1.1.14.1.4"><span class="term">GOAL</span></dt><dd><p>
+                Basic understanding of setting up and testing a FreeRADIUS server.
+              </p></dd><dt id="id-1.1.14.1.5"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>A virtual machine or instance to install FreeRADIUS.</p></li><li class="listitem"><p>Another virtual machine on your network to test client functions.</p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History" hreflang="en" href="rh-freeradius-server.html" target="_blank">Revision History: Setting Up a FreeRADIUS Server</a></div></div></div></div><section xml:lang="en" class="sect1" id="freeradius-concept-server" data-id-title="The FreeRADIUS concept"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">The FreeRADIUS concept</span></span> <a title="Permalink" class="permalink" href="index.html#freeradius-concept-server">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        The RADIUS (Remote Authentication Dial-In User Service) protocol is a standard service for managing network access. FreeRADIUS is the open source RADIUS server implementation and the most widely used RADIUS server.
+      </p></div></div></div></div><p>FreeRADIUS verifies users and clients and manages network access and operations. FreeRADIUS ensures secure communication between network devices and user authentication servers.</p><p>FreeRADIUS performs authentication, authorization and accounting (AAA) for very large businesses such as Internet service providers and cellular network providers, and is also popular for small networks. It authenticates users and devices, authorizes those users and devices for certain network services, and tracks the use of services for billing and auditing. You do not have to use all three of the AAA protocols, use only the ones you need.
+</p><p>
+  RADIUS operates over a distributed architecture and runs separately from the Network Access Server (NAS). User access data is stored on a central RADIUS server that is available to multiple NAS devices. The NAS provides physical access to the network, such as a managed Ethernet switch or a wireless access point. FreeRADIUS verifies and manages network access and operations. FreeRADIUS ensures secure communication between network devices and user authentication servers. To set up a FreeRADIUS server, you must install, configure and define user accounts, and define and determine authentication and authorization for FreeRADIUS. After installing FreeRADIUS, you must test the function by integrating FreeRADIUS with the devices to be managed.
+</p><div class="figure" id="id-1.2.5"><div class="figure-contents"><div class="mediaobject"><a href="images/freeradius-setup-server-architecture.png"><img src="images/freeradius-setup-server-architecture.png" width="75%" alt="FreeRADIUS Architecture" title="FreeRADIUS Architecture"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 1: </span><span class="title-name">FreeRADIUS Architecture </span></span><a title="Permalink" class="permalink" href="index.html#id-1.2.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><p>This article includes an example that shows installing FreeRADIUS, creating a set of test certificates, starting the server, adding client server and user, testing authentication, and testing multiple clients.</p></section><section xml:lang="en" class="sect1" id="freeradius-installing-server" data-id-title="Installing the FreeRADIUS server"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Installing the FreeRADIUS server</span></span> <a title="Permalink" class="permalink" href="index.html#freeradius-installing-server">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        The following example shows how to install a FreeRADIUS server. Ensure that you install the <code class="literal">freeradius-server</code> and <code class="literal">freeradius-server-utils</code> packages on a separate machine from your Network Access Server (NAS).
+      </p></div></div></div></div><p>Install <code class="literal">freeradius-server</code> and <code class="literal">freeradius-server-utils</code>.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  sudo zypper install freeradius-server and freeradius-server-utils</pre></div></section><section xml:lang="en" class="sect1" id="freeradius-create-test-certificates" data-id-title="Creating test certificates on the server"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Creating test certificates on the server</span></span> <a title="Permalink" class="permalink" href="index.html#freeradius-create-test-certificates">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>Certificates enable secure communication between the FreeRADIUS clients and the FreeRADIUS server.</p><p>
+        To allow access to the server, certificate authentication is required. To test the authentication using FreeRADIUS, you can create test certificates. The following example shows how to create test certificates to test FreeRADIUS. Ensure that you remove the test certificates and use the correct certificates after testing FreeRADIUS.</p><div id="id-1.4.1.3.3" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>The test certificates created are not suitable for production use.</p></div></div></div></div></div><p>Create a set of test certificates in <code class="filename">/etc/raddb/certs</code>.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code> cd /etc/raddb/certs
+    ./bootstrap</pre></div><p>When you are satisfied with your testing and ready to create a production configuration, remove all the test certificates in <code class="filename">/etc/raddb/certs</code> and replace them with your own certificates. </p></section><section xml:lang="en" class="sect1" id="freeradius-start-server" data-id-title="Starting FreeRADIUS on the server"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Starting FreeRADIUS on the server</span></span> <a title="Permalink" class="permalink" href="index.html#freeradius-start-server">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        You must start FreeRADIUS on the server after installation.
+      </p></div></div></div></div><div class="procedure" id="freeradius-setup-server-start-freeradius-server" data-id-title="Starting FreeRADIUS"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 1: </span><span class="title-name">Starting FreeRADIUS </span></span><a title="Permalink" class="permalink" href="index.html#freeradius-setup-server-start-freeradius-server">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><p>After the bootstrap is complete, start the server in debugging mode as a <code class="literal">root</code> user.</p><ul class="procedure"><li class="step"><p>To do this, run the following command:</p><div id="id-1.5.2.3.2" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>Start the FreeRADIUS server in debugging mode only for testing. Other than for testing, use <code class="command">sudo systemctl start freeradius</code></p></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  radiusd -X
+      [...]
+      Listening on auth address * port 1812 bound to server default
+      Listening on acct address * port 1813 bound to server default
+      Listening on auth address :: port 1812 bound to server default
+      Listening on acct address :: port 1813 bound to server default
+      Listening on auth address 127.0.0.1 port 18120 bound to server inner-tunnel
+      Listening on proxy address * port 54435
+      Listening on proxy address :: port 58415
+      Ready to process requests</pre></div><p>The <code class="literal">Listening</code> and <code class="literal">Ready to process requests</code> appear when the server starts correctly.</p></li></ul></div></div></section><section xml:lang="en" class="sect1" id="freeradius-add-client-user" data-id-title="Adding a test client with a user on the server"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Adding a test client with a user on the server</span></span> <a title="Permalink" class="permalink" href="index.html#freeradius-add-client-user">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        You can add a client and a user to test authentication for the FreeRADIUS server. The client is a client of the RADIUS server, such as a wireless access point or switch. The users are added in the user configuration file and the clients are added in the client configuration file. These configuration files are stored on the server where FreeRADIUS is installed.
+      </p><p>The machines that can use the devices of the FreeRADIUS server are defined in the <code class="filename">client.conf</code> file.</p></div></div></div></div><div class="procedure" id="add-client-user" data-id-title="Configuring users and clients"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 2: </span><span class="title-name">Configuring users and clients </span></span><a title="Permalink" class="permalink" href="index.html#add-client-user">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><p>Add the machines that can use the devices of the FreeRADIUS server and the users by using the following example:</p><ol class="procedure" type="1"><li class="step"><p>Configure users in the authorization file, <code class="filename">/etc/raddb/mods-config/files/authorize</code>.</p><p>To do this, open <code class="filename">/etc/raddb/mods-config/files/authorize</code> and uncomment the following lines:</p><div class="verbatim-wrap"><pre class="screen">bob   Cleartext-Password := "hello"
+    Reply-Message := "Hello, %{User-Name}"
+  
+  "john" Cleartext-Password := "newpassword"
+    Service-Type = New-User,
+    Framed-IP-Address = 190.155.2.50</pre></div></li><li class="step"><p>Add a test client and user to test the authentication in <code class="filename">/etc/raddb/client.conf</code>.</p><div class="verbatim-wrap"><pre class="screen">vi /etc/raddb/client.conf</pre></div><p>A test client, localhost, is provided in <code class="filename">/etc/raddb/client.conf</code>, with the secret <code class="literal">testing123</code>.</p><div class="verbatim-wrap"><pre class="screen">client private-networks {
+      ipaddr          = 190.1.0/22
+      secret          = testingabc-1
+      }
+      client common-network {
+        ipaddr          = 191.1.0/27
+        secret          = testingxyz
+        }</pre></div></li><li class="step"><p>Add clients of the RADIUS server, such as a wireless access point, network switch, or another form of NAS.</p><p>Create a client configuration on your server by using the following example.</p><p>Uncomment the following entry in <code class="filename">/etc/raddb/client.conf</code> and use the IP address of your test client machine or access gateway instead of the given IP address.</p><div class="verbatim-wrap"><pre class="screen">client private-network-1 {
+ipaddr          = 192.0.2.0/24
+secret          = testing123-1
+}</pre></div><p>You must also configure the client to talk to the RADIUS server by using the IP address of the machine running the RADIUS server. The client must use the same secret as configured above in the client section.</p></li><li class="step"><p>On the client machine, install <code class="command">freeradius-server-utils</code>. </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> sudo zypper install freeradius-server and freeradius-server-utils</pre></div></li></ol></div></div><p>You can now add more users and configure databases. </p><p>Run one more login test from a different computer on your network. </p></section><section xml:lang="en" class="sect1" id="freeradius-start-freeradius" data-id-title="Starting the FreeRADIUS daemon on the server"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Starting the FreeRADIUS daemon on the server</span></span> <a title="Permalink" class="permalink" href="index.html#freeradius-start-freeradius">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        After adding client and user, you must start the FreeRADIUS daemon.
+      </p></div></div></div></div><div class="procedure" id="start-freeradius" data-id-title="Starting the FreeRADIUS daemon"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 3: </span><span class="title-name">Starting the FreeRADIUS daemon </span></span><a title="Permalink" class="permalink" href="index.html#start-freeradius">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><p>Start the FreeRADIUS daemon to provide authentication, authorization, and accounting (AAA) services in a network environment for network access control and network access management.</p><ol class="procedure" type="1"><li class="step"><p>Start the FreeRADIUS daemon.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl restart freeradius</pre></div></li><li class="step"><p>Enable auto-start for FreeRADIUS on system boot up.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl enable freeradius</pre></div></li></ol></div></div></section><section xml:lang="en" class="sect1" id="freeradius-test-authentication" data-id-title="Testing authentication on the client"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Testing authentication on the client</span></span> <a title="Permalink" class="permalink" href="index.html#freeradius-test-authentication">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        You can test the authentication for the newly added user in FreeRADIUS.
+      </p></div></div></div></div><div class="procedure" id="test-authentication" data-id-title="Testing authentication"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 4: </span><span class="title-name">Testing authentication </span></span><a title="Permalink" class="permalink" href="index.html#test-authentication">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><p>Test the authentication for the newly added user using the following example:</p><ul class="procedure"><li class="step"><p>Open a new terminal, and as an unprivileged user, use the <code class="command">radtest</code> command to log in as the newly added user <code class="literal">bob</code>.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code> radtest bob hello 127.0.0.1 0 testing123
+        Sent Access-Request Id 241 from 0.0.0.0:35234 to 127.0.0.1:1812 length 73
+                User-Name = "bob"
+                User-Password = "hello"
+                NAS-IP-Address = 127.0.0.1
+                NAS-Port = 0
+                Message-Authenticator = 0x00
+                Cleartext-Password = "hello"
+        Received Access-Accept Id 241 from 127.0.0.1:1812 to 0.0.0.0:0 length 20</pre></div><p>After the authentication is successful, a login message appears in the terminal in which you started FreeRADIUS, as shown below.</p><div class="verbatim-wrap"><pre class="screen">(3) pap: Login attempt with password
+          (3) pap: Comparing with "known good" Cleartext-Password
+          (3) pap: User authenticated successfully
+          (3)     [pap] = ok
+          [...]
+          (3) Sent Access-Accept Id 241 from 127.0.0.1:1812 to 127.0.0.1:35234 length 0
+          (3) Finished request
+          Waking up in 4.9 seconds.
+          (3) Cleaning up request packet ID 241 with timestamp +889</pre></div><p>The access request is successful and the authentication methods PAP, CHAP, MS-CHAPv1, MS-CHAPv2, PEAP, EAP-TTLS, EAP-GTC, EAP-MD5  work for the user <code class="literal">bob</code>.</p></li></ul></div></div></section><section xml:lang="en" class="sect1" id="freeradius-troubleshoot" data-id-title="Troubleshooting FreeRADIUS"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name">Troubleshooting FreeRADIUS</span></span> <a title="Permalink" class="permalink" href="index.html#freeradius-troubleshoot">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        There are several test users and test clients provided. Ensure that your server has the correct firewall settings. If your test logins fail, review all the output to understand the issues.
+      </p></div></div></div></div><p>Possible troubleshooting methods are given below:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Check FreeRADIUS logs in <code class="filename">/var/log/freeradius/radius.log</code> or <code class="filename">/var/log/radius/radius.log</code>.</p></li><li class="listitem"><p>
+          Check if FreeRADIUS is running.
+        </p><div class="verbatim-wrap"><pre class="screen">systemctl status freeradius</pre></div><p>If FreeRADIUS is not running, start FreeRADIUS.</p><div class="verbatim-wrap"><pre class="screen">systemctl start freeradius</pre></div><p>If a FreeRADIUS server is already running, an error <code class="literal">Address already in use </code> appears. Stop that server before running the server in debugging mode.</p><p>If the server does not start, verify the output. The output includes the details about the errors. You can direct the output to a text file with <code class="command">tee:</code>
+        </p><div class="verbatim-wrap"><pre class="screen">radiusd -X | tee radiusd.text</pre></div></li><li class="listitem"><p>
+          Check if the ports for FreeRADIUS in the firewall are open for communication.
+        </p></li><li class="listitem"><p>
+          Check user authentication.
+        </p><div class="verbatim-wrap"><pre class="screen">radtest username password localhost 0 testing123</pre></div></li><li class="listitem"><p>
+          Verify client configuration. Ensure that the secret and IP in the client and the FreeRADIUS server match.
+        </p></li><li class="listitem"><p>
+          Update FreeRADIUS software. Ensure that you use the latest stable version of FreeRADIUS.
+        </p></li></ul></div><p>When you are satisfied with your testing and ready to create a production configuration, remove all the test certificates in <code class="filename">/etc/raddb/certs</code> and replace them with your own certificates, comment out all the test users and clients, and stop radiusd by pressing <span class="keycap">Ctrl</span><span class="key-connector">–</span><span class="keycap">C</span>. Manage the radiusd.service with systemctl, just like any other service.</p></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">9 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p> Copyright© 2006–2024
+ SUSE LLC and contributors.
+  All rights reserved. </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy.  Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#freeradius-concept-server"><span class="title-number">1 </span><span class="title-name">The FreeRADIUS concept</span></a></span></li><li><span class="section"><a href="index.html#freeradius-installing-server"><span class="title-number">2 </span><span class="title-name">Installing the FreeRADIUS server</span></a></span></li><li><span class="section"><a href="index.html#freeradius-create-test-certificates"><span class="title-number">3 </span><span class="title-name">Creating test certificates on the server</span></a></span></li><li><span class="section"><a href="index.html#freeradius-start-server"><span class="title-number">4 </span><span class="title-name">Starting FreeRADIUS on the server</span></a></span></li><li><span class="section"><a href="index.html#freeradius-add-client-user"><span class="title-number">5 </span><span class="title-name">Adding a test client with a user on the server</span></a></span></li><li><span class="section"><a href="index.html#freeradius-start-freeradius"><span class="title-number">6 </span><span class="title-name">Starting the FreeRADIUS daemon on the server</span></a></span></li><li><span class="section"><a href="index.html#freeradius-test-authentication"><span class="title-number">7 </span><span class="title-name">Testing authentication on the client</span></a></span></li><li><span class="section"><a href="index.html#freeradius-troubleshoot"><span class="title-number">8 </span><span class="title-name">Troubleshooting FreeRADIUS</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">9 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-fb" href="#" title="Facebook"> </a></li><li><a id="_share-in" href="#" title="LinkedIn"> </a></li><li><a id="_share-tw" href="#" title="Twitter/X"> </a></li><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE
+                 2024</span></div></div></footer></body></html>

@@ -1,0 +1,956 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><title>Creating Customized Virtual Machines Using virt-scenario</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style.css"/>
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
+<meta name="title" content="Creating Customized Virtual Machines Using virt-scenar…"/>
+<meta name="description" content="Learn how to create customized virtual machines using virt-scenario. virt-scenario offers a way to quickly create a VM following a predefined scenari…"/>
+<meta name="book-title" content="Creating Customized Virtual Machines Using virt-scenario"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="tbazant@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.0"/>
+<meta name="publisher" content="SUSE"/><meta name="category" content="."/><meta name="DCTERMS.modified" content="2023-08-28"/><meta name="DC.creator" content="tbazant@suse.com"/><meta property="og:title" content="SUSE Linux Enterprise Server"/>
+<meta property="og:description" content="How to create customized virtual machines using virt-scenari"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SUSE Linux Enterprise Server"/>
+<meta name="twitter:description" content="How to create customized virtual machines using virt-scenari"/>
+<script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    
+     "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    
+    "inLanguage": "en",
+    
+
+    "headline": "SUSE Linux Enterprise Server",
+  
+    "description": "Learn how to create customized virtual machines using virt-scenario. virt-scenario offers a way to quickly create a VM following a predefined scenario.",
+      
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    ],
+      
+    "dateModified": "2023-08-28T00:00+02:00",
+      
+    "datePublished": "2023-08-28T00:00+02:00",
+      
+    "articleSection": [ 
+        "Systems Management"
+        
+    ],
+    
+
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Virtualization"
+      }
+    ],
+  
+    "mentions": [
+      
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server",
+        "softwareVersion": "16.0",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, AArch64"
+        
+      }
+      
+    ],
+    
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="legal-disclaimer.html" title="A. Legal Notice"/><script type="text/javascript">
+
+if ( window.location.protocol.toLowerCase() != 'file:' ) {
+  document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>');
+};
+
+</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"/></noscript><script src="static/js/script-purejs.js" type="text/javascript"> </script><script src="static/js/highlight.min.js" type="text/javascript"> </script><script>
+
+$(document).ready(function() {
+  $('.verbatim-wrap.highlight').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+hljs.configure({
+  useBR: false
+});
+
+</script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Creating Customized Virtual Machines Using virt-scenario</a></div></div><main id="_content"><nav id="_side-toc-overall" class="side-toc"><div class="side-title">Creating Customized Virtual Machines Using <code class="command">virt-scenario</code></div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="creating-customized-vm-guests" data-id-title="Creating Customized Virtual Machines Using virt-scenario"><div class="titlepage"><div><div><h1 class="title">Creating Customized Virtual Machines Using <code class="command">virt-scenario</code></h1></div><div class="date"><span class="imprint-label">Publication Date: </span>27 Sep 2024</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.15.1.1"><span class="term">WHAT?</span></dt><dd><p>
+                When deploying multiple virtual machines (VM), they often serve
+                a similar purpose. <code class="command">virt-scenario</code> offers a way to quickly
+                create a VM following a predefined scenario. As an option, you
+                can create a secure VM or override certain default
+                <code class="command">virt-scenario</code> settings.
+              </p></dd><dt id="id-1.1.15.1.2"><span class="term">WHY?</span></dt><dd><p>
+                This article introduces the <code class="command">virt-scenario</code> tool and describes
+                available predefined scenarios for creating VMs. It outlines
+                steps to create a VM suitable for a selected scenario, as well
+                as available commands for the <code class="command">virt-scenario</code> interactive
+                shell.
+              </p></dd><dt id="id-1.1.15.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                It takes up to 30 minutes to understand <code class="command">virt-scenario</code> and use
+                it to create a basic VM. To learn and try additional topics,
+                for example, how to override default values or use interactive
+                commands, you need additional time.
+              </p></dd><dt id="id-1.1.15.1.4"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                    <code class="command">virt-scenario</code> requires KVM and <code class="systemitem">libvirt</code> virtualization
+                    environment configured and related daemons running.
+                  </p></li><li class="listitem"><p>
+                    Secure virtual machines are supported only by an AMD
+                    processor that supports AMD SEV or SEV-ES technology. For
+                    more information about SUSE and AMD SEV, refer to
+                    <a class="link" href="https://documentation.suse.com/sles/html/SLES-amd-sev/article-amd-sev.html" target="_blank">https://documentation.suse.com/sles/html/SLES-amd-sev/article-amd-sev.html</a>.
+                  </p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History" hreflang="en" href="rh-creating-customized-vm-guests.html" target="_blank">Revision History: Creating Customized Virtual Machines Using virt-scenario</a></div></div></div></div><section xml:lang="en" class="sect1" id="concept-virt-scenario" data-id-title="Introduction to virt-scenario"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Introduction to <code class="command">virt-scenario</code></span></span> <a title="Permalink" class="permalink" href="index.html#concept-virt-scenario">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    <code class="command">virt-scenario</code> is a tool that helps you create virtual machines (VM)
+    suitable for a specific scenario. It provides predefined
+    <span class="emphasis"><em>profiles</em></span> that include optimal settings for each
+    scenario. You can override settings that are common to all profiles.
+  </p><div id="id-1.2.3" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important</div><p>
+      Although <code class="command">virt-scenario</code> generally provides the best possible
+      configuration for a specific scenario, this cannot be guaranteed because
+      each environment may have specific requirements.
+    </p></div><section class="sect2" id="how-it-works-virt-scenario" data-id-title="How does virt-scenario work?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">How does <code class="command">virt-scenario</code> work?</span></span> <a title="Permalink" class="permalink" href="index.html#how-it-works-virt-scenario">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      An interactive <code class="command">virt-scenario</code> script creates a <code class="systemitem">libvirt</code> XML configuration
+      file for a VM based on the following:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          selected basic profile
+        </p></li><li class="listitem"><p>
+          overridden values for common parameters
+        </p></li><li class="listitem"><p>
+          parameters that you specify interactively
+        </p></li></ul></div><p>
+      After the configuration is validated, <code class="command">virt-scenario</code> adjusts the
+      VM Host Server system and creates the image file for the VM Guest. You can
+      then operate the VM using standard <code class="systemitem">libvirt</code> commands.
+    </p></section><section class="sect2" id="benefits-virt-scenario" data-id-title="Benefits of using virt-scenario"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Benefits of using <code class="command">virt-scenario</code></span></span> <a title="Permalink" class="permalink" href="index.html#benefits-virt-scenario">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          Creating virtual machines is fast and simple. <code class="command">virt-scenario</code> leaves
+          all the virtualization complexity aside. You can focus on basic
+          features only.
+        </p></li><li class="listitem"><p>
+          Fine-tuned profiles already offer optimal settings for specified
+          scenarios. You do not have to search and copy them to each virtual
+          machine of the same type, just use the same profile.
+        </p></li><li class="listitem"><p>
+          The override mechanism lets you specify other values than the
+          profile's default for selected options. This way, you can customize
+          virtual machines to your needs.
+        </p></li></ul></div></section></section><section xml:lang="en" class="sect1" id="task-virt-scenario-create-vm" data-id-title="Creating VMs"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Creating VMs</span></span> <a title="Permalink" class="permalink" href="index.html#task-virt-scenario-create-vm">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    The <code class="command">virt-scenario</code> command presents an interactive shell where you
+    optionally specify configuration parameters and finally select the target
+    scenario. Its welcome screen shows categories with available commands.
+  </p><div class="figure" id="id-1.3.3"><div class="figure-contents"><div class="mediaobject"><a href="images/alp-virt-scenario-welcome.png"><img src="images/alp-virt-scenario-welcome.png" width="75%" alt="virt-scenario welcome screen" title="virt-scenario welcome screen"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 1: </span><span class="title-name"><code class="command">virt-scenario</code> welcome screen </span></span><a title="Permalink" class="permalink" href="index.html#id-1.3.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><p>
+      Each command has a built-in description of its usage. Enter <code class="command">help
+      <em class="replaceable">COMMAND_NAME</em></code> to view it on the
+      screen.
+    </p><div id="id-1.3.5" data-id-title="Unsafe force_sev option" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning: Unsafe <code class="option">force_sev</code> option</div><p>
+      The <code class="option">force_sev</code> option is only provided for
+      <span class="emphasis"><em>testing</em></span> purposes. It forces the extraction of the
+      Platform Diffie-Hellman key (PDH) on the current AMD SEV system. The PDH
+      file is used to negotiate a master secret between the SEV firmware and
+      the external entities. This file must be stored in a secure place.
+    </p></div><p>
+    After you finish the optional configuration steps, enter the name of one of the
+    scenarios—<code class="literal">computation</code>, <code class="literal">desktop</code>
+    or <code class="literal">securevm</code>. <code class="command">virt-scenario</code> then compiles all the
+    configuration, prepares the VM Host Server, and saves the <code class="systemitem">libvirt</code> XML file of the
+    new VM in <code class="filename">~/.local/virt-scenario/vmconfig</code>.
+  </p><section class="sect2" id="virt-scenario-override" data-id-title="Overriding default scenario settings"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">Overriding default scenario settings</span></span> <a title="Permalink" class="permalink" href="index.html#virt-scenario-override">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      On each run, <code class="command">virt-scenario</code> reads settings for a new VM from the
+      <code class="filename">/etc/virt-scenario/virtscenario.yaml</code> file. Change
+      settings in this file to affect <span class="emphasis"><em>all</em></span> VMs created by
+      <code class="command">virt-scenario</code>.
+    </p><p>
+      The following is an example of
+      <code class="filename">/etc/virt-scenario/virtscenario.yaml</code>:
+    </p><div class="verbatim-wrap"><pre class="screen">config:
+  - path: /etc/virt-scenario
+  - vm-config-store: ~/.local/virtscenario/
+emulator:
+  - emulator: /usr/bin/qemu-system-x86_64
+input:
+  - keyboard: virtio
+  - mouse: virtio
+architecture:
+  - arch: x86_64
+STORAGE_DATA:
+# some options are only available with qcow2 format and
+# will be ignored in case of any other image format
+  - disk_type: file
+  - disk_cache: none
+  - disk_target: vda
+  - disk_bus: virtio
+  - path: /var/livirt/images
+  - format: qcow2
+# host side: qemu-img creation options (-o), qemu-img --help
+  - unit: G
+  - capacity: 20
+  - cluster_size: 1024k
+  - lazy_refcounts: on
+preallocation: full
+  - preallocation: off
+  - compression_type: zlib
+  - encryption: off
+host_filesystem:
+  - fmode: 644
+  - dmode: 755
+  - source_dir: /tmp
+  - target_dir: /tmp/host</pre></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Back up <code class="filename">/etc/virt-scenario/virtscenario.yaml</code>
+          before modifying it as incorrect parameters may lead to an invalid VM configuration.
+        </p></li><li class="step"><p>
+          Copy <code class="filename">/etc/virt-scenario/virtscenario.yaml</code> to a different location and
+          modify the settings that you need to override.
+        </p><div id="id-1.3.7.5.2.2" data-id-title="Include all settings and keep section names" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Include all settings and keep section names</div><p>
+            In the overriding <code class="filename">virtscenario.yaml</code> file, you need to include
+            <span class="emphasis"><em>all</em></span> available settings from the original
+            <code class="filename">virtscenario.yaml</code> file, not only the modified settings. 
+            Also, never change section names in <code class="filename">virtscenario.yaml</code>
+            or its overriding copies. Doing so might cause <code class="command">virt-scenario</code> to misinterpret 
+            matching settings, leading to an invalid VM configuration.
+          </p></div></li><li class="step"><p>
+          On the next
+      <code class="command">virt-scenario</code> run, specify the path to the new configuration file with
+      the <code class="command">conf</code> command, for example:
+    </p><div class="verbatim-wrap"><pre class="screen">&gt; conf /home/tux/virt-scenarios/my-overriden-scenario.yaml</pre></div></li></ol></div></div></section><section class="sect2" id="virt-scenario-modes" data-id-title="Specifying the virt-scenario mode"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.2 </span><span class="title-name">Specifying the <code class="command">virt-scenario</code> mode</span></span> <a title="Permalink" class="permalink" href="index.html#virt-scenario-modes">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      By default, <code class="command">virt-scenario</code> creates the <code class="systemitem">libvirt</code> XML configuration of
+      the new guest and adjusts the VM Host Server. You can instruct <code class="command">virt-scenario</code>
+      to perform only part of the task. After entering the
+      <code class="command">mode</code> command, you can specify one of the following options:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.3.8.3.1"><span class="term">guest</span></dt><dd><p>
+            Creates only the <code class="systemitem">libvirt</code> XML configuration of the guest. Use <code class="option">guest</code> if
+            you want to create an XML representation of a VM but not modify the host machine
+            settings. Suitable for transferring the XML to another host.
+          </p></dd><dt id="id-1.3.8.3.2"><span class="term">host</span></dt><dd><p>
+            Prepares the VM Host Server system only. When deploying multiple VMs with similar
+            configuration, the host system may already have been adjusted appropriately, and it is
+            useless to adjust it again.
+          </p></dd><dt id="id-1.3.8.3.3"><span class="term">both</span></dt><dd><p>
+            Creates the guest configuration and prepares the host. This is the
+            default mode.
+          </p></dd></dl></div></section><section xml:lang="en" class="sect2" id="reference-virt-scenario-interactive-commands" data-id-title="Interactive commands"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.3 </span><span class="title-name">Interactive commands</span></span> <a title="Permalink" class="permalink" href="index.html#reference-virt-scenario-interactive-commands">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+              You can use the following commands when configuring a new VM
+              using the <code class="command">virt-scenario</code> interactive shell.
+            </p></div></div></div></div><p>
+      Each command has a built-in description of its usage. Enter <code class="command">help
+      <em class="replaceable">COMMAND_NAME</em></code> to view it on the
+      screen.
+    </p><div class="variablelist"><div class="title-container"><div class="variablelist-title-wrap"><div class="variablelist-title"><span class="title-number-name"><span class="title-name">Hypervisor configuration </span></span><a title="Permalink" class="permalink" href="index.html#id-1.3.9.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><dl class="variablelist"><dt id="id-1.3.9.3.2"><span class="term">hvconf</span></dt><dd><p>
+          Loads the hypervisor configuration.
+        </p></dd><dt id="id-1.3.9.3.3"><span class="term">hvselect</span></dt><dd><p>
+          Sets the hypervisor for which VMs are configured.
+        </p></dd><dt id="id-1.3.9.3.4"><span class="term">hvlist</span></dt><dd><p>
+          Lists the available hypervisors.
+        </p></dd><dt id="id-1.3.9.3.5"><span class="term">overwrite</span></dt><dd><p>
+          Forces overwriting the previous configuration.
+        </p></dd></dl></div><div class="variablelist"><div class="title-container"><div class="variablelist-title-wrap"><div class="variablelist-title"><span class="title-number-name"><span class="title-name">Guest configuration </span></span><a title="Permalink" class="permalink" href="index.html#id-1.3.9.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><dl class="variablelist"><dt id="id-1.3.9.4.2"><span class="term">name</span></dt><dd><p>
+          Defines the name of the VM.
+        </p></dd><dt id="id-1.3.9.4.3"><span class="term">vcpu</span></dt><dd><p>
+          Specifies the number of virtual CPUs.
+        </p></dd><dt id="id-1.3.9.4.4"><span class="term">memory</span></dt><dd><p>
+          Specifies the memory size (in GiB).
+        </p></dd><dt id="id-1.3.9.4.5"><span class="term">machine</span></dt><dd><p>
+          Selects the machine type.
+        </p></dd><dt id="id-1.3.9.4.6"><span class="term">bootdev</span></dt><dd><p>
+          Selects the boot device.
+        </p></dd><dt id="id-1.3.9.4.7"><span class="term">diskpath</span></dt><dd><p>
+          Specifies the directory where to store the VM disk image.
+        </p></dd><dt id="id-1.3.9.4.8"><span class="term">conf</span></dt><dd><p>
+          Specifies the path to the custom <code class="command">virtscenario.yaml</code>
+          file.
+        </p></dd><dt id="id-1.3.9.4.9"><span class="term">cdrom</span></dt><dd><p>
+          Specifies the path to the CD/DVD installation media.
+        </p></dd></dl></div><div class="variablelist"><div class="title-container"><div class="variablelist-title-wrap"><div class="variablelist-title"><span class="title-number-name"><span class="title-name">Generate VM configuration </span></span><a title="Permalink" class="permalink" href="index.html#id-1.3.9.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><dl class="variablelist"><dt id="id-1.3.9.5.2"><span class="term">computation</span></dt><dd><p>
+          Creates a <code class="systemitem">libvirt</code> XML configuration and VM Host Server adjustments for
+          the computation scenario.
+        </p></dd><dt id="id-1.3.9.5.3"><span class="term">desktop</span></dt><dd><p>
+          Creates a <code class="systemitem">libvirt</code> XML configuration and VM Host Server adjustments for
+          the desktop scenario.
+        </p></dd><dt id="id-1.3.9.5.4"><span class="term">securevm</span></dt><dd><p>
+          Creates a <code class="systemitem">libvirt</code> XML configuration and VM Host Server adjustments for
+          the secure VM scenario.
+        </p></dd></dl></div></section></section><section xml:lang="en" class="sect1" id="reference-virt-scenarios" data-id-title="Predefined scenarios"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Predefined scenarios</span></span> <a title="Permalink" class="permalink" href="index.html#reference-virt-scenarios">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+            When creating a VM, you can specify one of the following scenarios:
+          </p></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.4.2.1"><span class="term">securevm</span></dt><dd><p>
+          Selecting this scenario results in an encrypted VM image with a high
+          level of isolation and data security.
+        </p></dd><dt id="id-1.4.2.2"><span class="term">computation</span></dt><dd><p>
+          This scenario puts emphasis on the high performance of the resulting
+          VM.
+        </p></dd><dt id="id-1.4.2.3"><span class="term">desktop</span></dt><dd><p>
+          The result of this scenario is a VM suitable for running desktop
+          applications.
+        </p></dd></dl></div><p>
+    The following tables show default settings for each scenario:
+  </p><div class="table" id="id-1.4.4" data-id-title="Default storage settings"><div class="title-container"><div class="table-title-wrap"><div class="table-title"><span class="title-number-name"><span class="title-number">Table 1: </span><span class="title-name">Default storage settings </span></span><a title="Permalink" class="permalink" href="index.html#id-1.4.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="table-contents"><table style="border-collapse: collapse; border-top: 1px solid ; border-bottom: 1px solid ; border-left: 1px solid ; border-right: 1px solid ; "><colgroup><col style="text-align: left; " class="c1"/><col style="text-align: center; " class="c2"/><col style="text-align: center; " class="c3"/><col style="text-align: center; " class="c4"/></colgroup><thead><tr><th style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              Setting
+            </p>
+          </th><th style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              securevm
+            </p>
+          </th><th style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              computation
+            </p>
+          </th><th style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              desktop
+            </p>
+          </th></tr></thead><tbody><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              preallocation
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              metadata
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              off
+            </p>
+          </td><td style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              metadata
+            </p>
+          </td></tr><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              encryption
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              on
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              off
+            </p>
+          </td><td style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              off
+            </p>
+          </td></tr><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              disk_cache
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              writethrough
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              unsafe*
+            </p>
+          </td><td style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              none
+            </p>
+          </td></tr><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              lazy_refcounts
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              on
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              on
+            </p>
+          </td><td style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              off
+            </p>
+          </td></tr><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              format
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              qcow2
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              raw
+            </p>
+          </td><td style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              qcow2
+            </p>
+          </td></tr><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              disk bus
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              virtio
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              virtio
+            </p>
+          </td><td style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              virtio
+            </p>
+          </td></tr><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              capacity
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              20G
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              20G
+            </p>
+          </td><td style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              20G
+            </p>
+          </td></tr><tr><td style="text-align: left; border-right: 1px solid ; ">
+            <p>
+              cluster_size
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; ">
+            <p>
+              1024k
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; ">
+            <p>
+              N/A
+            </p>
+          </td><td style="text-align: center; ">
+            <p>
+              1024k
+            </p>
+          </td></tr></tbody></table></div></div><p>
+    <span class="emphasis"><em>* the <code class="literal">unsafe</code> cache mode may cause data loss and, for example,
+    destroy a Btrfs file system after an unclean shutdown</em></span>
+  </p><div class="table" id="id-1.4.6" data-id-title="Default host settings"><div class="title-container"><div class="table-title-wrap"><div class="table-title"><span class="title-number-name"><span class="title-number">Table 2: </span><span class="title-name">Default host settings </span></span><a title="Permalink" class="permalink" href="index.html#id-1.4.6">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="table-contents"><table style="border-collapse: collapse; border-top: 1px solid ; border-bottom: 1px solid ; border-left: 1px solid ; border-right: 1px solid ; "><colgroup><col style="text-align: left; " class="c1"/><col style="text-align: center; " class="c2"/><col style="text-align: center; " class="c3"/><col style="text-align: center; " class="c4"/></colgroup><thead><tr><th style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              Setting
+            </p>
+          </th><th style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              securevm
+            </p>
+          </th><th style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              computation
+            </p>
+          </th><th style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              desktop
+            </p>
+          </th></tr></thead><tbody><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              Transparent HugePages
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              on
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              on
+            </p>
+          </td><td style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              on
+            </p>
+          </td></tr><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              KSM
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              disable
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              enable
+            </p>
+          </td><td style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              enable
+            </p>
+          </td></tr><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              KSM merge across
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              disable
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              enable
+            </p>
+          </td><td style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              enable
+            </p>
+          </td></tr><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              swappiness
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              0
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              0
+            </p>
+          </td><td style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              35
+            </p>
+          </td></tr><tr><td style="text-align: left; border-right: 1px solid ; ">
+            <p>
+              IO Scheduler
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; ">
+            <p>
+              bfq
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; ">
+            <p>
+              mq-deadline
+            </p>
+          </td><td style="text-align: center; ">
+            <p>
+              mq-deadline
+            </p>
+          </td></tr></tbody></table></div></div><div class="table" id="id-1.4.7" data-id-title="Default guest settings"><div class="title-container"><div class="table-title-wrap"><div class="table-title"><span class="title-number-name"><span class="title-number">Table 3: </span><span class="title-name">Default guest settings </span></span><a title="Permalink" class="permalink" href="index.html#id-1.4.7">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="table-contents"><table style="border-collapse: collapse; border-top: 1px solid ; border-bottom: 1px solid ; border-left: 1px solid ; border-right: 1px solid ; "><colgroup><col style="text-align: left; " class="c1"/><col style="text-align: center; " class="c3"/><col style="text-align: center; " class="c2"/><col style="text-align: center; " class="c4"/></colgroup><thead><tr><th style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              Setting
+            </p>
+          </th><th style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              securevm
+            </p>
+          </th><th style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              computation
+            </p>
+          </th><th style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              desktop
+            </p>
+          </th></tr></thead><tbody><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              CPU migratable
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              off
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              off
+            </p>
+          </td><td style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              on
+            </p>
+          </td></tr><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              machine
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              pc-q35-6.2
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              pc-q35-6.2
+            </p>
+          </td><td style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              pc-q35-6.2
+            </p>
+          </td></tr><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              watchdog
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              none
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              i6300esb poweroff
+            </p>
+          </td><td style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              none
+            </p>
+          </td></tr><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              boot UEFI
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              auto
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              auto
+            </p>
+          </td><td style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              auto
+            </p>
+          </td></tr><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              vTPM
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              tpm-crb 2.0
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              none
+            </p>
+          </td><td style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              none
+            </p>
+          </td></tr><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              iothreads
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              disable
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              4
+            </p>
+          </td><td style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              4
+            </p>
+          </td></tr><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              video
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              qxl
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              qxl
+            </p>
+          </td><td style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              virtio
+            </p>
+          </td></tr><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              network
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              e1000
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              virtio
+            </p>
+          </td><td style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              e1000
+            </p>
+          </td></tr><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              keyboard
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              ps2
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              virtio
+            </p>
+          </td><td style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              virtio
+            </p>
+          </td></tr><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              mouse
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              disable
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              virtio
+            </p>
+          </td><td style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              virtio
+            </p>
+          </td></tr><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              on_poweroff
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              destroy
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              restart
+            </p>
+          </td><td style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              destroy
+            </p>
+          </td></tr><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              on_reboot
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              destroy
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              restart
+            </p>
+          </td><td style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              restart
+            </p>
+          </td></tr><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              on_crash
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              destroy
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              restart
+            </p>
+          </td><td style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              destroy
+            </p>
+          </td></tr><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              suspend_to_mem
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              off
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              off
+            </p>
+          </td><td style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              on
+            </p>
+          </td></tr><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              suspend_to_disk
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              off
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              off
+            </p>
+          </td><td style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              on
+            </p>
+          </td></tr><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              features
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              acpi apic pae
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              acpi apic pae
+            </p>
+          </td><td style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              acpi apic pae
+            </p>
+          </td></tr><tr><td style="text-align: left; border-right: 1px solid ; ">
+            <p>
+              host fs fmode, dmode, source_dir, target_dir
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; ">
+            <p>
+              N/A
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; ">
+            <p>
+              N/A
+            </p>
+          </td><td style="text-align: center; ">
+            <p>
+              644 755 /tmp/ /tmp/host
+            </p>
+          </td></tr></tbody></table></div></div><div class="table" id="id-1.4.8" data-id-title="Default SEV settings"><div class="title-container"><div class="table-title-wrap"><div class="table-title"><span class="title-number-name"><span class="title-number">Table 4: </span><span class="title-name">Default SEV settings </span></span><a title="Permalink" class="permalink" href="index.html#id-1.4.8">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="table-contents"><table style="border-collapse: collapse; border-top: 1px solid ; border-bottom: 1px solid ; border-left: 1px solid ; border-right: 1px solid ; "><colgroup><col style="text-align: left; " class="c1"/><col style="text-align: center; " class="c2"/><col style="text-align: center; " class="c3"/><col style="text-align: center; " class="c4"/></colgroup><thead><tr><th style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              Setting
+            </p>
+          </th><th style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              securevm
+            </p>
+          </th><th style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              computation
+            </p>
+          </th><th style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              desktop
+            </p>
+          </th></tr></thead><tbody><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              kvm SEV
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              mem_encrypt=on kvm_amd sev=1 sev_es=1
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              N/A
+            </p>
+          </td><td style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              N/A
+            </p>
+          </td></tr><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              sec cbitpos
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              auto
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              N/A
+            </p>
+          </td><td style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              N/A
+            </p>
+          </td></tr><tr><td style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              sec reducedPhysBits
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              auto
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+            <p>
+              N/A
+            </p>
+          </td><td style="text-align: center; border-bottom: 1px solid ; ">
+            <p>
+              N/A
+            </p>
+          </td></tr><tr><td style="text-align: left; border-right: 1px solid ; ">
+            <p>
+              sec policy
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; ">
+            <p>
+              auto
+            </p>
+          </td><td style="text-align: center; border-right: 1px solid ; ">
+            <p>
+              N/A
+            </p>
+          </td><td style="text-align: center; ">
+            <p>
+              N/A
+            </p>
+          </td></tr></tbody></table></div></div></section><section xml:lang="en" class="sect1" id="ref-virt-scenario-manage-vm" data-id-title="Managing VMs"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Managing VMs</span></span> <a title="Permalink" class="permalink" href="index.html#ref-virt-scenario-manage-vm">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    After you created a VM using the <code class="command">virt-scenario</code> interactive shell, use the
+    <code class="command">virt-scenario-launch</code> command to manage it. The command
+    identifies VMs by their name as displayed by the <code class="option">--list</code>
+    option.
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">virt-scenario-launch --list</code>
+  Version: 2.1.2
+  Available VMs:
+    ALP_OS
+    desktop
+    testing_vm
+    SLE15_HPC</pre></div><p>
+    When the VM is identified, you can manage it by passing the following options to <code class="command">virt-scenario-launch</code>.
+       
+  </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.5.5.1"><span class="term"><code class="option">--help</code></span></dt><dd><p>
+          Prints short descriptions of available options.
+        </p></dd><dt id="id-1.5.5.2"><span class="term"><code class="option">--start</code></span></dt><dd><p>
+          Starts the VM and prints security attestation information, for
+          example:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">virt-scenario-launch --start ALP_OS</code>
+  Connected to libvirtd socket; Version: 7001000
+  SEV(-ES) attestation passed!
+  Validation successfull for domain ALPOS</pre></div></dd><dt id="id-1.5.5.3"><span class="term"><code class="option">--status</code></span></dt><dd><p>
+          Shows the status of the VM, for example:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">virt-scenario-launch --status ALP_OS</code>
+  Version: 2.1.2
+  Connecting to libvirt qemu:///system ...
+  Connected to libvirtd socket; Version: 7001000
+  Domain SLE15SP5HPC state: Shutoff</pre></div></dd><dt id="id-1.5.5.4"><span class="term"><code class="option">--off</code></span></dt><dd><p>
+          Shuts a VM down.
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">virt-scenario-launch --off ALP_OS</code></pre></div></dd><dt id="id-1.5.5.5"><span class="term"><code class="option">--force</code></span></dt><dd><p>
+          Forces a VM off.
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">virt-scenario-launch --force ALP_OS</code></pre></div></dd></dl></div></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="legal-disclaimer.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>Legal Notice</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#concept-virt-scenario"><span class="title-number">1 </span><span class="title-name">Introduction to <code class="command">virt-scenario</code></span></a></span></li><li><span class="section"><a href="index.html#task-virt-scenario-create-vm"><span class="title-number">2 </span><span class="title-name">Creating VMs</span></a></span></li><li><span class="section"><a href="index.html#reference-virt-scenarios"><span class="title-number">3 </span><span class="title-name">Predefined scenarios</span></a></span></li><li><span class="section"><a href="index.html#ref-virt-scenario-manage-vm"><span class="title-number">4 </span><span class="title-name">Managing VMs</span></a></span></li><li><span class="appendix"><a href="legal-disclaimer.html"><span class="title-number">A </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">B </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-fb" href="#" title="Facebook"> </a></li><li><a id="_share-in" href="#" title="LinkedIn"> </a></li><li><a id="_share-tw" href="#" title="Twitter/X"> </a></li><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE
+                 2024</span></div></div></footer></body></html>

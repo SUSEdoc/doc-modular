@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><title>Modifying kernel boot parameters</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style.css"/>
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
+<meta name="title" content="Modifying kernel boot parameters"/>
+<meta name="description" content="This document applies to the following products and product versions:"/>
+<meta name="book-title" content="Modifying kernel boot parameters"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="thomas.schraitle@suse.com"/>
+<meta name="tracker-bsc-component" content="Smart Docs"/>
+<meta name="tracker-bsc-product" content="Documentation"/>
+<meta name="publisher" content="SUSE"/><meta property="og:title" content="Modifying kernel boot parameters"/>
+<meta property="og:description" content="This document applies to the following products and product…"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Modifying kernel boot parameters"/>
+<meta name="twitter:description" content="This document applies to the following products and product…"/>
+<script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    
+     "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    
+    "inLanguage": "en",
+    
+
+    "headline": "Modifying kernel boot parameters",
+  
+    "description": "Modifying kernel boot parameters",
+      
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    ],
+      
+
+    "about": [
+      
+    ],
+  
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<script type="text/javascript">
+
+if ( window.location.protocol.toLowerCase() != 'file:' ) {
+  document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>');
+};
+
+</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"/></noscript><script src="static/js/script-purejs.js" type="text/javascript"> </script><script src="static/js/highlight.min.js" type="text/javascript"> </script><script>
+
+$(document).ready(function() {
+  $('.verbatim-wrap.highlight').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+hljs.configure({
+  useBR: false
+});
+
+</script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Modifying kernel boot parameters</a></div></div><main id="_content"><nav id="_side-toc-overall" class="side-toc"><div class="side-title">Modifying kernel boot parameters</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="task-modify-boot-parameters" data-id-title="Modifying kernel boot parameters"><div class="titlepage"><div><div><h1 class="title">Modifying kernel boot parameters</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>27 Sep 2024</div></div></div><section class="sect1" id="environment-modify-boot-parameters" data-id-title="Environment"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Environment</span></span> <a title="Permalink" class="permalink" href="index.html#environment-modify-boot-parameters">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   This document applies to the following products and product versions:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>SUSE Linux Enterprise Server 15 SP5, 15 SP4, 15 SP3, 15 SP2, 12 SP5</p></li><li class="listitem"><p>SUSE Linux Enterprise Server for SAP Applications 15 SP5, 15 SP4, 15 SP3, 15 SP2, 12 SP5</p></li><li class="listitem"><p>SUSE Linux Enterprise High Availability 15 SP5, 15 SP4, 15 SP3, 15 SP2, 12 SP5</p></li><li class="listitem"><p>SUSE Linux Enterprise High Performance Computing 15 SP5, 15 SP4, 15 SP3, 15 SP2</p></li><li class="listitem"><p>SUSE Linux Enterprise Desktop 15 SP5</p></li><li class="listitem"><p>SUSE Linux Enterprise Real Time 15 SP5</p></li></ul></div></section><section class="sect1" id="introduction-modify-boot-parameters" data-id-title="Introduction"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Introduction</span></span> <a title="Permalink" class="permalink" href="index.html#introduction-modify-boot-parameters">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   The SUSE Linux kernel provides everything to ensure
+   stable operation on your computer. However, in some cases it is necessary
+   to provide boot parameters to influence the boot process for GRUB 2 or modify
+   the behaviour of the kernel itself.
+  </p><p>
+   For example, you can control the <span class="emphasis"><em>Advanced Configuration and
+    Power Interface</em></span> (ACPI) settings, define the output console,
+   enable debugging, and many more.
+  </p><p>
+   There are two methods to modify your kernel boot parameters:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span class="formalpara-title">Temporarily. </span>
+      After you have changed the kernel boot parameters, the change will
+      be applied for the upcoming boot process. However, it does not survive subsequent
+      boot processes.
+     </p></li><li class="listitem"><p><span class="formalpara-title">Permanently. </span>
+      Your change is applied for each boot process.
+     </p></li></ul></div><p>
+   As an example, we will disable the splash screen that you can see during the boot.
+  </p></section><section class="sect1" id="requirements-modify-boot-parameters" data-id-title="Requirements"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Requirements</span></span> <a title="Permalink" class="permalink" href="index.html#requirements-modify-boot-parameters">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     To only temporarily modify the kernel boot parameters, no prerequisites required.
+    </p></li><li class="listitem"><p>
+     To permanently modify the kernel boot parameters, you need write access
+     to your root partition and the <code class="filename">/etc</code>
+     directory.
+    </p></li></ul></div></section><section class="sect1" id="modify-boot-parameters-temporarily" data-id-title="Temporarily modifying kernel boot parameters"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Temporarily modifying kernel boot parameters</span></span> <a title="Permalink" class="permalink" href="index.html#modify-boot-parameters-temporarily">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   Test a kernel boot parameter, a temporary change is helpful.
+   Such a change is only applied for the current boot process, not for any
+   subsequent boot processes.
+  </p><div class="procedure"><div class="procedure-contents"><p>
+    To temporarily disable the splash screen, proceed as follows:
+   </p><ol class="procedure" type="1"><li class="step"><p>
+     Switch on your computer. The boot process will start.
+    </p></li><li class="step"><p>
+     In the GRUB 2 boot screen, highlight the entry you want to modify using
+     the arrow keys <span class="keycap">↑</span> and <span class="keycap">↓</span>.
+    </p></li><li class="step"><p>
+     Press the <span class="keycap">E</span> key. You will be presented with an editor
+     and the content of the selected boot entry. It will look similiar to the following:
+    </p><div class="verbatim-wrap"><pre class="screen">setparams '<span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> <span class="phrase"><span class="phrase">16.0</span></span>'
+   # ... some lines pruned ...
+   echo 'Loading kernel ...'
+   linuxefi /boot/vmlinuz-5.3.18-lp152.87-default root=UUID=0dfcff43-7a61-4ecd-8df5-8dc56ee3d9f2  <span class="strong"><strong>splash=silent</strong></span> resume=/dev/disk/by-uuid/0399f92e-5ed4-48c8-9db0-11e52c5cb0cd quiet mitigations=auto</pre></div></li><li class="step"><p>
+     Search for the string <code class="literal">splash=silent</code> and remove it.
+    </p></li><li class="step"><p>
+     To boot the entry, press <span class="keycap">F10</span> or <span class="keycap">Ctrl</span><span class="key-connector">–</span><span class="keycap">X</span>.
+    </p><p>
+     To discard the changes and start anew, press the <span class="keycap">Esc</span> key.
+    </p></li></ol></div></div><p>
+   During reboot, the splash screen is not shown.
+  </p></section><section class="sect1" id="modify-boot-parameters-permanently" data-id-title="Permanently modifying kernel boot parameters"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Permanently modifying kernel boot parameters</span></span> <a title="Permalink" class="permalink" href="index.html#modify-boot-parameters-permanently">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   If a change needs to be applied for every boot process, use this procedure.
+  </p><div class="procedure"><div class="procedure-contents"><p>
+    To permanently disable the splash screen, proceed as follows:
+   </p><ol class="procedure" type="1"><li class="step"><p>
+     In your running system, open a shell and view the current command line used by the
+     Linux kernel: </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">cat</code> /proc/cmdline
+BOOT_IMAGE=/boot/vmlinuz-5.3.18-59.19-default root=UUID=7e957c2e-fd30-4160-a771-dbc1bc679cf2 splash=silent quiet mitigations=auto</pre></div><p>
+     As you can see, the string <code class="literal">splash=line</code> is printed.
+     We will remove it for the next boot.
+    </p></li><li class="step"><p>
+     Open the file <code class="filename">/etc/default/grub</code>.
+    </p></li><li class="step"><p>
+     Look for the line <code class="literal">GRUB_CMDLINE_LINUX_DEFAULT=</code>.
+     Remove the string <code class="literal">splash=line</code> from this line and save the file.
+    </p></li><li class="step"><p>Run:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">update-bootloader --refresh</code></pre></div></li><li class="step"><p>
+     Reboot. You should see that the splash screen does not appear.
+    </p><p>
+     After your computer has successfully booted, log in and check your boot
+     commandline:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">cat</code> /proc/cmdline
+BOOT_IMAGE=/boot/vmlinuz-5.3.18-59.19-default root=UUID=7e957c2e-fd30-4160-a771-dbc1bc679cf2 mitigations=auto</pre></div><p>
+     There is no splash string anymore.
+    </p></li></ol></div></div></section><section class="sect1" id="related-modify-boot-parameters" data-id-title="Related topics"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Related topics</span></span> <a title="Permalink" class="permalink" href="index.html#related-modify-boot-parameters">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     <a class="link" href="https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/kernel-parameters.txt" target="_blank">https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/kernel-parameters.txt</a>
+    </p></li></ul></div></section></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#environment-modify-boot-parameters"><span class="title-number">1 </span><span class="title-name">Environment</span></a></span></li><li><span class="section"><a href="index.html#introduction-modify-boot-parameters"><span class="title-number">2 </span><span class="title-name">Introduction</span></a></span></li><li><span class="section"><a href="index.html#requirements-modify-boot-parameters"><span class="title-number">3 </span><span class="title-name">Requirements</span></a></span></li><li><span class="section"><a href="index.html#modify-boot-parameters-temporarily"><span class="title-number">4 </span><span class="title-name">Temporarily modifying kernel boot parameters</span></a></span></li><li><span class="section"><a href="index.html#modify-boot-parameters-permanently"><span class="title-number">5 </span><span class="title-name">Permanently modifying kernel boot parameters</span></a></span></li><li><span class="section"><a href="index.html#related-modify-boot-parameters"><span class="title-number">6 </span><span class="title-name">Related topics</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-fb" href="#" title="Facebook"> </a></li><li><a id="_share-in" href="#" title="LinkedIn"> </a></li><li><a id="_share-tw" href="#" title="Twitter/X"> </a></li><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE
+                 2024</span></div></div></footer></body></html>

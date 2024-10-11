@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><title>Introduction to SLES Minimal VM</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style.css"/>
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
+<meta name="title" content="Introduction to SLES Minimal VM"/>
+<meta name="description" content="How to set up and use SLES Minimal VM"/>
+<meta name="book-title" content="Introduction to SLES Minimal VM"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="dmitri.popov@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.0"/>
+<meta name="publisher" content="SUSE"/><meta name="category" content="."/><meta name="DCTERMS.modified" content="2023-10-10"/><meta name="DC.creator" content="Dmitri Popov"/><meta property="og:title" content="Introduction to SLES Minimal VM"/>
+<meta property="og:description" content="Set up SLES Minimal VM"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Introduction to SLES Minimal VM"/>
+<meta name="twitter:description" content="Set up SLES Minimal VM"/>
+<script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    
+     "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    
+    "inLanguage": "en",
+    
+
+    "headline": "Introduction to SLES Minimal VM",
+  
+    "description": "How to set up and use SLES Minimal VM",
+      
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    ],
+      
+    "dateModified": "2024-02-09T00:00+02:00",
+      
+    "datePublished": "2023-05-02T00:00+02:00",
+      
+    "articleSection": [ 
+        "Systems Management"
+        
+    ],
+    
+
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Virtualization"
+      }
+    ],
+  
+    "mentions": [
+      
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server",
+        "softwareVersion": "16.0",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, IBM Z, POWER, AArch64"
+        
+      }
+      
+    ],
+    
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><script type="text/javascript">
+
+if ( window.location.protocol.toLowerCase() != 'file:' ) {
+  document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>');
+};
+
+</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"/></noscript><script src="static/js/script-purejs.js" type="text/javascript"> </script><script src="static/js/highlight.min.js" type="text/javascript"> </script><script>
+
+$(document).ready(function() {
+  $('.verbatim-wrap.highlight').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+hljs.configure({
+  useBR: false
+});
+
+</script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Introduction to SLES Minimal VM</a></div></div><main id="_content"><nav id="_side-toc-overall" class="side-toc"><div class="side-title">Introduction to SLES Minimal VM</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="minimal-vm-general-info" data-id-title="Introduction to SLES Minimal VM"><div class="titlepage"><div><div><h1 class="title">Introduction to SLES Minimal VM</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>27 Sep 2024</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.14.1.1"><span class="term">WHAT?</span></dt><dd><p>
+              A high-level overview of SLES Minimal VM.
+            </p></dd><dt id="id-1.1.14.1.2"><span class="term">WHY?</span></dt><dd><p>
+              You want to know what SLES Minimal VM can do for you.
+            </p></dd><dt id="id-1.1.14.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                10 minutes of reading time.
+              </p></dd><dt id="id-1.1.14.1.4"><span class="term">GOAL</span></dt><dd><p>
+                Get an understanding of what SLES Minimal VM is and what it can be used for.
+              </p></dd><dt id="id-1.1.14.1.5"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                    General familiarity with SUSE Linux Enterprise Server
+                  </p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History" hreflang="en" href="rh-minimal-vm.html" target="_blank">Revision History: Introduction to SLES Minimal VM</a></div></div></div></div><section xml:lang="en" class="sect1" id="minimal-vm-intro" data-id-title="Introduction to SLES Minimal VM"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Introduction to SLES Minimal VM</span></span> <a title="Permalink" class="permalink" href="index.html#minimal-vm-intro">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    SLES Minimal VM is a slimmed-down version of SUSE Linux Enterprise Server designed to act as a foundation
+    for building systems for use in a data center, creating virtual application
+    images and building appliances. It can be customized by installing only
+    packages required for the specific use case. This means that there are
+    fewer packages to manage and patches to apply. The limited selection of
+    packages also makes the system more secure by reducing the attack surface.
+  </p></section><section xml:lang="en" class="sect1" id="minimal-vm-highlights" data-id-title="SLES Minimal VM highlights"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">SLES Minimal VM highlights</span></span> <a title="Permalink" class="permalink" href="index.html#minimal-vm-highlights">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+      SLES Minimal VM is available as preconfigured and ready-to-run virtual
+      machine images. 
+     </p></li><li class="listitem"><p>
+       While you can deploy the provided images as is, it is also possible to
+       create customized SLES Minimal VM images using  the supplied KIWI NG templates.
+      </p></li><li class="listitem"><p>
+      The supplied <code class="systemitem">jeos-firstboot</code> wizard runs on the
+      first boot and allows you to configure basic settings, such as system
+      locales and the <code class="systemitem">root</code> password.
+     </p><p>
+      Instead of <code class="systemitem">jeos-firstboot</code>, SLES Minimal VM for OpenStack
+      uses <code class="systemitem">cloud-init</code> for configuring OpenStack instances.
+     </p></li><li class="listitem"><p>
+      You can establish an SSH connection to the running SLES Minimal VM instance
+      without any further configuration.
+     </p></li><li class="listitem"><p>
+      The default network configuration is set to use DHCP.
+     </p></li><li class="listitem"><p>
+       The system automatically creates a Btrfs snapshot after the initial configuration has been completed. This means that you can easily revert all subsequent
+       changes, if necessary.
+      </p></li><li class="listitem"><p>
+      SLES Minimal VM images use the
+      <code class="systemitem">kernel-default-base</code> as the default kernel, which
+      results in a smaller footprint.
+     </p></li><li class="listitem"><p>
+    As openSUSE Leap SLES Minimal VM and SLES Minimal VM are similar, it is easy to migrate from the former to the latter.
+    </p></li></ul></div></section><section xml:lang="en" class="sect1" id="minimal-vm-vs-sles" data-id-title="Differences between SLES Minimal VM and SUSE Linux Enterprise Server"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Differences between SLES Minimal VM and SUSE Linux Enterprise Server</span></span> <a title="Permalink" class="permalink" href="index.html#minimal-vm-vs-sles">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    There are several significant differences between SLES Minimal VM and SUSE Linux Enterprise Server.
+  </p><div class="variablelist" id="vl-minvm-sles-diff"><dl class="variablelist"><dt id="id-1.4.3.1"><span class="term">JeOS Firstboot</span></dt><dd><p>
+          SLES Minimal VM comes with the <span class="package">JeOS Firstboot</span> tool (except
+          SLES Minimal VM for OpenStack, which uses <span class="package">cloud-init</span>) that
+          can be used to configure basic settings during the first boot. This
+          includes keyboard layout, time zone and <code class="systemitem">root</code>
+          password.
+        </p></dd><dt id="id-1.4.3.2"><span class="term"><span class="package">kernel-default-base</span></span></dt><dd><p>
+          Because of size constraints, SLES Minimal VM images use the
+          <span class="package">kernel-default-base</span> as the default kernel. Since
+          the kernel does not contain drivers for bare metal, this allows for a
+          smaller footprint.
+        </p><p>
+          If a specific usage scenario requires any of the omitted modules,
+          install the <span class="package">kernel-default</span> package to get a full
+          tree of the kernel modules. This is the same kernel used by a regular
+          SUSE Linux Enterprise Server installation.
+        </p></dd><dt id="id-1.4.3.3"><span class="term">No repositories by default</span></dt><dd><p>
+          When installing a SUSE Linux Enterprise Server from the installation media, the system
+          automatically sets the installation media as the default offline
+          channel.
+        </p><div id="id-1.4.3.3.2.2" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+            By default, the <span class="package">jeos-firstboot</span>,
+            <span class="package">jeos-licenses</span> and
+            <span class="package">live-langset-data</span> packages do not receive
+            updates. These packages are only required for the initial
+            configuration of the system, and they can safely be removed or left
+            untouched. If you prefer to keep them up to date, enable the Development Tools module.
+          </p></div></dd><dt id="id-1.4.3.4"><span class="term">Zypper configuration</span></dt><dd><p>
+          SLES Minimal VM is a slimmed-down version of SUSE Linux Enterprise Server. The reduction in size is
+          achieved in part by enabling the following two options in
+          <code class="filename">/etc/zypp/zypp.conf</code>:
+          <code class="literal">rpm.install.excludedocs = yes</code> (excludes all files
+          marked as documentation from being installed by default) and
+          <code class="literal">solver.onlyRequires = true</code> (disables installation
+          of suggested and recommended packages by default).
+        </p></dd><dt id="id-1.4.3.5"><span class="term">Base packages</span></dt><dd><p>
+          SLES Minimal VM images are built using the KIWI NG tool. KIWI NG's configuration
+          files, called templates, list packages that must be included in the
+          images. Keep in mind that packages listed in the template may pull
+          required dependencies during the image building process. This means
+          that the resulting image may contain more packages than those specified in the template.
+        </p></dd><dt id="id-1.4.3.6"><span class="term">Disk layout</span></dt><dd><p>
+          Unlike SUSE Linux Enterprise Server, which calculates an adjustable disk layout proposal
+          during installation, SLES Minimal VM features the following fixed virtual
+          image partitioning scheme:
+        </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+              2 MB BIOS boot
+            </p></li><li class="listitem"><p>
+              33 MB EFI system
+            </p></li><li class="listitem"><p>
+              24 GB Linux file system
+            </p></li></ul></div><p>
+          To get additional disk space, you can either extend the existing disk
+          from the virtual host or add a secondary disk to the virtual machine.
+          If you choose the latter option, you must partition and format it
+          manually.
+        </p></dd><dt id="id-1.4.3.7"><span class="term">systemd-coredump disabled</span></dt><dd><p>
+          systemd-coredump is disabled by default on SLES Minimal VM images. To collect
+          application core dumps necessary for troubleshooting, follow these
+          steps:
+        </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+              Install the <span class="package">systemd-coredump</span> package, which
+              contains <code class="filename">/usr/lib/sysctl.d/50-coredump.conf</code>.
+            </p></li><li class="listitem"><p>
+              Reboot the system or use the <code class="command">sysctl --system</code>
+              command to enable core dumps.
+            </p></li></ul></div><p>
+          For further information, refer to
+          <a class="link" href="https://documentation.suse.com/sles/html/SLES-all/cha-tuning-systemd-coredump.html" target="_blank">https://documentation.suse.com/sles/html/SLES-all/cha-tuning-systemd-coredump.html</a>.
+        </p></dd></dl></div></section><section xml:lang="en" class="sect1" id="minimal-vm-get" data-id-title="Obtaining SLES Minimal VM"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Obtaining SLES Minimal VM</span></span> <a title="Permalink" class="permalink" href="index.html#minimal-vm-get">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    You can download the desired variant of SLES Minimal VM from the official <a class="link" href="https://www.suse.com/download/sles/" target="_blank">Download</a> page. The page offers the following SLES Minimal VM versions:
+   </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+      Fully virtual SLES Minimal VM for KVM and Xen
+     </p></li><li class="listitem"><p>
+      SLES Minimal VM for VMware
+     </p></li><li class="listitem"><p>
+      SLES Minimal VM for Microsoft Hyper-V
+     </p></li><li class="listitem"><p>
+      SLES Minimal VM for OpenStack
+     </p></li><li class="listitem"><p>
+      Paravirtual SLES Minimal VM for Xen
+     </p></li><li class="listitem"><p>
+      Fully virtual SLES Minimal VM for KVM for AArch64
+     </p></li></ul></div><div id="id-1.5.4" data-id-title="SUSE subscription required" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: SUSE subscription required</div><p>
+    By default, SLES Minimal VM does not have any repositories. You must register
+    your system to access online repositories. Registration requires a paid subscription.
+  </p></div></section><section xml:lang="en" class="sect1" id="minimal-vm-on-kvm" data-id-title="Examples of using SLES Minimal VM with QEMU"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Examples of using SLES Minimal VM with QEMU</span></span> <a title="Permalink" class="permalink" href="index.html#minimal-vm-on-kvm">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    You can try SLES Minimal VM by downloading a ready-made image from the official
+    <a class="link" href="https://www.suse.com/download/sles/" target="_blank">Download</a>
+    page. The exact procedure for creating a SLES Minimal VM-based virtual machine
+    depends on the version you choose. Below are examples of how to create and
+    configure a SLES Minimal VM instance with QEMU using either JeOS Firstboot or Combustion.
+  </p><section class="sect2" id="minimal-vm-jeos-firstboot" data-id-title="Running and configuring SLES Minimal VM manually using JeOS Firstboot"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.1 </span><span class="title-name">Running and configuring SLES Minimal VM manually using JeOS Firstboot</span></span> <a title="Permalink" class="permalink" href="index.html#minimal-vm-jeos-firstboot">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Run the following command to create a SLES Minimal VM virtual machine in QEMU.
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>qemu-system-x86_64 \
+    -enable-kvm \
+    -m 1G \
+    -smp 1 \
+    -drive if=virtio,format=qcow2,file=<em class="replaceable">IMAGE</em>.qcow2 \
+    -nographic \
+    -netdev user,id=net0,hostfwd=tcp::2222-:22 \
+    -device virtio-net-pci,netdev=net0</pre></div><p>
+      After the system is booted, JeOS Firstboot guides you through the
+      initial system setup.
+    </p><div class="procedure" id="jeos-firstboot-minvm"><div class="procedure-contents"><div id="id-1.6.3.5.1" data-id-title="Change locale" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Change locale</div><p>
+          The SLES Minimal VM image comes with the <code class="literal">en_US</code> locale
+          only. You can install and select the desired system locale after the
+          setup is completed by installing the <span class="package">glibc-locale</span>
+          package and running the <code class="command">localectl set-locale
+          LANG=<em class="replaceable">LOCALE</em></code> command (replace
+          <em class="replaceable">LOCALE</em> with the desired language locale,
+          for example, <code class="literal">de_DE.UTF-8</code>).
+        </p><p>
+          Keep in mind that to do this, you need to have a SUSE subscription and
+          register the VM using the <code class="command">SUSEConnect -e
+          <em class="replaceable">EMAIL</em> -r
+          <em class="replaceable">REGISTRATION_CODE</em></code> command.
+        </p></div><ol class="procedure" type="1"><li class="step"><p>
+          As the first step, you are prompted to select the appropriate
+          keyboard layout using the keyboard selection dialog.
+        </p></li><li class="step"><p>
+          Next, read and accept the License Agreement. You cannot proceed
+          without accepting the license agreement.
+        </p></li><li class="step"><p>
+          Specify the desired time zone.
+        </p></li><li class="step"><p>
+          When prompted, specify and confirm the desired <code class="systemitem">root</code> password.
+        </p></li><li class="step"><p>
+          As the last step, you are instructed to register your system. If you
+          only plan to test SLES Minimal VM, you can skip registration.
+        </p></li><li class="step"><p>
+          After the initial configuration is completed, you can log in to the
+          system as <code class="literal">root</code>, using the password you specified
+          during the setup procedure.
+        </p></li></ol></div></div><div id="id-1.6.3.6" data-id-title="Installing product patches after first boot" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Installing product patches after first boot</div><p>
+        After SLES Minimal VM has been successfully installed and registered, we highly
+        recommend installing the latest available online updates.
+      </p></div></section><section class="sect2" id="minimal-vm-cumbustion" data-id-title="Running and configuring SLES Minimal VM automatically using Combustion"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.2 </span><span class="title-name">Running and configuring SLES Minimal VM automatically using Combustion</span></span> <a title="Permalink" class="permalink" href="index.html#minimal-vm-cumbustion">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      SLES Minimal VM comes with the Combustion configuration tool, which makes it
+      possible to automatically configure the system on first boot using a
+      dedicated script file. This can be particularly useful when you need to
+      deploy multiple virtual machines with an identical initial configuration.
+    </p><p>
+      To trigger the Combustion tool in QEMU, use the
+      <code class="command">qemu</code> command with the <em class="parameter">fw_cfg</em>
+      parameter, which specifies the location of the <code class="filename">script</code>
+      file.
+    </p><p>
+      To see how this works in practice, you can use a simple Combustion
+      script that automatically adds the <code class="systemitem">root</code> user to the SLES Minimal VM
+      instance running in QEMU.
+    </p><p>
+      First, generate a hash of the desired <code class="systemitem">root</code> password. This can be
+      done using the <code class="command">openssl passwd -6</code> command. Add the
+      following instruction to the <code class="filename">script</code> file (replace
+      the example hash with the generated one):
+    </p><div class="verbatim-wrap"><pre class="screen">echo 'root:$5$.wn2BZHlEJ5R3B1C$TAHEchlU.h2tvfOpOki54NaHpGYKwdNhjaBuSpDotD7' | chpasswd -e</pre></div><p>
+      Set up a new virtual machine based on SLES Minimal VM in QEMU using the
+      following command (replace <em class="replaceable">IMAGE</em> and
+      <em class="replaceable">SCRIPT</em> with the path name of the
+      <code class="filename">.qcow2</code> image and the <code class="filename">script</code>
+      file):
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>qemu-system-x86_64 \
+        -enable-kvm \
+        -m 1G \
+        -smp 1 \
+        -drive if=virtio,format=qcow2,file=<em class="replaceable">IMAGE</em>.qcow2 \
+        -nographic \
+        -netdev user,id=net0,hostfwd=tcp::2222-:22 \
+        -device virtio-net-pci,netdev=net0 \
+        -fw_cfg name=opt/org.opensuse.combustion/script,file=<em class="replaceable">SCRIPT</em></pre></div><p>
+      Keep in mind that when Combustion is running, it does not provide any
+      feedback or output. The only indication that the configuration has been
+      performed correctly is the fact that the system does not launch
+      JeOS Firstboot tool, and you can log in to the system as <code class="systemitem">root</code>
+      using the password you generated earlier.
+    </p><div id="id-1.6.4.10" data-id-title="Combustion documentation" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Combustion documentation</div><p>
+    For more information on using Combustion, refer to <a class="link" href="https://documentation.suse.com/sle-micro/html/SLE-Micro-all/cha-images-combustion.html" target="_blank">https://documentation.suse.com/sle-micro/html/SLE-Micro-all/cha-images-combustion.html</a>.
+    </p></div></section></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p> Copyright© 2006–2024
+ SUSE LLC and contributors.
+  All rights reserved. </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy.  Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#minimal-vm-intro"><span class="title-number">1 </span><span class="title-name">Introduction to SLES Minimal VM</span></a></span></li><li><span class="section"><a href="index.html#minimal-vm-highlights"><span class="title-number">2 </span><span class="title-name">SLES Minimal VM highlights</span></a></span></li><li><span class="section"><a href="index.html#minimal-vm-vs-sles"><span class="title-number">3 </span><span class="title-name">Differences between SLES Minimal VM and SUSE Linux Enterprise Server</span></a></span></li><li><span class="section"><a href="index.html#minimal-vm-get"><span class="title-number">4 </span><span class="title-name">Obtaining SLES Minimal VM</span></a></span></li><li><span class="section"><a href="index.html#minimal-vm-on-kvm"><span class="title-number">5 </span><span class="title-name">Examples of using SLES Minimal VM with QEMU</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">6 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-fb" href="#" title="Facebook"> </a></li><li><a id="_share-in" href="#" title="LinkedIn"> </a></li><li><a id="_share-tw" href="#" title="Twitter/X"> </a></li><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE
+                 2024</span></div></div></footer></body></html>

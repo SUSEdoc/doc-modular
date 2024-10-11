@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><title>Managing Multi-Container Applications Using docker-compose</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style.css"/>
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
+<meta name="title" content="Managing Multi-Container Applications Using docker-com…"/>
+<meta name="description" content="Overview of docker-compose and its role in creating container-based application stacks"/>
+<meta name="book-title" content="Managing Multi-Container Applications Using docker-compose"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="jsindelarova@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Micro 6.0"/>
+<meta name="publisher" content="SUSE"/><meta name="DCTERMS.modified" content="2037-11-16"/><meta property="og:title" content="Docker-compose application stack"/>
+<meta property="og:description" content="Creating a container-based application stack"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Docker-compose application stack"/>
+<meta name="twitter:description" content="Creating a container-based application stack"/>
+<script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    
+     "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    
+    "inLanguage": "en",
+    
+
+    "headline": "Docker-compose application stack",
+  
+    "description": "Overview of docker-compose and its role in creating container-based application stacks",
+      
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    ],
+      
+    "dateModified": "2024-03-14T00:00+02:00",
+      
+    "datePublished": "2024-03-14T00:00+02:00",
+      
+    "articleSection": [ 
+        "Systems Management"
+        
+    ],
+    
+
+    "about": [
+      
+    ],
+  
+    "mentions": [
+      
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Micro",
+        
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux"
+      }
+      
+    ],
+    
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><script type="text/javascript">
+
+if ( window.location.protocol.toLowerCase() != 'file:' ) {
+  document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>');
+};
+
+</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"/></noscript><script src="static/js/script-purejs.js" type="text/javascript"> </script><script src="static/js/highlight.min.js" type="text/javascript"> </script><script>
+
+$(document).ready(function() {
+  $('.verbatim-wrap.highlight').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+hljs.configure({
+  useBR: false
+});
+
+</script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Managing Multi-Container Applications Using docker-compose</a></div></div><main id="_content"><nav id="_side-toc-overall" class="side-toc"><div class="side-title">Managing Multi-Container Applications Using <code class="literal">docker-compose</code></div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="docker-compose" data-id-title="Managing Multi-Container Applications Using docker-compose"><div class="titlepage"><div><div><h1 class="title">Managing Multi-Container Applications Using <code class="literal">docker-compose</code></h1></div><div class="date"><span class="imprint-label">Publication Date: </span>27 Sep 2024</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+                docker-compose enables you to define and manage a multi-container
+                application. The tool simplifies the deployment of such an
+                application stack by using an easy-to-use definition file.
+              </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
+                The article describes how to create a multi-container
+                application by using docker-compose.
+              </p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                It takes approx. 20 minutes to read the article.
+              </p></dd><dt id="id-1.1.12.1.4"><span class="term">GOAL</span></dt><dd><p>
+                You will be able to create your own container-based application
+                stack.
+              </p></dd><dt id="id-1.1.12.1.5"><span class="term">REQUIREMENTS</span></dt><dd><p>
+                Application container images or the associated source files
+                that are used to build the application.
+              </p></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History" hreflang="en" href="rh-USE-ROOT-ID.html" target="_blank">Revision History: Managing Multi-Container Applications Using docker-compose</a></div></div></div></div><section xml:lang="en" class="sect1" id="docker-compose-tools" data-id-title="Tools involved in management of multi-container applications"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Tools involved in management of multi-container applications</span></span> <a title="Permalink" class="permalink" href="index.html#docker-compose-tools">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    docker-compose is the tool responsible for creating the multi-container
+    application. By default, it uses Docker, which is not present on
+    <span class="phrase"><span class="phrase">SLE Micro</span></span>. To bypass Docker and use Podman instead, the
+    <code class="literal">podman-docker</code> script is used. Therefore, you do not need
+    to change your existing scripts from using Docker to Podman. The
+    following sections provide detailed descriptions of the tools.
+  </p><section xml:lang="en" class="sect2" id="podman-about-introduction" data-id-title="About Podman"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">About Podman</span></span> <a title="Permalink" class="permalink" href="index.html#podman-about-introduction">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    Podman is a short name for Pod Manager Tool. It is a daemonless container
+    engine that enables you to run and deploy applications using containers and
+    container images. Podman provides a command-line interface to manage
+    containers.
+  </p><p>
+    As Podman does not have a daemon, it provides integration with systemd.
+    This makes it possible to control containers via systemd units. You can
+    create these units for existing containers as well as generate units that
+    can start containers if they do not exist in the system. Podman can run
+    systemd inside containers.
+  </p><p>
+    Podman enables you to organize your containers into pods. Pods share the
+    same network interface and resources. A typical use case for organizing a
+    group of containers into a pod is a container that runs a database and a
+    container with a client that accesses the database.
+  </p><section xml:lang="en" class="sect3" id="podman-installation" data-id-title="Installation of Podman"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">1.1.1 </span><span class="title-name">Installation of Podman</span></span> <a title="Permalink" class="permalink" href="index.html#podman-installation">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    Podman is included in <span class="phrase"><span class="phrase">SLE Micro</span></span> by default. However, if Podman
+    is missing, you can install it as described below:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Run the command:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> transactional-update pkg install podman</pre></div></li><li class="step"><p>
+        Restart your system to boot into the new snapshot.
+      </p></li></ol></div></div></section></section><section xml:lang="en" class="sect2" id="compose-podman-docker" data-id-title="About podman-docker"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">About <code class="literal">podman-docker</code></span></span> <a title="Permalink" class="permalink" href="index.html#compose-podman-docker">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    <code class="literal">podman-docker</code> is a bash script that changes any
+    <code class="command">docker</code> command you run into a corresponding
+    <code class="command">podman</code> command with the same passed arguments.
+    Therefore, you can use all your Docker scripts without any modifications.
+  </p><section xml:lang="en" class="sect3" id="task-example" data-id-title="Installation of podman-docker"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">1.2.1 </span><span class="title-name">Installation of <code class="literal">podman-docker</code></span></span> <a title="Permalink" class="permalink" href="index.html#task-example">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    The <code class="literal">podman-docker</code> is not installed on <span class="phrase"><span class="phrase">SLE Micro</span></span>
+    by default. To install it, proceed as follows:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Install the package <code class="literal">podman-docker</code> by running:
+      </p><div class="verbatim-wrap"><pre class="screen">transactional-update pkg install podman-docker</pre></div></li><li class="step"><p>
+        Reboot the system to switch to the latest snapshot.
+      </p></li></ol></div></div></section></section><section xml:lang="en" class="sect2" id="compose-about" data-id-title="About docker-compose"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.3 </span><span class="title-name">About docker-compose</span></span> <a title="Permalink" class="permalink" href="index.html#compose-about">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    docker-compose is a tool for managing multi-container applications. docker-compose
+    enables you to have multiple isolated environments on a single host, while
+    it supports using variables between environments. Using docker-compose, you can
+    recreate only those containers that have changed without destroying the
+    whole multi-container application.
+  </p><div id="id-1.2.5.3" data-id-title="docker replaced with the podman command" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: <code class="command">docker</code> replaced with the <code class="command">podman</code> command</div><p>
+      On <span class="phrase"><span class="phrase">SLE Micro</span></span>, the <code class="literal">podman-docker</code> script is
+      used to call Podman whenever you run docker-compose, as Docker is not
+      present on <span class="phrase"><span class="phrase">SLE Micro</span></span>.
+    </p></div><section xml:lang="en" class="sect3" id="compose-installation" data-id-title="Installing docker-compose"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">1.3.1 </span><span class="title-name">Installing docker-compose</span></span> <a title="Permalink" class="permalink" href="index.html#compose-installation">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    If docker-compose is not present on your system, you can install it by following
+    the steps:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Run the command:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> transactional-update pkg install docker-compose</pre></div></li><li class="step"><p>
+        After the installation is complete, reboot your system to boot into the
+        new snapshot.
+      </p></li></ol></div></div></section></section></section><section xml:lang="en" class="sect1" id="compose-cretaing-application" data-id-title="Creating a multi-container application"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Creating a multi-container application</span></span> <a title="Permalink" class="permalink" href="index.html#compose-cretaing-application">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    To create a multi-container application, proceed as follows:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Create the configuration file <code class="filename">compose.yml</code>. For
+        details, refer to <a class="xref" href="index.html#docker-compose-yaml-reference" title="2.1. Creating compose.yml">Section 2.1, “Creating <code class="filename">compose.yml</code>”</a>.
+      </p></li><li class="step"><p>
+        Prepare the required directory structure. We recommend placing the
+        <code class="filename">compose.yml</code> file at the top of your working
+        directory.
+      </p></li><li class="step"><p>
+        If needed, write your own container files specific to services used by
+        the containerized application. For exammple, to deploy a Go
+        application, create a container file for the Go application with the
+        required configuration and dependencies.
+      </p><p>
+        We recommend creating a subdirectory per service in the working
+        directory and placing the service-specific files there.
+      </p></li><li class="step"><p>
+        Deploy the multi-container application. For details, refer to
+        <a class="xref" href="index.html#compose-creating-application-deployment" title="2.2. Deploying multi-container applications">Section 2.2, “Deploying multi-container applications”</a>.
+      </p></li></ol></div></div><section xml:lang="en" class="sect2" id="docker-compose-yaml-reference" data-id-title="Creating compose.yml"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">Creating <code class="filename">compose.yml</code></span></span> <a title="Permalink" class="permalink" href="index.html#docker-compose-yaml-reference">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    To create the multi-container application, you need to create a
+    <code class="filename">compose.yml</code> file preferably placed in the working
+    directory. It can be a single file, or you can use a more granular approach
+    by utilizing fragments and extensions. Multiple docker-compose files can be also
+    merged to define the whole application model.
+  </p><p>
+    The file <code class="filename">compose.yml</code> defines your application. You can
+    include the following parts.
+  </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.3.4.4.1"><span class="term">service</span></dt><dd><p>
+          A service is a computing component of the application. For details
+          regarding the definition, refer to
+          <a class="xref" href="index.html#compose-cretaing-application-yaml-file-services" title="2.1.1. Services definition">Section 2.1.1, “Services definition”</a>.
+        </p></dd><dt id="id-1.3.4.4.2"><span class="term">networks</span></dt><dd><p>
+          You can use the <code class="literal">network</code> statement to define custom
+          networks and assign particular services to custom networks. For
+          details, refer to
+          <a class="xref" href="index.html#compose-cretaing-application-yaml-file-networks" title="2.1.2. Networks definition">Section 2.1.2, “Networks definition”</a>.
+        </p></dd><dt id="id-1.3.4.4.3"><span class="term">volumes</span></dt><dd><p>
+          A directory managed by the container engine where services store and
+          share data.
+        </p></dd><dt id="id-1.3.4.4.4"><span class="term">Environment variables</span></dt><dd><p>
+          You may also need to use a list of environment variables that will be
+          passed to your services. For details, refer to the
+          <a class="link" href="https://docs.docker.com/compose/environment-variables/" target="_blank">environment
+          variables reference</a>.
+        </p></dd><dt id="id-1.3.4.4.5"><span class="term">configs</span></dt><dd><p>
+          All configuration files required by the services must be declared in
+          the <code class="literal">configs</code> section. For details, refer to the
+          <a class="link" href="https://docs.docker.com/compose/compose-file/08-configs/" target="_blank"><code class="literal">configs</code>
+          definition</a>.
+        </p></dd></dl></div><section class="sect3" id="compose-cretaing-application-yaml-file-services" data-id-title="Services definition"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">2.1.1 </span><span class="title-name">Services definition</span></span> <a title="Permalink" class="permalink" href="index.html#compose-cretaing-application-yaml-file-services">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      When defining services, you either need to specify a container image to
+      use, or provide source files to build the service from them.
+    </p><p>
+      To create the service container from an image, use the
+      <code class="literal">image</code> statement:
+    </p><div class="verbatim-wrap"><pre class="screen">      services:
+       db:
+         image: database</pre></div><p>
+      Podman checks if the image name declared in the
+      <code class="filename">compose.yml</code> file is available in the local container
+      storage. If it is not, Podman pulls the image from one of the
+      configured registries.
+    </p><p>
+      To build a service from source files, provide the source files and create
+      a container file, both in the same directory. In the
+      <code class="filename">compose.yml</code>file then use the
+      <code class="literal">build</code> statement:
+    </p><div class="verbatim-wrap"><pre class="screen">      services:
+        db: 
+          build: <em class="replaceable">PATH_TO_SOURCE_FILES</em></pre></div><p>
+      If a particular service must be started after another, you can use the
+      <code class="literal">depends_on</code> statement:
+    </p><div class="verbatim-wrap"><pre class="screen">      services:
+       db:
+         image: database
+         depends_on:
+          system:
+            condition: <em class="replaceable">SERVICE_CONDITION</em></pre></div><p>
+      The <em class="replaceable">SERVICE_CONDITION</em> can be one of the
+      following: <code class="literal">service_started</code>,
+      <code class="literal">service_healthy</code> or
+      <code class="literal">service_completed_successfully</code>.
+    </p><p>
+      For more information regarding the <code class="literal">services</code>
+      definition, refer to the
+      <a class="link" href="https://docs.docker.com/compose/compose-file/05-services/" target="_blank"><code class="literal">services</code>
+      specification</a>.
+    </p></section><section class="sect3" id="compose-cretaing-application-yaml-file-networks" data-id-title="Networks definition"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">2.1.2 </span><span class="title-name">Networks definition</span></span> <a title="Permalink" class="permalink" href="index.html#compose-cretaing-application-yaml-file-networks">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      By default, docker-compose creates a default network, and each container in
+      the application stack is included in the network. The default network
+      does not have to be declared in the <code class="filename">compose.yml</code> file
+      as docker-compose creates it automatically.
+    </p><p>
+      You can also define custom networks and assign particular services to
+      them. For example, to create two networks, <code class="literal">network1</code>
+      and <code class="literal">network2</code>, add the following snippet:
+    </p><div class="verbatim-wrap"><pre class="screen">networks:
+  network1:
+    # Use a custom driver
+    driver: custom-driver-1
+  network2:
+    # Use a custom driver and name the network
+    driver: custom-driver-2
+    name: custom_network</pre></div><p>
+      You can also use an existing network. In this case, mark the network as
+      external:
+    </p><div class="verbatim-wrap"><pre class="screen">              networks:
+  network1:
+    name: network1
+    external: true</pre></div><p>
+      For a complete <code class="literal">networks</code> specification, refer to the
+      <a class="link" href="https://docs.docker.com/compose/compose-file/06-networks/" target="_blank"><code class="literal">networks</code>
+      specification</a>.
+    </p></section><section class="sect3" id="compose-cretaing-application-yaml-file-example" data-id-title="Example of compose.yml"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">2.1.3 </span><span class="title-name">Example of <code class="filename">compose.yml</code></span></span> <a title="Permalink" class="permalink" href="index.html#compose-cretaing-application-yaml-file-example">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The following example of <code class="filename">compose.yml</code> defines an
+      application stack that uses the Prometheus monitoring system and the
+      Grafana analytics system.
+    </p><div class="verbatim-wrap"><pre class="screen">  services:
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - 9090:9090
+    restart: unless-stopped
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - prom_data:/prometheus
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=grafana
+    volumes:
+      - ./grafana:/etc/grafana/provisioning/datasources
+volumes:
+  prom_data:</pre></div><p>
+      The project structure in this example must look as follows:
+    </p><div class="verbatim-wrap"><pre class="screen">.
+├── compose.yaml
+├── grafana
+│   └── datasource.yml
+├── prometheus
+│   └── prometheus.yml
+└── README.md</pre></div></section></section><section xml:lang="en" class="sect2" id="compose-creating-application-deployment" data-id-title="Deploying multi-container applications"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.2 </span><span class="title-name">Deploying multi-container applications</span></span> <a title="Permalink" class="permalink" href="index.html#compose-creating-application-deployment">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    After you create the proper directory structure and the
+    <code class="filename">compose.yml</code> file, you can deploy the multi-container
+    application:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Verify that the container you intend to run doesn't already exist:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>podman ps --all</pre></div><p>
+        If needed, remove the particular container:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>podman rm -f <em class="replaceable">CONTAINER_ID</em></pre></div></li><li class="step"><p>
+        Start the multi-container application by running the following command
+        from the directory where <code class="filename">compose.yml</code> is located:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>docker compose up -d</pre></div><p>
+        docker-compose creates a separate network for the multi-container
+        application.
+      </p></li><li class="step"><p>
+        You can verify that containers are running and ports are mapped by
+        listing running containers:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>podman ps</pre></div></li></ol></div></div></section></section><section xml:lang="en" class="sect1" id="docker-compose-mamagement" data-id-title="Management of a multi-container application"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Management of a multi-container application</span></span> <a title="Permalink" class="permalink" href="index.html#docker-compose-mamagement">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    After you create your multi-container application, you can use the
+    <code class="command">docker-compose</code> command to perform management operations.
+    The command syntax is the following:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>docker compose <em class="replaceable">[OPTIONS]</em>
+  <em class="replaceable">COMMAND</em></pre></div><p>
+    Run the command from the same directory where the
+    <code class="filename">compose.yml</code> file of the multi-container application
+    you want to manage is located. Alternatively, provide a path to the
+    <code class="filename">compose.yml</code> file using the <code class="option">-f, --file</code>
+    option. For example, to exit and remove the multi-container application:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>docker compose -f ./test/compose.yml down</pre></div><p>
+    Other useful commands:
+  </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.4.7.1"><span class="term">images</span></dt><dd><p>
+          To list all images used by the containers in the multi-container
+          application.
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>docker compose images</pre></div></dd><dt id="id-1.4.7.2"><span class="term">pause</span></dt><dd><p>
+          To pause all containers.
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>docker compose pause <em class="replaceable">[SERVICE]</em></pre></div></dd><dt id="id-1.4.7.3"><span class="term">ps</span></dt><dd><p>
+          To list containers in the multi-container application.
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>docker compose ps</pre></div></dd><dt id="id-1.4.7.4"><span class="term">rm</span></dt><dd><p>
+          To remove stopped containers.
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>docker compose rm</pre></div></dd><dt id="id-1.4.7.5"><span class="term">start/stop</span></dt><dd><p>
+          To start or stop containers.
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>docker compose stop <em class="replaceable">[SERVICE]</em></pre></div></dd></dl></div><p>
+    For a complete list of options and commands, run:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>docker-compose --help</pre></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p> Copyright© 2006–2024
+ SUSE LLC and contributors.
+  All rights reserved. </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy.  Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#docker-compose-tools"><span class="title-number">1 </span><span class="title-name">Tools involved in management of multi-container applications</span></a></span></li><li><span class="section"><a href="index.html#compose-cretaing-application"><span class="title-number">2 </span><span class="title-name">Creating a multi-container application</span></a></span></li><li><span class="section"><a href="index.html#docker-compose-mamagement"><span class="title-number">3 </span><span class="title-name">Management of a multi-container application</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">4 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-fb" href="#" title="Facebook"> </a></li><li><a id="_share-in" href="#" title="LinkedIn"> </a></li><li><a id="_share-tw" href="#" title="Twitter/X"> </a></li><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE
+                 2024</span></div></div></footer></body></html>

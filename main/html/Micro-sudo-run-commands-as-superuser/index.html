@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><title>Running Commands as Superuser with sudo</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style.css"/>
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
+<meta name="title" content="Running Commands as Superuser with sudo"/>
+<meta name="description" content="Learn about the basic concepts of sudo, how to configure and use it for the most common use cases to run commands that require root privileges."/>
+<meta name="book-title" content="Running Commands as Superuser with sudo"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="julia.faltenbacher@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Micro 6.0"/>
+<meta name="publisher" content="SUSE"/><meta name="category" content="."/><meta name="DCTERMS.modified" content="2023-04-03"/><meta name="DC.creator" content="julia.faltenbacher@suse.com"/><meta property="og:title" content="Running commands as superuser with sudo"/>
+<meta property="og:description" content="Learn to run commands as&#10;superuser with sudo."/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Running commands as superuser&#10;with sudo"/>
+<meta name="twitter:description" content="Learn to run commands as&#10;superuser with sudo."/>
+<script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    
+     "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    
+    "inLanguage": "en",
+    
+
+    "headline": "Running commands as superuser with sudo",
+  
+    "description": "Learn about the basic concepts of sudo, how to configure and use it for the most common use cases to run commands that require root privileges.",
+      
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    ],
+      
+    "dateModified": "2023-08-15T00:00+02:00",
+      
+    "datePublished": "2023-08-15T00:00+02:00",
+      
+    "articleSection": [ 
+        "Systems Management"
+        
+    ],
+    
+
+    "about": [
+      
+    ],
+  
+    "mentions": [
+      
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Micro",
+        
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux"
+      }
+      
+    ],
+    
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><script type="text/javascript">
+
+if ( window.location.protocol.toLowerCase() != 'file:' ) {
+  document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>');
+};
+
+</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"/></noscript><script src="static/js/script-purejs.js" type="text/javascript"> </script><script src="static/js/highlight.min.js" type="text/javascript"> </script><script>
+
+$(document).ready(function() {
+  $('.verbatim-wrap.highlight').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+hljs.configure({
+  useBR: false
+});
+
+</script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Running Commands as Superuser with sudo</a></div></div><main id="_content"><nav id="_side-toc-overall" class="side-toc"><div class="side-title">Running Commands as Superuser with <code class="command">sudo</code></div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="sudo-run-commands-as-superuser" data-id-title="Running Commands as Superuser with sudo"><div class="titlepage"><div><div><h1 class="title">Running Commands as Superuser with <code class="command">sudo</code></h1></div><div class="date"><span class="imprint-label">Publication Date: </span>27 Sep 2024</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.13.1.1"><span class="term">WHAT?</span></dt><dd><p>
+              Learn about the basic concepts of <code class="command">sudo</code> and how to use it as a
+              regular user.
+            </p></dd><dt id="id-1.1.13.1.2"><span class="term">WHY?</span></dt><dd><p>
+              Certain commands require administrator privileges. To run a
+              command with administrator rights, the <code class="command">sudo</code> command can be used.
+            </p></dd><dt id="id-1.1.13.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                It takes you up to 20 minutes to read through this article. If
+                you have a specific question, you can jump directly to the
+                respective chapter.
+              </p></dd><dt id="id-1.1.13.1.4"><span class="term">GOAL</span></dt><dd><p>
+                Understanding the basic concepts of <code class="command">sudo</code> and running commands
+                with <code class="command">sudo</code> for certain use cases.
+              </p></dd><dt id="id-1.1.13.1.5"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                    <code class="systemitem">root</code> or <code class="command">sudo</code> privileges. These are only available if
+                    you are the administrator of the system. For more
+                    information, refer to
+                    <a class="xref" href="index.html#sudo-basic-concepts" title="1. Basic concepts of sudo">Section 1, “Basic concepts of <code class="command">sudo</code>”</a>.
+                  </p></li><li class="listitem"><p>
+                The <span class="package">sudo</span> package needs to be installed.
+                This package is available on <span class="phrase"><span class="phrase">SUSE Linux Enterprise Micro</span></span> by default.
+                </p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History" hreflang="en" href="rh-sudo-run-commands-as-superuser.html" target="_blank">Revision History: Running Commands as Superuser with sudo</a></div></div></div></div><section xml:lang="en" class="sect1" id="sudo-basic-concepts" data-id-title="Basic concepts of sudo"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Basic concepts of <code class="command">sudo</code></span></span> <a title="Permalink" class="permalink" href="index.html#sudo-basic-concepts">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+      Learn about the basic concepts of <code class="command">sudo</code> and how it works on <span class="phrase"><span class="phrase">SUSE Linux Enterprise Micro</span></span>
+      systems.
+      </p></div></div></div></div><p>
+    <code class="command">sudo</code> is a Linux command that is used to temporarily execute programs as
+    another user.
+    It is the abbreviation for <code class="literal">substitute user and do</code> and
+    borrows the privileges of another user, for example, the <code class="systemitem">root</code> user.
+    This way, <code class="command">sudo</code> helps you accomplish system administration tasks without
+    logging in as <code class="systemitem">root</code>.
+  </p><section class="sect2" id="sudo-basic-concepts-general" data-id-title="sudo on Linux systems in general"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name"><code class="command">sudo</code> on Linux systems in general</span></span> <a title="Permalink" class="permalink" href="index.html#sudo-basic-concepts-general">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    As a regular user on Linux, you have reduced permissions that are sufficient
+    for most of the tasks. The <code class="systemitem">root</code> user is the Linux superuser and the
+    equivalent to the administrator.
+  </p><p>
+    <code class="command">sudo</code> allows specified (non-<code class="systemitem">root</code>) users or a group of users to run
+    privileged tasks, like calling system functions as <code class="systemitem">root</code> or another
+    user. Through a configuration file, the system administrator can control
+    which users are allowed to run <code class="command">sudo</code> commands and for which tasks.
+  </p></section><section class="sect2" id="sudo-basic-concepts-suse" data-id-title="sudo on SUSE Linux Enterprise Micro systems"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name"><code class="command">sudo</code> on <span class="phrase"><span class="phrase">SUSE Linux Enterprise Micro</span></span> systems</span></span> <a title="Permalink" class="permalink" href="index.html#sudo-basic-concepts-suse">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    For security reasons, all <span class="phrase"><span class="phrase">SUSE Linux Enterprise Micro</span></span> systems separate the regular user
+    from the <code class="systemitem">root</code> user.
+    As a regular user, you cannot write to system directories or install
+    programs. Any user with access to the <code class="systemitem">root</code> password can gain these
+    privileges and accidentally or maliciously break the system.
+  </p><p>
+    For example, you are logged in as a regular user and accidentally browse to
+    a malicious website. An attacker cannot install malware on your system
+    behind your back, as you are logged in as a regular user, means without any
+    administrative permissions.
+  </p><p>
+    As explained above, it is not recommended to be logged in as <code class="systemitem">root</code> user
+    permanently for security reasons. A safer approach is to stay logged with
+    your regular user and running a restricted command prefaced with <code class="command">sudo</code>.
+  </p><div id="id-1.2.4.5" data-id-title="sudo requires administrator rights" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: <code class="command">sudo</code> requires administrator rights</div><p>
+      On a single-user machine, where you have set your own <code class="systemitem">root</code> password,
+      you have the required rights to administrate your system by using the
+      <code class="command">sudo</code> command and to configure <code class="command">sudo</code> settings yourself.
+    </p><p>
+      For more information about how to configure <code class="command">sudo</code>, refer to
+<a class="link" href="https://documentation.suse.com/smart/systems-management/html/sudo-configure-superuser-privileges/index.html" target="_blank">https://documentation.suse.com/smart/systems-management/html/sudo-configure-superuser-privileges/index.html</a>.
+    </p><p>
+      In a multi-user environment, such as in companies, the <code class="command">sudo</code> privileges
+      are managed by a system administrator and the permissions of the
+      <code class="systemitem">root</code> user can be restricted. You may not be allowed to change
+      certain system directories or files, even when executing the command with
+      <code class="command">sudo</code>.
+    </p></div></section><section class="sect2" id="sudo-basic-concepts-how-works" data-id-title="How sudo works"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.3 </span><span class="title-name">How <code class="command">sudo</code> works</span></span> <a title="Permalink" class="permalink" href="index.html#sudo-basic-concepts-how-works">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      When running a command prefaced with <code class="command">sudo</code>, the system asks you for the
+      password of the <code class="systemitem">root</code> account. After successful authentication, the
+      command is executed with superuser privileges.
+    </p><p>
+      Depending on the <code class="command">sudo</code> configuration, the elevated privileges persist for a
+      certain period of time and as long as you are working in the same terminal
+      session. So you do not need to provide a password again when running
+      another <code class="command">sudo</code> command.
+    </p><p>
+    To run a command with <code class="command">sudo</code>, this syntax is used:
+  </p><div class="verbatim-wrap"><pre class="screen">    <code class="prompt user">&gt; </code><code class="command">sudo [command]</code></pre></div><p>
+    The following example explains how the <code class="command">sudo</code> command is used to open
+    the <span class="guilabel">YaST Control Center</span> in the terminal directly. To
+    open YaST, administrator rights are needed and therefore, it only works
+    with the <code class="command">sudo</code> command.
+  </p><div class="complex-example"><div class="example" id="id-1.2.5.7" data-id-title="Opening the YaST control center with sudo"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 1: </span><span class="title-name">Opening the YaST control center with <code class="command">sudo</code> </span></span><a title="Permalink" class="permalink" href="index.html#id-1.2.5.7">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">yast</code>
+Absolute path to 'yast' is '/usr/sbin/yast', so running it may require superuser privileges (eg. root).<span class="callout" id="co-sudo-usage-yast-answer">1</span>
+<code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">yast</code>
+[sudo] password for root:<span class="callout" id="co-sudo-usage-pw">2</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-sudo-usage-yast-answer"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+            When only the <code class="command">yast</code> command is entered, the system
+            returns that <code class="systemitem">root</code> privileges are required.
+           </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-sudo-usage-pw"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+            Starting the <code class="command">yast</code> command with <code class="command">sudo</code> prompts
+            you for the <code class="systemitem">root</code> password. The password is not shown during
+            input, neither as clear text nor as masking characters.
+           </p><p>
+            After successful authentication, the
+            <span class="guimenu">YaST Control Center</span> is opened.
+           </p></td></tr></table></div><p>
+            The elevated privileges persist for a certain period of time, so you
+            do not have to provide a password again for the next <code class="command">sudo</code> command.
+           </p></div></div></div></section></section><section xml:lang="en" class="sect1" id="sudo-run-command" data-id-title="Running a command prefaced with sudo"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Running a command prefaced with <code class="command">sudo</code></span></span> <a title="Permalink" class="permalink" href="index.html#sudo-run-command">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        As a regular user, you can run any command as <code class="systemitem">root</code> by adding
+        <code class="command">sudo</code> before it. This prompts you to provide the <code class="systemitem">root</code> password.
+        If authenticated successfully, this runs the command as <code class="systemitem">root</code>.
+       </p></div></div></div></div><p>
+    When running a command prefaced with <code class="command">sudo</code>, the system asks you for the
+    password of the <code class="systemitem">root</code> account. After successful authentication, the
+    command is executed with superuser privileges.
+  </p><p>
+    Depending on the <code class="command">sudo</code> configuration, the elevated privileges persist for a
+    certain period of time and as long as you are working in the same terminal
+    session. So you do not need to provide a password again when running another
+    <code class="command">sudo</code> command.
+  </p><div class="procedure" id="id-1.3.4" data-id-title="Running a command prefaced with sudo"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 1: </span><span class="title-name">Running a command prefaced with <code class="command">sudo</code> </span></span><a title="Permalink" class="permalink" href="index.html#id-1.3.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><p>
+      The following procedure describes how to use the <code class="command">sudo</code> command to copy a
+      file into a directory where only the <code class="systemitem">root</code> user has editing rights.
+    </p><ol class="procedure" type="1"><li class="step"><p>
+        Open a terminal and create a test file with:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">touch test.txt</code></pre></div></li><li class="step"><p>
+        Try to copy the file into the <code class="filename">/usr/local/bin/</code>
+        directory with:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">cp test.txt /usr/local/bin</code></pre></div><p>
+        The terminal returns, for example:
+      </p><div class="verbatim-wrap"><pre class="screen">cp: cannot create regular file '/usr/local/bin/test.txt': Permission denied</pre></div><p>
+        This message also appears if the required privileges were not granted to
+        <code class="command">sudo</code>.
+      </p></li><li class="step"><p>
+       Now, enter the same command prefaced with <code class="command">sudo</code>:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">cp test.txt /usr/local/bin</code></pre></div></li><li class="step"><p>
+        You are prompted to enter the <code class="systemitem">root</code> password. Note that the
+        password is not shown during input, neither as clear text nor as
+        masking characters.
+      </p><div class="verbatim-wrap"><pre class="screen">[sudo] password for root:</pre></div></li><li class="step"><p>
+        After successful authentication, the test file is copied to
+        <code class="filename">/usr/local/bin</code>.
+      </p></li><div class="result"><div class="result-title"/>
+  <p>
+    You have run your first <code class="command">sudo</code> command.
+  </p>
+</div></ol></div></div></section><section xml:lang="en" class="sect1" id="sudo-commands" data-id-title="Common sudo commands"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Common <code class="command">sudo</code> commands</span></span> <a title="Permalink" class="permalink" href="index.html#sudo-commands">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        By adding <code class="command">sudo</code> before any command, you can run commands with elevated
+        permissions. You can also run commands as another user and use their
+        environment variables.
+      </p></div></div></div></div><p>
+      This section provides examples of common commands that often require
+      administrative privileges.
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.4.3.1"><span class="term">Repeat the last command with <code class="command">sudo</code></span></dt><dd><p>
+            To repeat the last command as an administrator, run <code class="command">sudo
+            !!</code> and enter the password. For example, a user without
+            administrative privileges cannot create a directory under the
+            <code class="filename">/etc/</code> directory. To create it, run
+            <code class="command">sudo !!</code>.
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">mkdir /etc/test/</code>
+mkdir: cannot create directory ‘/etc/test/’: Permission denied
+
+<code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">!!</code>
+sudo mkdir /etc/test/
+[sudo] password for root:
+
+<code class="prompt user">&gt; </code><code class="command">ls -alrt /etc  | grep test</code>
+drwxr-xr-x 1 root root        0 Apr 20 12:48 test</pre></div></dd><dt id="id-1.4.3.2"><span class="term">Manage packages using <code class="command">sudo</code> and <code class="command">zypper</code></span></dt><dd><p>
+            To run package management commands as an administrator, add
+            <code class="command">sudo</code> before the command:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper [--GLOBAL-OPTIONS] &lt;COMMAND&gt; [--COMMAND-OPTIONS] [ARGUMENTS]</code></pre></div><p>
+            For example, to install the Docker CE containerization platform
+            from its official package repository, run the following commands
+            with <code class="command">sudo</code>:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper addrepo https://download.docker.com/linux/suse/docker-ce</code>
+
+<code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper refresh</code>
+
+<code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper search docker-ce</code>
+
+<code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper install docker-ce</code></pre></div><p>
+            You do not need to add <code class="command">sudo</code> before
+            <code class="command">zypper</code> commands that do not modify the system,
+            or provide privileged access to information. For example, you can
+            list the repositories for the installed software packages on your
+            system without using <code class="command">sudo</code>:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">zypper lr</code></pre></div></dd><dt id="id-1.4.3.3"><span class="term">Manage system services using <code class="command">sudo</code> and
+        <code class="command">systemctl</code></span></dt><dd><p>
+            In systems that use <code class="command">systemd</code> for managing
+            services, you can use the <code class="command">systemctl</code> command with
+            <code class="command">sudo</code>. For example, to restart the Apache Web
+            Server service, run:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">systemctl restart apache2</code></pre></div><p>
+            You do not need to add <code class="command">sudo</code> before
+            <code class="command">systemctl</code> commands that do not modify the
+            system, or provide privileged access to information. For example,
+            you can display the status of Network Manager without using
+            <code class="command">sudo</code>:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">systemctl status NetworkManager</code>
+● NetworkManager.service - Network Manager
+     Loaded: loaded (/usr/lib/systemd/system/NetworkManager.service; enabled; vendor preset: disabled)
+    Drop-In: /usr/lib/systemd/system/NetworkManager.service.d
+             └─NetworkManager-ovs.conf
+     Active: active (running) since DAY YYYY-MM-DD HH:MM:SS TIMEZONE; 1h 21min ago
+       Docs: man:NetworkManager(8)
+   [...]</pre></div></dd><dt id="id-1.4.3.4"><span class="term">Modify a user account using <code class="command">sudo</code> and
+          <code class="command">usermod</code></span></dt><dd><p>
+            To run the <code class="command">usermod</code> command for modifying user
+            accounts, use:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">usermod [OPTION] USERNAME</code></pre></div><p>
+            For example, to set the number of days to <code class="literal">30</code> for
+            permanently disabling the user account <code class="literal">tux</code> after
+            password expiry, run:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">usermod --inactive 30 tux</code></pre></div></dd><dt id="id-1.4.3.5"><span class="term">Modify file and directory ownership using <code class="command">sudo</code>
+          and <code class="command">chown</code></span></dt><dd><p>
+            To change file and directory ownerships from the current owner to a
+            new owner, use:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">chown [OPTION] [OWNER:[GROUP]] FILE</code></pre></div><p>
+            For example, to give <code class="filename">tux</code> the ownership of
+            files and subdirectories in the
+            <code class="filename">/home/test/tux-files</code> directory, run:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">chown tux /home/test/tux-files/ --recursive</code></pre></div><p>
+            You can test the change in ownership by running the following
+            command:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ls -alrt /home/test/tux-files/ --recursive</code></pre></div></dd><dt id="id-1.4.3.6"><span class="term">Run a command as another user using <code class="command">sudo -s</code></span></dt><dd><p>
+            Instead of using the <code class="command">su</code> command for switching to
+            a different user and then running commands, you can use the
+            <code class="command">sudo -s</code> command. A shell run by the
+            <code class="command">sudo -s</code> command inherits the environment of the
+            current user. The <code class="command">sudo -s</code> command also offers a
+            few privilege control measures.
+          </p><p>
+            To run a command as a different user, use:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">-s -u USERNAME COMMAND</code></pre></div><p>
+            By default, the command runs from the directory of the previous
+            user, because the target user inherits the environment of the
+            previous user.
+          </p><p>
+            For example, to recursively list the files and subdirectories of
+            the <code class="filename">/home/test/tux-files/</code> directory as the
+            target user <code class="filename">tux</code>, run:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">-s -u tux ls -alrt /home/test/tux-files/ --recursive</code></pre></div><p>
+            When you use the <code class="command">sudo -s</code> approach for running a
+            command as a different user, the command is logged in your history.
+          </p></dd><dt id="id-1.4.3.7"><span class="term">Run a command as another user with a clean environment using
+        <code class="command">sudo -i</code></span></dt><dd><p>
+            When using the <code class="command">sudo -s</code> command, the target user
+            inherits the environment of the previous user. You can prevent it
+            by using the <code class="command">sudo -i</code> command, where the target
+            user gets a clean environment and starts at their own
+            <code class="envar">$HOME</code> directory.
+          </p><p>
+            To run a command as a different user with a clean environment, use:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">-i -u USERNAME COMMAND</code></pre></div><p>
+            The <code class="command">sudo -i</code> command runs the shell as an
+            interactive login shell of the target user. As a result, there are
+            shell startup scripts such as <code class="filename">.profile</code> and
+    <code class="filename">.bash_profile</code> files.
+  </p><p>
+    For example, to list the files and subdirectories of the
+    <code class="filename">/home/test/tux-files/</code> directory as
+    <code class="filename">tux</code>, run the following command:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">-i -u tux ls -alrt /home/test/tux-files/</code></pre></div><p>
+    When you use the <code class="command">sudo -i</code> approach for running a
+    command as a different user, the command is logged in your history.
+  </p></dd></dl></div></section><section xml:lang="en" class="sect1" id="difference-in-command" data-id-title="Difference between sudo and su"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Difference between <code class="command">sudo</code> and <code class="command">su</code></span></span> <a title="Permalink" class="permalink" href="index.html#difference-in-command">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+    Learn the difference between <code class="command">sudo</code> and <code class="command">su</code>
+    commands and when to use which.
+  </p></div></div></div></div><p>
+  On Linux systems, you can preface a command with either <code class="command">sudo</code> or
+  <code class="command">su</code>. Both let you execute commands as <code class="systemitem">root</code>.
+</p><section class="sect2" id="id-1.5.3" data-id-title="Characteristics of the sudo command"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.1 </span><span class="title-name">Characteristics of the <code class="command">sudo</code> command</span></span> <a title="Permalink" class="permalink" href="index.html#id-1.5.3">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        <code class="command">sudo</code> allows you to run a command as <code class="systemitem">root</code>. Depending on the
+        configuration, it does not require you to enter the <code class="systemitem">root</code> password,
+        but only the user's password. This way, no sensitive information needs
+        to be shared with all the other (regular) users.
+      </p></li><li class="listitem"><p>
+        With the <code class="command">sudo</code> configuration file, the system administrator can control
+        which users are allowed to use <code class="command">sudo</code> and restrict the usage to certain
+        tasks.
+      </p></li><li class="listitem"><p>
+        <code class="command">sudo</code> caches the password for a certain period of time. After this
+        period, you are prompted for the password again, when running another
+        <code class="command">sudo</code> command.
+      </p></li><li class="listitem"><p>
+    All commands executed with <code class="command">sudo</code> are logged individually. The log file
+    tracks date and time, the user that ran the command, and the command itself.
+  </p></li></ul></div></section><section class="sect2" id="id-1.5.4" data-id-title="Characteristics of the su command"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.2 </span><span class="title-name">Characteristics of the <code class="command">su</code> command</span></span> <a title="Permalink" class="permalink" href="index.html#id-1.5.4">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     <code class="command">su</code> allows you to run a command as <code class="systemitem">root</code> but
+     requires you to know the <code class="systemitem">root</code> password. 
+   </p></li><li class="listitem"><p>
+      It cannot be configured to restrict access to certain users and tasks and
+      elevate the privileges for anyone who knows the <code class="systemitem">root</code> password.
+     </p></li><li class="listitem"><p>
+    The privileges are elevated for the entire terminal session. As long as you
+    stay in the session, you are not prompted for the password again.
+   </p></li><li class="listitem"><p>
+      Commands executed with <code class="command">su</code> are not logged individually,
+      as all actions can only be logged with the  user account.
+    </p></li></ul></div></section></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p> Copyright© 2006–2024
+ SUSE LLC and contributors.
+  All rights reserved. </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy.  Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#sudo-basic-concepts"><span class="title-number">1 </span><span class="title-name">Basic concepts of <code class="command">sudo</code></span></a></span></li><li><span class="section"><a href="index.html#sudo-run-command"><span class="title-number">2 </span><span class="title-name">Running a command prefaced with <code class="command">sudo</code></span></a></span></li><li><span class="section"><a href="index.html#sudo-commands"><span class="title-number">3 </span><span class="title-name">Common <code class="command">sudo</code> commands</span></a></span></li><li><span class="section"><a href="index.html#difference-in-command"><span class="title-number">4 </span><span class="title-name">Difference between <code class="command">sudo</code> and <code class="command">su</code></span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">5 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-fb" href="#" title="Facebook"> </a></li><li><a id="_share-in" href="#" title="LinkedIn"> </a></li><li><a id="_share-tw" href="#" title="Twitter/X"> </a></li><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE
+                 2024</span></div></div></footer></body></html>

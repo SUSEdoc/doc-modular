@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Zypper package manager</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style.css"/>
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
+<meta name="title" content="Zypper package manager"/>
+<meta name="description" content="Zypper is a command-line tool for installing, updating and removing software packages and for managing repositories."/>
+<meta name="book-title" content="Zypper package manager"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="dmitri.popov@suse.com"/>
+<meta name="tracker-bsc-component" content="Smart Docs"/>
+<meta name="tracker-bsc-product" content="Documentation"/>
+<meta name="publisher" content="SUSE"/><meta property="og:title" content="Zypper package manager"/>
+<meta property="og:description" content="Zypper is a command-line tool for installing, updating and …"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Zypper package manager"/>
+<meta name="twitter:description" content="Zypper is a command-line tool for installing, updating and …"/>
+<script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    
+     "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    
+    "inLanguage": "en",
+    
+
+    "headline": "Zypper package manager",
+  
+    "description": "Zypper is a command-line tool for installing, updating and removing software packages and for managing repositories.",
+      
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    ],
+      
+
+    "about": [
+      
+    ],
+  
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<script type="text/javascript">
+
+if ( window.location.protocol.toLowerCase() != 'file:' ) {
+  document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>');
+};
+
+</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"/></noscript><script src="static/js/script-purejs.js" type="text/javascript"> </script><script src="static/js/highlight.min.js" type="text/javascript"> </script><script>
+
+$(document).ready(function() {
+  $('.verbatim-wrap.highlight').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+hljs.configure({
+  useBR: false
+});
+
+</script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#concept-zypper">Zypper package manager</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="concept-zypper" data-id-title="Zypper package manager"><div class="titlepage"><div><div><h1 class="title">Zypper package manager</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>27 Sep 2024</div></div></div><section class="sect1" id="environment-zypper" data-id-title="Environment"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Environment</span></span> <a title="Permalink" class="permalink" href="#environment-zypper">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   This document applies to the following products and product versions:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     SUSE Linux Enterprise Server 15 SP5, 15 SP4, 15 SP3, 15 SP2, 12 SP5
+    </p></li><li class="listitem"><p>
+     SUSE Linux Enterprise Server for SAP Applications 15 SP5, 15 SP4, 15 SP3, 15 SP2, 12 SP5
+    </p></li><li class="listitem"><p>
+     SUSE Linux Enterprise High Availability 15 SP5, 15 SP4, 15 SP3, 15 SP2, 12 SP5
+    </p></li><li class="listitem"><p>
+     SUSE Linux Enterprise High Performance Computing 15 SP5, 15 SP4, 15 SP3, 15 SP2
+    </p></li><li class="listitem"><p>
+     SUSE Linux Enterprise Desktop 15 SP5
+    </p></li><li class="listitem"><p>
+     SUSE Linux Enterprise Real Time 15 SP5
+    </p></li></ul></div></section><section class="sect1" id="what-is-zypper" data-id-title="What is Zypper?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">What is Zypper?</span></span> <a title="Permalink" class="permalink" href="#what-is-zypper">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   Zypper is a command-line package manager for installing, updating and
+   removing packages. It can also be used to manage repositories.
+  </p></section><section class="sect1" id="how-it-works-zypper" data-id-title="How does Zypper work?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">How does Zypper work?</span></span> <a title="Permalink" class="permalink" href="#how-it-works-zypper">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   Zypper works and behaves as a regular command-line tool. It features
+   subcommmands, arguments, and options that can be used to perform specific
+   tasks.
+  </p></section><section class="sect1" id="benefits-zypper" data-id-title="Benefits of Zypper"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Benefits of Zypper</span></span> <a title="Permalink" class="permalink" href="#benefits-zypper">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   Zypper offers several benefits compared to graphical package managers.
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     Being a command-line tool, Zypper is faster in use and light on
+     resources.
+    </p></li><li class="listitem"><p>
+     Zypper actions can be scripted.
+    </p></li><li class="listitem"><p>
+     Zypper can be used on systems that do not have graphical desktop
+     environments. This makes it suitable for use with servers and remote
+     machines.
+    </p></li></ul></div></section><section class="sect1" id="general-usage-zypper" data-id-title="General usage"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">General usage</span></span> <a title="Permalink" class="permalink" href="#general-usage-zypper">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   The general syntax of Zypper is:
+  </p><div class="verbatim-wrap"><pre class="screen">zypper [<em class="replaceable">GLOBAL_OPTIONS</em>] <em class="replaceable">SUBCOMMAND</em> [<em class="replaceable">SUBCOMMAND_OPTIONS</em>] [<em class="replaceable">ARGUMENTS</em>]</pre></div><p>
+   The components enclosed in brackets are not required. See <code class="command">zypper
+   help</code> for a list of general options and all subcommands. To get help
+   for a specific subcommand, type <code class="command">zypper help</code>
+   <em class="replaceable">SUBCOMMAND</em>.
+  </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.6.5.1"><span class="term">Zypper subcommands</span></dt><dd><p>
+      The simplest way to execute Zypper is to type its name, followed by a
+      command. For example, to apply all needed patches to the system, use:
+     </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> zypper patch</pre></div></dd><dt id="id-1.6.5.2"><span class="term">Global options</span></dt><dd><p>
+      Additionally, you can choose from one or more global options by typing
+      them immediately before the command:
+     </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> zypper --non-interactive patch</pre></div><p>
+      In the above example, the option <code class="option">--non-interactive</code> means
+      that the command is run without asking anything (automatically applying
+      the default answers).
+     </p></dd><dt id="id-1.6.5.3"><span class="term">Command-specific options</span></dt><dd><p>
+      To use options that are specific to a particular command, type them
+      immediately after the command:
+     </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> zypper patch --auto-agree-with-licenses</pre></div><p>
+      In the above example, <code class="option">--auto-agree-with-licenses</code> is used
+      to apply all needed patches to a system without you being asked to
+      confirm any licenses. Instead, license will be accepted automatically.
+     </p></dd><dt id="id-1.6.5.4"><span class="term">Arguments</span></dt><dd><p>
+      Some commands require one or more arguments. For example, when using the
+      command <code class="command">install</code>, you need to specify one or more packages
+      you want to <span class="emphasis"><em>install</em></span>:
+     </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> zypper install mplayer</pre></div><p>
+      Some options also require a single argument. The following command will
+      list all known patterns:
+     </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>zypper search --type pattern</pre></div></dd></dl></div><p>
+   You can combine all of the above. For example, the following command will
+   install the <span class="package">mc</span> and <span class="package">vim</span> packages from
+   the <code class="literal">factory</code> repository while being verbose:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> zypper --verbose install --from factory mc vim</pre></div><p>
+   The <code class="option">--from</code> option keeps all repositories enabled (for
+   solving any dependencies) while requesting the package from the specified
+   repository. The option <code class="option">--repo</code> is an alias for <code class="option">--from</code>,
+   and you may use either one.
+  </p><p>
+   Most Zypper commands have a <code class="literal">dry-run</code> option that does a
+   simulation of the given command. It can be used for test purposes:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> zypper remove --dry-run MozillaFirefox</pre></div><p>
+   Zypper supports the global <code class="option">--userdata
+   <em class="replaceable">STRING</em></code> option. You can specify a string
+   with this option, which gets written to Zypper's log files and plug-ins
+   (such as the Btrfs plug-in). It can be used to mark and identify
+   transactions in log files.
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> zypper --userdata <em class="replaceable">STRING</em> patch</pre></div></section><section class="sect1" id="general-usage-zypper-subcommands" data-id-title="Using Zypper subcommands"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Using Zypper subcommands</span></span> <a title="Permalink" class="permalink" href="#general-usage-zypper-subcommands">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   Zypper subcommands are executables that are stored in the directory
+   <code class="filename">/usr/lib/zypper/commands</code>. If a subcommand is not found
+   in this directory, Zypper automatically searches the rest of your <code class="envar">$PATH</code>
+   for it. This enables writing your own local extensions and storing them in
+   userspace.
+  </p><p>
+   Executing subcommands in the Zypper shell, and using global Zypper options
+   are not supported.
+  </p><p>
+   List your available subcommands:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>zypper help subcommand
+[...]
+Available zypper subcommands in '/usr/lib/zypper/commands'
+
+  appstream-cache
+  lifecycle
+  migration
+  search-packages
+
+Zypper subcommands available from elsewhere on your $PATH
+
+  &lt;none&gt;</pre></div><p>
+   View the help screen for a subcommand:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>zypper help appstream-cache</pre></div></section><section class="sect1" id="related-zypper" data-id-title="Related topics"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Related topics</span></span> <a title="Permalink" class="permalink" href="#related-zypper">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     Installing and removing software with Zypper
+    </p></li><li class="listitem"><p>
+     Updating software with Zypper
+    </p></li></ul></div></section></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="#environment-zypper"><span class="title-number">1 </span><span class="title-name">Environment</span></a></span></li><li><span class="section"><a href="#what-is-zypper"><span class="title-number">2 </span><span class="title-name">What is Zypper?</span></a></span></li><li><span class="section"><a href="#how-it-works-zypper"><span class="title-number">3 </span><span class="title-name">How does Zypper work?</span></a></span></li><li><span class="section"><a href="#benefits-zypper"><span class="title-number">4 </span><span class="title-name">Benefits of Zypper</span></a></span></li><li><span class="section"><a href="#general-usage-zypper"><span class="title-number">5 </span><span class="title-name">General usage</span></a></span></li><li><span class="section"><a href="#general-usage-zypper-subcommands"><span class="title-number">6 </span><span class="title-name">Using Zypper subcommands</span></a></span></li><li><span class="section"><a href="#related-zypper"><span class="title-number">7 </span><span class="title-name">Related topics</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-fb" href="#" title="Facebook"> </a></li><li><a id="_share-in" href="#" title="LinkedIn"> </a></li><li><a id="_share-tw" href="#" title="Twitter/X"> </a></li><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE
+                 2024</span></div></div></footer></body></html>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Kernel Live Patching: Concept</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style.css"/>
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
+<meta name="title" content="Kernel Live Patching: Concept"/>
+<meta name="description" content="This document applies to the following products and product versions:"/>
+<meta name="book-title" content="Kernel Live Patching: Concept"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="dmitri.popov@suse.com"/>
+<meta name="tracker-bsc-component" content="Smart Docs"/>
+<meta name="tracker-bsc-product" content="Documentation"/>
+<meta name="publisher" content="SUSE"/><meta property="og:title" content="Kernel Live Patching: Concept"/>
+<meta property="og:description" content="This document applies to the following products and product…"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Kernel Live Patching: Concept"/>
+<meta name="twitter:description" content="This document applies to the following products and product…"/>
+<script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    
+     "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    
+    "inLanguage": "en",
+    
+
+    "headline": "Kernel Live Patching: Concept",
+  
+    "description": "Kernel Live Patching: Concept",
+      
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    ],
+      
+
+    "about": [
+      
+    ],
+  
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<script type="text/javascript">
+
+if ( window.location.protocol.toLowerCase() != 'file:' ) {
+  document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>');
+};
+
+</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"/></noscript><script src="static/js/script-purejs.js" type="text/javascript"> </script><script src="static/js/highlight.min.js" type="text/javascript"> </script><script>
+
+$(document).ready(function() {
+  $('.verbatim-wrap.highlight').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+hljs.configure({
+  useBR: false
+});
+
+</script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#concept-klp">Kernel Live Patching: Concept</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="concept-klp" data-id-title="Kernel Live Patching: Concept"><div class="titlepage"><div><div><h1 class="title">Kernel Live Patching: Concept</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>27 Sep 2024</div></div></div><section class="sect1" id="environment-klp" data-id-title="Environment"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Environment</span></span> <a title="Permalink" class="permalink" href="#environment-klp">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   This document applies to the following products and product versions:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     SUSE Linux Enterprise Server 15 SP5, 15 SP4, 15 SP3, 15 SP2, 12 SP5
+    </p></li><li class="listitem"><p>
+     SUSE Linux Enterprise Server for SAP Applications 15 SP5, 15 SP4, 15 SP3, 15 SP2, 12 SP5
+    </p></li><li class="listitem"><p>
+     SUSE Linux Enterprise High Availability 15 SP5, 15 SP4, 15 SP3, 15 SP2, 12 SP5
+    </p></li><li class="listitem"><p>
+     SUSE Linux Enterprise High Performance Computing 15 SP5, 15 SP4, 15 SP3, 15 SP2
+    </p></li><li class="listitem"><p>
+     SUSE Linux Enterprise Desktop 15 SP5
+    </p></li><li class="listitem"><p>
+     SUSE Linux Enterprise Real Time 15 SP5
+    </p></li></ul></div></section><section class="sect1" id="what-is-klp" data-id-title="What is Kernel Live Patching?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">What is Kernel Live Patching?</span></span> <a title="Permalink" class="permalink" href="#what-is-klp">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   KLP (Kernel Live Patching) makes it possible to apply the latest security updates to Linux
+   kernels without rebooting. This maximizes system uptime and availability,
+   which is especially important for mission-critical systems.
+  </p></section><section class="sect1" id="how-it-works-" data-id-title="How does Kernel Live Patching work?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">How does Kernel Live Patching work?</span></span> <a title="Permalink" class="permalink" href="#how-it-works-">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   Kernel live patches are delivered as packages with modified code that are
+   separate from the main kernel package. The live patches are cumulative, so
+   the latest patch contains all fixes from the previous ones for the kernel
+   package. Each kernel live package is tied to the exact kernel revision for
+   which it is issued. The live patch package version number increases with
+   every addition of fixes.
+  </p><div id="id-1.4.3" data-id-title="Live patches vs. kernel updates" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Live patches vs. kernel updates</div><p>
+    Live patches contain only critical fixes, and they do not replace regular
+    kernel updates that require a reboot. Consider live patches as temporary
+    measures that protect the kernel until a proper kernel update and a reboot
+    are performed.
+   </p></div><p>
+   The diagram below illustrates the overall relationship between live patches
+   and kernel updates. The list of <span class="emphasis"><em>Common Vulnerabilities and Exposures</em></span> (CVEs) and defect reports addressed by the
+   currently active live patch can be viewed using the <code class="command">klp -v
+   patches</code> command.
+  </p><div class="informalfigure"><div class="mediaobject"><a href="images/klp.png"><img src="images/klp.png" width="100%" alt="Image" title="Image"/></a></div></div><p>
+   It is possible to have multiple versions of the kernel package installed
+   along with their live patches. These packages do not conflict. You can
+   install updated kernel packages along with live patches for the running
+   kernel. In this case, you may be prompted to reboot the system. Users with
+   SLE Live Patching subscriptions are eligible for technical support as
+   long as there are live patch updates for the running kernel.
+  </p><p>
+   With KLP activated, every kernel update comes with a live patch package.
+   This live patch does not contain any fixes and serves as a seed for future
+   live patches for the corresponding kernel. These empty seed patches are
+   called <code class="literal">initial patches</code>.
+  </p></section><section class="sect1" id="benefits-klp" data-id-title="Benefits of Kernel Live Patching"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Benefits of Kernel Live Patching</span></span> <a title="Permalink" class="permalink" href="#benefits-klp">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   KLP offers several benefits.
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     Keeping a large number of servers automatically up to date is essential
+     for organizations obtaining or maintaining certain compliance
+     certifications. KLP can help achieve compliance, while reducing the
+     need for costly maintenance windows.
+    </p></li><li class="listitem"><p>
+     Companies that work with service-level agreement contracts must guarantee
+     a specific level of their system accessibility and uptime. Live patching
+     makes it possible to patch systems without incurring downtime.
+    </p></li><li class="listitem"><p>
+     Since KLP is part of the standard system update mechanism, there is no
+     need for specialized training or introduction of complicated maintenance
+     routines.
+    </p></li></ul></div></section><section class="sect1" id="related-klp" data-id-title="Related topics"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Related topics</span></span> <a title="Permalink" class="permalink" href="#related-klp">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     Activating Kernel Live Patching using YaST
+    </p></li><li class="listitem"><p>
+     Activating Kernel Live Patching from the command line
+    </p></li><li class="listitem"><p>
+     Performing Kernel Live Patching
+    </p></li><li class="listitem"><p>
+     Troubleshooting Kernel Live Patching issues
+    </p></li></ul></div></section></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="#environment-klp"><span class="title-number">1 </span><span class="title-name">Environment</span></a></span></li><li><span class="section"><a href="#what-is-klp"><span class="title-number">2 </span><span class="title-name">What is Kernel Live Patching?</span></a></span></li><li><span class="section"><a href="#how-it-works-"><span class="title-number">3 </span><span class="title-name">How does Kernel Live Patching work?</span></a></span></li><li><span class="section"><a href="#benefits-klp"><span class="title-number">4 </span><span class="title-name">Benefits of Kernel Live Patching</span></a></span></li><li><span class="section"><a href="#related-klp"><span class="title-number">5 </span><span class="title-name">Related topics</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-fb" href="#" title="Facebook"> </a></li><li><a id="_share-in" href="#" title="LinkedIn"> </a></li><li><a id="_share-tw" href="#" title="Twitter/X"> </a></li><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE
+                 2024</span></div></div></footer></body></html>

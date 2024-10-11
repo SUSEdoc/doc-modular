@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><title>Securing systemd Services</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style.css"/>
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
+<meta name="title" content="Securing systemd Services"/>
+<meta name="description" content="Securing systemd services"/>
+<meta name="book-title" content="Securing systemd Services"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="tbazant@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.0"/>
+<meta name="publisher" content="SUSE"/><meta name="category" content="."/><meta name="DCTERMS.modified" content="2023-12-18"/><meta name="DC.creator" content="tbazant@suse.com"/><meta property="og:title" content="Securing systemd services"/>
+<meta property="og:description" content="Securing systemd services"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Securing systemd services"/>
+<meta name="twitter:description" content="Securing systemd services"/>
+<script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    
+     "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    
+    "inLanguage": "en",
+    
+
+    "headline": "Securing systemd services",
+  
+    "description": "Securing systemd services",
+      
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    ],
+      
+    "dateModified": "2023-12-18T00:00+02:00",
+      
+    "datePublished": "2023-12-18T00:00+02:00",
+      
+    "articleSection": [ 
+        "Systems Management"
+        
+    ],
+    
+
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Administration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Security"
+      }
+    ],
+  
+    "mentions": [
+      
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server",
+        "softwareVersion": "16.0",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER"
+        
+      }
+      
+    ],
+    
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><script type="text/javascript">
+
+if ( window.location.protocol.toLowerCase() != 'file:' ) {
+  document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>');
+};
+
+</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"/></noscript><script src="static/js/script-purejs.js" type="text/javascript"> </script><script src="static/js/highlight.min.js" type="text/javascript"> </script><script>
+
+$(document).ready(function() {
+  $('.verbatim-wrap.highlight').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+hljs.configure({
+  useBR: false
+});
+
+</script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Securing systemd Services</a></div></div><main id="_content"><nav id="_side-toc-overall" class="side-toc"><div class="side-title">Securing <code class="systemitem">systemd</code> Services</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="systemd-securing" data-id-title="Securing systemd Services"><div class="titlepage"><div><div><h1 class="title">Securing <code class="systemitem">systemd</code> Services</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>27 Sep 2024</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.14.1.1"><span class="term">WHAT?</span></dt><dd><p>
+                <code class="systemitem">systemd</code> service files are most often used to operate one or more <code class="systemitem">systemd</code>
+                services, such as starting, stopping or viewing the status of the service. Besides
+                this, the service files can limit the privileges of the service they control.
+              </p></dd><dt id="id-1.1.14.1.2"><span class="term">WHY?</span></dt><dd><p>
+                Using security options of <code class="systemitem">systemd</code> service files increases the security of the
+                service they control. This adds another security layer of the whole operating
+                system.
+              </p></dd><dt id="id-1.1.14.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                It takes less than 15 minutes to understand how <code class="systemitem">systemd</code> can control the security
+                level of <code class="systemitem">systemd</code> services.
+              </p></dd><dt id="id-1.1.14.1.4"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                    Good knowledge of the <code class="systemitem">systemd</code> environment
+                  </p></li><li class="listitem"><p>
+                    <code class="systemitem">root</code> privileges
+                  </p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History" hreflang="en" href="rh-systemd-securing.html" target="_blank">Revision History: Securing systemd Services</a></div></div></div></div><section xml:lang="en" class="sect1" id="systemd-secure-services" data-id-title="Secure systemd services"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Secure <code class="systemitem">systemd</code> services</span></span> <a title="Permalink" class="permalink" href="index.html#systemd-secure-services">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Linux increases its security by separating privileges between individual components of the
+        operating system. System services already have a default level of security. For example,
+        their processes run under their own user ID, which limits the changes they can perform on
+        the system.
+      </p><p>
+        The default level of privilege separation provides only a basic protection. Services can
+        still perform as many changes as normal local users, though not as many as <code class="systemitem">root</code>. A
+        higher level of system security requires limiting what services can perform and prevents
+        them from certain privileges that normal users are allowed to use.
+      </p></div></div></div></div><section class="sect2" id="how-it-works-securing-with-systemd" data-id-title="How does securing services with systemd work?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">How does securing services with <code class="systemitem">systemd</code> work?</span></span> <a title="Permalink" class="permalink" href="index.html#how-it-works-securing-with-systemd">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      There are several methods to secure processes and applications that you can use
+      simultaneously. For example, confining with SELinux <span class="phrase">or <span class="phrase">AppArmor</span> </span>is
+      recommended. <code class="systemitem">systemd</code> can apply additional restrictions to local services by using
+      technologies included in the kernel. These restrictions are activated by adding specific
+      options to the <code class="systemitem">systemd</code> service definition and restarting the service.
+    </p></section><section class="sect2" id="benefits-securing-with-systemd" data-id-title="Benefits of securing services"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Benefits of securing services</span></span> <a title="Permalink" class="permalink" href="index.html#benefits-securing-with-systemd">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Securing <code class="systemitem">systemd</code> services increases the security of the whole operating system and protects
+      sensitive data contained on its file system.
+    </p></section></section><section xml:lang="en" class="sect1" id="systemd-analyze-security-service-files" data-id-title="Analyzing the security level"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Analyzing the security level</span></span> <a title="Permalink" class="permalink" href="index.html#systemd-analyze-security-service-files">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        <code class="systemitem">systemd</code> can apply additional restrictions to local services by using technologies
+        included in the kernel. These restrictions are activated by adding specific options to the
+        <code class="systemitem">systemd</code> service definition and restarting the service.
+      </p></div></div></div></div><p>
+    Use the <code class="command">systemd-analyze security</code> command to analyze security settings of
+    specified <code class="systemitem">systemd</code> service units. If unit names are not specified, the command inspects
+    security settings of all currently loaded service units. We recommend running the command after
+    a specific <code class="systemitem">systemd</code> unit file is updated. The command calculates an overall <span class="quote">“<span class="quote">exposure
+    level</span>”</span> that is an estimation in the range 0.0 to 10.0, showing how exposed a service is
+    security-wise. High values indicate little loose security provisions, while low exposure levels
+    indicate tight security restrictions.
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">systemd-analyze security systemd-logind.service</code>
+NAME                DESCRIPTION                              EXPOSURE
+✗ PrivateNetwork=     Service has access to the host's network      0.5
+✗ User=/DynamicUser=  Service runs as root user                     0.4
+✗ DeviceAllow=        Service has no device ACL                     0.2
+✓ IPAddressDeny=      Service blocks all IP address ranges
+...
+→ Overall exposure level for systemd-logind.service: 4.1 OK 🙂</pre></div></section><section xml:lang="en" class="sect1" id="systemd-securing-techniques" data-id-title="Techniques of securing"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Techniques of securing</span></span> <a title="Permalink" class="permalink" href="index.html#systemd-securing-techniques">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        This topic introduces commonly used techniques that <code class="systemitem">systemd</code> offers to protect services.
+        To apply the changes, add the required option to the service definition file and restart
+        the specific service.
+      </p></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.4.2.1"><span class="term">PrivateNetwork=yes</span></dt><dd><p>
+          This option isolates the service and its processes from networking. This prevents
+          external network requests from reaching the protected service. Be aware that certain
+          services require the network to be operational.
+        </p></dd><dt id="id-1.4.2.2"><span class="term">PrivateTmp=yes</span></dt><dd><p>
+          This option provides the service with a private <code class="filename">/tmp</code> isolated from
+          the host system's <code class="filename">/tmp</code>. The shared host <code class="filename">/tmp</code>
+          directory is a major source of security problems, such as symlink attacks and DoS
+          <code class="filename">/tmp</code> temporary files.
+        </p></dd><dt id="id-1.4.2.3"><span class="term">InaccessibleDirectories=/home</span></dt><dd><p>
+          This option makes the specified directories inaccessible to the service. This option
+          narrows the range of directories that can be read or modified by the service, for
+          example, to secure users' private files.
+        </p></dd><dt id="id-1.4.2.4"><span class="term">ReadOnlyDirectories=/var</span></dt><dd><p>
+          This option makes the specified directories inaccessible for writing to the service. The
+          example configuration makes the whole tree below <code class="filename">/var</code> read-only.
+          This option prevents the service from damaging the system files.
+        </p></dd><dt id="id-1.4.2.5"><span class="term">CapabilityBoundingSet=CAP_CHOWN CAP_KILL</span></dt><dd><p>
+          This option restricts the kernel capabilities that a service can retain. In the example
+          above, only the <code class="literal">CAP_CHOWN</code> and <code class="literal">CAP_KILL</code> capabilities
+          are retained by the service, and the service and any processes it creates cannot obtain
+          any other capabilities, not even via setuid binaries.
+        </p><div id="id-1.4.2.5.2.2" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
+            To easily identify which processes on your system retain which capabilities, use the
+            <code class="command">pscap</code> tool from the <span class="package">libcap-ng-utils</span> package.
+          </p></div><div id="id-1.4.2.5.2.3" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
+            The <code class="literal">~</code> prefix inverts the meaning of the option—instead of
+            listing all capabilities that the service retains, you may list the ones it does not
+            retain:
+          </p><div class="verbatim-wrap"><pre class="screen">...
+    [Service]
+    CapabilityBoundingSet=~CAP_SYS_PTRACE
+    ...</pre></div></div></dd><dt id="id-1.4.2.6"><span class="term">LimitNPROC=1, LimitFSIZE=0</span></dt><dd><p>
+          You can use <span class="emphasis"><em>resource limits</em></span> to apply security limits on services.
+          Two of them can disable specific operating system features:
+          <code class="option">RLIMIT_NPROC=1</code> disables precess forking, while
+          <code class="option">RLIMIT_FSIZE=0</code> disables creating non-empty files on the file system.
+        </p></dd><dt id="id-1.4.2.7"><span class="term">DeviceAllow=/dev/null rw</span></dt><dd><p>
+          This option limits access to <code class="filename">/dev/null</code>, disallowing access to any
+          other device nodes.
+        </p></dd></dl></div></section><section xml:lang="en" class="sect1" id="systemd-securing-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="index.html#systemd-securing-more-info">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        All security options are described in <code class="systemitem">systemd</code>'s man pages. Refer to <code class="command">man 5
+        systemd.exec</code>.
+      </p></li><li class="listitem"><p>
+        The list of currently defined kernel capabilities is available in <code class="command">man 7
+        capabilities</code>.
+      </p></li><li class="listitem"><p>
+        Enabling and disabling <code class="systemitem">systemd</code> services is described in
+        <a class="link" href="https://documentation.suse.com/smart/linux/html/reference-systemctl-enable-disable-services/reference-systemctl-enable-disable-services.html" target="_blank">https://documentation.suse.com/smart/linux/html/reference-systemctl-enable-disable-services/reference-systemctl-enable-disable-services.html</a>.
+      </p></li><li class="listitem"><p>
+        Managing <code class="systemitem">systemd</code> targets with <code class="command">systemctl</code> is described in
+        <a class="link" href="https://documentation.suse.com/smart/linux/html/reference-managing-systemd-targets-systemctl/reference-systemctl-managing-targets.html" target="_blank">https://documentation.suse.com/smart/linux/html/reference-managing-systemd-targets-systemctl/reference-systemctl-managing-targets.html</a>.
+      </p></li><li class="listitem"><p>
+        Sending termination signals to <code class="systemitem">systemd</code> services is described in
+        <a class="link" href="https://documentation.suse.com/smart/linux/html/task-send-termination-signals-systemd/task-send-termination-signals-systemd.html" target="_blank">https://documentation.suse.com/smart/linux/html/task-send-termination-signals-systemd/task-send-termination-signals-systemd.html</a>.
+      </p></li><li class="listitem"><p>
+        Starting and stopping <code class="systemitem">systemd</code> services is described in
+        <a class="link" href="https://documentation.suse.com/smart/linux/html/reference-systemctl-start-stop-services/reference-systemctl-start-stop-services.html" target="_blank">https://documentation.suse.com/smart/linux/html/reference-systemctl-start-stop-services/reference-systemctl-start-stop-services.html</a>.
+      </p></li></ul></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p> Copyright© 2006–2024
+ SUSE LLC and contributors.
+  All rights reserved. </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy.  Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#systemd-secure-services"><span class="title-number">1 </span><span class="title-name">Secure <code class="systemitem">systemd</code> services</span></a></span></li><li><span class="section"><a href="index.html#systemd-analyze-security-service-files"><span class="title-number">2 </span><span class="title-name">Analyzing the security level</span></a></span></li><li><span class="section"><a href="index.html#systemd-securing-techniques"><span class="title-number">3 </span><span class="title-name">Techniques of securing</span></a></span></li><li><span class="section"><a href="index.html#systemd-securing-more-info"><span class="title-number">4 </span><span class="title-name">For more information</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">5 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-fb" href="#" title="Facebook"> </a></li><li><a id="_share-in" href="#" title="LinkedIn"> </a></li><li><a id="_share-tw" href="#" title="Twitter/X"> </a></li><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE
+                 2024</span></div></div></footer></body></html>

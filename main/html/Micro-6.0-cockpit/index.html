@@ -1,0 +1,1424 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><title>Administering SUSE Linux Enterprise Micro using Cockpit</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style.css"/>
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
+<meta name="title" content="Administering SUSE Linux Enterprise Micro using Cockpit"/>
+<meta name="description" content="An administration guide that describes how to manage SLE Micro using the Cockpit web interface."/>
+<meta name="book-title" content="Administering SUSE Linux Enterprise Micro using Cockpit"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="jsindelarova@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Micro 6.0"/>
+<meta name="publisher" content="SUSE"/><meta name="DCTERMS.modified" content="2023-03-13"/><meta name="DC.creator" content="jsindelarova@suse.com"/><meta property="og:title" content="Administering SLE Micro using Cockpit"/>
+<meta property="og:description" content="Administering using Cockpit"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Administering SLE Micro using Cockpit"/>
+<meta name="twitter:description" content="Administering using Cockpit"/>
+<script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    
+     "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    
+
+    "headline": "Administering SLE Micro using Cockpit",
+  
+    "description": "An administration guide that describes how to manage SLE Micro using the Cockpit web interface.",
+      
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    ],
+      
+    "dateModified": "2023-05-15T00:00+02:00",
+      
+    "datePublished": "2023-05-15T00:00+02:00",
+      
+    "articleSection": [ 
+        "Systems Management"
+        
+    ],
+    
+
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Storage"
+      },
+      {
+        "@type": "Thing",
+        "name": "Maintenance"
+      }
+    ],
+  
+    "mentions": [
+      
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Micro",
+        
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER, IBM Z, AArch64"
+        
+      }
+      
+    ],
+    
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><script type="text/javascript">
+
+if ( window.location.protocol.toLowerCase() != 'file:' ) {
+  document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>');
+};
+
+</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"/></noscript><script src="static/js/script-purejs.js" type="text/javascript"> </script><script src="static/js/highlight.min.js" type="text/javascript"> </script><script>
+
+$(document).ready(function() {
+  $('.verbatim-wrap.highlight').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+hljs.configure({
+  useBR: false
+});
+
+</script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Administering SUSE Linux Enterprise Micro using Cockpit</a></div></div><main id="_content"><nav id="_side-toc-overall" class="side-toc"><div class="side-title">Administering <span class="phrase"><span class="phrase">SUSE Linux Enterprise Micro</span></span> using Cockpit</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section class="article" id="slemicro-cockpit-55-further" data-id-title="Administering SUSE Linux Enterprise Micro using Cockpit"><div class="titlepage"><div><div><h1 class="title">Administering <span class="phrase"><span class="phrase">SUSE Linux Enterprise Micro</span></span> using Cockpit</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>27 Sep 2024</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.14.1.1"><span class="term">WHAT?</span></dt><dd><p>
+                From basic system overview, over storage management to keeping
+                your system up to date, Cockpit enables you to perform a
+                number of administration tasks in a convenient way.
+              </p></dd><dt id="id-1.1.14.1.2"><span class="term">WHY?</span></dt><dd><p>
+                This article is intended to provide a complete overview of
+                tasks that can be performed from the Cockpit Web interface.
+              </p></dd><dt id="id-1.1.14.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                  What's the effort one has to put in?
+                </p></dd><dt id="id-1.1.14.1.4"><span class="term">GOAL</span></dt><dd><p>
+                  You will be able to administer your system using Cockpit;.
+                </p></dd><dt id="id-1.1.14.1.5"><span class="term">REQUIREMENTS</span></dt><dd><p>
+                To fully administer the system using Cockpit, you must have
+                 <code class="systemitem">root</code> access or <code class="command">sudo</code> privileges.
+              </p></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History" hreflang="en" href="rh-slemicro-cockpit.html" target="_blank">Revision History: Administering SUSE Linux Enterprise Micro using Cockpit</a></div></div></div></div><section xml:lang="en" class="sect1" id="concept-about-cockpit" data-id-title="About Cockpit"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">About Cockpit</span></span> <a title="Permalink" class="permalink" href="index.html#concept-about-cockpit">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    Cockpit is a Web-based graphical interface that enables you to manage
+    most administration tasks from one place. You do not need to create
+    credentials for Cockpit as, by default, Cockpit uses the same
+    credentials that you use to log in to your server. Cockpit uses APIs that
+    already exist on the system without adding a layer to the system.
+  </p><p>
+    Cockpit enables you to perform the following tasks:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        download container images and run containers
+      </p></li><li class="listitem"><p>
+        update the server
+      </p></li><li class="listitem"><p>
+        inspect and change network settings
+      </p></li><li class="listitem"><p>
+        manage user accounts
+      </p></li><li class="listitem"><p>
+        view system logs
+      </p></li><li class="listitem"><p>
+        inspect and interact with <code class="systemitem">systemd</code> services
+      </p></li><li class="listitem"><p>
+        use a terminal on a remote server in your web browser
+      </p></li></ul></div></section><section xml:lang="en" class="sect1" id="cockpit-installation" data-id-title="Installing Cockpit"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Installing Cockpit</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-installation">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><section class="sect2" id="cockpit-installation-introduction" data-id-title="Introduction"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">Introduction</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-installation-introduction">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Cockpit is included in the delivered pre-built images by default, or can be installed if
+      you are installing your own instances manually
+    </p></section><section class="sect2" id="cockpit-installing-additional-plugins" data-id-title="Installing additional Cockpit plugins"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.2 </span><span class="title-name">Installing additional Cockpit plugins</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-installing-additional-plugins">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Though Cockpit is present in the pre-built images,  as described below.
+    </p><div id="id-1.3.3.3" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
+        You can also use the following command in case Cockpit is not installed on your system.
+      </p></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Install the pattern:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">transactional-update pkg install -t pattern </code></pre></div></li><li class="step"><p>
+          Reboot your machine to switch to the latest snapshot.
+        </p></li><li class="step"><p>
+          If the Cockpit instance is intended to serve as a primary one, you
+          need to enable the Cockpit socket in <code class="systemitem">systemd</code> by running:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>systemctl enable --now cockpit.socket</pre></div><p>
+          After running the command, the server exposes the default
+          <span class="emphasis"><em>9090</em></span> port and <code class="systemitem">systemd</code> starts the
+          <code class="literal">cockpit-ws</code> service that listens on the 9090 port.
+        </p></li><li class="step"><p>
+          In case you have enabled the firewall, proceed as follows:
+        </p><ol type="a" class="substeps"><li class="step"><p>
+              Open the firewall for Cockpit
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>firewall-cmd --permanent --zone=public --add-service=cockpit</pre></div></li><li class="step"><p>
+              Reload the firewall configuration by running:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>firewall-cmd --reload</pre></div></li></ol></li><li class="step"><p>
+          Now you can access the Cockpit Web interface by opening the following
+          address in your Web browser:
+        </p><div class="verbatim-wrap"><pre class="screen">https://<em class="replaceable">IP_ADDRESS_OF_MACHINE</em>:9090</pre></div></li></ol></div></div></section></section><section xml:lang="en" class="sect1" id="concept-cockpit-authentication" data-id-title="Accessing Cockpit"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Accessing Cockpit</span></span> <a title="Permalink" class="permalink" href="index.html#concept-cockpit-authentication">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    Cockpit enables you to log in directly to each machine that can expose the
+    9090 port. This machine is sometimes referred to as the primary server. It
+    is the primary server that runs the <code class="literal">cockpit-ws</code> through
+    which connections to additional servers are established. By default, Cockpit listens for both
+    HTTP and HTTPS connections. However, most of the HTTP connections are redirected to HTTPS,
+    with exceptions like local host access.
+  </p><p>
+    If the port cannot be accessed on the particular machine, you can still use
+    Cockpit to administer the machine by using it as a secondary server. For a
+    procedure of adding a server as secondary, refer to
+    <a class="xref" href="index.html#cockpit-logging-adding-secondary" title="Adding a server as secondary">Procedure 2, “Adding a server as secondary”</a>.
+  </p><div id="id-1.4.4" data-id-title="A limited number of secondary servers" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: A limited number of secondary servers</div><p>
+      The number of secondary servers that you can administer from one primary
+      server is limited to 20. If you need to administer more servers, add
+      other primary servers or use another tool for cluster administration.
+    </p></div><section class="sect2" id="cockpit-authentication-certificates" data-id-title="TLS certificates"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.1 </span><span class="title-name">TLS certificates</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-authentication-certificates">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      By default, Cockpit loads <code class="filename">.cert</code> or <code class="filename">.crt</code> certificates from the directory
+      <code class="filename">/etc/cockpit/ws-certs.d</code>. The corresponding private key must be a
+      separate file with the
+      same file name but with the <code class="filename">.key</code> suffix. Make sure the key is not encrypted.
+    </p><p>
+      If no certificate is found in the directory, Cockpit generates a self-signed 
+      certificate (<code class="filename">0-self-signed.cert</code>) to establish a secure 
+      connection.
+    </p><p>
+      To check which certificate Cockpit uses, run the command:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> /usr/libexec/cockpit-certificate-ensure --check</pre></div></section><section class="sect2" id="cockpit-authentication-users" data-id-title="Authentication"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.2 </span><span class="title-name">Authentication</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-authentication-users">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      You do not need separate credentials to log in to Cockpit. Use
+      the same credentials that you use to log in to <span class="phrase"><span class="phrase">SUSE Linux Enterprise Micro</span></span>. However, 
+      login using <code class="systemitem">root</code> is not allowed, so make sure to create a non-privileged 
+      user. 
+    </p><p>
+      Non-privileged users log in to Cockpit with limited access. To perform
+      administrative tasks, click <span class="guimenu">Limited access</span> in the 
+      top-right menu and unlock the administrative mode by entering 
+      <code class="systemitem">root</code> password.
+    </p></section><section xml:lang="en" class="sect2" id="cockpit-logging-into-primary" data-id-title="Logging in to the primary server directly"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.3 </span><span class="title-name">Logging in to the primary server directly</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-logging-into-primary">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    Whenever you have a direct network access to the 9090 port, you can
+    directly log in to the server using your credentials. To do so, follow the
+    <a class="xref" href="index.html#logging-into-primary-server" title="Logging in to the primary server">Procedure 1, “Logging in to the primary server”</a>.
+  </p><div id="id-1.4.7.3" data-id-title="No dedicated credentials for Cockpit needed." class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: No dedicated credentials for Cockpit needed.</div><p>
+      By default, the access is controlled by a Cockpit-specific PAM stack
+      located at <code class="filename">/etc/pam.d/cockpit</code>. The default
+      configuration allows logging in with the same user names and passwords
+      that are used for any local account on the system.
+    </p></div><div class="procedure" id="logging-into-primary-server" data-id-title="Logging in to the primary server"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 1: </span><span class="title-name">Logging in to the primary server </span></span><a title="Permalink" class="permalink" href="index.html#logging-into-primary-server">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Go to the Cockpit login page by opening the following address in a
+        browser:
+      </p><div class="verbatim-wrap"><pre class="screen">https://<em class="replaceable">IP_ADDRESS_OF_MACHINE</em>:9090</pre></div></li><li class="step"><p>
+        Enter the credentials.
+      </p></li></ol></div></div></section><section xml:lang="en" class="sect2" id="cockpit-logging-into-secondary-server" data-id-title="Logging in to secondary servers"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.4 </span><span class="title-name">Logging in to secondary servers</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-logging-into-secondary-server">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    If your machine does not have a direct access to the 9090 port, you can use
+    this machine as a secondary server. Bear in mind that the machine needs to
+    have Cockpit installed.
+  </p><p>
+    There are two ways of logging in to a secondary server: you can
+    log in to a secondary server directly or you can use the primary server.
+  </p><section class="sect3" id="cockpit-logging-into-secondary-directly" data-id-title="Logging in to secondary servers directly"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">3.4.1 </span><span class="title-name">Logging in to secondary servers directly</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-logging-into-secondary-directly">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      You can log in to any secondary server without logging in to the primary
+      server first. This solution can be useful when you do not have
+      credentials for the primary server. The primary server will be used as a
+      bridge, and you will be connected to the secondary server using SSH.
+    </p><p>
+      To connect to the secondary server, proceed as follows:
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Go to the Cockpit login page by opening the following address in a
+          browser:
+        </p><div class="verbatim-wrap"><pre class="screen">https://<em class="replaceable">IP_ADDRESS_OF_MACHINE</em>:9090</pre></div></li><li class="step"><p>
+          Fill in the credentials for the secondary server.
+        </p></li><li class="step"><p>
+          Expand <span class="guimenu">Other options</span> on the login screen.
+        </p></li><li class="step"><p>
+          Fill in the IP address of the secondary server.
+        </p></li><li class="step"><p>
+          Proceed by clicking <span class="guimenu">Login</span>.
+        </p></li><li class="step"><p>
+          If you are trying to log in for the first time, you are asked to
+          verify the fingerprint. After this, click <span class="guimenu">Accept and
+          connect</span>.
+        </p></li></ol></div></div></section><section class="sect3" id="cockpit-logging-into-secondary-primary" data-id-title="Accessing secondary servers from the primary server"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">3.4.2 </span><span class="title-name">Accessing secondary servers from the primary server</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-logging-into-secondary-primary">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      If you have credentials for the primary server, you can access secondary
+      servers from the primary one. Bear in mind that you have to add the
+      secondary servers first as described in
+      <a class="xref" href="index.html#cockpit-logging-adding-secondary" title="Adding a server as secondary">Procedure 2, “Adding a server as secondary”</a>.
+    </p><div class="procedure" id="cockpit-logging-adding-secondary" data-id-title="Adding a server as secondary"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 2: </span><span class="title-name">Adding a server as secondary </span></span><a title="Permalink" class="permalink" href="index.html#cockpit-logging-adding-secondary">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Log in to the primary server using the account with the
+          <span class="emphasis"><em>system administrator</em></span> role.
+        </p></li><li class="step"><p>
+          Click the
+          <em class="replaceable">USERNAME</em>@<em class="replaceable">HOSTNAME</em>
+          in the upper-left corner.
+        </p></li><li class="step"><p>
+          Click <span class="guimenu">Add new host</span>.
+        </p></li><li class="step"><p>
+          Fill in the host identification and optionally user name that will be
+          used to log in to the server. You can assign a color to the machine.
+          When the details are complete, click <span class="guimenu">Add</span>.
+        </p></li><li class="step"><p>
+          Verify a fingerprint on the server you want to add. If the
+          fingerprint matches or if you have not set up the SSH connection,
+          click <span class="guimenu">Accept and connect</span> to proceed.
+        </p></li><li class="step"><p>
+          Fill in the password and, if needed, check <span class="guimenu">Automatic
+          login</span>. Cockpit will generate a new SSH key for the user, and
+          next time you will be logged in automatically.
+        </p></li></ol></div></div></section></section><section xml:lang="en" class="sect2" id="cockpit-switching-admin-access" data-id-title="Switching to the administration mode"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.5 </span><span class="title-name">Switching to the administration mode</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-switching-admin-access">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    By default, a regular user can log in to Cockpit with limited access that does not enable the user to perform administration tasks like managing user accounts, updating the system, and so on.
+  </p><p>
+    To switch to administrative access, proceed as follows:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Click the <span class="guimenu">Limited access</span> button.
+      </p></li><li class="step"><p>
+        Fill in the <code class="systemitem">root</code> password.
+      </p></li><li class="step"><p>
+        Click <span class="guimenu">Authenticate</span> to confirm.
+      </p></li></ol></div></div><p>
+    To turn off administrative mode, proceed as follows:
+   </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Click <span class="guimenu">Administrative access</span>.
+      </p></li><li class="step"><p>
+        To confirm, click <span class="guimenu">Limit access</span>.
+      </p></li></ol></div></div></section></section><section xml:lang="en" class="sect1" id="cockpit-configuring-servers" data-id-title="Configuring servers using Cockpit"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Configuring servers using Cockpit</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-configuring-servers">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+            Using the Cockpit <span class="guimenu">Overview</span> part, you can
+            perform changes to the default server configuration or the
+            configuration you provided during the manual installation. In this
+            part you can change the host name or change the system date or time
+            zone.
+          </p></div></div></div></div><section class="sect2" id="cockpit-configuring-hostname" data-id-title="Changing the sever host name"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.1 </span><span class="title-name">Changing the sever host name</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-configuring-hostname">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      To change the host name, proceed as follows:
+    </p><div class="procedure" id="id-1.5.2.3" data-id-title="Changing host name"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 3: </span><span class="title-name">Changing host name </span></span><a title="Permalink" class="permalink" href="index.html#id-1.5.2.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Navigate to the <span class="guimenu">Overview</span> page.
+        </p></li><li class="step"><p>
+          In the <span class="guimenu">Configuration</span> part, click
+          <span class="guimenu">edit</span>.
+        </p></li><li class="step"><p>
+          Fill in the following:
+        </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+              <span class="guimenu">Pretty host name</span>—a user-defined free-form
+              host name
+            </p></li><li class="listitem"><p>
+              <span class="guimenu">Real host name</span>—the name of the device
+              in the network
+            </p></li></ul></div></li></ol></div></div></section><section class="sect2" id="cockpit-configuring-timezone" data-id-title="Changing the system time or time zone"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.2 </span><span class="title-name">Changing the system time or time zone</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-configuring-timezone">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      To change the system time or time zone, proceed as follows:
+    </p><div class="procedure" id="id-1.5.3.3" data-id-title="Changing system time or time zone"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 4: </span><span class="title-name">Changing system time or time zone </span></span><a title="Permalink" class="permalink" href="index.html#id-1.5.3.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Navigate to the <span class="guimenu">Overview</span> page.
+        </p></li><li class="step"><p>
+          Click the <span class="guimenu">System time</span> value.
+        </p></li><li class="step"><p>
+          In the pop-up window you can change the following:
+        </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+              <span class="guimenu">Time zone</span>—the value set during the
+              manual installation or, in case of raw images, set to UTC.
+            </p></li><li class="listitem"><p>
+              <span class="guimenu">Set time</span>—by default, NTP is used for time
+              synchronization. You can set the time manually or, if you defined
+              alternative NTP servers, you can use those NTP servers for time
+              synchronization.
+            </p></li></ul></div></li></ol></div></div></section><section class="sect2" id="cockpit-configuring-cryptography" data-id-title="Changing the cryptographic policy"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.3 </span><span class="title-name">Changing the cryptographic policy</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-configuring-cryptography">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      To change the cryptographic policy, proceed as follows:
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Navigate to the <span class="guimenu">Overview</span> page.
+        </p></li><li class="step"><p>
+          Click <span class="guimenu">Default</span> next to <span class="guimenu">Cryptographic policy</span>.
+        </p></li><li class="step"><p>
+          In the pop-up window, click on one of the following policy types:
+        </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.5.4.3.3.2.1"><span class="term">Default</span></dt><dd><p>
+It allows the TLS 1.2 and TLS 1.3 protocols, as well as IKEv2 and SSH2. The
+            Diffie-Hellman parameters are accepted if they are at least 2048
+            bits long. The level provides at least 112-bit security with the
+            exception of allowing SHA-1 signatures in DNSSEC, where they are
+            still prevalent.
+              </p></dd><dt id="id-1.5.4.3.3.2.2"><span class="term">DEFAULT:SHA1</span></dt><dd><p>
+                Is a subpolicy of the <code class="literal">default</code> that enables using the SHA-1 algorithm.
+              </p></dd><dt id="id-1.5.4.3.3.2.3"><span class="term">LEGACY</span></dt><dd><p>
+                This policy ensures maximum compatibility with legacy systems. It
+            is less secure and includes support for TLS 1.0, TLS 1.1 and
+            SSH2 protocols or later. The algorithms DSA, 3DES and RC4 are
+            allowed, while RSA and Diffie-Hellman parameters are accepted if
+            larger than 1023 bits. The level provides at least 64-bit security.
+              </p></dd><dt id="id-1.5.4.3.3.2.4"><span class="term">LEGACY:AD-SUPPORT</span></dt><dd><p>
+                Is a subpolicy of <code class="literal">LEGACY</code> with Active Directory interoperability.
+              </p></dd><dt id="id-1.5.4.3.3.2.5"><span class="term">FIPS</span></dt><dd><p>
+                A level that conforms to the FIPS 140-2 requirements. This policy
+            is used internally by the <code class="command">fips-mode-setup</code> tool
+            that can switch the system into the FIPS 140-2 compliance mode. The
+            level provides at least 112-bit security.
+              </p></dd><dt id="id-1.5.4.3.3.2.6"><span class="term">FIPS:OSPP</span></dt><dd><p>
+                A subpolicy of FIPS with further Common Criteria restrictions.
+              </p></dd><dt id="id-1.5.4.3.3.2.7"><span class="term">FUTURE</span></dt><dd><p>
+                A conservative security level that is believed to withstand any
+            near-term future attacks. This level does not allow the use of
+            SHA-1 in signature algorithms. The level also provides some (not
+            complete) preparation for post-quantum encryption support
+            as a 256-bit symmetric encryption requirement. The RSA and
+            Diffie-Hellman parameters are accepted if larger than 3071 bits.
+            This level provides at least 128-bit security.
+              </p></dd></dl></div></li><li class="step"><p>
+          To apply the changes, click <span class="guimenu">Apply and reboot</span>.
+        </p></li></ol></div></div></section></section><section xml:lang="en" class="sect1" id="cockpit-filtering-logs" data-id-title="Filtering Cockpit logs"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Filtering Cockpit logs</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-filtering-logs">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+   You can filter the logs according to the following criteria:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+       <span class="emphasis"><em>Time</em></span>. For details, refer to <a class="xref" href="index.html#cockpit-logs-time" title="5.1. Filtering according to time">Section 5.1, “Filtering according to time”</a>.
+      </p></li><li class="listitem"><p>
+        <span class="emphasis"><em>Priority</em></span>. For details, refer to <a class="xref" href="index.html#cockpit-logs-priority" title="5.2. Filtering according to priority">Section 5.2, “Filtering according to priority”</a>.
+      </p></li><li class="listitem"><p>
+      <span class="emphasis"><em>Identifier</em></span>. You can filter logs for a particular service, daemon or process.
+      Available identifiers are parsed from the logs currently displayed
+      according to the set filters.
+      </p></li><li class="listitem"><p>
+        Free-form filters. For details, refer to <a class="xref" href="index.html#cockpit-logs-filters" title="5.3. Logs filters">Section 5.3, “Logs filters”</a>.
+      </p></li></ul></div><div id="id-1.6.4" data-id-title="The filter criteria are combined" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: The filter criteria are combined</div><p>
+      Bear in mind that when changing any of the time, priority or identifier
+      criteria, the other ones are still applied. For example, if you change the
+      time criterion to <span class="guimenu">Last 24 hours</span>, the priority and
+      identifier criteria remain the same.
+    </p></div><section class="sect2" id="cockpit-logs-time" data-id-title="Filtering according to time"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.1 </span><span class="title-name">Filtering according to time</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-logs-time">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      To filter the logs according to a specific time, you can choose from the
+      following values:
+     </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.6.5.3.1"><span class="term">Current boot</span></dt><dd><p>
+        Displays logs for the current boot only. The <span class="guimenu">Resume</span> button enables continuous refreshing of currently displayed logs.
+       </p></dd><dt id="id-1.6.5.3.2"><span class="term">Previous boot</span></dt><dd><p>
+        Displays logs relevant to the previous boot.
+       </p></dd><dt id="id-1.6.5.3.3"><span class="term">Last 24 hours</span></dt><dd><p>
+        Displays logs that were recorded within the last 24 hours.
+       </p></dd><dt id="id-1.6.5.3.4"><span class="term">Last 7 days</span></dt><dd><p>
+       Displays logs that were recorded within the last 7 days.
+       </p></dd></dl></div></section><section class="sect2" id="cockpit-logs-priority" data-id-title="Filtering according to priority"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.2 </span><span class="title-name">Filtering according to priority</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-logs-priority">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The standard <code class="command">syslog</code> severity levels are used (sorted
+      from most to least severe):
+     </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.6.6.3.1"><span class="term">Only emergency</span></dt><dd><p>
+         The system is unusable. This is a panic condition.
+        </p></dd><dt id="id-1.6.6.3.2"><span class="term">Alert and above</span></dt><dd><p>
+         This log requires your immediate action.
+        </p></dd><dt id="id-1.6.6.3.3"><span class="term">Critical and above</span></dt><dd><p>
+         Failures in primary systems. You should correct the problem
+         immediately.
+        </p></dd><dt id="id-1.6.6.3.4"><span class="term">Error and above</span></dt><dd><p>
+         Not an urgent error but should be handled within a specific time.
+        </p></dd><dt id="id-1.6.6.3.5"><span class="term">Warning and above</span></dt><dd><p>
+         Not an error but indicates that an error might occur if no action is
+         taken.
+        </p></dd><dt id="id-1.6.6.3.6"><span class="term">Notice and above</span></dt><dd><p>
+         Unusual events that are not errors. No immediate actions are required.
+        </p></dd><dt id="id-1.6.6.3.7"><span class="term">Info and above</span></dt><dd><p>
+         Normal operational messages that serve as a confirmation that the
+         system is working properly.
+        </p></dd><dt id="id-1.6.6.3.8"><span class="term">Debug and above</span></dt><dd><p>
+         These messages are used just to debug the system.
+        </p></dd></dl></div></section><section class="sect2" id="cockpit-logs-filters" data-id-title="Logs filters"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.3 </span><span class="title-name">Logs filters</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-logs-filters">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      You can refine the logs view here according to the following criteria:
+     </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.6.7.3.1"><span class="term">Since</span></dt><dd><p>
+         Logs for the specified date or newer will be displayed. You can specify
+         the time in the following way:
+        </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+           using the absolute date in the format
+           <span class="emphasis"><em>YYYY-MM-DD</em></span>
+          </p></li><li class="listitem"><p>
+           using any of the terms: <code class="literal">yesterday</code>,
+           <code class="literal">today</code>, <code class="literal">tomorrow</code> and
+           <code class="literal">now</code>
+          </p></li><li class="listitem"><p>
+           using relative time by prefixing the value with - or + and
+           specifying units. You can use the following units:
+           <code class="literal">seconds</code> or <code class="literal">s</code>,
+           <code class="literal">minutes</code> or <code class="literal">min</code>,
+           <code class="literal">hours</code> or <code class="literal">h</code>,
+           <code class="literal">days</code> or <code class="literal">d</code>,
+           <code class="literal">weeks</code> or <code class="literal">w</code>,
+           <code class="literal">months</code> or <code class="literal">m</code>, and
+           <code class="literal">years</code> or <code class="literal">y</code>.
+          </p></li></ul></div></dd><dt id="id-1.6.7.3.2"><span class="term">Until</span></dt><dd><p>
+         Logs for the specified date or older will be displayed. You can specify
+         the time in the following way:
+        </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+           using the absolute date in the format
+           <span class="emphasis"><em>YYYY-MM-DD</em></span>
+          </p></li><li class="listitem"><p>
+           using any of the terms: <code class="literal">yesterday</code>,
+           <code class="literal">today</code>, <code class="literal">tomorrow</code> and
+           <code class="literal">now</code>
+          </p></li><li class="listitem"><p>
+           using relative time by prefixing the value with - or + and
+           specifying units. You can use the following units:
+           <code class="literal">seconds</code> or <code class="literal">s</code>,
+           <code class="literal">minutes</code> or <code class="literal">min</code>,
+           <code class="literal">hours</code> or <code class="literal">h</code>,
+           <code class="literal">days</code> or <code class="literal">d</code>,
+           <code class="literal">weeks</code> or <code class="literal">w</code>,
+           <code class="literal">months</code> or <code class="literal">m</code>, and
+           <code class="literal">years</code> or <code class="literal">y</code>.
+          </p></li></ul></div></dd><dt id="id-1.6.7.3.3"><span class="term">Boot</span></dt><dd><p>
+         Enter an integer: 0 means the current boot, -1 is for the previous
+         boot, 1 for the first boot, 2 for the second, etc.
+        </p></dd><dt id="id-1.6.7.3.4"><span class="term">Unit</span></dt><dd><p>
+         Specify a <code class="systemitem">systemd</code> unit for which you want to display logs. Use one of
+         the formats:
+        </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+           <code class="literal">_SYSTEMD_UNIT=<em class="replaceable">NAME</em>.service</code>
+          </p></li><li class="listitem"><p>
+           <code class="literal">COREDUMP_UNIT=<em class="replaceable">NAME</em>.service</code>
+          </p></li><li class="listitem"><p>
+           <code class="literal">UNIT=<em class="replaceable">NAME</em>.service</code>
+          </p></li></ul></div></dd><dt id="id-1.6.7.3.5"><span class="term">Free-form search</span></dt><dd><p>
+         Enter a string that you want to find in the log messages. You can also
+         use
+         <a class="link" href="https://www.freedesktop.org/software/systemd/man/journalctl.html#-g" target="_blank">PERL-compatible
+         regular expressions</a>. Alternatively, you can filter messages
+         according to message log fields in the format
+         <em class="replaceable">FIELD=VALUE</em>. For example,
+         <code class="literal">CODE_LINE=349</code> displays logs with this value.
+        </p></dd></dl></div></section></section><section xml:lang="en" class="sect1" id="glue-storage-plugin" data-id-title="Managing storage using Cockpit"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Managing storage using Cockpit</span></span> <a title="Permalink" class="permalink" href="index.html#glue-storage-plugin">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    The <span class="guimenu">Storage</span> page enables you to monitor traffic on your
+    drives, repartition your system, manage NFS mount, view storage logs, and
+    create RAIDs or LVM.
+  </p><section xml:lang="en" class="sect2" id="task-monitoring-data-flow" data-id-title="Monitoring data flow on disks"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.1 </span><span class="title-name">Monitoring data flow on disks</span></span> <a title="Permalink" class="permalink" href="index.html#task-monitoring-data-flow">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    The graphs on the <span class="guimenu">Storage</span> page display reading and
+    writing data flow to devices. Each device in the graph has a different
+    color. Hover over the displayed data flow peak to identify the device name.
+  </p><div class="figure" id="fig-storage-dataflow"><div class="figure-contents"><div class="mediaobject"><a href="images/cockpit_dataflow_view.png"><img src="images/cockpit_dataflow_view.png" width="100%" alt="Cockpit storage" title="Cockpit storage"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 1: </span><span class="title-name">Data flow view </span></span><a title="Permalink" class="permalink" href="index.html#fig-storage-dataflow">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></section><section xml:lang="en" class="sect2" id="glue-cockpit-managing-filesystems" data-id-title="Managing file systems"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.2 </span><span class="title-name">Managing file systems</span></span> <a title="Permalink" class="permalink" href="index.html#glue-cockpit-managing-filesystems">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    The <span class="guimenu">Filesystems</span> view enables you to create a partition
+    table and to format or mount file systems. You can sort the mounted
+    partition according to <span class="guimenu">Name</span> or <span class="guimenu">Mount
+    point</span>.
+  </p><section xml:lang="en" class="sect3" id="cockpit-formatting-partitions" data-id-title="Formatting partitions using Cockpit"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">6.2.1 </span><span class="title-name">Formatting partitions using Cockpit</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-formatting-partitions">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    To format the partition, proceed as follows:
+  </p><div class="procedure" id="list-format-partition" data-id-title="Formatting partitions"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 5: </span><span class="title-name">Formatting partitions </span></span><a title="Permalink" class="permalink" href="index.html#list-format-partition">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Navigate to the <span class="guimenu">Storage</span> page.
+      </p></li><li class="step"><p>
+        In the <span class="guimenu">Filesystem</span> view click the partition you want
+        to format.
+      </p></li><li class="step"><p>
+        Click <span class="guimenu">Format</span> next to the particular partition
+        description to open the format window.
+      </p></li><li class="step" id="formatting-filesystems-details"><p>
+        Enter a unique name of the partition.
+      </p></li><li class="step"><p>
+        In <span class="guimenu">Mount point</span>, specify to which directory the
+        partition will be mounted. Bear in mind that the <span class="guimenu">Mount
+        point</span> field is mandatory.
+      </p></li><li class="step"><p>
+        In <span class="guimenu">Type</span>, select the file system type. Btrfs is
+        mandatory for the <code class="literal">/</code> partition.
+      </p></li><li class="step"><p>
+        If needed, configure the encryption:
+      </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.7.4.3.3.8.2.1"><span class="term">Passphrase and Confirm</span></dt><dd><p>
+              Enter a passphrase to unlock the encrypted partition.
+            </p></dd><dt id="id-1.7.4.3.3.8.2.2"><span class="term">Store passphrase</span></dt><dd><p>
+              The passphrase is stored in <code class="filename">/etc/luks-keys</code>
+              and you are not asked for the passphrase on next boot.
+            </p></dd><dt id="id-1.7.4.3.3.8.2.3"><span class="term">Encryption options</span></dt><dd><p>
+              You can pass a list of options described in
+              <a class="link" href="https://www.man7.org/linux/man-pages/man5/crypttab.5.html#SUPPORTED_OPTIONS" target="_blank">supported
+              encrypted options</a>.
+            </p></dd></dl></div></li><li class="step"><p>
+        Select the <span class="guimenu">Mount options</span>. In the <span class="guimenu">Custom
+        mount options</span> text field, you can enter a comma-separated
+        list of options. For common options, refer to
+        <a class="link" href="https://linux.die.net/man/8/mount" target="_blank">File system
+        Independent Mount Options</a>. Those options are used in the
+        <code class="literal">options</code> part of the <code class="filename">/etc/fstab</code>
+        file.
+      </p></li></ol></div></div></section><section xml:lang="en" class="sect3" id="task-mounting-partitions" data-id-title="Mounting partitions using Cockpit"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">6.2.2 </span><span class="title-name">Mounting partitions using Cockpit</span></span> <a title="Permalink" class="permalink" href="index.html#task-mounting-partitions">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><div id="id-1.7.4.4.2" data-id-title="The partition must be formatted" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: The partition must be formatted</div><p>
+      Before you try to mount a partition or disk, you need to format the
+      device first. For details, refer to
+      <a class="xref" href="index.html#list-format-partition" title="Formatting partitions">Procedure 5, “Formatting partitions”</a>.
+    </p></div><p>
+    To mount a partition, proceed as follows:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Navigate to the <span class="guimenu">Storage</span> page.
+      </p></li><li class="step"><p>
+        In the <span class="guimenu">Filesystems</span> view, click the device to mount.
+      </p></li><li class="step"><p>
+        Click <span class="guimenu">Mount</span> to open the <span class="guimenu">Mount
+        filesystem</span> window.
+      </p></li><li class="step"><p>
+        Specify the <span class="guimenu">Mount point</span>.
+      </p></li><li class="step"><p>
+        Select the mount options in the <span class="guimenu">Custom mount options</span>
+        text field, you can enter a comma-separated list of options. For common
+        options, refer to
+        <a class="link" href="https://linux.die.net/man/8/mount" target="_blank">File system
+        Independent Mount Options</a>. Those options are used in the
+        <code class="literal">options</code> part of the <code class="filename">/etc/fstab</code>
+        file.
+      </p></li><li class="step"><p>
+        Select at which booting stage the partition must be mounted.
+      </p></li><li class="step"><p>
+        Click <span class="guimenu">Mount</span> to proceed.
+      </p></li></ol></div></div></section></section><section xml:lang="en" class="sect2" id="task-managing-NFS-mounts" data-id-title="Managing NFS mount points"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.3 </span><span class="title-name">Managing NFS mount points</span></span> <a title="Permalink" class="permalink" href="index.html#task-managing-NFS-mounts">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        The <span class="guimenu">NFS mounts</span> view under the
+        <span class="guimenu">Storage</span> page enables you to add, edit or delete NFS
+        mounts.
+      </p></div></div></div></div><section class="sect3" id="cockpit-adding-nfs-mount" data-id-title="Adding an NFS mount point"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">6.3.1 </span><span class="title-name">Adding an NFS mount point</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-adding-nfs-mount">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      To add an NFS mount point, proceed as follows:
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Navigate to the <span class="guimenu">Storage</span> page.
+        </p></li><li class="step"><p>
+          Click the plus icon in the <span class="guimenu">NFS mounts</span> view.
+        </p></li><li class="step"><p>
+          Specify the following values:
+        </p><div class="variablelist" id="var-nfs-mount-details"><dl class="variablelist"><dt id="id-1.7.5.2.3.3.2.1"><span class="term">Server address</span></dt><dd><p>
+                Provide the IP address or name of the NFS server.
+              </p></dd><dt id="id-1.7.5.2.3.3.2.2"><span class="term">Path on server</span></dt><dd><p>
+                Select the available path on the NFS server that can be
+                mounted.
+              </p></dd><dt id="id-1.7.5.2.3.3.2.3"><span class="term">Local mount point</span></dt><dd><p>
+                Specify a directory on the local system where the path will be
+                mounted to.
+              </p></dd><dt id="id-1.7.5.2.3.3.2.4"><span class="term">Mount options</span></dt><dd><p>
+                Check any of the options:
+              </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                    <span class="guimenu">Mount at boot</span> – to mount the path
+                    automatically after each start or restart of the system.
+                  </p></li><li class="listitem"><p>
+                    <span class="guimenu">Mount read only</span> – you will not be
+                    able to perform changes to the data on the NFS path.
+                  </p></li><li class="listitem"><p>
+                    <span class="guimenu">Custom mount options</span> is a
+                    comma-separated list of the <code class="command">mount</code>
+                    command options.
+                  </p></li></ul></div></dd></dl></div></li></ol></div></div></section><section class="sect3" id="cockpit-editing-nfs" data-id-title="Editing existing NFS mount points"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">6.3.2 </span><span class="title-name">Editing existing NFS mount points</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-editing-nfs">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      To edit an NFS mount, proceed as follows:
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Navigate to the <span class="guimenu">Storage</span> page.
+        </p></li><li class="step"><p>
+          In the <span class="guimenu">NFS mounts</span> view, click on the particular NFS
+          mount.
+        </p></li><li class="step"><p>
+          On the next screen, click <span class="guimenu">Edit</span> and specify the
+          details described in
+          <a class="xref" href="index.html#var-nfs-mount-details">NFS mount details</a>.
+        </p></li></ol></div></div></section></section><section class="sect2" id="id-1.7.6" data-id-title="Managing RAIDS using Cockpit"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.4 </span><span class="title-name">Managing RAIDS using Cockpit</span></span> <a title="Permalink" class="permalink" href="index.html#id-1.7.6">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+              Using Cockpit you can create or modify software RAIDS of
+              different levels.
+            </p></div></div></div></div><section xml:lang="en" class="sect3" id="cockpit-creating-raids" data-id-title="Creating RAIDs using Cockpit"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">6.4.1 </span><span class="title-name">Creating RAIDs using Cockpit</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-creating-raids">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><div id="id-1.7.6.2.2" data-id-title="Sufficient number of disks" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Sufficient number of disks</div><p>
+      Make sure that you have enough disks available according to the RAID
+      level.
+    </p></div><p>
+    To create a software RAID, proceed as follows:
+  </p><div class="procedure" id="id-1.7.6.2.4" data-id-title="Creating a RAID"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 6: </span><span class="title-name">Creating a RAID </span></span><a title="Permalink" class="permalink" href="index.html#id-1.7.6.2.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Navigate to the <span class="guimenu">Storage</span> page.
+      </p></li><li class="step"><p>
+        Select the <span class="guimenu">Create RAID device</span> option in the
+        hamburger menu in the <span class="guimenu">Devices</span> view.
+      </p></li><li class="step"><p>
+        Enter the following parameters of the RAID:
+      </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.7.6.2.4.4.2.1"><span class="term">Name</span></dt><dd><p>
+              Enter a unique name of the RAID.
+            </p></dd><dt id="id-1.7.6.2.4.4.2.2"><span class="term">RAID level</span></dt><dd><p>
+              Select one of the RAID levels. For more details about RAID leves,
+              refer to
+              <a class="link" href="https://documentation.suse.com/smart/systems-management/html/raids/index.html#concept-raid-levels" target="_blank">RAID
+              levels</a>.
+            </p></dd><dt id="id-1.7.6.2.4.4.2.3"><span class="term">Chunk size</span></dt><dd><p>
+              The size of chunks in KBs. A chunk is the minimum amount of data
+              read or written to each data disk in the array during a single
+              read/write operation.
+            </p></dd><dt id="id-1.7.6.2.4.4.2.4"><span class="term">Disks</span></dt><dd><p>
+              Select the disks that should be included in the RAID. The
+              required number of disks depends on the selected RAID level.
+            </p></dd></dl></div></li><li class="step"><p>
+        Confirm the parameters by clicking <span class="guimenu">Create</span>. The RAID
+        then appears in the <span class="guimenu">Devices</span> part.
+      </p></li></ol></div></div></section><section xml:lang="en" class="sect3" id="cockpit-modifying-raids" data-id-title="Modifying RAIDs"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">6.4.2 </span><span class="title-name">Modifying RAIDs</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-modifying-raids">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Using the <span class="guimenu">Storage</span> plugin of Cockpit you can stop
+        or delete a RAID. Here you can also remove or add disk to the array.
+      </p></div></div></div></div><p>
+    To modify an existing RAID, proceed as follows:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Navigate to the <span class="guimenu">Storage</span> page.
+      </p></li><li class="step"><p>
+        Click the RAID in <span class="guimenu">Devices</span> to open the RAID details
+        view.
+      </p></li><li class="step"><p>
+        In the detailed view, you can stop or delete the RAID, add or remove
+        disks and format the device.
+      </p><p>
+        With certain RAID levels, you can switch on the <span class="guimenu">Bitmap</span>
+        option that enables you to synchronize only the changes after a disk is
+        temporarily disconnected. If the <span class="guimenu">Bitmap</span> is off, all
+        data on the disk will be synchronized.
+      </p></li></ol></div></div><div id="id-1.7.6.3.4" data-id-title="Removing or adding disks" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Removing or adding disks</div><p>
+      After any change to the disks number of the array, the system undergoes
+      resynchronization that may take some time. Keep in mind that each RAID
+      level requires a minimum number of disks, therefore, Cockpit does not
+      allow removing the disks that are required by the particular RAID level.
+    </p></div></section></section><section class="sect2" id="id-1.7.7" data-id-title="Managing volume groups and LVM"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.5 </span><span class="title-name">Managing volume groups and LVM</span></span> <a title="Permalink" class="permalink" href="index.html#id-1.7.7">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><section xml:lang="en" class="sect3" id="cockpit-creating-volume-groups" data-id-title="Creating volume groups"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">6.5.1 </span><span class="title-name">Creating volume groups</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-creating-volume-groups">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    To create a volume group of disks, proceed as follows:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Click <span class="guimenu">Storage</span>.
+      </p></li><li class="step"><p>
+        Under the hamburger menu in <span class="guimenu">Devices</span>, select
+        <span class="guimenu">Create LVM2 volume group</span>.
+      </p></li><li class="step"><p>
+        Enter the volume group name.
+      </p></li><li class="step"><p>
+        Select disks that will be part of the volume group.
+      </p></li><li class="step"><p>
+        Confirm the data with <span class="guimenu">Create</span>. The volume group
+        appears in the <span class="guimenu">Devices</span> view.
+      </p></li></ol></div></div></section><section xml:lang="en" class="sect3" id="task-creating-block-volume" data-id-title="Creating logical block volumes"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">6.5.2 </span><span class="title-name">Creating logical block volumes</span></span> <a title="Permalink" class="permalink" href="index.html#task-creating-block-volume">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    If you have a volume group, you can create a logical block volume from it.
+    To do so, proceed as follows:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Navigate to the <span class="guimenu">Storage</span> page.
+      </p></li><li class="step"><p>
+        In the <span class="guimenu">Devices</span>, click the volume group you want to
+        use.
+      </p></li><li class="step"><p>
+        Click <span class="guimenu">Create new logical volume</span>
+      </p></li><li class="step"><p>
+        Specify a logical volume name. select a block device and select the
+        size to use.
+      </p></li><li class="step"><p>
+        Select the <span class="guimenu">Block device for filesystems</span>.
+      </p></li><li class="step"><p>
+        Select the size to use.
+      </p></li><li class="step"><p>
+        Click <span class="guimenu">Create</span> to confirm the details.
+      </p></li><li class="step"><p>
+        Format the block volume by clicking <span class="guimenu">Format</span> and
+        filling the details as described in
+        <a class="xref" href="index.html#formatting-filesystems-details" title="Step 4">Step 4</a>.
+      </p></li></ol></div></div></section><section xml:lang="en" class="sect3" id="task-creating-logical-volumes" data-id-title="Creating a thin logical volumes"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">6.5.3 </span><span class="title-name">Creating a thin logical volumes</span></span> <a title="Permalink" class="permalink" href="index.html#task-creating-logical-volumes">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    If you have a volume group, you can create a thin logical volume as
+    described below:
+  </p><div class="procedure" id="proc-cockpit-block" data-id-title="Creating a thin logical volume"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 7: </span><span class="title-name">Creating a thin logical volume </span></span><a title="Permalink" class="permalink" href="index.html#proc-cockpit-block">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Navigate to the <span class="guimenu">Storage</span> page.
+      </p></li><li class="step"><p>
+        Click the volume group in <span class="guimenu">Devices</span>.
+      </p></li><li class="step"><p>
+        In the volume group details, click <span class="guimenu">Create new logical
+        volume</span>.
+      </p></li><li class="step"><p>
+        Specify a logical volume name.
+      </p></li><li class="step"><p>
+        Select a pool of thinly provisioned volumes.
+      </p></li><li class="step"><p>
+        Select the size to use.
+      </p></li><li class="step"><p>
+        Click <span class="guimenu">Create</span> to confirm the details.
+      </p></li><li class="step"><p>
+        Create a thin volume by clicking <span class="guimenu">Create thin volume</span>.
+      </p></li><li class="step"><p>
+        Enter a unique name.
+      </p></li><li class="step"><p>
+        Select the size of the volume.
+      </p></li><li class="step"><p>
+        Click <span class="guimenu">Create</span> to confirm the thin volume.
+      </p></li><li class="step"><p>
+        You can create several volumes of the particular volume group by
+        clicking <span class="guimenu">Create thin volume</span> again and repeating the
+        steps above.
+      </p></li><li class="step"><p>
+        Format the volumes by clicking <span class="guimenu">Format</span> and filling
+        the details as described in
+        <a class="xref" href="index.html#formatting-filesystems-details" title="Step 4">Step 4</a>.
+      </p></li></ol></div></div></section><section xml:lang="en" class="sect3" id="task-managing-lvm" data-id-title="Managing logical volumes"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">6.5.4 </span><span class="title-name">Managing logical volumes</span></span> <a title="Permalink" class="permalink" href="index.html#task-managing-lvm">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    To perform any administration task on an existing logical volume,
+    perform the following steps:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Navigate to the <span class="guimenu">Storage</span> page.
+      </p></li><li class="step"><p>
+        In the <span class="guimenu">Filesystems</span> view, click the logical volume.
+      </p></li><li class="step"><p>
+        Here you can perform the following actions with existing logical
+        volumes:
+      </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.7.7.5.3.3.2.1"><span class="term">Deactivate/Activate</span></dt><dd><p>
+              In the three-dot menu, select <span class="guimenu">Deactivate</span> or
+              <span class="guimenu">Activate</span>.
+            </p></dd><dt id="id-1.7.7.5.3.3.2.2"><span class="term">Mount</span></dt><dd><p>
+              By clicking <span class="guimenu">Mount</span> and filling in the mount point
+              and options, the volume will be mounted.
+            </p></dd><dt id="id-1.7.7.5.3.3.2.3"><span class="term">Shrink/Grow</span></dt><dd><p>
+              Bear in mind that the shrink/grow function is not available for
+              all file systems.
+            </p><p>
+              In the expanded details about the volume, click
+              <span class="guimenu">Shrink</span> or <span class="guimenu">Grow</span>.
+            </p></dd><dt id="id-1.7.7.5.3.3.2.4"><span class="term">Delete</span></dt><dd><p>
+              In the three-dot menu, select <span class="guimenu">Delete</span>.
+            </p></dd></dl></div></li></ol></div></div></section></section></section><section xml:lang="en" class="sect1" id="glue-cockpit-networking" data-id-title="Managing networking using Cockpit"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Managing networking using Cockpit</span></span> <a title="Permalink" class="permalink" href="index.html#glue-cockpit-networking">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    After clicking <span class="guimenu">Networking</span>, you can view traffic on your
+    system, manage firewall, manage network interfaces, or view network logs.
+  </p><section xml:lang="en" class="sect2" id="task-managing-firewall-cockpit" data-id-title="Managing firewall rules and zones"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.1 </span><span class="title-name">Managing firewall rules and zones</span></span> <a title="Permalink" class="permalink" href="index.html#task-managing-firewall-cockpit">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Cockpit enables you to create new zones or update the existing ones.
+        In the firewall settings, you can add services to a zone or allow access
+        to ports.
+      </p></div></div></div></div><div id="id-1.8.3.2" data-id-title="Cockpit service is mandatory" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Cockpit service is mandatory</div><p>
+      Do not remove the Cockpit service from the default firewall zone as
+      the Cockpit service may get blocked, and you may get disconnected
+      from the server.
+    </p></div><section class="sect3" id="cockpit-adding-firewall-zones" data-id-title="Adding firewall zones"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">7.1.1 </span><span class="title-name">Adding firewall zones</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-adding-firewall-zones">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The <span class="guimenu">public zone</span> is the default firewall zone. To add a
+      new zone, proceed as follows:
+    </p><div class="procedure" id="id-1.8.3.3.3" data-id-title="Adding new firewall zones"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 8: </span><span class="title-name">Adding new firewall zones </span></span><a title="Permalink" class="permalink" href="index.html#id-1.8.3.3.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Navigate to the <span class="guimenu">Networking</span> page.
+        </p></li><li class="step"><p>
+          Click <span class="guimenu">Edit rules and zones</span>.
+        </p></li><li class="step"><p>
+          Click <span class="guimenu">Add zone</span>.
+        </p></li><li class="step"><p>
+          Select <span class="guimenu">Trust level</span>. Each trust level of network
+          connections has a predefined set of included services (the Cockpit
+          service is included in all trust levels).
+        </p></li><li class="step"><p>
+          Define allowed addresses within the zone. Select one of the values:
+        </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+              <span class="guimenu">Entire subnet</span> to allow all addresses in the
+              subnet.
+            </p></li><li class="listitem"><p>
+              <span class="guimenu">Range</span>—a comma-separated list of IP
+              addresses with the routing prefix, for example, 192.0.2.0/24,
+              2001:db8::/32.
+            </p></li></ul></div></li><li class="step"><p>
+          Proceed with <span class="guimenu">Add zone</span>.
+        </p></li></ol></div></div></section><section class="sect3" id="cockpit-adding-firewall-services" data-id-title="Adding allowed services and ports to a zone"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">7.1.2 </span><span class="title-name">Adding allowed services and ports to a zone</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-adding-firewall-services">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      You can add services to an existing firewall zone as described below:
+    </p><div class="procedure" id="id-1.8.3.4.3" data-id-title="Adding services to a firewall zone"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 9: </span><span class="title-name">Adding services to a firewall zone </span></span><a title="Permalink" class="permalink" href="index.html#id-1.8.3.4.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Navigate to the <span class="guimenu">Networking</span> page.
+        </p></li><li class="step"><p>
+          Click <span class="guimenu">Edit rules and zones</span>.
+        </p></li><li class="step"><p>
+          Click <span class="guimenu">Add services</span>.
+        </p></li><li class="step"><p>
+          To add a service, check <span class="guimenu">Services</span> and select the
+          services from the list.
+        </p></li><li class="step"><p>
+          To allow custom ports, check <span class="guimenu">Custom ports</span> and
+          specify the port value for UDP and/or TCP. You can assign an
+          identifier to this port.
+        </p></li><li class="step"><p>
+          To confirm the changes, click <span class="guimenu">Add services</span> or
+          <span class="guimenu">Add ports</span>, respectively.
+        </p></li></ol></div></div></section></section><section xml:lang="en" class="sect2" id="concept-network-bonds" data-id-title="About network bonds"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.2 </span><span class="title-name">About network bonds</span></span> <a title="Permalink" class="permalink" href="index.html#concept-network-bonds">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    A bond interface is a combination of several network interfaces into one
+    bond. Depending on the <span class="guimenu">Mode</span> (described further), network
+    bonding can improve performance by increasing the network throughput and
+    bandwidth. Network bonding can also increase fault tolerance by keeping
+    overall connectivity even if some of the bonded interfaces stopped working.
+  </p><section xml:lang="en" class="sect3" id="cockpit-managing-bonds" data-id-title="Managing bonds"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">7.2.1 </span><span class="title-name">Managing bonds</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-managing-bonds">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><section class="sect4" id="task-creating-bonds" data-id-title="Adding bonds"><div class="titlepage"><div><div><div class="title-container"><h5 class="title"><span class="title-number-name"><span class="title-number">7.2.1.1 </span><span class="title-name">Adding bonds</span></span> <a title="Permalink" class="permalink" href="index.html#task-creating-bonds">#</a></h5><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      To add a bond, proceed as follows:
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Navigate to the <span class="guimenu">Networking</span> page.
+        </p></li><li class="step"><p>
+          Click <span class="guimenu">Add bond</span>.
+        </p></li><li class="step"><p>
+          Specify the following parameters of the bond interface:
+        </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.8.4.3.2.3.3.2.1"><span class="term">Name</span></dt><dd><p>
+                Enter a unique name of the interface.
+              </p></dd><dt id="id-1.8.4.3.2.3.3.2.2"><span class="term">Interfaces</span></dt><dd><p>
+                Select which network interfaces should be grouped in the bond.
+              </p></dd><dt id="id-1.8.4.3.2.3.3.2.3"><span class="term">MAC</span></dt><dd><p>
+                You can either select a specific MAC address of the underlying
+                interface, or you can use any of the following options:
+              </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.8.4.3.2.3.3.2.3.2.2.1"><span class="term">Permanent</span></dt><dd><p>
+                      Use the permanent hardware address if the device has a
+                      MAC address.
+                    </p></dd><dt id="id-1.8.4.3.2.3.3.2.3.2.2.2"><span class="term">Preserve</span></dt><dd><p>
+                      During the bond activation, the MAC address is not
+                      changed.
+                    </p></dd><dt id="id-1.8.4.3.2.3.3.2.3.2.2.3"><span class="term">Random</span></dt><dd><p>
+                      A random MAC address is created on each connection
+                      attempt.
+                    </p></dd><dt id="id-1.8.4.3.2.3.3.2.3.2.2.4"><span class="term">Stable</span></dt><dd><p>
+                      Creates a hashed MAC address.
+                    </p></dd></dl></div></dd><dt id="id-1.8.4.3.2.3.3.2.4"><span class="term">Mode</span></dt><dd><p>
+                Keep the default mode or select any of the following modes:
+              </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.8.4.3.2.3.3.2.4.2.2.1"><span class="term">Round Robin</span></dt><dd><p>
+                      Transfers packets from the first available interface to
+                      the last. The mode offers fault tolerance and load
+                      balancing.
+                    </p></dd><dt id="id-1.8.4.3.2.3.3.2.4.2.2.2"><span class="term">Active Backup</span></dt><dd><p>
+                      Only one interface in the bonding is active. If the
+                      active interface fails, the backup will be activated.
+                    </p></dd><dt id="id-1.8.4.3.2.3.3.2.4.2.2.3"><span class="term">XOR</span></dt><dd><p>
+                      Balancing using a transmit hash policy. The default is a
+                      modulo device count. To select a different policy,
+                      specify the <code class="literal">xmit_hash_policy</code> option in
+                      the <span class="guimenu">Option</span> field.
+                    </p></dd><dt id="id-1.8.4.3.2.3.3.2.4.2.2.4"><span class="term">Broadcast</span></dt><dd><p>
+                      Everything is transmitted on all interfaces.
+                    </p></dd><dt id="id-1.8.4.3.2.3.3.2.4.2.2.5"><span class="term">Adaptive Transmit Load Balancing</span></dt><dd><p>
+                      A channel bonding that does not require any special
+                      switch support. The outgoing traffic is distributed
+                      according to the current load on each interface.
+                    </p></dd><dt id="id-1.8.4.3.2.3.3.2.4.2.2.6"><span class="term">Adaptive Load Balancing</span></dt><dd><p>
+                      Includes adaptive transmit load balancing and receive
+                      load balancing, no special switch support is required.
+                    </p></dd></dl></div></dd><dt id="id-1.8.4.3.2.3.3.2.5"><span class="term">Primary</span></dt><dd><p>
+                This selection is available only for the <span class="emphasis"><em>Active
+                Backup</em></span> mode. You can select a particular interface
+                that will be used as primary, while other interfaces in the
+                bond are used as secondary.
+              </p></dd><dt id="id-1.8.4.3.2.3.3.2.6"><span class="term">Link monitoring</span></dt><dd><p>
+                Select the type of link monitoring.
+              </p></dd><dt id="id-1.8.4.3.2.3.3.2.7"><span class="term">Monitoring interval</span></dt><dd><p>
+                Specifies the intervals at which the particular link monitor
+                performs checks. The value is in ms.
+              </p></dd><dt id="id-1.8.4.3.2.3.3.2.8"><span class="term">Link up delay</span></dt><dd><p>
+                Define the time in ms for how long the bond is disabled after a
+                link has been activated. The value should be a multiple of the
+                <span class="guimenu">Monitoring interval</span> value, otherwise it will
+                be rounded to the nearest value. Available only for the MII
+                link monitor.
+              </p></dd><dt id="id-1.8.4.3.2.3.3.2.9"><span class="term">Link down delay</span></dt><dd><p>
+                Define the time in ms for how long the bond is disabled if a
+                link failure has been detected. The value should be a multiple
+                of the <span class="guimenu">Monitoring interval</span> value, otherwise
+                it will be rounded to the nearest value. Available only for the
+                MII link monitor.
+              </p></dd><dt id="id-1.8.4.3.2.3.3.2.10"><span class="term">Monitoring targets</span></dt><dd><p>
+                Specify the list of host IP addresses that you want to monitor.
+                Available only for the ARP link monitor.
+              </p></dd></dl></div></li><li class="step"><p>
+          Proceed with <span class="guimenu">Apply</span>.
+        </p></li></ol></div></div></section><section class="sect4" id="task-modifying-bonds" data-id-title="Modifying bonds"><div class="titlepage"><div><div><div class="title-container"><h5 class="title"><span class="title-number-name"><span class="title-number">7.2.1.2 </span><span class="title-name">Modifying bonds</span></span> <a title="Permalink" class="permalink" href="index.html#task-modifying-bonds">#</a></h5><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      To modify a bond, proceed as follows:
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Navigate to the <span class="guimenu">Networking</span> page.
+        </p></li><li class="step"><p>
+          Click on the particular bond name to open the details.
+        </p></li><li class="step"><p>
+          You can modify the following bond parameters:
+        </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.8.4.3.3.3.3.2.1"><span class="term">Bond</span></dt><dd><p>
+                Select a MAC address from the list.
+              </p></dd><dt id="id-1.8.4.3.3.3.3.2.2"><span class="term">Connect automatically</span></dt><dd><p>
+                The bond connects automatically by default. Uncheck the box to
+                disable the automatic connection.
+              </p></dd><dt id="id-1.8.4.3.3.3.3.2.3"><span class="term">IPv4 and IPv6</span></dt><dd><p>
+                After clicking <span class="guimenu">edit</span>, you can set an IP
+                address and configure a specific DNS, DNS search domain and
+                Routes.
+              </p></dd><dt id="id-1.8.4.3.3.3.3.2.4"><span class="term">MTU</span></dt><dd><p>
+                After clicking <span class="guimenu">edit</span>, you can specify a
+                particular value of the maximum transmission unit in bytes.
+              </p></dd><dt id="id-1.8.4.3.3.3.3.2.5"><span class="term">Bond</span></dt><dd><p>
+                After clicking <span class="guimenu">edit</span>, you can edit the same
+                parameters as when you were creating the bond interface.
+              </p></dd></dl></div></li></ol></div></div></section></section></section><section xml:lang="en" class="sect2" id="task-managing-bridges" data-id-title="Managing network bridges"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.3 </span><span class="title-name">Managing network bridges</span></span> <a title="Permalink" class="permalink" href="index.html#task-managing-bridges">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        A network bridge is a device that creates a single aggregated network
+        from multiple networks.
+      </p></div></div></div></div><section class="sect3" id="task-creating-bridges" data-id-title="Creating network bridges"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">7.3.1 </span><span class="title-name">Creating network bridges</span></span> <a title="Permalink" class="permalink" href="index.html#task-creating-bridges">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      To create a network bridge, proceed as follows:
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Navigate to the <span class="guimenu">Networking</span> page.
+        </p></li><li class="step"><p>
+          In the <span class="guimenu">Interfaces</span> view, click <span class="guimenu">Add
+          bridge.</span>
+        </p></li><li class="step"><p>
+          Specify the following:
+        </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.8.5.2.3.3.2.1"><span class="term">Name</span></dt><dd><p>
+                Specify a unique name of the bridge.
+              </p></dd><dt id="id-1.8.5.2.3.3.2.2"><span class="term">Ports</span></dt><dd><p>
+                Select interfaces to be included in the bridge.
+              </p></dd><dt id="id-1.8.5.2.3.3.2.3"><span class="term">Spanning tree protocol (STP)</span></dt><dd><p>
+                STP is a network protocol used for Ethernet networks that
+                prevents bridge loops by setting a preferred link whenever
+                network switches are connected with several links. This
+                preferred link is used for all Ethernet traffic unless it
+                fails. In that case, a redundant link is used instead. For
+                details regarding STP, see
+                <a class="link" href="https://en.wikipedia.org/wiki/Spanning_Tree_Protocol" target="_blank">STP</a>.
+              </p><p>
+                If you enable the STP protocol, you can edit the following
+                settings:
+              </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.8.5.2.3.3.2.3.2.3.1"><span class="term">STP priority</span></dt><dd><p>
+                      The lower the priority, the higher the probability of the
+                      switch to become the root switch.
+                    </p></dd><dt id="id-1.8.5.2.3.3.2.3.2.3.2"><span class="term">STP forward delay</span></dt><dd><p>
+                      Specify the time spent in the listening and learning
+                      state (in seconds). The default value is 15 s, but
+                      you can use any value between 4 and 30 s.
+                    </p></dd><dt id="id-1.8.5.2.3.3.2.3.2.3.3"><span class="term">STP hello time</span></dt><dd><p>
+                      Specify the time between each bridge protocol data unit
+                      (BDPU) that is sent on a port (in seconds). The default
+                      value is 2 s, but the recommended range is 1 to
+                      10 s.
+                    </p></dd><dt id="id-1.8.5.2.3.3.2.3.2.3.4"><span class="term">STP maximum message age</span></dt><dd><p>
+                      Specify the maximum length of time that passes before a
+                      bridge port saves its configuration BPDU information.
+                    </p></dd></dl></div></dd></dl></div></li></ol></div></div></section><section class="sect3" id="task-modifying-bridges" data-id-title="Modifying or deleting existing bridges"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">7.3.2 </span><span class="title-name">Modifying or deleting existing bridges</span></span> <a title="Permalink" class="permalink" href="index.html#task-modifying-bridges">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      To modify or delete a bridge, proceed as follows:
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Navigate to the <span class="guimenu">Networking</span> page.
+        </p></li><li class="step"><p>
+          In the <span class="guimenu">Interfaces</span> view, click the bridge name to
+          open the details.
+        </p></li><li class="step"><p>
+          There you can delete the bridge by clicking
+          <span class="guimenu">Delete</span>, or modify it by changing any of the
+          following details:
+        </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.8.5.3.3.3.2.1"><span class="term">General</span></dt><dd><p>
+                The bridge connects automatically by default. To disable the
+                automatic connection, uncheck the option.
+              </p></dd><dt id="id-1.8.5.3.3.3.2.2"><span class="term">IPv4 and IPv6</span></dt><dd><p>
+                After clicking <span class="guimenu">edit</span>, you can set the IP
+                address and configure a specific DNS, DNS search domain and
+                Routes.
+              </p></dd><dt id="id-1.8.5.3.3.3.2.3"><span class="term">Bridge</span></dt><dd><p>
+                By clicking <span class="guimenu">edit</span>, you can edit all
+                parameters of the bridge.
+              </p></dd></dl></div></li></ol></div></div></section></section><section xml:lang="en" class="sect2" id="task-managing-vlans" data-id-title="Managing VLANs using Cockpit"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.4 </span><span class="title-name">Managing VLANs using Cockpit</span></span> <a title="Permalink" class="permalink" href="index.html#task-managing-vlans">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        A virtual local area network is a logical subnetwork that groups
+        devices from different physical LANs.
+      </p></div></div></div></div><section class="sect3" id="adding-vlans" data-id-title="Creating virtual local area network"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">7.4.1 </span><span class="title-name">Creating virtual local area network</span></span> <a title="Permalink" class="permalink" href="index.html#adding-vlans">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      To add a VLAN, proceed as follows:
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Navigate to the <span class="guimenu">Networking</span> page.
+        </p></li><li class="step"><p>
+          In the <span class="guimenu">Interfaces</span> view, click <span class="guimenu">Add
+          VLAN</span>.
+        </p></li><li class="step"><p>
+          Fill in the VLAN details:
+        </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.8.6.2.3.3.2.1"><span class="term">Parent</span></dt><dd><p>
+                Select the parent network interface.
+              </p></dd><dt id="id-1.8.6.2.3.3.2.2"><span class="term">VLAN ID</span></dt><dd><p>
+                Specify an ID in the range 1–4094.
+              </p></dd><dt id="id-1.8.6.2.3.3.2.3"><span class="term">Name</span></dt><dd><p>
+                Enter the name of the VLAN.
+              </p></dd></dl></div></li></ol></div></div></section><section class="sect3" id="modifying-vlans" data-id-title="Modifying or deleting existing VLANs"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">7.4.2 </span><span class="title-name">Modifying or deleting existing VLANs</span></span> <a title="Permalink" class="permalink" href="index.html#modifying-vlans">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      To modify or delete an existing VLAN, proceed as follows:
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Navigate to the <span class="guimenu">Networking</span> page.
+        </p></li><li class="step"><p>
+          In the <span class="guimenu">Interface</span> view, click the VLAN name.
+        </p></li><li class="step"><p>
+          Either delete the VLAN by clicking <span class="guimenu">Delete</span>, or
+          change any of the VLAN details:
+        </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.8.6.3.3.3.2.1"><span class="term">Parent</span></dt><dd><p>
+                Select the parent network interface.
+              </p></dd><dt id="id-1.8.6.3.3.3.2.2"><span class="term">VLAN ID</span></dt><dd><p>
+                Specify an ID in the range 1–4094.
+              </p></dd><dt id="id-1.8.6.3.3.3.2.3"><span class="term">Name</span></dt><dd><p>
+                Enter the name of the VLAN.
+              </p></dd></dl></div></li></ol></div></div></section></section></section><section xml:lang="en" class="sect1" id="cockpit-podman-containers" data-id-title="Working with containers"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name">Working with containers</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-podman-containers">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    After the first login to Cockpit, you need to start Podman. Keep the
+    default check box selected to start Podman automatically on each boot.
+  </p><p>
+    The <span class="guimenu">Podman containers</span> page enables you to pull images
+    from registries and manage your container. You can also filter the view by
+    entering a filter criterion into the filter field.
+  </p><section xml:lang="en" class="sect2" id="task-getting-image" data-id-title="Getting container images"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">8.1 </span><span class="title-name">Getting container images</span></span> <a title="Permalink" class="permalink" href="index.html#task-getting-image">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><div id="id-1.9.4.2" data-id-title="openSUSE registry and Docker Hub not enabled by default" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: openSUSE registry and Docker Hub  not enabled by default</div><p>
+    The openSUSE registry and Docker Hub are not configured in the default installation. To download container
+    images from those registries, you need to add the registries to the
+    <code class="filename">/etc/containers/registries.conf</code> file as follows:
+  </p><div class="verbatim-wrap"><pre class="screen">unqualified-search-registries = ["registry.suse.com", "registry.opensuse.org", "docker.io"]</pre></div></div><p>
+    To start a container, you need a container image. To get a container image,
+    proceed as follows:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Navigate to the <span class="guimenu">Podman containers</span> page.
+      </p></li><li class="step"><p>
+       In the <span class="guimenu">Images</span> view, select under the three-dot menu <span class="guimenu">Download new image</span>.
+      </p></li><li class="step"><p>
+        Select the <span class="guimenu">Owner</span> to define who can see the downloaded image. The <span class="guimenu">System</span> restricts the image visibility for users with administrative access. Image downloaded under the <span class="guimenu">User</span> owner is visible to the regular user and also to all other users with the administrative access.
+      </p></li><li class="step"><p>
+        Choose a preferred image registry or proceed with <code class="literal">All
+        registries</code>.
+      </p></li><li class="step"><p>
+        Define the <span class="guimenu">Tag</span>. The default value is
+        <code class="literal">latest</code>.
+      </p></li><li class="step"><p>
+        Fill in the image name or description in the <span class="guimenu">Search
+        for</span> field to start the search.
+      </p><p>
+        Cockpit suggests possible images according to the entered name,
+        registry and tag.
+      </p></li><li class="step"><p>
+        Select the desired image and click <span class="guimenu">Download</span>.
+      </p></li></ol></div></div></section><section xml:lang="en" class="sect2" id="task-example" data-id-title="Managing containers using Cockpit"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">8.2 </span><span class="title-name">Managing containers using Cockpit</span></span> <a title="Permalink" class="permalink" href="index.html#task-example">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><section class="sect3" id="task-running-containers" data-id-title="Running new containers from images"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">8.2.1 </span><span class="title-name">Running new containers from images</span></span> <a title="Permalink" class="permalink" href="index.html#task-running-containers">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div id="id-1.9.5.2.2" data-id-title="Image required to run a container" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Image required to run a container</div><p>
+        To run a container, you need a container image, either pulled by using
+        Cockpit or by Podman. For details about Podman, refer to the
+        <a class="link" href="https://documentation.suse.com/sle-micro/html/SLE-Micro-all/article-podman.html" target="_blank">Podman
+        guide</a>.
+      </p></div><p>
+      To run a new container from an image, proceed as follows:
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Navigate to the <span class="guimenu">Podman containers</span> page.
+        </p></li><li class="step"><p>
+          In the <span class="guimenu">Images</span> view, click <span class="guimenu">Show images</span>.
+        </p></li><li class="step"><p>
+          Click <span class="guimenu">Create container</span> next  to the image you want to use.
+        </p></li><li class="step"><p>
+          In the <span class="guimenu">Create container</span> window, enter the container
+          details as described below. Bear in mind that some options are available only for system administrators.
+        </p><p>
+              In the <span class="guimenu">Details</span> tab, enter the following details:
+            </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.9.5.2.4.4.3.1"><span class="term">Owner</span></dt><dd><p>
+                    Select whether the container will be visible only for users with <code class="command">sudo</code> privileges by selecting <span class="guimenu">system</span>. The <span class="guimenu">user</span> defines that the container is visible to privileged users and regular users.
+                  </p></dd><dt id="id-1.9.5.2.4.4.3.2"><span class="term">Name</span></dt><dd><p>
+                    Specify a unique name for the container.
+                  </p></dd><dt id="id-1.9.5.2.4.4.3.3"><span class="term">Pull the latest image</span></dt><dd><p>
+                    If selected, the latest image version is pulled before the container is started. 
+                  </p></dd><dt id="id-1.9.5.2.4.4.3.4"><span class="term">Command</span></dt><dd><p>
+                    You can specify a command to run in the container.
+                  </p></dd><dt id="id-1.9.5.2.4.4.3.5"><span class="term">With terminal</span></dt><dd><p>
+                    Select the option to have access to the container using a terminal. If not selected, the container will be in the detached state.
+                  </p></dd><dt id="id-1.9.5.2.4.4.3.6"><span class="term">Memory limit</span></dt><dd><p>
+                    You can limit maximum memory consumption of the container by
+                checking the box and specifying the limit.
+                  </p></dd><dt id="id-1.9.5.2.4.4.3.7"><span class="term">CPU shares</span></dt><dd><p>
+                Specify the weight of the container to use CPU time. The
+                default weight is 1024. The weight applies only if containers
+                are under high load. If the tasks in one container are idle, other
+                containers may use its CPU time.
+              </p><p>
+                If you have four containers, two of them have CPU shares of 512
+                and the other two have 1024. Thus, under high load, the
+                containers with lower CPU shares get only 16,5% of CPU time,
+                while those with 1024 CPU shares get 33% of CPU time.
+              </p></dd><dt id="id-1.9.5.2.4.4.3.8"><span class="term">Restart policy</span></dt><dd><p>
+                    Specify when the container is restarted after it exits.
+                  </p></dd><dt id="id-1.9.5.2.4.4.3.9"><span class="term">Volumes</span></dt><dd><p>
+                    This field maps a path in a container onto a path on the host machine. Fill in the host path, the container path and select the SELinux label. 
+                  </p><p>
+                    The SELinux label <span class="guimenu">private</span> defines that the volume is accessible only from the particular container. The <span class="guimenu">shared</span> label means that all containers can access the volume.
+                  </p></dd><dt id="id-1.9.5.2.4.4.3.10"><span class="term">Environment variables</span></dt><dd><p>
+                    To define environment variables in the container, click <span class="guimenu">Add variable</span> and fill in <span class="guimenu">Key</span> and <span class="guimenu">Value</span>. You can enter multiple variables by adding more lines.
+                  </p></dd></dl></div><p>
+            In the <span class="guimenu">Integration</span> tab, you can enter the following parameters:
+          </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.9.5.2.4.4.5.1"><span class="term">Port mapping</span></dt><dd><p>
+                  After you click the <span class="guimenu">Add port mapping</span> button, specify the host IP address, the host port to map the container port onto, the container port and select the protocol. If you do not set the host IP address or set the value to 0.0.0.0, the port is bound to ALL host IP addresses. If you omit the host port, a random one is used for the mapping.
+                </p></dd><dt id="id-1.9.5.2.4.4.5.2"><span class="term">Volumes</span></dt><dd><p>
+                  This field maps a path in a container onto a path on the host machine. Fill in the host path, the container path and select the SELinux label. 
+                </p><p>
+                  The SELinux label <span class="guimenu">private</span> defines that the volume is accessible only from the particular container. The <span class="guimenu">shared</span> label means that all containers can access the volume.
+                </p></dd><dt id="id-1.9.5.2.4.4.5.3"><span class="term">Environment variables</span></dt><dd><p>
+                  To define environment variables in the container, click <span class="guimenu">Add variable</span> and fill in <span class="guimenu">Key</span> and <span class="guimenu">Value</span>. You can enter multiple variables by adding more lines.
+                </p></dd></dl></div><p>
+            In the <span class="guimenu">Health check</span> tab, you can set a time period of commands triggering to check the status of the container. Fill in the following parameters:
+          </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.9.5.2.4.4.7.1"><span class="term">Command</span></dt><dd><p>
+                    Specify the command that is triggered to check the container status.
+                  </p></dd><dt id="id-1.9.5.2.4.4.7.2"><span class="term">Interval</span></dt><dd><p>
+                    Specify the interval of checks in seconds.
+                  </p></dd><dt id="id-1.9.5.2.4.4.7.3"><span class="term">Timeout</span></dt><dd><p>
+                    The maximum time in seconds to wait before the interval is considered failed.
+                  </p></dd><dt id="id-1.9.5.2.4.4.7.4"><span class="term">Start period</span></dt><dd><p>
+                    The time interval after the container is started when the health check is not performed.
+                  </p></dd><dt id="id-1.9.5.2.4.4.7.5"><span class="term">Retries</span></dt><dd><p>
+                    Specify how many times the check can be performed before the status is considered as unhealthy. 
+                  </p></dd><dt id="id-1.9.5.2.4.4.7.6"><span class="term">When unhealthy</span></dt><dd><p>
+                    Select the action to take after a container is considered unhealthy.  
+                  </p></dd></dl></div></li><li class="step"><p>
+        To create the container, click <span class="guimenu">Create</span> or <span class="guimenu">Create and run</span> to create and start the container.
+      </p></li></ol></div></div></section><section class="sect3" id="further-actions-with-containers" data-id-title="Further actions with running containers"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">8.2.2 </span><span class="title-name">Further actions with running containers</span></span> <a title="Permalink" class="permalink" href="index.html#further-actions-with-containers">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Under the three-dot menu, you can perform the following actions: 
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+         delete the container
+        </p></li><li class="listitem"><p>
+          pause the container
+        </p></li><li class="listitem"><p>
+          commit changes performed to the container, for example, installing
+          packages to the container
+        </p></li><li class="listitem"><p>
+          checkpoint the container—write the state of the container to disk and stop the container
+        </p></li><li class="listitem"><p>
+          restart the container, either by regular <span class="guimenu">Restart</span>,
+          where processes running inside the container are stopped, or by
+          <span class="guimenu">Force restart</span>, where the processes are killed, and
+          you may lose data
+        </p></li><li class="listitem"><p>
+          stop the container, either by regular <span class="guimenu">Stop</span>,
+          <span class="guimenu">Force stop</span> or <span class="guimenu">Checkpoint</span>. When
+          using <span class="guimenu">Checkpoint</span>, the state of all processes in
+          the container is written to the disk, and after the next start, the
+          container is restored to the same point before stopping.
+        </p></li></ul></div><p>
+      By expanding the container details, you can access the container's terminal in the 
+      <span class="guimenu">Console</span> tab and view its information in other tabs.           
+    </p></section></section><section class="sect2" id="id-1.9.6" data-id-title="Pods management"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">8.3 </span><span class="title-name">Pods management</span></span> <a title="Permalink" class="permalink" href="index.html#id-1.9.6">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><section xml:lang="en" class="sect3" id="cockpit-creating-pods" data-id-title="Creating pods"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">8.3.1 </span><span class="title-name">Creating pods</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-creating-pods">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    Cockpit enables you to create pods in which you can then create containers. To create a pod, follow the steps:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Navigate to the <span class="guimenu">Podman containers</span> page.
+      </p></li><li class="step"><p>
+        Click <span class="guimenu">Create pod</span>.
+      </p></li><li class="step"><p>
+        Fill in the pod details:
+      </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.9.6.2.3.3.2.1"><span class="term">Name</span></dt><dd><p>
+              Enter a unique name of the pod.
+            </p></dd><dt id="id-1.9.6.2.3.3.2.2"><span class="term">Owner</span></dt><dd><p>
+              Specify whether the pod will be visible only under <code class="systemitem">root</code> privileges or also to regular users.
+            </p></dd><dt id="id-1.9.6.2.3.3.2.3"><span class="term">Port mapping</span></dt><dd><p>
+              After clicking <span class="guimenu">Add port mapping</span>, you can map a pod port onto a host port. Specify the containers port, assign the desired host port and IP address. If the host IP address is not set or set to 0.0.0.0, the port is bonded to all host IP addresses. If you omit the host port number, a random port number is assigned to the mapping.
+            </p></dd><dt id="id-1.9.6.2.3.3.2.4"><span class="term">Volumes</span></dt><dd><p>
+              After clicking <span class="guimenu">Add volume</span>, you can map a directory on the host onto a containers' volume. Select the host path, enter the path in containers and select the SELinux labeling. 
+            </p></dd></dl></div></li><li class="step"><p>
+        Click <span class="guimenu">Create</span> to confirm the pod creation.
+      </p></li></ol></div></div></section><section xml:lang="en" class="sect3" id="cockpit-addinc-continers-to-pods" data-id-title="Creating containers in pods"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">8.3.2 </span><span class="title-name">Creating containers in pods</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-addinc-continers-to-pods">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><div id="id-1.9.6.3.2" data-id-title="Existing containers cannot be added to pods" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Existing containers cannot be added to pods</div><p>
+      During the planning, bear in mind that only new containers can be run in a pod. You cannot add an already created container that has not been run under a pod to any pod. 
+    </p></div><p>
+    To create containers in a pod, follow the steps:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Navigate to the <span class="guimenu">Podman containers</span> page.
+      </p></li><li class="step"><p>
+        In the desired pod group, click <span class="guimenu">Create container in pod</span>.
+      </p></li><li class="step"><p>
+        Fill in the container details as described in <a class="xref" href="index.html#task-running-containers" title="8.2.1. Running new containers from images">Section 8.2.1, “Running new containers from images”</a>. Remember that the owner of new containers is the same as the owner of the particular pod.
+      </p></li></ol></div></div></section></section></section><section xml:lang="en" class="sect1" id="glue-managing-users" data-id-title="Users administration using Cockpit"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">9 </span><span class="title-name">Users administration using Cockpit</span></span> <a title="Permalink" class="permalink" href="index.html#glue-managing-users">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><div id="id-1.10.2" data-id-title="Users administration only for server administrators" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Users administration only for server administrators</div><p>
+      Only users with <span class="guimenu">Administrative access</span> can edit
+      other users.
+    </p></div><p>
+    Using the <span class="guimenu">Accounts</span> Cockpit screen, you can perform the
+    following tasks:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        Creating new users of the system as described in
+        <a class="xref" href="index.html#task-creating-users-cockpit" title="9.2. Creating user accounts using Cockpit">Section 9.2, “Creating user accounts using Cockpit”</a>
+      </p></li><li class="listitem"><p>
+        Creating new user groups as described in <a class="xref" href="index.html#cockpit-creating-groups" title="9.3. Creating user groups">Section 9.3, “Creating user groups”</a>.
+      </p></li><li class="listitem"><p>
+        Assigning <code class="command">sudo</code> privileges to user accounts as described in
+        <a class="xref" href="index.html#task-modifying-user-accounts" title="9.1. Modifying existing user accounts">Section 9.1, “Modifying existing user accounts”</a>
+      </p></li><li class="listitem"><p>
+        Forcing a change of a user's password as described in
+        <a class="xref" href="index.html#task-modifying-user-accounts" title="9.1. Modifying existing user accounts">Section 9.1, “Modifying existing user accounts”</a>
+      </p></li><li class="listitem"><p>
+        Locking a particular user account as described in
+        <a class="xref" href="index.html#task-modifying-user-accounts" title="9.1. Modifying existing user accounts">Section 9.1, “Modifying existing user accounts”</a>.
+      </p></li></ul></div><section xml:lang="en" class="sect2" id="task-modifying-user-accounts" data-id-title="Modifying existing user accounts"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.1 </span><span class="title-name">Modifying existing user accounts</span></span> <a title="Permalink" class="permalink" href="index.html#task-modifying-user-accounts">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    To modify a user account, proceed as follows:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Navigate to the <span class="guimenu">Accounts</span> page.
+      </p></li><li class="step"><p>
+        Click the account you want to modify.
+      </p></li><li class="step"><p>
+        In the user details view, you can perform the following actions:
+      </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.10.5.3.3.2.1"><span class="term">Delete the user</span></dt><dd><p>
+              Click <span class="guimenu">Delete</span> to remove the user from the
+              system.
+            </p></dd><dt id="id-1.10.5.3.3.2.2"><span class="term">Terminate user's session</span></dt><dd><p>
+              By clicking <span class="guimenu">Terminate session</span>, you can log a
+              particular user out of the system.
+            </p></dd><dt id="id-1.10.5.3.3.2.3"><span class="term">Manage access to the account</span></dt><dd><p>
+             You can set a date when the account
+              will expire. The default is to never expire.
+            </p><p>
+            You can disallow the user to use their password to log in. The user then must use a different method of authentication.
+          </p></dd><dt id="id-1.10.5.3.3.2.4"><span class="term">Manage the user's password</span></dt><dd><p>
+              Click <span class="guimenu">Set password</span> to set a new password for
+              the account.
+            </p><p>
+              By clicking <span class="guimenu">Force change</span>, the user will have
+              to change the password on the next login.
+            </p><p>
+              Click <span class="guimenu">edit</span> to set whether or when the password
+              expires.
+            </p></dd><dt id="id-1.10.5.3.3.2.5"><span class="term">Add SSH key</span></dt><dd><p>
+              You can add an SSH key for passwordless authentication via SSH.
+              Click <span class="guimenu">Add key</span>, paste the contents of the
+              public SSH key and confirm it by clicking <span class="guimenu">Add</span>.
+            </p></dd></dl></div></li></ol></div></div></section><section xml:lang="en" class="sect2" id="task-creating-users-cockpit" data-id-title="Creating user accounts using Cockpit"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.2 </span><span class="title-name">Creating user accounts using Cockpit</span></span> <a title="Permalink" class="permalink" href="index.html#task-creating-users-cockpit">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Cockpit enables you to add users to a running system and assign
+        system administrator privileges to accounts.
+      </p></div></div></div></div><p>
+    To add a new user to the system, proceed as follows:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Navigate to the <span class="guimenu">Accounts</span> page.
+      </p></li><li class="step"><p>
+        Click <span class="guimenu">Create new account</span> to open the window that
+        enables you to add a new user.
+      </p></li><li class="step"><p>
+        Fill in the user account details. You can assign a different home directory to the user in the drop-down <span class="guimenu">Home directory</span> menu. If you do not specify a directory, the standard <code class="filename">/home/<em class="replaceable">USERNAME</em></code> path is used. 
+      </p><p>
+        If you select <span class="guimenu">Disallow password authentication</span>, the user will have to use an authentication method other than filling in password, for example, SSH login.
+      </p></li><li class="step"><p>
+        Click <span class="guimenu">Create</span> to confirm the account.
+      </p></li><li class="step"><p>
+        To add an SSH key to
+        the account, you need to modify the account as described in
+        <a class="xref" href="index.html#task-modifying-user-accounts" title="9.1. Modifying existing user accounts">Section 9.1, “Modifying existing user accounts”</a>.
+      </p></li></ol></div></div></section><section xml:lang="en" class="sect2" id="cockpit-creating-groups" data-id-title="Creating user groups"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.3 </span><span class="title-name">Creating user groups</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-creating-groups">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       The topic covers the creation of user groups.
+      </p></div></div></div></div><p>
+    To create a user group, proceed as follows:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Navigate to the <span class="guimenu">Accounts</span> page.
+      </p></li><li class="step"><p>
+        Click <span class="guimenu">Create new group</span>.
+      </p></li><li class="step"><p>
+        Enter a unique name of the group and specify or leave the default one. 
+      </p><div id="id-1.10.7.3.3.2" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+         The already existing group ID cannot be overwritten. Group IDs under 1000 are usually reserved for system accounts, services, and so on. If you create a group with an ID less than 1000, the group cannot be later deleted using Cockpit.
+        </p></div></li></ol></div></div></section></section><section xml:lang="en" class="sect1" id="glue-services-management" data-id-title="Managing services using Cockpit"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">10 </span><span class="title-name">Managing services using Cockpit</span></span> <a title="Permalink" class="permalink" href="index.html#glue-services-management">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    The following sections describe how to start, stop and restart a service, target,
+    socket, timer or path.
+  </p><section xml:lang="en" class="sect2" id="task-systemd-units" data-id-title="Managing systemd units"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">10.1 </span><span class="title-name">Managing <code class="systemitem">systemd</code> units</span></span> <a title="Permalink" class="permalink" href="index.html#task-systemd-units">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    To manage a <code class="systemitem">systemd</code> unit, proceed as follows:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Click the <span class="guimenu">Services</span> page.
+      </p></li><li class="step"><p>
+        Select the appropriate tab (<span class="guimenu">System services</span>,
+        <span class="guimenu">Targets</span>, <span class="guimenu">Sockets</span>,
+        <span class="guimenu">Timers</span> or <span class="guimenu">Paths</span>).
+      </p></li><li class="step"><p>
+        Click the unit you want to administer.
+      </p></li><li class="step"><p>
+        In the unit details, you can view relations to other <code class="systemitem">systemd</code> units,
+        the status of the unit, or you can perform the following actions that
+        can be found in the three-dot menu:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            <span class="guimenu">Start</span> if the unit is not running
+          </p></li><li class="listitem"><p>
+            <span class="guimenu">Restart</span> the running unit
+          </p></li><li class="listitem"><p>
+            <span class="guimenu">Stop</span> the running unit
+          </p></li><li class="listitem"><p>
+            <span class="guimenu">Disallow running</span>—that will stop the
+            service permanently including all its dependencies. Keep in mind
+            that the dependent service can be used by other units, and
+            disallowing the unit may cause serious troubles for the system.
+          </p></li></ul></div></li></ol></div></div></section><section xml:lang="en" class="sect2" id="task-creating-systemd-timers" data-id-title="Creating new timers"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">10.2 </span><span class="title-name">Creating new timers</span></span> <a title="Permalink" class="permalink" href="index.html#task-creating-systemd-timers">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        <code class="systemitem">systemd</code> timers help you to automate recurring tasks. A <code class="systemitem">systemd</code>
+        timer can control triggering of <code class="systemitem">systemd</code> services and handling of
+        events.
+      </p></div></div></div></div><div id="id-1.11.4.2" data-id-title="Overriding existing timers" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Overriding existing timers</div><p>
+      The default set of <code class="systemitem">systemd</code> timers is stored in
+      <code class="filename">/usr/lib/systemd</code>. If you create a timer with already
+      existing names, the default unit file is not overwritten, but a new one
+      is created in <code class="filename">/etc/systemd/system/</code> that overrides
+      the default unit file. To restore the timer to the default
+      one, delete the timer unit file in
+      <code class="filename">/etc/systemd/system/</code>.
+    </p><p>
+      If you try to create a timer that already exists in the
+      <code class="filename">/etc/systemd/system/</code> directory, the unit file will
+      be overwritten, and the previous changes are lost.
+    </p></div><p>
+    To create a <code class="systemitem">systemd</code> timer using Cockpit, proceed as follows:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Navigate to <span class="guimenu">Services</span>.
+      </p></li><li class="step"><p>
+        In the <span class="guimenu">Timers</span> tab, click <span class="guimenu">Create
+        timer</span>.
+      </p></li><li class="step"><p>
+        Fill in the details:
+      </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.11.4.4.3.2.1"><span class="term">Name</span></dt><dd><p>
+              The name of the timer that will be used in the unit name and in
+              the service unit name as well. For example, specifying the name
+              <span class="emphasis"><em>example</em></span> will create the following unit
+              files: <code class="filename">/etc/systemd/system/example.timer</code> and
+              <code class="filename">/etc/systemd/system/example.service</code>.
+            </p></dd><dt id="id-1.11.4.4.3.2.2"><span class="term">Description</span></dt><dd><p>
+              You can provide a short description of the timer.
+            </p></dd><dt id="id-1.11.4.4.3.2.3"><span class="term">Command</span></dt><dd><p>
+              The command to be invoked when the timer is triggered.
+            </p></dd><dt id="id-1.11.4.4.3.2.4"><span class="term">Trigger</span></dt><dd><p>
+              The timer can be triggered each time you reboot your machine or
+              at a specific time. For the <span class="guimenu">After system boot</span>
+              option, you can define the delay of the service invocation. For
+              the <span class="guimenu">At specific time</span> option, specify when the
+              service should be invoked.
+            </p></dd></dl></div></li></ol></div></div></section></section><section xml:lang="en" class="sect1" id="concept-SELinux" data-id-title="SELinux mode and policy"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">11 </span><span class="title-name">SELinux mode and policy</span></span> <a title="Permalink" class="permalink" href="index.html#concept-SELinux">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        The SELinux tool enables you to switch between SELinux modes and view
+        current modifications of the SELinux policy.
+      </p></div></div></div></div><p>
+    On <span class="phrase"><span class="phrase">SUSE Linux Enterprise Micro</span></span>, SELinux is in the enforcing mode by default. To temporarily
+    switch to the permissive mode, click the button with the
+    <code class="literal">Enforcing</code> label. Bear in mind that the change persists
+    only until the next boot. If you need to perform a persistent change of the
+    mode, edit the configuration file <code class="filename">/etc/selinux/config</code>.
+    For details, refer to the
+    <a class="link" href="https://documentation.suse.com/sle-micro/html/SLE-Micro-all/cha-SELinux-slemicro.html#" target="_blank">security
+    guide</a>.
+  </p><p>
+    The <span class="guimenu">System modifications</span> lists all modifications
+    performed on the default SELinux policy. If you want to export the
+    modifications and reuse them on different servers, click <span class="guimenu">View
+    automation script</span>. In the new window, you can copy a shell script
+    or the ansible configuration file that can be applied on other servers.
+  </p><section xml:lang="en" class="sect2" id="cockpit-troubleshooting-selinux" data-id-title="Solving SELinux access issues"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">11.1 </span><span class="title-name">Solving SELinux access issues</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-troubleshooting-selinux">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    In the <span class="guimenu">SELinux</span> page, you can view access denial messages from the audit log. On top 
+    of that, Cockpit provides possible ways of solving the access denial. To do so, follow the steps:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+      Navigate to the <span class="guimenu">SELinux</span> page.
+    </p></li><li class="step"><p>
+      In <span class="guimenu">SELinux access control errors</span>, expand the details regarding access denial.
+    </p></li><li class="step"><p>
+      To view the audit log record, click <span class="guimenu">Audit log</span>.
+    </p></li><li class="step"><p>
+      To view possible solutions, click <span class="guimenu">Solutions</span>. Some solutions may be applied directly through Cockpit by clicking <span class="guimenu">Apply this solution</span>.
+    </p></li></ol></div></div></section></section><section xml:lang="en" class="sect1" id="concept-example" data-id-title="Updates and snapshots"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">12 </span><span class="title-name">Updates and snapshots</span></span> <a title="Permalink" class="permalink" href="index.html#concept-example">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        You can use Cockpit to search for new system updates and then apply
+        them directly from the Web interface. On top of that, Cockpit enables
+        you to perform a rollback to a previous snapshot.
+      </p></div></div></div></div><div id="id-1.13.2" data-id-title="No system updates without registering your system" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: No system updates without registering your system</div><p>
+      If your system is not registered, the updates are not available and the
+      check for updates fails. Therefore, register your system to view
+      available updates. 
+    </p></div><div id="id-1.13.3" data-id-title="Snapshots and updates management only for system administrators" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Snapshots and updates management only for system administrators</div><p>
+      Only users with the <span class="guimenu">Server administrator</span> role can
+      update the system or perform a rollback to another snapshot.
+    </p></div><p>
+    Cockpit enables you to update your <span class="phrase"><span class="phrase">SLE Micro</span></span> instance or perform a
+    rollback from the <code class="literal">Software Updates</code> menu.
+  </p><section xml:lang="en" class="sect2" id="task-managing-updates" data-id-title="Updating SLE Micro using Cockpit"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">12.1 </span><span class="title-name">Updating <span class="phrase"><span class="phrase">SLE Micro</span></span> using Cockpit</span></span> <a title="Permalink" class="permalink" href="index.html#task-managing-updates">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    To update your system, proceed as follows:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Navigate to the <span class="guimenu">Software Updates</span> page.
+      </p></li><li class="step"><p>
+        Click <span class="guimenu">Check for Updates</span> to get a list of new package
+        updates and patches available for your system. We recommend
+        installing the patches marked as important as soon as possible.
+      </p></li><li class="step"><p>
+        Now you can update your system either with immediate reboot, or the
+        reboot might be postponed:
+      </p><ol type="a" class="substeps"><li class="step"><p>
+            Click <span class="guimenu">Update and Reboot</span> to apply patches and
+            updates. After the update is complete, your system will be
+            restarted and will boot into the new snapshot.
+          </p></li><li class="step"><p>
+            To postpone reboot after the update, select <span class="guimenu">Update without
+            Reboot</span> from the three-dot menu. Bear in mind that you
+            need to reboot the system to activate the snapshot with updates. If
+            you perform further changes without rebooting the system
+            beforehand, a new snapshot will be created from the same point as
+            the snapshots with updates. Therefore, the new snapshot will not
+            include the updates.
+          </p></li></ol></li></ol></div></div></section><section xml:lang="en" class="sect2" id="task-performing-rollback" data-id-title="Performing rollbacks"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">12.2 </span><span class="title-name">Performing rollbacks</span></span> <a title="Permalink" class="permalink" href="index.html#task-performing-rollback">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    To perform a rollback of your system, proceed as follows:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Navigate to the <span class="guimenu">Software Updates</span> page.
+      </p></li><li class="step"><p>
+        Click <span class="guimenu">Rollback and Reboot</span>, or <span class="guimenu">Rollback
+        without Reboot</span> in the three-dot menu next to the snapshot
+        you want to perform a rollback to.
+      </p></li></ol></div></div><p>
+    After rebooting the system, the snapshot you rolled back to will be set as
+    active. Do not make any changes (install updates, packages, etc.) before
+    rebooting your system as the snapshot you rolled back to is not active.
+    Any changes performed before you reboot your system will start from the
+    currently active snapshot.
+  </p></section></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">13 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p> Copyright© 2006–2024
+ SUSE LLC and contributors.
+  All rights reserved. </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy.  Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#concept-about-cockpit"><span class="title-number">1 </span><span class="title-name">About Cockpit</span></a></span></li><li><span class="section"><a href="index.html#cockpit-installation"><span class="title-number">2 </span><span class="title-name">Installing Cockpit</span></a></span></li><li><span class="section"><a href="index.html#concept-cockpit-authentication"><span class="title-number">3 </span><span class="title-name">Accessing Cockpit</span></a></span></li><li><span class="section"><a href="index.html#cockpit-configuring-servers"><span class="title-number">4 </span><span class="title-name">Configuring servers using Cockpit</span></a></span></li><li><span class="section"><a href="index.html#cockpit-filtering-logs"><span class="title-number">5 </span><span class="title-name">Filtering Cockpit logs</span></a></span></li><li><span class="section"><a href="index.html#glue-storage-plugin"><span class="title-number">6 </span><span class="title-name">Managing storage using Cockpit</span></a></span></li><li><span class="section"><a href="index.html#glue-cockpit-networking"><span class="title-number">7 </span><span class="title-name">Managing networking using Cockpit</span></a></span></li><li><span class="section"><a href="index.html#cockpit-podman-containers"><span class="title-number">8 </span><span class="title-name">Working with containers</span></a></span></li><li><span class="section"><a href="index.html#glue-managing-users"><span class="title-number">9 </span><span class="title-name">Users administration using Cockpit</span></a></span></li><li><span class="section"><a href="index.html#glue-services-management"><span class="title-number">10 </span><span class="title-name">Managing services using Cockpit</span></a></span></li><li><span class="section"><a href="index.html#concept-SELinux"><span class="title-number">11 </span><span class="title-name">SELinux mode and policy</span></a></span></li><li><span class="section"><a href="index.html#concept-example"><span class="title-number">12 </span><span class="title-name">Updates and snapshots</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">13 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-fb" href="#" title="Facebook"> </a></li><li><a id="_share-in" href="#" title="LinkedIn"> </a></li><li><a id="_share-tw" href="#" title="Twitter/X"> </a></li><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE
+                 2024</span></div></div></footer></body></html>

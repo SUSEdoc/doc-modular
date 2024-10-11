@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><title>Unified Virtual Machine Administration using libvirt</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style.css"/>
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
+<meta name="title" content="Unified Virtual Machine Administration using libvirt"/>
+<meta name="description" content="An overview of managing virtual machines on the command line using libvirt"/>
+<meta name="book-title" content="Unified Virtual Machine Administration using libvirt"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="shalaka.harne@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.0"/>
+<meta name="publisher" content="SUSE"/><meta name="category" content="."/><meta name="DCTERMS.modified" content="2023-09-19"/><meta name="DC.creator" content="shalaka.harne@suse.com"/><meta property="og:title" content="Unified Management of Virtual Machines using libvirt"/>
+<meta property="og:description" content="Virtual machine management using libvirt on the command line"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Unified Management of Virtual Machines using libvirt"/>
+<meta name="twitter:description" content="Virtual machine management using libvirt on the command line"/>
+<script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    
+     "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    
+    "inLanguage": "en",
+    
+
+    "headline": "Unified Management of Virtual Machines using libvirt",
+  
+    "description": "An overview of managing virtual machines on the command line using libvirt",
+      
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    ],
+      
+    "dateModified": "2024-01-25T00:00+02:00",
+      
+    "datePublished": "2024-01-25T00:00+02:00",
+      
+    "articleSection": [ 
+        "Systems Management"
+        
+    ],
+    
+
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Virtualization"
+      },
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      }
+    ],
+  
+    "mentions": [
+      
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server",
+        "softwareVersion": "16.0",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER"
+        
+      }
+      
+    ],
+    
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><script type="text/javascript">
+
+if ( window.location.protocol.toLowerCase() != 'file:' ) {
+  document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>');
+};
+
+</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"/></noscript><script src="static/js/script-purejs.js" type="text/javascript"> </script><script src="static/js/highlight.min.js" type="text/javascript"> </script><script>
+
+$(document).ready(function() {
+  $('.verbatim-wrap.highlight').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+hljs.configure({
+  useBR: false
+});
+
+</script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Unified Virtual Machine Administration using libvirt</a></div></div><main id="_content"><nav id="_side-toc-overall" class="side-toc"><div class="side-title">Unified Virtual Machine Administration using <code class="systemitem">libvirt</code></div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="manage-vm-on-commandline" data-id-title="Unified Virtual Machine Administration using libvirt"><div class="titlepage"><div><div><h1 class="title">Unified Virtual Machine Administration using <code class="systemitem">libvirt</code></h1></div><div class="date"><span class="imprint-label">Publication Date: </span>27 Sep 2024</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.14.1.1"><span class="term">WHAT?</span></dt><dd><p>  
+              This article introduces <code class="systemitem">libvirt</code>—a set of tools that unify the management of virtual machines.
+            </p></dd><dt id="id-1.1.14.1.2"><span class="term">WHY?</span></dt><dd><p>
+              By understanding <code class="systemitem">libvirt</code>, you make the first step to easily manage virtual machines regardless of the virtualization technology used.
+            </p></dd><dt id="id-1.1.14.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                It takes 15 minutes to understand <code class="systemitem">libvirt</code>.
+              </p></dd><dt id="id-1.1.14.1.4"><span class="term">GOAL</span></dt><dd><p>
+                Basic understanding of <code class="systemitem">libvirt</code> and related tools.
+              </p></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History" hreflang="en" href="rh-manage-vm-on-commandline.html" target="_blank">Revision History: Unified Virtual Machine Administration using libvirt</a></div></div></div></div><section xml:lang="en" class="sect1" id="manage-vm-on-commandline-concept" data-id-title="What is libvirt?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">What is <code class="systemitem">libvirt</code>?</span></span> <a title="Permalink" class="permalink" href="index.html#manage-vm-on-commandline-concept">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p><code class="systemitem">libvirt</code> is a collection of software that provides a common API (Application Programming Interface) for managing popular virtualization solutions, for example, KVM, QEMU, Xen, Virtuozzo, VMware ESX, and so on. <code class="systemitem">libvirt</code> consists of an API library, a system service <code class="systemitem">libvirtd</code>, and a command-line utility <span class="emphasis"><em>virsh</em></span>.</p></div></div></div></div><p>The modular architecture of <code class="systemitem">libvirt</code> allows developers to extend the functionality. Using <code class="systemitem">libvirt</code>, live migration of virtual machines between physical hosts is possible without downtime, and this facilitates in load balancing and maintenance.</p><p><code class="systemitem">libvirt</code> allows remote management of virtual machines and host resources for multiple VM hosts and is a single tool for different hypervisors. <code class="systemitem">libvirt</code> has a graphical user interface and a command line to write XML configurations. </p><section class="sect2" id="id-1.2.4" data-id-title="How does libvirt work?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">How does <code class="systemitem">libvirt</code> work?</span></span> <a title="Permalink" class="permalink" href="index.html#id-1.2.4">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>The <code class="systemitem">libvirtd</code> service runs on the VM host. The <code class="systemitem">libvirt</code> client libraries and utilities connect to <code class="systemitem">libvirtd</code> and collect configuration information and resources of the host servers.</p></div></div></div></div><p>The configuration of each virtual machine is stored in an XML file, and you can manage this configuration in different ways. </p><p>You can configure virtual machines managed by <code class="systemitem">libvirt</code> using a command line or using Virtual Machine Manager. Interoperability between <code class="systemitem">libvirt</code> and <code class="systemitem">libvirt</code>-based applications is tested and is an essential part of SUSE's support stance.
+          </p><p><code class="systemitem">libvirt</code> tools are designed to work with the <code class="systemitem">libvirt</code> API and support virtualization technologies and hypervisors. You can use the <code class="systemitem">libvirt</code>-based tools for managing VM Guests. Commonly used tools for <code class="systemitem">libvirt</code> are <span class="emphasis"><em>virsh</em></span>, <span class="emphasis"><em>virt-manager</em></span>, <span class="emphasis"><em>virt-install</em></span>, <span class="emphasis"><em>virt-clone</em></span>, <span class="emphasis"><em>virt-image</em></span>, and so on. <code class="systemitem">libvirt</code> supports using graphical user interface and commands to write XML configurations.</p><p> For example, you can use <span class="emphasis"><em>virsh</em></span> to configure virtual machines (VM) on the command line as an alternative to using the graphical Virtual Machine Manager. You can also manage virtual disks using this tool.</p><div class="figure" id="libvirt-overview"><div class="figure-contents"><div class="mediaobject"><a href="images/libvirt_overview.png"><img src="images/libvirt_overview.png" width="85%" alt="libvirt Overview" title="libvirt Overview"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 1: </span><span class="title-name">libvirt Overview </span></span><a title="Permalink" class="permalink" href="index.html#libvirt-overview">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><p>The management of virtual machines on the command line provides more control over the host machines than using the graphical interface applications as it allows scripting and automation.</p></section><section class="sect2" id="id-1.2.5" data-id-title="Benefits of using libvirt"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Benefits of using <code class="systemitem">libvirt</code></span></span> <a title="Permalink" class="permalink" href="index.html#id-1.2.5">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>The major advantages of using <code class="systemitem">libvirt</code> through command-line are listed below:</p></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Allows basic monitoring of host and virtual machines.</p></li><li class="listitem"><p>Allows automating and scripting complex virtualization tasks and workflows.</p></li><li class="listitem"><p>Enables remote management of virtualization host. This helps in managing virtualization resources on remote servers over SSH or other secure protocols.</p></li><li class="listitem"><p>Allows managing headless servers. In server environments, where systems may not have a graphical interface or GUI tools installed, the command-line tool is the only option for managing virtualization.</p></li><li class="listitem"><p>Allows using scripts and commands to create custom reports.</p></li><li class="listitem"><p>Supports working with multiple hypervisors.</p></li></ul></div></section></section><section xml:lang="en" class="sect1" id="manage-vm-on-commandline-vmm" data-id-title="Virtual Machine Manager"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Virtual Machine Manager</span></span> <a title="Permalink" class="permalink" href="index.html#manage-vm-on-commandline-vmm">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+    Virtual Machine Manager is a GUI (graphical user interface) application for viewing and configuring virtual machines managed by <code class="systemitem">libvirt</code></p></div></div></div></div><p>The Virtual Machine Manager displays the summary of running domains, their live performance and resource utilization statistics. Use wizards to create new domains, configure and adjust resource allocation and virtual machine.</p><div class="figure" id="libvirt-vmm"><div class="figure-contents"><div class="mediaobject"><a href="images/libvirt_vmm.png"><img src="images/libvirt_vmm.png" width="70%" alt="Virtual Machine Manager" title="Virtual Machine Manager"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 2: </span><span class="title-name">Virtual Machine Manager </span></span><a title="Permalink" class="permalink" href="index.html#libvirt-vmm">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><p>Listed below are a few configuration options available on Virtual Machine Manager:</p><div class="variablelist"><dl class="variablelist"><dt id="id-1.3.5.1"><span class="term">View and configure VM Guest details</span></dt><dd><p>The <span class="guimenu">Details</span> view of the Virtual Machine Manager displays detailed information about the VM Guest's complete configuration and hardware equipment. Using this view, you can also change the guest configuration or add and modify virtual hardware to an existing virtual machine.</p></dd><dt id="id-1.3.5.2"><span class="term">View Performance Statistics of CPU usage, memory usage, disk and network I/O of the VM guest.</span></dt><dd><p>The <span class="guimenu">Performance</span> view shows regularly updated charts of CPU and memory usage, and disk and network I/O of the VM guest. </p><p>You can also set up the virtualized processor and memory. In the CPUs section, you can configure the number of virtual CPUs allocated to the VM Guest. Logical host CPUs shows the number of online and usable CPUs on the VM Host Server. In the <span class="guimenu">Configuration</span> you can configure the CPU model and topology. </p></dd><dt id="id-1.3.5.3"><span class="term">Configure Boot options, Storage, Controllers, Networking, Input devices</span></dt><dd><p>You can configure options affecting the VM Guest boot process and you can configure both hard disks and removable media, such as USB or CD-ROM drives in <span class="guimenu">Storage</span>. <span class="guimenu">Controllers</span> and <span class="guimenu">Networking</span> allows you to add and configure new controllers and network device respectively. The configuration of input devices such as mouse, keyboard or tablet is possible through the <span class="guimenu">Input</span> option.</p></dd><dt id="id-1.3.5.4"><span class="term">Assign a host PCI device to a VM Guest</span></dt><dd><p>You can directly assign PCI devices on the VM Host Server to guests (PCI pass-through). When the PCI device is assigned to one VM Guest, it cannot be used on the host or by another VM Guest unless it is re-assigned.</p></dd><dt id="id-1.3.5.5"><span class="term">Take snapshot of the VM host</span></dt><dd><p>You can take snapshots of the VM host and you can access the option from VM Details toolbar. </p></dd><dt id="id-1.3.5.6"><span class="term">View and configure details of VM Host</span></dt><dd><p>You can create and manage connection, storage pools, and virtual networks.</p></dd></dl></div></section><section xml:lang="en" class="sect1" id="manage-vm-on-commandline-tools" data-id-title="Command-line tools"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Command-line tools</span></span> <a title="Permalink" class="permalink" href="index.html#manage-vm-on-commandline-tools">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p><code class="systemitem">libvirt</code> includes several command-line utilities to manage virtual machines. A few of the command-line utilities are listed below:</p></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.4.2.1"><span class="term"><code class="literal">virsh</code> (Package: libvirt-client)</span></dt><dd><p>A command-line tool to manage VM Guests with similar functionality as the Virtual Machine Manager. Allows you to change a VM Guest's status (start, stop, pause, etc.), to set up new guests and devices, or to edit existing configurations. virsh is also useful to script VM Guest management operations.</p></dd><dt id="id-1.4.2.2"><span class="term"><code class="literal">virt-install</code> (Package: virt-install)</span></dt><dd><p>A command-line tool for creating new VM Guests using the libvirt library. It supports graphical installations via VNC or SPICE protocols. Given suitable command-line arguments, virt-install can run completely unattended. This allows for easy automation of guest installs. virt-install is the default installation tool used by the Virtual Machine Manager.</p></dd><dt id="id-1.4.2.3"><span class="term"><code class="literal">remote-viewer</code> (Package: virt-viewer)</span></dt><dd><p>A simple viewer of a remote desktop. It supports SPICE and VNC protocols.</p></dd><dt id="id-1.4.2.4"><span class="term"><code class="literal">virt-clone</code> (Package: virt-install)</span></dt><dd><p>A tool for cloning existing virtual machine images using the libvirt hypervisor management library.</p></dd><dt id="id-1.4.2.5"><span class="term"><code class="literal">virt-host-validate</code> (Package: libvirt-client)</span></dt><dd><p>A tool that validates whether the host is configured in a suitable way to run libvirt hypervisor drivers.</p></dd></dl></div></section><section xml:lang="en" class="sect1" id="cockpit-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-more-info">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        For more information on <code class="systemitem">libvirt</code>, refer to
+        <a class="link" href="https://libvirt.org/" target="_blank">https://libvirt.org/</a>.
+      </p></li><li class="listitem"><p>
+        For <code class="systemitem">libvirt</code> documentation, refer to
+        <a class="link" href="https://libvirt.org/docs.html" target="_blank">https://libvirt.org/docs.html</a>.
+      </p></li><li class="listitem"><p>
+         For information on Managing Virtual Machines with <code class="systemitem">libvirt</code>, refer to 
+          <a class="link" href="https://documentation.suse.com/sles/html/SLES-all/part-virt-libvirt.html" target="_blank">https://documentation.suse.com/sles/html/SLES-all/part-virt-libvirt.html</a>.
+        </p></li></ul></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p> Copyright© 2006–2024
+ SUSE LLC and contributors.
+  All rights reserved. </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy.  Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#manage-vm-on-commandline-concept"><span class="title-number">1 </span><span class="title-name">What is <code class="systemitem">libvirt</code>?</span></a></span></li><li><span class="section"><a href="index.html#manage-vm-on-commandline-vmm"><span class="title-number">2 </span><span class="title-name">Virtual Machine Manager</span></a></span></li><li><span class="section"><a href="index.html#manage-vm-on-commandline-tools"><span class="title-number">3 </span><span class="title-name">Command-line tools</span></a></span></li><li><span class="section"><a href="index.html#cockpit-more-info"><span class="title-number">4 </span><span class="title-name">For more information</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">5 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-fb" href="#" title="Facebook"> </a></li><li><a id="_share-in" href="#" title="LinkedIn"> </a></li><li><a id="_share-tw" href="#" title="Twitter/X"> </a></li><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE
+                 2024</span></div></div></footer></body></html>

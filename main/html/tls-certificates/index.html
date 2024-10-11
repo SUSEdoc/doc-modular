@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><title>Securing Communication with TLS Certificates</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style.css"/>
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
+<meta name="title" content="Securing Communication with TLS Certificates"/>
+<meta name="description" content="TLS certificates help secure network communication between the client and the server"/>
+<meta name="book-title" content="Securing Communication with TLS Certificates"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="tbazant@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.0"/>
+<meta name="publisher" content="SUSE"/><meta name="category" content="."/><meta name="DCTERMS.modified" content="2024-03-26"/><meta name="DC.creator" content="tbazant@suse.com"/><meta property="og:title" content="Securing communication with TLS certificates"/>
+<meta property="og:description" content="Securing communication with TLS certificates"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Securing communication with TLS certificates"/>
+<meta name="twitter:description" content="Securing communication with TLS certificates"/>
+<script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    
+     "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    
+    "inLanguage": "en",
+    
+
+    "headline": "Securing communication with TLS certificates",
+  
+    "description": "TLS certificates help secure network communication between the client and the server",
+      
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    ],
+      
+    "dateModified": "2024-03-26T00:00+02:00",
+      
+    "datePublished": "2024-03-26T00:00+02:00",
+      
+    "articleSection": [ 
+        "Security"
+        
+    ],
+    
+
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Security"
+      }
+    ],
+  
+    "mentions": [
+      
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server",
+        "softwareVersion": "15-SP6",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER"
+        
+      }
+      
+    ],
+    
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="go01.html" title="Glossary"/><script type="text/javascript">
+
+if ( window.location.protocol.toLowerCase() != 'file:' ) {
+  document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>');
+};
+
+</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"/></noscript><script src="static/js/script-purejs.js" type="text/javascript"> </script><script src="static/js/highlight.min.js" type="text/javascript"> </script><script>
+
+$(document).ready(function() {
+  $('.verbatim-wrap.highlight').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+hljs.configure({
+  useBR: false
+});
+
+</script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Securing Communication with TLS Certificates</a></div></div><main id="_content"><nav id="_side-toc-overall" class="side-toc"><div class="side-title">Securing Communication with TLS Certificates</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="tls-certificates" data-id-title="Securing Communication with TLS Certificates"><div class="titlepage"><div><div><h1 class="title">Securing Communication with TLS Certificates</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>27 Sep 2024</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.14.1.1"><span class="term">WHAT?</span></dt><dd><p>
+                TLS certificates are key elements when establishing secure
+                network communication.
+              </p></dd><dt id="id-1.1.14.1.2"><span class="term">WHY?</span></dt><dd><p>
+                You want to learn how to generate and sign TLS certificates to
+                establish secured network communication.
+              </p></dd><dt id="id-1.1.14.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                One hour is enough to learn how to manage TLS certificates and
+                create a certificate signed by a private CA for a trusted
+                network environment.
+              </p></dd><dt id="id-1.1.14.1.4"><span class="term">GOAL</span></dt><dd><p>
+                You can generate, sign and manage TLS certificates, and include
+                them in the system-wide certificate store.
+              </p></dd><dt id="id-1.1.14.1.5"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+    To perform selected tasks, you need <code class="systemitem">root</code> or <code class="command">sudo</code> privileges.
+  </p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History" hreflang="en" href="rh-tls-certificates.html" target="_blank">Revision History: Securing Communication with TLS Certificates</a></div></div></div></div><section xml:lang="en" class="sect1" id="tls-certificates-introduction" data-id-title="Introduction"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Introduction</span></span> <a title="Permalink" class="permalink" href="index.html#tls-certificates-introduction">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+  Two systems, such as client and server hosts, communicate by exchanging data
+  over the network. To avoid exposing such communication and possibly sensitive
+  data, you can configure the systems to encrypt the mutual communication using
+  <a class="xref" href="go01.html#gt-tls-certificate" title="TLS certificate">TLS certificate</a>.
+</p></div></div></div></div><p>
+    This topic introduces basic theory behind establishing encrypted
+    communication.
+  </p><section class="sect2" id="tls-certificates-handshake" data-id-title="How is secure communication established?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">How is secure communication established?</span></span> <a title="Permalink" class="permalink" href="index.html#tls-certificates-handshake">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The following steps illustrate the process of establishing secure
+      communication between the client and the server. The process is often
+      referred to as a <a class="xref" href="go01.html#gt-tls-handshake" title="TLS handshake">TLS handshake</a>.
+    </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>
+          <span class="bold"><strong>Client <span class="quote">“<span class="quote">hello</span>”</span>.</strong></span> The TLS handshake is
+          started by the client sending a <code class="literal">ClientHello</code> message
+          to the server. Such message includes information about the
+          <a class="xref" href="go01.html#gt-tls" title="TLS">TLS</a> protocol versions and cryptographic
+          algorithms supported by the client, as well as a random value used for
+          generating session keys.
+        </p></li><li class="listitem"><p>
+          <span class="bold"><strong>Server <span class="quote">“<span class="quote">hello</span>”</span>.</strong></span> When the server
+          receives the <code class="literal">ClientHello</code> message, it responds with
+          a <code class="literal">ServerHello</code> message. Such a message includes the
+          TLS protocol version selected by the server, the selected
+          cryptographic algorithm, and a random value. The server also sends its
+          digital certificate that includes the <a class="xref" href="go01.html#gt-tls-pubkey" title="public key">public key</a>.
+        </p></li><li class="listitem"><p>
+          <span class="bold"><strong>Certificate verification.</strong></span> After the
+          client receives the server's certificate, the client verifies that it
+          is signed by a trusted CA and that the server's domain name matches
+          the one in the certificate.
+        </p></li><li class="listitem"><p>
+          <span class="bold"><strong>Key exchange.</strong></span> After the server's
+          certificate is successfully verified, the client generates a secret
+          and encrypts it with the server's public key from the certificate.
+          This encrypted secret is sent to the server in a
+          <code class="literal">ClientKeyExchange</code> message.
+        </p></li><li class="listitem"><p>
+          <span class="bold"><strong>Session key generation.</strong></span> Both the
+          client and the server use the exchanged data—client and server
+          random values and the generated secret—to generate a shared
+          session key. This key will be used to encrypt and decrypt data
+          transmitted during the TLS session. Both parties confirm that
+          subsequent messages will be encrypted by sending a
+          <code class="literal">ChangeCipherSpec</code> message.
+        </p></li><li class="listitem"><p>
+          <span class="bold"><strong>Finished.</strong></span> Finally, both the client
+          and the server send a <code class="literal">Finished</code> message to confirm
+          that the TLS handshake is complete. These messages contain a hash of
+          all preceding TLS handshake messages, encrypted with the shared
+          session key. If the hashes match on both sides, the TLS handshake is
+          successful and the secure TLS connection is established.
+        </p></li></ol></div><div class="figure" id="id-1.2.3.4"><div class="figure-contents"><div class="mediaobject"><a href="images/tls-handshake.png"><img src="images/tls-handshake.png" width="75%" alt="TLS handshake procedure" title="TLS handshake procedure"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 1: </span><span class="title-name">TLS handshake procedure </span></span><a title="Permalink" class="permalink" href="index.html#id-1.2.3.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></section><section class="sect2" id="tls-certificates-benefits" data-id-title="Benefits of using secure communication"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Benefits of using secure communication</span></span> <a title="Permalink" class="permalink" href="index.html#tls-certificates-benefits">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Several key benefits of secure communication are:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          <span class="bold"><strong>Confidentiality:</strong></span> Secure communication
+          ensures that sensitive information remains confidential and cannot be
+          accessed by unauthorized parties. This is particularly important for
+          protecting personal data and financial information.
+        </p></li><li class="listitem"><p>
+          <span class="bold"><strong>Integrity:</strong></span> Secure communication
+          guarantees the integrity of transmitted data and ensures that it
+          remains unchanged during transmission. This helps prevent unauthorized
+          modification of data and maintain its accuracy and reliability.
+        </p></li><li class="listitem"><p>
+          <span class="bold"><strong>Authentication:</strong></span> Secure communication
+          allows parties to authenticate each other's identities, verifying that
+          they are who they claim to be. This helps prevent impersonation and
+          ensures that communication is conducted securely between trusted
+          parties.
+        </p></li><li class="listitem"><p>
+          <span class="bold"><strong>Compliance:</strong></span> Secure communication
+          helps organizations follow regulatory requirements and industry
+          standards related to data protection and privacy. Compliance with
+          regulations such as GDPR often requires the implementation of secure
+          communication protocols and practices.
+        </p></li></ul></div></section></section><section class="sect1" id="id-1.3" data-id-title="Issuing and installing TLS certificates"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Issuing and installing TLS certificates</span></span> <a title="Permalink" class="permalink" href="index.html#id-1.3">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+            The following procedures outline the TLS certificate issuance and
+            installation process using both trusted and private CAs.
+          </p></div></div></div></div><section xml:lang="en" class="sect2" id="tls-certificates-installation-procedure-trusted-ca" data-id-title="Using a trusted CA"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">Using a trusted CA</span></span> <a title="Permalink" class="permalink" href="index.html#tls-certificates-installation-procedure-trusted-ca">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        <span class="bold"><strong>Generate a private key.</strong></span> A
+        <a class="xref" href="go01.html#gt-tls-privkey" title="private key">private key</a> is required on the server—such as
+        a Web server—that will use the certificate. The key is kept secure
+        and used to sign messages and decrypt data.
+      </p></li><li class="step"><p>
+        <span class="bold"><strong>Create a certificate signing request
+        (CSR).</strong></span> Generate a <a class="xref" href="go01.html#gt-tls-csr" title="CSR">CSR</a> using the
+        private key. The CSR contains information about the entity requesting
+        the certificate and the public key that will be included in the
+        certificate.
+      </p></li><li class="step"><p>
+        <span class="bold"><strong>Submit the CSR to a CA signing</strong></span>. The
+        <a class="xref" href="go01.html#gt-tls-ca" title="CA">CA</a> verifies the information in the CSR and
+        issues a signed certificate if the request is approved. This step may
+        involve validation of the domain ownership or organization identity,
+        depending on the type of certificate requested.
+      </p></li><li class="step"><p>
+        <span class="bold"><strong>Receive the signed certificate.</strong></span> After
+        the CA approves the CSR, it issues a signed certificate. The certificate
+        includes the digital signature of the CA, the public key of the server,
+        and additional information about the server, such as the domain name or
+        organization.
+      </p></li><li class="step"><p>
+      <span class="bold"><strong>Install the certificate on the server.</strong></span>
+      Install the signed certificate on the server that will use it. This
+      typically involves configuring the server software—such as the
+      Apache Web server—to use the certificate for securing communication.
+    </p></li><li class="step"><p>
+      <span class="bold"><strong>Configure the server and client for secure
+      communication.</strong></span> After the certificate is installed on the
+      server, configure the server and client software to use secure
+      communication protocols, for example, HTTPS that uses the certificate for
+      encryption and authentication.
+    </p></li><li class="step"><p>
+      <span class="bold"><strong>Regular maintenance and renewal.</strong></span>
+      Regularly monitor the validity of the certificate and renew it before it
+      expires. Keep the private key secure and ensure that certificates are
+      properly configured and updated as needed.
+    </p></li></ol></div></div></section><section xml:lang="en" class="sect2" id="tls-certificates-installation-procedure-private-ca" data-id-title="Using a private CA"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.2 </span><span class="title-name">Using a private CA</span></span> <a title="Permalink" class="permalink" href="index.html#tls-certificates-installation-procedure-private-ca">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        <span class="bold"><strong>Create a private certificate authority
+        (CA).</strong></span> A private CA is only needed to sign the server
+        certificate yourself and <span class="emphasis"><em>not</em></span> have it signed by a
+        trusted CA.
+      </p></li><li class="step"><p>
+        <span class="bold"><strong>Generate a private key.</strong></span> A private key
+        is required on the server—such as a Web server—that will use
+        the certificate. The key is kept secure and used to sign messages and
+        decrypt data.
+      </p></li><li class="step"><p>
+        <span class="bold"><strong>Create a certificate signing request
+        (CSR).</strong></span> Generate a CSR using the private key. The CSR contains
+        information about the entity requesting the certificate and the public
+        key that will be included in the certificate.
+      </p></li><li class="step"><p>
+        <span class="bold"><strong>Sign the CSR with your private CA.</strong></span> If
+        you intend to use the TLS certificate for testing or internal purposes,
+        you can sign the CSR yourself by your private CA instead of a publicly
+        trusted CA.
+      </p></li><li class="step"><p>
+      <span class="bold"><strong>Install the certificate on the server.</strong></span>
+      Install the signed certificate on the server that will use it. This
+      typically involves configuring the server software—such as the
+      Apache Web server—to use the certificate for securing communication.
+    </p></li><li class="step"><p>
+      <span class="bold"><strong>Configure the server and client for secure
+      communication.</strong></span> After the certificate is installed on the
+      server, configure the server and client software to use secure
+      communication protocols, for example, HTTPS that uses the certificate for
+      encryption and authentication.
+    </p></li><li class="step"><p>
+      <span class="bold"><strong>Regular maintenance and renewal.</strong></span>
+      Regularly monitor the validity of the certificate and renew it before it
+      expires. Keep the private key secure and ensure that certificates are
+      properly configured and updated as needed.
+    </p></li></ol></div></div></section></section><section xml:lang="en" class="sect1" id="tls-creating-private-ca" data-id-title="Creating a private CA"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Creating a private CA</span></span> <a title="Permalink" class="permalink" href="index.html#tls-creating-private-ca">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    If you do not plan to get the server certificate signed by a trusted CA,
+    create your private CA. Such an approach is fine for testing and
+    internal scenarios, but not for production network applications.
+  </p><div class="procedure"><div class="procedure-contents"><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Requirements </span></span><a title="Permalink" class="permalink" href="index.html#id-1.4.3.1">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+    To perform selected tasks, you need <code class="systemitem">root</code> or <code class="command">sudo</code> privileges.
+  </p></li></ul></div><ol class="procedure" type="1"><li class="step"><p>
+        Generate a private key and a certificate for your private CA. The
+        following command creates a new 2048 bit-long RSA key using the SHA-256
+        hash algorithm. During its creation, you will be asked for an
+        encryption passphrase. Remember the passphrase because you will need it
+        when signing the server CSR with your private CA in <a class="xref" href="index.html#tls-sign-csr-private-ca" title="6. Signing a CSR">Section 6, “Signing a CSR”</a>.
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>openssl req -x509 -sha256 -days 3650 -newkey rsa:2048 \
+-subj "/CN=myRootCA/C=CZ/L=Prague" -keyout myRootCA.key -out myRootCA.crt</pre></div><p>
+        Replace the <code class="option">-subj</code> value with your suitable string.
+      </p></li><li class="step"><p>
+        Secure the private key by restricting its permissions and ownership so
+        that only the <code class="systemitem">root</code> can read it.
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> chown <code class="systemitem">root</code>:<code class="systemitem">root</code> <em class="replaceable">myRootCA.key</em>
+<code class="prompt user">&gt; </code><code class="command">sudo</code> chmod 600 <em class="replaceable">myRootCA.key</em></pre></div></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+        Verify the validity of the CA private key.
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>openssl pkey -check -in <em class="replaceable">myRootCA.key</em>
+Enter pass phrase for myRootCA.key:
+Key is valid
+-----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCq/oAhZ0VGSsGb
+[...]
+8q3vKA+KRtxhMgW1f50U2qo=
+-----END PRIVATE KEY-----</pre></div></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+        Verify your private CA by displaying its basic data. It must include the
+        <code class="literal">CA:TRUE</code> flag.
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>openssl x509 -in <em class="replaceable">myRootCA.crt</em> -text -noout
+Certificate:
+[...]
+    Signature Algorithm: sha256WithRSAEncryption
+    Issuer: CN = myRootCA, C = CZ, L = Prague
+    Validity
+        Not Before: Apr 23 14:41:53 2024 GMT
+        Not After : Apr 17 14:41:53 2029 GMT
+    Subject: CN = myRootCA, C = CZ, L = Prague
+    X509v3 extensions:
+[...]
+        X509v3 Basic Constraints: critical
+          CA:TRUE
+[...]</pre></div></li></ol></div></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Next steps </span></span><a title="Permalink" class="permalink" href="index.html#id-1.4.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        To trust the server certificate, client machines need to know the
+        private CA certificate with which the server's private certificate was
+        signed. Refer to <a class="xref" href="index.html#tls-adding-new-certificates" title="7.3. Adding new CA certificates">Section 7.3, “Adding new CA certificates”</a> for
+        details about storing CA certificates in a system-wide certificate store
+        on the client.
+      </p></li><li class="listitem"><p>
+        Create a server private TLS key as described in
+        <a class="xref" href="index.html#tls-creating-private-key" title="4. Creating a server private key">Section 4, “Creating a server private key”</a>.
+      </p></li></ul></div></section><section xml:lang="en" class="sect1" id="tls-creating-private-key" data-id-title="Creating a server private key"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Creating a server private key</span></span> <a title="Permalink" class="permalink" href="index.html#tls-creating-private-key">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    A server needs a private TLS key to encrypt data required by a client. The
+    following procedure describes how to generate it.
+  </p><div class="procedure"><div class="procedure-contents"><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Requirements </span></span><a title="Permalink" class="permalink" href="index.html#id-1.5.3.1">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+    To perform selected tasks, you need <code class="systemitem">root</code> or <code class="command">sudo</code> privileges.
+  </p></li></ul></div><ol class="procedure" type="1"><li class="step"><p>
+        Generate a private TLS key. The following example generates an
+        unencrypted 256-bit <a class="xref" href="go01.html#gt-tls-ecdsa" title="ECDSA">ECDSA</a> key.
+      </p><div id="id-1.5.3.2.2" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
+          You can verify if ECDSA keys are supported by listing its available
+          elliptic curves with the <code class="command">openssl ecparam
+          -list_curves</code> command.
+        </p></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>openssl ecparam -name prime256v1 -genkey -out <em class="replaceable">server.key</em></pre></div><p>
+        The speed of generating the key depends on the hardware, the selected
+        encryption algorithm, and the length of the key.
+      </p></li><li class="step"><p>
+        Move the generated private key to a safe location on the server and
+        secure it by restricting its permissions and ownership so that only the
+        <code class="systemitem">root</code> can read it.
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> chown <code class="systemitem">root</code>:<code class="systemitem">root</code> <em class="replaceable">server.key</em>
+<code class="prompt user">&gt; </code><code class="command">sudo</code> chmod 600 <em class="replaceable">server.key</em></pre></div></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+        Verify the consistency of the private key.
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> openssl pkey -check -in <em class="replaceable">server.key</em>
+Key is valid
+-----BEGIN PRIVATE KEY-----
+MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgUnW551Qru4+pbWqu
+JRXQVFi45N1j+qmx7dEnr+8eox+hRANCAAR+rRLHBGjq2H2jOq09efVt99JB/R7h
+QkDLjVMa9jemVH1g3YiVIEAHyCVjms2rC06lkU1S+z8WsRjh6A/ev8//
+-----END PRIVATE KEY-----</pre></div></li></ol></div></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Next steps </span></span><a title="Permalink" class="permalink" href="index.html#id-1.5.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        Create a certificate signing request (CSR) so that your preferred CA can
+        sign and validate it. Find more details in
+        <a class="xref" href="index.html#tls-creating-certificate-signing-request" title="5. Creating a CSR">Section 5, “Creating a CSR”</a>.
+      </p></li></ul></div></section><section xml:lang="en" class="sect1" id="tls-creating-certificate-signing-request" data-id-title="Creating a CSR"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Creating a CSR</span></span> <a title="Permalink" class="permalink" href="index.html#tls-creating-certificate-signing-request">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    Establishing TLS encrypted communication requires a valid TLS certificate
+    signed by a CA. To obtain such a certificate, you need to create a certificate
+    signing request (CSR).
+  </p><div class="procedure"><div class="procedure-contents"><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">REQUIREMENTS </span></span><a title="Permalink" class="permalink" href="index.html#id-1.6.3.1">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+          You have previously created a private TLS key as described in
+          <a class="xref" href="index.html#tls-creating-private-key" title="4. Creating a server private key">Section 4, “Creating a server private key”</a>.
+        </p></li></ul></div><ol class="procedure" type="1"><li class="step"><p><span class="step-optional">(Optional)</span> 
+        Prepare a configuration template that simplifies the process of creating
+        your CSR, for example:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>cat <em class="replaceable">example_csr.cnf</em>
+[req]
+prompt = no
+distinguished_name = dn
+req_extensions     = re
+
+[dn]
+countryName            = CZ
+localityName           = Prague
+organizationName       = Example organization
+commonName             = www.example.org
+emailAddress           = <code class="systemitem">wilber</code>@example.org
+
+[re]
+extendedKeyUsage = serverAuth,clientAuth
+
+[alt_names]
+DNS.1 = example.org
+DNS.2 = www.example.org
+IP.1 = 10.0.0.5
+IP.2 = 10.0.0.6</pre></div><div id="id-1.6.3.2.3" data-id-title="Exact request matches" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Exact request matches</div><p>
+          The <code class="literal">[alt_names]</code> section can list domain names and
+          IP addresses that must match the URL that the client will request. In
+          the above example, while the following requests will be accepted:
+        </p><div class="verbatim-wrap"><pre class="screen">https://example.org/
+https://www.example.org/
+https://10.0.0.5/
+https://10.0.0.6/</pre></div><p>
+          the request for <code class="literal">https://www2.example.org/</code> will
+          be refused.
+        </p></div></li><li class="step"><ol type="a" class="substeps"><li class="step"><p>
+            If you previously prepared a CSR template, create the CSR using the
+            template and the private key.
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>openssl req -new -key <em class="replaceable">server.key</em> \
+ -config <em class="replaceable">example_csr.cnf</em> \
+ -out <em class="replaceable">server.csr</em></pre></div></li><li class="step"><p>
+            If you did not prepare the CSR template, omit the
+            <code class="option">-config</code> option from the command above.
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>openssl req -new -key <em class="replaceable">server.key</em> -out <em class="replaceable">server.csr</em></pre></div><p>
+            You will be prompted for additional information about the
+            certificate. When asked for a <code class="literal">challenge password</code>
+            and an <code class="literal">optional company name</code>, leave it blank.
+          </p><div id="id-1.6.3.3.1.2.4" data-id-title="Common Name" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Common Name</div><p>
+              The <code class="literal">Common Name (CN)</code> value must be the fully
+              qualified host name of the server host.
+            </p></div><div class="verbatim-wrap"><pre class="screen">You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [AU]:CZ
+State or Province Name (full name) [Some-State]: Czech Republic
+Locality Name (eg, city) []:Prague
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:Example organization
+Organizational Unit Name (eg, section) []:
+Common Name (e.g. server FQDN or YOUR name) []:www.example.org
+Email Address []:wilber@example.org
+
+Please enter the following 'extra' attributes
+to be sent with your certificate request
+A challenge password []:
+An optional company name []:</pre></div></li></ol></li></ol></div></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Next steps </span></span><a title="Permalink" class="permalink" href="index.html#id-1.6.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        Submit the CSR to a CA of your choice. If you want to use the
+        certificate inside a trusted network, you can sign the certificate with
+        your private CA as described in <a class="xref" href="index.html#tls-sign-csr-private-ca" title="6. Signing a CSR">Section 6, “Signing a CSR”</a>.
+      </p></li></ul></div></section><section xml:lang="en" class="sect1" id="tls-sign-csr-private-ca" data-id-title="Signing a CSR"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Signing a CSR</span></span> <a title="Permalink" class="permalink" href="index.html#tls-sign-csr-private-ca">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    Establishing TLS encrypted communication requires that a certificate
+    authority (CA) signs the certificate signing request (CSR). For testing or
+    internal purposes, you can sign the CSR yourself by a private CA.
+  </p><div class="procedure"><div class="procedure-contents"><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">REQUIREMENTS </span></span><a title="Permalink" class="permalink" href="index.html#id-1.7.3.1">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+          You created a private TLS key as described in
+          <a class="xref" href="index.html#tls-creating-private-key" title="4. Creating a server private key">Section 4, “Creating a server private key”</a>.
+        </p></li><li class="listitem"><p>
+          You created a CSR file as described in
+          <a class="xref" href="index.html#tls-creating-certificate-signing-request" title="5. Creating a CSR">Section 5, “Creating a CSR”</a>.
+        </p></li></ul></div><ol class="procedure" type="1"><li class="step"><p><span class="step-optional">(Optional)</span> 
+        Prepare an optional configuration file that specifies additional server
+        and client extensions, for example:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>cat <em class="replaceable">example_ssl_ext.cnf</em>
+[ server-cert ]
+keyUsage = digitalSignature, keyEncipherment
+extendedKeyUsage = serverAuth
+basicConstraints=CA:FALSE
+
+[ client-cert ]
+keyUsage = digitalSignature
+extendedKeyUsage = clientAuth
+basicConstraints=CA:FALSE</pre></div></li><li class="step"><p>
+        Sign the CSR with your private CA, optionally using the extension
+        configuration file. You will be asked for your private CA passphrase
+        that you entered per <a class="xref" href="index.html#tls-creating-private-ca" title="3. Creating a private CA">Section 3, “Creating a private CA”</a>.
+      </p><div class="verbatim-wrap"><pre class="screen">openssl x509 -req -days 730 -in <em class="replaceable">server.csr</em> -out <em class="replaceable">server.crt</em> \
+-CA <em class="replaceable">myRootCA.crt</em> -CAkey <em class="replaceable">myRootCA.key</em> -CAcreateserial \
+-extfile <em class="replaceable">example_ssl_ext.cnf</em> -extensions server-cert</pre></div><p>
+        The certificate remains valid for two years. Adjust the value to your
+        needs. After this period, you must create a new CSR and have a CA sign
+        the certificate.
+      </p><p>
+        The <code class="filename">server.crt</code> file will be created that includes
+        the signed certificate.
+      </p></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+        Verify that the data included in the resulting certificate matches your
+        requirements.
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>openssl x509 -text -noout -in <em class="replaceable">server.crt</em>
+[...]
+Issuer: C = CZ, ST = Some-State, L = Prague, O = Example organization, CN = www.example.org, emailAddress = <code class="systemitem">wilber</code>@example.org
+Validity
+    Not Before: Apr 15 09:18:11 2024 GMT
+    Not After : Apr 15 09:18:11 2026 GMT
+Subject: C = CZ, ST = Some-State, L = Prague, O = Example organization, CN = www.example.org, emailAddress = <code class="systemitem">wilber</code>@example.org
+Subject Public Key Info:
+    Public Key Algorithm: id-ecPublicKey[...]
+X509v3 extensions:
+        X509v3 Key Usage:
+            Digital Signature, Key Encipherment
+        X509v3 Extended Key Usage:
+            TLS Web Server Authentication
+[...]</pre></div></li></ol></div></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Next steps </span></span><a title="Permalink" class="permalink" href="index.html#id-1.7.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        Install the certificate on the server that will use it for providing
+        encrypted content.
+      </p></li></ul></div></section><section xml:lang="en" class="sect1" id="tls-certificates-store" data-id-title="System-wide CA certificate store"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">System-wide CA certificate store</span></span> <a title="Permalink" class="permalink" href="index.html#tls-certificates-store">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    A shared system-wide CA store is a centralized repository for storing
+    trusted root certificates and user-specific certificates on a system. This
+    store is used by software applications and components within the
+    operating system to establish secure connections, validate the authenticity
+    of TLS certificates presented by servers, and verify the identity of
+    individuals or entities. By default, the store contains the Mozilla CA
+    certificate list included in the <span class="package">ca-certificates-mozilla</span>
+    package. You can either update this list or select another certificate list.
+  </p><div id="id-1.8.3" data-id-title="OpenSSL vs NSS certificate store" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: OpenSSL vs NSS certificate store</div><p>
+      By default, there are two different CA certificate stores in
+      <span class="phrase"><span class="phrase">SLES</span></span>: the OpenSSL-based store and the NSS (Network Security
+      System)-based store. Many GUI-based Web browsers—such as
+      Firefox—use the NSS certificate store. To avoid installing CA
+      certificates in both certificate stores, install the plug-in package
+      <span class="package">p11-kit-nss-trust</span> that makes the NSS store look up
+      certificates in the OpenSSL store automatically.
+    </p></div><section class="sect2" id="tls-certificates-store-file-system" data-id-title="Where is the CA certificate store on the file system?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.1 </span><span class="title-name">Where is the CA certificate store on the file system?</span></span> <a title="Permalink" class="permalink" href="index.html#tls-certificates-store-file-system">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      In <span class="phrase"><span class="phrase">SLES</span></span>, the shared system-wide certificate store is located
+      in the following directories:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.8.4.3.1"><span class="term">/usr/share/pki/trust/anchors</span></dt><dd><p>
+            CA certificates trust anchors provided by the system.
+          </p></dd><dt id="id-1.8.4.3.2"><span class="term">/usr/share/pki/trust/blacklist</span></dt><dd><p>
+            Distrusted CA certificates provided by the system.
+          </p></dd><dt id="id-1.8.4.3.3"><span class="term">/etc/pki/trust/anchors</span></dt><dd><p>
+            CA certificates trust anchors provided by the system administrators.
+          </p></dd><dt id="id-1.8.4.3.4"><span class="term">/etc/pki/trust/blacklist</span></dt><dd><p>
+            Distrusted CA certificates provided by the system administrators.
+          </p></dd></dl></div></section><section class="sect2" id="tls-certificates-store-benefits" data-id-title="Benefits of using a system-wide CA certificate store"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.2 </span><span class="title-name">Benefits of using a system-wide CA certificate store</span></span> <a title="Permalink" class="permalink" href="index.html#tls-certificates-store-benefits">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Some of the key benefits of using a shared certificate store are:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          <span class="bold"><strong>Security:</strong></span> Centralizing trusted
+          certificates helps ensure that all applications and services use a
+          consistent set of trusted certificates to verify the authenticity
+          of TLS connections.
+        </p></li><li class="listitem"><p>
+          <span class="bold"><strong>Simplified management:</strong></span> Instead of
+          each application or service maintaining its own list of trusted
+          certificates, they can rely on the system-wide certificate store.
+        </p></li><li class="listitem"><p>
+          <span class="bold"><strong>Ease of update:</strong></span> System administrators
+          can update the trusted certificates in the system-wide store as
+          needed, either manually or through automated mechanisms such as
+          operating system updates. This ensures that systems remain up to date
+          with the latest trusted certificates and security standards.
+        </p></li></ul></div></section><section xml:lang="en" class="sect2" id="tls-adding-new-certificates" data-id-title="Adding new CA certificates"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.3 </span><span class="title-name">Adding new CA certificates</span></span> <a title="Permalink" class="permalink" href="index.html#tls-adding-new-certificates">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    To let applications know about a new private CA certificate on the system,
+    add it to a system-wide certificate store on the client and use
+    the <code class="command">update-ca-certificates</code> command to update the store.
+  </p><div class="procedure"><div class="procedure-contents"><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Requirements </span></span><a title="Permalink" class="permalink" href="index.html#id-1.8.6.3.1">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+          The <span class="package">ca-certificate</span> package is installed on the
+          system.
+        </p></li><li class="listitem"><p>
+          You created a CA certificate as described in
+          <a class="xref" href="index.html#tls-creating-private-ca" title="3. Creating a private CA">Section 3, “Creating a private CA”</a>.
+        </p></li><li class="listitem"><p>
+    To perform selected tasks, you need <code class="systemitem">root</code> or <code class="command">sudo</code> privileges.
+  </p></li></ul></div><ol class="procedure" type="1"><li class="step"><p>
+        Copy the certificate file to the
+        <code class="filename">/etc/pki/trust/anchors</code> directory.
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> cp <em class="replaceable">myRootCA.crt</em> /etc/pki/trust/anchors/</pre></div></li><li class="step"><p>
+        Update the system-wide certificate store.
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> update-ca-certificates</pre></div></li></ol></div></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">For more information </span></span><a title="Permalink" class="permalink" href="index.html#id-1.8.6.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        The <code class="command">man 8 update-ca-certificates</code> manual page.
+      </p></li></ul></div></section></section><section xml:lang="en" class="sect1" id="tls-troubleshooting" data-id-title="Troubleshooting"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name">Troubleshooting</span></span> <a title="Permalink" class="permalink" href="index.html#tls-troubleshooting">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    This topic describes how to examine TLS certificates.
+  </p><section class="sect2" id="tls-troubleshooting-verify-certificates" data-id-title="How do I examine a TLS certificate?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">8.1 </span><span class="title-name">How do I examine a TLS certificate?</span></span> <a title="Permalink" class="permalink" href="index.html#tls-troubleshooting-verify-certificates">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      To review a server certificate that is available locally as a file, use
+      the following command:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>openssl x509 -in <em class="replaceable">server.crt</em> -noout -text
+Certificate:
+  Data:
+      Version: 3 (0x2)
+      Serial Number:
+          6a:43:f5:55:ef:03:ee:0e:23:c8:99:82:71:39:f2:22:1a:da:53:db
+      Signature Algorithm: ecdsa-with-SHA256
+      Issuer:<span class="callout" id="tls-troubleshooting-verify-certificates-issuer">1</span> C = CZ, ST = Some-State, L = Prague, O = Example organization, CN = www.example.org, emailAddress = wilber@example.org
+      Validity<span class="callout" id="tls-troubleshooting-verify-certificates-validity">2</span>
+          Not Before: Apr 15 09:30:31 2024 GMT
+          Not After : May 15 09:30:31 2024 GMT
+      Subject:<span class="callout" id="tls-troubleshooting-verify-certificates-subject">3</span> C = CZ, ST = Some-State, L = Prague, O = Example organization, CN = www.example.org, emailAddress = wilber@example.org
+      Subject Public Key Info:
+          Public Key Algorithm: id-ecPublicKey
+              Public-Key: (256 bit)
+              pub:
+                  04:7e:ad:12:c7:04:68:ea:d8:7d:a3:3a:ad:3d:79:
+[...]
+              ASN1 OID: prime256v1
+              NIST CURVE: P-256
+      X509v3 extensions:
+          X509v3 Subject Alternative Name:<span class="callout" id="tls-troubleshooting-verify-certificates-altname">4</span>
+            DNS:*.example.org, DNS:example.org
+          X509v3 Key Usage:<span class="callout" id="tls-troubleshooting-verify-certificates-keyusage">5</span>
+              Digital Signature, Key Encipherment
+          X509v3 Extended Key Usage:
+              TLS Web Server Authentication
+  Signature Algorithm: ecdsa-with-SHA256
+       30:46:02:21:00:a8:4f:7d:16:f2:93:01:b9:3d:31:e3:c6:6c:
+[...]</pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#tls-troubleshooting-verify-certificates-issuer"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+          Describes who issued the certificate. It shows only the parent-level
+          issuer, not the top-level issuer from the certificate chain.
+        </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#tls-troubleshooting-verify-certificates-validity"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+          Displays certificate validity time.
+        </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#tls-troubleshooting-verify-certificates-subject"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+          Describes the server that uses the certificate. The most important
+          attribute is <code class="literal">CN</code> (Common Name), as it contains the
+          fully qualified domain name of the server that can use this
+          certificate. <code class="literal">CN</code> can contain wildcards, for example,
+          <code class="literal">*.example.org</code>. In this case, the certificate
+          can be used by multiple servers on the same domain
+          <code class="literal">example.org</code>.
+        </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#tls-troubleshooting-verify-certificates-altname"><span class="callout">4</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+          When used, it overrides the subject's <code class="literal">CN</code>
+          specification. It can contain <code class="literal">DNS:</code> entries for
+          domain names and <code class="literal">IP:</code> entries for IP addresses.
+        </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#tls-troubleshooting-verify-certificates-keyusage"><span class="callout">5</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+          Specifies purposes for which the certificate can be used.
+        </p></td></tr></table></div></section><section class="sect2" id="tls-troubleshooting-download-certificate" data-id-title="How do I download server TLS certificate files?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">8.2 </span><span class="title-name">How do I download server TLS certificate files?</span></span> <a title="Permalink" class="permalink" href="index.html#tls-troubleshooting-download-certificate">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The following command downloads just the server certificate from the
+      example server <em class="replaceable">suse.com</em>. Replace it with the
+      domain name of the server you want to examine.
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>echo | openssl s_client -showcerts -connect suse.com:443 2&gt;/dev/null \
+| openssl x509 -out 1.pem</pre></div><p>
+      Most public servers use several subordinate CAs in the certificate chain.
+      To download the whole certificate chain into individual files, use the
+      following command:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>echo | openssl s_client -showcerts -connect suse.com:443 2&gt;/dev/null \
+| awk -v RS="-----BEGIN CERTIFICATE-----" \
+'NR&gt;1{sub(/-----END CERTIFICATE-----.*/,"-----END CERTIFICATE-----"); \
+print RS$0&gt;NR-1".pem"}'</pre></div><p>
+      The command writes all certificate files named increasingly
+      <code class="filename">1.pem</code>, <code class="filename">2.pem</code> and so on, up to
+      the last certificate in the chain.
+    </p></section><section class="sect2" id="tls-troubleshooting-verify-certificates-trust-chain" data-id-title="How do I verify the whole TLS certificate chain?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">8.3 </span><span class="title-name">How do I verify the whole TLS certificate chain?</span></span> <a title="Permalink" class="permalink" href="index.html#tls-troubleshooting-verify-certificates-trust-chain">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The client host normally has a collection of root CAs and verifies the
+      server certificates against them. But the certificate that the server
+      provides can be a subordinate CA. To trust the server's certificate, the
+      client needs to verify its complete
+      <a class="xref" href="go01.html#gt-tls-certificate-chain" title="TLS certificate chain">TLS certificate chain</a>. The server sends all
+      certificates as part of its <code class="literal">Server Hello</code> message and
+      you can download them as described in
+      <a class="xref" href="index.html#tls-troubleshooting-download-certificate" title="8.2. How do I download server TLS certificate files?">Section 8.2, “How do I download server TLS certificate files?”</a>.
+    </p><p>
+      The <code class="command">openssl</code> command uses the <code class="option">-subject_hash
+      </code> and <code class="option">-issuer_hash</code> options to retrieve the
+      subject and issuer hashes from a certificate, for example:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>openssl x509 -in 1.pem -noout -issuer_hash
+2401d14f</pre></div><p>
+      The client compares the issuer hash <code class="literal">2401d14f</code> with the
+      issuer hashes of its collection of root CAs. In this case, no root CA has
+      an issuer hash of <code class="literal">2401d14f</code>. As the client cannot trust
+      the server yet, it has to verify the other certificates from the chain as
+      well. Notice that the next certificate in the chain has the
+      <code class="option">-subject_hash</code> identical to the
+      <code class="option">-issuer_hash</code> from the server certificate.
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>openssl x509 -in 2.pem -noout -subject_hash
+2401d14f</pre></div><p>
+      Display the issuer hash of this certificate.
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>openssl x509 -in 2.pem -noout -issuer_hash
+ce5e74ef</pre></div><p>
+      Again, this issuer hash cannot be found among the client's root CAs.
+      Continue with checking the issuer and subject hashes of the next
+      certificates in the chain until you reach the last one. The results are
+      summarized in the following table:
+    </p><div class="figure" id="id-1.9.5.10"><div class="figure-contents"><div class="mediaobject"><a href="images/tls-cert-chain1.png"><img src="images/tls-cert-chain1.png" width="75%" alt="Subject and issuer hashes of a certificate chain" title="Subject and issuer hashes of a certificate chain"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 2: </span><span class="title-name">Subject and issuer hashes of a certificate chain </span></span><a title="Permalink" class="permalink" href="index.html#id-1.9.5.10">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><p>
+      The last issuer hash <code class="literal">f387163d</code> finally has a matching
+      CA:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>ls -l /etc/ssl/certs/f387163d*
+lrwxrwxrwx 1 root root 24 Oct 4 09:55 /etc/ssl/certs/f387163d.0 -&gt; Starfield_Class_2_CA.pem</pre></div><p>
+      If the discovered issuer certificate is valid, you can trust the server as
+      much as you trust the root CAs in your client certificate store.
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>openssl x509 -in /etc/ssl/certs/Starfield_Class_2_CA.pem -noout -dates
+notBefore=Jun 29 17:39:16 2004 GMT
+notAfter=Jun 29 17:39:16 2034 GMT</pre></div><p>
+      To confirm that the certificate is a root CA, check its subject and issuer
+      hashes. Because root CA certificates are self-signed, they have both
+      hashes identical.
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>openssl x509 -in /etc/ssl/certs/Starfield_Class_2_CA.pem -noout -issuer_hash -subject_hash
+f387163d
+f387163d</pre></div><p>
+      The complete certificate chain then looks as follows:
+    </p><div class="figure" id="id-1.9.5.18"><div class="figure-contents"><div class="mediaobject"><a href="images/tls-cert-chain2.png"><img src="images/tls-cert-chain2.png" width="75%" alt="Complete TLS certificate chain" title="Complete TLS certificate chain"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 3: </span><span class="title-name">Subject and issuer hashes of a certificate chain </span></span><a title="Permalink" class="permalink" href="index.html#id-1.9.5.18">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></section></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">9 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p> Copyright© 2006–2024
+ SUSE LLC and contributors.
+  All rights reserved. </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy.  Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="go01.html"><span class="pagination-relation">Next</span><span class="pagination-label">Glossary</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#tls-certificates-introduction"><span class="title-number">1 </span><span class="title-name">Introduction</span></a></span></li><li><span class="section"><a href="index.html#id-1.3"><span class="title-number">2 </span><span class="title-name">Issuing and installing TLS certificates</span></a></span></li><li><span class="section"><a href="index.html#tls-creating-private-ca"><span class="title-number">3 </span><span class="title-name">Creating a private CA</span></a></span></li><li><span class="section"><a href="index.html#tls-creating-private-key"><span class="title-number">4 </span><span class="title-name">Creating a server private key</span></a></span></li><li><span class="section"><a href="index.html#tls-creating-certificate-signing-request"><span class="title-number">5 </span><span class="title-name">Creating a CSR</span></a></span></li><li><span class="section"><a href="index.html#tls-sign-csr-private-ca"><span class="title-number">6 </span><span class="title-name">Signing a CSR</span></a></span></li><li><span class="section"><a href="index.html#tls-certificates-store"><span class="title-number">7 </span><span class="title-name">System-wide CA certificate store</span></a></span></li><li><span class="section"><a href="index.html#tls-troubleshooting"><span class="title-number">8 </span><span class="title-name">Troubleshooting</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">9 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="glossary"><a href="go01.html"><span class="title-name">Glossary</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-fb" href="#" title="Facebook"> </a></li><li><a id="_share-in" href="#" title="LinkedIn"> </a></li><li><a id="_share-tw" href="#" title="Twitter/X"> </a></li><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE
+                 2024</span></div></div></footer></body></html>

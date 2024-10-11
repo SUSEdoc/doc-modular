@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><title>Configuring a Subnet Manager</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style.css"/>
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
+<meta name="title" content="Configuring a Subnet Manager"/>
+<meta name="description" content="Configuring opensm—the InfiniBand compliant implementation of Subnet Manager"/>
+<meta name="book-title" content="Configuring a Subnet Manager"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="tbazant@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.0"/>
+<meta name="publisher" content="SUSE"/><meta name="category" content="."/><meta name="DCTERMS.modified" content="2023-11-14"/><meta name="DC.creator" content="tbazant@suse.com"/><meta property="og:title" content="Configuring the opensm Subnet Manager"/>
+<meta property="og:description" content="Configuring the opensm Subnet Manager"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Configuring the opensm Subnet Manager"/>
+<meta name="twitter:description" content="Configuring the opensm Subnet Manager"/>
+<script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    
+     "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    
+    "inLanguage": "en",
+    
+
+    "headline": "Configuring the opensm Subnet Manager",
+  
+    "description": "Configuring opensm—the InfiniBand compliant implementation of Subnet Manager",
+      
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    ],
+      
+    "dateModified": "2023-11-14T00:00+02:00",
+      
+    "datePublished": "2023-11-14T00:00+02:00",
+      
+    "articleSection": [ 
+        "Networking"
+        
+    ],
+    
+
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      }
+    ],
+  
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><script type="text/javascript">
+
+if ( window.location.protocol.toLowerCase() != 'file:' ) {
+  document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>');
+};
+
+</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"/></noscript><script src="static/js/script-purejs.js" type="text/javascript"> </script><script src="static/js/highlight.min.js" type="text/javascript"> </script><script>
+
+$(document).ready(function() {
+  $('.verbatim-wrap.highlight').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+hljs.configure({
+  useBR: false
+});
+
+</script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Configuring a Subnet Manager</a></div></div><main id="_content"><nav id="_side-toc-overall" class="side-toc"><div class="side-title">Configuring a Subnet Manager</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="subnet-manager-configuring" data-id-title="Configuring a Subnet Manager"><div class="titlepage"><div><div><h1 class="title">Configuring a Subnet Manager</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>27 Sep 2024</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.14.1.1"><span class="term">WHAT?</span></dt><dd><p>
+                opensm is an InfiniBand compliant implementation of the Subnet Manager.
+              </p></dd><dt id="id-1.1.14.1.2"><span class="term">WHY?</span></dt><dd><p>
+                To learn about the opensm implementation of the Subnet Manager and how to configure
+                it.
+              </p></dd><dt id="id-1.1.14.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                Less than 30 minutes and basic knowledge of Linux administration.
+              </p></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History" hreflang="en" href="rh-subnet-manager-configuring.html" target="_blank">Revision History: Configuring a Subnet Manager</a></div></div></div></div><section xml:lang="en" class="sect1" id="opensm" data-id-title="Introduction to opensm"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Introduction to opensm</span></span> <a title="Permalink" class="permalink" href="index.html#opensm">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        The following sections explain what opensm is and outline its role in the InfiniBand
+        networking environment.
+      </p></div></div></div></div><section class="sect2" id="infiniband-what-is" data-id-title="What is InfiniBand?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">What is InfiniBand?</span></span> <a title="Permalink" class="permalink" href="index.html#infiniband-what-is">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      InfiniBand is a standard for computer networking communications. It offers a high-speed,
+      low-latency networking technology commonly used in high-performance computing (HPC)
+      environments. InfiniBand provides a high-bandwidth interconnect for connecting servers,
+      storage and other network devices, for example, network switches. In the InfiniBand context,
+      the group of connected network devices is called a <span class="emphasis"><em>fabric</em></span>.
+    </p></section><section class="sect2" id="subnet-manager-what-is" data-id-title="What is a Subnet Manager?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">What is a Subnet Manager?</span></span> <a title="Permalink" class="permalink" href="index.html#subnet-manager-what-is">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      A Subnet Manager is a component of InfiniBand architecture. It manages and configures
+      InfiniBand switches and connected devices. The Subnet Manager is important for discovering
+      network devices, assigning addresses to them, and maintaining the overall health and
+      configuration of the network.
+    </p></section><section class="sect2" id="opensm-what-is" data-id-title="What is opensm?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.3 </span><span class="title-name">What is opensm?</span></span> <a title="Permalink" class="permalink" href="index.html#opensm-what-is">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      opensm is an InfiniBand compliant Subnet Manager that performs all required tasks for
+      initializing InfiniBand hardware. InfiniBand switches usually come with a Subnet Manager
+      embedded in their firmware. Because it may be outdated or has limited control over
+      network devices, <span class="phrase"><span class="phrase">Dolomite</span></span> offers opensm. At least one Subnet Manager must be
+      running for each InfiniBand subnet.
+    </p></section><section class="sect2" id="opensm-how-it-works" data-id-title="How does opensm work?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.4 </span><span class="title-name">How does opensm work?</span></span> <a title="Permalink" class="permalink" href="index.html#opensm-how-it-works">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      opensm attaches to a specific InfiniBand port on the local host and configures only
+      devices connected to it. If the local machine has other InfiniBand ports, opensm ignores
+      devices connected to them. If no port is specified, opensm selects the first available
+      port. By default, the opensm run is logged to <code class="filename">/var/log/opensm.log</code>. All
+      errors reported in this file should be treated as indicators of InfiniBand fabric health
+      issues.
+    </p></section><section class="sect2" id="opensm-benefits" data-id-title="Responsibilities of opensm"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.5 </span><span class="title-name">Responsibilities of opensm</span></span> <a title="Permalink" class="permalink" href="index.html#opensm-benefits">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Key responsibilities of opensm include:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.6.3.1"><span class="term">Device discovery</span></dt><dd><p>
+            Identifying and managing the devices, such as nodes or switches, within the
+            InfiniBand fabric.
+          </p></dd><dt id="id-1.2.6.3.2"><span class="term">Address assignment</span></dt><dd><p>
+            Assigning a unique InfiniBand address to each device in the fabric. InfiniBand uses a
+            unique addressing scheme known as the <span class="emphasis"><em>local identifier</em></span> (LID) to
+            identify each device.
+          </p></dd><dt id="id-1.2.6.3.3"><span class="term">Routing</span></dt><dd><p>
+            Determining the optimal paths for data transmission within the fabric. InfiniBand
+            supports both direct and routed communication between devices.
+          </p></dd><dt id="id-1.2.6.3.4"><span class="term">Topology management</span></dt><dd><p>
+            Managing the topology of the InfiniBand fabric, including configuring and maintaining
+            the connections between switches and devices.
+          </p></dd><dt id="id-1.2.6.3.5"><span class="term">Error handling</span></dt><dd><p>
+            Monitoring the fabric for errors and handling them appropriately to ensure the
+            reliability of communication.
+          </p></dd></dl></div></section></section><section xml:lang="en" class="sect1" id="task-example" data-id-title="Configuring opensm"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Configuring opensm</span></span> <a title="Permalink" class="permalink" href="index.html#task-example">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><div id="id-1.3.2" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
+      The <code class="command">opensm</code> command stores its main configuration in
+      <code class="filename">/etc/rdma/opensm.conf</code>. Because the main configuration file gets updated
+      on opensm upgrades, we recommend editing <code class="filename">/etc/rdma/opensm</code> instead, to
+      prevent the need to merge changes manually.
+    </p></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Install the opensm package on any hosts that will be running the Subnet Manager.
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">transactional-update pkg install opensm</code></pre></div></li><li class="step"><p>
+        Use the <code class="command">ibstat -p</code> command to find <code class="literal">GUID0</code> and
+        <code class="literal">GUID1</code> of the host channel adapter (HCA) ports, for example:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ibstat -p</code>
+0x248a070300a80a80
+0x248a070300a80a81</pre></div></li><li class="step"><p>
+        If you are using a single switch, follow these steps:
+      </p><ol type="a" class="substeps"><li class="step"><p>
+            Start the <code class="systemitem">opensm</code> service.
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">systemctl start opensm</code></pre></div></li><li class="step"><p>
+            Enable the <code class="systemitem">opensm</code> service on boot.
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">systemctl enable opensm</code></pre></div></li><li class="step"><p>
+            Edit the <code class="filename">/etc/rdma/opensm</code> file to add the identifier for the
+            corresponding port.
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">opensm -c /etc/rdma/opensm</code>
+# The port GUID on which the OpenSM is running
+guid 0x248a070300a80a80</pre></div></li></ol></li><li class="step"><p>
+        If you are using a direct connect method or if you have multiple switches, enable the
+        Subnet Manager on each port of the connected HCA on the host by adding the following lines
+        to <code class="filename">/etc/rc.d/after.local</code>. Substitute the <code class="literal">GUID0</code> and
+        <code class="literal">GUID1</code> with your discovered values. For <code class="literal">P0</code> and
+        <code class="literal">P1</code>, use the Subnet Manager priorities, with 1 being the lowest and 15
+        the highest.
+      </p><div class="verbatim-wrap"><pre class="screen">opensm -B -g <em class="replaceable">GUID0</em> -p <em class="replaceable">P0</em> -f /var/log/opensm-ib0.log
+opensm -B -g <em class="replaceable">GUID1</em> -p <em class="replaceable">P1</em> -f /var/log/opensm-ib1.log</pre></div><p>
+        For example:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">cat /etc/rc.d/rc.local</code>
+opensm -B -g 0x248a070300a80a80 -p 15 -f /var/log/opensm-ib0.log
+opensm -B -g 0x248a070300a80a81 -p 1 -f /var/log/opensm-ib1.log</pre></div></li></ol></div></div></section><section xml:lang="en" class="sect1" id="glue-alp-containers-podman-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="index.html#glue-alp-containers-podman-more-info">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Find detailed information in the following sources:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        <a class="link" href="https://www.infinibandta.org/about-infiniband/" target="_blank">InfiniBand</a> home
+        page
+      </p></li><li class="listitem"><p>
+        NVIDIA documentation on
+        <a class="link" href="https://docs.nvidia.com/networking/display/mlnxosv3111014/subnet+manager" target="_blank">Subnet Manager</a>
+      </p></li><li class="listitem"><p>
+        NVIDIA documentation on
+        <a class="link" href="https://docs.nvidia.com/networking/display/mlnxofedv541030/opensm" target="_blank">opensm</a>
+      </p></li></ul></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p> Copyright© 2006–2024
+ SUSE LLC and contributors.
+  All rights reserved. </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy.  Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#opensm"><span class="title-number">1 </span><span class="title-name">Introduction to opensm</span></a></span></li><li><span class="section"><a href="index.html#task-example"><span class="title-number">2 </span><span class="title-name">Configuring opensm</span></a></span></li><li><span class="section"><a href="index.html#glue-alp-containers-podman-more-info"><span class="title-number">3 </span><span class="title-name">For more information</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">4 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-fb" href="#" title="Facebook"> </a></li><li><a id="_share-in" href="#" title="LinkedIn"> </a></li><li><a id="_share-tw" href="#" title="Twitter/X"> </a></li><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE
+                 2024</span></div></div></footer></body></html>

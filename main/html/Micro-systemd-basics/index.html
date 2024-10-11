@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><title>Introduction to systemd Basics</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style.css"/>
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
+<meta name="title" content="Introduction to systemd Basics"/>
+<meta name="description" content="Gives you an understanding and managing of systemd services."/>
+<meta name="book-title" content="Introduction to systemd Basics"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="amrita.sakthivel@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Micro 6.0"/>
+<meta name="publisher" content="SUSE"/><meta name="category" content="."/><meta name="DCTERMS.modified" content="2023-10-26"/><meta name="DC.creator" content="amrita.sakthivel@suse.com"/><meta property="og:title" content="Managing systemd services"/>
+<meta property="og:description" content="Description of systemd services"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Managing systemd services"/>
+<meta name="twitter:description" content="Description of systemd services"/>
+<script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    
+     "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    
+    "inLanguage": "en",
+    
+
+    "headline": "Managing systemd services",
+  
+    "description": "Gives you an understanding and managing of systemd services.",
+      
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    ],
+      
+    "dateModified": "2023-08-02T00:00+02:00",
+      
+    "datePublished": "2023-08-02T00:00+02:00",
+      
+    "articleSection": [ 
+        "Systems Management"
+        
+    ],
+    
+
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Administration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      }
+    ],
+  
+    "mentions": [
+      
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Micro",
+        
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER"
+        
+      }
+      
+    ],
+    
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><script type="text/javascript">
+
+if ( window.location.protocol.toLowerCase() != 'file:' ) {
+  document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>');
+};
+
+</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"/></noscript><script src="static/js/script-purejs.js" type="text/javascript"> </script><script src="static/js/highlight.min.js" type="text/javascript"> </script><script>
+
+$(document).ready(function() {
+  $('.verbatim-wrap.highlight').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+hljs.configure({
+  useBR: false
+});
+
+</script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Introduction to systemd Basics</a></div></div><main id="_content"><nav id="_side-toc-overall" class="side-toc"><div class="side-title">Introduction to <code class="systemitem">systemd</code> Basics</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="systemd-services" data-id-title="Introduction to systemd Basics"><div class="titlepage"><div><div><h1 class="title">Introduction to <code class="systemitem">systemd</code> Basics</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>27 Sep 2024</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.14.1.1"><span class="term">WHAT?</span></dt><dd><p>
+                <code class="systemitem">systemd</code> is used to manage system settings and services.
+                <code class="systemitem">systemd</code> organizes tasks into components called <span class="emphasis"><em>units</em></span> and groups of units into <span class="emphasis"><em>targets</em></span>.
+
+              </p></dd><dt id="id-1.1.14.1.2"><span class="term">WHY?</span></dt><dd><p>
+                Learn about the basics of <code class="systemitem">systemd</code>, which include essential functionalities such as service management,
+                dependency tracking, logging, resource management, socket activation and system control. </p></dd><dt id="id-1.1.14.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                20 minutes of reading time.
+              </p></dd><dt id="id-1.1.14.1.4"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                      Basic understanding of Linux commands
+                    </p></li><li class="listitem"><p>
+                   Basic understanding of Linux processes, daemons, and control groups
+                  </p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History" hreflang="en" href="rh-systemd-services.html" target="_blank">Revision History: Introduction to systemd Basics</a></div></div></div></div><section xml:lang="en" class="sect1" id="about-systemd" data-id-title="What is systemd?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">What is <code class="systemitem">systemd</code>?</span></span> <a title="Permalink" class="permalink" href="index.html#about-systemd">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      <code class="systemitem">systemd</code> is a system and service manager for Linux operating systems. It is the default initialization system for major Linux distributions.
+      <code class="systemitem">systemd</code> is not directly initiated by the user, but installed through the <code class="filename">/sbin/init </code> and started during the early boot.
+      <code class="systemitem">systemd</code> acts as the init system that brings up and maintains user space services when run as the first process on boot (PID 1).
+      PID 1 is known as <span class="emphasis"><em>init</em></span> and is the first Linux user-mode process created.
+      It runs until the system shutdown.
+      </p><p><code class="systemitem">systemd</code> owns PID 1, and is started directly by the kernel. All other processes are started directly
+       by <code class="systemitem">systemd</code> or one of its child processes. <code class="systemitem">systemd</code> mounts the host's file system and manages temporary files.
+       It is backward compatible with the SysV init scripts. SysV is an initialization system that predates <code class="systemitem">systemd</code>.</p><p>In <code class="systemitem">systemd</code>, a unit is a resource that the system knows how to operate on and manage. This is
+            the primary object that the <code class="systemitem">systemd</code> tools use. These resources are defined with configuration files called unit files.</p><p><code class="command">systemctl</code> is the central management tool for controlling the init system. It is used to
+        examine and control the state of the <code class="systemitem">systemd</code> system and service manager.</p><p>Targets in <code class="systemitem">systemd</code> are groups of related units that act as synchronization points during a system boot.
+          Target unit files have a <code class="literal">.target</code> file extension. Target units group together various <code class="systemitem">systemd</code>
+          units through a chain of dependencies.
+        </p><p>For troubleshooting, you can use <code class="command">journalctl</code>, which is
+         used to query and display log messages from the <code class="systemitem">systemd</code> journal.</p><p>For more information on <code class="systemitem">systemd</code>, you can refer to <a class="link" href="https://systemd.io" target="_blank">https://systemd.io</a> and <code class="command">man 1 systemd</code>.</p></section><section xml:lang="en" class="sect1" id="boot-process" data-id-title="About the systemd boot process"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">About the <code class="systemitem">systemd</code> boot process </span></span> <a title="Permalink" class="permalink" href="index.html#boot-process">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+      The first step in the boot process is to load the Linux kernel, which is the main component of the Linux operating system.
+      Once the kernel is loaded, it initializes the hardware and starts the <code class="systemitem">systemd</code> process, which is the first
+      process that runs on the system.
+        </p></div></div></div></div><section class="sect2" id="linux-boot-process" data-id-title="Linux boot process"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">Linux boot process</span></span> <a title="Permalink" class="permalink" href="index.html#linux-boot-process">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>The Linux boot process is the initial stage of the operating system's startup.
+        It is the process by which the operating system loads the memory, initializes the components and
+        prepares to execute user applications.</p><p>The Linux boot process is divided into four main stages:</p><div class="variablelist"><dl class="variablelist"><dt id="id-1.3.2.4.1"><span class="term">Stage 1: BIOS</span></dt><dd><p>
+           When you power on your computer, your computer starts BIOS (Basic Input/Output System) and
+           performs a POST (Power On Self Test). This is an integrity check that probes the hardware functionality of
+           components such as hard disks, SSD, keyboard, RAM, USB ports and any other hardware.
+           If the hardware works as expected, the boot process moves on to the next stage.</p></dd><dt id="id-1.3.2.4.2"><span class="term">Stage 2: The boot loader</span></dt><dd><p> Once POST is complete, BIOS searches for and loads the boot loader program stored
+            in the MBR (Master Boot Record). The MBR is a 512-byte code that is usually located at <code class="filename">/dev/sda</code>
+            or <code class="filename">/dev/hda</code> depending on your hard drive architecture. The MBR can also be located
+            on a live USB or DVD installation of Linux. BIOS loads and executes this MBR code.</p><p>There are three main boot loaders in Linux: LILO, GRUB and GRUB2. The GRUB2 (Grand Unified Bootloader)
+              boot loader is the latest and primary boot loader in modern Linux distributions. The GRUB2 configuration file is
+              located at <code class="filename"> /boot/grub2/grub2.cfg</code>. Once BIOS locates the GRUB2 boot loader, It executes and loads it into the main memory (RAM).</p></dd><dt id="id-1.3.2.4.3"><span class="term">Stage 3: Linux kernel initialization</span></dt><dd><p>The Linux kernel is the heart of the operating system. In your Linux
+            system, the kernel interfaces with the hardware, controls memory management
+            and manages processes. The boot loader loads the selected Linux kernel.
+            The kernel self extracts from a compressed version and mounts the root file system.
+            It then runs the <code class="filename">/sbin/init</code> program.</p></dd><dt id="id-1.3.2.4.4"><span class="term">Stage 4: <code class="systemitem">systemd</code></span></dt><dd><p>The kernel loads <code class="systemitem">systemd</code>, which is a system and service manager for Linux operating systems. <code class="systemitem">systemd</code> then runs
+           all the other initialization processes.</p></dd></dl></div></section><section class="sect2" id="systemd-linux-boot-process" data-id-title="Boot process with systemd"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.2 </span><span class="title-name">Boot process with <code class="systemitem">systemd</code> </span></span> <a title="Permalink" class="permalink" href="index.html#systemd-linux-boot-process">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p> Once the kernel loads <code class="systemitem">systemd</code>, <code class="systemitem">systemd</code> takes over and starts the other system services that are required
+        to bring the system up and running. This includes services such as networking service, the login manager, etc.</p><p> The boot process is parallelized in the order in which specific target units are executed.
+  <code class="systemitem">systemd</code> uses the <code class="filename">/etc/systemd/system/default.target </code> file to determine the target that the Linux system should boot into.
+  This file is a link to <code class="filename">graphical.target</code> which boots the graphical login manager.
+  <code class="systemitem">systemd</code> activates all target units that are dependencies of <code class="filename">default.target</code> as well as recursively all dependencies of these dependencies.
+Once all the services are started, your system is ready to use and the login manager displays. You can now log in and start using the system.
+  </p></section><section class="sect2" id="systemd-analyze-command" data-id-title="Analyzing the system boot process performance with the systemd-analyze command"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.3 </span><span class="title-name">Analyzing the system boot process performance with the <code class="command">systemd-analyze</code> command </span></span> <a title="Permalink" class="permalink" href="index.html#systemd-analyze-command">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>Use the <code class="command">systemd-analyze</code> command to analyze the performance of the system
+        boot process. The command can also be used to retrieve other state and tracing information
+        from the system and service manager. It is used to check that unit files are correct and also to access special functions
+        useful for advanced system manager debugging.
+      </p><p>Some examples include:</p><div class="variablelist"><dl class="variablelist"><dt id="id-1.3.4.4.1"><span class="term"><span class="emphasis"><em>Viewing the time it takes for the system to boot</em></span></span></dt><dd><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>systemd-analyze time
+Startup finished in 3.404s (kernel) + 2.415s (initrd) + 13.125s (userspace) = 18.945s
+graphical.target reached after 13.117s in userspace</pre></div></dd><dt id="id-1.3.4.4.2"><span class="term"><span class="emphasis"><em>Getting a high-level overview of the boot process, which includes
+        services that are started and the time it takes for each service to start</em></span></span></dt><dd><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>systemd-analyze critical-chain
+  The time when unit became active or started is printed after the "@" character.
+  The time the unit took to start is printed after the "+" character.
+
+  graphical.target @13.117s
+  └─multi-user.target @13.117s
+    └─getty.target @13.117s
+      └─getty@tty1.service @13.116s
+        └─plymouth-quit-wait.service @10.775s +2.338s
+          └─systemd-user-sessions.service @10.769s +3ms
+            └─remote-fs.target @10.764s
+              └─iscsi.service @10.747s +16ms
+                └─network-online.target @10.744s
+                  └─NetworkManager-wait-online.service @1.547s +9.197s
+                    └─NetworkManager.service @1.507s +37ms
+                      └─network-pre.target @1.504s
+                        └─wpa_supplicant.service @2.341s +5ms
+                          └─dbus.service @1.042s
+                            └─basic.target @1.036s
+                              └─sockets.target @1.036s
+                                └─snapd.socket @1.035s +590us
+                                  └─sysinit.target @1.030s
+                                    └─systemd-update-utmp.service @1.025s +5ms
+                                      └─auditd.service @976ms +47ms
+                                        └─systemd-tmpfiles-setup.service @964ms +9ms
+                                          └─local-fs.target @962ms
+                                            └─snapd.mounts.target @961ms
+                                              └─snap-core18-2796.mount @417ms +543ms
+                                                └─dev-loop9.device @961ms +628us</pre></div><p>This command prints a tree of time-critical units either for each of the specified units or for the default target. The initialization of services might depend on socket activation and the parallel execution of units. Similar to the <code class="command">blame</code>
+command, it displays the time taken by a unit to activate, which is not defined for units like device units that transition directly to active state. </p></dd><dt id="id-1.3.4.4.3"><span class="term"><span class="emphasis"><em>Viewing a list of services started during the boot process and displayed according to
+        the time taken by each service</em></span></span></dt><dd><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>systemd-analyze blame
+  9.197s NetworkManager-wait-online.service
+  4.002s fwupd.service
+  2.338s plymouth-quit-wait.service
+  1.282s dracut-pre-udev.service
+  1.062s sys-devices-platform-serial8250-tty-ttyS0.device
+  1.062s dev-ttyS0.device
+  1.061s dev-ttyS1.device
+  1.061s sys-devices-platform-serial8250-tty-ttyS1.device
+  1.060s dev-ttyS11.device
+  1.060s sys-devices-platform-serial8250-tty-ttyS11.device
+  1.059s sys-devices-platform-serial8250-tty-ttyS13.device
+  1.059s dev-ttyS13.device
+  1.059s sys-devices-platform-serial8250-tty-ttyS10.device
+  1.059s dev-ttyS10.device
+  1.058s sys-devices-platform-serial8250-tty-ttyS14.device
+  1.058s dev-ttyS14.device
+  1.058s dev-ttyS12.device
+  1.058s sys-devices-platform-serial8250-tty-ttyS12.device
+  1.056s sys-devices-platform-serial8250-tty-ttyS17.device</pre></div><p>The initialization of one service might be slow because it is waiting for another service initialization to complete.
+It displays the time taken by a unit to activate, which is not defined for units
+like device units that transition directly to active state. This command does
+not display results for services with <code class="literal">Type=simple</code> because
+<code class="systemitem">systemd</code> considers these services to be started immediately, hence the initialization delays
+cannot be analyzed.
+</p></dd><dt id="id-1.3.4.4.4"><span class="term"><span class="emphasis"><em>Generating a vector graphics file that displays the events that take place during the boot process
+            </em></span></span></dt><dd><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>systemd-analyze plot &gt; /temp/sample.svg</pre></div><p>This command creates a SVG file in the <code class="literal">temp</code> directory.
+  The SVG file is a text file that defines a set of graphics vectors that applications
+  such as LibreOffice Draw use to generate a graph.</p></dd></dl></div></section></section><section xml:lang="en" class="sect1" id="unit-file" data-id-title="Structure of a unit file"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Structure of a unit file</span></span> <a title="Permalink" class="permalink" href="index.html#unit-file">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+In <code class="systemitem">systemd</code>, a unit refers to any resource that the system knows how to operate on and manage.
+This is the primary object that the <code class="systemitem">systemd</code> tools use. These resources are defined using configuration files
+called unit files. Administration is easier when you understand unit files when working with <code class="systemitem">systemd</code>.
+Unit files use a simple declarative syntax that allows you to see easily the purpose and effects of a
+unit upon activation. Unit files have sections with directives, for example:
+      </p></div></div></div></div><div class="verbatim-wrap"><pre class="screen">        [Section]
+        Directive1=value
+        Directive2=value
+        . . .</pre></div><p>Unit file types include the following sections:</p><div class="variablelist"><dl class="variablelist"><dt id="id-1.4.4.1"><span class="term"><code class="literal">[Unit]</code></span></dt><dd><p>
+         The first section found in most unit files is the <code class="literal">[Unit]</code> section. This section is used to define
+         the metadata of the unit file and configure the relationship of the unit file to other unit files. This section is usually placed
+         at the top because it provides an overview of the unit file.
+        </p></dd><dt id="id-1.4.4.2"><span class="term"><code class="literal">[Automount] / [Mount] / [Path] / [Service] / [Slice] / [Socket] /[Swap] / [Timer]</code></span></dt><dd><p>
+          Sections containing directives that are specific to the respective type. See
+          <a class="xref" href="index.html#type-unit-file" title="4. Unit file types">Section 4, “Unit file types”</a>
+          for a list of available types.
+          Note that the types <code class="literal">device</code>, <code class="literal">target</code>, <code class="literal">snapshot</code>
+          and <code class="literal">scope</code> do not have a type-specific section.
+         </p></dd><dt id="id-1.4.4.3"><span class="term"><code class="literal">[Install]</code></span></dt><dd><p>
+         This is often the last section in the unit file and is optional. This section is used to define the behavior of a unit file when
+         it is enabled or disabled. When you enable a unit file, it automatically starts at boot. Based on the specific unit,
+         there could be a dependency on other related units to work properly. For example, <code class="systemitem">chrony</code> requires
+         the directives <code class="literal">After</code>, <code class="literal">Wants</code>, and <code class="literal">Before</code>, which are all dependencies for
+         <code class="systemitem">chrony</code> to work with.
+        </p></dd></dl></div><div class="example" id="systemd-unit-file-example" data-id-title="A systemd service file"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 1: </span><span class="title-name">A <code class="systemitem">systemd</code> service file  </span></span><a title="Permalink" class="permalink" href="index.html#systemd-unit-file-example">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">[Unit]
+Description=usbguard <span class="callout" id="systemd-unit-file-descr">1</span>
+
+[Service]
+ExecStart=/usr/sbin/usb-daemon <span class="callout" id="systemd-unit-file-exec">2</span>
+
+[Install]
+WantedBy=multi-user.target <span class="callout" id="systemd-unit-file-multiuser">3</span></pre></div></div></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#systemd-unit-file-descr"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+            A brief and meaningful description explaining the service file's purpose.
+          </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#systemd-unit-file-exec"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+            Specifies the program to be executed when the service is started.
+          </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#systemd-unit-file-multiuser"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+            Starts a multi-user system with networking, and no graphical environment.
+            This directive allows you to specify a dependency relationship.
+          </p></td></tr></table></div></section><section xml:lang="en" class="sect1" id="type-unit-file" data-id-title="Unit file types"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Unit file types</span></span> <a title="Permalink" class="permalink" href="index.html#type-unit-file">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+      You can determine the type of unit by its file extension. <code class="systemitem">systemd</code> categorizes units according to the type of resource they describe.
+      </p></div></div></div></div><p>Types of unit files available for <code class="systemitem">systemd</code>:</p><div class="variablelist"><dl class="variablelist"><dt id="id-1.5.3.1"><span class="term"><code class="literal">.service</code></span></dt><dd><p>
+          Describes how to manage a service or application.
+          This includes how to start or stop the service, reload its configuration file (if applicable),
+          under what conditions the service starts automatically, and the dependency or the hierarchy information for related unit files.
+         </p></dd><dt id="id-1.5.3.2"><span class="term"><code class="literal">.scope</code></span></dt><dd><p>
+         This unit file is automatically created by <code class="systemitem">systemd</code> from the information received from the D-Bus interface
+         and is used to manage sets of system processes that are created externally.
+         </p></dd><dt id="id-1.5.3.3"><span class="term"><code class="literal">.path</code></span></dt><dd><p>
+       Defines a path for path-based activation.
+        By default, a <code class="literal">.service</code> unit file of the same base name is activated.
+        <code class="literal">inotify</code> is a kernel API that is used by programs
+        that want to be notified about changes to files.
+         </p></dd><dt id="id-1.5.3.4"><span class="term"><code class="literal">.snapshot</code></span></dt><dd><p>
+        The <code class="command">systemctl snapshot</code> command automatically creates a <code class="literal">.snapshot</code> unit file.
+        This command creates temporary snapshots of the current state of the system.
+        You can modify the current state of the system after making changes. Snapshots are used for rolling back temporary states.
+        </p></dd><dt id="id-1.5.3.5"><span class="term"><code class="literal">.timer</code></span></dt><dd><p>
+        Defines a timer that is managed by <code class="systemitem">systemd</code>. This is similar to a cron job for delayed or scheduled activation.
+        A unit file with the same name, but with file extension <code class="filename">.service</code> is started when the timer is reached.
+        </p></dd><dt id="id-1.5.3.6"><span class="term"><code class="literal">.slice</code></span></dt><dd><p>
+        Associate Linux Control Group nodes, which allow resources
+        to be assigned or restricted to any processes associated with the slice.
+         The name indicates the hierarchy within the control group tree. Units are placed in slices by default depending on their type.
+         </p></dd><dt id="id-1.5.3.7"><span class="term"><code class="literal">.target</code></span></dt><dd><p>
+         Provides synchronization for other units during a boot up or
+          a change in state, or brings the system to a new state. Other units specify their relation to targets
+          in order to sync with the target's operations.
+                </p></dd><dt id="id-1.5.3.8"><span class="term"><code class="literal">.socket</code></span></dt><dd><p>
+         Describes a network, an IPC socket, or a FIFO buffer that <code class="systemitem">systemd</code> uses for socket-based activation.
+          There is an associated <code class="literal">.service</code> file that starts when an activity is seen on the socket that this unit defines.
+                </p></dd><dt id="id-1.5.3.9"><span class="term"><code class="literal">.device</code></span></dt><dd><p>
+        Defines a device that has been designated for <code class="systemitem">systemd</code> management by <code class="literal">udev</code>
+        or <code class="literal">sysfs</code> file system. Not all devices have the <code class="literal">.device</code> file.
+        This unit file is required when ordering, mounting, or accessing a device.
+         </p></dd><dt id="id-1.5.3.10"><span class="term"><code class="literal">.swap</code></span></dt><dd><p>
+          Defines the swap space on the system.
+          The name of the unit file must reflect the device or file path of the space.
+          </p></dd><dt id="id-1.5.3.11"><span class="term"><code class="literal">.mount</code></span></dt><dd><p>
+         Defines a mount point on the system to be managed by <code class="systemitem">systemd</code>.
+          This file is named after the mount path, with the slashes changed to dashes.
+          Entries within <code class="filename">/etc/fstab</code> can have units created automatically.
+                </p></dd><dt id="id-1.5.3.12"><span class="term"><code class="literal">.automount</code></span></dt><dd><p>
+         Defines a mount point that is automatically mounted. Name the file after
+         the mount point that it refers to. A matching <code class="literal">.mount</code> unit file is required
+         to define the specifics of the mount.
+         </p></dd></dl></div></section><section xml:lang="en" class="sect1" id="concept-unit-dependencies" data-id-title="Unit dependencies and order"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Unit dependencies and order</span></span> <a title="Permalink" class="permalink" href="index.html#concept-unit-dependencies">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+<code class="systemitem">systemd</code> has two types of dependencies: requirement and order dependencies. Requirement dependencies specify
+which other units must be either started or stopped when activating a unit.
+Order dependencies specify the order in which units must be started.
+      </p></div></div></div></div><p> <span class="emphasis"><em>Unit dependencies</em></span></p><p>Unit files have the dependencies feature. A unit may want or require one or more other units before it can run.
+    These dependencies are set in unit files with the directives <code class="literal">Wants</code> and <code class="literal">Requires</code>.</p><div class="variablelist"><dl class="variablelist"><dt id="id-1.6.4.1"><span class="term"><code class="literal">Wants</code></span></dt><dd><p>For example, if unit A has <code class="literal">Wants=unit B</code>, when unit A is
+          run, unit B runs as well. But if unit B starts successfully or not, does not have an influence on unit A running
+          successfully.
+        </p></dd><dt id="id-1.6.4.2"><span class="term"><code class="literal">Requires</code></span></dt><dd><p>If unit A has <code class="literal">Requires=unit B</code>, both units run but if unit B does not run successfully,
+         unit A is deactivated. It does not matter if the processes of unit A would have run successfully.
+        </p></dd></dl></div><p><span class="emphasis"><em>Unit order</em></span> </p><p>Without proper instructions, <code class="systemitem">systemd</code> can run a group of units at the same time. Starting services in the right order
+      is important for a good functioning of the Linux system. You can arrange the order with the unit file directives <code class="literal">Before</code>
+       and <code class="literal">After</code>.</p><div class="variablelist"><dl class="variablelist"><dt id="id-1.6.7.1"><span class="term"><code class="literal">Before</code></span></dt><dd><p>For example, if unit A has <code class="literal">Before=unit B</code>, when both units are run, unit A is executed fully
+            before unit B.
+          </p></dd><dt id="id-1.6.7.2"><span class="term"><code class="literal">After</code></span></dt><dd><p>If unit A has <code class="literal">After=unit B</code>, when both units are run, unit B is executed fully
+            before unit A.
+          </p></dd></dl></div></section><section xml:lang="en" class="sect1" id="concept-unit-logging" data-id-title="Logging"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Logging</span></span> <a title="Permalink" class="permalink" href="index.html#concept-unit-logging">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        Log files and journals are important for system administration. They give in-depth information about a system and are very important
+        for troubleshooting and auditing. Log files contain events and messages generated by the kernel, applications, and users that log into the system.
+ You can use the <code class="command">journalctl</code> command to query the journal. This command views logs collected by <code class="systemitem">systemd</code>.
+ The <code class="literal">systemd-journald</code> service handles <code class="systemitem">systemd</code>'s log collection. <code class="literal">systemd-journald</code> saves the events and messages in a binary format.
+      </p></section><section xml:lang="en" class="sect1" id="concept-systemd-targets" data-id-title="systemd targets"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name"><code class="systemitem">systemd</code> targets</span></span> <a title="Permalink" class="permalink" href="index.html#concept-systemd-targets">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+     <code class="systemitem">systemd</code> uses units and targets. A <code class="systemitem">systemd</code> unit defines a service or action on the system, which consists of a name, type, and  configuration file.
+        A <code class="systemitem">systemd</code> target combines several units and defines which services have to be started to reach the target.
+        On a server, for example, this is a state where the network is running and multiple users can log in.
+        These files are identified by the suffix <code class="literal">.target</code>.
+      </p><p>Similar to unit files, different targets may be nested via dependencies. For example, <code class="literal">multi-user.target</code> requires (among others) the targets
+        that set up login and user session services.
+      </p></div></div></div></div><p>
+    Common <code class="systemitem">systemd</code> targets:
+  </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.8.3.1"><span class="term">
+        <code class="literal">default.target</code>
+      </span></dt><dd><p>Boots by default. The <code class="literal">default.target</code> file is a symbolic link to the
+        true target file, such as <code class="literal">graphical.target</code> for a desktop workstation. For a server, it is usually
+          <code class="literal">graphical.target</code>.
+        </p></dd><dt id="id-1.8.3.2"><span class="term">
+        <code class="literal">poweroff.target</code>
+      </span></dt><dd><p>Shuts down and powers off the system.</p></dd><dt id="id-1.8.3.3"><span class="term">
+        <code class="literal">rescue.target</code>
+      </span></dt><dd><p>Target unit that pulls the base system and starts a rescue shell session.</p></dd><dt id="id-1.8.3.4"><span class="term">
+        <code class="literal">multi-user.target</code>
+      </span></dt><dd><p>Sets up a non-graphical (console) multi-user system.</p></dd><dt id="id-1.8.3.5"><span class="term">
+        <code class="literal">graphical.target</code>
+      </span></dt><dd><p>Uses a graphical multi-user system with network services.</p></dd><dt id="id-1.8.3.6"><span class="term">
+        <code class="literal">reboot.target</code>
+      </span></dt><dd><p>Shuts down and reboots the system.
+        </p></dd></dl></div><p>For more information on <code class="systemitem">systemd</code> targets, refer to <span class="emphasis"><em>man 5 systemd.target</em></span>
+        and <span class="emphasis"><em>man 7 systemd.special</em></span>.
+  </p></section><section xml:lang="en" class="sect1" id="systemd-as-a-regular-user" data-id-title="Using systemd as a regular user"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name">Using <code class="systemitem">systemd</code> as a regular user</span></span> <a title="Permalink" class="permalink" href="index.html#systemd-as-a-regular-user">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p> You can use <code class="systemitem">systemd</code> as a regular user for better security or when you do not have <code class="systemitem">root</code> user privileges. Running an unprivileged service can be done by creating a <code class="literal">user</code>
+  service.</p></div></div></div></div><p>When creating and using a user service, consider the following: </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+         User service sessions are terminated when the user's session ends. This can be overridden by using
+          the <code class="command">loginctl enable-linger <em class="replaceable">USERNAME</em></code> command.
+        </p></li><li class="listitem"><p>
+          User service files are located in <code class="filename">/etc/systemd/user</code> or <code class="filename">$HOME/.config/systemd/user/</code>.
+         </p></li><li class="listitem"><p>
+           You can control user services with the <code class="command">systemctl --user</code> command.
+          </p></li></ul></div></section><section xml:lang="en" class="sect1" id="systemctl-commands" data-id-title="systemctl commands overview"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">9 </span><span class="title-name"><code class="command">systemctl</code> commands overview</span></span> <a title="Permalink" class="permalink" href="index.html#systemctl-commands">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        The <code class="command">systemctl</code> command is used to examine and control
+        the state of <code class="systemitem">systemd</code> and service manager.
+      </p></div></div></div></div><p>
+    You can use the following common <code class="command">systemctl</code> commands and
+    refer to the <span class="emphasis"><em>man systemctl</em></span> page.
+  </p><section class="sect2" id="systemctl-commands-view-information" data-id-title="Viewing systemd information"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.1 </span><span class="title-name">Viewing <code class="systemitem">systemd</code> information</span></span> <a title="Permalink" class="permalink" href="index.html#systemctl-commands-view-information">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      To view information about <code class="systemitem">systemd</code> components, you can use the following
+      commands:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.10.3.3.1"><span class="term">systemctl list-units</span></dt><dd><p>
+            Lists the <code class="systemitem">systemd</code> units. You can use the optional arguments:
+            <code class="command">--state=running</code> to show the active units and
+            <code class="command">--type=service</code> to show the exited and active
+            units.
+          </p></dd><dt id="id-1.10.3.3.2"><span class="term">systemctl list-unit-files</span></dt><dd><p>
+            Lists the <code class="systemitem">systemd</code> units and the status, such as static,
+            generated, disabled, alias, masked, and enabled.
+          </p></dd><dt id="id-1.10.3.3.3"><span class="term">systemctl list-dependencies</span></dt><dd><p>
+            Lists the dependency tree.
+          </p></dd><dt id="id-1.10.3.3.4"><span class="term">systemctl list-dependencies <em class="replaceable">UNIT_FILE</em></span></dt><dd><p>
+            Lists the dependencies of a unit file.
+          </p></dd></dl></div></section><section class="sect2" id="systemctl-commands-managing-services" data-id-title="Managing systemd services"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.2 </span><span class="title-name">Managing <code class="systemitem">systemd</code> services</span></span> <a title="Permalink" class="permalink" href="index.html#systemctl-commands-managing-services">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The <code class="command">systemctl</code> command enables you to perform the
+      following tasks with services.
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.10.4.3.1"><span class="term">systemctl status <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Checks the status of the specific service.
+          </p></dd><dt id="id-1.10.4.3.2"><span class="term">systemctl show <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Displays the service information.
+          </p></dd><dt id="id-1.10.4.3.3"><span class="term">systemctl start <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Instead of manually starting the service, use the
+            <code class="command">start</code> command. When a change is made to the
+            configuration file, the related service must be started again.
+          </p></dd><dt id="id-1.10.4.3.4"><span class="term">systemctl stop <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Stops a specific running service.
+          </p></dd><dt id="id-1.10.4.3.5"><span class="term">systemctl restart <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Instead of manually restarting the service, use the
+            <code class="command">restart</code> command. When a change is made to the
+            configuration file, the related service must be restarted again.
+          </p></dd><dt id="id-1.10.4.3.6"><span class="term">systemctl enable <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Enables the service on boot.
+          </p></dd><dt id="id-1.10.4.3.7"><span class="term">systemctl disable <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Disables the service on boot.
+          </p></dd><dt id="id-1.10.4.3.8"><span class="term">systemctl reload-or-restart <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Reload the service if it supports reloading, otherwise it restarts
+            the service. If the service is not running, it is restarted.
+          </p></dd><dt id="id-1.10.4.3.9"><span class="term">systemctl mask <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            When a service is masked, this means the unit file is symlinked to
+            <code class="filename">/dev/null</code>. A symlink for a masked service is
+            created from <code class="filename">/etc/systemd/system</code> to point to
+            <code class="filename">/dev/null</code>. This makes it impossible to load
+            the service even if another enabled service requires it. It must be
+            stopped manually, or it continues to run in the background. You can
+            use <code class="command">--runtime</code> option to only mask temporarily
+            until the next reboot of the system.
+          </p><div class="verbatim-wrap"><pre class="screen">Created symlink /etc/systemd/system/FOSSLinux.service → /dev/null.</pre></div></dd><dt id="id-1.10.4.3.10"><span class="term">systemctl unmask <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Unmasks the service. It is effective when the system is started or
+            restarted manually.
+          </p></dd></dl></div></section><section class="sect2" id="systemctl-commands-managing-states" data-id-title="Managing system states"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.3 </span><span class="title-name">Managing system states</span></span> <a title="Permalink" class="permalink" href="index.html#systemctl-commands-managing-states">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The <code class="command">systemctl</code> command enables you to perform power
+      management processes on your system, like restarting, shutting down and
+      so on, as described below.
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.10.5.3.1"><span class="term">systemctl reboot</span></dt><dd><p>
+            Reboots the system <code class="literal">reboot.target</code>.
+          </p></dd><dt id="id-1.10.5.3.2"><span class="term">systemctl poweroff</span></dt><dd><p>
+            Powers off the system <code class="literal">poweroff.target</code>.
+          </p></dd><dt id="id-1.10.5.3.3"><span class="term">systemctl emergency</span></dt><dd><p>
+            Goes into the emergency mode <code class="literal">emergency.target</code>.
+          </p></dd><dt id="id-1.10.5.3.4"><span class="term">systemctl default</span></dt><dd><p>
+            Goes back to default target <code class="literal">multi-user.target</code>.
+          </p></dd></dl></div></section></section><section xml:lang="en" class="sect1" id="systemd-troubleshooting" data-id-title="systemd troubleshooting"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">10 </span><span class="title-name"><code class="systemitem">systemd</code> troubleshooting</span></span> <a title="Permalink" class="permalink" href="index.html#systemd-troubleshooting">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>You can use the following troubleshooting tips to identify and resolve issues
+  with <code class="systemitem">systemd</code> services and ensure a smooth system operation.
+  </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.11.3.1"><span class="term"><span class="emphasis"><em>Check the syntax of your <code class="systemitem">systemd</code> unit file with the
+        <code class="command">systemd-analyze verify <em class="replaceable">SERVICE</em></code></em></span></span></dt><dd><p>Before starting or enabling a <code class="systemitem">systemd</code> service, check the syntax of the unit file to ensure there are no errors.
+        For example: </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemd-analyze verify /etc/systemd/system/my-custom-service.service</pre></div><p>The command analyzes the unit file and reports any syntax errors, missing files, or other issues.
+  You must fix any reported issues before enabling and starting the service.</p></dd><dt id="id-1.11.3.2"><span class="term"><span class="emphasis"><em>Check the logs for your service with the <code class="command">
+        journalctl -u <em class="replaceable">SERVICE</em></code> command</em></span></span></dt><dd><p>
+          If you experience any issue with a <code class="systemitem">systemd</code> service, check the service's log.
+          For example:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  journalctl -u my-custom-service.service</pre></div><p>The command displays logs for the specified service, including any error messages, warnings, or other relevant information.
+  You can use these logs to identify and fix issues with the service.</p></dd><dt id="id-1.11.3.3"><span class="term"><span class="emphasis"><em>Use the <code class="command">systemd-analyze plot</code> command to visualize the boot process</em></span></span></dt><dd><p>
+          If a service is causing issues during the boot process, you can use the
+          <code class="command">systemd-analyze plot command</code> to visualize the boot process and identify issues.
+          For example:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemd-analyze plot &gt; boot-plot.svg</pre></div><p>The command creates an SVG file called <code class="filename">boot-plot.svg</code> that contains a graphical representation of the boot process and potential issues. This includes the start and stop time of each service. You can open this file in an SVG-compatible image viewer or Web browser to analyze services that are causing issues during the boot process.</p></dd><dt id="id-1.11.3.4"><span class="term"><span class="emphasis"><em>Troubleshoot failed services</em></span></span></dt><dd><p>To find out which services have failed and to inspect the log output: </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl --state=failed</pre></div></dd><dt id="id-1.11.3.5"><span class="term"><span class="emphasis"><em>Check the runtime status of a service</em></span></span></dt><dd><p>To find out the current runtime status of a service:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl status <em class="replaceable">SERVICE</em></pre></div></dd><dt id="id-1.11.3.6"><span class="term"><span class="emphasis"><em>Shutdown or reboot takes long</em></span></span></dt><dd><p>If the shutdown or reboot takes long, it could be a service that is not exiting. <code class="systemitem">systemd</code>
+        waits for some time for each service to exit before trying to terminate it.
+        A common issue is a suspended service or a stalled shutdown. To find out, use the following:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl poweroff
+  Failed to power off system via logind: There's already a shutdown or sleep operation in progress</pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl list-jobs</pre></div><p>You can cancel the running and waiting jobs, and again shut down or reboot: </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl cancel</pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl stop systemd-suspend.service</pre></div></dd></dl></div></section><section xml:lang="en" class="sect1" id="best-practices" data-id-title="systemd best practices"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">11 </span><span class="title-name"><code class="systemitem">systemd</code> best practices</span></span> <a title="Permalink" class="permalink" href="index.html#best-practices">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+            You can follow some of the best practices to ensure efficient <code class="systemitem">systemd</code> services that are equipped to handle different situations.
+            </p></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.12.2.1"><span class="term"><span class="emphasis"><em>Check the runtime status of a service</em></span></span></dt><dd><p>To find out the current runtime status of a service:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl status <em class="replaceable">SERVICE</em></pre></div></dd><dt id="id-1.12.2.2"><span class="term"><span class="emphasis"><em>Use absolute path in your <code class="systemitem">systemd</code> unit file</em></span></span></dt><dd><p>
+               Use an absolute path for executable files and required files, such as configuration files or scripts in your
+               <code class="systemitem">systemd</code> unit file. <code class="systemitem">systemd</code> does not rely on the user's environment variables like <code class="literal">$PATH</code> to locate files.
+              </p></dd><dt id="id-1.12.2.3"><span class="term"><span class="emphasis"><em>Use the ExecReload directive</em></span></span></dt><dd><p>
+              Use the <span class="emphasis"><em>ExecReload</em></span> directive in the <code class="literal">[SERVICE]</code> section when you want to define a specific command
+              that should be executed when you reload a service with the <code class="command">systemctl reload</code> command.
+              This is useful for services that can dynamically reload their configuration without a restart.
+              </p><div class="verbatim-wrap"><pre class="screen">[Service]
+ExecStart=<em class="replaceable">PATH_TO_EXECUTABLE</em>
+ExecReload=<span class="emphasis"><em>PATH_TO_RELOAD_SCRIPT</em></span></pre></div></dd><dt id="id-1.12.2.4"><span class="term"><span class="emphasis"><em>Use the RestartSec directive </em></span></span></dt><dd><p>
+               Use the <span class="emphasis"><em>RestartSec</em></span> directive in the <code class="literal">[SERVICE]</code> section when you want to
+               define a delay (in seconds) before the service is restarted after a failure. This is useful for services that require
+               a specified time to release resources or prevent rapid restart loops that can cause high system load.
+               </p><div class="verbatim-wrap"><pre class="screen">[Service]
+ExecStart=<em class="replaceable">PATH_TO_EXECUTABLE</em>
+Restart=on-failure
+RestartSec=5</pre></div></dd><dt id="id-1.12.2.5"><span class="term"><span class="emphasis"><em>Disable emergency mode on a remote machine</em></span></span></dt><dd><p>
+               You can disable emergency mode on a remote machine, for example, a virtual machine hosted on Google Cloud.
+               If this mode is enabled, the machine is blocked from connecting to the network.
+               For example:
+               </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl mask emergency.service</pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl mask emergency.target</pre></div></dd></dl></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">12 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p> Copyright© 2006–2024
+ SUSE LLC and contributors.
+  All rights reserved. </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy.  Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#about-systemd"><span class="title-number">1 </span><span class="title-name">What is <code class="systemitem">systemd</code>?</span></a></span></li><li><span class="section"><a href="index.html#boot-process"><span class="title-number">2 </span><span class="title-name">About the <code class="systemitem">systemd</code> boot process </span></a></span></li><li><span class="section"><a href="index.html#unit-file"><span class="title-number">3 </span><span class="title-name">Structure of a unit file</span></a></span></li><li><span class="section"><a href="index.html#type-unit-file"><span class="title-number">4 </span><span class="title-name">Unit file types</span></a></span></li><li><span class="section"><a href="index.html#concept-unit-dependencies"><span class="title-number">5 </span><span class="title-name">Unit dependencies and order</span></a></span></li><li><span class="section"><a href="index.html#concept-unit-logging"><span class="title-number">6 </span><span class="title-name">Logging</span></a></span></li><li><span class="section"><a href="index.html#concept-systemd-targets"><span class="title-number">7 </span><span class="title-name"><code class="systemitem">systemd</code> targets</span></a></span></li><li><span class="section"><a href="index.html#systemd-as-a-regular-user"><span class="title-number">8 </span><span class="title-name">Using <code class="systemitem">systemd</code> as a regular user</span></a></span></li><li><span class="section"><a href="index.html#systemctl-commands"><span class="title-number">9 </span><span class="title-name"><code class="command">systemctl</code> commands overview</span></a></span></li><li><span class="section"><a href="index.html#systemd-troubleshooting"><span class="title-number">10 </span><span class="title-name"><code class="systemitem">systemd</code> troubleshooting</span></a></span></li><li><span class="section"><a href="index.html#best-practices"><span class="title-number">11 </span><span class="title-name"><code class="systemitem">systemd</code> best practices</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">12 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-fb" href="#" title="Facebook"> </a></li><li><a id="_share-in" href="#" title="LinkedIn"> </a></li><li><a id="_share-tw" href="#" title="Twitter/X"> </a></li><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE
+                 2024</span></div></div></footer></body></html>

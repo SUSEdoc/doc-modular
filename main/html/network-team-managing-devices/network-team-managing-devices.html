@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><title>Managing network teaming devices</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style.css"/>
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
+<meta name="title" content="Managing network teaming devices"/>
+<meta name="description" content="This article explains how to configure network teaming, and how to add VLANs over the teamed device."/>
+<meta name="book-title" content="Managing network teaming devices"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="tahlia.richardson@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.0"/>
+<meta name="publisher" content="SUSE"/><meta name="category" content="."/><meta name="DCTERMS.modified" content="2023-10-05"/><meta name="DC.creator" content="tahlia.richardson@suse.com"/><meta property="og:title" content="Managing network teaming devices"/>
+<meta property="og:description" content="Learn how to configure and manage network teaming"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Managing network teaming devices"/>
+<meta name="twitter:description" content="Learn how to configure and manage network teaming"/>
+<script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    
+     "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    
+    "inLanguage": "en",
+    
+
+    "headline": "Managing network teaming devices",
+  
+    "description": "This article explains how to configure network teaming, and how to add VLANs over the teamed device.",
+      
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    ],
+      
+    "dateModified": "2023-10-05T00:00+02:00",
+      
+    "datePublished": "2023-10-05T00:00+02:00",
+      
+    "articleSection": [ 
+        "Network"
+        
+    ],
+    
+
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      }
+    ],
+  
+    "mentions": [
+      
+      { "@type": "SoftwareApplication",
+        "name": "ALP DolomiteSUSE Linux Enterprise MicroSUSE Linux Enterprise MicroSUSE Linux Enterprise Server",
+        "softwareVersion": "16.0",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER"
+        
+      }
+      
+    ],
+    
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><script type="text/javascript">
+
+if ( window.location.protocol.toLowerCase() != 'file:' ) {
+  document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>');
+};
+
+</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"/></noscript><script src="static/js/script-purejs.js" type="text/javascript"> </script><script src="static/js/highlight.min.js" type="text/javascript"> </script><script>
+
+$(document).ready(function() {
+  $('.verbatim-wrap.highlight').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+hljs.configure({
+  useBR: false
+});
+
+</script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Managing network teaming devices</a></div></div><main id="_content"><nav id="_side-toc-overall" class="side-toc"><div class="side-title">Managing network teaming devices</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="network-team-managing-devices" data-id-title="Managing network teaming devices"><div class="titlepage"><div><div><h1 class="title">Managing network teaming devices</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>27 Sep 2024</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.14.1.1"><span class="term">WHAT?</span></dt><dd><p>
+              Combine two or more network interfaces into a single teamed device.
+            </p></dd><dt id="id-1.1.14.1.2"><span class="term">WHY?</span></dt><dd><p>
+              Network teaming can increase bandwidth and/or provide redundancy.
+            </p></dd><dt id="id-1.1.14.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                Approximately 15 minutes to read and understand the content.
+              </p></dd><dt id="id-1.1.14.1.4"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Network connection</p></li><li class="listitem"><p>Basic understanding of networking and IP addresses</p></li><li class="listitem"><p>
+                  Existing network interfaces to include in the teamed device
+                </p></li><li class="listitem"><p>
+                  Switch support, depending on the teaming mode
+                </p></li><li class="listitem"><p>
+                  The package <span class="package">libteam-tools</span> is installed
+                </p></li></ul></div></dd></dl></div><p>
+        This article is about network <span class="emphasis"><em>teaming</em></span>.
+        To configure network <span class="emphasis"><em>bonding</em></span>, see
+        <a class="link" href="https://documentation.suse.com/smart/network/html/network-bond-managing-devices/index.html" target="_blank">
+        Managing network bonding devices</a>.
+      </p></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History" hreflang="en" href="rh-network-team-managing-devices.html" target="_blank">Revision History: Managing network teaming devices</a></div></div></div></div><section xml:lang="en" class="sect1" id="network-team-configure" data-id-title="Configuring network teaming"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Configuring network teaming</span></span> <a title="Permalink" class="permalink" href="index.html#network-team-configure">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Network teaming combines two or more network interfaces into a single teamed device to increase
+        bandwidth and/or provide redundancy. The behavior of the teamed device is configured using
+        <span class="emphasis"><em>teaming modes</em></span>.
+      </p></div></div></div></div><section class="sect2" id="network-team-requirements" data-id-title="Requirements"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">Requirements</span></span> <a title="Permalink" class="permalink" href="index.html#network-team-requirements">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          Network connection
+        </p></li><li class="listitem"><p>
+          Basic understanding of networking and IP addresses
+        </p></li><li class="listitem"><p>
+          Existing network interfaces to include in the teamed device
+        </p></li><li class="listitem"><p>
+          Switch support, depending on the teaming mode
+        </p></li><li class="listitem"><p>
+          The package <span class="package">libteam-tools</span> is installed
+        </p></li></ul></div></section><section class="sect2" id="network-team-restrictions" data-id-title="Restrictions"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Restrictions</span></span> <a title="Permalink" class="permalink" href="index.html#network-team-restrictions">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.3.2.1"><span class="term">Do not split teams over multiple switches</span></dt><dd><p>
+            In most hardware setups, all network interfaces in a teamed device must be connected to
+            the same switch. For more information, consult your switch vendor documentation.
+          </p></dd><dt id="id-1.2.3.2.2"><span class="term">No teaming in YaST</span></dt><dd><p>
+            Currently, YaST cannot create a teamed device.
+            You must configure network teaming manually.
+          </p></dd><dt id="id-1.2.3.2.3"><span class="term">Teaming and virtualization</span></dt><dd><p>
+            Teamed devices are made up of multiple network interfaces. In most configurations
+            you should only configure teaming in the host. Virtual interfaces to guests are then
+            created as a bridge with the teamed devices, simplifying guest creation and deployment.
+          </p><p>
+            It is possible, but not recommended, to configure teaming in a guest. When configuring
+            teaming in a guest, you must assign multiple interfaces to the guest and configure the
+            host without teaming. You must also be careful to configure the host and its network
+            bridges so that you do not mix teaming in the host and guests.
+      </p></dd></dl></div></section><section class="sect2" id="network-team-modes" data-id-title="Teaming modes"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.3 </span><span class="title-name">Teaming modes</span></span> <a title="Permalink" class="permalink" href="index.html#network-team-modes">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The following teaming modes are available:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.4.3.1"><span class="term"><span class="guimenu">broadcast</span></span></dt><dd><p>
+            All traffic is broadcast on all interfaces. Provides fault tolerance.
+            Requires switch support.
+          </p></dd><dt id="id-1.2.4.3.2"><span class="term"><span class="guimenu">roundrobin</span></span></dt><dd><p>
+            Packets are transmitted in round-robin fashion from the first to the last available
+            interface. Provides fault tolerance and load balancing. Requires switch support.
+          </p></dd><dt id="id-1.2.4.3.3"><span class="term"><span class="guimenu">activebackup</span></span></dt><dd><p>
+            Only one network interface is active. If it fails, a different interface becomes active.
+            Provides fault tolerance.
+          </p></dd><dt id="id-1.2.4.3.4"><span class="term"><span class="guimenu">loadbalance</span></span></dt><dd><p>
+            The teamed device transmits packets via all its interfaces, performing load balancing
+            (passive or active) with a use of hash functions. For passive load balancing, only
+            the BPF hash function is used. For active load balancing, the runner finds the best
+            balance by moving hashes between available interfaces. Provides fault tolerance and
+            load balancing. No specific switch support is required.
+          </p></dd><dt id="id-1.2.4.3.5"><span class="term"><span class="guimenu">lacp</span></span></dt><dd><p>
+            All interfaces in the LACP group must share the same speed and duplex settings, and
+            must be connected to the same switch. Provides fault tolerance and load balancing.
+            Requires <code class="command">ethtool</code> support in the interface drivers, and a switch that
+            supports and is configured for IEEE 802.3ad Dynamic link aggregation. If your switch
+            supports it, this is the preferred mode.
+          </p></dd></dl></div><p>
+      Consult your hardware manual to check which modes your switch supports.
+    </p></section><section class="sect2" id="network-team-configure-with-ifcfg" data-id-title="Configuring network teaming with ifcfg"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.4 </span><span class="title-name">Configuring network teaming with <code class="literal">ifcfg</code></span></span> <a title="Permalink" class="permalink" href="index.html#network-team-configure-with-ifcfg">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Create a configuration file named <code class="filename">/etc/sysconfig/network/ifcfg-team0</code>.
+          If you need more than one teamed device, give them ascending numbers.
+          For more information, see <code class="command">man ifcfg</code>, <code class="command">man ifcfg-team</code>,
+          and <code class="filename">/etc/sysconfig/network/ifcfg.template</code>.
+        </p><p>
+          In the configuration file, define the following parameters:
+        </p><div class="verbatim-wrap"><pre class="screen">STARTMODE=<em class="replaceable">MODE</em> <span class="callout" id="co-team-startmode">1</span>
+BOOTPROTO=<em class="replaceable">IP_ASSIGNMENT</em> <span class="callout" id="co-team-bootproto">2</span>
+IPADDR=<em class="replaceable">IPv4_ADDRESS</em><span class="callout" id="co-team-ip-addresses">3</span>
+IPADDR6=<em class="replaceable">IPv6_ADDRESS</em><a class="xref" href="index.html#co-team-ip-addresses"><span class="callout">3</span></a>
+
+TEAM_RUNNER="<em class="replaceable">TEAMING_MODE</em>" <span class="callout" id="co-team-loadbalance">4</span>
+
+TEAM_PORT_DEVICE_0="<em class="replaceable">FIRST_DEVICE_NAME</em>" <span class="callout" id="co-team-dev">5</span>
+TEAM_PORT_DEVICE_1="<em class="replaceable">SECOND_DEVICE_NAME</em>" <a class="xref" href="index.html#co-team-dev"><span class="callout">5</span></a>
+
+TEAM_LW_NAME="<em class="replaceable">LINK_WATCHER</em>" <span class="callout" id="co-team-name">6</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-team-startmode"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Defines how the teamed device starts. Use <code class="literal">auto</code> to start the
+              interface automatically on every reboot, or use <code class="literal">manual</code> to prevent
+              the interface from starting automatically.
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-team-bootproto"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Defines how IP addresses are assigned to the teamed device. Use <code class="literal">static</code>
+              to manually assign static IP addresses, or use <code class="literal">dhcp</code> to
+              automatically assign dynamic IP addresses.
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-team-ip-addresses"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Specifies the IPv4 and IPv6 addresses for the device, if you are manually assigning
+              <code class="literal">static</code> IP addresses.
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-team-loadbalance"><span class="callout">4</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Defines the teaming mode for this interface. Some teaming modes require additional
+              variables. See <code class="command">man ifcfg-team</code> for more information about
+              mode-specific variables.
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-team-dev"><span class="callout">5</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Specifies two or more network interfaces to include in the teamed device.
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-team-name"><span class="callout">6</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Defines a link watcher to monitor the state of subordinate devices.
+            </p><p>
+              The default option <code class="literal">ethtool</code> only checks if the device is up and
+              accessible. This option is fast, but does not check if the device can actually send
+              or receive packets.
+            </p><p>
+              If you need higher confidence in the connection, use the <code class="literal">arp_ping</code>
+              option. This sends pings to a host specified by the variable
+              <code class="varname">TEAM_LW_ARP_PING_TARGET_HOST</code>. The teamed device is only
+              considered to be up if replies are received.
+            </p><p>
+              See <code class="command">man ifcfg-team</code> for more information about watcher-specific
+              variables.
+            </p></td></tr></table></div><div class="example" id="ex-team-lb" data-id-title="Configuration for load balancing with lacp"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 1: </span><span class="title-name">Configuration for load balancing with <code class="literal">lacp</code> </span></span><a title="Permalink" class="permalink" href="index.html#ex-team-lb">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">STARTMODE=auto
+BOOTPROTO=static
+IPADDR="192.168.1.1/24"
+IPADDR6="fd00:deca:fbad:50::1/64"
+
+TEAM_RUNNER="lacp"
+TEAM_LACP_SELECT_POLICY="lacp_prio"
+TEAM_LACP_TX_HASH="ipv4,ipv6,eth,vlan"
+TEAM_LACP_TX_BALANCER_NAME="basic"
+TEAM_LACP_TX_BALANCER_INTERVAL="100"
+
+TEAM_PORT_DEVICE_0="eth0"
+TEAM_PORT_DEVICE_1="eth1"
+
+TEAM_LW_NAME="ethtool"
+TEAM_LW_ETHTOOL_DELAY_UP="10"
+TEAM_LW_ETHTOOL_DELAY_DOWN="10"</pre></div></div></div><div class="example" id="ex-team-failover" data-id-title="Configuration for failover with activebackup"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 2: </span><span class="title-name">Configuration for failover with <code class="literal">activebackup</code> </span></span><a title="Permalink" class="permalink" href="index.html#ex-team-failover">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">STARTMODE=auto
+BOOTPROTO=static
+IPADDR="192.168.1.2/24"
+IPADDR6="fd00:deca:fbad:50::2/64"
+
+TEAM_RUNNER=activebackup
+
+TEAM_PORT_DEVICE_0="eth0"
+TEAM_PORT_DEVICE_1="eth1"
+
+TEAM_LW_NAME=ethtool
+TEAM_LW_ETHTOOL_DELAY_UP="10"
+TEAM_LW_ETHTOOL_DELAY_DOWN="10"</pre></div></div></div></li><li class="step"><p>
+          Back up the existing <code class="filename">ifcfg</code> files for the network interfaces that you
+          included in the teamed device, in case you need to restore them later.
+        </p></li><li class="step"><p>
+          Remove the <code class="filename">ifcfg</code> files of the network interfaces that you included
+          in the teamed device. Do not remove the backup files.
+        </p></li><li class="step"><p>
+          Check if everything is included in Wicked's configuration file:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">wicked show-config</code></pre></div></li><li class="step"><p>
+          Start the teamed device:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">wicked ifup all team0</code></pre></div><p>
+          If you need additional debug information, use the option <code class="option">--debug all</code>
+          after the <code class="command">all</code> subcommand.
+        </p><div id="id-1.2.5.2.5.4" class="admonition important compact"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><p>
+            Do <span class="emphasis"><em>not</em></span> use <code class="command">systemctl</code> to start or stop the
+            teamed device. Always use the <code class="command">wicked</code> command.
+          </p></div></li><li class="step"><p>
+          Check the status of the teamed device:
+        </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+              Get the state of the <code class="literal">teamd</code> instance from Wicked:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">wicked ifstatus --verbose team0</code></pre></div></li><li class="listitem"><p>
+              Get the state of the entire instance:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">teamdctl team0 state</code></pre></div></li><li class="listitem"><p>
+              Get the <code class="systemitem">systemd</code> state of the <code class="literal">teamd</code> instance:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">systemctl status teamd@team0</code></pre></div></li></ul></div><p>
+          Each command shows a slightly different view depending on your needs.
+        </p></li></ol></div></div><p>
+      If you make changes to the <code class="filename">ifcfg-team0</code> file after starting the device,
+      reload its configuration with the command <code class="command">wicked ifreload team0</code>.
+    </p></section></section><section xml:lang="en" class="sect1" id="network-team-add-vlans" data-id-title="Adding VLANS over a teamed device"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Adding VLANS over a teamed device</span></span> <a title="Permalink" class="permalink" href="index.html#network-team-add-vlans">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        VLANs allow the running of multiple <span class="emphasis"><em>logical</em></span> (virtual) Ethernets over
+        one single physical Ethernet. They logically split the network into different broadcast
+        domains so that packets are only switched between members that are designated for the same VLAN.
+      </p></div></div></div></div><section class="sect2" id="network-team-add-vlans-requirements" data-id-title="Requirements"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">Requirements</span></span> <a title="Permalink" class="permalink" href="index.html#network-team-add-vlans-requirements">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          VLAN tags are enabled on the switch. Consult your hardware manual for details.
+        </p></li><li class="listitem"><p>
+          To use load balancing for the teamed device, the switch must support LACP (802.3ad).
+        </p></li><li class="listitem"><p>
+          A teamed device is already configured.
+        </p></li></ul></div></section><section class="sect2" id="network-team-add-vlans-procedure" data-id-title="Adding VLANs over a teamed device"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.2 </span><span class="title-name">Adding VLANs over a teamed device</span></span> <a title="Permalink" class="permalink" href="index.html#network-team-add-vlans-procedure">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The examples in this procedure use the IP addresses
+      <code class="systemitem">192.168.10.1</code> and
+      <code class="systemitem">192.168.20.1</code>.
+      Replace these with the actual IP addresses for your devices.
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          In <code class="filename">/etc/sysconfig/network</code>, create a file named
+          <code class="filename">ifcfg-vlan0</code> and add the following content:
+        </p><div class="verbatim-wrap"><pre class="screen">STARTMODE="auto"
+BOOTPROTO="static" <span class="callout" id="co-team-vlan-bootproto">1</span>
+IPADDR='192.168.10.1/24' <span class="callout" id="co-team-vlan-ipaddr">2</span>
+ETHERDEVICE="team0" <span class="callout" id="co-team-vlan-etherdevice">3</span>
+VLAN_ID="0" <span class="callout" id="co-team-vlan-vlan-id">4</span>
+VLAN='yes'</pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-team-vlan-bootproto"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Specifies that the IP address is fixed.
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-team-vlan-ipaddr"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Defines the IP address and netmask.
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-team-vlan-etherdevice"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Contains the real interface to use for the VLAN interface. This example uses the
+              teamed device <code class="systemitem">team0</code>.
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-team-vlan-vlan-id"><span class="callout">4</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Specifies a unique ID for the VLAN.
+            </p></td></tr></table></div></li><li class="step"><p>
+          Copy the file <code class="filename">/etc/sysconfig/network/ifcfg-vlan0</code> to
+          <code class="filename">/etc/sysconfig/network/ifcfg-vlan1</code> and change the following values:
+        </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            <code class="literal">IPADDR='192.168.20.1/24'</code>.
+          </p></li><li class="listitem"><p>
+            <code class="literal">VLAN_ID='1'</code>.
+          </p></li></ul></div></li><li class="step"><p>
+          Start the two VLANs:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo wicked ifup vlan0 vlan1</code></pre></div></li><li class="step"><p>
+          Check the status of the VLANs:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ip addr</code></pre></div><p>
+          You can check a specific device by using the <code class="command">show</code> subcommand:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ip addr show vlan0</code></pre></div></li></ol></div></div></section></section><section xml:lang="en" class="sect1" id="network-bond-team-remove" data-id-title="Removing a teamed device"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Removing a teamed device</span></span> <a title="Permalink" class="permalink" href="index.html#network-bond-team-remove">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Use this procedure to remove the configuration for a bonded or teamed device and restore
+        the member interfaces to their original, separate configuration.
+      </p><p>
+        The following examples use the device name <code class="systemitem">team0</code>.
+        Replace this with the actual name of your device.
+      </p></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Stop the device:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">wicked ifdown team0</code></pre></div></li><li class="step"><p>
+        Hide the configuration file by renaming it from
+        <code class="filename">/etc/sysconfig/network/ifcfg-team0</code> to
+        <code class="filename">/etc/sysconfig/network/.ifcfg-team0</code>.
+      </p><p>
+        Alternatively, if you definitely do not need the configuration anymore, remove the file
+        instead of renaming it.
+      </p></li><li class="step"><p>
+        To re-enable the network interfaces that were included in the device,
+        restore their original configuration from the backup files.
+      </p></li><li class="step"><p>
+        Reload the network configuration:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">wicked ifreload all</code></pre></div></li><li class="step"><p>
+        Check the status of the remaining network interfaces:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ip addr</code></pre></div></li></ol></div></div></section><section xml:lang="en" class="sect1" id="network-bond-team-comparison" data-id-title="Network bonding or network teaming: feature comparison"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Network bonding or network teaming: feature comparison</span></span> <a title="Permalink" class="permalink" href="index.html#network-bond-team-comparison">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       <span class="emphasis"><em>Network bonding</em></span> and <span class="emphasis"><em>network teaming</em></span>
+       are different methods for combining network connections to provide a single combined
+       interface. Bonding is handled exclusively in the kernel. Teaming includes a small set of
+       kernel modules that provide an interface for <code class="systemitem">teamd</code> instances,
+       but everything else is handled in user space.
+      </p></div></div></div></div><div class="table" id="network-bond-team-comparison-table" data-id-title="Bonding and teaming feature comparison"><div class="title-container"><div class="table-title-wrap"><div class="table-title"><span class="title-number-name"><span class="title-number">Table 1: </span><span class="title-name">Bonding and teaming feature comparison </span></span><a title="Permalink" class="permalink" href="index.html#network-bond-team-comparison-table">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="table-contents"><table style="border-collapse: collapse; border-top: 1px solid ; border-bottom: 1px solid ; border-left: 1px solid ; border-right: 1px solid ; "><colgroup><col class="c1"/><col class="c2"/><col class="c3"/></colgroup><thead><tr><th style="border-right: 1px solid ; border-bottom: 1px solid ; ">Feature</th><th style="border-right: 1px solid ; border-bottom: 1px solid ; ">Bonding</th><th style="border-bottom: 1px solid ; ">Teaming</th></tr></thead><tbody><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">broadcast, round-robin TX policy</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">yes</td><td style="border-bottom: 1px solid ; ">yes</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">active-backup TX policy</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">yes</td><td style="border-bottom: 1px solid ; ">yes</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">LACP (802.3ad) support</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">yes</td><td style="border-bottom: 1px solid ; ">yes</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">hash-based TX policy</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">yes</td><td style="border-bottom: 1px solid ; ">yes</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">user can set hash function</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">no</td><td style="border-bottom: 1px solid ; ">yes</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">TX load-balancing support (TLB)</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">yes</td><td style="border-bottom: 1px solid ; ">yes</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">TX load-balancing support for LACP</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">no</td><td style="border-bottom: 1px solid ; ">yes</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Ethtool link monitoring</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">yes</td><td style="border-bottom: 1px solid ; ">yes</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">ARP link monitoring</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">yes</td><td style="border-bottom: 1px solid ; ">yes</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">NS/NA (IPV6) link monitoring</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">no</td><td style="border-bottom: 1px solid ; ">yes</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">RCU locking on TX/RX paths</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">no</td><td style="border-bottom: 1px solid ; ">yes</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">port prio and stickiness</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">no</td><td style="border-bottom: 1px solid ; ">yes</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">separate per-port link monitoring setup</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">no</td><td style="border-bottom: 1px solid ; ">yes</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">multiple link monitoring setup</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">limited</td><td style="border-bottom: 1px solid ; ">yes</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">VLAN support</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">yes</td><td style="border-bottom: 1px solid ; ">yes</td></tr><tr><td style="border-right: 1px solid ; ">multiple device stacking</td><td style="border-right: 1px solid ; ">yes</td><td>yes</td></tr></tbody></table></div></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p> Copyright© 2006–2024
+ SUSE LLC and contributors.
+  All rights reserved. </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy.  Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#network-team-configure"><span class="title-number">1 </span><span class="title-name">Configuring network teaming</span></a></span></li><li><span class="section"><a href="index.html#network-team-add-vlans"><span class="title-number">2 </span><span class="title-name">Adding VLANS over a teamed device</span></a></span></li><li><span class="section"><a href="index.html#network-bond-team-remove"><span class="title-number">3 </span><span class="title-name">Removing a teamed device</span></a></span></li><li><span class="section"><a href="index.html#network-bond-team-comparison"><span class="title-number">4 </span><span class="title-name">Network bonding or network teaming: feature comparison</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">5 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-fb" href="#" title="Facebook"> </a></li><li><a id="_share-in" href="#" title="LinkedIn"> </a></li><li><a id="_share-tw" href="#" title="Twitter/X"> </a></li><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE
+                 2024</span></div></div></footer></body></html>

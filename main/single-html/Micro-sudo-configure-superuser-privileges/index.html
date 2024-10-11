@@ -1,0 +1,1016 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Configuring Superuser Privileges with sudo</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style.css"/>
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
+<meta name="title" content="Configuring Superuser Privileges with sudo"/>
+<meta name="description" content="Learn how to delegate superuser privileges with sudo."/>
+<meta name="book-title" content="Configuring Superuser Privileges with sudo"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="jana.jaeger@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Micro 6.0"/>
+<meta name="publisher" content="SUSE"/><meta name="DC.creator" content="jana.jaeger@suse.com"/><meta property="og:title" content="Configuring superuser privileges with sudo"/>
+<meta property="og:description" content="Learn how to configure superuser privileges with sudo"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Configuring superuser privileges&#10;with sudo"/>
+<meta name="twitter:description" content="Learn how to configure superuser privileges with sudo"/>
+<script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    
+     "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    
+    "inLanguage": "en",
+    
+
+    "headline": "Configuring superuser privileges with sudo",
+  
+    "description": "Learn how to delegate superuser privileges with sudo.",
+      
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    ],
+      
+    "dateModified": "2024-02-15T00:00+02:00",
+      
+    "datePublished": "2023-10-06T00:00+02:00",
+      
+
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Systems Management"
+      },
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Security"
+      }
+    ],
+  
+    "mentions": [
+      
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Micro",
+        
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux"
+      }
+      
+    ],
+    
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<script type="text/javascript">
+
+if ( window.location.protocol.toLowerCase() != 'file:' ) {
+  document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>');
+};
+
+</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"/></noscript><script src="static/js/script-purejs.js" type="text/javascript"> </script><script src="static/js/highlight.min.js" type="text/javascript"> </script><script>
+
+$(document).ready(function() {
+  $('.verbatim-wrap.highlight').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+hljs.configure({
+  useBR: false
+});
+
+</script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#sudo-configure-superuser-privileges">Configuring Superuser Privileges with sudo</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="sudo-configure-superuser-privileges" data-id-title="Configuring Superuser Privileges with sudo"><div class="titlepage"><div><div><h1 class="title">Configuring Superuser Privileges with <code class="command">sudo</code></h1></div><div class="date"><span class="imprint-label">Publication Date: </span>27 Sep 2024</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.11.1.1"><span class="term">WHAT?</span></dt><dd><p>
+              Get familiar with the basics of <code class="command">sudo</code> configuration and learn how
+              to delegate superuser privileges with <code class="command">sudo</code>.
+            </p></dd><dt id="id-1.1.11.1.2"><span class="term">WHY?</span></dt><dd><p>
+              Some commands require administrator or <code class="systemitem">root</code> privileges.
+              Using <code class="command">sudo</code>, you can delegate the privileges to execute these
+              commands to certain users or groups.
+            </p></dd><dt id="id-1.1.11.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                It takes you up to 20 minutes to read through this article.
+                Writing your first <code class="command">sudo</code> configuration rule only takes a few
+                minutes, but establishing a functioning  <code class="command">sudo</code> configuration
+                that works across your environment will take considerably longer,
+                depending on the complexity of your setup.
+              </p></dd><dt id="id-1.1.11.1.4"><span class="term">GOAL</span></dt><dd><p>
+                Understand the basic aspects of <code class="command">sudo</code> configuration. Address
+                common use cases for <code class="command">sudo</code> configuration. Learn how to work
+                with users, user groups and aliases in <code class="command">sudo</code> setups.
+                Familiarize yourself with <code class="command">sudo</code> best practices and troubleshooting.
+              </p></dd><dt id="id-1.1.11.1.5"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                    Basic understanding of <code class="command">sudo</code>.
+                  </p></li><li class="listitem"><p>
+                    <code class="systemitem">root</code> privileges. For information on how to use <code class="command">sudo</code>
+                    as a normal user, refer to <a class="link" href="https://documentation.suse.com/smart/systems-management/html/sudo-run-commands-as-superuser/index.html" target="_blank">https://documentation.suse.com/smart/systems-management/html/sudo-run-commands-as-superuser/index.html</a>.
+                  </p></li><li class="listitem"><p>
+                  The <span class="package">sudo</span> package needs to be installed.
+                </p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History" hreflang="en" href="rh-sudo-configure-superuser-priviledges.html" target="_blank">Revision History: Configuring Superuser Privileges with sudo</a></div></div></div></div><section xml:lang="en" class="sect1" id="sudo-configure-intro" data-id-title="An introduction to sudo configuration"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">An introduction to <code class="command">sudo</code> configuration</span></span> <a title="Permalink" class="permalink" href="#sudo-configure-intro">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       <code class="command">sudo</code> provides a means to securely and efficiently delegate superuser 
+       privileges to specific users or groups.
+      </p></div></div></div></div><p>
+      Certain operations on a Linux system require <code class="systemitem">root</code> or administrator 
+      privileges. Home users who administer their own system do not have to 
+      delegate superuser privileges, because the administrator and the normal
+      user are the same person in this scenario. But as soon as a system is part
+      of a larger systems environment with multiple users, 
+      groups and hosts, it becomes vital to maintain control of who is allowed 
+      to do what and where. At the same time, it is important to provide all 
+      users and groups with the necessary privileges to carry out their tasks.
+    </p><p>
+      <code class="command">sudo</code> is designed to help with this. It provides:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.4.1"><span class="term">Enhanced system security</span></dt><dd><p>
+            <code class="command">sudo</code> offers fine-grained control over users, groups, hosts and
+             commands and thus increases system security by reducing the risk of
+             malicious or accidental damage by an intruder or a 
+             system user.
+          </p></dd><dt id="id-1.2.4.2"><span class="term">Complete audit trail</span></dt><dd><p>
+            Whenever a user switches privileges, this appears in the system's 
+            log, and all operations carried out by this user with elevated 
+            privileges can be traced back to them.
+          </p></dd><dt id="id-1.2.4.3"><span class="term">A means to delegate <code class="systemitem">root</code>-specific tasks</span></dt><dd><p>
+            Using <code class="command">sudo</code>, system administrators can enable single users or 
+            groups to carry out certain tasks without the need to enter 
+            the <code class="systemitem">root</code> password and switch to the <code class="systemitem">root</code> account.
+          </p></dd></dl></div><div id="id-1.2.5" data-id-title="How to read this article" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: How to read this article</div><p>
+        This article provides in-depth <code class="command">sudo</code> configuration information. 
+        However, it does not provide any advice on how to build a comprehensive 
+        and secure <code class="command">sudo</code> policy. Security-related policies are very complex and 
+        strongly depend on the environment they are created for.
+      </p></div></section><section xml:lang="en" class="sect1" id="sudo-creating-custom-configuration" data-id-title="Creating custom sudo configurations"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Creating custom <code class="command">sudo</code> configurations</span></span> <a title="Permalink" class="permalink" href="#sudo-creating-custom-configuration">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Learn how to build a simple example custom <code class="command">sudo</code> configuration and 
+        expand it step by step. Create groups and use aliases to keep your custom 
+        configuration lean and efficient.
+      </p></div></div></div></div><div id="id-1.3.2" data-id-title="Example configurations are for demonstration purposes only" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning: Example configurations are for demonstration purposes only</div><p>
+      The example rules outlined below are purely for demonstration purposes. 
+      Use them to understand the general syntax of <code class="command">sudo</code> configuration files. 
+      Do not use them in real-world setups, because they 
+      do not reflect the complexity of these environments.
+    </p></div><section class="sect2" id="sudo-creating-custom-configuration-bp" data-id-title="sudo configuration best practices"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name"><code class="command">sudo</code> configuration best practices</span></span> <a title="Permalink" class="permalink" href="#sudo-creating-custom-configuration-bp">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Before your start, here are a few ground rules for maintaining <code class="command">sudo</code> 
+      configurations:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.3.3.3.1"><span class="term">Always use <code class="command">visudo</code> to edit <code class="command">sudo</code> configuration files</span></dt><dd><p>
+            Any changes to the <code class="command">sudo</code> configuration should be done using the 
+            <code class="command">visudo</code> command. <code class="command">visudo</code> is a 
+            tailor-made tool that allows you to edit the <code class="command">sudo</code> configuration 
+            files and runs basic syntax checks, making sure that the 
+            configuration remains intact and functional. A faulty <code class="command">sudo</code> 
+            configuration can result in a user being locked out of their own system.
+          </p></dd><dt id="id-1.3.3.3.2"><span class="term">Always create custom configurations under <code class="filename">/etc/sudoers.d/</code></span></dt><dd><p>
+            Custom configurations must reside under
+            <code class="filename">/etc/sudoers.d/</code> to be pulled in by <code class="command">sudo</code>. 
+            Settings in the custom configuration files take precedence over the 
+            ones in the default configuration in <code class="filename">/etc/sudoers</code>. 
+          </p></dd><dt id="id-1.3.3.3.3"><span class="term">Always mind the order in which configurations are read</span></dt><dd><p>
+            To make sure the custom configurations are read in the correct order, prefix them with numbers.
+            Use leading zeroes to establish the order in which the files are read. For example,
+            <code class="filename">01_myfirstconfig</code> is parsed before
+            <code class="filename">10_myotherconfig</code>. If a directive has been set 
+            in a file that is read before another file that contains 
+            conflicting information, the last-read directive is applied. 
+          </p></dd><dt id="id-1.3.3.3.4"><span class="term">Always use descriptive file names</span></dt><dd><p>
+            Use file names that hint at what the configuration file does. This 
+            helps you keep track of what your <code class="command">sudo</code> setup is supposed to do.
+          </p></dd></dl></div><div id="id-1.3.3.4" data-id-title="sudo configuration and immutable file systems" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: <code class="command">sudo</code> configuration and immutable file systems</div><p>
+        An immutable file system is a file system that cannot be changed once it
+        has been installed. It is accessed read-only. If the SUSE product you 
+        are using relies on an immutable file system, the <code class="command">sudo</code> default 
+        configuration shipped with the product is installed under 
+        <code class="filename">/usr/etc/sudoers</code> and any pre-configured adjustments 
+        reside under <code class="filename">/usr/etc/sudoers.d/</code>.
+      </p><p>
+        Your own custom configurations are located under 
+        <code class="filename">/etc/sudoers.d/</code> and take precedence over anything 
+        that is provided in <code class="filename">/usr/etc/sudoers.d/</code>. The 
+        <code class="command">visudo</code> command opens <code class="filename">/usr/etc/sudoers</code> 
+        and saves the changed file to <code class="filename">/etc/sudoers</code>, if 
+        there was no prior <code class="filename">sudoers</code> file. If there was 
+        already one, <code class="command">visudo</code> opens and writes that one. The 
+        instance located under <code class="filename">/etc/</code> takes precedence over
+        the one that is kept under <code class="filename">/usr/etc/</code>. This way, 
+        user-made configuration adjustments will not get broken upon updates.
+      </p></div></section><section class="sect2" id="sudo-creating-custom-config-single-user" data-id-title="Create a user-specific configuration file"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.2 </span><span class="title-name">Create a user-specific configuration file</span></span> <a title="Permalink" class="permalink" href="#sudo-creating-custom-config-single-user">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Create a <code class="command">sudo</code> configuration file that allows a normal user (<code class="systemitem">tux</code>) 
+      to use the <code class="command">useradd</code> command with their own password 
+      instead of the <code class="systemitem">root</code> password. 
+    </p><div class="example" id="ex-sudo-custom-config-user" data-id-title="Create a user-specific configuration file"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 1: </span><span class="title-name">Create a user-specific configuration file </span></span><a title="Permalink" class="permalink" href="#ex-sudo-custom-config-user">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+            As system administrator (<code class="systemitem">root</code>), create a custom configuration 
+            file that holds the new user-specific directives by starting 
+            <code class="command">visudo</code>. Use both numbering and a descriptive name:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">visudo -f /etc/sudoers.d/02_usermanagement</code></pre></div></li><li class="step"><p>
+            Create a rule that allows <code class="systemitem">tux</code> to execute the 
+            <code class="command">/usr/sbin/useradd</code> binary in the entire environment 
+            that this <code class="command">sudo</code> configuration is applied to:
+          </p><div class="verbatim-wrap"><pre class="screen">tux<span class="callout" id="co-who">1</span> ALL<span class="callout" id="co-where">2</span> = /usr/sbin/useradd<span class="callout" id="co-what">3</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-who"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                Specify the user or group. List users by name or 
+                <code class="literal">#UID</code>, and groups by <code class="literal">%GROUPNAME</code>. 
+                If you have several items here, separate them with commas. To 
+                negate entries, use <code class="literal">!</code>.
+              </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-where"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                Specify one or several (separated by commas) hosts. Use 
+                (fully qualified) host names or IP addresses. Add 
+                <code class="literal">ALL</code> to enforce this setting globally 
+                across all hosts. Use <code class="literal">!</code> for negations.
+              </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-what"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+                Specify one or several executables (separated by commas). When 
+                specifying them, make sure to mind the following rules:
+              </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.3.4.3.2.2.3.3.2.1"><span class="term"><code class="command">/usr/sbin/useradd</code></span></dt><dd><p>
+                      Without any additional options added, this allows the 
+                      execution of every possible <code class="command">useradd</code> command.
+                    </p></dd><dt id="id-1.3.4.3.2.2.3.3.2.2"><span class="term"><code class="command">/usr/sbin/useradd -c</code></span></dt><dd><p>
+                      If you explicitly specify an option, then that option is 
+                      the only one that is allowed. Nothing else would be available
+                      to the user you specified above.
+                    </p></dd><dt id="id-1.3.4.3.2.2.3.3.2.3"><span class="term"><code class="command">/usr/sbin/useradd ""</code></span></dt><dd><p>
+                      This would just let the user invoke a mere 
+                      <code class="command">useradd</code> without any option at all. 
+                    </p></dd></dl></div><p>
+                In the example above, you would want to either allow all
+                options and subcommands or limit them to a few for security 
+                reasons, but forbidding a user to specify any option at all 
+                would be pointless in this context.
+              </p></td></tr></table></div></li><li class="step"><p>
+            To let the user use their own password instead of the <code class="systemitem">root</code> 
+            password, add the following line:
+          </p><div class="verbatim-wrap"><pre class="screen">Defaults:tux !targetpw</pre></div><p>
+            When active, this flag requires the user to enter the password of 
+            the target user, i.e. <code class="systemitem">root</code>. This flag is enabled by default on 
+            any <span class="phrase"><span class="phrase">SUSE Linux Enterprise Micro</span></span> system. Negate it using <code class="literal">!</code> to
+            require the user to just enter their own password instead of the
+            <code class="systemitem">root</code> password.
+          </p></li><li class="step"><p>
+            Save the configuration, leave the editor and open a second shell to test 
+            whether <code class="command">sudo</code> honors your new configuration.
+          </p></li></ol></div></div></div></div></section><section class="sect2" id="sudo-creating-custom-config-group" data-id-title="Create custom configurations by grouping items"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.3 </span><span class="title-name">Create custom configurations by grouping items</span></span> <a title="Permalink" class="permalink" href="#sudo-creating-custom-config-group">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Modify the configuration from <a class="xref" href="#ex-sudo-custom-config-user" title="Create a user-specific configuration file">Example 1, “Create a user-specific configuration file”</a> 
+      so that a group of named users can run the <code class="command">useradd</code> 
+      command without the need for the <code class="systemitem">root</code> password. Also, add the 
+      <code class="command">usermod</code> and <code class="command">userdel</code> to the list of 
+      commands available to this group.
+    </p><div class="example" id="ex-sudo-custom-config-group" data-id-title="Create custom configurations by grouping items"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 2: </span><span class="title-name">Create custom configurations by grouping items </span></span><a title="Permalink" class="permalink" href="#ex-sudo-custom-config-group">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+            To modify the example configuration, open it as system administrator with 
+            <code class="command">visudo</code>:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">visudo /etc/sudoers.d/02_usermanagement</code></pre></div></li><li class="step"><p>
+            Add more users to the rule in a comma-separated list:
+          </p><div class="verbatim-wrap"><pre class="screen">tux, wilber ALL = /usr/sbin/useradd</pre></div></li><li class="step"><p>
+            To allow the listed users to execute a list of commands, specify the 
+            commands as a comma-separated list:
+          </p><div class="verbatim-wrap"><pre class="screen">tux, wilber ALL = /usr/sbin/useradd, /usr/sbin/usermod, /usr/sbin/userdel</pre></div></li><li class="step"><p>
+            To let the listed users use their own password instead of the <code class="systemitem">root</code> 
+            password, add the following line:
+          </p><div class="verbatim-wrap"><pre class="screen">Defaults:tux, wilber !targetpw</pre></div><p>
+            When active, this flag requires the listed users to enter the password of 
+            the target user, i.e. <code class="systemitem">root</code>. This flag is enabled by default on 
+            any <span class="phrase"><span class="phrase">SUSE Linux Enterprise Micro</span></span> system. Negate it using <code class="literal">!</code> to
+            require the listed users to just enter their own password instead of the
+            <code class="systemitem">root</code> password.
+          </p></li><li class="step"><p>
+            Save the configuration, leave the editor and open a second shell to test 
+            whether <code class="command">sudo</code> honors your new configuration.
+          </p></li></ol></div></div></div></div></section><section class="sect2" id="sudo-creating-custom-config-aliases" data-id-title="Simplify configurations by applying aliases"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.4 </span><span class="title-name">Simplify configurations by applying aliases</span></span> <a title="Permalink" class="permalink" href="#sudo-creating-custom-config-aliases">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Use aliases to simplify your custom configuration from 
+      <a class="xref" href="#ex-sudo-custom-config-group" title="Create custom configurations by grouping items">Example 2, “Create custom configurations by grouping items”</a> even further. Grouping items 
+      helps to a certain extent, but using global aliases for users, 
+      commands and hosts is the most efficient way to keep a clean and 
+      lean <code class="command">sudo</code> configuration.
+    </p><p>
+      Using aliases and groups instead of lists is a much better way to address 
+      changes in your setup. Should a user leave, just remove them from the 
+      global <code class="literal">User_Alias</code> declaration in your alias declaration 
+      file instead of scouring all the separate custom configuration files. 
+      The same procedure applies for any other type of alias 
+      (<code class="literal">Host_Alias</code>, <code class="literal">Cmnd_Alias</code> 
+      and <code class="literal">Runas_Alias</code>).
+    </p><div class="example" id="ex-sudo-custom-config-alias" data-id-title="Simplify configurations by applying aliases"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 3: </span><span class="title-name">Simplify configurations by applying aliases </span></span><a title="Permalink" class="permalink" href="#ex-sudo-custom-config-alias">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+            Create a new file to hold your global alias definitions:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">visudo /etc/sudoers.d/01_aliases</code></pre></div></li><li class="step"><p>
+            Add the following line to create the <code class="literal">TEAMLEADERS</code> 
+            alias:
+          </p><div class="verbatim-wrap"><pre class="screen">User_Alias    TEAMLEADERS = tux, wilber</pre></div></li><li class="step"><p>
+            Add the following line to create the <code class="literal">USERMANAGEMENT</code> alias:
+          </p><div class="verbatim-wrap"><pre class="screen">Cmnd_Alias    USERMANAGEMENT = /usr/sbin/useradd, /usr/sbin/usermod, /usr/sbin/userdel</pre></div></li><li class="step"><p>
+            Save your changes and exit <code class="command">visudo</code>.
+          </p></li><li class="step"><p>
+            As system administrator, start <code class="command">visudo</code> to edit the 
+            example configuration file:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">visudo -f /etc/sudoers.d/02_usermanagement</code></pre></div></li><li class="step"><p>
+            Delete the previous rule and replace it with the following rule that 
+            uses the aliases you have just defined above:
+          </p><div class="verbatim-wrap"><pre class="screen">TEAMLEADERS ALL = USERMANAGEMENT</pre></div></li><li class="step"><p>
+            To let all the users defined by <code class="literal">User_Alias</code> use 
+            their own password instead of the <code class="systemitem">root</code> password, add
+            the following line:
+          </p><div class="verbatim-wrap"><pre class="screen">Defaults:TEAMLEADERS !targetpw</pre></div></li><li class="step"><p>
+            Save the configuration, leave the editor and open a second shell to test 
+            whether <code class="command">sudo</code> honors your new configuration.
+          </p></li></ol></div></div></div></div><div id="id-1.3.6.5" data-id-title="For more information" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: For more information</div><p>
+        Find a more detailed description of the <code class="command">sudo</code> configuration syntax in 
+        <a class="xref" href="#sudo-user-authorization" title="7. sudo configuration reference">Section 7, “<code class="command">sudo</code> configuration reference”</a> and refer to the man page of 
+        <code class="command">sudo</code>.
+      </p></div></section></section><section xml:lang="en" class="sect1" id="sudo-change-pw-timeout" data-id-title="Changing the sudo password prompt timeout"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Changing the <code class="command">sudo</code> password prompt timeout</span></span> <a title="Permalink" class="permalink" href="#sudo-change-pw-timeout">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Learn how to change the timeout settings to execute commands that
+        require <code class="systemitem">root</code> privileges without being prompted for the <code class="systemitem">root</code>
+        password for each command.
+      </p></div></div></div></div><p>
+    When running a command prefaced with <code class="command">sudo</code> for the first time, you are
+    prompted for the <code class="systemitem">root</code> password. This password remains valid for a
+    certain period. Once it is expired, the user is prompted for the password
+    again.
+    To extend or shorten the timeout when executing commands that require
+    <code class="systemitem">root</code> privileges, make the following changes to your <code class="command">sudo</code>
+    configuration file.
+  </p><div id="id-1.4.3" data-id-title="Do not grant unlimited passwordless access to root privileges" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning: 
+      Do not grant unlimited passwordless access to <code class="systemitem">root</code> privileges
+    </div><p>
+      For security reasons, do not give unlimited access to <code class="systemitem">root</code>
+      privileges. Instead, set a reasonable timeout to prevent misuse of the
+      <code class="systemitem">root</code> account by any intruder.
+    </p></div><div class="procedure" id="id-1.4.4" data-id-title="Changing the timeout for sudo password prompts"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 1: </span><span class="title-name">Changing the timeout for <code class="command">sudo</code> password prompts </span></span><a title="Permalink" class="permalink" href="#id-1.4.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        As system administrator, create a new <code class="command">sudo</code> configuration file for the 
+        timestamp configuration with:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">visudo --f=/etc/sudoers.d/timestamp_timeout</code></pre></div><p>
+        After successful authentication with the <code class="systemitem">root</code> password, the file
+        is opened.
+      </p></li><li class="step"><p>
+        Enable editing and add the line <code class="code">timestamp_timeout=</code>. Enter
+        a value for the timestamp.
+      </p><p>
+        For example, to shorten the timeout to three minutes, enter:
+      </p><div class="verbatim-wrap"><pre class="screen">timestamp_timeout=3</pre></div><p>
+        If the timestamp is set to zero, you are prompted for the <code class="systemitem">root</code>
+        password for every execution of a <code class="command">sudo</code> command.
+      </p></li><li class="step"><p>
+        Save the changes and close the file.
+      </p></li></ol></div></div><p>
+    You have created a <code class="command">sudo</code> configuration file and shortened the timeout
+    setting for the execution of <code class="command">sudo</code> commands.
+  </p></section><section xml:lang="en" class="sect1" id="sudo-start-shell-as-root" data-id-title="Starting a shell with root privileges"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Starting a shell with <code class="systemitem">root</code> privileges</span></span> <a title="Permalink" class="permalink" href="#sudo-start-shell-as-root">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Start a shell with permanent <code class="systemitem">root</code> privileges by using the
+        <code class="command">sudo -s</code> or <code class="command">sudo -i</code> command. With
+        both commands, you are prompted for the <code class="systemitem">root</code> password only once.
+      </p></div></div></div></div><section class="sect2" id="task-sudo-start-shell-as-root-introduction" data-id-title="Difference between sudo -s and sudo -i"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.1 </span><span class="title-name">Difference between <code class="command">sudo -s</code> and <code class="command">sudo -i</code></span></span> <a title="Permalink" class="permalink" href="#task-sudo-start-shell-as-root-introduction">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Having to enter <code class="command">sudo</code> every time you want to run a command as <code class="systemitem">root</code>
+      can become tedious. Instead, you can use one of the built-in mechanisms to
+      start a shell with permanent <code class="systemitem">root</code> privileges. For this, there are
+      two command options available:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          <code class="command">sudo -s</code> launches the shell with the environment of
+          the current user and offers a few privilege control measures. To run
+          this command, enter the <code class="systemitem">root</code> password.
+        </p></li><li class="listitem"><p>
+          <code class="command">sudo -i</code> starts the shell as an interactive login
+          shell with a clean environment. To run this command, you enter
+          the <code class="systemitem">root</code> password.
+        </p></li></ul></div><p>
+      With both commands, the shell is started with a new environment, and
+      you are logged in as <code class="systemitem">root</code>. Any subsequent command that is executed within
+      that shell is run with elevated privileges without having to enter the
+      password again. This environment is terminated when you close the shell,
+      and you must enter the password again for another <code class="command">sudo</code> command.
+    </p></section><section class="sect2" id="task-sudo-start-shell-with-s" data-id-title="Starting a shell with sudo -s"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.2 </span><span class="title-name">Starting a shell with <code class="command">sudo -s</code></span></span> <a title="Permalink" class="permalink" href="#task-sudo-start-shell-with-s">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The <code class="command">sudo -s</code> command launches an interactive non-login
+      shell. After successful authentication with the <code class="systemitem">root</code> password, all
+      subsequent commands are executed with elevated privileges.
+    </p><p>
+      The <code class="envar">SHELL</code> environment variable or the user's default shell
+      specifies which shell opens. If this variable is empty, the shell
+      defined in the <code class="filename">/etc/passwd</code> is picked up.
+    </p><p>
+      By default, the <code class="command">sudo -s</code> command runs from the
+      directory of the previous user because the target user inherits the
+      environment of the previous user. The command is also logged in your
+      history.
+    </p><p>
+      To start a shell with permanently elevated privileges, enter the
+      following command:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">tux:~ &gt; </code><code class="command">sudo -s</code>
+[sudo] password for root:
+<code class="prompt user">root:/home/tux # </code><code class="command">exit</code>
+<code class="prompt user">tux:~ &gt; </code></pre></div><p>
+      The prompt changes from <code class="prompt user">&gt; </code> to <code class="prompt root"># </code>.
+    </p><p>
+      You have started a shell with permanently elevated privileges. All
+      subsequent commands are executed without prompting for the password
+      again.
+    </p></section><section class="sect2" id="task-sudo-start-shell-with-i" data-id-title="Starting a shell with sudo -i"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.3 </span><span class="title-name">Starting a shell with <code class="command">sudo -i</code></span></span> <a title="Permalink" class="permalink" href="#task-sudo-start-shell-with-i">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The <code class="command">sudo -i</code> is similar to the <code class="command">sudo
+      -s</code> command-line option but launches an interactive login shell.
+      When using the <code class="command">sudo -s</code> command, the target user
+      inherits the environment of the previous user. You can prevent it by
+      using the <code class="command">sudo -i</code> command, where the target user gets
+      a clean environment and starts at their own <code class="envar">$HOME</code> directory.
+    </p><p>
+      To run a command with <code class="command">sudo -i</code>, enter the following:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">tux:~ &gt; </code><code class="command">sudo -i</code>
+[sudo] password for root:
+<code class="prompt user">root:~ # </code><code class="command">exit</code>
+<code class="prompt user">tux:~ &gt; </code></pre></div><p>
+      You have started a shell with permanently elevated privileges, and the
+      command is logged in your history. All subsequent commands are executed
+      without prompting for the password again.
+    </p></section></section><section xml:lang="en" class="sect1" id="sudo-best-practices" data-id-title="sudo best practices"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name"><code class="command">sudo</code> best practices</span></span> <a title="Permalink" class="permalink" href="#sudo-best-practices">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+      Learn about some of the best practices of <code class="command">sudo</code> to control system access and enable users to be productive.
+      </p></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.6.2.1"><span class="term">Thoroughly test and audit your <code class="command">sudo</code> configurations</span></dt><dd><p>
+            To build a truly efficient and secure <code class="command">sudo</code> configuration framework, 
+            establish a routine of regular testing and auditing.  
+            Identify possible loopholes and deal with them. Do not let convenience 
+            trump security.
+          </p></dd><dt id="id-1.6.2.2"><span class="term">Keep custom <code class="command">sudo</code> configurations in separate files</span></dt><dd><p>
+            The main policy configuration file for <code class="command">sudo</code> is
+            <code class="filename">/etc/sudoers</code>. This file is supplied by the
+            system packages, and changes made to it may break updates. Therefore,
+            create separate configuration files holding your custom settings
+            under the<code class="filename">/etc/sudoers.d/</code> directory. These are
+            pulled in by default by a directive in
+            <code class="filename">/etc/sudoers</code>. 
+          </p></dd><dt id="id-1.6.2.3"><span class="term">Limit the <code class="command">sudo</code> timeout</span></dt><dd><p>
+            For security reasons, do not give unlimited access to
+            <code class="systemitem">root</code> privileges. Instead, set a reasonable timeout instead to prevent
+            misuse of the <code class="systemitem">root</code> account by any intruder. For more
+            information, refer to <a class="xref" href="#sudo-change-pw-timeout" title="3. Changing the sudo password prompt timeout">Section 3, “Changing the <code class="command">sudo</code> password prompt timeout”</a>.
+          </p></dd><dt id="id-1.6.2.4"><span class="term">Use the <code class="command">visudo</code> command</span></dt><dd><p>
+           Use the <code class="command">visudo</code> command to safely edit the 
+           <code class="filename">/etc/sudoers</code> file, because it checks the syntax of 
+           the file before saving the changes. This is a preventive way to 
+           correct any errors that can break the system.
+           Besides the basic syntax check, you can also run 
+           <code class="command">visudo -c</code> to check whether your entire framework of
+           <code class="command">sudo</code> configuration is parsed in the right order and without an error.
+          </p></dd><dt id="id-1.6.2.5"><span class="term">Manage users in groups rather than individually</span></dt><dd><p>
+            Keep your <code class="command">sudo</code> configuration as lean and manageable as possible.
+            Manage users by adding them to groups and then granting privileges
+            to these groups rather than to the individuals. This allows you to
+            add or remove users by simply changing the group settings
+            instead of having to look for the user across your configuration.
+          </p><p>
+            An example rule that allows all users in an example
+            <code class="systemitem">%admingrp</code> group to execute all commands:
+          </p><div class="verbatim-wrap"><pre class="screen">%admingrp ALL = (ALL) ALL</pre></div></dd><dt id="id-1.6.2.6"><span class="term">Restrict the path for binaries</span></dt><dd><p>
+            With the <code class="literal">secure_path</code> directive, restrict the 
+            areas where users can execute commands. The following example
+            is the default setting that ships with <span class="phrase"><span class="phrase">SUSE Linux Enterprise Micro</span></span>.
+          </p><div class="verbatim-wrap"><pre class="screen">Defaults secure_path="/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/bin:/usr/local/sbin"</pre></div></dd><dt id="id-1.6.2.7"><span class="term">Keep <code class="command">sudo</code> logging transparent</span></dt><dd><p>
+            <code class="command">sudo</code> logs to the standard log file where its log entries may easily
+            get overlooked. Add the following rule to your configuration to
+            specify a dedicated <code class="command">sudo</code> log file.
+          </p><div class="verbatim-wrap"><pre class="screen">Defaults logfile=/var/log/sudo.log</pre></div></dd></dl></div></section><section xml:lang="en" class="sect1" id="sudo-troubleshooting" data-id-title="Troubleshooting"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Troubleshooting</span></span> <a title="Permalink" class="permalink" href="#sudo-troubleshooting">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+      Learn how to debug and troubleshoot <code class="command">sudo</code> configuration issues.
+      </p></div></div></div></div><section class="sect2" id="sudo-troubleshooting-ignore-includes" data-id-title="Custom configurations under /etc/sudoers.d/ are ignored"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.1 </span><span class="title-name">Custom configurations under <code class="filename">/etc/sudoers.d/</code> are
+    ignored</span></span> <a title="Permalink" class="permalink" href="#sudo-troubleshooting-ignore-includes">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+       The <code class="option">#includedir</code> directive in
+      <code class="filename">/etc/sudoers</code> ignores files that end with the
+      <code class="option">~</code> character or contain the
+     <code class="option">.</code> character. This is to avoid issues with
+     configuration files provided by the package manager (containing
+     <code class="option">.</code>), or with an editor's temporary or backup files (ending
+     in <code class="option">~</code>). Make sure that the names of your custom
+     configuration files neither contain nor end in these characters. If they do, 
+     rename them.
+    </p></section><section class="sect2" id="sudo-troubleshooting-order-includes" data-id-title="Custom directives conflict"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.2 </span><span class="title-name">Custom directives conflict</span></span> <a title="Permalink" class="permalink" href="#sudo-troubleshooting-order-includes">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The order in which the configuration files are read determines when a 
+      <code class="command">sudo</code> configuration directive is applied. Directives in a file located 
+      under <code class="filename">/etc/sudoers.d/</code> take precedence over the same 
+      directives in <code class="filename">/etc/sudoers</code>. If custom directives 
+      stated in <code class="filename">/etc/sudoers.d/</code> do not work, check the order
+      in which the files are read using <code class="command">visudo -c</code>. Adjust 
+      the order, if necessary.
+    </p></section><section class="sect2" id="sudo-troubleshooting-locked-out" data-id-title="Locked out due to broken sudo configuration"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.3 </span><span class="title-name">Locked out due to broken <code class="command">sudo</code> configuration</span></span> <a title="Permalink" class="permalink" href="#sudo-troubleshooting-locked-out">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      If you have accidentally broken your system's <code class="command">sudo</code> configuration and
+      locked yourself out of <code class="command">sudo</code>, use <code class="command">su -</code> and the
+      <code class="systemitem">root</code> password to start a root shell. Run <code class="command">visudo -c</code>
+      to check for errors and then fix them using <code class="command">visudo</code>.
+    </p></section></section><section xml:lang="en" class="sect1" id="sudo-user-authorization" data-id-title="sudo configuration reference"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name"><code class="command">sudo</code> configuration reference</span></span> <a title="Permalink" class="permalink" href="#sudo-user-authorization">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        This section provides a basic <code class="command">sudo</code>  configuration reference that helps
+        you understand and maintain both default and custom <code class="command">sudo</code> configurations.
+      </p></div></div></div></div><section class="sect2" id="sudo-user-authorization-syntax" data-id-title="sudoers configuration syntax"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.1 </span><span class="title-name"><code class="filename">sudoers</code> configuration syntax</span></span> <a title="Permalink" class="permalink" href="#sudo-user-authorization-syntax">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    The <code class="filename">sudoers</code> configuration files contain two types of
+    options: strings and flags. While strings can contain any value, flags can
+    be turned either ON or OFF. The most important syntax constructs for
+    <code class="filename">sudoers</code> configuration files are as follows:
+    </p><div class="verbatim-wrap"><pre class="screen"># Everything on a line after # is ignored<span class="callout" id="co-hash-ignore">1</span>
+Defaults !insults # Disable the insults flag<span class="callout" id="co-toggle-flag">2</span>
+Defaults env_keep += "DISPLAY HOME" # Add DISPLAY and HOME to env_keep<span class="callout" id="co-env-keep">3</span>
+tux ALL = NOPASSWD: /usr/bin/frobnicate, PASSWD: /usr/bin/journalctl<span class="callout" id="co-full-entry">4</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-hash-ignore"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+          There are two exceptions: <code class="literal">#include</code>
+          and <code class="literal">#includedir</code> are regular commands.
+          The more current version does not use the <code class="literal">#</code> anymore.
+          Instead, include directives are now preceded by <code class="literal">@</code>.
+          The <code class="literal">#</code> notation is still supported for backward
+          compatibility reasons.
+        </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-toggle-flag"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+          Remove the <code class="literal">!</code> character to set the desired flag
+          to ON.
+        </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-env-keep"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+          Specify a list of environment variables that should be kept when
+          <code class="literal">env_reset</code> is enabled.
+        </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-full-entry"><span class="callout">4</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+          A complex rule that states that the user <code class="systemitem">tux</code> requires a
+          password to run <code class="command">/usr/bin/journalctl</code> and does not
+          require one to run <code class="command">/usr/bin/frobnicate</code> on all hosts.
+        </p></td></tr></table></div><div class="variablelist" id="varlist-sudo-options" data-id-title="Useful flags and options"><div class="title-container"><div class="variablelist-title-wrap"><div class="variablelist-title"><span class="title-number-name"><span class="title-name">Useful flags and options </span></span><a title="Permalink" class="permalink" href="#varlist-sudo-options">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><dl class="variablelist"><dt id="id-1.8.2.5.2"><span class="term"><code class="literal">targetpw</code></span></dt><dd><p>
+              If set, <code class="command">sudo</code> prompts for the user password specified in the
+              <code class="option">-u</code> option or the <code class="systemitem">root</code> password, if
+              <code class="option">-u</code> is not used. The default is ON.
+            </p><div class="verbatim-wrap"><pre class="screen">Defaults targetpw # Turn targetpw flag ON</pre></div></dd><dt id="id-1.8.2.5.3"><span class="term"><code class="literal">rootpw</code></span></dt><dd><p>
+              If set, <code class="command">sudo</code> prompts for the <code class="systemitem">root</code> password. The default
+              is OFF.
+            </p><div class="verbatim-wrap"><pre class="screen">Defaults !rootpw # Turn rootpw flag OFF</pre></div></dd><dt id="id-1.8.2.5.4"><span class="term"><code class="literal">env_reset</code></span></dt><dd><p>
+              If set, <code class="command">sudo</code> constructs a minimal environment with
+              <code class="envar">TERM</code>, <code class="envar">PATH</code>, <code class="envar">HOME</code>,
+              <code class="envar">MAIL</code>, <code class="envar">SHELL</code>,
+              <code class="envar">LOGNAME</code>, <code class="envar">USER</code>,
+              <code class="envar">USERNAME</code>, and <code class="envar">SUDO_*</code>. Additionally,
+              variables listed in <code class="literal">env_keep</code> are imported from
+              the calling environment. The default is ON.
+            </p><div class="verbatim-wrap"><pre class="screen">Defaults env_reset # Turn env_reset flag ON</pre></div></dd><dt id="id-1.8.2.5.5"><span class="term"><code class="literal">env_keep</code></span></dt><dd><p>
+              The list of environment variables to keep when the
+              <code class="literal">env_reset</code> flag is ON.
+            </p><div class="verbatim-wrap"><pre class="screen"># Set env_keep to contain EDITOR and PROMPT
+Defaults env_keep = "EDITOR PROMPT"
+Defaults env_keep += "JRE_HOME" # Add JRE_HOME
+Defaults env_keep -= "JRE_HOME" # Remove JRE_HOME</pre></div></dd><dt id="id-1.8.2.5.6"><span class="term"><code class="literal">env_delete</code></span></dt><dd><p>
+              The list of environment variables to remove when the
+              <code class="literal">env_reset</code> flag is OFF.
+            </p><div class="verbatim-wrap"><pre class="screen"># Set env_delete to contain EDITOR and PROMPT
+Defaults env_delete = "EDITOR PROMPT"
+Defaults env_delete += "JRE_HOME" # Add JRE_HOME
+Defaults env_delete -= "JRE_HOME" # Remove JRE_HOME</pre></div></dd></dl></div></section><section class="sect2" id="sudo-user-authorization-rules" data-id-title="Basic sudoers rules"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.2 </span><span class="title-name">Basic <code class="filename">sudoers</code> rules</span></span> <a title="Permalink" class="permalink" href="#sudo-user-authorization-rules">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        Each rule follows the following scheme (<code class="literal">[]</code> marks
+        optional parts):
+      </p><div class="verbatim-wrap"><pre class="screen">#Who      Where         As whom      Tag                What
+User_List Host_List = [(User_List)] [NOPASSWD:|PASSWD:] Cmnd_List</pre></div><div class="variablelist"><div class="title-container"><div class="variablelist-title-wrap"><div class="variablelist-title"><span class="title-number-name"><span class="title-name">sudoers rule syntax </span></span><a title="Permalink" class="permalink" href="#id-1.8.3.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><dl class="variablelist"><dt id="id-1.8.3.4.2"><span class="term"><code class="literal">User_List</code></span></dt><dd><p>
+              One or several identifiers (separated by commas): either a user
+              name, a group in the format <code class="literal">%GROUPNAME</code>, or a
+              user ID in the format <code class="literal">#UID</code>. Negation can be
+              specified with the <code class="literal">!</code> prefix.
+            </p></dd><dt id="id-1.8.3.4.3"><span class="term"><code class="literal">Host_List</code></span></dt><dd><p>
+              One or several identifiers (separated by commas): either a (fully
+              qualified) host name or an IP address. Negation can be specified
+              with the <code class="literal">!</code> prefix. <code class="literal">ALL</code> is a
+              common choice for <code class="literal">Host_List</code>.
+            </p></dd><dt id="id-1.8.3.4.4"><span class="term"><code class="literal">NOPASSWD:|PASSWD:</code></span></dt><dd><p>
+              The user is not prompted for a password when running commands
+              matching <code class="literal">Cmd_List</code> after
+              <code class="literal">NOPASSWD:</code>.
+            </p><p>
+              <code class="literal">PASSWD:</code> is the default. It only needs to be
+              specified when both <code class="literal">PASSWD:</code> and
+              <code class="literal">NOPASSWD:</code> are on the same line:
+            </p><div class="verbatim-wrap"><pre class="screen">tux ALL = PASSWD: /usr/bin/foo, NOPASSWD: /usr/bin/bar</pre></div></dd><dt id="id-1.8.3.4.5"><span class="term"><code class="literal">Cmnd_List</code></span></dt><dd><p>
+              One or several specifiers (separated by commas): a path to an
+              executable, followed by an optional allowed argument.
+            </p><div class="verbatim-wrap"><pre class="screen">/usr/bin/foo     # Anything allowed
+/usr/bin/foo bar # Only "/usr/bin/foo bar" allowed
+/usr/bin/foo ""  # No arguments allowed</pre></div></dd></dl></div><p>
+        <code class="literal">ALL</code> can be used as <code class="literal">User_List</code>,
+        <code class="literal">Host_List</code> and <code class="literal">Cmnd_List</code>.
+      </p></section><section class="sect2" id="sudo-user-authorization-alias" data-id-title="Simplify sudoers using aliases"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.3 </span><span class="title-name">Simplify <code class="filename">sudoers</code> using aliases</span></span> <a title="Permalink" class="permalink" href="#sudo-user-authorization-alias">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Administrators can avoid having to maintain a set of repetitive and
+    individual rules by introducing aliases to group items. Their syntax is the
+    same as the syntax of the rules. The following types of aliases are supported:
+  </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.8.4.3.1"><span class="term"><code class="literal">User_Alias</code></span></dt><dd><p>
+          A list of user names
+        </p></dd></dl></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.8.4.4.1"><span class="term"><code class="literal">Runas_Alias</code></span></dt><dd><p>
+          A group of users by UID
+        </p></dd></dl></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.8.4.5.1"><span class="term"><code class="literal">Host_Alias</code></span></dt><dd><p>
+          A list of host names
+        </p></dd></dl></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.8.4.6.1"><span class="term"><code class="literal">Cmnd_Alias</code></span></dt><dd><p>
+          A list of commands and directories, and aliases
+        </p></dd></dl></div><p>
+    Think of aliases as named lists of users, groups, commands and hosts.
+    To illustrate the power of aliases, take this example:
+  </p><div class="verbatim-wrap"><pre class="screen">Host_Alias    WEBSERVERS = www1, www2, www3<span class="callout" id="co-ha">1</span>
+User_Alias    ADMINS = tux, wilber, suzanne<span class="callout" id="co-ua">2</span>
+Cmnd_Alias    REBOOT = /sbin/halt, /sbin/reboot, /sbin/poweroff<span class="callout" id="co-cmnd">3</span>
+ADMINS WEBSERVERS = REBOOT<span class="callout" id="co-alias-rule">4</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-ha"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+        The three servers are grouped into one Host_Alias
+        <code class="literal">WEBSERVERS</code>. You can use (fully qualified) host names
+        or IP addresses.
+      </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-ua"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+        Similar to the hosts grouped above, group users or even groups of users
+        (like <code class="literal">%wheel</code>) are listed here. Negation is achieved with the
+        <code class="literal">!</code> prefix, as usual.
+      </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-cmnd"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+        Specifies a group of commands that are used in the same context.
+      </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-alias-rule"><span class="callout">4</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+        All aliases are wrapped into a single rule stating that all users specified
+        by the <code class="literal">User_Alias</code> can execute the group of commands
+        specified under <code class="literal">Cmnd_Alias</code> on all hosts named in
+        <code class="literal">Host_Alias</code>.
+      </p></td></tr></table></div><p>
+    In summary, aliases help administrators to keep <code class="filename">sudoers</code>
+    lean and manageable (and therefore secure). If, for example, one of the users has left the
+    company, you can delete this person's name from the <code class="literal">User_Alias</code>
+    statement and any system group they belonged to just once instead of having to search
+    for all rules including this particular user.
+  </p></section></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p> Copyright© 2006–2024
+ SUSE LLC and contributors.
+  All rights reserved. </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy.  Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section><div class="legal-section"><section class="appendix" translate="no" id="doc-gfdl-license" data-id-title="GNU Free Documentation License"><div class="titlepage"><div><div><h1 class="title">GNU Free Documentation License</h1></div></div></div><p>
+  Copyright (C) 2000, 2001, 2002 Free Software Foundation, Inc. 51 Franklin St,
+  Fifth Floor, Boston, MA 02110-1301 USA. Everyone is permitted to copy and
+  distribute verbatim copies of this license document, but changing it is not
+  allowed.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.10.3"><span class="name">
+    0. PREAMBLE
+  </span><a title="Permalink" class="permalink" href="#id-1.10.3">#</a></h5></div><p>
+  The purpose of this License is to make a manual, textbook, or other
+  functional and useful document "free" in the sense of freedom: to assure
+  everyone the effective freedom to copy and redistribute it, with or without
+  modifying it, either commercially or non-commercially. Secondarily, this
+  License preserves for the author and publisher a way to get credit for their
+  work, while not being considered responsible for modifications made by
+  others.
+ </p><p>
+  This License is a kind of "copyleft", which means that derivative works of
+  the document must themselves be free in the same sense. It complements the
+  GNU General Public License, which is a copyleft license designed for free
+  software.
+ </p><p>
+  We have designed this License to use it for manuals for free software,
+  because free software needs free documentation: a free program should come
+  with manuals providing the same freedoms that the software does. But this
+  License is not limited to software manuals; it can be used for any textual
+  work, regardless of subject matter or whether it is published as a printed
+  book. We recommend this License principally for works whose purpose is
+  instruction or reference.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.10.7"><span class="name">
+    1. APPLICABILITY AND DEFINITIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.10.7">#</a></h5></div><p>
+  This License applies to any manual or other work, in any medium, that
+  contains a notice placed by the copyright holder saying it can be distributed
+  under the terms of this License. Such a notice grants a world-wide,
+  royalty-free license, unlimited in duration, to use that work under the
+  conditions stated herein. The "Document", below, refers to any such manual or
+  work. Any member of the public is a licensee, and is addressed as "you". You
+  accept the license if you copy, modify or distribute the work in a way
+  requiring permission under copyright law.
+ </p><p>
+  A "Modified Version" of the Document means any work containing the Document
+  or a portion of it, either copied verbatim, or with modifications and/or
+  translated into another language.
+ </p><p>
+  A "Secondary Section" is a named appendix or a front-matter section of the
+  Document that deals exclusively with the relationship of the publishers or
+  authors of the Document to the Document's overall subject (or to related
+  matters) and contains nothing that could fall directly within that overall
+  subject. (Thus, if the Document is in part a textbook of mathematics, a
+  Secondary Section may not explain any mathematics.) The relationship could be
+  a matter of historical connection with the subject or with related matters,
+  or of legal, commercial, philosophical, ethical or political position
+  regarding them.
+ </p><p>
+  The "Invariant Sections" are certain Secondary Sections whose titles are
+  designated, as being those of Invariant Sections, in the notice that says
+  that the Document is released under this License. If a section does not fit
+  the above definition of Secondary then it is not allowed to be designated as
+  Invariant. The Document may contain zero Invariant Sections. If the Document
+  does not identify any Invariant Sections then there are none.
+ </p><p>
+  The "Cover Texts" are certain short passages of text that are listed, as
+  Front-Cover Texts or Back-Cover Texts, in the notice that says that the
+  Document is released under this License. A Front-Cover Text may be at most 5
+  words, and a Back-Cover Text may be at most 25 words.
+ </p><p>
+  A "Transparent" copy of the Document means a machine-readable copy,
+  represented in a format whose specification is available to the general
+  public, that is suitable for revising the document straightforwardly with
+  generic text editors or (for images composed of pixels) generic paint
+  programs or (for drawings) some widely available drawing editor, and that is
+  suitable for input to text formatters or for automatic translation to a
+  variety of formats suitable for input to text formatters. A copy made in an
+  otherwise Transparent file format whose markup, or absence of markup, has
+  been arranged to thwart or discourage subsequent modification by readers is
+  not Transparent. An image format is not Transparent if used for any
+  substantial amount of text. A copy that is not "Transparent" is called
+  "Opaque".
+ </p><p>
+  Examples of suitable formats for Transparent copies include plain ASCII
+  without markup, Texinfo input format, LaTeX input format, SGML or XML using a
+  publicly available DTD, and standard-conforming simple HTML, PostScript or
+  PDF designed for human modification. Examples of transparent image formats
+  include PNG, XCF and JPG. Opaque formats include proprietary formats that can
+  be read and edited only by proprietary word processors, SGML or XML for which
+  the DTD and/or processing tools are not generally available, and the
+  machine-generated HTML, PostScript or PDF produced by some word processors
+  for output purposes only.
+ </p><p>
+  The "Title Page" means, for a printed book, the title page itself, plus such
+  following pages as are needed to hold, legibly, the material this License
+  requires to appear in the title page. For works in formats which do not have
+  any title page as such, "Title Page" means the text near the most prominent
+  appearance of the work's title, preceding the beginning of the body of the
+  text.
+ </p><p>
+  A section "Entitled XYZ" means a named subunit of the Document whose title
+  either is precisely XYZ or contains XYZ in parentheses following text that
+  translates XYZ in another language. (Here XYZ stands for a specific section
+  name mentioned below, such as "Acknowledgements", "Dedications",
+  "Endorsements", or "History".) To "Preserve the Title" of such a section when
+  you modify the Document means that it remains a section "Entitled XYZ"
+  according to this definition.
+ </p><p>
+  The Document may include Warranty Disclaimers next to the notice which states
+  that this License applies to the Document. These Warranty Disclaimers are
+  considered to be included by reference in this License, but only as regards
+  disclaiming warranties: any other implication that these Warranty Disclaimers
+  may have is void and has no effect on the meaning of this License.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.10.18"><span class="name">
+    2. VERBATIM COPYING
+  </span><a title="Permalink" class="permalink" href="#id-1.10.18">#</a></h5></div><p>
+  You may copy and distribute the Document in any medium, either commercially
+  or non-commercially, provided that this License, the copyright notices, and
+  the license notice saying this License applies to the Document are reproduced
+  in all copies, and that you add no other conditions whatsoever to those of
+  this License. You may not use technical measures to obstruct or control the
+  reading or further copying of the copies you make or distribute. However, you
+  may accept compensation in exchange for copies. If you distribute a large
+  enough number of copies you must also follow the conditions in section 3.
+ </p><p>
+  You may also lend copies, under the same conditions stated above, and you may
+  publicly display copies.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.10.21"><span class="name">
+    3. COPYING IN QUANTITY
+  </span><a title="Permalink" class="permalink" href="#id-1.10.21">#</a></h5></div><p>
+  If you publish printed copies (or copies in media that commonly have printed
+  covers) of the Document, numbering more than 100, and the Document's license
+  notice requires Cover Texts, you must enclose the copies in covers that
+  carry, clearly and legibly, all these Cover Texts: Front-Cover Texts on the
+  front cover, and Back-Cover Texts on the back cover. Both covers must also
+  clearly and legibly identify you as the publisher of these copies. The front
+  cover must present the full title with all words of the title equally
+  prominent and visible. You may add other material on the covers in addition.
+  Copying with changes limited to the covers, as long as they preserve the
+  title of the Document and satisfy these conditions, can be treated as
+  verbatim copying in other respects.
+ </p><p>
+  If the required texts for either cover are too voluminous to fit legibly, you
+  should put the first ones listed (as many as fit reasonably) on the actual
+  cover, and continue the rest onto adjacent pages.
+ </p><p>
+  If you publish or distribute Opaque copies of the Document numbering more
+  than 100, you must either include a machine-readable Transparent copy along
+  with each Opaque copy, or state in or with each Opaque copy a
+  computer-network location from which the general network-using public has
+  access to download using public-standard network protocols a complete
+  Transparent copy of the Document, free of added material. If you use the
+  latter option, you must take reasonably prudent steps, when you begin
+  distribution of Opaque copies in quantity, to ensure that this Transparent
+  copy will remain thus accessible at the stated location until at least one
+  year after the last time you distribute an Opaque copy (directly or through
+  your agents or retailers) of that edition to the public.
+ </p><p>
+  It is requested, but not required, that you contact the authors of the
+  Document well before redistributing any large number of copies, to give them
+  a chance to provide you with an updated version of the Document.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.10.26"><span class="name">
+    4. MODIFICATIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.10.26">#</a></h5></div><p>
+  You may copy and distribute a Modified Version of the Document under the
+  conditions of sections 2 and 3 above, provided that you release the Modified
+  Version under precisely this License, with the Modified Version filling the
+  role of the Document, thus licensing distribution and modification of the
+  Modified Version to whoever possesses a copy of it. In addition, you must do
+  these things in the Modified Version:
+ </p><div class="orderedlist"><ol class="orderedlist" type="A"><li class="listitem"><p>
+    Use in the Title Page (and on the covers, if any) a title distinct from
+    that of the Document, and from those of previous versions (which should, if
+    there were any, be listed in the History section of the Document). You may
+    use the same title as a previous version if the original publisher of that
+    version gives permission.
+   </p></li><li class="listitem"><p>
+    List on the Title Page, as authors, one or more persons or entities
+    responsible for authorship of the modifications in the Modified Version,
+    together with at least five of the principal authors of the Document (all
+    of its principal authors, if it has fewer than five), unless they release
+    you from this requirement.
+   </p></li><li class="listitem"><p>
+    State on the Title page the name of the publisher of the Modified Version,
+    as the publisher.
+   </p></li><li class="listitem"><p>
+    Preserve all the copyright notices of the Document.
+   </p></li><li class="listitem"><p>
+    Add an appropriate copyright notice for your modifications adjacent to the
+    other copyright notices.
+   </p></li><li class="listitem"><p>
+    Include, immediately after the copyright notices, a license notice giving
+    the public permission to use the Modified Version under the terms of this
+    License, in the form shown in the Addendum below.
+   </p></li><li class="listitem"><p>
+    Preserve in that license notice the full lists of Invariant Sections and
+    required Cover Texts given in the Document's license notice.
+   </p></li><li class="listitem"><p>
+    Include an unaltered copy of this License.
+   </p></li><li class="listitem"><p>
+    Preserve the section Entitled "History", Preserve its Title, and add to it
+    an item stating at least the title, year, new authors, and publisher of the
+    Modified Version as given on the Title Page. If there is no section
+    Entitled "History" in the Document, create one stating the title, year,
+    authors, and publisher of the Document as given on its Title Page, then add
+    an item describing the Modified Version as stated in the previous sentence.
+   </p></li><li class="listitem"><p>
+    Preserve the network location, if any, given in the Document for public
+    access to a Transparent copy of the Document, and likewise the network
+    locations given in the Document for previous versions it was based on.
+    These may be placed in the "History" section. You may omit a network
+    location for a work that was published at least four years before the
+    Document itself, or if the original publisher of the version it refers to
+    gives permission.
+   </p></li><li class="listitem"><p>
+    For any section Entitled "Acknowledgements" or "Dedications", Preserve the
+    Title of the section, and preserve in the section all the substance and
+    tone of each of the contributor acknowledgements and/or dedications given
+    therein.
+   </p></li><li class="listitem"><p>
+    Preserve all the Invariant Sections of the Document, unaltered in their
+    text and in their titles. Section numbers or the equivalent are not
+    considered part of the section titles.
+   </p></li><li class="listitem"><p>
+    Delete any section Entitled "Endorsements". Such a section may not be
+    included in the Modified Version.
+   </p></li><li class="listitem"><p>
+    Do not retitle any existing section to be Entitled "Endorsements" or to
+    conflict in title with any Invariant Section.
+   </p></li><li class="listitem"><p>
+    Preserve any Warranty Disclaimers.
+   </p></li></ol></div><p>
+  If the Modified Version includes new front-matter sections or appendices that
+  qualify as Secondary Sections and contain no material copied from the
+  Document, you may at your option designate some or all of these sections as
+  invariant. To do this, add their titles to the list of Invariant Sections in
+  the Modified Version's license notice. These titles must be distinct from any
+  other section titles.
+ </p><p>
+  You may add a section Entitled "Endorsements", provided it contains nothing
+  but endorsements of your Modified Version by various parties--for example,
+  statements of peer review or that the text has been approved by an
+  organization as the authoritative definition of a standard.
+ </p><p>
+  You may add a passage of up to five words as a Front-Cover Text, and a
+  passage of up to 25 words as a Back-Cover Text, to the end of the list of
+  Cover Texts in the Modified Version. Only one passage of Front-Cover Text and
+  one of Back-Cover Text may be added by (or through arrangements made by) any
+  one entity. If the Document already includes a cover text for the same cover,
+  previously added by you or by arrangement made by the same entity you are
+  acting on behalf of, you may not add another; but you may replace the old
+  one, on explicit permission from the previous publisher that added the old
+  one.
+ </p><p>
+  The author(s) and publisher(s) of the Document do not by this License give
+  permission to use their names for publicity for or to assert or imply
+  endorsement of any Modified Version.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.10.33"><span class="name">
+    5. COMBINING DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.10.33">#</a></h5></div><p>
+  You may combine the Document with other documents released under this
+  License, under the terms defined in section 4 above for modified versions,
+  provided that you include in the combination all of the Invariant Sections of
+  all of the original documents, unmodified, and list them all as Invariant
+  Sections of your combined work in its license notice, and that you preserve
+  all their Warranty Disclaimers.
+ </p><p>
+  The combined work need only contain one copy of this License, and multiple
+  identical Invariant Sections may be replaced with a single copy. If there are
+  multiple Invariant Sections with the same name but different contents, make
+  the title of each such section unique by adding at the end of it, in
+  parentheses, the name of the original author or publisher of that section if
+  known, or else a unique number. Make the same adjustment to the section
+  titles in the list of Invariant Sections in the license notice of the
+  combined work.
+ </p><p>
+  In the combination, you must combine any sections Entitled "History" in the
+  various original documents, forming one section Entitled "History"; likewise
+  combine any sections Entitled "Acknowledgements", and any sections Entitled
+  "Dedications". You must delete all sections Entitled "Endorsements".
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.10.37"><span class="name">
+    6. COLLECTIONS OF DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.10.37">#</a></h5></div><p>
+  You may make a collection consisting of the Document and other documents
+  released under this License, and replace the individual copies of this
+  License in the various documents with a single copy that is included in the
+  collection, provided that you follow the rules of this License for verbatim
+  copying of each of the documents in all other respects.
+ </p><p>
+  You may extract a single document from such a collection, and distribute it
+  individually under this License, provided you insert a copy of this License
+  into the extracted document, and follow this License in all other respects
+  regarding verbatim copying of that document.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.10.40"><span class="name">
+    7. AGGREGATION WITH INDEPENDENT WORKS
+  </span><a title="Permalink" class="permalink" href="#id-1.10.40">#</a></h5></div><p>
+  A compilation of the Document or its derivatives with other separate and
+  independent documents or works, in or on a volume of a storage or
+  distribution medium, is called an "aggregate" if the copyright resulting from
+  the compilation is not used to limit the legal rights of the compilation's
+  users beyond what the individual works permit. When the Document is included
+  in an aggregate, this License does not apply to the other works in the
+  aggregate which are not themselves derivative works of the Document.
+ </p><p>
+  If the Cover Text requirement of section 3 is applicable to these copies of
+  the Document, then if the Document is less than one half of the entire
+  aggregate, the Document's Cover Texts may be placed on covers that bracket
+  the Document within the aggregate, or the electronic equivalent of covers if
+  the Document is in electronic form. Otherwise they must appear on printed
+  covers that bracket the whole aggregate.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.10.43"><span class="name">
+    8. TRANSLATION
+  </span><a title="Permalink" class="permalink" href="#id-1.10.43">#</a></h5></div><p>
+  Translation is considered a kind of modification, so you may distribute
+  translations of the Document under the terms of section 4. Replacing
+  Invariant Sections with translations requires special permission from their
+  copyright holders, but you may include translations of some or all Invariant
+  Sections in addition to the original versions of these Invariant Sections.
+  You may include a translation of this License, and all the license notices in
+  the Document, and any Warranty Disclaimers, provided that you also include
+  the original English version of this License and the original versions of
+  those notices and disclaimers. In case of a disagreement between the
+  translation and the original version of this License or a notice or
+  disclaimer, the original version will prevail.
+ </p><p>
+  If a section in the Document is Entitled "Acknowledgements", "Dedications",
+  or "History", the requirement (section 4) to Preserve its Title (section 1)
+  will typically require changing the actual title.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.10.46"><span class="name">
+    9. TERMINATION
+  </span><a title="Permalink" class="permalink" href="#id-1.10.46">#</a></h5></div><p>
+  You may not copy, modify, sublicense, or distribute the Document except as
+  expressly provided for under this License. Any other attempt to copy, modify,
+  sublicense or distribute the Document is void, and will automatically
+  terminate your rights under this License. However, parties who have received
+  copies, or rights, from you under this License will not have their licenses
+  terminated so long as such parties remain in full compliance.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.10.48"><span class="name">
+    10. FUTURE REVISIONS OF THIS LICENSE
+  </span><a title="Permalink" class="permalink" href="#id-1.10.48">#</a></h5></div><p>
+  The Free Software Foundation may publish new, revised versions of the GNU
+  Free Documentation License from time to time. Such new versions will be
+  similar in spirit to the present version, but may differ in detail to address
+  new problems or concerns. See
+  <a class="link" href="https://www.gnu.org/copyleft/" target="_blank">https://www.gnu.org/copyleft/</a>.
+ </p><p>
+  Each version of the License is given a distinguishing version number. If the
+  Document specifies that a particular numbered version of this License "or any
+  later version" applies to it, you have the option of following the terms and
+  conditions either of that specified version or of any later version that has
+  been published (not as a draft) by the Free Software Foundation. If the
+  Document does not specify a version number of this License, you may choose
+  any version ever published (not as a draft) by the Free Software Foundation.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.10.51"><span class="name">
+    ADDENDUM: How to use this License for your documents
+  </span><a title="Permalink" class="permalink" href="#id-1.10.51">#</a></h5></div><div class="verbatim-wrap"><pre class="screen">Copyright (c) YEAR YOUR NAME.
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+A copy of the license is included in the section entitled “GNU
+Free Documentation License”.</pre></div><p>
+  If you have Invariant Sections, Front-Cover Texts and Back-Cover Texts,
+  replace the “with...Texts.” line with this:
+ </p><div class="verbatim-wrap"><pre class="screen">with the Invariant Sections being LIST THEIR TITLES, with the
+Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.</pre></div><p>
+  If you have Invariant Sections without Cover Texts, or some other combination
+  of the three, merge those two alternatives to suit the situation.
+ </p><p>
+  If your document contains nontrivial examples of program code, we recommend
+  releasing these examples in parallel under your choice of free software
+  license, such as the GNU General Public License, to permit their use in free
+  software.
+</p></section></div></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="#sudo-configure-intro"><span class="title-number">1 </span><span class="title-name">An introduction to <code class="command">sudo</code> configuration</span></a></span></li><li><span class="section"><a href="#sudo-creating-custom-configuration"><span class="title-number">2 </span><span class="title-name">Creating custom <code class="command">sudo</code> configurations</span></a></span></li><li><span class="section"><a href="#sudo-change-pw-timeout"><span class="title-number">3 </span><span class="title-name">Changing the <code class="command">sudo</code> password prompt timeout</span></a></span></li><li><span class="section"><a href="#sudo-start-shell-as-root"><span class="title-number">4 </span><span class="title-name">Starting a shell with <code class="systemitem">root</code> privileges</span></a></span></li><li><span class="section"><a href="#sudo-best-practices"><span class="title-number">5 </span><span class="title-name"><code class="command">sudo</code> best practices</span></a></span></li><li><span class="section"><a href="#sudo-troubleshooting"><span class="title-number">6 </span><span class="title-name">Troubleshooting</span></a></span></li><li><span class="section"><a href="#sudo-user-authorization"><span class="title-number">7 </span><span class="title-name"><code class="command">sudo</code> configuration reference</span></a></span></li><li><span class="section"><a href="#legal-disclaimer"><span class="title-number">8 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="#doc-gfdl-license"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-fb" href="#" title="Facebook"> </a></li><li><a id="_share-in" href="#" title="LinkedIn"> </a></li><li><a id="_share-tw" href="#" title="Twitter/X"> </a></li><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE
+                 2024</span></div></div></footer></body></html>
