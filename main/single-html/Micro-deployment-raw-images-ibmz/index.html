@@ -1,0 +1,1391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Deploying SLE Micro Using Raw Disk Images on IBM Z DASD Disks</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style.css"/>
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
+<meta name="title" content="Deploying SLE Micro Using Raw Disk Images on IBM Z DAS…"/>
+<meta name="description" content="Deployment of SUSE Linux Enterprise Micro raw images on IBM Z DASD disks"/>
+<meta name="book-title" content="Deploying SLE Micro Using Raw Disk Images on IBM Z DASD Disks"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="jsindelarova@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Micro 6.0"/>
+<meta name="publisher" content="SUSE"/><meta name="category" content="."/><meta name="DCTERMS.modified" content="2024-04-02"/><meta name="DC.creator" content="jsindelarova@suse.com"/><meta property="og:title" content="Deploying SUSE Linux Enterprise Micro on IBM Z DASD di…"/>
+<meta property="og:description" content="Deployment of SUSE Linux Enterprise Micro raw images on IBM "/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Deploying SUSE Linux Enterprise Micro on IBM Z DASD di…"/>
+<meta name="twitter:description" content="Deployment of SUSE Linux Enterprise Micro raw images on"/>
+<script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    
+     "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    
+    "inLanguage": "en",
+    
+
+    "headline": "Deploying SUSE Linux Enterprise Micro on IBM Z DASD disks",
+  
+    "description": "Deployment of SUSE Linux Enterprise Micro raw images on IBM Z DASD disks",
+      
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    ],
+      
+    "dateModified": "2024-04-02T00:00+02:00",
+      
+    "datePublished": "2024-04-02T00:00+02:00",
+      
+    "articleSection": [ 
+        "Systems Management"
+        
+    ],
+    
+
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Installation"
+      }
+    ],
+  
+    "mentions": [
+      
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Micro",
+        "softwareVersion": "6.0",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "IBM"
+        
+      }
+      
+    ],
+    
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<script type="text/javascript">
+
+if ( window.location.protocol.toLowerCase() != 'file:' ) {
+  document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>');
+};
+
+</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"/></noscript><script src="static/js/script-purejs.js" type="text/javascript"> </script><script src="static/js/highlight.min.js" type="text/javascript"> </script><script>
+
+$(document).ready(function() {
+  $('.verbatim-wrap.highlight').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+hljs.configure({
+  useBR: false
+});
+
+</script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#deployment-raw-ibmz-dasd">Deploying SLE Micro Using Raw Disk Images on IBM Z DASD Disks</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="deployment-raw-ibmz-dasd" data-id-title="Deploying SLE Micro Using Raw Disk Images on IBM Z DASD Disks"><div class="titlepage"><div><div><h1 class="title">Deploying <span class="phrase"><span class="phrase">SLE Micro</span></span> Using Raw Disk Images on IBM Z DASD Disks</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>14 Oct 2024</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.14.1.1"><span class="term">WHAT?</span></dt><dd><p>
+                <span class="phrase"><span class="phrase">SUSE Linux Enterprise Micro</span></span> provides raw images (also referred to as
+                pre-built images) that can be deployed directly to your device
+                storage.
+              </p></dd><dt id="id-1.1.14.1.2"><span class="term">WHY?</span></dt><dd><p>
+                This article provides you with step-by-step instructions on
+                deploying <span class="phrase"><span class="phrase">SUSE Linux Enterprise Micro</span></span> on an IBM Z machine.
+              </p></dd><dt id="id-1.1.14.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                It takes approximately 20 minutes to read the article.
+              </p></dd><dt id="id-1.1.14.1.4"><span class="term">GOAL</span></dt><dd><p>
+                <span class="phrase"><span class="phrase">SUSE Linux Enterprise Micro</span></span> is successfully deployed on your system.
+              </p></dd><dt id="id-1.1.14.1.5"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                    A disk with running Linux.
+                  </p></li><li class="listitem"><p>
+                    A disk where you deploy the raw image and where
+                    <span class="phrase"><span class="phrase">SUSE Linux Enterprise Micro</span></span> will run.
+                  </p></li><li class="listitem"><p>
+                    A disk that serves as a configuration medium.
+                  </p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History" hreflang="en" href="rh-deployment-raw-ibmz-dasd.html" target="_blank">Revision History: Deploying SLE Micro Using Raw Disk Images on IBM Z DASD Disks</a></div></div></div></div><section xml:lang="en" class="sect1" id="deployment-about-pre-built-images" data-id-title="About pre-built images"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">About pre-built images</span></span> <a title="Permalink" class="permalink" href="#deployment-about-pre-built-images">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Pre-built images are ready-to-use representations of a running
+        operating system. They are not installed in a traditional way using an
+        installer, but copied to the hard disk of the target host. The topic
+        covers basic information about these pre-built images.
+      </p></div></div></div></div><p>
+    The pre-built images are intended to be configured on the first boot by
+    using tools delivered in the images. The boot loader detects the first boot
+    as described in <a class="xref" href="#deployment-first-boot-detection" title="1.1. First boot detection">Section 1.1, “First boot detection”</a>. 
+  </p><section xml:lang="en" class="sect2" id="deployment-first-boot-detection" data-id-title="First boot detection"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">First boot detection</span></span> <a title="Permalink" class="permalink" href="#deployment-first-boot-detection">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    The deployment configuration runs on the first boot only. To distinguish
+    between the first and subsequent boots, the file
+    <code class="filename">/etc/machine-id</code> is created after the
+    first boot finishes. If the file is not present in the file system, the system assumes that
+    this is a first boot and triggers the configuration process. After completing the first boot, the
+    <code class="filename">/etc/machine-id</code> file is
+    created.
+  </p><div id="id-1.2.3.3" data-id-title="The /etc/machine-id file is always created" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: The <code class="filename">/etc/machine-id</code> file is always created</div><p>
+      Even though the configuration may not be successful because of improper
+      or missing configuration files, the
+      <code class="filename">/etc/machine-id</code> file is
+      created.
+    </p></div><section class="sect3" id="deployment-first-boot-invokation" data-id-title="Force system reconfiguration on a subsequent boot"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">1.1.1 </span><span class="title-name">Force system reconfiguration on a subsequent boot</span></span> <a title="Permalink" class="permalink" href="#deployment-first-boot-invokation">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      If you need to reconfigure your system after the first boot happened, you
+      can force the reconfiguration on the subsequent boot. Here you have two
+      options.
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          You can pass the <code class="literal">ignition.firstboot</code> or <code class="literal">combustion.firstboot</code> attribute to
+          the kernel command line.
+        </p></li><li class="listitem"><p>
+          You can delete the file
+          <code class="filename">/etc/machine-id</code> and reboot the system.
+        </p></li></ul></div></section></section></section><section xml:lang="en" class="sect1" id="deployment-raw-ibmz-dasd-overview" data-id-title="Deployment of SLE Micro"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Deployment of <span class="phrase"><span class="phrase">SLE Micro</span></span></span></span> <a title="Permalink" class="permalink" href="#deployment-raw-ibmz-dasd-overview">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    The deployment procedure of <span class="phrase"><span class="phrase">SLE Micro</span></span> comprises three phases. Do
+    not skip any of the phases and follow the order as stated below.
+  </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>
+        DASD disks activation—before you start the deployment, you need
+        to ensure that all disks to be used are available and active. For
+        details, refer to
+        <a class="xref" href="#deployment-raw-ibmz-dasd-preparing-machine" title="3.1. Preparing the DASD disks">Section 3.1, “Preparing the DASD disks”</a>.
+      </p></li><li class="listitem"><p>
+        Preparing a configuration device—to configure the network, add
+        users and register the system, prepare the configuration according to
+        the instructions provided in
+        <a class="xref" href="#deployment-raw-ibmz-dasd-preparing-configuration" title="4. Preparing the configuration disk">Section 4, “Preparing the configuration disk”</a>.
+      </p></li><li class="listitem"><p>
+        Downloading the <span class="phrase"><span class="phrase">SLE Micro</span></span> image and deploying it on the disk.
+        For details, refer to
+        <a class="xref" href="#deployment-raw-ibmz-dasd-deploying-image" title="5. Deploying the raw disk image on the disk">Section 5, “Deploying the raw disk image on the disk”</a>.
+      </p></li></ol></div></section><section class="sect1" id="id-1.4" data-id-title="Preparing the machine"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Preparing the machine</span></span> <a title="Permalink" class="permalink" href="#id-1.4">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><section xml:lang="en" class="sect2" id="deployment-raw-ibmz-dasd-preparing-machine" data-id-title="Preparing the DASD disks"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.1 </span><span class="title-name">Preparing the DASD disks</span></span> <a title="Permalink" class="permalink" href="#deployment-raw-ibmz-dasd-preparing-machine">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    Before you start deploying <span class="phrase"><span class="phrase">SLE Micro</span></span>, you need to check if all the
+    three needed DASD disks are active. To check the disks' state, run the
+    command:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>lsdasd
+
+Bus-ID    Status    Name      Device  Type         BlkSz  Size      Blocks 
+================================================================================ 
+0.0.0100  active    dasda     94:0    ECKD         4096   30720MB   7864380 
+0.0.0101  active    dasdc     94:8    ECKD         4096   20480MB   5243040
+0.0.0102  active    dasdb     94:4    ECKD         4096   5120MB    1310760</pre></div><p>
+    The 5 GB disk will be used as a configuration device, and the
+    20 GB disk is the disk where <span class="phrase"><span class="phrase">SUSE Linux Enterprise Micro</span></span> will be deployed.
+  </p><p>
+    If you do not see the disks in the command output, you need to activate the
+    disks. To do so, proceed as follows:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Run the <code class="command">lszdev dasd</code> to display a full list of
+        devices:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>lszdev dasd
+
+TYPE       ID        ON   PERS  NAMES 
+dasd-eckd  0.0.0100  yes  no    dasda 
+dasd-eckd  0.0.0101  no   no    
+dasd-eckd  0.0.0102  no   no   
+dasd-eckd  0.0.0190  no   no     
+dasd-eckd  0.0.019d  no   no     
+dasd-eckd  0.0.019e  no   no     
+dasd-eckd  0.0.0592  no   no</pre></div></li><li class="step"><p>
+        Activate the disks by using the command:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>chzdev -e <em class="replaceable">DISK_ID</em></pre></div><p>
+        For example, to activate the disk <code class="literal">0.0.0101</code>:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>chzdev -e 0.0.0101</pre></div></li><li class="step"><p>
+        Verify that the disks are active in the output of the
+        <code class="command">lsdasd</code> command.
+      </p></li></ol></div></div></section></section><section xml:lang="en" class="sect1" id="deployment-raw-ibmz-dasd-preparing-configuration" data-id-title="Preparing the configuration disk"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Preparing the configuration disk</span></span> <a title="Permalink" class="permalink" href="#deployment-raw-ibmz-dasd-preparing-configuration">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><div id="id-1.5.2" data-id-title="Virtual versus physical disk" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Virtual versus physical disk</div><p>
+      A virtual disk may be more suitable for production deployments, while a
+      physical disk is better suited for development.
+    </p></div><p>
+    During the installation process, you can pass a complex configuration to
+    define users, directories, or to provide SSH keys. To do so, create a
+    configuration device that stores a complete configuration. The following
+    example procedure describes how to create such a device:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Identify the disk:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>lsdasd
+
+Bus-ID    Status    Name      Device  Type         BlkSz  Size      Blocks 
+================================================================================ 
+0.0.0100  active    dasda     94:0    ECKD         4096   30720MB   7864380 
+0.0.0101  active    dasdc     94:8    ECKD         4096   20480MB   5243040
+0.0.0102  active    dasdb     94:4    ECKD         4096   5120MB    1310760</pre></div><p>
+        In the output above, the <code class="literal">Bus-ID</code> value of the disk to
+        be used as a configuration device is <span class="emphasis"><em>0.0.0102</em></span>. Use
+        the value of <code class="literal">Bus-ID</code> or the disk size to identify the
+        disk, as the device name (<code class="literal">/dev/dasdX</code>) can change
+        after each reboot.
+      </p></li><li class="step"><p>
+        Format the disk. Keep in mind that formatting removes all data on that
+        disk.
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>dasdfmt -b 4096 -y -p /dev/dasdb</pre></div></li><li class="step"><p>
+        Create a partition:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>parted /dev/dasdb mkpart ext4 0% 100%</pre></div></li><li class="step"><p>
+        Format the partition:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>mkfs.ext4 /dev/dasdb</pre></div></li><li class="step"><p>
+        Label the partition as <code class="literal">ignition</code>:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>e2label /dev/dasdb1 ignition</pre></div></li><li class="step"><p>
+        Verify the file system:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>blkid</pre></div></li><li class="step"><p>
+        Mount the partition:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>mount /dev/dasdb1 /mnt</pre></div></li><li class="step"><p>
+        Prepare the directory structure for Ignition and/or Combustion. For
+        Ignition:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>mkdir -p  /mnt/ignition</pre></div><p>
+        For Combustion:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>mkdir -p /mnt/combustion</pre></div></li><li class="step"><p>
+        Copy your public SSH key to <code class="filename">/mnt/combustion</code> as
+        <code class="filename">ssh_key.pub</code>.
+      </p></li><li class="step"><p>
+        Prepare the configuration as described further.
+      </p></li></ol></div></div><section xml:lang="en" class="sect2" id="deployment-configuring-with-combustion" data-id-title="Configuring SLE Micro deployment with Combustion"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.1 </span><span class="title-name">Configuring <span class="phrase"><span class="phrase">SLE Micro</span></span> deployment with Combustion</span></span> <a title="Permalink" class="permalink" href="#deployment-configuring-with-combustion">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Combustion is a dracut module that enables you to configure your
+        system on the first boot. You can use Combustion, for example, to
+        change the default partitions, set user passwords, create files, or
+        install packages.
+      </p></div></div></div></div><section class="sect3" id="how-it-works-combustion" data-id-title="How does Combustion work?"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">4.1.1 </span><span class="title-name">How does Combustion work?</span></span> <a title="Permalink" class="permalink" href="#how-it-works-combustion">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Combustion is invoked after the <code class="literal">ignition.firstboot</code>
+      argument is passed to the kernel command line. Combustion reads a
+      provided file named <code class="filename">script</code>, executes included
+      commands, and thus performs changes to the file system. If
+      <code class="filename">script</code> includes the network flag, Combustion tries
+      to configure the network. After <code class="literal">/sysroot</code> is mounted,
+      Combustion tries to activate all mount points in
+      <code class="filename">/etc/fstab</code> and then calls
+      <code class="command">transactional-update</code> to apply other changes, for
+      example, setting <code class="systemitem">root</code> password or installing packages.
+    </p><p>
+        The configuration file <code class="filename">script</code> must reside in the
+        <code class="filename">combustion</code> subdirectory on the configuration media labeled
+        <code class="literal">combustion</code>. The directory structure must look as follows:
+      </p><div class="verbatim-wrap"><pre class="screen">&lt;root directory&gt;
+└── combustion
+    └── script
+    └── other files</pre></div><div id="id-1.5.5.2.5" data-id-title="Using Combustion together with Ignition" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Using Combustion together with Ignition</div><p>
+          Combustion can be used along with Ignition. If you intend to do
+          so, label your configuration medium <code class="literal">ignition</code> and
+          include the <code class="filename">ignition</code> directory with the
+          <code class="filename">config.ign</code> to your directory structure as shown
+          below:
+        </p><div class="verbatim-wrap"><pre class="screen">&lt;root directory&gt;
+└── combustion
+    └── script
+    └── other files
+└── ignition
+    └── config.ign</pre></div><p>
+          In this scenario, Ignition runs before Combustion.
+        </p></div></section><section xml:lang="en" class="sect3" id="deployment-combustion-configuration" data-id-title="Combustion configuration examples"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">4.1.2 </span><span class="title-name">Combustion configuration examples</span></span> <a title="Permalink" class="permalink" href="#deployment-combustion-configuration">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><section class="sect4" id="configuring-combustion-script" data-id-title="The script configuration file"><div class="titlepage"><div><div><div class="title-container"><h5 class="title"><span class="title-number-name"><span class="title-number">4.1.2.1 </span><span class="title-name">The <code class="filename">script</code> configuration file</span></span> <a title="Permalink" class="permalink" href="#configuring-combustion-script">#</a></h5><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The <code class="filename">script</code> configuration file is a set of commands
+      that are parsed and executed by Combustion in a <code class="command">transactional-update</code> shell. This
+      article provides examples of configuration tasks performed by
+      Combustion.
+    </p><div id="id-1.5.5.3.2.3" data-id-title="Include interpreter declaration" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Include interpreter declaration</div><p>
+        As the <code class="filename">script</code> file is interpreted by the shell,
+        always start the file with the interpreter declaration on its first
+        line. For example, in case of Bash:
+      </p><div class="verbatim-wrap"><pre class="screen">#!/bin/<em class="replaceable">bash</em></pre></div></div><p>
+      To log in to your system, include at least the <code class="systemitem">root</code> password.
+      However, it is recommended to establish the authentication using SSH
+      keys. If you need to use a <code class="systemitem">root</code> password, make sure to configure a
+      secure password. For a randomly generated password, use at least 10
+      characters. If you create your password manually, use even more than 10
+      characters and combine uppercase and lowercase letters and numbers.
+    </p><section xml:lang="en" class="sect5" id="id-1.5.5.3.2.5" data-id-title="Default partitioning"><div class="titlepage"><div><div><div class="title-container"><h6 class="title"><span class="title-number-name"><span class="title-number">4.1.2.1.1 </span><span class="title-name">Default partitioning</span></span> <a title="Permalink" class="permalink" href="#id-1.5.5.3.2.5">#</a></h6><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Each image has the following subvolumes:
+  </p><div class="verbatim-wrap"><pre class="screen">/home
+/root
+/opt
+/srv
+/usr/local
+/var</pre></div><p>
+    The <code class="literal">/etc</code> directory is mounted as overlayFS, where the
+    upper directory is mounted to <code class="filename">/var/lib/overlay/1/etc/</code>.
+  </p><p>
+    You can recognize the subvolumes mounted by default by the option
+    <code class="literal">x-initrd.mount</code> in <code class="filename">/etc/fstab</code>. Other
+    subvolumes or partitions must be configured either by Ignition or
+    Combustion.
+  </p><p>
+    If you want to
+        add a new user or modify any of the files on a subvolume that is not
+        mounted by default, you need to declare such subvolume first so that it
+        is mounted as well.
+  </p></section><section class="sect5" id="deployment-combustion-network" data-id-title="Network configuration"><div class="titlepage"><div><div><div class="title-container"><h6 class="title"><span class="title-number-name"><span class="title-number">4.1.2.1.2 </span><span class="title-name">Network configuration</span></span> <a title="Permalink" class="permalink" href="#deployment-combustion-network">#</a></h6><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        To configure and use the network connection during the first boot, add
+        the following statement to <code class="filename">script</code>:
+      </p><div class="verbatim-wrap"><pre class="screen"># combustion: network</pre></div><p>
+        Using this statement passes the <code class="literal">rd.neednet=1</code>
+        argument to dracut. The network configuration defaults to using DHCP.
+        If a different network configuration is needed, proceed as described in
+        <a class="xref" href="#combustion-prepare-statement" title="4.1.2.1.3. Performing modifications in the initramfs">Section 4.1.2.1.3, “Performing modifications in the initramfs”</a>.
+      </p><p>
+        If you do not use the statement, the system remains configured without
+        any network connection.
+      </p></section><section class="sect5" id="combustion-prepare-statement" data-id-title="Performing modifications in the initramfs"><div class="titlepage"><div><div><div class="title-container"><h6 class="title"><span class="title-number-name"><span class="title-number">4.1.2.1.3 </span><span class="title-name">Performing modifications in the initramfs</span></span> <a title="Permalink" class="permalink" href="#combustion-prepare-statement">#</a></h6><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        You may need to perform changes to the initramfs environment, for
+        example, to write a custom network configuration for NetworkManager into
+        <code class="filename">/etc/NetworkManager/system-connections/</code>. To do so,
+        use the <code class="literal">prepare</code> statement.
+      </p><p>
+        For example, to create a connection with a static IP address and
+        configure DNS:
+      </p><div class="verbatim-wrap"><pre class="screen">#!/bin/bash
+# combustion: network prepare
+set -euxo pipefail
+          
+nm_config() {
+  umask 077 # Required for NM config
+  mkdir -p /etc/NetworkManager/system-connections/
+  cat &gt;/etc/NetworkManager/system-connections/static.nmconnection &lt;&lt;-EOF
+  [connection]
+  id=static
+  type=ethernet
+  autoconnect=true
+          
+  [ipv4]
+  method=manual
+  dns=192.168.100.1
+  address1=192.168.100.42/24,192.168.100.1
+EOF
+}
+          
+if [ "${1-}" = "--prepare" ]; then
+  nm_config # Configure NM in the initrd
+  exit 0
+fi
+          
+# Redirect output to the console
+exec &gt; &gt;(exec tee -a /dev/tty0) 2&gt;&amp;1
+          
+  nm_config # Configure NM in the system
+  curl example.com
+
+# Close outputs and wait for tee to finish
+exec 1&gt;&amp;- 2&gt;&amp;-; wait;
+
+# Leave a marker
+echo "Configured with combustion" &gt; /etc/issue.d/combustion</pre></div></section><section class="sect5" id="combustion-script-wait" data-id-title="Waiting for the task to complete"><div class="titlepage"><div><div><div class="title-container"><h6 class="title"><span class="title-number-name"><span class="title-number">4.1.2.1.4 </span><span class="title-name">Waiting for the task to complete</span></span> <a title="Permalink" class="permalink" href="#combustion-script-wait">#</a></h6><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        Some processes may be run in background, for example, the <code class="command">tee</code> process
+        that redirects output to the terminal. To ensure that all running processes are completed before the
+        <code class="filename">script</code>
+        execution finishes, add the following line:
+      </p><div class="verbatim-wrap"><pre class="screen">exec 1&gt;&amp;- 2&gt;&amp;-; wait;</pre></div></section><section class="sect5" id="combustion-script-partitioning" data-id-title="Partitioning"><div class="titlepage"><div><div><div class="title-container"><h6 class="title"><span class="title-number-name"><span class="title-number">4.1.2.1.5 </span><span class="title-name">Partitioning</span></span> <a title="Permalink" class="permalink" href="#combustion-script-partitioning">#</a></h6><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        <span class="phrase"><span class="phrase">SLE Micro</span></span> raw images are delivered with a default partitioning
+        scheme. You might want to
+        use a different partitioning. The following set of example snippets
+        moves the <code class="filename">/home</code> to a different partition.
+      </p><div id="id-1.5.5.3.2.9.3" data-id-title="Performing changes outside of directories included in snapshots" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Performing changes outside of directories included in snapshots</div><p>
+          The following script performs changes that are not included in
+          snapshots. If the script fails and the snapshot is discarded, certain
+          changes remain visible and cannot be reverted, for example, the
+          changes to the <code class="literal">/dev/vdb</code> device.
+        </p></div><p>
+        The following snippet creates a GPT partitioning schema with a single
+        partition on the <code class="literal">/dev/vdb</code> device:
+      </p><div class="verbatim-wrap"><pre class="screen">sfdisk /dev/vdb &lt;&lt;EOF
+sleep 1
+label: gpt
+type=linux
+EOF
+
+partition=/dev/vdb1</pre></div><p>
+  As the <code class="command">sfdisk</code> command may take longer time to complete, postpone
+  <code class="command">label</code> by using the
+  <code class="command">sleep</code> command after <code class="command">sfdisk</code>.
+</p><p>
+        The partition is formatted to Btrfs:
+      </p><div class="verbatim-wrap"><pre class="screen">wipefs --all ${partition}
+mkfs.btrfs ${partition}</pre></div><p>
+        Possible content of <code class="filename">/home</code> is moved to the new
+        <code class="filename">/home</code> folder location by the following snippet:
+      </p><div class="verbatim-wrap"><pre class="screen">mount /home
+mount ${partition} /mnt
+rsync -aAXP /home/ /mnt/
+umount /home /mnt</pre></div><p>
+        The snippet below removes an old entry in
+        <code class="filename">/etc/fstab</code> and creates a new entry:
+      </p><div class="verbatim-wrap"><pre class="screen">awk -i inplace '$2 != "/home"' /etc/fstab
+echo "$(blkid -o export ${partition} | grep ^UUID=) /home btrfs defaults 0 0" &gt;&gt;/etc/fstab</pre></div></section><section class="sect5" id="combustion-adding-users" data-id-title="Creating new users"><div class="titlepage"><div><div><div class="title-container"><h6 class="title"><span class="title-number-name"><span class="title-number">4.1.2.1.6 </span><span class="title-name">Creating new users</span></span> <a title="Permalink" class="permalink" href="#combustion-adding-users">#</a></h6><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        As some services, such as Cockpit, require login using a non-root user, define at
+        least one unprivileged user here. Alternatively, you can create such a user from a running
+        system as described in <a class="xref" href="#deployment-postinstall-adding-users" title="6.2. Adding users">Section 6.2, “Adding users”</a>.
+      </p><p>
+        To add a new user account, first create a hash string that represents
+        the user's password. Use the <code class="command">openssl passwd -6</code>
+        command.
+      </p><p>
+        After you obtain the password hash, add the following lines to the
+        <code class="filename">script</code>:
+      </p><div class="verbatim-wrap"><pre class="screen">mount /home
+useradd -m <em class="replaceable">EXAMPLE_USER</em>
+echo '<em class="replaceable">EXAMPLE_USER</em>:<em class="replaceable">PASSWORD_HASH</em>' | chpasswd -e</pre></div></section><section class="sect5" id="combustion-script-security" data-id-title="Setting a password for root"><div class="titlepage"><div><div><div class="title-container"><h6 class="title"><span class="title-number-name"><span class="title-number">4.1.2.1.7 </span><span class="title-name">Setting a password for <code class="systemitem">root</code></span></span> <a title="Permalink" class="permalink" href="#combustion-script-security">#</a></h6><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        Before you set the <code class="systemitem">root</code> password, generate a hash of the
+        password, for example, by using the <code class="command">openssl passwd
+        -6</code>. To set the password, add the following line to the
+        <code class="filename">script</code>:
+      </p><div class="verbatim-wrap"><pre class="screen">echo 'root:<em class="replaceable">PASSWORD_HASH</em>' | chpasswd -e</pre></div></section><section class="sect5" id="combustion-script-sshkeys" data-id-title="Adding SSH keys"><div class="titlepage"><div><div><div class="title-container"><h6 class="title"><span class="title-number-name"><span class="title-number">4.1.2.1.8 </span><span class="title-name">Adding SSH keys</span></span> <a title="Permalink" class="permalink" href="#combustion-script-sshkeys">#</a></h6><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        The following snippet creates a directory to store the <code class="systemitem">root</code>'s SSH
+        key and then copies the public SSH key located on the configuration
+        device to the <code class="filename">authorized_keys</code> file.
+      </p><div class="verbatim-wrap"><pre class="screen">mkdir -pm700 /root/.ssh/
+cat id_rsa_new.pub &gt;&gt; /root/.ssh/authorized_keys</pre></div><div id="id-1.5.5.3.2.12.4" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+          The SSH service must be enabled in case you need to use remote login
+          via SSH. For details, refer to
+          <a class="xref" href="#combustion-script-services" title="4.1.2.1.9. Enabling services">Section 4.1.2.1.9, “Enabling services”</a>.
+        </p></div></section><section class="sect5" id="combustion-script-services" data-id-title="Enabling services"><div class="titlepage"><div><div><div class="title-container"><h6 class="title"><span class="title-number-name"><span class="title-number">4.1.2.1.9 </span><span class="title-name">Enabling services</span></span> <a title="Permalink" class="permalink" href="#combustion-script-services">#</a></h6><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        To enable system services, for example, the SSH service, add the
+        following line to <code class="filename">script</code>:
+      </p><div class="verbatim-wrap"><pre class="screen">systemctl enable sshd.service</pre></div></section><section class="sect5" id="combustion-script-install" data-id-title="Installing packages"><div class="titlepage"><div><div><div class="title-container"><h6 class="title"><span class="title-number-name"><span class="title-number">4.1.2.1.10 </span><span class="title-name">Installing packages</span></span> <a title="Permalink" class="permalink" href="#combustion-script-install">#</a></h6><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div id="id-1.5.5.3.2.14.2" data-id-title="Network connection and registering your system may be necessary" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Network connection and registering your system may be necessary</div><p>
+          As certain packages may require additional subscription, you may need
+          to register your system beforehand. An available network connection
+          may also be needed to install additional packages.
+        </p></div><p>
+        During the first boot configuration, you can install additional
+        packages to your system. For example, you can install the
+        <code class="literal">vim</code> editor by adding:
+      </p><div class="verbatim-wrap"><pre class="screen">zypper --non-interactive install vim-small</pre></div><div id="id-1.5.5.3.2.14.5" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+          Bear in mind that you will not be able to use
+          <code class="command">zypper</code> after the configuration is complete and you
+          boot to the configured system. To perform changes later, you must use
+          the <code class="command">transactional-update</code> command to create a
+          changed snapshot.
+        </p></div></section></section><section class="sect4" id="combustion-script-example-ibmz" data-id-title="A complete example of the script file"><div class="titlepage"><div><div><div class="title-container"><h5 class="title"><span class="title-number-name"><span class="title-number">4.1.2.2 </span><span class="title-name">A complete example of the <code class="filename">script</code> file</span></span> <a title="Permalink" class="permalink" href="#combustion-script-example-ibmz">#</a></h5><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The following <code class="filename">script</code> provides complete settings that
+      may serve you as a guide on how to write your own Combustion
+      configuration. The example does not require any further Ignition
+      configuration.
+    </p><div class="verbatim-wrap"><pre class="screen">    #!/bin/bash
+    # combustion: network prepare
+    
+    
+    set -euxo pipefail
+    
+    ## The OSA subchannels to enable
+    ZNET_SUBCHANNELS=0.0.1000,0.0.1001,0.0.1002
+    
+    ## Network information to configure
+    IPADDRESS="10.144.64.155/24" ## Formet is ipaddress/cidr
+    GATEWAY="10.144.64.254"
+    NAMESERVERS="10.144.53.53;10.144.53.54" ## A semicolon-separated list of name servers
+    
+    ## Hostname information
+    NODE_HOSTNAME="micro6"
+    
+    ## Add password for root user
+    ## Use either 'openssl passwd -6' or 'mkpasswd --method=sha-512' to encrypt the password.
+    ROOT_USER_PASSWORD='<em class="replaceable">PASSWORD_HASH</em>'
+    SSH_ROOT_PUBLIC_KEY=ssh_key.pub
+    
+    ## Add a regular user, because root login may be disallowed in some services.
+    CREATE_NORMAL_USER=user ## Replace the "user" with a desired username here.
+    NORMAL_USER_PASSWORD='<em class="replaceable">PASSWORD_HASH</em>'
+    SSH_USER_PUBLIC_KEY=ssh_key.pub
+    
+    ## Register to SUSE Customer Center and install additional packages
+    REG_EMAIL='tux@suse.com' ## Email address for product registration
+    SLMICRO_REGCODE='<em class="replaceable">REGISTRATIONCODE</em>' ## A registration code required to install additional packages
+    ADDITIONAL_PACKAGES='' ## A space separated list of additional packages to install
+    
+    
+    nm_config() {
+      umask 077 # Required for Network Manager configuration
+      mkdir -p /etc/NetworkManager/system-connections/
+      cat &gt;'/etc/NetworkManager/system-connections/Wired connection 1.nmconnection' &lt;&lt;EOF
+      [connection]
+      id=static
+      type=ethernet
+      autoconnect=true
+    
+      [ipv4]
+      method=manual
+      address1=$IPADDRESS
+      gateway=$GATEWAY
+      dns=$NAMESERVERS
+    EOF
+    }
+    
+    if [ "${1-}" = "--prepare" ]; then
+      # Configure Network Manager in the initrd
+      nm_config
+      # Enable OSA network devices
+      chzdev qeth $ZNET_SUBCHANNELS -ep
+      chzdev qeth $ZNET_SUBCHANNELS -e    
+      exit 0
+    fi
+    
+    
+    
+    ## Post output on stdout
+    exec &gt; &gt;(exec tee -a /dev/ttyS0) 2&gt;&amp;1
+    
+    ## Set hostname
+    echo $NODE_HOSTNAME &gt; /etc/hostname
+    
+    ## Set root password
+    echo root:$ROOT_USER_PASSWORD | chpasswd -e
+    ## Add ssh public key as authorized key for the root user
+    mkdir -pm700 /root/.ssh/
+    cat $SSH_ROOT_PUBLIC_KEY &gt;&gt; /root/.ssh/authorized_keys
+    
+    ## Mount /var and /home so user can be created smoothly
+    if [ "$CREATE_NORMAL_USER" ]
+    then
+      mount /var &amp;&amp; mount /home
+    fi
+    ## User creation
+    if [ "$CREATE_NORMAL_USER" ]
+    then
+      echo "User creation is requested, creating user."
+      useradd -m $CREATE_NORMAL_USER -s /bin/bash -g users
+      echo $CREATE_NORMAL_USER:$NORMAL_USER_PASSWORD | chpasswd -e
+      echo $CREATE_NORMAL_USER "ALL=(ALL) NOPASSWD: ALL" &gt;&gt; /etc/sudoers.d/adminusers
+      mkdir -pm700 /home/$CREATE_NORMAL_USER/.ssh/
+      chown -R $CREATE_NORMAL_USER:users /home/$CREATE_NORMAL_USER/.ssh/
+      cat $SSH_USER_PUBLIC_KEY &gt;&gt; /home/$CREATE_NORMAL_USER/.ssh/authorized_keys
+      echo "Requested user has been created, requested password has been set."
+    else
+      echo "No user will be created"
+    fi
+    
+    # Configure NM in the system
+    nm_config
+    # Enable OSA network device
+    chzdev qeth $ZNET_SUBCHANNELS -ep
+    chzdev qeth $ZNET_SUBCHANNELS -e
+    
+    ## Enable services
+    echo "Enabling services."
+    systemctl enable cockpit.socket
+    systemctl enable sshd
+    
+    ## Unmount var and home
+    if [ "$CREATE_NORMAL_USER" ]
+    then
+      umount /var &amp;&amp; umount /home
+    fi  
+    
+    # Close outputs and wait for tee to finish
+    exec 1&gt;&amp;- 2&gt;&amp;-; wait;
+    
+    echo "Configured with Combustion at $(date)" &gt; /etc/issue.d/combustion</pre></div></section></section></section><section xml:lang="en" class="sect2" id="deployment-configuring-with-ignition" data-id-title="Configuring SLE Micro deployment with Ignition"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.2 </span><span class="title-name">Configuring <span class="phrase"><span class="phrase">SLE Micro</span></span> deployment with Ignition</span></span> <a title="Permalink" class="permalink" href="#deployment-configuring-with-ignition">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        <a class="link" href="https://coreos.github.io/ignition/" target="_blank">Ignition</a>
+        is a provisioning tool that enables you to configure a system according
+        to your specification on the first boot.
+      </p></div></div></div></div><section class="sect3" id="how-it-works-ignition" data-id-title="How does Ignition work?"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">4.2.1 </span><span class="title-name">How does Ignition work?</span></span> <a title="Permalink" class="permalink" href="#how-it-works-ignition">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      When the system is booted for the first time, Ignition is loaded as
+      part of an <code class="filename">initramfs</code> and searches for a
+      configuration file within a specific directory (on a USB flash disk, or
+      you can provide a URL). All changes are performed before the kernel
+      switches from the temporary file system to the real root file system
+      (before the <code class="literal">switch_root</code> command is issued).
+    </p><p>
+      Ignition uses a configuration file in the JSON format named
+      <code class="filename">config.ign</code>. You can either write the configuration
+      manually or use the Fuel Ignition Web application at
+      <a class="link" href="https://ignite.opensuse.org" target="_blank">https://ignite.opensuse.org</a> to generate it.
+    </p><div id="id-1.5.6.2.4" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important</div><p>
+        Fuel Ignition does not cover the complete Ignition vocabulary yet,
+        and the resulting JSON file may need additional manual tweaking.
+      </p></div><section class="sect4" id="deployment-ignition-config-file" data-id-title="config.ign"><div class="titlepage"><div><div><div class="title-container"><h5 class="title"><span class="title-number-name"><span class="title-number">4.2.1.1 </span><span class="title-name"><code class="filename">config.ign</code></span></span> <a title="Permalink" class="permalink" href="#deployment-ignition-config-file">#</a></h5><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        The configuration file
+        <code class="filename">config.ign</code> must reside in the
+        <code class="filename">ignition</code> subdirectory on the configuration media, for example, a USB
+        stick labeled <code class="literal">ignition</code>. The directory structure must look as follows:
+      </p><div class="verbatim-wrap"><pre class="screen">&lt;root directory&gt;
+└── ignition
+    └── config.ign</pre></div><div id="id-1.5.6.2.5.4" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
+          To create a disk image with the Ignition configuration, you can use
+          the Fuel Ignition Web application at https://ignite.opensuse.org.
+        </p></div><p>
+        The <code class="filename">config.ign</code> contains multiple data types:
+        objects, strings, integers, booleans and lists of objects. For a
+        complete specification, refer to
+        <a class="link" href="https://coreos.github.io/ignition/configuration-v3_3/" target="_blank">Ignition
+        specification v3.3.0</a>.
+      </p><p>
+        The <code class="literal">version</code> attribute is mandatory and in case of
+        <span class="phrase"><span class="phrase">SLE Micro</span></span>, its value must be set either to
+        <code class="literal">3.4.0</code> or to any lower version. Otherwise, Ignition
+        will fail.
+      </p><p>
+        To log in to your system as <code class="systemitem">root</code>, you must at least
+        include a password for <code class="systemitem">root</code>. However, it is recommended to
+        establish access via SSH keys. To configure a password, make sure to
+        use a secure one. If you use a randomly generated password, use at
+        least 10 characters. If you create your password manually, use even
+        more than 10 characters and combine uppercase and lowercase letters and
+        numbers.
+      </p></section></section><section xml:lang="en" class="sect3" id="reference-ignition-configuration" data-id-title="Ignition configuration examples"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">4.2.2 </span><span class="title-name">Ignition configuration examples</span></span> <a title="Permalink" class="permalink" href="#reference-ignition-configuration">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      This section provides several examples of the Ignition configuration in
+       the built-in JSON format.
+    </p><div id="id-1.5.6.3.3" data-id-title="The version attribute is mandatory" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: The <code class="literal">version</code> attribute is mandatory</div><p>
+        Each <code class="filename">config.ign</code> must include version 3.4.0 or
+        lower that is then converted to the corresponding Ignition
+        specification.
+      </p></div><section xml:lang="en" class="sect4" id="id-1.5.6.3.4" data-id-title="Default partitioning"><div class="titlepage"><div><div><div class="title-container"><h5 class="title"><span class="title-number-name"><span class="title-number">4.2.2.1 </span><span class="title-name">Default partitioning</span></span> <a title="Permalink" class="permalink" href="#id-1.5.6.3.4">#</a></h5><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Each image has the following subvolumes:
+  </p><div class="verbatim-wrap"><pre class="screen">/home
+/root
+/opt
+/srv
+/usr/local
+/var</pre></div><p>
+    The <code class="literal">/etc</code> directory is mounted as overlayFS, where the
+    upper directory is mounted to <code class="filename">/var/lib/overlay/1/etc/</code>.
+  </p><p>
+    You can recognize the subvolumes mounted by default by the option
+    <code class="literal">x-initrd.mount</code> in <code class="filename">/etc/fstab</code>. Other
+    subvolumes or partitions must be configured either by Ignition or
+    Combustion.
+  </p><p>
+    If you want to
+        add a new user or modify any of the files on a subvolume that is not
+        mounted by default, you need to declare such subvolume first so that it
+        is mounted as well.
+  </p></section><section class="sect4" id="sec-ignition-storage" data-id-title="Storage configuration"><div class="titlepage"><div><div><div class="title-container"><h5 class="title"><span class="title-number-name"><span class="title-number">4.2.2.2 </span><span class="title-name">Storage configuration</span></span> <a title="Permalink" class="permalink" href="#sec-ignition-storage">#</a></h5><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        The <code class="literal">storage</code> attribute is used to configure
+        partitions, RAID, define file systems, create files, etc. To define
+        partitions, use the <code class="literal">disks</code> attribute. The
+        <code class="literal">filesystems</code> attribute is used to format partitions. The
+        <code class="literal">files</code> attribute can be used to create files in the
+        file system. Each of the mentioned attributes is described in the
+        following sections.
+      </p><section class="sect5" id="sec-storage-disks" data-id-title="The disks attribute"><div class="titlepage"><div><div><div class="title-container"><h6 class="title"><span class="title-number-name"><span class="title-number">4.2.2.2.1 </span><span class="title-name">The <code class="literal">disks</code> attribute</span></span> <a title="Permalink" class="permalink" href="#sec-storage-disks">#</a></h6><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+          The <code class="literal">disks</code> attribute is a list of devices that
+          enables you to define partitions on these devices. The
+          <code class="literal">disks</code> attribute must contain at least one
+          <code class="literal">device</code>, other attributes are optional. The
+          following example uses a single virtual device and divides the
+          disk into four partitions:
+        </p><div class="verbatim-wrap"><pre class="screen">{
+  "ignition": {
+    "version": "3.0.0"
+  },
+  "storage": {
+    "disks": [
+      {
+        "device": "/dev/vda",
+        "partitions": [
+          {
+            "label": "root",
+            "number": 1,
+            "typeGuid": "4F68BCE3-E8CD-4DB1-96E7-FBCAF984B709"
+          },
+          {
+            "label": "boot",
+            "number": 2,
+            "typeGuid": "BC13C2FF-59E6-4262-A352-B275FD6F7172"
+          },
+          {
+            "label": "swap",
+            "number": 3,
+            "typeGuid": "0657FD6D-A4AB-43C4-84E5-0933C84B4F4F"
+          },
+          {
+            "label": "home",
+            "number": 4,
+            "typeGuid": "933AC7E1-2EB4-4F13-B844-0E14E2AEF915"
+          }
+        ],
+        "wipeTable": true
+      }
+    ]
+  }
+}</pre></div></section><section class="sect5" id="sec-storage-raid" data-id-title="The raid attribute"><div class="titlepage"><div><div><div class="title-container"><h6 class="title"><span class="title-number-name"><span class="title-number">4.2.2.2.2 </span><span class="title-name">The <code class="literal">raid</code> attribute</span></span> <a title="Permalink" class="permalink" href="#sec-storage-raid">#</a></h6><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+          The <code class="literal">raid</code> is a list of RAID arrays. The following
+          attributes of <code class="literal">raid</code> are mandatory:
+        </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.5.6.3.5.4.3.1"><span class="term">level</span></dt><dd><p>
+                a level of the particular RAID array (linear, raid0, raid1,
+                raid2, raid3, raid4, raid5, raid6)
+              </p></dd><dt id="id-1.5.6.3.5.4.3.2"><span class="term">devices</span></dt><dd><p>
+                a list of devices in the array referenced by their absolute
+                paths
+              </p></dd><dt id="id-1.5.6.3.5.4.3.3"><span class="term">name</span></dt><dd><p>
+                a name that will be used for the md device
+              </p></dd></dl></div><p>
+         For example:
+        </p><div class="verbatim-wrap"><pre class="screen">{
+  "ignition": {
+    "version": "3.0.0"
+  },
+  "storage": {
+    "raid": [
+      {
+        "devices": [
+          "/dev/sda",
+          "/dev/sdb"
+        ],
+        "level": "raid1",
+        "name": "system"
+      }
+    ]
+  }
+}</pre></div></section><section class="sect5" id="sec-storage-filesystem" data-id-title="The filesystems attribute"><div class="titlepage"><div><div><div class="title-container"><h6 class="title"><span class="title-number-name"><span class="title-number">4.2.2.2.3 </span><span class="title-name">The <code class="literal">filesystems</code> attribute</span></span> <a title="Permalink" class="permalink" href="#sec-storage-filesystem">#</a></h6><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div id="id-1.5.6.3.5.5.2" data-id-title="Ignition does not perform modifications to mount units" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Ignition does not perform modifications to mount units</div><p>
+            The <code class="literal">file system</code> attribute does not modify mount units. If you add a new partition or remove an
+            existing partition, you must manually adjust the mount units. 
+          </p></div><p>
+          <code class="literal">filesystems</code> must contain the following attributes:
+        </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.5.6.3.5.5.4.1"><span class="term">device</span></dt><dd><p>
+                the absolute path to the device, typically
+                <code class="literal">/dev/sda</code> in case of physical disk
+              </p></dd><dt id="id-1.5.6.3.5.5.4.2"><span class="term">format</span></dt><dd><p>
+                the file system format (Btrfs, Ext4, xfs, vfat or swap)
+              </p><div id="id-1.5.6.3.5.5.4.2.2.2" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+                  In case of <span class="phrase"><span class="phrase">SLE Micro</span></span>, the <code class="literal">root</code>
+                  file system must be formatted to Btrfs.
+                </p></div></dd></dl></div><p>
+          The following example demonstrates using the
+          <code class="literal">filesystems</code> attribute. The
+          <code class="filename">/opt</code> directory will be mounted to the
+          <code class="literal">/dev/sda1</code> partition, which is formatted to Btrfs.
+          The device will not be erased.
+        </p><p>
+          For example:
+        </p><div class="verbatim-wrap"><pre class="screen">{
+  "ignition": {
+    "version": "3.0.0"
+  },
+  "storage": {
+    "filesystems": [
+      {
+        "device": "/dev/sda1",
+        "format": "btrfs",
+        "path": "/opt",
+        "wipeFilesystem": false
+      }
+    ]
+  }
+}</pre></div><p>
+          Normally, a regular user's home directory is located in the
+          <code class="filename">/home/<em class="replaceable">USER_NAME</em></code>
+          directory. Since <code class="filename">/home</code> is not mounted by default
+          in the initrd, the mount has to be explicitly defined for the user
+          creation to succeed:
+        </p><div class="verbatim-wrap"><pre class="screen">{
+  "ignition": {
+    "version": "3.1.0"
+  },
+  "passwd": {
+    "users": [
+      {
+        "name": "root",
+        "passwordHash": "<em class="replaceable">PASSWORD_HASH</em>",
+        "sshAuthorizedKeys": [
+          "ssh-rsa <em class="replaceable">SSH_KEY_HASH</em>"
+        ]
+      }
+    ]
+  },
+  "storage": {
+    "filesystems": [
+      {
+        "device": "/dev/sda3",
+        "format": "btrfs",
+        "mountOptions": [
+          "subvol=/@/home"
+        ],
+        "path": "/home",
+        "wipeFilesystem": false
+      }
+    ]
+  }
+}</pre></div></section><section class="sect5" id="sec-storage-files" data-id-title="The files attribute"><div class="titlepage"><div><div><div class="title-container"><h6 class="title"><span class="title-number-name"><span class="title-number">4.2.2.2.4 </span><span class="title-name">The <code class="literal">files</code> attribute</span></span> <a title="Permalink" class="permalink" href="#sec-storage-files">#</a></h6><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+          You can use the <code class="literal">files</code> attribute to create any
+          files on your machine. Bear in mind that to create files
+          outside the default partitioning schema, you need to define the
+          directories by using the <code class="literal">filesystems</code> attribute.
+        </p><p>
+          In the following example, a host name is created by using the
+          <code class="literal">files</code> attribute. The file
+          <code class="filename">/etc/hostname</code> will be created with the
+          <span class="emphasis"><em>sl-micro1</em></span> host name:
+        </p><div id="id-1.5.6.3.5.6.4" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important</div><p>
+            Keep in mind that JSON accepts file modes in decimal numbers, for
+            example, <code class="literal">420</code>.
+          </p></div><p>
+          JSON:
+        </p><div class="verbatim-wrap"><pre class="screen">{
+  "ignition": {
+    "version": "3.0.0"
+  },
+  "storage": {
+    "files": [
+      {
+        "overwrite": true,
+        "path": "/etc/hostname",
+        "contents": {
+          "source": "data:,sl-micro1"
+        },
+        "mode": 420
+      }
+    ]
+  }
+}</pre></div></section><section class="sect5" id="sec-storage-directories" data-id-title="The directories attribute"><div class="titlepage"><div><div><div class="title-container"><h6 class="title"><span class="title-number-name"><span class="title-number">4.2.2.2.5 </span><span class="title-name">The <code class="literal">directories</code> attribute</span></span> <a title="Permalink" class="permalink" href="#sec-storage-directories">#</a></h6><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+          The <code class="literal">directories</code> attribute is a list of directories
+          that will be created in the file system. The
+          <code class="literal">directories</code> attribute must contain at least one
+          <code class="literal">path</code> attribute.
+        </p><p>
+          For example:
+        </p><div class="verbatim-wrap"><pre class="screen">{
+  "ignition": {
+    "version": "3.0.0"
+  },
+  "storage": {
+    "directories": [
+      {
+        "path": "/home/tux",
+        "user": {
+          "name": "tux"
+        }
+      }
+    ]
+  }
+}</pre></div></section></section><section class="sect4" id="sec-ignition-users" data-id-title="Users administration"><div class="titlepage"><div><div><div class="title-container"><h5 class="title"><span class="title-number-name"><span class="title-number">4.2.2.3 </span><span class="title-name">Users administration</span></span> <a title="Permalink" class="permalink" href="#sec-ignition-users">#</a></h5><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        The <code class="literal">passwd</code> attribute is used to add users. As some services, such as Cockpit, require login using a non-root user, define at
+        least one unprivileged user here. Alternatively, you can create such a user from a running
+        system as described in <a class="xref" href="#deployment-postinstall-adding-users" title="6.2. Adding users">Section 6.2, “Adding users”</a>.
+      </p><p>
+        To log in to your system, create <code class="systemitem">root</code> and a regular user and set their
+        passwords. You need to hash the passwords, for example, by
+        using the <code class="command">openssl</code> command:
+      </p><div class="verbatim-wrap"><pre class="screen"> openssl passwd -6</pre></div><p>
+        The command creates a hash of the password you chose. Use this hash as
+        the value of the <code class="literal">password_hash</code> attribute.
+      </p><p>
+       For example:
+      </p><div class="verbatim-wrap"><pre class="screen">{
+  "ignition": {
+    "version": "3.0.0"
+  },
+  "passwd": {
+    "users": [
+      {
+        "name": "root",
+        "passwordHash": "<em class="replaceable">PASSWORD_HASH</em>",
+        "sshAuthorizedKeys": [
+          "ssh-rsa <em class="replaceable">SSH_KEY_HASH</em> <em class="replaceable">USER</em>@<em class="replaceable">HOST</em>"
+        ]
+      }
+    ]
+  }
+}</pre></div><p>
+        The <code class="literal">users</code> attribute must contain at least one
+        <code class="literal">name</code> attribute.
+        <code class="literal">ssh_authorized_keys</code> is a list of ssh keys for the
+        user.
+      </p></section><section class="sect4" id="sec-ignition-systemd" data-id-title="Enabling systemd services"><div class="titlepage"><div><div><div class="title-container"><h5 class="title"><span class="title-number-name"><span class="title-number">4.2.2.4 </span><span class="title-name">Enabling <code class="literal">systemd</code> services</span></span> <a title="Permalink" class="permalink" href="#sec-ignition-systemd">#</a></h5><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        You can enable <code class="systemitem">systemd</code> services by specifying them in the
+        <code class="literal">systemd</code> attribute.
+      </p><p>
+        For example:
+      </p><div class="verbatim-wrap"><pre class="screen">{
+  "ignition": {
+    "version": "3.0.0"
+  },
+  "systemd": {
+    "units": [
+      {
+        "enabled": true,
+        "name": "sshd.service"
+      }
+    ]
+  }
+}</pre></div></section><section xml:lang="en" class="sect4" id="deployment-convert-yaml-to-json" data-id-title="Converting YAML formatted files into JSON"><div class="titlepage"><div><div><div class="title-container"><h5 class="title"><span class="title-number-name"><span class="title-number">4.2.2.5 </span><span class="title-name">Converting YAML formatted files into JSON</span></span> <a title="Permalink" class="permalink" href="#deployment-convert-yaml-to-json">#</a></h5><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        JSON is a universal file format for storing structured data.
+        Applications, for example, Ignition, use it to store and retrieve
+        their configuration. Because JSON's syntax is complex and hard to read
+        for human beings, you can write the configuration in a more friendly
+        format called YAML and then convert it into JSON.
+      </p></div></div></div></div><section class="sect5" id="deployment-converting-config" data-id-title="Converting YAML files into JSON format"><div class="titlepage"><div><div><div class="title-container"><h6 class="title"><span class="title-number-name"><span class="title-number">4.2.2.5.1 </span><span class="title-name">Converting YAML files into JSON format</span></span> <a title="Permalink" class="permalink" href="#deployment-converting-config">#</a></h6><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The tool that converts Ignition-specific vocabularies in YAML files
+      into JSON format is <code class="literal">butane</code>. It also verifies the
+      syntax of the YAML file to catch potential errors in the structure. For
+      the latest version of <code class="literal">butane</code>, add the following
+      repository:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  zypper ar -f \
+  https://download.opensuse.org/repositories/devel:/kubic:/ignition/openSUSE_Tumbleweed/ \
+  devel_kubic_ignition</pre></div><p>
+      Replace <code class="literal">openSUSE_Tumbleweed</code> with one of the following
+      (depending on your distribution):
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          <code class="literal">'openSUSE_Leap_$releasever'</code>
+        </p></li><li class="listitem"><p>
+          <code class="literal">15.5</code>
+        </p></li></ul></div><p>
+      Now you can install the <code class="literal">butane</code> tool:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  zypper ref &amp;&amp; zypper in butane</pre></div><p>
+      After the installation is complete, you can invoke
+      <code class="literal">butane</code> by running:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code> butane -p -o config.ign config.fcc</pre></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          <code class="filename">config.fcc</code> is the path to the YAML configuration
+          file.
+        </p></li><li class="listitem"><p>
+          <code class="filename">config.ign</code> is the path to the output JSON
+          configuration file.
+        </p></li><li class="listitem"><p>
+          The <code class="option">-p</code> command option adds line breaks to the output
+          file and thus makes it more readable.
+        </p></li></ul></div></section></section></section></section></section><section xml:lang="en" class="sect1" id="deployment-raw-ibmz-dasd-deploying-image" data-id-title="Deploying the raw disk image on the disk"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Deploying the raw disk image on the disk</span></span> <a title="Permalink" class="permalink" href="#deployment-raw-ibmz-dasd-deploying-image">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    To deploy <span class="phrase"><span class="phrase">SUSE Linux Enterprise Micro</span></span> on your machine, proceed as
+    follows:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Download the raw disk image using <code class="command">wget</code> or
+        <code class="command">curl</code>. For example:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>curl -L0kO</pre></div></li><li class="step"><p>
+        Extract the image:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>unpack xz -d <em class="replaceable">BUILD_IDENTIFICATION</em>.raw.xz</pre></div></li><li class="step"><p>
+        Export a variable that finds and stores the 20 GB device name.
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>export SMDASD=$(lsdasd -s | grep 20480MB | tr -s [:blank:] | cut -d' ' -f3)</pre></div></li><li class="step"><p>
+        Format the disk:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            If the disk is formatted for the first time:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>dasdfmt -b 4096 -y -p /dev/$SMDASD</pre></div></li><li class="listitem"><p>
+            If the disk was previously formatted:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>dasdfmt -b 4096 -M quick -y -p /dev/$SMDASD</pre></div></li></ul></div></li><li class="step"><p>
+        Copy the raw disk image to the disk:
+      </p><div class="verbatim-wrap"><pre class="screen">dd if=<em class="replaceable">IMAGE_NAME</em>.raw status=progress
+of=/dev/dasdc bs=4k</pre></div></li><li class="step"><p>
+        Shut down the running Linux:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>init 0</pre></div></li><li class="step"><p>
+        Start <span class="phrase"><span class="phrase">SUSE Linux Enterprise Micro</span></span> by booting the second DASD minidisk in an x3270
+        terminal:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>ipl 101</pre></div></li></ol></div></div></section><section class="sect1" id="id-1.7" data-id-title="Post-deployment steps"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Post-deployment steps</span></span> <a title="Permalink" class="permalink" href="#id-1.7">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><section xml:lang="en" class="sect2" id="deployment-registering-system" data-id-title="Registering SLE Micro from CLI"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.1 </span><span class="title-name">Registering <span class="phrase"><span class="phrase">SLE Micro</span></span> from CLI</span></span> <a title="Permalink" class="permalink" href="#deployment-registering-system">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+              If your system was not registered during the deployment process
+              by using the Combustion <code class="filename">script</code>, you can
+              register from the running system.
+            </p></div></div></div></div><p>
+    To register <span class="phrase"><span class="phrase">SUSE Linux Enterprise Micro</span></span> with SUSE Customer Center, proceed as follows:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Run <code class="command">transactional-update register</code> as follows:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>transactional-update register -r <em class="replaceable">REGISTRATION_CODE</em> -e <em class="replaceable">EMAIL_ADDRESS</em></pre></div><p>
+        To register with a local registration server, additionally provide the
+        URL to the server:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>transactional-update register -r <em class="replaceable">REGISTRATION_CODE</em> -e <em class="replaceable">EMAIL_ADDRESS</em> \
+ --url "https://suse_register.example.com/"</pre></div><p>
+        Replace <em class="replaceable">REGISTRATION_CODE</em> with the
+        registration code you received with your copy of <span class="phrase"><span class="phrase">SUSE Linux Enterprise Micro</span></span>. Replace
+        <em class="replaceable">EMAIL_ADDRESS</em> with the e-mail address
+        associated with the SUSE account you or your organization uses to
+        manage subscriptions.
+      </p></li><li class="step"><p>
+        Reboot your system to switch to the latest snapshot.
+      </p></li><li class="step"><p>
+        <span class="phrase"><span class="phrase">SUSE Linux Enterprise Micro</span></span> is now registered.
+      </p></li></ol></div></div><div id="id-1.7.2.4" data-id-title="Other registration options" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Other registration options</div><p>
+      For information that goes beyond the scope of this section, refer to the
+      inline documentation with <code class="command">SUSEConnect --help</code>.
+    </p></div></section><section xml:lang="en" class="sect2" id="deployment-postinstall-adding-users" data-id-title="Adding users"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.2 </span><span class="title-name">Adding users</span></span> <a title="Permalink" class="permalink" href="#deployment-postinstall-adding-users">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        As <span class="phrase"><span class="phrase">SUSE Linux Enterprise Micro</span></span> requires having a non-privileged user to log in via SSH or to access Cockpit, you need to create such an account.
+      </p></div></div></div></div><p>
+    This step is optional if you have defined an unprivileged user in the
+    Combustion.
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Run the <code class="command">useradd</code> command as follows:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">useradd -m <em class="replaceable">USER_NAME</em></code></pre></div></li><li class="step"><p>
+        Set a password for that account:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>passwd <em class="replaceable">USER_NAME</em></pre></div></li><li class="step"><p>
+        If needed, add the user to the <code class="literal">wheel</code> group:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>usermod -aG wheel <em class="replaceable">USER_NAME</em></pre></div></li></ol></div></div></section></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p> Copyright© 2006–2024
+ SUSE LLC and contributors.
+  All rights reserved. </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy.  Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section><div class="legal-section"><section class="appendix" translate="no" id="doc-gfdl-license" data-id-title="GNU Free Documentation License"><div class="titlepage"><div><div><h1 class="title">GNU Free Documentation License</h1></div></div></div><p>
+  Copyright (C) 2000, 2001, 2002 Free Software Foundation, Inc. 51 Franklin St,
+  Fifth Floor, Boston, MA 02110-1301 USA. Everyone is permitted to copy and
+  distribute verbatim copies of this license document, but changing it is not
+  allowed.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.3"><span class="name">
+    0. PREAMBLE
+  </span><a title="Permalink" class="permalink" href="#id-1.9.3">#</a></h5></div><p>
+  The purpose of this License is to make a manual, textbook, or other
+  functional and useful document "free" in the sense of freedom: to assure
+  everyone the effective freedom to copy and redistribute it, with or without
+  modifying it, either commercially or non-commercially. Secondarily, this
+  License preserves for the author and publisher a way to get credit for their
+  work, while not being considered responsible for modifications made by
+  others.
+ </p><p>
+  This License is a kind of "copyleft", which means that derivative works of
+  the document must themselves be free in the same sense. It complements the
+  GNU General Public License, which is a copyleft license designed for free
+  software.
+ </p><p>
+  We have designed this License to use it for manuals for free software,
+  because free software needs free documentation: a free program should come
+  with manuals providing the same freedoms that the software does. But this
+  License is not limited to software manuals; it can be used for any textual
+  work, regardless of subject matter or whether it is published as a printed
+  book. We recommend this License principally for works whose purpose is
+  instruction or reference.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.7"><span class="name">
+    1. APPLICABILITY AND DEFINITIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.9.7">#</a></h5></div><p>
+  This License applies to any manual or other work, in any medium, that
+  contains a notice placed by the copyright holder saying it can be distributed
+  under the terms of this License. Such a notice grants a world-wide,
+  royalty-free license, unlimited in duration, to use that work under the
+  conditions stated herein. The "Document", below, refers to any such manual or
+  work. Any member of the public is a licensee, and is addressed as "you". You
+  accept the license if you copy, modify or distribute the work in a way
+  requiring permission under copyright law.
+ </p><p>
+  A "Modified Version" of the Document means any work containing the Document
+  or a portion of it, either copied verbatim, or with modifications and/or
+  translated into another language.
+ </p><p>
+  A "Secondary Section" is a named appendix or a front-matter section of the
+  Document that deals exclusively with the relationship of the publishers or
+  authors of the Document to the Document's overall subject (or to related
+  matters) and contains nothing that could fall directly within that overall
+  subject. (Thus, if the Document is in part a textbook of mathematics, a
+  Secondary Section may not explain any mathematics.) The relationship could be
+  a matter of historical connection with the subject or with related matters,
+  or of legal, commercial, philosophical, ethical or political position
+  regarding them.
+ </p><p>
+  The "Invariant Sections" are certain Secondary Sections whose titles are
+  designated, as being those of Invariant Sections, in the notice that says
+  that the Document is released under this License. If a section does not fit
+  the above definition of Secondary then it is not allowed to be designated as
+  Invariant. The Document may contain zero Invariant Sections. If the Document
+  does not identify any Invariant Sections then there are none.
+ </p><p>
+  The "Cover Texts" are certain short passages of text that are listed, as
+  Front-Cover Texts or Back-Cover Texts, in the notice that says that the
+  Document is released under this License. A Front-Cover Text may be at most 5
+  words, and a Back-Cover Text may be at most 25 words.
+ </p><p>
+  A "Transparent" copy of the Document means a machine-readable copy,
+  represented in a format whose specification is available to the general
+  public, that is suitable for revising the document straightforwardly with
+  generic text editors or (for images composed of pixels) generic paint
+  programs or (for drawings) some widely available drawing editor, and that is
+  suitable for input to text formatters or for automatic translation to a
+  variety of formats suitable for input to text formatters. A copy made in an
+  otherwise Transparent file format whose markup, or absence of markup, has
+  been arranged to thwart or discourage subsequent modification by readers is
+  not Transparent. An image format is not Transparent if used for any
+  substantial amount of text. A copy that is not "Transparent" is called
+  "Opaque".
+ </p><p>
+  Examples of suitable formats for Transparent copies include plain ASCII
+  without markup, Texinfo input format, LaTeX input format, SGML or XML using a
+  publicly available DTD, and standard-conforming simple HTML, PostScript or
+  PDF designed for human modification. Examples of transparent image formats
+  include PNG, XCF and JPG. Opaque formats include proprietary formats that can
+  be read and edited only by proprietary word processors, SGML or XML for which
+  the DTD and/or processing tools are not generally available, and the
+  machine-generated HTML, PostScript or PDF produced by some word processors
+  for output purposes only.
+ </p><p>
+  The "Title Page" means, for a printed book, the title page itself, plus such
+  following pages as are needed to hold, legibly, the material this License
+  requires to appear in the title page. For works in formats which do not have
+  any title page as such, "Title Page" means the text near the most prominent
+  appearance of the work's title, preceding the beginning of the body of the
+  text.
+ </p><p>
+  A section "Entitled XYZ" means a named subunit of the Document whose title
+  either is precisely XYZ or contains XYZ in parentheses following text that
+  translates XYZ in another language. (Here XYZ stands for a specific section
+  name mentioned below, such as "Acknowledgements", "Dedications",
+  "Endorsements", or "History".) To "Preserve the Title" of such a section when
+  you modify the Document means that it remains a section "Entitled XYZ"
+  according to this definition.
+ </p><p>
+  The Document may include Warranty Disclaimers next to the notice which states
+  that this License applies to the Document. These Warranty Disclaimers are
+  considered to be included by reference in this License, but only as regards
+  disclaiming warranties: any other implication that these Warranty Disclaimers
+  may have is void and has no effect on the meaning of this License.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.18"><span class="name">
+    2. VERBATIM COPYING
+  </span><a title="Permalink" class="permalink" href="#id-1.9.18">#</a></h5></div><p>
+  You may copy and distribute the Document in any medium, either commercially
+  or non-commercially, provided that this License, the copyright notices, and
+  the license notice saying this License applies to the Document are reproduced
+  in all copies, and that you add no other conditions whatsoever to those of
+  this License. You may not use technical measures to obstruct or control the
+  reading or further copying of the copies you make or distribute. However, you
+  may accept compensation in exchange for copies. If you distribute a large
+  enough number of copies you must also follow the conditions in section 3.
+ </p><p>
+  You may also lend copies, under the same conditions stated above, and you may
+  publicly display copies.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.21"><span class="name">
+    3. COPYING IN QUANTITY
+  </span><a title="Permalink" class="permalink" href="#id-1.9.21">#</a></h5></div><p>
+  If you publish printed copies (or copies in media that commonly have printed
+  covers) of the Document, numbering more than 100, and the Document's license
+  notice requires Cover Texts, you must enclose the copies in covers that
+  carry, clearly and legibly, all these Cover Texts: Front-Cover Texts on the
+  front cover, and Back-Cover Texts on the back cover. Both covers must also
+  clearly and legibly identify you as the publisher of these copies. The front
+  cover must present the full title with all words of the title equally
+  prominent and visible. You may add other material on the covers in addition.
+  Copying with changes limited to the covers, as long as they preserve the
+  title of the Document and satisfy these conditions, can be treated as
+  verbatim copying in other respects.
+ </p><p>
+  If the required texts for either cover are too voluminous to fit legibly, you
+  should put the first ones listed (as many as fit reasonably) on the actual
+  cover, and continue the rest onto adjacent pages.
+ </p><p>
+  If you publish or distribute Opaque copies of the Document numbering more
+  than 100, you must either include a machine-readable Transparent copy along
+  with each Opaque copy, or state in or with each Opaque copy a
+  computer-network location from which the general network-using public has
+  access to download using public-standard network protocols a complete
+  Transparent copy of the Document, free of added material. If you use the
+  latter option, you must take reasonably prudent steps, when you begin
+  distribution of Opaque copies in quantity, to ensure that this Transparent
+  copy will remain thus accessible at the stated location until at least one
+  year after the last time you distribute an Opaque copy (directly or through
+  your agents or retailers) of that edition to the public.
+ </p><p>
+  It is requested, but not required, that you contact the authors of the
+  Document well before redistributing any large number of copies, to give them
+  a chance to provide you with an updated version of the Document.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.26"><span class="name">
+    4. MODIFICATIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.9.26">#</a></h5></div><p>
+  You may copy and distribute a Modified Version of the Document under the
+  conditions of sections 2 and 3 above, provided that you release the Modified
+  Version under precisely this License, with the Modified Version filling the
+  role of the Document, thus licensing distribution and modification of the
+  Modified Version to whoever possesses a copy of it. In addition, you must do
+  these things in the Modified Version:
+ </p><div class="orderedlist"><ol class="orderedlist" type="A"><li class="listitem"><p>
+    Use in the Title Page (and on the covers, if any) a title distinct from
+    that of the Document, and from those of previous versions (which should, if
+    there were any, be listed in the History section of the Document). You may
+    use the same title as a previous version if the original publisher of that
+    version gives permission.
+   </p></li><li class="listitem"><p>
+    List on the Title Page, as authors, one or more persons or entities
+    responsible for authorship of the modifications in the Modified Version,
+    together with at least five of the principal authors of the Document (all
+    of its principal authors, if it has fewer than five), unless they release
+    you from this requirement.
+   </p></li><li class="listitem"><p>
+    State on the Title page the name of the publisher of the Modified Version,
+    as the publisher.
+   </p></li><li class="listitem"><p>
+    Preserve all the copyright notices of the Document.
+   </p></li><li class="listitem"><p>
+    Add an appropriate copyright notice for your modifications adjacent to the
+    other copyright notices.
+   </p></li><li class="listitem"><p>
+    Include, immediately after the copyright notices, a license notice giving
+    the public permission to use the Modified Version under the terms of this
+    License, in the form shown in the Addendum below.
+   </p></li><li class="listitem"><p>
+    Preserve in that license notice the full lists of Invariant Sections and
+    required Cover Texts given in the Document's license notice.
+   </p></li><li class="listitem"><p>
+    Include an unaltered copy of this License.
+   </p></li><li class="listitem"><p>
+    Preserve the section Entitled "History", Preserve its Title, and add to it
+    an item stating at least the title, year, new authors, and publisher of the
+    Modified Version as given on the Title Page. If there is no section
+    Entitled "History" in the Document, create one stating the title, year,
+    authors, and publisher of the Document as given on its Title Page, then add
+    an item describing the Modified Version as stated in the previous sentence.
+   </p></li><li class="listitem"><p>
+    Preserve the network location, if any, given in the Document for public
+    access to a Transparent copy of the Document, and likewise the network
+    locations given in the Document for previous versions it was based on.
+    These may be placed in the "History" section. You may omit a network
+    location for a work that was published at least four years before the
+    Document itself, or if the original publisher of the version it refers to
+    gives permission.
+   </p></li><li class="listitem"><p>
+    For any section Entitled "Acknowledgements" or "Dedications", Preserve the
+    Title of the section, and preserve in the section all the substance and
+    tone of each of the contributor acknowledgements and/or dedications given
+    therein.
+   </p></li><li class="listitem"><p>
+    Preserve all the Invariant Sections of the Document, unaltered in their
+    text and in their titles. Section numbers or the equivalent are not
+    considered part of the section titles.
+   </p></li><li class="listitem"><p>
+    Delete any section Entitled "Endorsements". Such a section may not be
+    included in the Modified Version.
+   </p></li><li class="listitem"><p>
+    Do not retitle any existing section to be Entitled "Endorsements" or to
+    conflict in title with any Invariant Section.
+   </p></li><li class="listitem"><p>
+    Preserve any Warranty Disclaimers.
+   </p></li></ol></div><p>
+  If the Modified Version includes new front-matter sections or appendices that
+  qualify as Secondary Sections and contain no material copied from the
+  Document, you may at your option designate some or all of these sections as
+  invariant. To do this, add their titles to the list of Invariant Sections in
+  the Modified Version's license notice. These titles must be distinct from any
+  other section titles.
+ </p><p>
+  You may add a section Entitled "Endorsements", provided it contains nothing
+  but endorsements of your Modified Version by various parties--for example,
+  statements of peer review or that the text has been approved by an
+  organization as the authoritative definition of a standard.
+ </p><p>
+  You may add a passage of up to five words as a Front-Cover Text, and a
+  passage of up to 25 words as a Back-Cover Text, to the end of the list of
+  Cover Texts in the Modified Version. Only one passage of Front-Cover Text and
+  one of Back-Cover Text may be added by (or through arrangements made by) any
+  one entity. If the Document already includes a cover text for the same cover,
+  previously added by you or by arrangement made by the same entity you are
+  acting on behalf of, you may not add another; but you may replace the old
+  one, on explicit permission from the previous publisher that added the old
+  one.
+ </p><p>
+  The author(s) and publisher(s) of the Document do not by this License give
+  permission to use their names for publicity for or to assert or imply
+  endorsement of any Modified Version.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.33"><span class="name">
+    5. COMBINING DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.9.33">#</a></h5></div><p>
+  You may combine the Document with other documents released under this
+  License, under the terms defined in section 4 above for modified versions,
+  provided that you include in the combination all of the Invariant Sections of
+  all of the original documents, unmodified, and list them all as Invariant
+  Sections of your combined work in its license notice, and that you preserve
+  all their Warranty Disclaimers.
+ </p><p>
+  The combined work need only contain one copy of this License, and multiple
+  identical Invariant Sections may be replaced with a single copy. If there are
+  multiple Invariant Sections with the same name but different contents, make
+  the title of each such section unique by adding at the end of it, in
+  parentheses, the name of the original author or publisher of that section if
+  known, or else a unique number. Make the same adjustment to the section
+  titles in the list of Invariant Sections in the license notice of the
+  combined work.
+ </p><p>
+  In the combination, you must combine any sections Entitled "History" in the
+  various original documents, forming one section Entitled "History"; likewise
+  combine any sections Entitled "Acknowledgements", and any sections Entitled
+  "Dedications". You must delete all sections Entitled "Endorsements".
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.37"><span class="name">
+    6. COLLECTIONS OF DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.9.37">#</a></h5></div><p>
+  You may make a collection consisting of the Document and other documents
+  released under this License, and replace the individual copies of this
+  License in the various documents with a single copy that is included in the
+  collection, provided that you follow the rules of this License for verbatim
+  copying of each of the documents in all other respects.
+ </p><p>
+  You may extract a single document from such a collection, and distribute it
+  individually under this License, provided you insert a copy of this License
+  into the extracted document, and follow this License in all other respects
+  regarding verbatim copying of that document.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.40"><span class="name">
+    7. AGGREGATION WITH INDEPENDENT WORKS
+  </span><a title="Permalink" class="permalink" href="#id-1.9.40">#</a></h5></div><p>
+  A compilation of the Document or its derivatives with other separate and
+  independent documents or works, in or on a volume of a storage or
+  distribution medium, is called an "aggregate" if the copyright resulting from
+  the compilation is not used to limit the legal rights of the compilation's
+  users beyond what the individual works permit. When the Document is included
+  in an aggregate, this License does not apply to the other works in the
+  aggregate which are not themselves derivative works of the Document.
+ </p><p>
+  If the Cover Text requirement of section 3 is applicable to these copies of
+  the Document, then if the Document is less than one half of the entire
+  aggregate, the Document's Cover Texts may be placed on covers that bracket
+  the Document within the aggregate, or the electronic equivalent of covers if
+  the Document is in electronic form. Otherwise they must appear on printed
+  covers that bracket the whole aggregate.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.43"><span class="name">
+    8. TRANSLATION
+  </span><a title="Permalink" class="permalink" href="#id-1.9.43">#</a></h5></div><p>
+  Translation is considered a kind of modification, so you may distribute
+  translations of the Document under the terms of section 4. Replacing
+  Invariant Sections with translations requires special permission from their
+  copyright holders, but you may include translations of some or all Invariant
+  Sections in addition to the original versions of these Invariant Sections.
+  You may include a translation of this License, and all the license notices in
+  the Document, and any Warranty Disclaimers, provided that you also include
+  the original English version of this License and the original versions of
+  those notices and disclaimers. In case of a disagreement between the
+  translation and the original version of this License or a notice or
+  disclaimer, the original version will prevail.
+ </p><p>
+  If a section in the Document is Entitled "Acknowledgements", "Dedications",
+  or "History", the requirement (section 4) to Preserve its Title (section 1)
+  will typically require changing the actual title.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.46"><span class="name">
+    9. TERMINATION
+  </span><a title="Permalink" class="permalink" href="#id-1.9.46">#</a></h5></div><p>
+  You may not copy, modify, sublicense, or distribute the Document except as
+  expressly provided for under this License. Any other attempt to copy, modify,
+  sublicense or distribute the Document is void, and will automatically
+  terminate your rights under this License. However, parties who have received
+  copies, or rights, from you under this License will not have their licenses
+  terminated so long as such parties remain in full compliance.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.48"><span class="name">
+    10. FUTURE REVISIONS OF THIS LICENSE
+  </span><a title="Permalink" class="permalink" href="#id-1.9.48">#</a></h5></div><p>
+  The Free Software Foundation may publish new, revised versions of the GNU
+  Free Documentation License from time to time. Such new versions will be
+  similar in spirit to the present version, but may differ in detail to address
+  new problems or concerns. See
+  <a class="link" href="https://www.gnu.org/copyleft/" target="_blank">https://www.gnu.org/copyleft/</a>.
+ </p><p>
+  Each version of the License is given a distinguishing version number. If the
+  Document specifies that a particular numbered version of this License "or any
+  later version" applies to it, you have the option of following the terms and
+  conditions either of that specified version or of any later version that has
+  been published (not as a draft) by the Free Software Foundation. If the
+  Document does not specify a version number of this License, you may choose
+  any version ever published (not as a draft) by the Free Software Foundation.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.51"><span class="name">
+    ADDENDUM: How to use this License for your documents
+  </span><a title="Permalink" class="permalink" href="#id-1.9.51">#</a></h5></div><div class="verbatim-wrap"><pre class="screen">Copyright (c) YEAR YOUR NAME.
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+A copy of the license is included in the section entitled “GNU
+Free Documentation License”.</pre></div><p>
+  If you have Invariant Sections, Front-Cover Texts and Back-Cover Texts,
+  replace the “with...Texts.” line with this:
+ </p><div class="verbatim-wrap"><pre class="screen">with the Invariant Sections being LIST THEIR TITLES, with the
+Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.</pre></div><p>
+  If you have Invariant Sections without Cover Texts, or some other combination
+  of the three, merge those two alternatives to suit the situation.
+ </p><p>
+  If your document contains nontrivial examples of program code, we recommend
+  releasing these examples in parallel under your choice of free software
+  license, such as the GNU General Public License, to permit their use in free
+  software.
+</p></section></div></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="#deployment-about-pre-built-images"><span class="title-number">1 </span><span class="title-name">About pre-built images</span></a></span></li><li><span class="section"><a href="#deployment-raw-ibmz-dasd-overview"><span class="title-number">2 </span><span class="title-name">Deployment of <span class="phrase"><span class="phrase">SLE Micro</span></span></span></a></span></li><li><span class="section"><a href="#id-1.4"><span class="title-number">3 </span><span class="title-name">Preparing the machine</span></a></span></li><li><span class="section"><a href="#deployment-raw-ibmz-dasd-preparing-configuration"><span class="title-number">4 </span><span class="title-name">Preparing the configuration disk</span></a></span></li><li><span class="section"><a href="#deployment-raw-ibmz-dasd-deploying-image"><span class="title-number">5 </span><span class="title-name">Deploying the raw disk image on the disk</span></a></span></li><li><span class="section"><a href="#id-1.7"><span class="title-number">6 </span><span class="title-name">Post-deployment steps</span></a></span></li><li><span class="section"><a href="#legal-disclaimer"><span class="title-number">7 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="#doc-gfdl-license"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-fb" href="#" title="Facebook"> </a></li><li><a id="_share-in" href="#" title="LinkedIn"> </a></li><li><a id="_share-tw" href="#" title="Twitter/X"> </a></li><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE
+                 2024</span></div></div></footer></body></html>
