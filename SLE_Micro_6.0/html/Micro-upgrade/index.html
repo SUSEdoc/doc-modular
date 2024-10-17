@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><title>Upgrading SLE Micro from Previous Releases</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style.css"/>
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
+<meta name="title" content="Upgrading SLE Micro from Previous Releases"/>
+<meta name="description" content="Upgrading from SLE Micro 5.X releases to SLE Micro 6.X releases"/>
+<meta name="book-title" content="Upgrading SLE Micro from Previous Releases"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="jsindelarova@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Micro 6.0"/>
+<meta name="publisher" content="SUSE"/><meta name="DC.creator" content="jsindelarova@suse.com"/><meta property="og:title" content="Upgrade procedure for SLE Micro"/>
+<meta property="og:description" content="Upgrade procedure for SLE Micro"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Upgrade procedure for SLE Micro"/>
+<meta name="twitter:description" content="Upgrade procedure for SLE Micro"/>
+<script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    
+     "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    
+    "inLanguage": "en",
+    
+
+    "headline": "Upgrade procedure for SLE Micro",
+  
+    "description": "Upgrading from SLE Micro 5.X releases to SLE Micro 6.X releases",
+      
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    ],
+      
+    "dateModified": "2024-03-14T00:00+02:00",
+      
+    "datePublished": "2024-03-14T00:00+02:00",
+      
+
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Upgrade &amp; Update"
+      }
+    ],
+  
+    "mentions": [
+      
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Micro",
+        "softwareVersion": "6.0",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, AArch64, POWER"
+        
+      }
+      
+    ],
+    
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><script type="text/javascript">
+
+if ( window.location.protocol.toLowerCase() != 'file:' ) {
+  document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>');
+};
+
+</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"/></noscript><script src="static/js/script-purejs.js" type="text/javascript"> </script><script src="static/js/highlight.min.js" type="text/javascript"> </script><script>
+
+$(document).ready(function() {
+  $('.verbatim-wrap.highlight').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+hljs.configure({
+  useBR: false
+});
+
+</script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Upgrading SLE Micro from Previous Releases</a></div></div><main id="_content"><nav id="_side-toc-overall" class="side-toc"><div class="side-title">Upgrading <span class="phrase"><span class="phrase">SLE Micro</span></span> from Previous Releases</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="upgrading-slemicro" data-id-title="Upgrading SLE Micro from Previous Releases"><div class="titlepage"><div><div><h1 class="title">Upgrading <span class="phrase"><span class="phrase">SLE Micro</span></span> from Previous Releases</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>17 Oct 2024</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+                This document offers a comprehensive guide to upgrading
+                <span class="phrase"><span class="phrase">SLE Micro</span></span> from version 5.5 to version 6.0, detailing
+                the preparatory steps, upgrade process, and potential rollback
+                options.
+              </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
+                You want to have the new release of <span class="phrase"><span class="phrase">SLE Micro</span></span>.
+              </p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                It takes approximately 20 minutes to read the article.
+              </p></dd><dt id="id-1.1.12.1.4"><span class="term">GOAL</span></dt><dd><p>
+                A new running release of <span class="phrase"><span class="phrase">SLE Micro</span></span>.
+              </p></dd><dt id="id-1.1.12.1.5"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                    A registered SLE Micro version 5.5
+                  </p></li><li class="listitem"><p>
+                    NetworkManager as the network managing service
+                  </p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History" hreflang="en" href="rh-upgrading-slemicro.html" target="_blank">Revision History: Upgrading SLE Micro from Previous Releases</a></div></div></div></div><section xml:lang="en" class="sect1" id="upgrading-micro-about" data-id-title="Introduction to the upgrade procedure"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Introduction to the upgrade procedure</span></span> <a title="Permalink" class="permalink" href="index.html#upgrading-micro-about">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    SUSE supports upgrades between two releases of <span class="phrase"><span class="phrase">SUSE Linux Enterprise Micro</span></span>. Whether it
+    is better to upgrade or perform a fresh installation depends on your
+    specific scenario. While upgrades involve less work, fresh installations
+    ensure you benefit from all the new features of a release, such as disk
+    layout changes, specific filesystem features, and other improvements. To
+    get the most out of your system, SUSE therefore recommends fresh
+    installations in most scenarios.
+  </p><p>
+    SUSE releases a new version of <span class="phrase"><span class="phrase">SLE Micro</span></span> twice a year and the
+    product comes with 4 years of general support (for details regarding
+    <span class="phrase"><span class="phrase">SLE Micro</span></span> lifecycle, refer to
+    <a class="link" href="https://www.suse.com/lifecycle" target="_blank">https://www.suse.com/lifecycle</a>).
+  </p><p>
+    <span class="phrase"><span class="phrase">SLE Micro</span></span> uses <span class="emphasis"><em>transactional updates</em></span> to
+    upgrade from one version to the next. This has the following advantages:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        Canceling is possible until you reboot your system.
+      </p></li><li class="listitem"><p>
+        Simple recovery if there is an error.
+      </p></li><li class="listitem"><p>
+        Possible <span class="quote">“<span class="quote">rollback</span>”</span> via system tools—no backup or
+        restore needed.
+      </p></li><li class="listitem"><p>
+        Use of all active repositories.
+      </p></li></ul></div></section><section xml:lang="en" class="sect1" id="upgrading-micro-preparation" data-id-title="Preparing SLE Micro for upgrade"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Preparing <span class="phrase"><span class="phrase">SLE Micro</span></span> for upgrade</span></span> <a title="Permalink" class="permalink" href="index.html#upgrading-micro-preparation">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Before you start the upgrade procedure of <span class="phrase"><span class="phrase">SLE Micro</span></span>, you need
+        to perform checks as described in this section.
+      </p></div></div></div></div><section class="sect2" id="upgrading-micro-preparation-version" data-id-title="Identify the SLE Micro version"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">Identify the <span class="phrase"><span class="phrase">SLE Micro</span></span> version</span></span> <a title="Permalink" class="permalink" href="index.html#upgrading-micro-preparation-version">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      To check the <span class="phrase"><span class="phrase">SLE Micro</span></span> version, view the file
+      <code class="filename">/etc/os-release</code>. Machine-readable XML output is
+      available with <code class="command">zypper</code>:
+    </p><div class="verbatim-wrap"><pre class="screen">      <code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper --no-remote --no-refresh --xmlout --non-interactive products
+      -i</code>
+      
+&lt;?xml version='1.0'?&gt;
+&lt;stream&gt;
+&lt;message type="info"&gt;Ignoring repository 'SLE-Micro-5.5-Debuginfo-Pool' because of 'no-remote' option.&lt;/message&gt;
+&lt;message type="info"&gt;Ignoring repository 'SLE-Micro-5.5-Debuginfo-Updates' because of 'no-remote' option.&lt;/message&gt;
+&lt;message type="info"&gt;Ignoring repository 'SLE-Micro-5.5-Pool' because of 'no-remote' option.&lt;/message&gt;
+&lt;message type="info"&gt;Ignoring repository 'SLE-Micro-5.5-Source-Pool' because of 'no-remote' option.&lt;/message&gt;
+&lt;message type="info"&gt;Ignoring repository 'SLE-Micro-5.5-Updates' because of 'no-remote' option.&lt;/message&gt;
+&lt;message type="info"&gt;Loading repository data...&lt;/message&gt;
+&lt;message type="info"&gt;Reading installed packages...&lt;/message&gt;
+&lt;product-list&gt;
+&lt;product name="SLE-Micro" version="5.5" release="1" epoch="0" arch="x86_64" vendor="SUSE" summary="SUSE Linux Enterprise Micro 5.5" repo="@System" productline="SLE-Micro" registerrelease="" shortname="SUSE Linux Enterprise Micro" flavor="" isbase="true" installed="true"&gt;&lt;endoflife time_t="1809043200" text="2027-04-30T00:00:00Z"/&gt;&lt;registerflavor/&gt;&lt;description&gt;SUSE Linux Enterprise Micro 5.5&lt;/description&gt;&lt;/product&gt;
+&lt;/product-list&gt;
+&lt;/stream&gt;</pre></div></section><section class="sect2" id="upgrading-micro-preparation-release-notes" data-id-title="Read the release notes"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.2 </span><span class="title-name">Read the release notes</span></span> <a title="Permalink" class="permalink" href="index.html#upgrading-micro-preparation-release-notes">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Find a list of all changes, new features, and known issues in the
+      <a class="link" href="https://www.suse.com/releasenotes/" target="_blank">release
+      notes</a>. You can also find the release notes on the installation
+      media in the <code class="filename">docu</code> directory.
+    </p><p>
+      The release notes usually only contain the changes between two subsequent
+      releases.
+    </p><p>
+      Check the release notes to see whether:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          your hardware needs special considerations
+        </p></li><li class="listitem"><p>
+          any used software packages have changed significantly
+        </p></li><li class="listitem"><p>
+          special precautions are necessary for your installation
+        </p></li></ul></div></section><section class="sect2" id="upgrading-micro-preparation-registration" data-id-title="Register the machine"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.3 </span><span class="title-name">Register the machine</span></span> <a title="Permalink" class="permalink" href="index.html#upgrading-micro-preparation-registration">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      On registration, the system receives repositories from the SUSE Customer Center (see
+      <a class="link" href="https://scc.suse.com/" target="_blank">https://scc.suse.com/</a>) or a local registration proxy like SMT.
+      The repository names map to specific URIs in the customer center. To list
+      all available repositories on your system, use <code class="command">zypper</code>
+      as follows:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">zypper</code> repos -u</pre></div><p>
+      This gives you a list of all available repositories on your system. Each
+      repository is listed by its alias, name and whether it is enabled and
+      will be refreshed. The option <code class="option">-u</code> also gives you the URI
+      from where it originated.
+    </p><p>
+      To register your machine, run the <code class="command">transactional-update</code>
+      command as follows:
+    </p><div class="verbatim-wrap"><pre class="screen"> <code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">transactional-update</code> register -r <em class="replaceable">REGCODE</em></pre></div><p>
+      To check your locally installed products and their status, use the
+      following command:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">SUSEConnect</code> -s</pre></div></section><section class="sect2" id="upgrading-micro-preparation-patching" data-id-title="Update the system"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.4 </span><span class="title-name">Update the system</span></span> <a title="Permalink" class="permalink" href="index.html#upgrading-micro-preparation-patching">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Upgrading the system is only supported from the most recent patch level.
+      Make sure the latest system updates are installed by running:
+    </p><div class="verbatim-wrap"><pre class="screen">      <code class="prompt user">&gt; </code><code class="command">sudo</code> transactional-update patch</pre></div></section><section class="sect2" id="upgrading-micro-preparation-backup" data-id-title="Make a backup"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.5 </span><span class="title-name">Make a backup</span></span> <a title="Permalink" class="permalink" href="index.html#upgrading-micro-preparation-backup">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Before upgrading, back up your data by copying the existing configuration
+      files to a separate medium (such as tape device or removable hard disk).
+      This primarily applies to files stored in <code class="filename">/etc</code> and
+      some directories and files in <code class="filename">/var</code> and
+      <code class="filename">/opt</code>. You may also want to write the user data in
+      <code class="filename">/home</code> (the <code class="envar">HOME</code> directories) to a
+      backup medium.
+    </p><p>
+      Back up all data as <code class="systemitem">root</code>. Only <code class="systemitem">root</code> has sufficient
+      permissions for all local files.
+    </p></section><section class="sect2" id="upgrading-micro-preparation-disk-size" data-id-title="Check disk size"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.6 </span><span class="title-name">Check disk size</span></span> <a title="Permalink" class="permalink" href="index.html#upgrading-micro-preparation-disk-size">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Software tends to grow from version to version. Therefore, take a look at
+      the available partition space before updating. If you suspect you are
+      running short of disk space, back up your data before increasing the
+      available space by resizing partitions, for example. There is no general
+      rule regarding how much space each partition should have. Space
+      requirements depend on your particular partitioning profile and the
+      software selected.
+    </p><p>
+      On a Btrfs file system, the output of <code class="command">df</code> can be
+      misleading, because in addition to the space the raw data allocates, a
+      Btrfs file system also allocates and uses space for metadata.
+    </p><p>
+      Consequently, a Btrfs file system may report being out of space even
+      though it seems that plenty of space is still available. In that case,
+      all space allocated for the metadata is used up.
+    </p><p>
+      Make sure there is enough free space as the root file system uses Btrfs
+      and might consume a significant amount of space. Check the available
+      space on all mounted partitions. In the worst case, an upgrade needs as
+      much disk space as the current root file system (without
+      <code class="filename">/.snapshot</code>) for a new snapshot.
+    </p><p>
+      The following recommendations have been proven:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          For all file systems, including Btrfs, you need enough free disk
+          space to download and install big RPMs. The space of old RPMs is only
+          freed after new RPMs are installed.
+        </p></li><li class="listitem"><p>
+          For Btrfs with snapshots, ensure you have at least as much free space
+          as your current installation requires. We recommend having twice as
+          much free space as the current installation.
+        </p><p>
+          If you do not have enough free space, you can try to delete old
+          snapshots with <code class="command">snapper</code>:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">snapper</code> list
+<code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">snapper</code> delete NUMBER</pre></div><p>
+          However, this may not help in all cases. Before migration, most
+          snapshots occupy only little space.
+        </p></li></ul></div></section><section class="sect2" id="upgrading-micro-preparation-shutdown" data-id-title="Shut down virtual machine guests"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.7 </span><span class="title-name">Shut down virtual machine guests</span></span> <a title="Permalink" class="permalink" href="index.html#upgrading-micro-preparation-shutdown">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      If your machine serves as a VM Host Server for KVM, make sure to properly
+      shut down all running VM Guests prior to the update. Otherwise, you may
+      not be able to access the guests after the update.
+    </p></section></section><section xml:lang="en" class="sect1" id="upgrading-micro-procedure" data-id-title="Upgrading to a new release"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Upgrading to a new release</span></span> <a title="Permalink" class="permalink" href="index.html#upgrading-micro-procedure">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    Before starting the upgrade procedure, make sure the following requirements
+    are met:
+  </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.4.3.1"><span class="term">Internet connection</span></dt><dd><p>
+          Make sure that your machine has a network connection throughout the
+          entire upgrade process.
+        </p></dd><dt id="id-1.4.3.2"><span class="term">SLE Micro 5.5</span></dt><dd><p>
+          The upgrade to 6.0 is possible only from the 5.5 version. If you have
+          an older version, upgrade to 5.5 first (see the
+          <a class="link" href="https://documentation.suse.com/sle-micro/5.5/html/SLE-Micro-all/book-upgrade-slemicro.html" target="_blank">Upgrade
+          Guide</a>).
+        </p></dd></dl></div><p>
+    To start the upgrade process, proceed as follows:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Run the command:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">transactional-update migration</code></pre></div><p>
+        Invoking the command creates a new snapshot and refreshes the
+        repositories.
+      </p></li><li class="step"><p>
+        Enter the number of the migration target.
+      </p></li><li class="step"><p>
+        A list of packages to be changed is displayed. Press
+        <code class="literal">y</code> to continue.
+      </p></li><li class="step"><p>
+        If the process completes successfully, reboot your machine:
+      </p><div class="verbatim-wrap"><pre class="screen">            <code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">reboot</code></pre></div></li></ol></div></div><div id="id-1.4.6" data-id-title="Failed upgrade" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Failed upgrade</div><p>
+      If the upgrade procedure fails, you can roll back your system to a
+      previous snapshot. Refer to the
+      <a class="link" href="https://documentation.suse.com/smart/systems-management/html/transactional-updates-marble/index.html#tr-up-rollback" target="_blank">rollback
+      procedure</a>.
+    </p></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p> Copyright© 2006–2024
+ SUSE LLC and contributors.
+  All rights reserved. </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy.  Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#upgrading-micro-about"><span class="title-number">1 </span><span class="title-name">Introduction to the upgrade procedure</span></a></span></li><li><span class="section"><a href="index.html#upgrading-micro-preparation"><span class="title-number">2 </span><span class="title-name">Preparing <span class="phrase"><span class="phrase">SLE Micro</span></span> for upgrade</span></a></span></li><li><span class="section"><a href="index.html#upgrading-micro-procedure"><span class="title-number">3 </span><span class="title-name">Upgrading to a new release</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">4 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-fb" href="#" title="Facebook"> </a></li><li><a id="_share-in" href="#" title="LinkedIn"> </a></li><li><a id="_share-tw" href="#" title="Twitter/X"> </a></li><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE
+                 2024</span></div></div></footer></body></html>

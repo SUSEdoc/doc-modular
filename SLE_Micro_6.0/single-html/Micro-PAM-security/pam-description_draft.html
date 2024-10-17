@@ -1,0 +1,944 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Authentication with PAM</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style.css"/>
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
+<meta name="title" content="Authentication with PAM"/>
+<meta name="description" content="PAM is used in the authentication process as a layer that mediates the access between the user and application."/>
+<meta name="book-title" content="Authentication with PAM"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="amrita.sakthivel@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Micro 6.0"/>
+<meta name="publisher" content="SUSE"/><meta name="DC.creator" content="amrita.sakthivel@suse.com"/><meta property="og:title" content="A description of PAM, its usage and configuration."/>
+<meta property="og:description" content="Learn how the PAM authentication mechanism works."/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="A description of PAM, its usage and configuration."/>
+<meta name="twitter:description" content="Learn how the PAM authentication mechanism works."/>
+<script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    
+     "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    
+    "inLanguage": "en",
+    
+
+    "headline": "A description of PAM, its usage and configuration.",
+  
+    "description": "PAM is used in the authentication process as a layer that mediates the access between the user and application.",
+      
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    ],
+      
+    "dateModified": "2024-08-15T00:00+02:00",
+      
+    "datePublished": "2024-08-15T00:00+02:00",
+      
+
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Authentication"
+      },
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      }
+    ],
+  
+    "mentions": [
+      
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server",
+        "softwareVersion": "15 SP6",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER"
+        
+      }
+      ,
+      
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Micro",
+        "softwareVersion": "6.0",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER"
+        
+      }
+      
+    ],
+    
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<script type="text/javascript">
+
+if ( window.location.protocol.toLowerCase() != 'file:' ) {
+  document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>');
+};
+
+</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"/></noscript><script src="static/js/script-purejs.js" type="text/javascript"> </script><script src="static/js/highlight.min.js" type="text/javascript"> </script><script>
+
+$(document).ready(function() {
+  $('.verbatim-wrap.highlight').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+hljs.configure({
+  useBR: false
+});
+
+</script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#pam-description">Authentication with PAM</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="pam-description" data-id-title="Authentication with PAM"><div class="titlepage"><div><div><h1 class="title">Authentication with PAM</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>17 Oct 2024</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+              Linux uses PAM (pluggable authentication modules) in the authentication
+        process as a layer that mediates between user and application. This article describes the PAM concept, structure of PAM configuration and usage of tools for configuring PAM.
+            </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
+              You want to know how to set up a PAM module and configure your system to use the U2F keys.
+            </p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                It takes approximately 20 minutes to read the article.
+              </p></dd><dt id="id-1.1.12.1.4"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                    To set up the authentication using the U2F keys, you need to have either YubiKeys or Security Keys.
+                  </p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History" hreflang="en" href="rh-pam-description.html" target="_blank">Revision History: Authentication with PAM</a></div></div></div></div><section xml:lang="en" class="sect1" id="pam-about" data-id-title="Introduction to PAM"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Introduction to PAM</span></span> <a title="Permalink" class="permalink" href="#pam-about">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    System administrators and programmers often want to restrict access to
+    certain parts of the system or to limit the use of certain functions of an
+    application. Without PAM, applications must be adapted every time a new
+    authentication mechanism, such as LDAP, Samba, or Kerberos, is introduced.
+    However, this process is time-consuming and error-prone. One way to avoid
+    these drawbacks is to separate applications from the authentication
+    mechanism and delegate authentication to centrally managed modules.
+    Whenever a newly required authentication scheme is needed, it is sufficient
+    to adapt or write a suitable <span class="emphasis"><em>PAM module</em></span> for use by the
+    program in question.
+  </p><p>
+    The PAM concept consists of:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        <span class="emphasis"><em>PAM modules</em></span>, which are a set of shared libraries
+        for a specific authentication mechanism.
+      </p></li><li class="listitem"><p>
+        A <span class="emphasis"><em>module stack</em></span> with one or more PAM modules.
+      </p></li><li class="listitem"><p>
+        A PAM-aware <span class="emphasis"><em>service</em></span> which needs authentication by
+        using a module stack or PAM modules. Usually a service is a familiar
+        name of the corresponding application, like <code class="command">login</code> or
+        <code class="command">su</code>. The service name <code class="literal">other</code> is a
+        reserved word for default rules.
+      </p></li><li class="listitem"><p>
+        <span class="emphasis"><em>Module arguments</em></span>, with which the execution of a
+        single PAM module can be influenced.
+      </p></li><li class="listitem"><p>
+        A mechanism evaluating each <span class="emphasis"><em>result</em></span> of a single PAM
+        module execution. A positive value executes the next PAM module. The
+        way a negative value is dealt with depends on the configuration:
+        <span class="quote">“<span class="quote">no influence, proceed</span>”</span> up to <span class="quote">“<span class="quote">terminate
+        immediately</span>”</span> and anything in between are valid options.
+      </p></li></ul></div></section><section xml:lang="en" class="sect1" id="pam-configuration-files" data-id-title="Structure of PAM configuration"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Structure of PAM configuration</span></span> <a title="Permalink" class="permalink" href="#pam-configuration-files">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    PAM on <span class="phrase"><span class="phrase">SLE Micro</span></span> comes with a so-called directory based
+    configuration. The set of configuration files is stored in
+    <code class="filename">/etc/pam.d</code>. Every service (or program) that relies on
+    the PAM mechanism has its own configuration file in this directory. For
+    example, the service for <code class="systemitem">sshd</code> can
+    be found in the <code class="filename">/etc/pam.d/sshd</code> file.
+  </p><div id="id-1.3.3" data-id-title="File-based configuration (/etc/pam.conf) not used on SLE Micro" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: File-based configuration (<code class="filename">/etc/pam.conf</code>) not used on <span class="phrase"><span class="phrase">SLE Micro</span></span></div><p>
+      The configuration of each service can be also stored in
+      <code class="filename">/etc/pam.conf</code>. However, for maintenance and
+      usability reasons, this configuration scheme is not used in
+      <span class="phrase"><span class="phrase">SUSE Linux Enterprise Micro</span></span>.
+    </p></div><p>
+    The files under <code class="filename">/etc/pam.d/</code> define the PAM modules
+    used for authentication. Each file consists of lines, which define a
+    service, and each line consists of a maximum of four components:
+  </p><div class="verbatim-wrap"><pre class="screen"><em class="replaceable">TYPE</em>  <em class="replaceable">CONTROL</em>
+ <em class="replaceable">MODULE_PATH</em>  <em class="replaceable">MODULE_ARGS</em></pre></div><p>
+    The components have the following meaning:
+  </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.3.7.1"><span class="term"><em class="replaceable">TYPE</em></span></dt><dd><p>
+          Declares the type of the service. PAM modules are processed as
+          stacks. Different types of modules have different purposes. For
+          example, one module checks the password, another verifies the
+          location from which the system is accessed, and yet another reads
+          user-specific settings. PAM knows about four different types of
+          modules:
+        </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.3.7.1.2.2.1"><span class="term"><code class="literal">auth</code></span></dt><dd><p>
+                Check the user's authenticity, traditionally by querying a
+                password. However, this can also be achieved with a chip card
+                or through biometrics (for example, fingerprints or iris scan).
+              </p></dd><dt id="id-1.3.7.1.2.2.2"><span class="term"><code class="literal">account</code></span></dt><dd><p>
+                Modules of this type check if the user has general permission
+                to use the requested service. As an example, such a check
+                should be performed to ensure that no one can log in with the
+                user name of an expired account.
+              </p></dd><dt id="id-1.3.7.1.2.2.3"><span class="term"><code class="literal">password</code></span></dt><dd><p>
+                The purpose of this type of module is to enable the change of
+                an authentication token. Usually this is a password.
+              </p></dd><dt id="id-1.3.7.1.2.2.4"><span class="term"><code class="literal">session</code></span></dt><dd><p>
+                Modules of this type are responsible for managing and
+                configuring user sessions. They are started before and after
+                authentication to log login attempts and configure the user's
+                specific environment.
+              </p></dd></dl></div></dd><dt id="id-1.3.7.2"><span class="term"><em class="replaceable">CONTROL</em></span></dt><dd><p>
+          Indicates the behavior of a PAM module. Each module can have the
+          following control flags:
+        </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.3.7.2.2.2.1"><span class="term"><code class="literal">required</code></span></dt><dd><p>
+                A module with this flag must be successfully processed before
+                the authentication may proceed. After the failure of a module
+                with the <code class="literal">required</code> flag, all other modules
+                with the same flag are processed before the user receives a
+                message about the failure of the authentication attempt.
+              </p></dd><dt id="id-1.3.7.2.2.2.2"><span class="term"><code class="literal">requisite</code></span></dt><dd><p>
+                Modules having this flag must also be processed successfully,
+                in much the same way as a module with the
+                <code class="literal">required</code> flag. However, in case of failure a
+                module with this flag gives immediate feedback to the user and
+                no further modules are processed. In case of success, other
+                modules are subsequently processed, like any modules with the
+                <code class="literal">required</code> flag. The
+                <code class="literal">requisite</code> flag can be used as a basic filter
+                checking for the existence of certain conditions that are
+                essential for a correct authentication.
+              </p></dd><dt id="id-1.3.7.2.2.2.3"><span class="term"><code class="literal">sufficient</code></span></dt><dd><p>
+                After a module with this flag has been successfully processed,
+                the requesting application receives an immediate message about
+                the success and no further modules are processed, provided
+                there was no preceding failure of a module with the
+                <code class="literal">required</code> flag. The failure of a module with
+                the <code class="literal">sufficient</code> flag has no direct
+                consequences, in the sense that any subsequent modules are
+                processed in their respective order.
+              </p></dd><dt id="id-1.3.7.2.2.2.4"><span class="term"><code class="literal">optional</code></span></dt><dd><p>
+                The failure or success of a module with this flag does not have
+                any direct consequences. This can be useful for modules that
+                are only intended to display a message (for example, to tell
+                the user that mail has arrived) without taking any further
+                action.
+              </p></dd><dt id="id-1.3.7.2.2.2.5"><span class="term"><code class="literal">include</code></span></dt><dd><p>
+                If this flag is given, the file specified as argument is
+                inserted at this place.
+              </p></dd></dl></div></dd><dt id="id-1.3.7.3"><span class="term"><em class="replaceable">MODULE_PATH</em></span></dt><dd><p>
+          Contains a full file name of a PAM module. It does not need to be
+          specified explicitly, if the module is located in the default
+          directory <code class="filename">/lib/security</code> (for all 64-bit
+          platforms supported by <span class="phrase"><span class="phrase">SUSE Linux Enterprise Micro</span></span>, the directory is
+          <code class="filename">/lib64/security</code>).
+        </p></dd><dt id="id-1.3.7.4"><span class="term"><em class="replaceable">MODULE_ARGS</em></span></dt><dd><p>
+          Contains a space-separated list of options to influence the behavior
+          of a PAM module, such as <code class="option">debug</code> (enables debugging)
+          or <code class="option">nullok</code> (allows the use of empty passwords).
+        </p></dd></dl></div><p>
+    In addition, there are global configuration files for PAM modules under
+    <code class="filename">/etc/security</code>, which define the exact behavior of
+    these modules (examples include <code class="filename">pam_env.conf</code> and
+    <code class="filename">time.conf</code>). Every application that uses a PAM module
+    calls a set of PAM functions, which then process the information in the
+    configuration files and return the result to the requesting application.
+  </p><p>
+    To simplify the creation and maintenance of PAM modules, common default
+    configuration files for the types <code class="literal">auth</code>,
+    <code class="literal">account</code>, <code class="literal">password</code>, and
+    <code class="literal">session</code> modules have been introduced. These are
+    retrieved from every application's PAM configuration. Updates to the global
+    PAM configuration modules in <code class="filename">common-*</code> are thus
+    propagated across all PAM configuration files without requiring the
+    administrator to update every single PAM configuration file.
+  </p><p>
+    The global PAM configuration files are maintained using the
+    <code class="command">pam-config</code> tool. This tool automatically adds new
+    modules to the configuration, changes the configuration of existing ones or
+    deletes modules (or options) from the configurations. Manual intervention
+    in maintaining PAM configurations is minimized or no longer required.
+  </p><section xml:lang="en" class="sect2" id="pam-sshd-configuration" data-id-title="An example of PAM configuration"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">An example of PAM configuration</span></span> <a title="Permalink" class="permalink" href="#pam-sshd-configuration">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    To demonstrate a real use case example of PAM configuration, the
+    configuration of sshd has been used in this section:
+  </p><div class="example" id="dat-pam-sshd" data-id-title="PAM configuration for sshd (/etc/pam.d/sshd)"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 1: </span><span class="title-name">PAM configuration for sshd (<code class="filename">/etc/pam.d/sshd</code>) </span></span><a title="Permalink" class="permalink" href="#dat-pam-sshd">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">#%PAM-1.0 <span class="callout" id="co-security-pam-sshd-pam-line">1</span>
+auth     requisite      pam_nologin.so                              <span class="callout" id="co-security-pam-sshd-pam-nologin">2</span>
+auth     include        common-auth                                 <span class="callout" id="co-security-pam-sshd-common-auth">3</span>
+account  requisite      pam_nologin.so                              <a class="xref" href="#co-security-pam-sshd-pam-nologin"><span class="callout">2</span></a>
+account  include        common-account                              <a class="xref" href="#co-security-pam-sshd-common-auth"><span class="callout">3</span></a>
+password include        common-password                             <a class="xref" href="#co-security-pam-sshd-common-auth"><span class="callout">3</span></a>
+session  required       pam_loginuid.so                             <span class="callout" id="co-security-pam-sshd-pam-loginuid">4</span>
+session  include        common-session                              <a class="xref" href="#co-security-pam-sshd-common-auth"><span class="callout">3</span></a>
+session  optional       pam_lastlog.so   silent noupdate showfailed <span class="callout" id="co-security-pam-sshd-lastlog">5</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-security-pam-sshd-pam-line"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+          Declares the version of this configuration file for PAM 1.0. This is
+          merely a convention, but could be used in the future to check the
+          version.
+        </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-security-pam-sshd-pam-nologin"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+          Checks, if <code class="filename">/etc/nologin</code> exists. If it does, no
+          user other than <code class="systemitem">root</code> may log in.
+        </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-security-pam-sshd-common-auth"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+          Refers to the configuration files of four module types:
+          <code class="filename">common-auth</code>,
+          <code class="filename">common-account</code>,
+          <code class="filename">common-password</code>, and
+          <code class="filename">common-session</code>. These four files hold the
+          default configuration for each module type.
+        </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-security-pam-sshd-pam-loginuid"><span class="callout">4</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+          Sets the login UID process attribute for the process that was
+          authenticated.
+        </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-security-pam-sshd-lastlog"><span class="callout">5</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+          Displays information about the last login of a user.
+        </p></td></tr></table></div></div></div><p>
+    By including the configuration files instead of adding each module
+    separately to the respective PAM configuration, you automatically get an
+    updated PAM configuration when an administrator changes the defaults.
+  </p><p>
+    The first include file (<code class="filename">common-auth</code>) calls modules of
+    the <code class="literal">auth</code> type:
+    <code class="systemitem">pam_env.so</code>,
+    <code class="systemitem">pam_gnome_keyring.so</code> and
+    <code class="systemitem">pam_unix.so</code>. See
+    <a class="xref" href="#dat-pam-common-auth" title="Default configuration for the auth section (common-auth)">Example 2, “Default configuration for the <code class="literal">auth</code> section (<code class="filename">common-auth</code>)”</a>. Keep in mind that the modules may
+    differ according to your installation.
+  </p><div class="example" id="dat-pam-common-auth" data-id-title="Default configuration for the auth section (common-auth)"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 2: </span><span class="title-name">Default configuration for the <code class="literal">auth</code> section (<code class="filename">common-auth</code>) </span></span><a title="Permalink" class="permalink" href="#dat-pam-common-auth">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">auth  required  pam_env.so                   <span class="callout" id="co-security-pam-sshd-pam-env">1</span>
+auth  optional  pam_gnome_keyring.so         <span class="callout" id="co-security-pam-sshd-gnome">2</span>
+auth  required  pam_unix.so  try_first_pass <span class="callout" id="co-security-pam-sshd-pam-unix">3</span></pre></div></div></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-security-pam-sshd-pam-env"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+        <code class="systemitem">pam_env.so</code> loads
+        <code class="filename">/etc/security/pam_env.conf</code> to set the environment
+        variables as specified in this file. It can be used to set the
+        <code class="envar">DISPLAY</code> variable to the correct value, because the
+        <code class="systemitem">pam_env</code> module knows about the
+        location from which the login is taking place.
+      </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-security-pam-sshd-gnome"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+        <code class="systemitem">pam_gnome_keyring.so</code> checks
+        the user's login and password against the GNOME key ring
+      </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-security-pam-sshd-pam-unix"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+        <code class="systemitem">pam_unix</code> checks the user's
+        login and password against <code class="filename">/etc/passwd</code> and
+        <code class="filename">/etc/shadow</code>.
+      </p></td></tr></table></div><p>
+    The whole stack of <code class="literal">auth</code> modules is processed before
+    <code class="systemitem">sshd</code> gets any feedback about
+    whether the login has succeeded. All modules of the stack having the
+    <code class="literal">required</code> control flag must be processed successfully
+    before <code class="systemitem">sshd</code> receives a message
+    about the positive result. If one of the modules is not successful, the
+    entire module stack is still processed and only then is
+    <code class="systemitem">sshd</code> notified about the negative
+    result.
+  </p><p>
+    When all modules of the <code class="literal">auth</code> type have been successfully
+    processed, another include statement is processed, in this case, that in
+    <a class="xref" href="#dat-pam-common-account" title="Default configuration for the account section (common-account)">Example 3, “Default configuration for the <code class="literal">account</code> section (<code class="filename">common-account</code>)”</a>.
+    <code class="filename">common-account</code> contains only one module,
+    <code class="literal">pam_unix</code>. If <code class="literal">pam_unix</code> returns the
+    result that the user exists, sshd receives a message announcing this
+    success and the next stack of modules (<code class="literal">password</code>) is
+    processed, shown in
+    .
+  </p><div class="example" id="dat-pam-common-account" data-id-title="Default configuration for the account section (common-account)"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 3: </span><span class="title-name">Default configuration for the <code class="literal">account</code> section (<code class="filename">common-account</code>) </span></span><a title="Permalink" class="permalink" href="#dat-pam-common-account">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">account  required  pam_unix.so  try_first_pass</pre></div></div></div><p>
+    Again, the PAM configuration of
+    <code class="systemitem">sshd</code> involves only an include
+    statement referring to the default configuration for
+    <code class="literal">password</code> modules located in
+    <code class="filename">common-password</code>. These modules must successfully be
+    completed (control flags <code class="literal">requisite</code> and
+    <code class="literal">required</code>) whenever the application requests the change
+    of an authentication token.
+  </p><p>
+    Changing a password or another authentication token requires a security
+    check. This is achieved with the <code class="filename">pam_cracklib</code> module.
+    The <code class="filename">pam_unix</code> module used afterward carries over any
+    old and new passwords from <code class="filename">pam_cracklib</code>, so the user
+    does not need to authenticate again after changing the password. This
+    procedure makes it impossible to circumvent the checks carried out by
+    <code class="filename">pam_cracklib</code>. Whenever the <code class="literal">account</code>
+    or the <code class="literal">auth</code> type are configured to complain about
+    expired passwords, the <code class="literal">password</code> modules should also be
+    used.
+  </p><p>
+    As the final step, the modules of the <code class="literal">session</code> type
+    (bundled in the <code class="filename">common-session</code> file) are called to
+    configure the session according to the settings for the user in question.
+    The <code class="filename">pam_limits</code> module loads the file
+    <code class="filename">/etc/security/limits.conf</code>, which may define limits on
+    the use of certain system resources. The <code class="filename">pam_unix</code>
+    module is processed again. The <code class="filename">pam_umask</code> module can be
+    used to set the file mode creation mask. Since this module carries the
+    <code class="literal">optional</code> flag, a failure of this module would not affect
+    the successful completion of the entire session module stack. The
+    <code class="literal">session</code> modules are called a second time when the user
+    logs out.
+  </p></section></section><section xml:lang="en" class="sect1" id="pam-configuring-modules" data-id-title="Configuration of PAM modules"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Configuration of PAM modules</span></span> <a title="Permalink" class="permalink" href="#pam-configuring-modules">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    Some PAM modules are configurable. The configuration files are located in
+    <code class="filename">/etc/security</code>. This section briefly describes the
+    configuration files relevant to the sshd
+    example—<code class="filename">pam_env.conf</code> and
+    <code class="filename">limits.conf</code>.
+  </p><section class="sect2" id="pam-struc-conf-pamenv" data-id-title="pam_env.conf"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.1 </span><span class="title-name">pam_env.conf</span></span> <a title="Permalink" class="permalink" href="#pam-struc-conf-pamenv">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      <code class="filename">pam_env.conf</code> can be used to define a standardized
+      environment for users that is set whenever the
+      <code class="systemitem">pam_env</code> module is called. With it, preset
+      environment variables using the following syntax:
+    </p><div class="verbatim-wrap"><pre class="screen"><em class="replaceable">VARIABLE</em>  [DEFAULT=<em class="replaceable">VALUE</em>]  [OVERRIDE=<em class="replaceable">VALUE</em>]</pre></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.4.3.4.1"><span class="term"><em class="replaceable">VARIABLE</em></span></dt><dd><p>
+            Name of the environment variable to set.
+          </p></dd><dt id="id-1.4.3.4.2"><span class="term"><code class="systemitem">[DEFAULT=&lt;value&gt;]</code></span></dt><dd><p>
+            Default <em class="replaceable">VALUE</em> the administrator wants to
+            set.
+          </p></dd><dt id="id-1.4.3.4.3"><span class="term"><code class="systemitem">[OVERRIDE=&lt;value&gt;]</code></span></dt><dd><p>
+            Values that may be queried and set by
+            <code class="systemitem">pam_env</code>, overriding the default value.
+          </p></dd></dl></div><p>
+      A typical example of how <code class="systemitem">pam_env</code> can be used is
+      the adaptation of the <code class="envar">DISPLAY</code> variable, which is changed
+      whenever a remote login takes place. This is shown in
+      <a class="xref" href="#dat-pam-pamenv" title="pam_env.conf">Example 4, “pam_env.conf”</a>.
+    </p><div class="example" id="dat-pam-pamenv" data-id-title="pam_env.conf"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 4: </span><span class="title-name">pam_env.conf </span></span><a title="Permalink" class="permalink" href="#dat-pam-pamenv">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">REMOTEHOST  DEFAULT=localhost          OVERRIDE=@{PAM_RHOST}
+DISPLAY     DEFAULT=${REMOTEHOST}:0.0  OVERRIDE=${DISPLAY}</pre></div></div></div><p>
+      The first line sets the value of the <code class="envar">REMOTEHOST</code> variable
+      to <code class="literal">localhost</code>, which is used whenever
+      <code class="filename">pam_env</code> cannot determine any other value. The
+      <code class="envar">DISPLAY</code> variable in turn contains the value of
+      <code class="envar">REMOTEHOST</code>. Find more information in the comments in
+      <code class="filename">/etc/security/pam_env.conf</code>.
+    </p></section><section class="sect2" id="sec-pam-struc-pamlimits" data-id-title="limits.conf"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.2 </span><span class="title-name">limits.conf</span></span> <a title="Permalink" class="permalink" href="#sec-pam-struc-pamlimits">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      System limits can be set on a user or group basis in
+      <code class="filename">limits.conf</code>, which is read by the
+      <code class="systemitem">pam_limits</code> module. The file allows you to set
+      hard limits, which may not be exceeded, and soft limits, which may be
+      exceeded temporarily. For more information about the syntax and the
+      options, see the comments in
+      <code class="filename">/etc/security/limits.conf</code>.
+    </p></section></section><section xml:lang="en" class="sect1" id="pam-config-tool" data-id-title="Configuring PAM using pam-config"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Configuring PAM using <code class="command">pam-config</code></span></span> <a title="Permalink" class="permalink" href="#pam-config-tool">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    The <code class="command">pam-config</code> tool helps you configure the global PAM
+    configuration files (<code class="filename">/etc/pam.d/common-*</code>) and several
+    selected application configurations. For a list of supported modules, use
+    the <code class="command">pam-config --list-modules</code> command. Use the
+    <code class="command">pam-config</code> command to maintain your PAM configuration
+    files. Add new modules to your PAM configurations, delete other modules or
+    modify options to these modules. When changing global PAM configuration
+    files, no manual tweaking of the PAM setup for individual applications is
+    required.
+  </p><p>
+    A simple use case for <code class="command">pam-config</code> involves the following:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p><span class="formalpara-title">Auto-generate a fresh unix-style PAM configuration.</span>
+          Let <code class="command">pam-config</code> create the simplest possible setup
+          which you can extend later on. The <code class="command">pam-config
+          --create</code> command creates a simple Unix authentication
+          configuration. Pre-existing configuration files not maintained by
+          <code class="command">pam-config</code> are overwritten, but backup copies are
+          kept as <code class="literal">*.pam-config-backup</code>.
+        </p></li><li class="step"><p><span class="formalpara-title">Add a new authentication method.</span>
+          Adding a new authentication method (for example, LDAP) to your stack
+          of PAM modules comes down to a simple <code class="command">pam-config --add
+          --ldap</code> command. LDAP is added wherever appropriate across
+          all <code class="filename">common-*-pc</code> PAM configuration files.
+        </p></li><li class="step"><p><span class="formalpara-title">Add debugging for test purposes.</span>
+          To make sure the new authentication procedure works as planned, turn
+          on debugging for all PAM-related operations. The <code class="command">pam-config
+          --add --ldap-debug</code> turns on debugging for LDAP-related PAM
+          operations.
+        </p></li><li class="step"><p><span class="formalpara-title">Query your setup.</span>
+          Before you finally apply your new PAM setup, check if it contains all
+          the options you wanted to add. The <code class="command">pam-config --query
+          --</code><em class="replaceable">MODULE</em> command lists both the
+          type and the options for the queried PAM module.
+        </p></li><li class="step"><p><span class="formalpara-title">Remove the debug options.</span>
+          Finally, remove the debug option from your setup when you are
+          entirely satisfied with the performance of it. The
+          <code class="command">pam-config --delete --ldap-debug</code> command turns off
+          debugging for LDAP authentication. In case you had debugging options
+          added for other modules, use similar commands to turn these off.
+        </p></li></ol></div></div><p>
+    For more information on the <code class="command">pam-config</code> command and the
+    options available, refer to the manual page of
+    <code class="command">pam-config(8)</code>.
+  </p></section><section xml:lang="en" class="sect1" id="pam-manual-config" data-id-title="Manually configuring PAM"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Manually configuring PAM</span></span> <a title="Permalink" class="permalink" href="#pam-manual-config">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    If you prefer to manually create or maintain your PAM configuration files,
+    make sure to disable <code class="command">pam-config</code> for these files.
+  </p><p>
+    When you create your PAM configuration files from scratch using the
+    <code class="command">pam-config --create</code> command, it creates symbolic links
+    from the <code class="filename">common-<em class="replaceable">*</em></code> to the
+    <code class="filename">common-<em class="replaceable">*</em>-pc</code> files.
+    <code class="command">pam-config</code> only modifies the
+    <code class="filename">common-<em class="replaceable">*</em>-pc</code> configuration
+    files. Removing these symbolic links effectively disables
+    <code class="command">pam-config</code>, because <code class="command">pam-config</code> only
+    operates on the <code class="filename">common-<em class="replaceable">*</em>-pc</code>
+    files and these files are not put into effect without the symbolic links.
+  </p><div id="id-1.6.4" data-id-title="Include pam_systemd.so in configuration" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning: Include <code class="filename">pam_systemd.so</code> in configuration</div><p>
+      If you are creating your own PAM configuration, make sure to include
+      <code class="literal">pam_systemd.so</code> configured as <code class="literal">session
+      optional</code>. Not including the <code class="literal">pam_systemd.so</code>
+      can cause problems with <code class="systemitem">systemd</code> task limits. For details, refer to the
+      man page of <code class="literal">pam_systemd.so</code>.
+    </p></div></section><section xml:lang="en" class="sect1" id="pam-cofigure-using-u2f-keys" data-id-title="Configuring SLE Micro to require U2F keys for local login"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Configuring <span class="phrase"><span class="phrase">SLE Micro</span></span> to require U2F keys for local login</span></span> <a title="Permalink" class="permalink" href="#pam-cofigure-using-u2f-keys">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    To provide more security during the local login to <span class="phrase"><span class="phrase">SLE Micro</span></span>, you
+    can configure two-factor authentication using the
+    <code class="literal">pam-u2f</code> framework and the U2F feature on YubiKeys and
+    Security Keys.
+  </p><p>
+    To set up U2F on your <span class="phrase"><span class="phrase">SLE Micro</span></span> system, you need to associate your
+    key with your account on <span class="phrase"><span class="phrase">SLE Micro</span></span>. After that, configure your
+    system to use the key. The procedure is described in the following
+    sections.
+  </p><section xml:lang="en" class="sect2" id="pam-account-association" data-id-title="Associating the U2F key with your account"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.1 </span><span class="title-name">Associating the U2F key with your account</span></span> <a title="Permalink" class="permalink" href="#pam-account-association">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    To associate your U2F key with your account, proceed as follows:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Log in to your machine.
+      </p></li><li class="step"><p>
+        Insert your U2F key.
+      </p></li><li class="step"><p>
+        Create a directory for the U2F key configuration:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> mkdir -p ~/.config/Yubico</pre></div></li><li class="step"><p>
+        Run the <code class="command">pamu2fcfg</code> command that outputs configuration
+        lines:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> pamu2fcfg &gt; ~/.config/Yubico/u2f_keys</pre></div></li><li class="step"><p>
+        When your device begins flashing, touch the metal contact to confirm
+        the association.
+      </p></li></ol></div></div><p>
+    We recommend using a backup U2F device, which you can set up by running the
+    following commands:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Run:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> pamu2fcfg -n &gt;&gt; ~/.config/Yubico/u2f_keys</pre></div></li><li class="step"><p>
+        When your device begins flashing, touch the metal contact to confirm
+        the association.
+      </p></li></ol></div></div><p>
+    You can move the output file from the default location to a directory that
+    requires the <code class="literal">sudo</code> permission to modify the file to
+    increase security. For example, move it to the <code class="filename">/etc</code>
+    directory. To do so, follow the steps:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Create a directory in <code class="filename">/etc</code>:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> mkdir /etc/Yubico</pre></div></li><li class="step"><p>
+        Move the created file:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> mv ~/.config/Yubico/u2f_keys /etc/Yubico/u2f_keys</pre></div></li></ol></div></div><div id="id-1.7.4.8" data-id-title="Placing the u2f_keys to a non-default location" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Placing the <code class="filename">u2f_keys</code> to a non-default location</div><p>
+      If you move the output file to a different directory than is the default
+      (<code class="filename">$HOME/.config/Yubico/u2f_keys</code>), you need to add the
+      path to the <code class="filename">/etc/pam.d/login</code> file as described in
+      <a class="xref" href="#pam-update-configs" title="6.2. Updating the PAM configuration">Section 6.2, “Updating the PAM configuration”</a>.
+    </p></div></section><section xml:lang="en" class="sect2" id="pam-update-configs" data-id-title="Updating the PAM configuration"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.2 </span><span class="title-name">Updating the PAM configuration</span></span> <a title="Permalink" class="permalink" href="#pam-update-configs">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    After you have created the U2F keys configuration, you need to adjust the
+    PAM configuration on your system.
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Open the file <code class="filename">/etc/pam.d/login</code>.
+      </p></li><li class="step"><p>
+        Add the line <code class="literal">auth required pam_u2f.so</code> to the file as
+        follows:
+      </p><div class="verbatim-wrap"><pre class="screen">#%PAM-1.0
+auth      include    common-auth
+<span class="bold"><strong>auth      required   pam_u2f.so</strong></span>
+account   include    common-account
+password  include    common-password
+session   optional   pam_keyinit.so revoke
+session   include    common-session
+#session  optional   pam_xauth.so</pre></div></li><li class="step"><p>
+        If you placed the <code class="filename">u2f_keys</code> file to a different
+        location than <code class="filename">$HOME/.config/Yubico/u2f_keys</code>, you
+        need to use the <code class="literal">authfile</code> option in the
+        <code class="filename">/etc/pam.d/login</code> PAM file as follows:
+      </p><div class="verbatim-wrap"><pre class="screen">#%PAM-1.0 
+auth     requisite pam_nologin.so 
+auth     include   common-auth
+<span class="bold"><strong>auth  required pam_u2f.so authfile=<em class="replaceable">&lt;PATH_TO_u2f_keys&gt;</em></strong></span>
+...</pre></div><p>
+        where <em class="replaceable">&lt;PATH_TO_u2f_keys&gt;</em> is the
+        absolute path to the <code class="filename">u2f_keys</code> file.
+      </p></li></ol></div></div></section></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p> Copyright© 2006–2024
+ SUSE LLC and contributors.
+  All rights reserved. </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy.  Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section><div class="legal-section"><section class="appendix" translate="no" id="doc-gfdl-license" data-id-title="GNU Free Documentation License"><div class="titlepage"><div><div><h1 class="title">GNU Free Documentation License</h1></div></div></div><p>
+  Copyright (C) 2000, 2001, 2002 Free Software Foundation, Inc. 51 Franklin St,
+  Fifth Floor, Boston, MA 02110-1301 USA. Everyone is permitted to copy and
+  distribute verbatim copies of this license document, but changing it is not
+  allowed.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.3"><span class="name">
+    0. PREAMBLE
+  </span><a title="Permalink" class="permalink" href="#id-1.9.3">#</a></h5></div><p>
+  The purpose of this License is to make a manual, textbook, or other
+  functional and useful document "free" in the sense of freedom: to assure
+  everyone the effective freedom to copy and redistribute it, with or without
+  modifying it, either commercially or non-commercially. Secondarily, this
+  License preserves for the author and publisher a way to get credit for their
+  work, while not being considered responsible for modifications made by
+  others.
+ </p><p>
+  This License is a kind of "copyleft", which means that derivative works of
+  the document must themselves be free in the same sense. It complements the
+  GNU General Public License, which is a copyleft license designed for free
+  software.
+ </p><p>
+  We have designed this License to use it for manuals for free software,
+  because free software needs free documentation: a free program should come
+  with manuals providing the same freedoms that the software does. But this
+  License is not limited to software manuals; it can be used for any textual
+  work, regardless of subject matter or whether it is published as a printed
+  book. We recommend this License principally for works whose purpose is
+  instruction or reference.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.7"><span class="name">
+    1. APPLICABILITY AND DEFINITIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.9.7">#</a></h5></div><p>
+  This License applies to any manual or other work, in any medium, that
+  contains a notice placed by the copyright holder saying it can be distributed
+  under the terms of this License. Such a notice grants a world-wide,
+  royalty-free license, unlimited in duration, to use that work under the
+  conditions stated herein. The "Document", below, refers to any such manual or
+  work. Any member of the public is a licensee, and is addressed as "you". You
+  accept the license if you copy, modify or distribute the work in a way
+  requiring permission under copyright law.
+ </p><p>
+  A "Modified Version" of the Document means any work containing the Document
+  or a portion of it, either copied verbatim, or with modifications and/or
+  translated into another language.
+ </p><p>
+  A "Secondary Section" is a named appendix or a front-matter section of the
+  Document that deals exclusively with the relationship of the publishers or
+  authors of the Document to the Document's overall subject (or to related
+  matters) and contains nothing that could fall directly within that overall
+  subject. (Thus, if the Document is in part a textbook of mathematics, a
+  Secondary Section may not explain any mathematics.) The relationship could be
+  a matter of historical connection with the subject or with related matters,
+  or of legal, commercial, philosophical, ethical or political position
+  regarding them.
+ </p><p>
+  The "Invariant Sections" are certain Secondary Sections whose titles are
+  designated, as being those of Invariant Sections, in the notice that says
+  that the Document is released under this License. If a section does not fit
+  the above definition of Secondary then it is not allowed to be designated as
+  Invariant. The Document may contain zero Invariant Sections. If the Document
+  does not identify any Invariant Sections then there are none.
+ </p><p>
+  The "Cover Texts" are certain short passages of text that are listed, as
+  Front-Cover Texts or Back-Cover Texts, in the notice that says that the
+  Document is released under this License. A Front-Cover Text may be at most 5
+  words, and a Back-Cover Text may be at most 25 words.
+ </p><p>
+  A "Transparent" copy of the Document means a machine-readable copy,
+  represented in a format whose specification is available to the general
+  public, that is suitable for revising the document straightforwardly with
+  generic text editors or (for images composed of pixels) generic paint
+  programs or (for drawings) some widely available drawing editor, and that is
+  suitable for input to text formatters or for automatic translation to a
+  variety of formats suitable for input to text formatters. A copy made in an
+  otherwise Transparent file format whose markup, or absence of markup, has
+  been arranged to thwart or discourage subsequent modification by readers is
+  not Transparent. An image format is not Transparent if used for any
+  substantial amount of text. A copy that is not "Transparent" is called
+  "Opaque".
+ </p><p>
+  Examples of suitable formats for Transparent copies include plain ASCII
+  without markup, Texinfo input format, LaTeX input format, SGML or XML using a
+  publicly available DTD, and standard-conforming simple HTML, PostScript or
+  PDF designed for human modification. Examples of transparent image formats
+  include PNG, XCF and JPG. Opaque formats include proprietary formats that can
+  be read and edited only by proprietary word processors, SGML or XML for which
+  the DTD and/or processing tools are not generally available, and the
+  machine-generated HTML, PostScript or PDF produced by some word processors
+  for output purposes only.
+ </p><p>
+  The "Title Page" means, for a printed book, the title page itself, plus such
+  following pages as are needed to hold, legibly, the material this License
+  requires to appear in the title page. For works in formats which do not have
+  any title page as such, "Title Page" means the text near the most prominent
+  appearance of the work's title, preceding the beginning of the body of the
+  text.
+ </p><p>
+  A section "Entitled XYZ" means a named subunit of the Document whose title
+  either is precisely XYZ or contains XYZ in parentheses following text that
+  translates XYZ in another language. (Here XYZ stands for a specific section
+  name mentioned below, such as "Acknowledgements", "Dedications",
+  "Endorsements", or "History".) To "Preserve the Title" of such a section when
+  you modify the Document means that it remains a section "Entitled XYZ"
+  according to this definition.
+ </p><p>
+  The Document may include Warranty Disclaimers next to the notice which states
+  that this License applies to the Document. These Warranty Disclaimers are
+  considered to be included by reference in this License, but only as regards
+  disclaiming warranties: any other implication that these Warranty Disclaimers
+  may have is void and has no effect on the meaning of this License.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.18"><span class="name">
+    2. VERBATIM COPYING
+  </span><a title="Permalink" class="permalink" href="#id-1.9.18">#</a></h5></div><p>
+  You may copy and distribute the Document in any medium, either commercially
+  or non-commercially, provided that this License, the copyright notices, and
+  the license notice saying this License applies to the Document are reproduced
+  in all copies, and that you add no other conditions whatsoever to those of
+  this License. You may not use technical measures to obstruct or control the
+  reading or further copying of the copies you make or distribute. However, you
+  may accept compensation in exchange for copies. If you distribute a large
+  enough number of copies you must also follow the conditions in section 3.
+ </p><p>
+  You may also lend copies, under the same conditions stated above, and you may
+  publicly display copies.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.21"><span class="name">
+    3. COPYING IN QUANTITY
+  </span><a title="Permalink" class="permalink" href="#id-1.9.21">#</a></h5></div><p>
+  If you publish printed copies (or copies in media that commonly have printed
+  covers) of the Document, numbering more than 100, and the Document's license
+  notice requires Cover Texts, you must enclose the copies in covers that
+  carry, clearly and legibly, all these Cover Texts: Front-Cover Texts on the
+  front cover, and Back-Cover Texts on the back cover. Both covers must also
+  clearly and legibly identify you as the publisher of these copies. The front
+  cover must present the full title with all words of the title equally
+  prominent and visible. You may add other material on the covers in addition.
+  Copying with changes limited to the covers, as long as they preserve the
+  title of the Document and satisfy these conditions, can be treated as
+  verbatim copying in other respects.
+ </p><p>
+  If the required texts for either cover are too voluminous to fit legibly, you
+  should put the first ones listed (as many as fit reasonably) on the actual
+  cover, and continue the rest onto adjacent pages.
+ </p><p>
+  If you publish or distribute Opaque copies of the Document numbering more
+  than 100, you must either include a machine-readable Transparent copy along
+  with each Opaque copy, or state in or with each Opaque copy a
+  computer-network location from which the general network-using public has
+  access to download using public-standard network protocols a complete
+  Transparent copy of the Document, free of added material. If you use the
+  latter option, you must take reasonably prudent steps, when you begin
+  distribution of Opaque copies in quantity, to ensure that this Transparent
+  copy will remain thus accessible at the stated location until at least one
+  year after the last time you distribute an Opaque copy (directly or through
+  your agents or retailers) of that edition to the public.
+ </p><p>
+  It is requested, but not required, that you contact the authors of the
+  Document well before redistributing any large number of copies, to give them
+  a chance to provide you with an updated version of the Document.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.26"><span class="name">
+    4. MODIFICATIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.9.26">#</a></h5></div><p>
+  You may copy and distribute a Modified Version of the Document under the
+  conditions of sections 2 and 3 above, provided that you release the Modified
+  Version under precisely this License, with the Modified Version filling the
+  role of the Document, thus licensing distribution and modification of the
+  Modified Version to whoever possesses a copy of it. In addition, you must do
+  these things in the Modified Version:
+ </p><div class="orderedlist"><ol class="orderedlist" type="A"><li class="listitem"><p>
+    Use in the Title Page (and on the covers, if any) a title distinct from
+    that of the Document, and from those of previous versions (which should, if
+    there were any, be listed in the History section of the Document). You may
+    use the same title as a previous version if the original publisher of that
+    version gives permission.
+   </p></li><li class="listitem"><p>
+    List on the Title Page, as authors, one or more persons or entities
+    responsible for authorship of the modifications in the Modified Version,
+    together with at least five of the principal authors of the Document (all
+    of its principal authors, if it has fewer than five), unless they release
+    you from this requirement.
+   </p></li><li class="listitem"><p>
+    State on the Title page the name of the publisher of the Modified Version,
+    as the publisher.
+   </p></li><li class="listitem"><p>
+    Preserve all the copyright notices of the Document.
+   </p></li><li class="listitem"><p>
+    Add an appropriate copyright notice for your modifications adjacent to the
+    other copyright notices.
+   </p></li><li class="listitem"><p>
+    Include, immediately after the copyright notices, a license notice giving
+    the public permission to use the Modified Version under the terms of this
+    License, in the form shown in the Addendum below.
+   </p></li><li class="listitem"><p>
+    Preserve in that license notice the full lists of Invariant Sections and
+    required Cover Texts given in the Document's license notice.
+   </p></li><li class="listitem"><p>
+    Include an unaltered copy of this License.
+   </p></li><li class="listitem"><p>
+    Preserve the section Entitled "History", Preserve its Title, and add to it
+    an item stating at least the title, year, new authors, and publisher of the
+    Modified Version as given on the Title Page. If there is no section
+    Entitled "History" in the Document, create one stating the title, year,
+    authors, and publisher of the Document as given on its Title Page, then add
+    an item describing the Modified Version as stated in the previous sentence.
+   </p></li><li class="listitem"><p>
+    Preserve the network location, if any, given in the Document for public
+    access to a Transparent copy of the Document, and likewise the network
+    locations given in the Document for previous versions it was based on.
+    These may be placed in the "History" section. You may omit a network
+    location for a work that was published at least four years before the
+    Document itself, or if the original publisher of the version it refers to
+    gives permission.
+   </p></li><li class="listitem"><p>
+    For any section Entitled "Acknowledgements" or "Dedications", Preserve the
+    Title of the section, and preserve in the section all the substance and
+    tone of each of the contributor acknowledgements and/or dedications given
+    therein.
+   </p></li><li class="listitem"><p>
+    Preserve all the Invariant Sections of the Document, unaltered in their
+    text and in their titles. Section numbers or the equivalent are not
+    considered part of the section titles.
+   </p></li><li class="listitem"><p>
+    Delete any section Entitled "Endorsements". Such a section may not be
+    included in the Modified Version.
+   </p></li><li class="listitem"><p>
+    Do not retitle any existing section to be Entitled "Endorsements" or to
+    conflict in title with any Invariant Section.
+   </p></li><li class="listitem"><p>
+    Preserve any Warranty Disclaimers.
+   </p></li></ol></div><p>
+  If the Modified Version includes new front-matter sections or appendices that
+  qualify as Secondary Sections and contain no material copied from the
+  Document, you may at your option designate some or all of these sections as
+  invariant. To do this, add their titles to the list of Invariant Sections in
+  the Modified Version's license notice. These titles must be distinct from any
+  other section titles.
+ </p><p>
+  You may add a section Entitled "Endorsements", provided it contains nothing
+  but endorsements of your Modified Version by various parties--for example,
+  statements of peer review or that the text has been approved by an
+  organization as the authoritative definition of a standard.
+ </p><p>
+  You may add a passage of up to five words as a Front-Cover Text, and a
+  passage of up to 25 words as a Back-Cover Text, to the end of the list of
+  Cover Texts in the Modified Version. Only one passage of Front-Cover Text and
+  one of Back-Cover Text may be added by (or through arrangements made by) any
+  one entity. If the Document already includes a cover text for the same cover,
+  previously added by you or by arrangement made by the same entity you are
+  acting on behalf of, you may not add another; but you may replace the old
+  one, on explicit permission from the previous publisher that added the old
+  one.
+ </p><p>
+  The author(s) and publisher(s) of the Document do not by this License give
+  permission to use their names for publicity for or to assert or imply
+  endorsement of any Modified Version.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.33"><span class="name">
+    5. COMBINING DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.9.33">#</a></h5></div><p>
+  You may combine the Document with other documents released under this
+  License, under the terms defined in section 4 above for modified versions,
+  provided that you include in the combination all of the Invariant Sections of
+  all of the original documents, unmodified, and list them all as Invariant
+  Sections of your combined work in its license notice, and that you preserve
+  all their Warranty Disclaimers.
+ </p><p>
+  The combined work need only contain one copy of this License, and multiple
+  identical Invariant Sections may be replaced with a single copy. If there are
+  multiple Invariant Sections with the same name but different contents, make
+  the title of each such section unique by adding at the end of it, in
+  parentheses, the name of the original author or publisher of that section if
+  known, or else a unique number. Make the same adjustment to the section
+  titles in the list of Invariant Sections in the license notice of the
+  combined work.
+ </p><p>
+  In the combination, you must combine any sections Entitled "History" in the
+  various original documents, forming one section Entitled "History"; likewise
+  combine any sections Entitled "Acknowledgements", and any sections Entitled
+  "Dedications". You must delete all sections Entitled "Endorsements".
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.37"><span class="name">
+    6. COLLECTIONS OF DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.9.37">#</a></h5></div><p>
+  You may make a collection consisting of the Document and other documents
+  released under this License, and replace the individual copies of this
+  License in the various documents with a single copy that is included in the
+  collection, provided that you follow the rules of this License for verbatim
+  copying of each of the documents in all other respects.
+ </p><p>
+  You may extract a single document from such a collection, and distribute it
+  individually under this License, provided you insert a copy of this License
+  into the extracted document, and follow this License in all other respects
+  regarding verbatim copying of that document.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.40"><span class="name">
+    7. AGGREGATION WITH INDEPENDENT WORKS
+  </span><a title="Permalink" class="permalink" href="#id-1.9.40">#</a></h5></div><p>
+  A compilation of the Document or its derivatives with other separate and
+  independent documents or works, in or on a volume of a storage or
+  distribution medium, is called an "aggregate" if the copyright resulting from
+  the compilation is not used to limit the legal rights of the compilation's
+  users beyond what the individual works permit. When the Document is included
+  in an aggregate, this License does not apply to the other works in the
+  aggregate which are not themselves derivative works of the Document.
+ </p><p>
+  If the Cover Text requirement of section 3 is applicable to these copies of
+  the Document, then if the Document is less than one half of the entire
+  aggregate, the Document's Cover Texts may be placed on covers that bracket
+  the Document within the aggregate, or the electronic equivalent of covers if
+  the Document is in electronic form. Otherwise they must appear on printed
+  covers that bracket the whole aggregate.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.43"><span class="name">
+    8. TRANSLATION
+  </span><a title="Permalink" class="permalink" href="#id-1.9.43">#</a></h5></div><p>
+  Translation is considered a kind of modification, so you may distribute
+  translations of the Document under the terms of section 4. Replacing
+  Invariant Sections with translations requires special permission from their
+  copyright holders, but you may include translations of some or all Invariant
+  Sections in addition to the original versions of these Invariant Sections.
+  You may include a translation of this License, and all the license notices in
+  the Document, and any Warranty Disclaimers, provided that you also include
+  the original English version of this License and the original versions of
+  those notices and disclaimers. In case of a disagreement between the
+  translation and the original version of this License or a notice or
+  disclaimer, the original version will prevail.
+ </p><p>
+  If a section in the Document is Entitled "Acknowledgements", "Dedications",
+  or "History", the requirement (section 4) to Preserve its Title (section 1)
+  will typically require changing the actual title.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.46"><span class="name">
+    9. TERMINATION
+  </span><a title="Permalink" class="permalink" href="#id-1.9.46">#</a></h5></div><p>
+  You may not copy, modify, sublicense, or distribute the Document except as
+  expressly provided for under this License. Any other attempt to copy, modify,
+  sublicense or distribute the Document is void, and will automatically
+  terminate your rights under this License. However, parties who have received
+  copies, or rights, from you under this License will not have their licenses
+  terminated so long as such parties remain in full compliance.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.48"><span class="name">
+    10. FUTURE REVISIONS OF THIS LICENSE
+  </span><a title="Permalink" class="permalink" href="#id-1.9.48">#</a></h5></div><p>
+  The Free Software Foundation may publish new, revised versions of the GNU
+  Free Documentation License from time to time. Such new versions will be
+  similar in spirit to the present version, but may differ in detail to address
+  new problems or concerns. See
+  <a class="link" href="https://www.gnu.org/copyleft/" target="_blank">https://www.gnu.org/copyleft/</a>.
+ </p><p>
+  Each version of the License is given a distinguishing version number. If the
+  Document specifies that a particular numbered version of this License "or any
+  later version" applies to it, you have the option of following the terms and
+  conditions either of that specified version or of any later version that has
+  been published (not as a draft) by the Free Software Foundation. If the
+  Document does not specify a version number of this License, you may choose
+  any version ever published (not as a draft) by the Free Software Foundation.
+ </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.51"><span class="name">
+    ADDENDUM: How to use this License for your documents
+  </span><a title="Permalink" class="permalink" href="#id-1.9.51">#</a></h5></div><div class="verbatim-wrap"><pre class="screen">Copyright (c) YEAR YOUR NAME.
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+A copy of the license is included in the section entitled “GNU
+Free Documentation License”.</pre></div><p>
+  If you have Invariant Sections, Front-Cover Texts and Back-Cover Texts,
+  replace the “with...Texts.” line with this:
+ </p><div class="verbatim-wrap"><pre class="screen">with the Invariant Sections being LIST THEIR TITLES, with the
+Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.</pre></div><p>
+  If you have Invariant Sections without Cover Texts, or some other combination
+  of the three, merge those two alternatives to suit the situation.
+ </p><p>
+  If your document contains nontrivial examples of program code, we recommend
+  releasing these examples in parallel under your choice of free software
+  license, such as the GNU General Public License, to permit their use in free
+  software.
+</p></section></div></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="#pam-about"><span class="title-number">1 </span><span class="title-name">Introduction to PAM</span></a></span></li><li><span class="section"><a href="#pam-configuration-files"><span class="title-number">2 </span><span class="title-name">Structure of PAM configuration</span></a></span></li><li><span class="section"><a href="#pam-configuring-modules"><span class="title-number">3 </span><span class="title-name">Configuration of PAM modules</span></a></span></li><li><span class="section"><a href="#pam-config-tool"><span class="title-number">4 </span><span class="title-name">Configuring PAM using <code class="command">pam-config</code></span></a></span></li><li><span class="section"><a href="#pam-manual-config"><span class="title-number">5 </span><span class="title-name">Manually configuring PAM</span></a></span></li><li><span class="section"><a href="#pam-cofigure-using-u2f-keys"><span class="title-number">6 </span><span class="title-name">Configuring <span class="phrase"><span class="phrase">SLE Micro</span></span> to require U2F keys for local login</span></a></span></li><li><span class="section"><a href="#legal-disclaimer"><span class="title-number">7 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="#doc-gfdl-license"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-fb" href="#" title="Facebook"> </a></li><li><a id="_share-in" href="#" title="LinkedIn"> </a></li><li><a id="_share-tw" href="#" title="Twitter/X"> </a></li><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE
+                 2024</span></div></div></footer></body></html>

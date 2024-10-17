@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><title>Configuring networks using NetworkManager</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style.css"/>
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
+<meta name="title" content="Configuring networks using NetworkManager"/>
+<meta name="description" content="About NetworkManager and how to use it to manage your network connections"/>
+<meta name="book-title" content="Configuring networks using NetworkManager"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="jsindelarova@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Micro 6.0"/>
+<meta name="publisher" content="SUSE"/><meta name="DC.creator" content="jsindelarova@suse.com"/><meta property="og:title" content="NetworkManager basics and network configuration"/>
+<meta property="og:description" content="NetworkManager and nmcli usage to configure the network."/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="NetworkManager basics and network configuration"/>
+<meta name="twitter:description" content="NetworkManager and nmcli usage to configure the network."/>
+<script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    
+     "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    
+    "inLanguage": "en",
+    
+
+    "headline": "NetworkManager basics and network configuration",
+  
+    "description": "About NetworkManager and how to use it to manage your network connections",
+      
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    ],
+      
+    "dateModified": "2023-11-16T00:00+02:00",
+      
+    "datePublished": "2023-11-16T00:00+02:00",
+      
+
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      }
+    ],
+  
+    "mentions": [
+      
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Micro",
+        "softwareVersion": "6.0",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER"
+        
+      }
+      
+    ],
+    
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><script type="text/javascript">
+
+if ( window.location.protocol.toLowerCase() != 'file:' ) {
+  document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>');
+};
+
+</script><noscript><link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"/></noscript><script src="static/js/script-purejs.js" type="text/javascript"> </script><script src="static/js/highlight.min.js" type="text/javascript"> </script><script>
+
+$(document).ready(function() {
+  $('.verbatim-wrap.highlight').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+hljs.configure({
+  useBR: false
+});
+
+</script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Configuring networks using NetworkManager</a></div></div><main id="_content"><nav id="_side-toc-overall" class="side-toc"><div class="side-title">Configuring networks using NetworkManager</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="network-configuration-nm-marble" data-id-title="Configuring networks using NetworkManager"><div class="titlepage"><div><div><h1 class="title">Configuring networks using NetworkManager</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>17 Oct 2024</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+              The article covers the basics of NetworkManager and the usage of the CLI tool to configure the network.
+            </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
+              You are using NetworkManager, and you want to configure your network.
+            </p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                It takes approx. 15 minutes to go through this article.
+              </p></dd><dt id="id-1.1.12.1.4"><span class="term">GOAL</span></dt><dd><p>
+                You will have a better understanding of how NetworkManager works and how network connections can
+                be configured.
+              </p></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History" hreflang="en" href="rh-network-configuration-nm-marble.html" target="_blank">Revision History: Configuring networks using NetworkManager</a></div></div></div></div><section xml:lang="en" class="sect1" id="nm-introduction" data-id-title="About NetworkManager"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">
+About NetworkManager
+      </span></span> <a title="Permalink" class="permalink" href="index.html#nm-introduction">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        NetworkManager is a program that manages the primary network connection and other
+        connection interfaces. NetworkManager has been designed to be fully automatic by
+        default. NetworkManager is handled by <code class="systemitem">systemd</code> and is shipped with all necessary
+        service unit files.
+      </p></div></div></div></div><p>
+    NetworkManager stores all network configurations as a connection, which is a
+    collection of data that describes how to create or connect to a network.
+    These connections are stored as files in the
+    <code class="filename">/etc/NetworkManager/system-connections/</code> directory.
+  </p><p>
+    A connection is active when a particular device uses the connection. The
+    device may have more than one connection configured, but only one can be
+    active at a given time. The other connections can be used to fast switch
+    from one connection to another. For example, if the active connection is
+    not available, NetworkManager tries to connect the device to another configured
+    connection.
+  </p><p>
+    To manage connections, use the <code class="command">nmcli</code> command, described
+    in the <a class="xref" href="index.html#nmcli-usage" title="4. Managing the network using NetworkManager">Section 4, “Managing the network using NetworkManager”</a>.
+  </p></section><section xml:lang="en" class="sect1" id="nm-configuration" data-id-title="The NetworkManager.conf configuration file"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">The <code class="filename">NetworkManager.conf</code> configuration file</span></span> <a title="Permalink" class="permalink" href="index.html#nm-configuration">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    The main configuration file for the NetworkManager is
+    <code class="filename">/etc/NetworkManager/NetworkManager.conf</code>. This file can
+    be used to configure the behavior of NetworkManager.
+  </p><p>
+    The file consists of sections of key-value pairs. Each key-value pair must
+    belong to a section. A section starts with a name enclosed in
+    <span class="emphasis"><em>[]</em></span>. Lines beginning with a <span class="emphasis"><em>#</em></span> are
+    considered comments. The minimal configuration needs to include the
+    <code class="literal">[main]</code> section with the <code class="literal">plugins</code>
+    value:
+  </p><div class="verbatim-wrap"><pre class="screen">[main]
+plugins=keyfile</pre></div><p>
+    The <code class="literal">keyfile</code> plug-in supports all the connection types and
+    capabilities of NetworkManager.
+  </p><p>
+    The default configuration file contains the <code class="literal">connectivity</code>
+    section that specifies the URI to check the network connection.
+  </p><p>
+    On <span class="phrase"><span class="phrase">SUSE Linux Enterprise Micro</span></span>, you can also use other sections. For details, refer to
+    <a class="link" href="https://linux.die.net/man/5/networkmanager.conf" target="_blank">networkmanager.conf(5)</a>
+    or
+    <a class="link" href="https://developer-old.gnome.org/NetworkManager/stable/NetworkManager.conf.html" target="_blank">Gnome's
+    developer guide</a>.
+  </p></section><section xml:lang="en" class="sect1" id="nm-start-stop" data-id-title="Starting and stopping NetworkManager"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Starting and stopping NetworkManager</span></span> <a title="Permalink" class="permalink" href="index.html#nm-start-stop">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    As NetworkManager is a <code class="systemitem">systemd</code> service, you can use common <code class="systemitem">systemd</code> commands to
+    start, stop, or restart NetworkManager.
+  </p><p>
+    To start NetworkManager:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>systemctl start network</pre></div><p>
+    To restart NetworkManager:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>systemctl restart network</pre></div><p>
+    To stop NetworkManager:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>systemctl stop network</pre></div></section><section xml:lang="en" class="sect1" id="nmcli-usage" data-id-title="Managing the network using NetworkManager"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Managing the network using NetworkManager</span></span> <a title="Permalink" class="permalink" href="index.html#nmcli-usage">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><section class="sect2" id="sec-nmcli-interface" data-id-title="The nmcli command"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.1 </span><span class="title-name">The <code class="command">nmcli</code> command</span></span> <a title="Permalink" class="permalink" href="index.html#sec-nmcli-interface">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      NetworkManager provides a CLI interface to manage your connections. By using the
+      <code class="command">nmcli</code> interface, you can connect to a particular
+      network, edit a connection, edit a device, etc. The generic syntax of the
+      <code class="command">nmcli</code> is as follows:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>nmcli <em class="replaceable">OPTIONS</em> <em class="replaceable">SUBCOMMAND</em> <em class="replaceable">SUBCOMMAND_ARGUMENTS</em></pre></div><p>
+      where <em class="replaceable">OPTIONS</em> are described in
+      <a class="xref" href="index.html#sec-nmcli-options" title="4.1.1. The nmcli command options">Section 4.1.1, “The <code class="command">nmcli</code> command options”</a> and
+      <em class="replaceable">SUBCOMMAND</em> can be any of the following:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.5.2.5.1"><span class="term"><code class="command">connection</code></span></dt><dd><p>
+            enables you to configure your network connection. For details,
+            refer to <a class="xref" href="index.html#sec-connection-command" title="4.1.2. The connection subcommand">Section 4.1.2, “The <code class="command">connection</code> subcommand”</a>.
+          </p></dd><dt id="id-1.5.2.5.2"><span class="term"><code class="command">device</code></span></dt><dd><p>
+            For details, refer to <a class="xref" href="index.html#sec-device-command" title="4.1.3. The device subcommand">Section 4.1.3, “The <code class="command">device</code> subcommand”</a>.
+          </p></dd><dt id="id-1.5.2.5.3"><span class="term"><code class="command">general</code></span></dt><dd><p>
+            shows status and permissions. For details refer to
+            <a class="xref" href="index.html#sec-general-command" title="4.1.4. The general subcommand">Section 4.1.4, “The <code class="command">general</code> subcommand”</a>.
+          </p></dd><dt id="id-1.5.2.5.4"><span class="term"><code class="command">monitor</code></span></dt><dd><p>
+            monitors activity of NetworkManager and watches for changes in the state of
+            connectivity and devices. This subcommand does not take any
+            arguments.
+          </p></dd><dt id="id-1.5.2.5.5"><span class="term"><code class="command">networking</code></span></dt><dd><p>
+            queries the networking status. For details, refer to
+            <a class="xref" href="index.html#sec-networking-command" title="4.1.5. The networking subcommand">Section 4.1.5, “The <code class="command">networking</code> subcommand”</a>.
+          </p></dd></dl></div><section class="sect3" id="sec-nmcli-options" data-id-title="The nmcli command options"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">4.1.1 </span><span class="title-name">The <code class="command">nmcli</code> command options</span></span> <a title="Permalink" class="permalink" href="index.html#sec-nmcli-options">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        Besides the subcommands and their arguments, the
+        <code class="command">nmcli</code> command can take the following options:
+      </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.5.2.6.3.1"><span class="term"><code class="option">-a|--ask</code></span></dt><dd><p>
+              The command stops its run to ask for any missing arguments,
+              for example, for a password to connect to a network.
+            </p></dd><dt id="id-1.5.2.6.3.2"><span class="term"><code class="option">-c|--color {yes|no|auto}</code></span></dt><dd><p>
+              controls the color output: <code class="literal">yes</code> to enable the
+              colors, <code class="literal">no</code> to disable them, and
+              <code class="literal">auto</code> creates color output only when the
+              standard output is directed to a terminal.
+            </p></dd><dt id="id-1.5.2.6.3.3"><span class="term"><code class="option">-m|--mode {tabular|multiline}</code></span></dt><dd><p>
+              switches between <code class="literal">table</code> (each line describes a
+              single entry, columns define particular properties of the entry)
+              and <code class="literal">multiline</code> (each entry comprises more
+              lines, each property is on its own line).
+              <code class="literal">tabular</code> is the default value.
+            </p></dd><dt id="id-1.5.2.6.3.4"><span class="term"><code class="option">-h|--help</code></span></dt><dd><p>
+              prints help.
+            </p></dd><dt id="id-1.5.2.6.3.5"><span class="term"><code class="option">-w|--wait seconds</code></span></dt><dd><p>
+              sets a time-out period for which to wait for NetworkManager to finish
+              operations. Using this option is recommended for commands that
+              might take longer to complete, for example, connection
+              activation.
+            </p></dd></dl></div></section><section class="sect3" id="sec-connection-command" data-id-title="The connection subcommand"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">4.1.2 </span><span class="title-name">The <code class="command">connection</code> subcommand</span></span> <a title="Permalink" class="permalink" href="index.html#sec-connection-command">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        The <code class="command">connection</code> command enables you to manage
+        connections or view any information about particular connections. The
+        <code class="command">nmcli connection</code> provides the following commands to
+        manage your network connections:
+      </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.5.2.7.3.1"><span class="term"><code class="command">show</code></span></dt><dd><p>
+              to list connections:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>nmcli connection show</pre></div><p>
+              You can also use this command to show details about a specified
+              connection:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>nmcli connection show <em class="replaceable">CONNECTION_ID</em></pre></div><p>
+              where <em class="replaceable">CONNECTION_ID</em> is any of the
+              identifiers: <span class="emphasis"><em>a connection name, UUID or a
+              path</em></span>
+            </p></dd><dt id="id-1.5.2.7.3.2"><span class="term"><code class="command">up</code></span></dt><dd><p>
+              to activate the provided connection. Use the command to reload a
+              connection. Also run this command after you perform any change to
+              the connection.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>nmcli connection up [--active] [<em class="replaceable">CONNECTION_ID</em>]</pre></div><p>
+              When <code class="option">--active</code> is specified, only the active
+              profiles are displayed. The default is to display both active
+              connections and static configuration.
+            </p></dd><dt id="id-1.5.2.7.3.3"><span class="term"><code class="command">down</code></span></dt><dd><p>
+              to deactivate a connection.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>nmcli connection down <em class="replaceable">CONNECTION_ID</em></pre></div><p>
+              where: <em class="replaceable">CONNECTION_ID</em> is any of the
+              identifiers: <span class="emphasis"><em>a connection name, UUID or a
+              path</em></span>
+            </p><p>
+              If you deactivate the connection, it will not reconnect later
+              even if it has the <code class="literal">autoconnect</code> flag.
+            </p></dd><dt id="id-1.5.2.7.3.4"><span class="term"><code class="command">modify</code></span></dt><dd><p>
+              to change or delete a property of a connection.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>nmcli connection modify <em class="replaceable">CONNECTION_ID</em> <em class="replaceable">SETTING.PROPERTY</em> <em class="replaceable">PROPERTY_VALUE</em></pre></div><p>
+              where:
+            </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                  <em class="replaceable">CONNECTION_ID</em> is any of the
+                  identifiers: <span class="emphasis"><em>a connection name, UUID, or a
+                  path</em></span>
+                </p></li><li class="listitem"><p>
+                  <em class="replaceable">SETTING.PROPERTY</em> is the name of
+                  the property, for example, <code class="literal">ipv4.addresses</code>
+                </p></li><li class="listitem"><p>
+                  <em class="replaceable">PROPERTY_VALUE</em> is the desired
+                  value of <em class="replaceable">SETTING.PROPERTY</em>
+                </p></li></ul></div><p>
+              The following example deactivates the
+              <code class="option">autoconnect</code> option on the
+              <code class="literal">ethernet1</code> connection:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>nmcli connection modify ethernet1 connection.autoconnect no</pre></div></dd><dt id="id-1.5.2.7.3.5"><span class="term"><code class="command">add</code></span></dt><dd><p>
+              to add a connection with the provided details. The command syntax
+              is similar to the <code class="command">modify</code> command:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>nmcli connection add <em class="replaceable">CONNECTION_ID</em> <em class="replaceable">save YES|NO</em> <em class="replaceable">SETTING.PROPERTY</em> <em class="replaceable">PROPERTY_VALUE</em></pre></div><p>
+              You should at least specify a <code class="literal">connection.type</code>
+              or use <code class="literal">type</code>. The following example adds an
+              Ethernet connection tied to the <code class="literal">eth0</code> interface
+              with DHCP, and disables the connection's
+              <code class="option">autoconnect</code> flag:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>nmcli connection add type ethernet autoconnect no ifname eth0</pre></div></dd><dt id="id-1.5.2.7.3.6"><span class="term"><code class="command">edit</code></span></dt><dd><p>
+              to edit an existing connection using an interactive editor.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>nmcli connection edit <em class="replaceable">CONNECTION_ID</em></pre></div></dd><dt id="id-1.5.2.7.3.7"><span class="term"><code class="command">clone</code></span></dt><dd><p>
+              to clone an existing connection. The minimal syntax
+              follows:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>nmcli connection clone <em class="replaceable">CONNECTION_ID</em> <em class="replaceable">NEW_NAME</em></pre></div><p>
+              where <em class="replaceable">CONNECTION_ID</em> is the connection
+              to be cloned.
+            </p></dd><dt id="id-1.5.2.7.3.8"><span class="term"><code class="command">delete</code></span></dt><dd><p>
+              to delete an existing connection:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>nmcli connection delete <em class="replaceable">CONNECTION_ID</em></pre></div></dd><dt id="id-1.5.2.7.3.9"><span class="term"><code class="command">monitor</code></span></dt><dd><p>
+              to monitor the provided connection. Each time the connection
+              changes, NetworkManager prints a line.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>nmcli connection monitor <em class="replaceable">CONNECTION_ID</em></pre></div></dd><dt id="id-1.5.2.7.3.10"><span class="term"><code class="command">reload</code></span></dt><dd><p>
+              to reload all connection files from the disk. As NetworkManager does not
+              monitor changes performed to the connection files, you need to
+              use this command whenever you make changes to the files. This
+              command does not take any further subcommands.
+            </p></dd><dt id="id-1.5.2.7.3.11"><span class="term"><code class="command">load</code></span></dt><dd><p>
+              to load/reload a particular connection file, run:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>nmcli connection load <em class="replaceable">CONNECTION_FILE</em></pre></div></dd></dl></div><p>
+        For details about the above-mentioned commands, refer to the
+        <a class="link" href="https://developer-old.gnome.org/NetworkManager/stable/nmcli.html" target="_blank"><code class="command">nmcli</code>
+        documentation</a>.
+      </p></section><section class="sect3" id="sec-device-command" data-id-title="The device subcommand"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">4.1.3 </span><span class="title-name">The <code class="command">device</code> subcommand</span></span> <a title="Permalink" class="permalink" href="index.html#sec-device-command">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        The <code class="command">device</code> subcommand enables you to show and manage
+        network interfaces. The <code class="command">nmcli device</code> command
+        recognizes the following commands:
+      </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.5.2.8.3.1"><span class="term"><code class="command">status</code></span></dt><dd><p>
+              to print the status of all devices.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>nmcli device status</pre></div></dd><dt id="id-1.5.2.8.3.2"><span class="term"><code class="command">show</code></span></dt><dd><p>
+              shows detailed information about a device. If no device is
+              specified, all devices are displayed.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>mcli device show [<em class="replaceable">DEVICE_NAME</em>]</pre></div></dd><dt id="id-1.5.2.8.3.3"><span class="term"><code class="command">connect</code></span></dt><dd><p>
+              to connect a device. NetworkManager tries to find a suitable connection
+              that will be activated. If there is no compatible connection, a
+              new profile is created.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>nmcli device connect <em class="replaceable">DEVICE_NAME</em></pre></div></dd><dt id="id-1.5.2.8.3.4"><span class="term"><code class="command">modify</code></span></dt><dd><p>
+              performs temporary changes to the configuration that is active on
+              the particular device. The changes are not stored in the
+              connection profile.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>nmcli device modify <em class="replaceable">DEVICE_NAME</em> [+|-] <em class="replaceable">SETTING.PROPERTY</em> <em class="replaceable">VALUE</em></pre></div><p>
+              For possible <em class="replaceable">SETTING.PROPERTY</em> values,
+              refer to <span class="emphasis"><em>nm-settings-nmcli(5)</em></span>.
+            </p><p>
+              The example below starts the IPv4 shared connection sharing on
+              the device <code class="literal">con1</code>.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>nmcli dev modify con1 ipv4.method shared</pre></div></dd><dt id="id-1.5.2.8.3.5"><span class="term"><code class="command">disconnect</code></span></dt><dd><p>
+              disconnects a device and prevents the device from automatically
+              activating further connections without manual intervention.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>nmcli device disconnect <em class="replaceable">DEVICE_NAME</em></pre></div></dd><dt id="id-1.5.2.8.3.6"><span class="term"><code class="command">delete</code></span></dt><dd><p>
+              to delete the interface from the system. You can use the command
+              to delete only software devices like bonds and bridges. You
+              cannot delete hardware devices with this command.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>nmcli device <em class="replaceable">DEVICE_NAME</em></pre></div></dd><dt id="id-1.5.2.8.3.7"><span class="term"><code class="command">wifi</code></span></dt><dd><p>
+              lists all available access points.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>nmcli device wifi</pre></div></dd><dt id="id-1.5.2.8.3.8"><span class="term"><code class="command">wifi connect</code></span></dt><dd><p>
+              connects to a Wi-Fi network specified by its SSID or BSSID. The
+              command takes the following options:
+            </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                  <code class="option">password</code> - password for secured networks
+                </p></li><li class="listitem"><p>
+                  <code class="option">ifname</code> - interface used for
+                  activation
+                </p></li><li class="listitem"><p>
+                  <code class="option">name</code> - you can give the connection a name
+                </p></li></ul></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>nmcli device wifi connect <em class="replaceable">SSID</em> [password <em class="replaceable">PASSWORD_VALUE</em>] [ifname <em class="replaceable">INTERFACE_NAME</em>]</pre></div><p>
+              To connect to a Wi-Fi <span class="emphasis"><em>GUESTWiFi</em></span> with a
+              password <code class="literal">pass$word2#@@</code>, run:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>nmcli device wifi connect <em class="replaceable">GUESTWiFi</em> password pass$word2#@@</pre></div></dd></dl></div></section><section class="sect3" id="sec-general-command" data-id-title="The general subcommand"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">4.1.4 </span><span class="title-name">The <code class="command">general</code> subcommand</span></span> <a title="Permalink" class="permalink" href="index.html#sec-general-command">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        You can use this command to view NetworkManager status and permissions, and
+        change the host name and logging level. The <code class="command">nmcli
+        general</code> recognizes the following commands:
+      </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.5.2.9.3.1"><span class="term"><code class="command">status</code></span></dt><dd><p>
+              displays the overall status of NetworkManager. Whenever you do not specify
+              a command to the <code class="command">nmcli general</code> command, status
+              is used by default.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>nmcli general status</pre></div></dd><dt id="id-1.5.2.9.3.2"><span class="term"><code class="command">hostname</code></span></dt><dd><p>
+              if you do not provide a new host name as an argument, the current
+              host name is displayed. If you specify a new host name, the value
+              is used to set a new host name.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>nmcli general hostname [<em class="replaceable">HOSTNAME</em>]</pre></div><p>
+              For example, to set <code class="literal">MyHostname</code>, run:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>nmcli general hostname MyHostname</pre></div></dd><dt id="id-1.5.2.9.3.3"><span class="term"><code class="command">permissions</code></span></dt><dd><p>
+              shows your permission for NetworkManager operations like enabling or
+              disabling networking, modifying connections, etc.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>nmcli general permissions</pre></div></dd><dt id="id-1.5.2.9.3.4"><span class="term"><code class="command">logging</code></span></dt><dd><p>
+              shows and changes NetworkManager logging levels and domains. Without any
+              arguments, the command displays current logging levels and
+              domains.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>nmcli general logging [level <em class="replaceable">LEVEL</em> domains <em class="replaceable">DOMAIN</em>]</pre></div><p>
+              <em class="replaceable">LEVEL</em> is any of the values:
+              <code class="literal">OFF</code>, <code class="literal">ERR</code>,
+              <code class="literal">WARN</code>, <code class="literal">INFO</code>,
+              <code class="literal">DEBUG</code>, or <code class="literal">TRACE</code>.
+            </p><p>
+              <em class="replaceable">DOMAIN</em> is a list of values that can be
+              as follows: <code class="literal">PLATFORM, RFKILL, ETHER, WIFI, BT, MB,
+              DHCP4, DHCP6, PPP, WIFI_SCAN, IP4, IP6, AUTOIP4, DNS, VPN,
+              SHARING, SUPPLICANT, AGENTS, SETTINGS, SUSPEND, CORE, DEVICE,
+              OLPC, WIMAX, INFINIBAND, FIREWALL, ADSL, BOND, VLAN, BRIDGE,
+              DBUS_PROPS, TEAM, CONCHECK, DCB, DISPATCH, AUDIT, SYSTEMD,
+              VPN_PLUGIN, PROXY</code>.
+            </p></dd></dl></div></section><section class="sect3" id="sec-networking-command" data-id-title="The networking subcommand"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">4.1.5 </span><span class="title-name">The <code class="command">networking</code> subcommand</span></span> <a title="Permalink" class="permalink" href="index.html#sec-networking-command">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        The subcommand enables you to query the status of the network. Also, by
+        using this command, you can enable or disable networking. The
+        <code class="command">nmcli networking</code> command takes the following
+        commands:
+      </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.5.2.10.3.1"><span class="term"><code class="command">on/off</code></span></dt><dd><p>
+              enables or disables networking. The <code class="command">off</code>
+              command deactivates all interfaces managed by NetworkManager.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>nmcli networking on</pre></div></dd><dt id="id-1.5.2.10.3.2"><span class="term">connectivity</span></dt><dd><p>
+              displays the network connectivity state. If
+              <code class="option">check</code> is used, NetworkManager performs a new check of the
+              state. Otherwise, the last detected state is displayed.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>nmcli networking connectivity</pre></div><p>
+              Possible states are the following:
+            </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                  <span class="emphasis"><em>none</em></span> - the host is not connected to any
+                  network.
+                </p></li><li class="listitem"><p>
+                  <span class="emphasis"><em>portal</em></span> - the host is behind a captive
+                  portal and cannot reach the full Internet.
+                </p></li><li class="listitem"><p>
+                  <span class="emphasis"><em>limited</em></span> - the host is connected to a
+                  network, but it has no access to the Internet.
+                </p></li><li class="listitem"><p>
+                  <span class="emphasis"><em>full</em></span> - the host is connected to a
+                  network and has full access to the Internet.
+                </p></li><li class="listitem"><p>
+                  <span class="emphasis"><em>unknown</em></span> - NetworkManager could not determine the
+                  network state.
+                </p></li></ul></div></dd></dl></div></section></section></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p> Copyright© 2006–2024
+ SUSE LLC and contributors.
+  All rights reserved. </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy.  Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#nm-introduction"><span class="title-number">1 </span><span class="title-name">
+About NetworkManager
+      </span></a></span></li><li><span class="section"><a href="index.html#nm-configuration"><span class="title-number">2 </span><span class="title-name">The <code class="filename">NetworkManager.conf</code> configuration file</span></a></span></li><li><span class="section"><a href="index.html#nm-start-stop"><span class="title-number">3 </span><span class="title-name">Starting and stopping NetworkManager</span></a></span></li><li><span class="section"><a href="index.html#nmcli-usage"><span class="title-number">4 </span><span class="title-name">Managing the network using NetworkManager</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">5 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-fb" href="#" title="Facebook"> </a></li><li><a id="_share-in" href="#" title="LinkedIn"> </a></li><li><a id="_share-tw" href="#" title="Twitter/X"> </a></li><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE
+                 2024</span></div></div></footer></body></html>
