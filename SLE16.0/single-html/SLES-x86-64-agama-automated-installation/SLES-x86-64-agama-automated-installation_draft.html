@@ -41,7 +41,7 @@
     ],
     "dateCreated": "2025-11-04T00:00+02:00",
     "dateModified": "2026-08-26T00:00+02:00",
-    "datePublished": "2026-08-26T13:28+02:00",
+    "datePublished": "2026-08-26T14:24+02:00",
     "about": [
       {
         "@type": "Thing",
@@ -415,11 +415,13 @@
       keys or values and suggest valid ones as you type, catching mistakes that would otherwise
       only surface once an unattended installation is already running. Visual Studio Code and
       VSCodium are the most common editors with this support.
-    </p><div id="id-1.4.7.2.3" data-id-title="Editor-only, not used by the installer" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Editor-only, not used by the installer</div><p>
+    </p><div id="id-1.4.7.2.3" data-id-title="Editor-only, not used by the installer" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning: Editor-only, not used by the installer</div><p>
         The <code class="literal">$schema</code> value is used only by the editor, for validation while you
-        write the profile. The Agama installer always validates against its own embedded schema,
-        regardless of what <code class="literal">$schema</code> points to, and completely ignores this key
-        at installation time.
+        write the profile. The Agama installer always validates against its own embedded schema.
+      </p><p>
+        The Agama installer in version 16.0 does not accept the <code class="literal">$schema</code> key and
+        complains that the profile is not valid. You have to remove the key before using the
+        profile. The later versions (16.1 and later) accept the key but still ignore its value.
       </p></div></section><section class="sect3" id="editing-agama-profile-requirements" data-id-title="Requirements"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">3.6.2 </span><span class="title-name">Requirements</span></span> <a title="Permalink" class="permalink" href="#editing-agama-profile-requirements">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
       A text editor that supports JSON Schema validation using the <code class="literal">$schema</code>
       key, for example Visual Studio Code or VSCodium.
@@ -429,15 +431,14 @@
           Add a <code class="literal">$schema</code> key pointing to the profile schema matching your target
           product and version. For <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> <span class="phrase"><span class="phrase">16.0</span></span> profiles:
         </p><div class="verbatim-wrap"><pre class="screen">{
-  "$schema": "https://raw.githubusercontent.com/agama-project/agama/refs/heads/master/rust/share/profile.schema.json"
+  "$schema": "https://raw.githubusercontent.com/agama-project/agama/refs/heads/SLE-16/rust/agama-lib/share/profile.schema.json"
 }</pre></div></li><li class="step"><p>
           Save the file. Your editor should now flag invalid keys or values and suggest valid ones
           as you type.
         </p></li></ol></div></div></section><section class="sect3" id="editing-agama-profile-summary" data-id-title="Summary"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">3.6.4 </span><span class="title-name">Summary</span></span> <a title="Permalink" class="permalink" href="#editing-agama-profile-summary">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
       Adding a <code class="literal">$schema</code> key to your profile gives you validation and
       autocompletion while editing, catching mistakes before you start an unattended installation.
-      Remove or ignore this key when you actually run the installation; the installer does not
-      use it.
+      Remove this key when you actually run the installation; the installer does not use it.
     </p></section><section class="sect3" id="editing-agama-profile-troubleshooting" data-id-title="Troubleshooting"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">3.6.5 </span><span class="title-name">Troubleshooting</span></span> <a title="Permalink" class="permalink" href="#editing-agama-profile-troubleshooting">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
       If the installer reports that your profile is invalid even though your editor did not
       flag any problems, run <code class="command">agama config validate</code> against the file directly
@@ -474,23 +475,17 @@
             the <span class="package">agama-products</span> package's <code class="filename">products.d/*.yaml</code>
             files, or by selecting the product interactively and running
             <code class="command">agama config show</code>.
-          </p></dd><dt id="id-1.5.2.5.2"><span class="term">mode</span></dt><dd><p>
-            Optional installation mode. Some products support more than one mode, changing how the
-            installed system behaves. For example, <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> supports
-            <code class="literal">standard</code> and <code class="literal">immutable</code> (an immutable OS using
-            transactional updates). If omitted, the product uses its traditional default behavior;
-            it is preferred to specify the mode explicitly.
-          </p></dd><dt id="id-1.5.2.5.3"><span class="term">registrationCode</span></dt><dd><p>
+          </p></dd><dt id="id-1.5.2.5.2"><span class="term">registrationCode</span></dt><dd><p>
             The registration code for the product obtained from the SUSE Customer Center and used to activate
             repositories and receive updates. Registration is available only for the SUSE Linux
             Enterprise family of products.
-          </p></dd><dt id="id-1.5.2.5.4"><span class="term">registrationEmail</span></dt><dd><p>
+          </p></dd><dt id="id-1.5.2.5.3"><span class="term">registrationEmail</span></dt><dd><p>
             The e-mail address associated with the registration account used during product
             activation.
-          </p></dd><dt id="id-1.5.2.5.5"><span class="term">registrationUrl</span></dt><dd><p>
+          </p></dd><dt id="id-1.5.2.5.4"><span class="term">registrationUrl</span></dt><dd><p>
             The full URL of the registration server. If you are using the SUSE Customer Center, you can omit this
             field. However, it is useful when registering from a custom server.
-          </p></dd><dt id="id-1.5.2.5.6"><span class="term">addons</span></dt><dd><p>
+          </p></dd><dt id="id-1.5.2.5.5"><span class="term">addons</span></dt><dd><p>
             A list of <span><em class="emphasis">optional</em></span> add-on modules or extensions to be activated
             alongside the base product.
           </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
@@ -560,7 +555,6 @@
             <code class="filename">~/.ssh/authorized_keys</code> file. This allows passwordless <code class="systemitem">root</code>
             login over SSH. The key must be in OpenSSH format. For example, starting with
             <code class="literal">ssh-rsa</code> or <code class="literal">ssh-ed25519</code>.
-            <code class="literal">sshPublicKeys</code> is an accepted alias with identical behavior.
           </p><p>
             You can generate an SSH public key by running the following command:
           </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">ssh-keygen -t rsa -b 4096 -C "<em class="replaceable">YOUR_EMAIL@EXAMPLE.COM</em>"
@@ -575,8 +569,7 @@
   "hashedPassword": false,
   "fullName": "<em class="replaceable">FULL_NAME</em>",
   "userName": "<em class="replaceable">LOGIN_NAME</em>",
-  "password": "<em class="replaceable">USER_PASSWORD</em>",
-  "sshPublicKey": "<em class="replaceable">SSH_PUBLIC_KEY</em>"
+  "password": "<em class="replaceable">USER_PASSWORD</em>"
 }</pre></div></div></div><p>
       This section contains the following fields:
     </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.5.5.5.1"><span class="term">hashedPassword</span></dt><dd><p>
@@ -593,12 +586,6 @@
             The user's password, in plain text or pre-hashed, depending on the
             <code class="literal">hashedPassword</code> flag. If plaintext is provided, it will be
             automatically hashed.
-          </p></dd><dt id="id-1.5.5.5.5"><span class="term">sshPublicKey</span></dt><dd><p>
-            An optional SSH public key, or list of keys, to be added to the user's
-            <code class="filename">~/.ssh/authorized_keys</code> file, in the same format as
-            <code class="systemitem">root</code>'s <code class="literal">sshPublicKey</code> (see
-            <a class="xref" href="#root-authentication-agama-installation-profile" title="4.3. Root authentication for an Agama installation profile">Section 4.3, “Root authentication for an Agama installation profile”</a>).
-            <code class="literal">sshPublicKeys</code> is an accepted alias with identical behavior.
           </p></dd></dl></div></section><section class="sect2" id="localization-configuration-agama-installation-profile" data-id-title="Localization configuration for an Agama installation profile"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.5 </span><span class="title-name">Localization configuration for an Agama installation profile</span></span> <a title="Permalink" class="permalink" href="#localization-configuration-agama-installation-profile">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
       The <code class="literal">l10n</code> section defines the system locale, keyboard layout, and time
       zone settings. These parameters determine the default locale and input behavior after
@@ -795,11 +782,6 @@
             Additional kernel command-line parameters to append to the default ones during boot.
             These are passed directly to the Linux kernel. For example,
             <code class="literal">console=ttyS0</code> or <code class="literal">quiet splash</code>.
-          </p></dd><dt id="id-1.5.9.6.4"><span class="term">updateNvram</span></dt><dd><p>
-            Available since SUSE Linux 16.1. Optional boolean. Determines whether the
-            installer modifies the system's NVRAM (Non-Volatile RAM) to update the boot order or
-            entries. If set to <code class="literal">false</code>, the NVRAM is left untouched, which is
-            useful for preserving an existing boot manager or specific firmware configuration.
           </p></dd></dl></div></section><section class="sect2" id="network-configuration-agama-installation-profile" data-id-title="Network configuration for an Agama installation profile"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.9 </span><span class="title-name">Network configuration for an Agama installation profile</span></span> <a title="Permalink" class="permalink" href="#network-configuration-agama-installation-profile">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
       The <code class="literal">network</code> section defines a list of network
       <code class="literal">connections</code> to be configured, using the same connection concept as
@@ -1308,7 +1290,6 @@
       "channel": "<em class="replaceable">0.0.fb00</em>",
       "wwpn": "<em class="replaceable">0x500507630300c563</em>",
       "lun": "<em class="replaceable">0x4010403300000000</em>",
-      "active": false
     }
   ]
 }</pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#zfcp-coordinates"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
@@ -1648,59 +1629,12 @@
       if any. This is especially useful to match all partitions or logical volumes in a device,
       irrespective of whether there is any. For example, the two following search sections are
       equivalent:
-    </p><div class="example" id="id-1.6.4.17" data-id-title="Example of equivalent search"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 35: </span><span class="title-name">Example of equivalent search </span></span><a title="Permalink" class="permalink" href="#id-1.6.4.17">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">{ "search": "*" }</pre></div><div class="verbatim-wrap"><pre class="screen">{ "search": { "ifNotFound": "skip" } }</pre></div></div></div></section><section class="sect2" id="additional-search-conditions-agama-storage" data-id-title="Additional search conditions"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.4 </span><span class="title-name">Additional search conditions</span></span> <a title="Permalink" class="permalink" href="#additional-search-conditions-agama-storage">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
-      Besides matching by name, size, or partition number, a <code class="literal">search</code> section's
-      <code class="literal">condition</code> also accepts the following conditions. Availability depends on
-      the kind of device: <code class="literal">driver</code> and <code class="literal">boss</code> apply only to
-      <code class="literal">drives</code>; <code class="literal">id</code> applies only to <code class="literal">partitions</code>;
-      <code class="literal">filesystem</code> and <code class="literal">partitions</code> apply to
-      <code class="literal">drives</code>, <code class="literal">partitions</code>, and <code class="literal">mdRaids</code>
-      (except that a <code class="literal">partitions</code> condition on a <code class="literal">partitions</code>
-      entry does not make sense, since partitions do not themselves contain partitions).
-    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.6.5.3.1"><span class="term"><code class="literal">filesystem</code></span></dt><dd><p>
-            Matches by the presence, type, or label of a file system. Use the shortcut string
-            <code class="literal">"any"</code> to match formatted devices, or <code class="literal">"none"</code> to
-            match unformatted ones; otherwise provide an object with <code class="literal">type</code> or
-            <code class="literal">label</code>.
-          </p><div class="verbatim-wrap"><pre class="screen">{ "search": { "condition": { "filesystem": "any" } } }
-{ "search": { "condition": { "filesystem": { "type": "xfs" } } } }
-{ "search": { "condition": { "filesystem": { "label": "DATA" } } } }</pre></div></dd><dt id="id-1.6.5.3.2"><span class="term"><code class="literal">id</code></span></dt><dd><p>
-            Matches a partition by its libstorage-ng partition id, such as <code class="literal">esp</code>,
-            <code class="literal">bios_boot</code>, <code class="literal">linux</code>, <code class="literal">swap</code>,
-            <code class="literal">lvm</code>, or <code class="literal">raid</code>.
-          </p><div class="verbatim-wrap"><pre class="screen">{ "search": { "condition": { "id": "esp" } } }</pre></div></dd><dt id="id-1.6.5.3.3"><span class="term"><code class="literal">driver</code></span></dt><dd><p>
-            Matches drives handled by the given kernel driver, as reported by
-            <code class="command">hwinfo</code>. A drive can be handled by several drivers; the condition
-            matches if any of them is the given one.
-          </p><div class="verbatim-wrap"><pre class="screen">{ "search": { "condition": { "driver": "ahci" } } }</pre></div></dd><dt id="id-1.6.5.3.4"><span class="term"><code class="literal">boss</code></span></dt><dd><p>
-            Boolean. Whether the drive is a BOSS (Boot Optimized Storage Solution) device, a
-            technology introduced by Dell. Use <code class="literal">false</code> to match any other drive.
-          </p></dd><dt id="id-1.6.5.3.5"><span class="term"><code class="literal">partitions</code></span></dt><dd><p>
-            Matches a drive or MD RAID by the presence or properties of its partitions. Use the
-            shortcut string <code class="literal">"any"</code> or <code class="literal">"none"</code> for presence
-            alone, or an object with <code class="literal">any</code>, <code class="literal">none</code>,
-            <code class="literal">all</code>, or <code class="literal">count</code> to match against a nested
-            condition.
-          </p><div class="verbatim-wrap"><pre class="screen">{ "search": { "condition": { "partitions": "any" } } }
-{ "search": { "condition": { "partitions": { "any": { "size": { "greater": "10 GiB" } } } } } }
-{ "search": { "condition": { "partitions": { "count": { "min": 2, "max": 3 } } } } }</pre></div></dd></dl></div><p>
-      Combine conditions with <code class="literal">and</code>, <code class="literal">or</code>, and
-      <code class="literal">not</code> operators, each taking one or more nested conditions:
-    </p><div class="verbatim-wrap"><pre class="screen">{
-  "search": {
-    "condition": {
-      "and": [
-        { "boss": false },
-        { "size": { "greater": "100 GiB" } }
-      ]
-    }
-  }
-}</pre></div></section><section class="sect2" id="reference-other-devices-agama-storage" data-id-title="Referencing other devices"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.5 </span><span class="title-name">Referencing other devices</span></span> <a title="Permalink" class="permalink" href="#reference-other-devices-agama-storage">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    </p><div class="example" id="id-1.6.4.17" data-id-title="Example of equivalent search"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 35: </span><span class="title-name">Example of equivalent search </span></span><a title="Permalink" class="permalink" href="#id-1.6.4.17">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">{ "search": "*" }</pre></div><div class="verbatim-wrap"><pre class="screen">{ "search": { "ifNotFound": "skip" } }</pre></div></div></div></section><section class="sect2" id="reference-other-devices-agama-storage" data-id-title="Referencing other devices"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.4 </span><span class="title-name">Referencing other devices</span></span> <a title="Permalink" class="permalink" href="#reference-other-devices-agama-storage">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
       At certain times, it is necessary to reference other devices as part of the specification of
       an LVM volume group or RAID. Those devices can be existing system devices, or devices that
       will be created as response to another entry of the Agama profile. For that purpose, you
       can use <code class="literal">alias</code>.
-    </p><div class="example" id="id-1.6.6.3" data-id-title="Using alias in storage configuration"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 36: </span><span class="title-name">Using <code class="literal">alias</code> in storage configuration </span></span><a title="Permalink" class="permalink" href="#id-1.6.6.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">"storage": {
+    </p><div class="example" id="id-1.6.5.3" data-id-title="Using alias in storage configuration"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 36: </span><span class="title-name">Using <code class="literal">alias</code> in storage configuration </span></span><a title="Permalink" class="permalink" href="#id-1.6.5.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">"storage": {
   "drives": [
     {
       "partitions": [
@@ -1719,7 +1653,7 @@
       If a section matching several existing devices contains an alias, that alias is considered as
       a reference to all the devices. Consider the following equivalent examples that assume there
       are at least two disks in the system:
-    </p><div class="example" id="id-1.6.6.5" data-id-title="Equivalent examples of alias"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 37: </span><span class="title-name">Equivalent examples of alias </span></span><a title="Permalink" class="permalink" href="#id-1.6.6.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">"storage": {
+    </p><div class="example" id="id-1.6.5.5" data-id-title="Equivalent examples of alias"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 37: </span><span class="title-name">Equivalent examples of alias </span></span><a title="Permalink" class="permalink" href="#id-1.6.5.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">"storage": {
   "drives": [
     {
       "search": {
@@ -1760,7 +1694,7 @@
       "level": "raid0"
     }
   ]
-}</pre></div></div></div></section><section class="sect2" id="specify-device-size-agama-storage" data-id-title="Specifying the size of a device"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.6 </span><span class="title-name">Specifying the size of a device</span></span> <a title="Permalink" class="permalink" href="#specify-device-size-agama-storage">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+}</pre></div></div></div></section><section class="sect2" id="specify-device-size-agama-storage" data-id-title="Specifying the size of a device"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.5 </span><span class="title-name">Specifying the size of a device</span></span> <a title="Permalink" class="permalink" href="#specify-device-size-agama-storage">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
       When configuring storage in the Agama profile, you must specify the desired size for a new
       device or the target size when resizing an existing one. The schema allows for flexible size
       specification. The most common method is using a human-readable string that can be parsed
@@ -1784,11 +1718,11 @@
       operating system being installed, and it specifies the default size ranges for its relevant
       file systems, such as <code class="filename">/</code>, <code class="filename">swap</code> and
       <code class="filename">/home</code>.
-    </p></section><section class="sect2" id="partition-boot-agama-storage" data-id-title="Partition needed for booting"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.7 </span><span class="title-name">Partition needed for booting</span></span> <a title="Permalink" class="permalink" href="#partition-boot-agama-storage">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    </p></section><section class="sect2" id="partition-boot-agama-storage" data-id-title="Partition needed for booting"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.6 </span><span class="title-name">Partition needed for booting</span></span> <a title="Permalink" class="permalink" href="#partition-boot-agama-storage">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
       You can use the <code class="literal">boot</code> entry to configure whether Agama should calculate
       and create extra partitions needed for booting. The behavior is the same when using an alias. If
       the device is not specified, Agama takes the location of the root file system as reference.
-    </p><div class="example" id="id-1.6.8.3" data-id-title="Partitions needed for booting"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 38: </span><span class="title-name">Partitions needed for booting </span></span><a title="Permalink" class="permalink" href="#id-1.6.8.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">"storage": {
+    </p><div class="example" id="id-1.6.7.3" data-id-title="Partitions needed for booting"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 38: </span><span class="title-name">Partitions needed for booting </span></span><a title="Permalink" class="permalink" href="#id-1.6.7.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">"storage": {
   "drives": [
     {
       "search": "/dev/sda",
@@ -1805,12 +1739,12 @@
     "configure": true,
     "device": "bootDisk"
   }
-}</pre></div></div></div></section><section class="sect2" id="keep-existing-filesystem-encryption-agama-storage" data-id-title="Keeping an existing file system or encryption layer"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.8 </span><span class="title-name">Keeping an existing file system or encryption layer</span></span> <a title="Permalink" class="permalink" href="#keep-existing-filesystem-encryption-agama-storage">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+}</pre></div></div></div></section><section class="sect2" id="keep-existing-filesystem-encryption-agama-storage" data-id-title="Keeping an existing file system or encryption layer"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.7 </span><span class="title-name">Keeping an existing file system or encryption layer</span></span> <a title="Permalink" class="permalink" href="#keep-existing-filesystem-encryption-agama-storage">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
       The entries for both <code class="literal">filesystem</code> and <code class="literal">encryption</code> contains
       a <code class="literal">reuse</code> flag with a default value of <code class="literal">false</code>. You can use
       it in combination with <code class="literal">search</code> to specify that the device must not be
       re-formatted or re-encrypted.
-    </p></section><section class="sect2" id="delete-shrink-existing-devices-agama-storage" data-id-title="Deleting and shrinking existing devices"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.9 </span><span class="title-name">Deleting and shrinking existing devices</span></span> <a title="Permalink" class="permalink" href="#delete-shrink-existing-devices-agama-storage">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    </p></section><section class="sect2" id="delete-shrink-existing-devices-agama-storage" data-id-title="Deleting and shrinking existing devices"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.8 </span><span class="title-name">Deleting and shrinking existing devices</span></span> <a title="Permalink" class="permalink" href="#delete-shrink-existing-devices-agama-storage">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
       The storage configuration proposal must allow defining how to manage existing storage
       components, including partitions, LVM logical volumes, MD RAIDs, and LVM volume groups. A
       search mechanism is employed to match a partition or LVM logical volume definition with one
@@ -1829,7 +1763,7 @@
       such as declaring a file system. For example, you can configure the proposal to
       unconditionally delete partition number <code class="literal">1</code> and then conditionally delete
       other partitions as needed to secure the space for a new <code class="literal">30 GiB</code> partition.
-    </p><div class="example" id="id-1.6.10.5" data-id-title="Deleting and shrinking existing devices"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 39: </span><span class="title-name">Deleting and shrinking existing devices </span></span><a title="Permalink" class="permalink" href="#id-1.6.10.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">"storage": {
+    </p><div class="example" id="id-1.6.9.5" data-id-title="Deleting and shrinking existing devices"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 39: </span><span class="title-name">Deleting and shrinking existing devices </span></span><a title="Permalink" class="permalink" href="#id-1.6.9.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">"storage": {
   "drives": [
     {
       "partitions": [
@@ -1848,7 +1782,7 @@
       Often some partitions or logical volumes are shrunk only to make space for the declared
       devices. But because resizing is not a destructive operation, you can declare a given
       partition to be resized (shrunk or extended), then formatted and/or mounted.
-    </p><div id="id-1.6.10.7" data-id-title="Limitation of resizing" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Limitation of resizing</div><p>
+    </p><div id="id-1.6.9.7" data-id-title="Limitation of resizing" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Limitation of resizing</div><p>
         Resizing a partition can be limited depending on its content and the file system type.
       </p></div><p>
       Combining <code class="literal">search</code> and <code class="literal">resize</code> is enough to indicate that
@@ -1872,42 +1806,6 @@
     }
   ]
 }</pre></div><p>
-      You can use other combinations to specify how a device could be resized, if possible. The
-      following examples match existing partitions by their file system label (set beforehand
-      with a tool such as <code class="command">e2label</code> or during a prior installation), using the
-      <code class="literal">filesystem</code> search condition's <code class="literal">label</code> field.
-    </p><div class="example" id="id-1.6.10.11" data-id-title="Deleting and shrinking of existing devices matched by file system label"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 40: </span><span class="title-name">Deleting and shrinking of existing devices matched by file system label </span></span><a title="Permalink" class="permalink" href="#id-1.6.10.11">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">"storage": {
-  "drives": [
-    {
-      "partitions": [
-        {
-          "search": {
-            "condition": { "filesystem": { "label": "shrinkIfNeeded" } }
-          },
-          "size": { "min": 0, "max": "current" }
-        },
-        {
-          "search": {
-            "condition": { "filesystem": { "label": "resizeToFixedSize" } }
-          },
-          "size": "15 GiB"
-        },
-        {
-          "search": {
-            "condition": { "filesystem": { "label": "resizeByRange" } }
-          },
-          "size": { "min": "10 GiB", "max": "50 GiB" }
-        },
-        {
-          "search": {
-            "condition": { "filesystem": { "label": "growAsMuchAsPossible" } }
-          },
-          "size": { "min": "current" }
-        }
-      ]
-    }
-  ]
-}</pre></div></div></div><p>
       When the size limits are specified as a combination of <code class="literal">current</code> and a fixed
       value, ensure that the resulting <code class="literal">min</code> is not bigger than the resulting
       <code class="literal">max</code>.
@@ -1927,7 +1825,7 @@
       ]
     }
   ]
-}</pre></div></section><section class="sect2" id="generate-default-volumes-agama-storage" data-id-title="Generating default volumes"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.10 </span><span class="title-name">Generating default volumes</span></span> <a title="Permalink" class="permalink" href="#generate-default-volumes-agama-storage">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+}</pre></div></section><section class="sect2" id="generate-default-volumes-agama-storage" data-id-title="Generating default volumes"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.9 </span><span class="title-name">Generating default volumes</span></span> <a title="Permalink" class="permalink" href="#generate-default-volumes-agama-storage">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
       Every product provides a configuration which defines the storage volumes. For example,
       feasible file systems for root and default partitions to create. The default or mandatory
       product volumes can be automatically generated by using a <code class="literal">generate</code> section
@@ -1996,7 +1894,7 @@
       ]
     }
   ]
-}</pre></div></section><section class="sect2" id="generate-physical-volumes-agama-storage" data-id-title="Generating physical volumes"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.11 </span><span class="title-name">Generating physical volumes</span></span> <a title="Permalink" class="permalink" href="#generate-physical-volumes-agama-storage">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+}</pre></div></section><section class="sect2" id="generate-physical-volumes-agama-storage" data-id-title="Generating physical volumes"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.10 </span><span class="title-name">Generating physical volumes</span></span> <a title="Permalink" class="permalink" href="#generate-physical-volumes-agama-storage">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
       You can configure volume groups to explicitly use a set of devices as physical volumes. The
       aliases of the devices to use are added to the list of physical volumes:
     </p><div class="verbatim-wrap"><pre class="screen">"storage": {
@@ -2404,6 +2302,11 @@ inst.dud=<em class="replaceable">label://UPDATES/package.rpm</em></pre></div><p>
             <code class="literal">inst.self_update_unsigned_repo=1</code>,
             <code class="literal">inst.self_update_import_key=1</code>, and
             <code class="literal">inst.self_update_gpg=0</code>.
+          </p><p>
+            The self update repository is provided only for the 16.0/QU0 release, all later QU
+            releases have the self update disabled. But you can still apply your custom updates by
+            specifying the self update repository URL
+            <code class="literal">inst.install_url=<em class="replaceable">http://selfupdaterepo</em></code>.
           </p></dd></dl></div></section><section class="sect2" id="agama-boot-options-live-system" data-id-title="Live system access"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.4 </span><span class="title-name">Live system access</span></span> <a title="Permalink" class="permalink" href="#agama-boot-options-live-system">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.10.5.2.1"><span class="term"><code class="literal">live.password</code> / <code class="literal">live.password_hash</code></span></dt><dd><p>
             Sets the <code class="systemitem">root</code> password of the live system. <code class="literal">live.password</code>
             accepts a plain text password; <code class="literal">live.password_hash</code> expects a hashed
@@ -2421,38 +2324,14 @@ live.password_dialog=1</pre></div></dd><dt id="id-1.10.5.2.3"><span class="term"
             Asks for the password using a single-line prompt instead of a full-screen dialog,
             which works better in constrained environments such as a serial console.
           </p><div class="verbatim-wrap"><pre class="screen">live.password_systemd
-live.password_systemd=1</pre></div></dd><dt id="id-1.10.5.2.4"><span class="term"><code class="literal">inst.remote</code></span></dt><dd><p>
-            Available since SUSE Linux 16.1. By default, the Agama installer can be
-            accessed remotely from other machines or mobile devices. Set
-            <code class="literal">inst.remote=0</code> to disable remote access for increased security,
-            restricting access to the local machine only. To disable other network services, such
-            as SSH, use the standard <code class="literal">systemd.mask</code> boot option instead.
-          </p></dd></dl></div></section><section class="sect2" id="agama-boot-options-advanced" data-id-title="Advanced and diagnostic options"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.5 </span><span class="title-name">Advanced and diagnostic options</span></span> <a title="Permalink" class="permalink" href="#agama-boot-options-advanced">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.10.6.2.1"><span class="term"><code class="literal">fips</code></span></dt><dd><p>
+live.password_systemd=1</pre></div></dd></dl></div></section><section class="sect2" id="agama-boot-options-advanced" data-id-title="Advanced and diagnostic options"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.5 </span><span class="title-name">Advanced and diagnostic options</span></span> <a title="Permalink" class="permalink" href="#agama-boot-options-advanced">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.10.6.2.1"><span class="term"><code class="literal">fips</code></span></dt><dd><p>
             Standard Linux kernel parameter. Set to <code class="literal">1</code> to start the installer in
             FIPS-enabled mode; Agama also uses this as a trigger to propose a FIPS-compliant
             installed system.
-          </p><div class="verbatim-wrap"><pre class="screen">fips=1</pre></div></dd><dt id="id-1.10.6.2.2"><span class="term"><code class="literal">inst.solver_testcase</code></span></dt><dd><p>
-            Available since SUSE Linux 16.1. By default, the dependency solver test case is
-            saved only on failure. Set <code class="literal">inst.solver_testcase=1</code> to also save it
-            on success, which is useful for debugging package dependency problems. Saved to
-            <code class="filename">/run/agama/testcase</code>, and included in the logs created by
-            <code class="command">agama logs store</code>. If the <code class="literal">ZYPP_FULLLOG=1</code> boot
-            option is set, the solver test case is instead created automatically by
-            <code class="literal">libzypp</code> (the library behind Zypper and Agama's own package
-            resolution) under
-            <code class="filename">/var/log/YaST2/autoTestcase</code>, and this option is ignored.
-          </p></dd><dt id="id-1.10.6.2.3"><span class="term"><code class="literal">inst.systemd_boot_preview</code></span></dt><dd><div id="id-1.10.6.2.3.2.1" data-id-title="Preview feature" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Preview feature</div><p>
-              This is a preview feature for testing <code class="literal">systemd-boot</code> support. It
-              automatically falls back to GRUB 2 if the system does not meet the Boot Loader
-              Specification (BLS) requirements, and may be removed after the testing period for
-              <code class="literal">systemd-boot</code> support ends.
-            </p></div><p>
-            Available since SUSE Linux 16.1. Set to <code class="literal">1</code> to enable the
-            <code class="literal">systemd-boot</code> boot loader as a preview feature.
-          </p></dd><dt id="id-1.10.6.2.4"><span class="term"><code class="literal">systemd.unit</code></span></dt><dd><p>
+          </p><div class="verbatim-wrap"><pre class="screen">fips=1</pre></div></dd><dt id="id-1.10.6.2.2"><span class="term"><code class="literal">systemd.unit</code></span></dt><dd><p>
             Standard way to change the <code class="systemitem">systemd</code> boot target. Useful for headless mode, when neither
             a graphical interface nor a browser needs to start locally.
-          </p><div class="verbatim-wrap"><pre class="screen">systemd.unit=multi-user.target</pre></div></dd><dt id="id-1.10.6.2.5"><span class="term"><code class="literal">systemd.mask</code></span></dt><dd><p>
+          </p><div class="verbatim-wrap"><pre class="screen">systemd.unit=multi-user.target</pre></div></dd><dt id="id-1.10.6.2.3"><span class="term"><code class="literal">systemd.mask</code></span></dt><dd><p>
             Standard way to disable a <code class="systemitem">systemd</code> unit during boot, for example to disable a default
             service started on the Live ISO:
           </p><div class="verbatim-wrap"><pre class="screen">systemd.mask=sshd.service</pre></div></dd></dl></div></section><section class="sect2" id="agama-boot-options-linuxrc-compatibility" data-id-title="Linuxrc compatibility"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.6 </span><span class="title-name">Linuxrc compatibility</span></span> <a title="Permalink" class="permalink" href="#agama-boot-options-linuxrc-compatibility">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
@@ -2545,7 +2424,7 @@ SetHostname=0</pre></div></li></ul></div></dd><dt id="id-1.10.7.3.4"><span class
       For example, if the profile below is retrieved from
       <code class="literal">https://example.com/machines/sles16.jsonnet</code>, the script URL resolves to
       <code class="literal">https://example.com/machines/scripts/snapshot.sh</code>:
-    </p><div class="example" id="id-1.11.3.4" data-id-title="Relative script URL in an Agama installation profile"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 41: </span><span class="title-name">Relative script URL in an Agama installation profile </span></span><a title="Permalink" class="permalink" href="#id-1.11.3.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">{
+    </p><div class="example" id="id-1.11.3.4" data-id-title="Relative script URL in an Agama installation profile"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 40: </span><span class="title-name">Relative script URL in an Agama installation profile </span></span><a title="Permalink" class="permalink" href="#id-1.11.3.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">{
   scripts: {
     postPartitioning: [
       {
