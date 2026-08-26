@@ -41,7 +41,7 @@
     ],
     "dateCreated": "2026-03-26T00:00+02:00",
     "dateModified": "2025-11-04T00:00+02:00",
-    "datePublished": "2026-08-26T12:51+02:00",
+    "datePublished": "2026-08-26T13:29+02:00",
     "about": [
       {
         "@type": "Thing",
@@ -679,7 +679,7 @@ container                 200       pp    Disabled</pre></div><p>
                    use the <code class="command">restorecon</code> command to reset them to the policy default.
                    For example, to restore the context of <code class="filename">/srv/www/vhosts/example.com</code>, use:
                 </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">restorecon -Rv /srv/www/vhosts/example.com</code></pre></div></li><li class="listitem"><p><span><span class="emphasis"><strong>Case 2: Tell SELinux about a custom path.</strong></span></span> If you intentionally chose a non-standard location for your files, for example, serving Web content from <code class="filename">/srv/wwwcustom</code>,
-                   you must add a new rule to the SELinux policy with the<code class="command">semanage fcontext</code>command.
+                   you must add a new rule to the SELinux policy with the <code class="command">semanage fcontext</code> command.
                   Then, use the <code class="command">restorecon</code> command to apply the new rule.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage fcontext -a -t httpd_sys_content_t "/srv/wwwcustom(/.*)?"</code>
 <code class="prompt root"># </code><code class="command">restorecon -Rv /srv/wwwcustom</code></pre></div><p>For more information on adding custom file paths, see <a class="xref" href="#modify-context-type" title="7.2. Managing custom file contexts">Section 7.2, “Managing custom file contexts”</a>.</p></li></ul></div></dd><dt id="id-1.9.6.3.2"><span class="term">For non-standard ports</span></dt><dd><p>
                 Use the <code class="command">semanage port</code> command to add the custom port to the policy with the correct type.
