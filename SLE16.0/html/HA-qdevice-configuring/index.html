@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Configuring QDevice and QNetd in an Existing High Availability Cluster | SUSE Linux Enterprise High Availability 16.0</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2025-11-04"/>
+<meta name="dcterms.modified" content="2025-11-04"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-25"/>
+<meta name="title" content="Configuring QDevice and QNetd in an Existing High Avai…"/>
+<meta name="description" content="How to configure QDevice and QNetd in a High Availability cluster that is already installed and running"/>
+<meta name="product-name" content="SUSE Linux Enterprise High Availability"/>
+<meta name="product-number" content="16.0"/>
+<meta name="book-title" content="Configuring QDevice and QNetd in an Existing High Availability Cluster"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="tahlia.richardson@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="&#10;            SUSE Linux Enterprise High Availability 16.0&#10;          "/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="tahlia.richardson@suse.com"/><meta property="og:title" content="Configuring QDevice and QNetd in an Existing HA Cluster"/>
+<meta property="og:description" content="Configure QDevice and QNetd in an existing HA cluster"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Configuring QDevice and QNetd in an Existing HA Cluster"/>
+<meta name="twitter:description" content="Configure QDevice and QNetd in an existing HA clust"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Configuring QDevice and QNetd in an Existing HA Cluster | SUSE Linux Enterprise High Availability 16.0",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Configuring QDevice and QNetd in an Existing HA Cluster",
+    "description": "How to configure QDevice and QNetd in a High Availability cluster that is already installed and running",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2025-11-04T00:00+02:00",
+    "dateModified": "2025-11-04T00:00+02:00",
+    "datePublished": "2026-08-25T07:09+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Administration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Clustering"
+      },
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      },
+      {
+        "@type": "Thing",
+        "name": "High Availability"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise High Availability",
+        "softwareVersion": "16.0",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER, IBM Z"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Configuring QDevice and QNetd in an Existing High Availability Cluster</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Configuring QDevice and QNetd in an Existing High Availability Cluster</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="ha-qdevice-configuring" data-id-title="Configuring QDevice and QNetd in an Existing High Availability Cluster"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise High Availability</span></span></span> 16.0</div><div><h1 class="title">Configuring QDevice and QNetd in an Existing High Availability Cluster</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>25 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+              QDevice and the arbitrator QNetd help the cluster make quorum calculations in a
+              split-brain scenario. This allows the cluster to sustain more node failures than
+              the standard quorum rules allow.
+            </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
+              We recommend using QDevice and QNetd in clusters with an even number of nodes,
+              especially two-node clusters.
+            </p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                Configuring QDevice and QNetd in an existing cluster only takes a few minutes
+                and does not require any downtime for cluster resources.
+              </p></dd><dt id="id-1.1.12.1.4"><span class="term">GOAL</span></dt><dd><p>
+                QDevice and QNetd can be configured during the initial cluster setup or later in
+                a running cluster. This article explains how to configure them in a High Availability cluster
+                that is already installed and running.
+              </p></dd><dt id="id-1.1.12.1.5"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                    An existing SUSE Linux Enterprise High Availability cluster.
+                  </p></li><li class="listitem"><p>
+                    An additional SUSE Linux Enterprise Server to run QNetd.
+                  </p></li><li class="listitem"><p>
+                    We recommend having the cluster nodes reach the QNetd server via a different
+                    network than the one Corosync uses. Ideally, the QNetd server should be in a
+                    separate rack from the cluster, or at least on a separate PSU and not in the
+                    same network segment as the Corosync communication channels.
+                  </p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Configuring QDevice and QNetd in an Existing High Availability Cluster" hreflang="en" href="rh-ha-qdevice-configuring.html" target="_blank">Revision History: Configuring QDevice and QNetd in an Existing High Availability Cluster</a></div></div></div></div><section xml:lang="en" class="sect1" id="ha-qdevice-what-is" data-id-title="What are QDevice and QNetd?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">What are QDevice and QNetd?</span></span> <a title="Permalink" class="permalink" href="index.html#ha-qdevice-what-is">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+  When communication fails between one or more nodes and the rest of the cluster (a
+  <span><em class="emphasis">split-brain scenario</em></span>), a cluster <span><em class="emphasis">partition</em></span> occurs.
+  The nodes can only communicate with other nodes in the same partition and are unaware of
+  the separated nodes. A cluster partition has <span><em class="emphasis">quorum</em></span> (or is
+  <span class="quote">“<span class="quote">quorate</span>”</span>) if it has the majority of nodes (or <span class="quote">“<span class="quote">votes</span>”</span>).
+  This is determined by <span><em class="emphasis">quorum calculation</em></span>. Quorum must be calculated
+  so the non-quorate nodes can be fenced.
+</p><p>
+      QDevice and QNetd participate in quorum calculations in a split-brain scenario. QDevice
+      runs on each cluster node and communicates with an arbitrator, QNetd, to provide a
+      configurable number of votes to the cluster. This allows the cluster to sustain more node
+      failures than the standard quorum rules allow. We recommend using QDevice and QNetd for
+      clusters with an even number of nodes, and especially for two-node clusters.
+      </p></div></div></div></div><section class="sect2" id="ha-qdevice-what-is-components" data-id-title="Components"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">Components</span></span> <a title="Permalink" class="permalink" href="index.html#ha-qdevice-what-is-components">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.2.2.1"><span class="term">QDevice (<code class="systemitem">corosync-qdevice</code>)</span></dt><dd><p>
+  QDevice runs together with Corosync on each cluster node. It communicates with the arbitrator
+  QNetd to provide a configurable number of votes to help with quorum calculation.
+</p></dd><dt id="id-1.2.2.2.2"><span class="term">QNetd (<code class="systemitem">corosync-qnetd</code>)</span></dt><dd><p>
+  QNetd is an arbitrator that provides a vote to the QDevice service running on the cluster
+  nodes. The QNetd server runs outside the cluster, so you cannot move cluster resources to
+  this server. QNetd can support multiple clusters if each cluster has a unique name.
+</p></dd><dt id="id-1.2.2.2.3"><span class="term">Algorithms</span></dt><dd><p>
+            QDevice supports different algorithms to determine how votes are assigned.
+            <span class="quote">“<span class="quote">Fifty-fifty split</span>”</span> is helpful for clusters with an even number of nodes.
+            <span class="quote">“<span class="quote">Last man standing</span>”</span> is helpful for clusters where only one
+            <span><em class="emphasis">active</em></span> node needs to remain quorate.
+          </p></dd><dt id="id-1.2.2.2.4"><span class="term">Heuristics</span></dt><dd><p>
+            QDevice supports a set of commands (or <span class="quote">“<span class="quote">heuristics</span>”</span>) that run
+            when the cluster services start (or restart), when the cluster membership changes, and
+            when nodes connect to the QNetd server. Optionally, you can also configure the commands
+            to run at regular intervals. The result is sent to QNetd to help with the quorum
+            calculation. Heuristics can be written in any programming language.
+          </p></dd><dt id="id-1.2.2.2.5"><span class="term">Tiebreaker</span></dt><dd><p>
+            This is used as a fallback if the cluster partitions are equal even after the heuristics
+            results are applied. The tie-breaker vote can be configured to go to the node with the
+            lowest node ID, the highest node ID, or a specific node ID.
+          </p></dd></dl></div></section><section class="sect2" id="ha-qdevice-what-is-benefits" data-id-title="Benefits"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Benefits</span></span> <a title="Permalink" class="permalink" href="index.html#ha-qdevice-what-is-benefits">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          Clusters with an even number of nodes can make quorum calculations more easily.
+        </p></li><li class="listitem"><p>
+          The cluster can sustain more node failures than the standard quorum rules allow.
+        </p></li><li class="listitem"><p>
+          You can write your own heuristics scripts to affect votes. This is especially useful for
+          complex setups.
+        </p></li><li class="listitem"><p>
+          Two-node clusters can use diskless SBD if QDevice is also configured.
+        </p></li><li class="listitem"><p>
+          One QNetd server can provide votes for multiple clusters.
+        </p></li><li class="listitem"><p>
+          QNetd can work with TLS for client certificate checking.
+        </p></li></ul></div></section><section class="sect2" id="ha-qdevice-what-is-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.3 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="index.html#ha-qdevice-what-is-more-info">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      For more information, see the man pages <code class="literal">corosync-qdevice</code> and
+      <code class="literal">corosync-qnetd</code>.
+    </p></section></section><section xml:lang="en" class="sect1" id="ha-qdevice-setting-up-qnetd" data-id-title="Setting up the QNetd server"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Setting up the QNetd server</span></span> <a title="Permalink" class="permalink" href="index.html#ha-qdevice-setting-up-qnetd">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+  QNetd is an arbitrator that provides a vote to the QDevice service running on the cluster
+  nodes. The QNetd server runs outside the cluster, so you cannot move cluster resources to
+  this server. QNetd can support multiple clusters if each cluster has a unique name.
+</p><p>
+        By default, QNetd runs the <code class="systemitem">corosync-qnetd</code> daemon as the user
+        <code class="systemitem">coroqnetd</code> in the group <code class="systemitem">coroqnetd</code>.
+        This avoids running the daemon as <code class="systemitem">root</code>.
+      </p></div></div></div></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Requirements </span></span><a title="Permalink" class="permalink" href="index.html#id-1.3.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        SUSE Linux Enterprise Server is installed and registered with the SUSE Customer Center.
+      </p></li><li class="listitem"><p>
+        You have an additional registration code for SUSE Linux Enterprise High Availability.
+      </p></li><li class="listitem"><p>
+        We recommend having the cluster nodes reach the QNetd server via a different network
+        than the one Corosync uses.
+      </p></li></ul></div><p>
+    Perform this procedure on a server that is <span><em class="emphasis">not</em></span> part of the cluster:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code> privileges.
+      </p></li><li class="step"><p>
+        Enable the SUSE Linux Enterprise High Availability extension:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo SUSEConnect -p sle-ha/16.0/x86_64 -r <em class="replaceable">HA_REGCODE</em></code></pre></div></li><li class="step"><p>
+        Install the <span class="package">corosync-qnetd</span> package:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo zypper install corosync-qnetd</code></pre></div><p>
+        You do not need to manually start the <code class="systemitem">corosync-qnetd</code> service.
+        It starts automatically when you configure QDevice on the cluster.
+      </p></li></ol></div></div><p>
+    The QNetd server is ready to accept connections from a QDevice client
+    (<code class="systemitem">corosync-qdevice</code>). Further configuration is handled
+    by <code class="systemitem">crmsh</code> when you connect QDevice clients.
+  </p></section><section xml:lang="en" class="sect1" id="ha-qdevice-connecting-to-qnetd" data-id-title="Connecting QDevice to the QNetd server"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Connecting QDevice to the QNetd server</span></span> <a title="Permalink" class="permalink" href="index.html#ha-qdevice-connecting-to-qnetd">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+  QDevice runs together with Corosync on each cluster node. It communicates with the arbitrator
+  QNetd to provide a configurable number of votes to help with quorum calculation.
+</p><p>
+        This procedure explains how to configure QDevice after the cluster is already
+        installed and running, not during the initial cluster setup.
+      </p></div></div></div></div><div id="id-1.4.2" data-id-title="Cluster restart might be required" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Cluster restart might be required</div><p>
+      The setup script checks if a cluster restart is required and whether it is safe to do so
+      automatically. If any non-<code class="literal">stonith</code> resources are running, the script warns
+      you to restart the cluster services manually. This allows you to put the cluster into
+      maintenance mode first to avoid resource downtime. However, be aware that the resources won't
+      have cluster protection while in maintenance mode.
+    </p></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Requirements </span></span><a title="Permalink" class="permalink" href="index.html#id-1.4.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        An existing High Availability cluster is already running.
+      </p></li><li class="listitem"><p>
+        The latest <span class="package">corosync-qdevice</span> package is installed on all nodes.
+      </p></li><li class="listitem"><p>
+        The latest <span class="package">corosync-qnetd</span> package is installed on the QNetd server.
+      </p></li><li class="listitem"><p>
+        <span><em class="emphasis">To connect to the QNetd server as a <code class="command">sudo</code> user:</em></span>
+        The user must have passwordless <code class="command">sudo</code> permission.
+      </p></li><li class="listitem"><p>
+        <span><em class="emphasis">To connect to the QNetd server as the <code class="systemitem">root</code> user:</em></span>
+        Passwordless SSH authentication must be configured between the nodes and the QNetd server.
+      </p></li></ul></div><p>
+    Perform this procedure on only one cluster node:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code> privileges.
+      </p></li><li class="step"><p>
+        Run the QDevice stage of the cluster setup script:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster init qdevice</code></pre></div></li><li class="step"><p>
+        Confirm with <code class="literal">y</code> that you want to configure QDevice and QNetd.
+      </p></li><li class="step"><p>
+        Enter the IP address or host name of the QNetd server, with or without a user name:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            If you include a non-<code class="systemitem">root</code> user name, a later step will prompt you for the user's
+            password and the script will configure passwordless SSH authentication from the nodes
+            to the QNetd server.
+          </p></li><li class="listitem"><p>
+            If you omit a user name, the script defaults to the <code class="systemitem">root</code> user, so passwordless
+            SSH authentication must already be configured for the nodes to access the QNetd server.
+          </p></li></ul></div><p>
+        For the remaining fields, you can accept the default values or change them as required:
+      </p></li><li class="step"><p>
+        Accept the proposed port (<code class="literal">5403</code>) or enter a different one.
+      </p></li><li class="step"><p>
+        Choose the algorithm that determines how votes are assigned. The default is
+        <code class="literal">ffsplit</code>.
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            <code class="literal">ffsplit</code> (<span class="quote">“<span class="quote">fifty-fifty split</span>”</span>): If the cluster splits
+            into two even partitions, one of the partitions gets the vote based on the results of
+            heuristics checks and other factors. This algorithm is helpful for clusters with an
+            even number of nodes.
+          </p></li><li class="listitem"><p>
+            <code class="literal">lms</code> (<span class="quote">“<span class="quote">last man standing</span>”</span>): If only one remaining node
+            can still communicate with the QNetd server, that node gets the vote. This algorithm
+            is helpful for clusters where only one <span><em class="emphasis">active</em></span> node needs to remain
+            quorate.
+          </p></li></ul></div></li><li class="step"><p>
+        Choose the method to use when a tie-breaker is required. The default is
+        <code class="literal">lowest</code>.
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            <code class="literal">lowest</code>: The node with the lowest node ID gets the vote.
+          </p></li><li class="listitem"><p>
+            <code class="literal">highest</code>: The node with the highest node ID gets the vote.
+          </p></li><li class="listitem"><p>
+            Alternatively, you can enter a specific node ID. The designated node always gets the vote.
+          </p></li></ul></div></li><li class="step"><p>
+        Choose whether to enable TLS for client certificate checking. The default is
+        <code class="literal">on</code>.
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            <code class="literal">off</code>: TLS is not required and should not be tried.
+          </p></li><li class="listitem"><p>
+            <code class="literal">on</code>: Attempt to connect with TLS, but connect without TLS if it is
+            not available.
+          </p></li><li class="listitem"><p>
+            <code class="literal">required</code>: TLS is mandatory, so QDevice exits with an error if TLS
+            is not available.
+          </p></li></ul></div></li><li class="step"><p>
+        Enter heuristics commands to assist in quorum calculation, or leave the field blank to skip
+        this step.
+      </p><p>
+        You can enter one command, multiple commands separated by semicolons, or the path to a
+        script file. The commands can be written in any programming language.
+      </p><p>
+        If you enter heuristics commands, you must also select the mode of operation. The default is
+        <code class="literal">sync</code>.
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            <code class="literal">sync</code>: QDevice runs heuristics when the cluster services start
+            (or restart), when the cluster membership changes, and when nodes connect to the
+            QNetd server.
+          </p></li><li class="listitem"><p>
+            <code class="literal">on</code>: QDevice runs heuristics in the same scenarios as
+            <code class="literal">sync</code> and also at regular intervals.
+          </p></li></ul></div></li><li class="step"><p>
+        If required, the script prompts you for the password of the QNetd server, then configures
+        passwordless SSH authentication between the cluster nodes and the QNetd server.
+      </p><p>
+        The script configures QDevice on the nodes and completes the QNetd server's
+        configuration, including generating CA and server certificates and starting the
+        <code class="systemitem">corosync-qnetd</code> service. The script also checks whether a
+        cluster restart is required and whether it is safe to do so automatically. If any
+        non-<code class="literal">stonith</code> resources are running, the script warns you to restart
+        the cluster services manually.
+      </p></li><li class="step"><p>
+    If you need to restart the cluster services manually, follow these steps to avoid
+    resource downtime:
+  </p><ol type="a" class="substeps"><li class="step"><p>
+        Put the cluster into maintenance mode:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance on</code></pre></div><p>
+        In this state, the cluster stops monitoring all resources. This allows the services
+        managed by the resources to keep running while the cluster restarts. However, be aware
+        that the resources won't have cluster protection while in maintenance mode.
+      </p></li><li class="step"><p>
+        Restart the cluster services on all nodes:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster restart --all</code></pre></div></li><li class="step"><p>
+        Check the status of the cluster:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div><p>
+        The nodes will have the status <code class="literal">UNCLEAN (offline)</code>, but will soon
+        change to <code class="literal">Online</code>.
+      </p></li><li class="step"><p>
+        When the nodes are back online, put the cluster back into normal operation:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance off</code></pre></div></li></ol></li></ol></div></div></section><section xml:lang="en" class="sect1" id="ha-qdevice-checking-setup" data-id-title="Checking the QDevice and QNetd setup"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Checking the QDevice and QNetd setup</span></span> <a title="Permalink" class="permalink" href="index.html#ha-qdevice-checking-setup">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       Use the <code class="command">crm corosync status</code> command to check the cluster's quorum status
+       and the status of QDevice and QNetd. You can run this command from any node in the cluster.
+      </p></div></div></div></div><p>
+    The following examples show a cluster with two nodes (<code class="systemitem">alice</code> and
+    <code class="systemitem">bob</code>) and a QNetd server (<code class="systemitem">charlie</code>).
+  </p><div class="example" id="ex-quorum-status" data-id-title="Showing the clusters quorum status"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 1: </span><span class="title-name">Showing the cluster's quorum status </span></span><a title="Permalink" class="permalink" href="index.html#ex-quorum-status">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm corosync status quorum</code>
+1 alice member
+2 bob member
+
+Quorum information
+------------------
+Date:             [...]
+Quorum provider:  corosync_votequorum
+Nodes:            2
+Node ID:          2
+Ring ID:          1.e
+Quorate:          Yes
+
+Votequorum information
+----------------------
+Expected votes:   3
+Highest expected: 3
+Total votes:      3
+Quorum:           2
+Flags:            Quorate Qdevice
+
+Membership information
+----------------------
+    Nodeid      Votes    Qdevice Name
+         1          1    A,V,NMW alice
+         2          1    A,V,NMW bob (local)
+         0          1            Qdevice</pre></div></div></div><p>
+    The <code class="literal">Membership information</code> section shows the following status codes:
+  </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.5.5.1"><span class="term"><code class="literal">A</code> (alive) or <code class="literal">NA</code> (not alive)</span></dt><dd><p>
+          Shows the connectivity status between QDevice and Corosync.
+        </p></dd><dt id="id-1.5.5.2"><span class="term"><code class="literal">V</code> (vote) or <code class="literal">NV</code> (non vote)</span></dt><dd><p>
+          Shows if the node has a vote. <code class="literal">V</code> means that both nodes can communicate
+          with each other. In a split-brain scenario, one node would be set to <code class="literal">V</code>
+          and the other node would be set to <code class="literal">NV</code>.
+        </p></dd><dt id="id-1.5.5.3"><span class="term"><code class="literal">MW</code> (master wins) or <code class="literal">NMW</code> (not master wins)</span></dt><dd><p>
+          Shows if the <em class="parameter">master_wins</em> flag is set. By default, the flag is not
+          set, so the status is <code class="literal">NMW</code>.
+        </p></dd><dt id="id-1.5.5.4"><span class="term"><code class="literal">NR</code> (not registered)</span></dt><dd><p>
+          Shows that the cluster is not using a quorum device.
+        </p></dd></dl></div><div class="example" id="ex-qdevice-status" data-id-title="Showing the status of QDevice"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 2: </span><span class="title-name">Showing the status of QDevice </span></span><a title="Permalink" class="permalink" href="index.html#ex-qdevice-status">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm corosync status qdevice</code>
+1 alice member
+2 bob member
+
+Qdevice information
+-------------------
+Model:                  Net
+Node ID:                1
+HB interval:            10000ms
+Sync HB interval:       30000ms
+Configured node list:
+    0   Node ID = 1
+    1   Node ID = 2
+Heuristics:             Disabled
+Ring ID:                1.e
+Membership node list:   1, 2
+Quorate:                Yes
+Quorum node list:
+    0   Node ID = 2, State = member
+    1   Node ID = 1, State = member
+Expected votes:         3
+Last poll call:         [...]
+
+Qdevice-net information
+----------------------
+Cluster name:           hacluster
+QNetd host:             charlie:5403
+Connect timeout:        8000ms
+HB interval:            8000ms
+VQ vote timer interval: 5000ms
+TLS:                    Supported
+Algorithm:              Fifty-Fifty split
+Tie-breaker:            Node with lowest node ID
+KAP Tie-breaker:        Enabled
+Poll timer running:     Yes (cast vote)
+State:                  Connected
+TLS active:             Yes (client certificate sent)
+Connected since:        [...]
+Echo reply received:    [...]</pre></div></div></div><div class="example" id="ex-qnetd-status" data-id-title="Showing the status of QNetd"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 3: </span><span class="title-name">Showing the status of QNetd </span></span><a title="Permalink" class="permalink" href="index.html#ex-qnetd-status">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm corosync status qnetd</code>
+1 alice member
+2 bob member
+
+Cluster "hacluster":
+    Algorithm:          Fifty-Fifty split (KAP Tie-breaker)
+    Tie-breaker:        Node with lowest node ID
+    Node ID 1:
+        Client address:         ::ffff:192.168.1.185:45676
+        HB interval:            8000ms
+        Configured node list:   1, 2
+        Ring ID:                1.e
+        Membership node list:   1, 2
+        Heuristics:             Undefined (membership: Undefined, regular: Undefined)
+        TLS active:             Yes (client certificate verified)
+        Vote:                   ACK (ACK)
+    Node ID 2:
+        Client address:         ::ffff:192.168.1.168:55034
+        HB interval:            8000ms
+        Configured node list:   1, 2
+        Ring ID:                1.e
+        Membership node list:   1, 2
+        Heuristics:             Undefined (membership: Undefined, regular: Undefined)
+        TLS active:             Yes (client certificate verified)
+        Vote:                   No change (ACK)</pre></div></div></div></section><section xml:lang="en" class="sect1" id="ha-qdevice-changing-configuration" data-id-title="Changing the QDevice or QNetd configuration"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Changing the QDevice or QNetd configuration</span></span> <a title="Permalink" class="permalink" href="index.html#ha-qdevice-changing-configuration">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Use this procedure to change the configuration of QDevice or QNetd (for example, to
+        change the tie-breaker method from <code class="literal">lowest</code> to <code class="literal">highest</code>).
+      </p></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code> privileges.
+      </p></li><li class="step"><p>
+        Put the cluster into maintenance mode:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance on</code></pre></div><p>
+        In this state, the cluster stops monitoring all resources. This allows the services
+        managed by the resources to keep running even when you stop the cluster services.
+      </p></li><li class="step"><p>
+        Stop the cluster services on all nodes:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster stop --all</code></pre></div></li><li class="step"><p>
+        Open the Corosync configuration file:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm corosync edit</code></pre></div></li><li class="step"><p>
+        Change the required setting in the <code class="literal">quorum</code> section, then save and close
+        the file.
+      </p></li><li class="step"><p>
+        Copy the new configuration to all nodes:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm corosync push</code></pre></div></li><li class="step"><p>
+        Start the cluster service on all nodes:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster start --all</code></pre></div></li><li class="step"><p>
+        Check the status of the cluster:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div><p>
+        The nodes will have the status <code class="literal">UNCLEAN (offline)</code>, but will soon
+        change to <code class="literal">Online</code>.
+      </p></li><li class="step"><p>
+        When the nodes are back online, put the cluster back into normal operation:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance off</code></pre></div></li><li class="step"><p>
+        Verify that the change was successful:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm corosync status qnetd</code></pre></div></li></ol></div></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#ha-qdevice-what-is"><span class="title-number">1 </span><span class="title-name">What are QDevice and QNetd?</span></a></span></li><li><span class="section"><a href="index.html#ha-qdevice-setting-up-qnetd"><span class="title-number">2 </span><span class="title-name">Setting up the QNetd server</span></a></span></li><li><span class="section"><a href="index.html#ha-qdevice-connecting-to-qnetd"><span class="title-number">3 </span><span class="title-name">Connecting QDevice to the QNetd server</span></a></span></li><li><span class="section"><a href="index.html#ha-qdevice-checking-setup"><span class="title-number">4 </span><span class="title-name">Checking the QDevice and QNetd setup</span></a></span></li><li><span class="section"><a href="index.html#ha-qdevice-changing-configuration"><span class="title-number">5 </span><span class="title-name">Changing the QDevice or QNetd configuration</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">6 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li><li><span class="glossary"><a href="ha-glossary.html"><span class="title-name">HA glossary</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

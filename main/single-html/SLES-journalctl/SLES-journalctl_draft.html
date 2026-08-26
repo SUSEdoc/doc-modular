@@ -1,0 +1,613 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Mastering System Logs: From systemd-journald to journalctl | SUSE Linux Enterprise Server 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2025-11-26"/>
+<meta name="dcterms.modified" content="2025-11-26"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-26"/>
+<meta name="title" content="Mastering System Logs: From systemd-journald to journa…"/>
+<meta name="description" content="Learn how to view and manage SLES logs using journalctl"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="Mastering System Logs: From systemd-journald to journalctl"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="shalaka.harne@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="category" content="."/><meta name="dc.creator" content="shalaka.harne@suse.com"/><meta property="og:title" content="Mastering System Logs: From systemd-journald to journa…"/>
+<meta property="og:description" content="View and filter logs with journalctl"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Mastering System Logs: From systemd-journald to journa…"/>
+<meta name="twitter:description" content="View and filter logs with journalctl"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Mastering System Logs: From systemd-journald to journalctl | SUSE Linux Enterprise Server 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Mastering System Logs: From systemd-journald to journalctl",
+    "description": "Learn how to view and manage SLES logs using journalctl",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2025-11-26T00:00+02:00",
+    "dateModified": "2025-11-26T00:00+02:00",
+    "datePublished": "2026-08-26T09:49+02:00",
+
+    "articleSection": [ 
+        "Systems Management"
+        
+    ],
+        "about": [
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Storage"
+      },
+      {
+        "@type": "Thing",
+        "name": "Maintenance"
+      },
+      {
+        "@type": "Thing",
+        "name": "Administration"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER, IBM Z, AArch64"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#sles-journald">Mastering System Logs: From systemd-journald to journalctl</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="sles-journald" data-id-title="Mastering System Logs: From systemd-journald to journalctl"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span></span> 16.1</div><div><h1 class="title">Mastering System Logs: From <code class="command">systemd-journald</code> to <code class="command">journalctl</code></h1></div><div class="date"><span class="imprint-label">Publication Date: </span>26 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.13.1.1"><span class="term">WHAT?</span></dt><dd><p>
+View and analyze logs from <code class="command">systemd-journald</code> using the <code class="command">journalctl</code> command-line tool.
+</p></dd><dt id="id-1.1.13.1.2"><span class="term">WHY?</span></dt><dd><p>
+This article provides a complete overview of tasks that can be performed using the <code class="command">journalctl</code> command-line tool.
+</p></dd><dt id="id-1.1.13.1.3"><span class="term">EFFORT</span></dt><dd><p>
+The average reading time of this article is approximately 30 minutes.
+</p></dd><dt id="id-1.1.13.1.4"><span class="term">GOAL</span></dt><dd><p>
+You will be able to view your system logs using <code class="command">journalctl</code>.
+</p></dd><dt id="id-1.1.13.1.5"><span class="term">REQUIREMENTS</span></dt><dd><p>
+You must have <code class="command">sudo</code> privileges.
+</p></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Mastering System Logs: From systemd-journald to journalctl" hreflang="en" href="rh-sles-journald.html" target="_blank">Revision History: Mastering System Logs: From systemd-journald to journalctl</a></div></div></div></div><section xml:lang="en" class="sect1" id="concept-about-journald" data-id-title="The systemd-journald service"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">The <code class="command">systemd-journald</code> service</span></span> <a title="Permalink" class="permalink" href="#concept-about-journald">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        <code class="command">journald</code> is a <code class="systemitem">systemd</code> service responsible for collecting, indexing, and storing log data. The collected events include  kernel messages, initrd (initial RAM disk) messages,
+        service startup/shutdown, application events, and authentication and session data.
+      </p></div></div></div></div><p>
+    On <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span>, the <code class="literal">systemd-journald</code> service is enabled and started by
+    default. The service logs the data into the journal described in <a class="xref" href="#journal-what-it-is" title="2. About the journal">Section 2, “About the journal”</a>.
+    </p><section xml:lang="en" class="sect2" id="journal-configure-journald" data-id-title="Configuring systemd-journald"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">Configuring <code class="command">systemd-journald</code></span></span> <a title="Permalink" class="permalink" href="#journal-configure-journald">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        You can configure the basic behavior of <code class="command">systemd-journald</code> service by modifying <code class="filename">/etc/systemd/journald.conf</code>.</p></div></div></div></div><p>
+    To configure <code class="command">systemd-journald</code>, proceed as follows:
+  </p><div class="procedure" id="id-1.2.3.3" data-id-title="Configuring systemd-journald"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 1: </span><span class="title-name">Configuring <code class="command">systemd-journald</code> </span></span><a title="Permalink" class="permalink" href="#id-1.2.3.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>Open the <code class="command">systemd-journald</code> configuration file:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  vi /etc/systemd/journald.conf</pre></div><div class="verbatim-wrap"><pre class="screen">[Journal]
+
+# Store journals on disk so logs survive reboot
+Storage=persistent
+
+# Disk space limits
+SystemMaxUse=2G
+SystemKeepFree=10%
+
+# Per-file max size
+SystemMaxFileSize=200M
+
+# RAM (runtime) journal limits
+RuntimeMaxUse=500M
+RuntimeKeepFree=10%
+
+# Log retention
+MaxRetentionSec=4weeks
+
+# Compression for old logs
+Compress=yes
+
+# Optional: also forward to rsyslog/syslog
+ForwardToSyslog=yes</pre></div></li><li class="step"><p>Modify the configurations:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        To modify the storage type, modify <code class="command">Storage=auto</code>.</p><p>The available options are: </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span class="guimenu">volatile</span>: RAM only (clears on reboot).</p></li><li class="listitem"><p><span class="guimenu">persistent</span>: stored in <code class="filename">/var/log/journal</code>.</p></li><li class="listitem"><p><span class="guimenu">auto</span>: persistent if directory exists, otherwise volatile.</p></li><li class="listitem"><p><span class="guimenu">none</span>: no logs written to disk or memory.</p></li></ul></div><p>If the journal log data is saved to a persistent location, it uses up to 10% of the file system the <code class="filename">/var/log/journal</code> resides on. For example, if <code class="filename">/var/log/journal</code> is located on a 30 GB /var partition, the journal may use up to 3 GB of the disk space. To change this limit, change (and uncomment) the <code class="command">SystemMaxUse</code> option:</p><div class="verbatim-wrap"><pre class="screen">SystemMaxUse=50M
+<code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl restart systemd-journald</pre></div></li><li class="listitem"><p>To limit the log rate to prevent flooding logs:</p><div class="verbatim-wrap"><pre class="screen">RateLimitIntervalSec=30s
+RateLimitBurst=1000</pre></div></li><li class="listitem"><p>
+        To send the journal to a terminal device to inform you about system messages on a preferred terminal screen, for example <code class="filename">/dev/tty12</code>:
+       </p><div class="verbatim-wrap"><pre class="screen">ForwardToConsole=yes
+TTYPath=/dev/tty12</pre></div></li><li class="listitem"><p>To forward logs to syslog, modify <code class="command">ForwardToSyslog=yes</code>. <code class="literal">journald</code> is backward compatible with traditional syslog implementations such as rsyslog.</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Install rsyslog:</p><div class="verbatim-wrap"><pre class="screen">rpm -q rsyslog</pre></div></li><li class="listitem"><p>Enable rsyslog:</p><div class="verbatim-wrap"><pre class="screen">systemctl is-enabled rsyslog</pre></div></li><li class="listitem"><p>Enable forwarding to rsyslog in <code class="filename">/etc/systemd/journald.conf</code>:</p><div class="verbatim-wrap"><pre class="screen">ForwardToSyslog=yes</pre></div></li></ul></div><p>For more information on file descriptions, see <code class="command">man 5 journald.conf</code>.</p></li></ul></div></li><li class="step"><p>Save and restart <code class="command">systemd-journald</code>.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl restart systemd-journald</pre></div></li></ol></div></div></section></section><section xml:lang="en" class="sect1" id="journal-what-it-is" data-id-title="About the journal"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">About the journal</span></span> <a title="Permalink" class="permalink" href="#journal-what-it-is">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+      The journal is a centralized, unified storage system for log data from all sources. It stores events in a structured manner, which helps with error identification and crash recovery.
+      </p></div></div></div></div><section class="sect2" id="journal-what-it-is-location" data-id-title="Where can I find the journal?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">Where can I find the journal?</span></span> <a title="Permalink" class="permalink" href="#journal-what-it-is-location">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      By default, <code class="literal">journald</code> stores the collected data in the volatile memory in
+      <code class="filename">/run/log/journal</code>, so after reboot the data is lost.
+    </p><p>
+      If <code class="literal">systemd-journald</code> is configured to store the logs in a persistent
+      manner, you can find the journal in <code class="filename">/var/log/journal</code>. See if the
+      directory is there:
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Check if the directory exist:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">ls /var/log</code>
+...        
+journal                             
+...</pre></div></li><li class="step"><p>If the <code class="filename">/var/log/journal</code> directory does not exist, create
+        it:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">mkdir /var/log/journal</code></pre></div></li><li class="step"><p>
+          Set the correct ownership and access permissions:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>   systemd-tmpfiles --create --prefix=/var/log/journal</pre></div></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+          To flush the data from RAM to the directory:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>   <code class="command">journalctl --flush</code></pre></div></li></ol></div></div><p>For details about
+      the service configuration, refer to <a class="xref" href="#journal-configure-journald" title="1.1. Configuring systemd-journald">Section 1.1, “Configuring <code class="command">systemd-journald</code>”</a>.
+    </p></section><section class="sect2" id="journal-what-it-is-structure" data-id-title="The journal log structure"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.2 </span><span class="title-name">The journal log structure</span></span> <a title="Permalink" class="permalink" href="#journal-what-it-is-structure">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The logs are stored in binary format across several files. To view the structure of a log
+      entry, proceed as follows:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  <code class="command">journalctl -n 1 -o verbose</code>
+    
+    Fri 2025-12-05 10:52:53.284321 CET [s=5b7ae2e926794210bf832d014f5f560a;i=d49752&gt;
+    _UID=1000
+    _AUDIT_SESSION=3
+    _AUDIT_LOGINUID=1000
+    _SYSTEMD_OWNER_UID=1000
+    _SYSTEMD_UNIT=user@1000.service
+    _SYSTEMD_SLICE=user-1000.slice
+    _MACHINE_ID=d3489468c8534c5d81a2860cf9a2a20e
+    _RUNTIME_SCOPE=system
+    _SELINUX_CONTEXT=unconfined
+    PRIORITY=6
+    _TRANSPORT=syslog
+    _BOOT_ID=d095069bd59b4bc4bf67c8c71999243b
+   SYSLOG_IDENTIFIER=sudo
+    SYSLOG_TIMESTAMP=Dec  5 10:52:53 
+    _PID=25806
+    _COMM=sudo
+    _EXE=/usr/bin/sudo
+    _CMDLINE=sudo journalctl -n 1 -o verbose
+
+    ...</pre></div><p>The log entry is a data structure containing the log message and metadata fields:</p><div class="variablelist"><dl class="variablelist"><dt id="id-1.3.3.5.1"><span class="term">Timestamp</span></dt><dd><p>
+The exact time the event occurred
+          </p></dd><dt id="id-1.3.3.5.2"><span class="term">Source fields</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">_PID</code>: process ID of the sender</p></li><li class="listitem"><p><code class="literal">_UID/_GID</code>: User/Group ID of the sender</p></li><li class="listitem"><p><code class="literal">_EXE</code>: path to the executable</p></li><li class="listitem"><p><code class="literal">_COMM</code>: name of the executable</p></li></ul></div></dd><dt id="id-1.3.3.5.3"><span class="term">System fields</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">_SYSTEMD_UNIT</code>: The systemd unit (service) that generated the
+  log (for example, <code class="literal">sshd.service</code>)</p></li><li class="listitem"><p><code class="literal">_BOOT_ID</code>: A unique identifier for the specific system boot session</p></li></ul></div></dd><dt id="id-1.3.3.5.4"><span class="term">Kernel fields</span></dt><dd><p><code class="literal">_TRANSPORT</code>: How the message was logged (e.g., kernel, syslog, stdout)</p></dd><dt id="id-1.3.3.5.5"><span class="term">Priority level</span></dt><dd><p>A numeric value indicating the severity of the message (0=emerg, 7=debug)</p></dd></dl></div></section></section><section xml:lang="en" class="sect1" id="journald-about-journactl" data-id-title="The journalctl command"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">The <code class="command">journalctl</code> command</span></span> <a title="Permalink" class="permalink" href="#journald-about-journactl">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+<code class="command">journalctl</code> is a command-line utility used to query and display logs collected by
+the <code class="command">systemd-journald</code>.
+    </p></div></div></div></div><p>
+    Because the logging system stores data in a binary format (for performance and security) rather
+    than plain text, you cannot use standard tools like <code class="command">cat</code> or
+    <code class="command">less</code> to open the files directly. So, the <code class="command">journalctl</code>
+    command decodes the data and displays it according to the provided parameters.
+  </p><section xml:lang="en" class="sect2" id="journald-journalctl-usage" data-id-title="Using journalctl"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.1 </span><span class="title-name">Using <code class="command">journalctl</code></span></span> <a title="Permalink" class="permalink" href="#journald-journalctl-usage">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+This section describes the generic usage of the <code class="command">journalctl</code> command.
+    </p></div></div></div></div><p>
+   Running <code class="command">journalctl</code> without any options displays all logged messages, usually starting from the oldest, and pipes the output through a pager (like <code class="command">less</code>) for easy navigation.
+  </p><p>
+   The general syntax of the <code class="command">journalctl</code> command is as follows:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">journalctl [OPTIONS...] [MATCHES...]</code></pre></div><div id="id-1.4.3.5" data-id-title="Messages related to a specific executable" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Messages related to a specific executable</div><p>
+    To show all journal messages related to a specific executable, specify the
+    full path to the executable:
+   </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl /usr/lib/systemd/systemd</pre></div></div><p>Listed below are the common  useful options to enhance the default <code class="command">journalctl</code> behavior:</p><div class="variablelist"><dl class="variablelist"><dt id="id-1.4.3.8.1"><span class="term">-f</span></dt><dd><p>
+      Shows only the most recent journal messages, and prints new log entries
+      as they are added to the journal.
+     </p></dd><dt id="id-1.4.3.8.2"><span class="term"/></dt><dd><p>
+      Prints the messages and jumps to the end of the journal, so that the
+      latest entries are visible within the pager.
+     </p></dd><dt id="id-1.4.3.8.3"><span class="term">-r</span></dt><dd><p>
+      Prints the messages of the journal in reverse order, so that the latest
+      entries are listed first.
+     </p></dd><dt id="id-1.4.3.8.4"><span class="term">-k</span></dt><dd><p>
+      Shows only kernel messages. This is equivalent to the field match
+      <code class="literal">_TRANSPORT=kernel</code>.
+     </p></dd><dt id="id-1.4.3.8.5"><span class="term">-u</span></dt><dd><p>
+      Shows only messages for the specified <code class="systemitem">systemd</code> unit. This is equivalent
+      to the field match
+      <code class="literal">_SYSTEMD_UNIT=<em class="replaceable">UNIT</em></code>.
+     </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl -u apache2</pre></div></dd></dl></div><p>
+    For a complete list of options refer to man page, man 1 <code class="command">journalctl</code>.
+  </p></section></section><section xml:lang="en" class="sect1" id="journal-filter-journals" data-id-title="Filtering the journal output"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Filtering the journal output</span></span> <a title="Permalink" class="permalink" href="#journal-filter-journals">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+   This section describes how to refine searches in logs, for example, by boot number,
+   by a specific time interval, or to view specific data fields. By default, the journal lists 
+   the oldest entries first. The output can be filtered using specific switches and fields.
+  </p></div></div></div></div><p>
+    You can filter journals based on boot number, time interval, and fields. For details, refer to the following sections.
+  </p><section class="sect2" id="journal-filter-journals-boots" data-id-title="Filter logs based on a specific system boot"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.1 </span><span class="title-name">Filter logs based on a specific system boot</span></span> <a title="Permalink" class="permalink" href="#journal-filter-journals-boots">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      To list logs for all the available boots, run the command as follows:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl --list-boots</pre></div><p>The first column lists the boot offset: <code class="literal">0</code> for the current boot, <code class="literal">-1</code> for the previous one,
+    <code class="literal">-2</code> for the one before that, etc. The second column contains the boot ID followed by the limiting time stamps of the specific
+    boot.</p><p>
+      To show all messages from the current boot:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl -b</pre></div><p>To view journal messages from the previous boot, add an offset
+    parameter. The following example command shows the previous boot messages:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl -b -1</pre></div><p>To view boot messages based on the boot ID, <code class="literal">156019a44a774a0bb0148a92df4af81b</code>:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl _BOOT_ID=156019a44a774a0bb0148a92df4af81b</pre></div></section><section class="sect2" id="journal-filter-journals-time" data-id-title="Filtering logs based on time interval"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.2 </span><span class="title-name">Filtering logs based on time interval</span></span> <a title="Permalink" class="permalink" href="#journal-filter-journals-time">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>You can filter the output of <code class="command">journalctl</code> by specifying the starting and/or ending date. The date specification should be of the format <code class="literal">YYYY-MM-DD H:MM:SS</code>. If the time part is omitted, midnight is assumed. If seconds are omitted, <code class="literal">:00</code> is assumed. If the date part is omitted, the current day is assumed. Instead of a numeric expression, you can specify the keywords <code class="literal">yesterday</code>,
+    <code class="literal">today</code> or <code class="literal">tomorrow</code>. They refer to midnight of the day
+    before the current day, of the current day, or of the day after the current day. If you specify
+    <code class="literal">now</code>, it refers to the current time. You can also specify relative times
+    prefixed with <code class="literal">-</code> or <code class="literal">+</code>, referring to times before or after
+    the current time.</p><p>To view only new messages since now, and update the output continuously:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl --since "now" -f</pre></div><p>To view all messages since last midnight until <code class="literal">3:20am</code>:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl --since "today" --until "3:20"</pre></div></section><section class="sect2" id="journal-filter-journals-fields" data-id-title="Filtering logs based on fields"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.3 </span><span class="title-name">Filtering logs based on fields</span></span> <a title="Permalink" class="permalink" href="#journal-filter-journals-fields">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>You can filter the output of the journal by specific fields. The syntax of a field to be matched is <code class="literal">FIELD_NAME=MATCHED_VALUE</code>, such
+    as <code class="literal">_SYSTEMD_UNIT=httpd.service</code>. You can specify multiple matches in a single query to filter the output messages even more. See
+    <code class="command">man 7 systemd.journal-fields</code> for a list of default fields.</p><p>To view messages produced by a specific process ID: <code class="literal">PID_1039</code>:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl _PID=1039</pre></div><p>To view messages belonging to a specific user ID: <code class="literal">UID_1000</code>:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  journalctl _UID=1000</pre></div><p>To view messages from the kernel ring buffer (the same as <code class="command">dmesg</code> displays):</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl _TRANSPORT=kernel</pre></div><p>To view messages from the service's standard or error output:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl _TRANSPORT=stdout</pre></div><p>To view messages produced by a specified service only:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl _SYSTEMD_UNIT=avahi-daemon.service</pre></div><p>If two different fields are specified, only entries that match both expressions at the same time are shown:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl _SYSTEMD_UNIT=avahi-daemon.service _PID=1488</pre></div><p>If two matches refer to the same field, all entries matching either expression are shown:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl _SYSTEMD_UNIT=avahi-daemon.service _SYSTEMD_UNIT=dbus.service</pre></div><p>You can use the <code class="literal">+</code> separator to combine two expressions in a logical <code class="literal">OR</code>. The following example shows all messages from the Avahi service process with the process ID 1480 together with all messages from the D-Bus service:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl _SYSTEMD_UNIT=avahi-daemon.service _PID=1480 + _SYSTEMD_UNIT=dbus.service</pre></div></section></section><section xml:lang="en" class="sect1" id="cockpit-troubleshooting-selinux" data-id-title="Troubleshooting systemd errors"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Troubleshooting <code class="systemitem">systemd</code> errors</span></span> <a title="Permalink" class="permalink" href="#cockpit-troubleshooting-selinux">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+   This section introduces ways to interpret and fix the log messages retrieved through <code class="command">journalctl</code>.
+  </p></div></div></div></div><section class="sect2" id="id-1.6.2" data-id-title="View systemd errors"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.1 </span><span class="title-name">View <code class="systemitem">systemd</code> errors</span></span> <a title="Permalink" class="permalink" href="#id-1.6.2">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>View the list of failed <code class="systemitem">systemd</code> units:</p><div class="verbatim-wrap"><pre class="screen">systemctl --failed</pre></div><p>The list of all failed services appears.</p></li><li class="step"><p>Identify the severity and content of the error.</p><div class="verbatim-wrap"><pre class="screen">journalctl -p 0..7 -b</pre></div><p>The list of errors with priority levels <code class="literal">0 to 7</code> appears. The errors are marked with priority level:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span class="guimenu">0-2</span>: <code class="command">emerg, alert, crit</code>: Critical issues, system collapse imminent.</p></li><li class="listitem"><p><span class="guimenu">3</span>: <code class="command">err (Error)</code>: A service or application failed to complete a requested operation.</p></li><li class="listitem"><p><span class="guimenu">4</span>: <code class="command">warning </code>: Something undesirable happened but is not an immediate failure.</p></li><li class="listitem"><p><span class="guimenu">5-7</span>: <code class="command">notice, info, debug</code>: Normal operational information and developer diagnostics.</p></li></ul></div></li><li class="step"><p>View the error log for the failing service using the following command:</p><div class="verbatim-wrap"><pre class="screen">journalctl -u &lt;failing_service_name&gt;</pre></div><p>The lines preceding the termination message include information about the error.</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span class="guimenu">Exit Status</span>: If a service stops, look for a message like <code class="literal">Process xxx exited</code> with status 1/FAILURE. A status of 0 indicates success. Any nonzero status indicates an error. </p></li><li class="listitem"><p><span class="guimenu">Configuration Errors</span>: Messages containing phrases like <code class="literal">No such file or directory</code>, <code class="literal">Permission denied</code> or <code class="literal">Address already in use</code> usually point to a problem in the service's configuration file.</p></li><li class="listitem"><p><span class="guimenu">Out-of-Memory (OOM)</span>: The service was terminated because
+   it exceeded memory limits.</p></li></ul></div></li><li class="step"><p>Use detailed views of logs to get detailed information about the error.</p><div class="verbatim-wrap"><pre class="screen">journalctl -xe</pre></div><p>For example, to view all messages from the Apache service during the current boot with detailed explanations, run the following command:</p><div class="verbatim-wrap"><pre class="screen">journalctl -u httpd.service -b -xe</pre></div></li></ol></div></div></section><section class="sect2" id="id-1.6.3" data-id-title="Troubleshoot systemd error"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.2 </span><span class="title-name">Troubleshoot <code class="systemitem">systemd</code> error</span></span> <a title="Permalink" class="permalink" href="#id-1.6.3">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="procedure"><div class="procedure-contents"><p>
+   This section introduces an example to illustrate how to find and fix
+   the error reported by <code class="systemitem">systemd</code> during <code class="command">apache2</code> start-up.</p><ol class="procedure" type="1"><li class="step"><p>Start the apache2 service:</p><div class="verbatim-wrap"><pre class="screen">systemctl start apache2
+Job for apache2.service failed. See 'systemctl status apache2' and 'journalctl -xn' for details.</pre></div></li><li class="step"><p>View the service status:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl status apache2
+apache2.service - The Apache Webserver
+   Loaded: loaded (/usr/lib/systemd/system/apache2.service; disabled)
+   Active: failed (Result: exit-code) since Tue 2025-09-03 11:08:13 EDT; 7min ago
+  Process: 11026 ExecStop=/usr/sbin/start_apache2 -D SYSTEMD -DFOREGROUND \
+           -k graceful-stop (code=exited, status=1/FAILURE)</pre></div><p>The ID of the process causing the failure is 11026.</p></li><li class="step"><p>View the verbose version of messages related to process ID 11026:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl -o verbose _PID=11026
+[...]
+MESSAGE=AH00526: Syntax error on line 6 of /etc/apache2/default-server.conf:
+[...]
+MESSAGE=Invalid command 'DocumenttRoot', perhaps misspelled or defined by a module
+[...]</pre></div></li><li class="step"><p>Fix the typo inside <code class="filename">/etc/apache2/default-server.conf</code>, start the apache2 service, and print its status:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl start apache2 &amp;&amp; systemctl status apache2
+apache2.service - The Apache Webserver
+   Loaded: loaded (/usr/lib/systemd/system/apache2.service; disabled)
+   Active: active (running) since Tue 2025-09-03 11:26:24 EDT; 4ms ago
+  Process: 11026 ExecStop=/usr/sbin/start_apache2 -D SYSTEMD -DFOREGROUND
+           -k graceful-stop (code=exited, status=1/FAILURE)
+ Main PID: 11263 (httpd2-prefork)
+   Status: "Processing requests..."
+   CGroup: /system.slice/apache2.service
+           ├─11263 /usr/sbin/httpd2-prefork -f /etc/apache2/httpd.conf -D [...]
+           ├─11280 /usr/sbin/httpd2-prefork -f /etc/apache2/httpd.conf -D [...]
+           ├─11281 /usr/sbin/httpd2-prefork -f /etc/apache2/httpd.conf -D [...]
+           ├─11282 /usr/sbin/httpd2-prefork -f /etc/apache2/httpd.conf -D [...]
+           ├─11283 /usr/sbin/httpd2-prefork -f /etc/apache2/httpd.conf -D [...]
+           └─11285 /usr/sbin/httpd2-prefork -f /etc/apache2/httpd.conf -D [...]</pre></div></li></ol></div></div></section></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section><div class="legal-section"><section class="appendix" translate="no" id="doc-gfdl-license" data-id-title="GNU Free Documentation License"><div class="titlepage"><div><div><h1 class="title">GNU Free Documentation License</h1></div></div></div><p>
+    Copyright (C) 2000, 2001, 2002 Free Software Foundation, Inc. 51 Franklin St, Fifth Floor,
+    Boston, MA 02110-1301 USA. Everyone is permitted to copy and distribute verbatim copies of this
+    license document, but changing it is not allowed.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.8.3"><span class="name">
+    0. PREAMBLE
+  </span><a title="Permalink" class="permalink" href="#id-1.8.3">#</a></h5></div><p>
+    The purpose of this License is to make a manual, textbook, or other functional and useful
+    document "free" in the sense of freedom: to assure everyone the effective freedom to copy and
+    redistribute it, with or without modifying it, either commercially or non-commercially.
+    Secondarily, this License preserves for the author and publisher a way to get credit for their
+    work, while not being considered responsible for modifications made by others.
+  </p><p>
+    This License is a kind of "copyleft", which means that derivative works of the document must
+    themselves be free in the same sense. It complements the GNU General Public License, which is a
+    copyleft license designed for free software.
+  </p><p>
+    We have designed this License to use it for manuals for free software, because free software
+    needs free documentation: a free program should come with manuals providing the same freedoms
+    that the software does. But this License is not limited to software manuals; it can be used for
+    any textual work, regardless of subject matter or whether it is published as a printed book. We
+    recommend this License principally for works whose purpose is instruction or reference.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.8.7"><span class="name">
+    1. APPLICABILITY AND DEFINITIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.8.7">#</a></h5></div><p>
+    This License applies to any manual or other work, in any medium, that contains a notice placed
+    by the copyright holder saying it can be distributed under the terms of this License. Such a
+    notice grants a world-wide, royalty-free license, unlimited in duration, to use that work under
+    the conditions stated herein. The "Document", below, refers to any such manual or work. Any
+    member of the public is a licensee, and is addressed as "you". You accept the license if you
+    copy, modify or distribute the work in a way requiring permission under copyright law.
+  </p><p>
+    A "Modified Version" of the Document means any work containing the Document or a portion of it,
+    either copied verbatim, or with modifications and/or translated into another language.
+  </p><p>
+    A "Secondary Section" is a named appendix or a front-matter section of the Document that deals
+    exclusively with the relationship of the publishers or authors of the Document to the
+    Document's overall subject (or to related matters) and contains nothing that could fall
+    directly within that overall subject. (Thus, if the Document is in part a textbook of
+    mathematics, a Secondary Section may not explain any mathematics.) The relationship could be a
+    matter of historical connection with the subject or with related matters, or of legal,
+    commercial, philosophical, ethical or political position regarding them.
+  </p><p>
+    The "Invariant Sections" are certain Secondary Sections whose titles are designated, as being
+    those of Invariant Sections, in the notice that says that the Document is released under this
+    License. If a section does not fit the above definition of Secondary then it is not allowed to
+    be designated as Invariant. The Document may contain zero Invariant Sections. If the Document
+    does not identify any Invariant Sections then there are none.
+  </p><p>
+    The "Cover Texts" are certain short passages of text that are listed, as Front-Cover Texts or
+    Back-Cover Texts, in the notice that says that the Document is released under this License. A
+    Front-Cover Text may be at most 5 words, and a Back-Cover Text may be at most 25 words.
+  </p><p>
+    A "Transparent" copy of the Document means a machine-readable copy, represented in a format
+    whose specification is available to the general public, that is suitable for revising the
+    document straightforwardly with generic text editors or (for images composed of pixels) generic
+    paint programs or (for drawings) some widely available drawing editor, and that is suitable for
+    input to text formatters or for automatic translation to a variety of formats suitable for
+    input to text formatters. A copy made in an otherwise Transparent file format whose markup, or
+    absence of markup, has been arranged to thwart or discourage subsequent modification by readers
+    is not Transparent. An image format is not Transparent if used for any substantial amount of
+    text. A copy that is not "Transparent" is called "Opaque".
+  </p><p>
+    Examples of suitable formats for Transparent copies include plain ASCII without markup, Texinfo
+    input format, LaTeX input format, SGML or XML using a publicly available DTD, and
+    standard-conforming simple HTML, PostScript or PDF designed for human modification. Examples of
+    transparent image formats include PNG, XCF and JPG. Opaque formats include proprietary formats
+    that can be read and edited only by proprietary word processors, SGML or XML for which the DTD
+    and/or processing tools are not generally available, and the machine-generated HTML, PostScript
+    or PDF produced by some word processors for output purposes only.
+  </p><p>
+    The "Title Page" means, for a printed book, the title page itself, plus such following pages as
+    are needed to hold, legibly, the material this License requires to appear in the title page.
+    For works in formats which do not have any title page as such, "Title Page" means the text near
+    the most prominent appearance of the work's title, preceding the beginning of the body of the
+    text.
+  </p><p>
+    A section "Entitled XYZ" means a named subunit of the Document whose title either is precisely
+    XYZ or contains XYZ in parentheses following text that translates XYZ in another language.
+    (Here XYZ stands for a specific section name mentioned below, such as "Acknowledgements",
+    "Dedications", "Endorsements", or "History".) To "Preserve the Title" of such a section when
+    you modify the Document means that it remains a section "Entitled XYZ" according to this
+    definition.
+  </p><p>
+    The Document may include Warranty Disclaimers next to the notice which states that this License
+    applies to the Document. These Warranty Disclaimers are considered to be included by reference
+    in this License, but only as regards disclaiming warranties: any other implication that these
+    Warranty Disclaimers may have is void and has no effect on the meaning of this License.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.8.18"><span class="name">
+    2. VERBATIM COPYING
+  </span><a title="Permalink" class="permalink" href="#id-1.8.18">#</a></h5></div><p>
+    You may copy and distribute the Document in any medium, either commercially or
+    non-commercially, provided that this License, the copyright notices, and the license notice
+    saying this License applies to the Document are reproduced in all copies, and that you add no
+    other conditions whatsoever to those of this License. You may not use technical measures to
+    obstruct or control the reading or further copying of the copies you make or distribute.
+    However, you may accept compensation in exchange for copies. If you distribute a large enough
+    number of copies you must also follow the conditions in section 3.
+  </p><p>
+    You may also lend copies, under the same conditions stated above, and you may publicly display
+    copies.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.8.21"><span class="name">
+    3. COPYING IN QUANTITY
+  </span><a title="Permalink" class="permalink" href="#id-1.8.21">#</a></h5></div><p>
+    If you publish printed copies (or copies in media that commonly have printed covers) of the
+    Document, numbering more than 100, and the Document's license notice requires Cover Texts, you
+    must enclose the copies in covers that carry, clearly and legibly, all these Cover Texts:
+    Front-Cover Texts on the front cover, and Back-Cover Texts on the back cover. Both covers must
+    also clearly and legibly identify you as the publisher of these copies. The front cover must
+    present the full title with all words of the title equally prominent and visible. You may add
+    other material on the covers in addition. Copying with changes limited to the covers, as long
+    as they preserve the title of the Document and satisfy these conditions, can be treated as
+    verbatim copying in other respects.
+  </p><p>
+    If the required texts for either cover are too voluminous to fit legibly, you should put the
+    first ones listed (as many as fit reasonably) on the actual cover, and continue the rest onto
+    adjacent pages.
+  </p><p>
+    If you publish or distribute Opaque copies of the Document numbering more than 100, you must
+    either include a machine-readable Transparent copy along with each Opaque copy, or state in or
+    with each Opaque copy a computer-network location from which the general network-using public
+    has access to download using public-standard network protocols a complete Transparent copy of
+    the Document, free of added material. If you use the latter option, you must take reasonably
+    prudent steps, when you begin distribution of Opaque copies in quantity, to ensure that this
+    Transparent copy will remain thus accessible at the stated location until at least one year
+    after the last time you distribute an Opaque copy (directly or through your agents or
+    retailers) of that edition to the public.
+  </p><p>
+    It is requested, but not required, that you contact the authors of the Document well before
+    redistributing any large number of copies, to give them a chance to provide you with an updated
+    version of the Document.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.8.26"><span class="name">
+    4. MODIFICATIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.8.26">#</a></h5></div><p>
+    You may copy and distribute a Modified Version of the Document under the conditions of sections
+    2 and 3 above, provided that you release the Modified Version under precisely this License,
+    with the Modified Version filling the role of the Document, thus licensing distribution and
+    modification of the Modified Version to whoever possesses a copy of it. In addition, you must
+    do these things in the Modified Version:
+  </p><div class="orderedlist"><ol class="orderedlist" type="A"><li class="listitem"><p>
+        Use in the Title Page (and on the covers, if any) a title distinct from that of the
+        Document, and from those of previous versions (which should, if there were any, be listed
+        in the History section of the Document). You may use the same title as a previous version
+        if the original publisher of that version gives permission.
+      </p></li><li class="listitem"><p>
+        List on the Title Page, as authors, one or more persons or entities responsible for
+        authorship of the modifications in the Modified Version, together with at least five of the
+        principal authors of the Document (all of its principal authors, if it has fewer than
+        five), unless they release you from this requirement.
+      </p></li><li class="listitem"><p>
+        State on the Title page the name of the publisher of the Modified Version, as the
+        publisher.
+      </p></li><li class="listitem"><p>
+        Preserve all the copyright notices of the Document.
+      </p></li><li class="listitem"><p>
+        Add an appropriate copyright notice for your modifications adjacent to the other copyright
+        notices.
+      </p></li><li class="listitem"><p>
+        Include, immediately after the copyright notices, a license notice giving the public
+        permission to use the Modified Version under the terms of this License, in the form shown
+        in the Addendum below.
+      </p></li><li class="listitem"><p>
+        Preserve in that license notice the full lists of Invariant Sections and required Cover
+        Texts given in the Document's license notice.
+      </p></li><li class="listitem"><p>
+        Include an unaltered copy of this License.
+      </p></li><li class="listitem"><p>
+        Preserve the section Entitled "History", Preserve its Title, and add to it an item stating
+        at least the title, year, new authors, and publisher of the Modified Version as given on
+        the Title Page. If there is no section Entitled "History" in the Document, create one
+        stating the title, year, authors, and publisher of the Document as given on its Title Page,
+        then add an item describing the Modified Version as stated in the previous sentence.
+      </p></li><li class="listitem"><p>
+        Preserve the network location, if any, given in the Document for public access to a
+        Transparent copy of the Document, and likewise the network locations given in the Document
+        for previous versions it was based on. These may be placed in the "History" section. You
+        may omit a network location for a work that was published at least four years before the
+        Document itself, or if the original publisher of the version it refers to gives permission.
+      </p></li><li class="listitem"><p>
+        For any section Entitled "Acknowledgements" or "Dedications", Preserve the Title of the
+        section, and preserve in the section all the substance and tone of each of the contributor
+        acknowledgements and/or dedications given therein.
+      </p></li><li class="listitem"><p>
+        Preserve all the Invariant Sections of the Document, unaltered in their text and in their
+        titles. Section numbers or the equivalent are not considered part of the section titles.
+      </p></li><li class="listitem"><p>
+        Delete any section Entitled "Endorsements". Such a section may not be included in the
+        Modified Version.
+      </p></li><li class="listitem"><p>
+        Do not retitle any existing section to be Entitled "Endorsements" or to conflict in title
+        with any Invariant Section.
+      </p></li><li class="listitem"><p>
+        Preserve any Warranty Disclaimers.
+      </p></li></ol></div><p>
+    If the Modified Version includes new front-matter sections or appendices that qualify as
+    Secondary Sections and contain no material copied from the Document, you may at your option
+    designate some or all of these sections as invariant. To do this, add their titles to the list
+    of Invariant Sections in the Modified Version's license notice. These titles must be distinct
+    from any other section titles.
+  </p><p>
+    You may add a section Entitled "Endorsements", provided it contains nothing but endorsements of
+    your Modified Version by various parties--for example, statements of peer review or that the
+    text has been approved by an organization as the authoritative definition of a standard.
+  </p><p>
+    You may add a passage of up to five words as a Front-Cover Text, and a passage of up to 25
+    words as a Back-Cover Text, to the end of the list of Cover Texts in the Modified Version. Only
+    one passage of Front-Cover Text and one of Back-Cover Text may be added by (or through
+    arrangements made by) any one entity. If the Document already includes a cover text for the
+    same cover, previously added by you or by arrangement made by the same entity you are acting on
+    behalf of, you may not add another; but you may replace the old one, on explicit permission
+    from the previous publisher that added the old one.
+  </p><p>
+    The author(s) and publisher(s) of the Document do not by this License give permission to use
+    their names for publicity for or to assert or imply endorsement of any Modified Version.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.8.33"><span class="name">
+    5. COMBINING DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.8.33">#</a></h5></div><p>
+    You may combine the Document with other documents released under this License, under the terms
+    defined in section 4 above for modified versions, provided that you include in the combination
+    all of the Invariant Sections of all of the original documents, unmodified, and list them all
+    as Invariant Sections of your combined work in its license notice, and that you preserve all
+    their Warranty Disclaimers.
+  </p><p>
+    The combined work need only contain one copy of this License, and multiple identical Invariant
+    Sections may be replaced with a single copy. If there are multiple Invariant Sections with the
+    same name but different contents, make the title of each such section unique by adding at the
+    end of it, in parentheses, the name of the original author or publisher of that section if
+    known, or else a unique number. Make the same adjustment to the section titles in the list of
+    Invariant Sections in the license notice of the combined work.
+  </p><p>
+    In the combination, you must combine any sections Entitled "History" in the various original
+    documents, forming one section Entitled "History"; likewise combine any sections Entitled
+    "Acknowledgements", and any sections Entitled "Dedications". You must delete all sections
+    Entitled "Endorsements".
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.8.37"><span class="name">
+    6. COLLECTIONS OF DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.8.37">#</a></h5></div><p>
+    You may make a collection consisting of the Document and other documents released under this
+    License, and replace the individual copies of this License in the various documents with a
+    single copy that is included in the collection, provided that you follow the rules of this
+    License for verbatim copying of each of the documents in all other respects.
+  </p><p>
+    You may extract a single document from such a collection, and distribute it individually under
+    this License, provided you insert a copy of this License into the extracted document, and
+    follow this License in all other respects regarding verbatim copying of that document.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.8.40"><span class="name">
+    7. AGGREGATION WITH INDEPENDENT WORKS
+  </span><a title="Permalink" class="permalink" href="#id-1.8.40">#</a></h5></div><p>
+    A compilation of the Document or its derivatives with other separate and independent documents
+    or works, in or on a volume of a storage or distribution medium, is called an "aggregate" if
+    the copyright resulting from the compilation is not used to limit the legal rights of the
+    compilation's users beyond what the individual works permit. When the Document is included in
+    an aggregate, this License does not apply to the other works in the aggregate which are not
+    themselves derivative works of the Document.
+  </p><p>
+    If the Cover Text requirement of section 3 is applicable to these copies of the Document, then
+    if the Document is less than one half of the entire aggregate, the Document's Cover Texts may
+    be placed on covers that bracket the Document within the aggregate, or the electronic
+    equivalent of covers if the Document is in electronic form. Otherwise they must appear on
+    printed covers that bracket the whole aggregate.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.8.43"><span class="name">
+    8. TRANSLATION
+  </span><a title="Permalink" class="permalink" href="#id-1.8.43">#</a></h5></div><p>
+    Translation is considered a kind of modification, so you may distribute translations of the
+    Document under the terms of section 4. Replacing Invariant Sections with translations requires
+    special permission from their copyright holders, but you may include translations of some or
+    all Invariant Sections in addition to the original versions of these Invariant Sections. You
+    may include a translation of this License, and all the license notices in the Document, and any
+    Warranty Disclaimers, provided that you also include the original English version of this
+    License and the original versions of those notices and disclaimers. In case of a disagreement
+    between the translation and the original version of this License or a notice or disclaimer, the
+    original version will prevail.
+  </p><p>
+    If a section in the Document is Entitled "Acknowledgements", "Dedications", or "History", the
+    requirement (section 4) to Preserve its Title (section 1) will typically require changing the
+    actual title.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.8.46"><span class="name">
+    9. TERMINATION
+  </span><a title="Permalink" class="permalink" href="#id-1.8.46">#</a></h5></div><p>
+    You may not copy, modify, sublicense, or distribute the Document except as expressly provided
+    for under this License. Any other attempt to copy, modify, sublicense or distribute the
+    Document is void, and will automatically terminate your rights under this License. However,
+    parties who have received copies, or rights, from you under this License will not have their
+    licenses terminated so long as such parties remain in full compliance.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.8.48"><span class="name">
+    10. FUTURE REVISIONS OF THIS LICENSE
+  </span><a title="Permalink" class="permalink" href="#id-1.8.48">#</a></h5></div><p>
+    The Free Software Foundation may publish new, revised versions of the GNU Free Documentation
+    License from time to time. Such new versions will be similar in spirit to the present version,
+    but may differ in detail to address new problems or concerns. See
+    <a class="link" href="https://www.gnu.org/copyleft/" target="_blank">https://www.gnu.org/copyleft/</a>.
+  </p><p>
+    Each version of the License is given a distinguishing version number. If the Document specifies
+    that a particular numbered version of this License "or any later version" applies to it, you
+    have the option of following the terms and conditions either of that specified version or of
+    any later version that has been published (not as a draft) by the Free Software Foundation. If
+    the Document does not specify a version number of this License, you may choose any version ever
+    published (not as a draft) by the Free Software Foundation.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.8.51"><span class="name">
+    ADDENDUM: How to use this License for your documents
+  </span><a title="Permalink" class="permalink" href="#id-1.8.51">#</a></h5></div><div class="verbatim-wrap"><pre class="screen">Copyright (c) YEAR YOUR NAME.
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+A copy of the license is included in the section entitled “GNU
+Free Documentation License”.</pre></div><p>
+    If you have Invariant Sections, Front-Cover Texts and Back-Cover Texts, replace the
+    “with...Texts.” line with this:
+  </p><div class="verbatim-wrap"><pre class="screen">with the Invariant Sections being LIST THEIR TITLES, with the
+Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.</pre></div><p>
+    If you have Invariant Sections without Cover Texts, or some other combination of the three,
+    merge those two alternatives to suit the situation.
+  </p><p>
+    If your document contains nontrivial examples of program code, we recommend releasing these
+    examples in parallel under your choice of free software license, such as the GNU General Public
+    License, to permit their use in free software.
+  </p></section></div></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="#concept-about-journald"><span class="title-number">1 </span><span class="title-name">The <code class="command">systemd-journald</code> service</span></a></span></li><li><span class="section"><a href="#journal-what-it-is"><span class="title-number">2 </span><span class="title-name">About the journal</span></a></span></li><li><span class="section"><a href="#journald-about-journactl"><span class="title-number">3 </span><span class="title-name">The <code class="command">journalctl</code> command</span></a></span></li><li><span class="section"><a href="#journal-filter-journals"><span class="title-number">4 </span><span class="title-name">Filtering the journal output</span></a></span></li><li><span class="section"><a href="#cockpit-troubleshooting-selinux"><span class="title-number">5 </span><span class="title-name">Troubleshooting <code class="systemitem">systemd</code> errors</span></a></span></li><li><span class="section"><a href="#legal-disclaimer"><span class="title-number">6 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="#doc-gfdl-license"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

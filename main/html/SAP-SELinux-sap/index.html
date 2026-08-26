@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Using SELinux with SAP Workloads | SUSE Linux Enterprise Server for SAP applications 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2026-07-21"/>
+<meta name="dcterms.modified" content="2026-07-21"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-26"/>
+<meta name="title" content="Using SELinux with SAP Workloads | SUSE Linux Enterpri…"/>
+<meta name="description" content="Learn about how SELinux integrates with SAP workloads such as SAP HANA"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server for SAP applications"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="Using SELinux with SAP Workloads"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="eliska.romanova@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server for SAP applications 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="category" content="."/><meta name="dc.creator" content="eliska.romanova@suse.com"/><meta property="og:title" content="Using SELinux with SAP Workloads"/>
+<meta property="og:description" content="How SELinux integrates with SAP workloads like SAP HANA"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Using SELinux with SAP Workloads"/>
+<meta name="twitter:description" content="How SELinux integrates with SAP workloads like SAP HANA"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Using SELinux with SAP Workloads | SUSE Linux Enterprise Server for SAP applications 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Using SELinux with SAP Workloads",
+    "description": "Learn about how SELinux integrates with SAP workloads such as SAP HANA",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2026-07-21T00:00+02:00",
+    "dateModified": "2026-07-21T00:00+02:00",
+    "datePublished": "2026-08-26T09:48+02:00",
+
+    "articleSection": [ 
+        "Security &amp; Compliance"
+        
+    ],
+        "about": [
+      {
+        "@type": "Thing",
+        "name": "Security"
+      },
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Deployment"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server for SAP applications",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER, IBM, AArch64"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Using SELinux with SAP Workloads</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Using SELinux with SAP Workloads</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="selinux-sap" data-id-title="Using SELinux with SAP Workloads"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span></span> 16.1</div><div><h1 class="title">Using SELinux with SAP Workloads</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>26 Aug 2026</div><div><div class="abstract"><p>
+          <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> 16.1 automatically configures SELinux to support SAP workloads
+          out of the box. The default configuration ensures a seamless deployment process and
+          allows administrators to safely validate security policies.
+        </p></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Using SELinux with SAP Workloads" hreflang="en" href="rh-selinux-sap.html" target="_blank">Revision History: Using SELinux with SAP Workloads</a></div></div></div></div><section xml:lang="en" class="sect1" id="selinux-sap-about" data-id-title="How does SLES for SAP handle SELinux for SAP workloads?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">How does <span class="phrase"><span class="phrase">SLES for SAP</span></span> handle SELinux for SAP workloads?</span></span> <a title="Permalink" class="permalink" href="index.html#selinux-sap-about">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    By default, <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> 16.1 enhances security by enabling SELinux in enforcing
+    mode. When SAP patterns are installed, the operating system automatically adjusts its
+    security policies:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        <span><span class="emphasis"><strong>The SELinux mode changes from enforcing to permissive.</strong></span></span> In
+        the permissive mode, SELinux is active and access denial entries are logged, but no access
+        is denied. This configuration allows administrators to review their local setup and adjust
+        SELinux policies before switching to enforcing mode.
+      </p></li><li class="listitem"><p>
+        <span><span class="emphasis"><strong>SAP software runs in an unconfined domain.</strong></span></span> Unconfined
+        domain means that there are no restrictions on the SAP software. It can access system
+        resources without SELinux control.
+      </p></li></ul></div><p>
+    This configuration ensures that the operating system is fully prepared for SAP software
+    installations.
+  </p><p>
+    For more information about SELinux, see
+    <a class="link" href="https://documentation.suse.com/sles-sap/16.0/html/SAP-SELinux/" target="_blank"><em class="citetitle">Understanding
+    SELinux
+    Basics</em></a>.
+  </p></section><section xml:lang="en" class="sect1" id="selinux-sap-support" data-id-title="SELinux support with SAP software"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">SELinux support with SAP software</span></span> <a title="Permalink" class="permalink" href="index.html#selinux-sap-support">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    By default, after installing any SAP pattern, <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> is automatically configured with
+    SELinux enabled in permissive mode and SAP software in the unconfined domain. No further
+    action is required before the installation.
+  </p><p>
+    Validation states differ depending on the SAP workload:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        SAP HANA is validated on <span class="phrase"><span class="phrase">SLES for SAP</span></span> 16.1 in both permissive and enforcing
+        modes. For more information, see
+        <a class="link" href="https://me.sap.com/notes/3577842" target="_blank">SAP Note 3577842</a>.
+      </p></li><li class="listitem"><p>
+        Other SAP software is validated on <span class="phrase"><span class="phrase">SLES for SAP</span></span> 16.1 in permissive mode
+        only. For more information, see
+        <a class="link" href="https://me.sap.com/notes/3565382" target="_blank">SAP Note 3565382</a>.
+      </p></li></ul></div></section><section xml:lang="en" class="sect1" id="selinux-sap-relabeling" data-id-title="Relabeling the system after SAP software installations"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Relabeling the system after SAP software installations</span></span> <a title="Permalink" class="permalink" href="index.html#selinux-sap-relabeling">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    After installing SAP software, relabel the freshly installed files so they receive the
+    correct security contexts.
+  </p><p>
+    To relabel the system, choose one of the following methods:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        Use the <code class="command">restorecon</code> command:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">restorecon -Rv /</code></pre></div><p>
+        Then restart all SAP services.
+      </p></li><li class="listitem"><p>
+        Create the <code class="filename">.autorelabel</code> file in the root (<code class="filename">/</code>)
+        partition and reboot the system. The system will automatically relabel all files during the
+        next reboot:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">touch /.autorelabel</code>
+<code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">reboot</code></pre></div></li></ul></div></section><section xml:lang="en" class="sect1" id="selinux-sap-resolving-access-violations" data-id-title="Resolving SELinux access violations"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Resolving SELinux access violations</span></span> <a title="Permalink" class="permalink" href="index.html#selinux-sap-resolving-access-violations">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    When SELinux denies permission to access an object, it creates an audit log using Access Vector
+    Cache (AVC) denials.
+  </p><p>
+    Because <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> defaults to permissive mode after installing SAP patterns,
+    administrators can identify and resolve potential security issues without disrupting the
+    system. If you are running SAP HANA, resolving these violations is a required step before you
+    transition the system to enforcing mode.
+  </p><p>
+    Search for the AVC denials with the <code class="command">ausearch</code> utility by running the
+    following command:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">ausearch -m AVC -ts boot</code>
+type=AVC msg=audit(1784184190.493:34): avc:  denied  { name_connect } for
+pid=857 comm="erts_sched_1" dest=5432 scontext=system_u:system_r:init_t:s0
+tcontext=system_u:object_r:postgresql_port_t:s0 tclass=tcp_socket permissive=1</pre></div><p>
+    For more information on how to address the AVC denials, see
+    <a class="link" href="https://documentation.suse.com/sles-sap/16.0/html/SAP-SELinux/index.html#selinux-troubleshooting" target="_blank"><em class="citetitle">SELinux
+    troubleshooting</em></a>.
+  </p></section><section xml:lang="en" class="sect1" id="selinux-sap-switching-to-enforcing-mode" data-id-title="Switching to enforcing mode"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Switching to enforcing mode</span></span> <a title="Permalink" class="permalink" href="index.html#selinux-sap-switching-to-enforcing-mode">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    An administrator can switch to enforcing mode after the SAP HANA setup is tested and no access
+    violations occur.
+  </p><div id="id-1.6.3" data-id-title="Enforcing mode for SAP HANA only" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Enforcing mode for SAP HANA only</div><p>
+      Switching to enforcing mode is currently supported for SAP HANA workloads only. Other SAP software must
+      remain in permissive mode.
+    </p></div><p>
+    To change to SELinux enforcing mode, follow the steps described in
+    <a class="link" href="https://documentation.suse.com/sles-sap/16.0/html/SAP-SELinux/index.html#selinux-switching-modes" target="_blank"><em class="citetitle">Changing
+    the SELinux
+    mode</em></a>.
+  </p></section><section xml:lang="en" class="sect1" id="selinux-sap-troubleshooting" data-id-title="Troubleshooting the SAP SELinux configuration"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Troubleshooting the SAP SELinux configuration</span></span> <a title="Permalink" class="permalink" href="index.html#selinux-sap-troubleshooting">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    If you encounter issues with running SAP software under SELinux, first verify that the
+    <span class="package">selinux-policy-sapenablement</span> package is installed. This package is
+    automatically installed as part of any SAP pattern.
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">rpm -q selinux-policy-sapenablement</code>
+selinux-policy-sapenablement-1-160000.2.3.noarch</pre></div><p>
+    For additional troubleshooting, see
+    <a class="link" href="https://documentation.suse.com/sles-sap/16.0/html/SAP-SELinux/index.html#selinux-troubleshooting" target="_blank"><em class="citetitle">SELinux
+    troubleshooting</em></a>.
+  </p></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#selinux-sap-about"><span class="title-number">1 </span><span class="title-name">How does <span class="phrase"><span class="phrase">SLES for SAP</span></span> handle SELinux for SAP workloads?</span></a></span></li><li><span class="section"><a href="index.html#selinux-sap-support"><span class="title-number">2 </span><span class="title-name">SELinux support with SAP software</span></a></span></li><li><span class="section"><a href="index.html#selinux-sap-relabeling"><span class="title-number">3 </span><span class="title-name">Relabeling the system after SAP software installations</span></a></span></li><li><span class="section"><a href="index.html#selinux-sap-resolving-access-violations"><span class="title-number">4 </span><span class="title-name">Resolving SELinux access violations</span></a></span></li><li><span class="section"><a href="index.html#selinux-sap-switching-to-enforcing-mode"><span class="title-number">5 </span><span class="title-name">Switching to enforcing mode</span></a></span></li><li><span class="section"><a href="index.html#selinux-sap-troubleshooting"><span class="title-number">6 </span><span class="title-name">Troubleshooting the SAP SELinux configuration</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">7 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

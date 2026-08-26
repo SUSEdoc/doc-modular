@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Introduction to Valkey | SUSE Linux Enterprise Server for SAP applications 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2026-11-03"/>
+<meta name="dcterms.modified" content="2026-11-03"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-26"/>
+<meta name="title" content="Introduction to Valkey | SUSE Linux Enterprise Server …"/>
+<meta name="description" content="How to install and configure Valkey"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server for SAP applications"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="Introduction to Valkey"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="amrita.sakthivel@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="amrita.sakthivel@suse.com"/><meta property="og:title" content="Introduction to Valkey"/>
+<meta property="og:description" content="Install and configure Valkey"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Introduction to Valkey"/>
+<meta name="twitter:description" content="Install and configure Valkey"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Introduction to Valkey | SUSE Linux Enterprise Server for SAP applications 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Introduction to Valkey",
+    "description": "How to install and configure Valkey",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2026-11-03T00:00+02:00",
+    "dateModified": "2026-11-03T00:00+02:00",
+    "datePublished": "2026-08-26T09:47+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Administration"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server for SAP applications",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Introduction to Valkey</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Introduction to Valkey</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="valkey" data-id-title="Introduction to Valkey"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span></span> 16.1</div><div><h1 class="title">Introduction to Valkey</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>26 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+                Valkey is an open source in-memory data structure store that excels as a database, cache, message broker and streaming engine.
+                Valkey provides a high-performance, scalable and versatile in-memory data store, crucial for accelerating applications and efficiently
+                managing diverse data needs with enhanced multi-threading and reliability.
+              </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
+               Learn about how to install and configure Valkey.
+               </p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                40 minutes of reading time.
+              </p></dd><dt id="id-1.1.12.1.4"><span class="term">GOAL</span></dt><dd><p>
+               Setting up Valkey on <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> or migrating from Redis to Valkey.
+              </p></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Introduction to Valkey" hreflang="en" href="rh-valkey.html" target="_blank">Revision History: Introduction to Valkey</a></div></div></div></div><section xml:lang="en" class="sect1" id="valkey-about" data-id-title="About Valkey"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">About Valkey</span></span> <a title="Permalink" class="permalink" href="index.html#valkey-about">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       Valkey is a fork of Redis version 7.2.4. It is an open source, in-memory data structure store, licensed under the BSD (Berkeley Software Distribution) license, that serves as a versatile platform for various applications.
+      It excels as a database, providing fast and flexible data storage; as a cache, significantly improving application performance; as a message broker, enabling asynchronous communication; and even as a streaming engine for real-time data processing.
+      Valkey builds upon the foundation of Redis OSS, incorporating multi-threading for enhanced performance and offering a robust solution for applications demanding speed, scalability, and diverse data handling capabilities. </p></div></div></div></div><p>
+   Valkey has many benefits, which include the following:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+       Delivers fast, low-latency access to data stored in memory, ideal for caching, real-time analytics, and message brokering.
+      </p></li><li class="listitem"><p>
+        Supports powerful and versatile data structures like strings, hashes, lists, sets, sorted sets, streams, and geo-spatial indexes.
+      </p></li><li class="listitem"><p>
+        Offers RDB (Redis Database Backup) snapshot and AOF (append-only file) persistence for recovering data after restarts.
+      </p></li><li class="listitem"><p>
+        Enables horizontal scaling by partitioning data across multiple nodes.
+      </p></li><li class="listitem"><p>
+        Maintains compatibility with Redis 7.2, making it easy to migrate without changing existing client libraries or application logic.
+      </p></li><li class="listitem"><p>
+        Provides built-in publish/subscribe capabilities for building event-driven or messaging-based systems.
+      </p></li></ul></div><p>For more information on Valkey, refer to <a class="link" href="https://valkey.io/docs/" target="_blank">https://valkey.io/docs/</a>.</p></section><section class="sect1" id="ai-requirements-hardware-apps" data-id-title="Managing Valkey"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Managing Valkey</span></span> <a title="Permalink" class="permalink" href="index.html#ai-requirements-hardware-apps">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+            Learn how to install Valkey, use the command-line tool and migrate from Redis to Valkey.</p></div></div></div></div><section xml:lang="en" class="sect2" id="valkey-setup" data-id-title="Setting up a Valkey service file"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">Setting up a Valkey service file</span></span> <a title="Permalink" class="permalink" href="index.html#valkey-setup">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+ Valkey is an open-source and in-memory data store that functions as a database, cache, message broker
+  and streaming engine. </p></div></div></div></div><div class="procedure" id="id-1.3.2.2" data-id-title="Creating a Valkey systemd service file"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 1: </span><span class="title-name">Creating a Valkey <code class="systemitem">systemd</code> service file </span></span><a title="Permalink" class="permalink" href="index.html#id-1.3.2.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>Install Valkey:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  zypper -n in valkey</pre></div></li><li class="step"><p>Create a Valkey <code class="systemitem">systemd</code> service file:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  vi /etc/systemd/system/valkey.service</pre></div></li><li class="step"><p>Add the following to the file:</p><div class="verbatim-wrap"><pre class="screen">[Unit]
+Description=Valkey In-Memory Data Store
+After=network.target
+
+[Service]
+User=valkey
+Group=valkey
+ExecStart=/usr/bin/valkey-server /etc/valkey/valkey.conf
+LimitNOFILE=10240
+ExecStop=/usr/bin/valkey-cli shutdown
+Restart=always
+
+[Install]
+WantedBy=multi-user.target</pre></div></li><li class="step"><p>Copy the sample file to the specified config file: </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  cp /etc/valkey/default.conf.example /etc/valkey/valkey.conf</pre></div></li><li class="step"><p>Update file permissions: </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  chown valkey:valkey /etc/valkey/valkey.conf</pre></div></li><li class="step"><p>Start and enable the Valkey service: </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl start valkey</pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl enable valkey</pre></div></li><li class="step"><p>Verify the Valkey setup: </p><div class="verbatim-wrap"><pre class="screen">valkey-cli ping</pre></div><p>Valkey is running on your system when you get the command print <code class="literal">PONG</code>.</p></li></ol></div></div></section><section xml:lang="en" class="sect2" id="valkey-cli" data-id-title="The Valkey command-line interface"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.2 </span><span class="title-name">The Valkey command-line interface</span></span> <a title="Permalink" class="permalink" href="index.html#valkey-cli">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       The Valkey command-line interface is used for managing, debugging and testing Valkey.
+       By default, the <code class="command">valkey-cli</code> command connects to the server at the address <code class="literal">127.0.0.1</code> with port <code class="literal">6379</code>.
+       </p></div></div></div></div><p>
+   Some of the <code class="command">valkey-cli</code> command options include:
+  </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.3.3.3.1"><span class="term"><code class="option">-h</code></span></dt><dd><p>
+          Server host name with default ip of 127.0.0.1.
+        </p></dd><dt id="id-1.3.3.3.2"><span class="term"><code class="option">-p</code></span></dt><dd><p>
+         Server port with a default vale of 6379.
+        </p></dd><dt id="id-1.3.3.3.3"><span class="term"><code class="option">-t</code></span></dt><dd><p>
+          Server connection timeout in seconds (decimals allowed). Default timeout is <code class="literal">0</code>, which means no limit and depends on the operating system.
+        </p></dd><dt id="id-1.3.3.3.4"><span class="term"><code class="option">-s</code></span></dt><dd><p>
+          Server socket overrides the host name and port.
+        </p></dd><dt id="id-1.3.3.3.5"><span class="term"><code class="option">-a</code></span></dt><dd><p>
+     Password to use when connecting to the server. You can also use the <code class="literal">VALKEYCLI_AUTH</code> environment variable to pass this password more safely.
+     This argument takes precedence when both options are used.
+        </p></dd><dt id="id-1.3.3.3.6"><span class="term"><code class="option">--user</code></span></dt><dd><p>
+       User name that is used to send ACL (Access Control List) style, which is <code class="literal">AUTH username pass</code>. Needs the <code class="literal">-a</code> option.
+        </p></dd><dt id="id-1.3.3.3.7"><span class="term"><code class="option">--pass</code></span></dt><dd><p>
+        Password that is an alias of the <code class="literal">-a</code> option to align with the new <code class="literal">--user</code> option.
+        </p></dd><dt id="id-1.3.3.3.8"><span class="term"><code class="option">--askpass</code></span></dt><dd><p>
+          Forces password input via STDIN with masking. If this argument is used, then <code class="literal">-a</code> and the <code class="literal">VALKEYCLI_AUTH</code>
+          environment variable are ignored.
+        </p></dd><dt id="id-1.3.3.3.9"><span class="term"><code class="option">-u</code></span></dt><dd><p>
+          Server URI in format <code class="literal">valkey://user:password@host:port/dbnum</code>. User, password and dbnum are optional.
+          For authentication without a user name, use user name <code class="literal">default</code>. For TLS, use the scheme <code class="literal">valkeys</code>.
+        </p></dd><dt id="id-1.3.3.3.10"><span class="term"><code class="option">--help</code></span></dt><dd><p>
+          Output help and exit.
+        </p></dd><dt id="id-1.3.3.3.11"><span class="term"><code class="option">--version</code></span></dt><dd><p>
+          Output version and exit.
+        </p></dd><dt id="id-1.3.3.3.12"><span class="term"><code class="option">--cluster help</code></span></dt><dd><p>
+         List all available cluster manager commands.
+        </p></dd></dl></div><div class="complex-example"><div class="example" id="id-1.3.3.4" data-id-title="Basic valkey-cli command examples include:"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 1: </span><span class="title-name">Basic <code class="command">valkey-cli</code> command examples include: </span></span><a title="Permalink" class="permalink" href="index.html#id-1.3.3.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+           <code class="literal">SET</code>: Sets a key-value pair.
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code> valkey-cli SET <em class="replaceable">KEY_NAME</em> "Hello Valkey"</pre></div><p>For example:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code> valkey-cli SET TESTKEY "Hello Valkey"</pre></div></li><li class="listitem"><p>
+           <code class="literal">GET</code>: Retrieves the value associated with a key.
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code> valkey-cli GET TESTKEY
+  "Hello Valkey"</pre></div></li><li class="listitem"><p>
+           <code class="literal">DEL</code>: Deletes a key.
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code> valkey-cli DEL TESTKEY
+  (integer) 1</pre></div><p><code class="literal">1</code> if deleted and <code class="literal">0</code> if not found.</p></li><li class="listitem"><p>
+           <code class="literal">INFO</code>: Displays information and statistics about the Valkey server.
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code> valkey-cli INFO
+  Server
+  redis_version:7.2.4
+  server_name:valkey
+  valkey_version:8.0.2
+  redis_git_sha1:00000000
+  redis_git_dirty:0
+  redis_build_id:e0cc1d08b1f9571a
+  server_mode:standalone
+  os:Linux 6.12.0-160000.9-default x86_64
+  arch_bits:64
+  monotonic_clock:POSIX clock_gettime
+  multiplexing_api:epoll
+  gcc_version:13.3.1
+  process_id:974
+  process_supervised:no
+  run_id:32864c141804bcb17cae98145beee86ca251afd7
+  tcp_port:6379
+  server_time_usec:1750760734442451
+  uptime_in_seconds:2780
+  uptime_in_days:0
+  hz:10
+  configured_hz:10
+  lru_clock:5930270
+  executable:/usr/sbin/redis-server
+  config_file:/etc/valkey/valkey.conf
+  io_threads_active:0
+  availability_zone:
+
+[...]</pre></div></li><li class="listitem"><p>
+     <code class="literal">MONITOR</code>: Streams all commands processed by the Valkey server in real time.
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code> valkey-cli MONITOR
+OK</pre></div></li><li class="listitem"><p>
+     <code class="literal">KEYS</code>: Finds all keys matching a pattern.
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code> valkey-cli KEYS "*" # All keys
+"TESTKEY"
+"TESTKEY1"</pre></div></li></ul></div></div></div></div></section><section xml:lang="en" class="sect2" id="valkey-migrate" data-id-title="Migrating from Redis to Valkey"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.3 </span><span class="title-name">Migrating from Redis to Valkey</span></span> <a title="Permalink" class="permalink" href="index.html#valkey-migrate">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+ Valkey is designed to be a seamless replacement, maintaining compatibility with the Redis API, protocol, persistence data,
+ ports and configuration files. The transition from Redis to Valkey is easy for many basic setups. The following procedure
+ assumes Redis is installed, running and loaded with data.</p></div></div></div></div><div class="procedure" id="id-1.3.4.2" data-id-title="How to migrate from Redis to Valkey"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 2: </span><span class="title-name">How to migrate from Redis to Valkey </span></span><a title="Permalink" class="permalink" href="index.html#id-1.3.4.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>Check the current Redis server version:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code> redis-cli info server
+# Server
+redis_version:7.2.4
+redis_git_sha1:00000000
+redis_git_dirty:0
+redis_build_id:8c22b097984bd350
+redis_mode:standalone
+[...]</pre></div></li><li class="step"><p>Install <span class="package">valkey-compat-redis</span> package with the <code class="literal">--force-resolution</code> option: </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  # zypper in --force-resolution valkey-compat-redis
+Refreshing service 'NVIDIA'.
+Refreshing service 'openSUSE'.
+Loading repository data...
+Reading installed packages...
+Resolving package dependencies...
+
+The following 2 NEW packages are going to be installed:
+  valkey valkey-compat-redis
+
+The following package is going to be REMOVED:
+  redis
+
+2 new packages to install, 1 to remove.
+
+Package download size:     1.3 MiB
+
+Package install size change:
+              |       5.2 MiB  required by packages that will be installed
+  -245.2 KiB  |  -    5.4 MiB  released by packages that will be removed
+
+Backend:  classic_rpmtrans
+Continue? [y/n/p/...? shows all options] (y):</pre></div><p>The package takes your existing configuration files and persistence data and moves them to Valkey with no additional steps required.
+          This migration is possible because Valkey is fully compatible with the Redis API, protocol, persistence data, ports and configuration files.</p></li><li class="step"><p>Start and enable Valkey:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl start valkey</pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl enable valkey</pre></div></li><li class="step"><p>Check the server information:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code> redis-cli info server
+# Server
+redis_version:7.2.4
+server_name:valkey
+valkey_version:7.2.5
+redis_git_sha1:00000000
+redis_git_dirty:0
+redis_build_id:b0d9f188ef999bd3
+redis_mode:standalone
+[...]</pre></div><p>Valkey is responsive to both <code class="literal">redis_version:7.2.4</code> and <code class="literal">valkey_version:7.2.5</code>.
+        Retaining the <code class="literal">redis_version</code> ensures maximum compatibility while still identifying the server with
+        <code class="literal">valkey_version</code>. Valkey has a binary named <code class="literal">valkey-cli</code> but symbolically links <code class="literal">redis-cli</code>. Both CLIs have the same functionality.</p></li></ol></div></div></section></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#valkey-about"><span class="title-number">1 </span><span class="title-name">About Valkey</span></a></span></li><li><span class="section"><a href="index.html#ai-requirements-hardware-apps"><span class="title-number">2 </span><span class="title-name">Managing Valkey</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">3 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

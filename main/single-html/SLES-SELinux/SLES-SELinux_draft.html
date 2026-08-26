@@ -1,0 +1,1408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Understanding SELinux Basics | SUSE Linux Enterprise Server 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2025-11-04"/>
+<meta name="dcterms.modified" content="2026-03-26"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-26"/>
+<meta name="title" content="Understanding SELinux Basics | SUSE Linux Enterprise S…"/>
+<meta name="description" content="Learn about the basic components and functionality of SELinux"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="Understanding SELinux Basics"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="amrita.sakthivel@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="amrita.sakthivel@suse.com"/><meta property="og:title" content="Understanding SELinux Basics"/>
+<meta property="og:description" content="An overview of basic SELinux components"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Understanding SELinux Basics"/>
+<meta name="twitter:description" content="An overview of basic SELinux components"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Understanding SELinux Basics | SUSE Linux Enterprise Server 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Understanding SELinux Basics",
+    "description": "Learn about the basic components and functionality of SELinux",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2025-11-04T00:00+02:00",
+    "dateModified": "2026-03-26T00:00+02:00",
+    "datePublished": "2026-08-26T09:49+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Security"
+      },
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER, IBM, AArch64"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#selinux-article-sles">Understanding SELinux Basics</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="selinux-article-sles" data-id-title="Understanding SELinux Basics"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span></span> 16.1</div><div><h1 class="title">Understanding SELinux Basics</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>26 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+              This article provides basic information about Security-Enhanced Linux.
+            </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
+              You want to understand SELinux and how to configure it on <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span>.
+            </p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                It takes approximately 40 minutes to read this article.
+              </p></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Understanding SELinux Basics" hreflang="en" href="rh-selinux-article-sles.html" target="_blank">Revision History: Understanding SELinux Basics</a></div></div></div></div><section xml:lang="en" class="sect1" id="selinux-about" data-id-title="About SELinux"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">About SELinux</span></span> <a title="Permalink" class="permalink" href="#selinux-about">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    SELinux was developed as an additional Linux security solution that uses
+    the security framework in the Linux kernel. The purpose was to allow for a
+    more granular security policy that goes beyond the standard Discretionary
+    Access Controls (DAC), the traditional file permissions of
+    owner/group/world, and read/write/execute.
+  </p><p>
+   SELinux implements Mandatory Access Control (MAC). Each process and system resource has a security label called an SELinux context.
+   Also called an SELinux label, it is an identifier that contains information about a system object, such as files and network sockets.
+   These labels are used to make access control decisions.
+  </p><p>
+    The default action of SELinux is to deny any access. SELinux allows only
+    actions that are specifically allowed in the SELinux policy. Another
+    feature of SELinux that increases security is that SELinux allows strict
+    confinement of processes up to the point where the processes cannot access
+    files of other processes on the same system.
+  </p><p>
+    SELinux was designed to enhance existing security solutions, not to replace
+    them. For example, discretionary access control (DAC) is still applied,
+    even if the system is using SELinux. If DAC denies access first, SELinux is
+    then not used as the access was already blocked by another mechanism.
+    SELinux is present on the pre-built images by default.
+  </p></section><section xml:lang="en" class="sect1" id="selinux-benefits" data-id-title="Why use SELinux?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Why use SELinux?</span></span> <a title="Permalink" class="permalink" href="#selinux-benefits">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        The benefits of using SELinux are:
+      </p></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.3.2.1"><span class="term">Labeling</span></dt><dd><p>
+     SELinux uses security labels, or contexts, to identify and classify processes, files, and other system objects.
+     This labeling system enables precise enforcement of access control policies.
+     </p></dd><dt id="id-1.3.2.2"><span class="term">Detailed access control</span></dt><dd><p>
+     Administrators can define very specific rules for how processes interact with files, directories, and other system resources.
+     This enables granular control over system security.
+     </p></dd><dt id="id-1.3.2.3"><span class="term">Mitigate zero-day exploits</span></dt><dd><p>
+    A zero-day exploit is a cyber attack that targets an unknown software vulnerability. Attackers gain access to a system before a patch or fix is available.
+    SELinux can help mitigate the impact of zero-day exploits by restricting the action a compromised application can take.
+    </p></dd><dt id="id-1.3.2.4"><span class="term">Detailed auditing</span></dt><dd><p>
+     SELinux provides detailed audit logs, which can be used to track and analyze security events to help identify and mitigate
+     potential threats.
+    </p></dd><dt id="id-1.3.2.5"><span class="term">Enhanced system integrity</span></dt><dd><p>
+     SELinux helps to maintain the integrity of the operating system and the data by enforcing consistent access controls.
+        </p></dd></dl></div></section><section xml:lang="en" class="sect1" id="selinux-modes" data-id-title="SELinux modes"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">SELinux modes</span></span> <a title="Permalink" class="permalink" href="#selinux-modes">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+   SELinux can run in <code class="literal">enforcing</code> or <code class="literal">permissive</code> mode:
+
+  </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.4.3.1"><span class="term"><code class="literal">enforcing</code></span></dt><dd><p>
+    The security policy is enforced. Any access that is not explicitly allowed by the policy is denied.</p></dd><dt id="id-1.4.3.2"><span class="term"><code class="literal">permissive</code></span></dt><dd><p>
+    SELinux is active, the security policy is loaded, the file system is labeled and access denial entries are logged. However, the policy is not enforced, and no access is denied. </p></dd></dl></div><p>The default in <span class="phrase"><span class="phrase">SLES</span></span> 16.1 is <code class="literal">enforcing</code> mode.</p><p>
+    For information about switching between SELinux modes, refer to
+    <a class="xref" href="#selinux-switching-modes" title="3.1. Changing the SELinux mode">Section 3.1, “Changing the SELinux mode”</a>.
+  </p><section xml:lang="en" class="sect2" id="selinux-switching-modes" data-id-title="Changing the SELinux mode"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.1 </span><span class="title-name">Changing the SELinux mode</span></span> <a title="Permalink" class="permalink" href="#selinux-switching-modes">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    You can switch the SELinux mode temporarily or permanently.
+  </p><section class="sect3" id="selinux-verify-mode" data-id-title="Verifying the active SELinux mode"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">3.1.1 </span><span class="title-name">Verifying the active SELinux mode</span></span> <a title="Permalink" class="permalink" href="#selinux-verify-mode">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      To verify the mode, run the following command:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>getenforce</pre></div><p>
+      The command should return <code class="literal">enforcing</code> or
+      <code class="literal">permissive</code>.
+    </p></section><section class="sect3" id="sellinux-temporary-mode-changes" data-id-title="Changing the SELinux mode temporarily"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">3.1.2 </span><span class="title-name">Changing the SELinux mode temporarily</span></span> <a title="Permalink" class="permalink" href="#sellinux-temporary-mode-changes">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      To set SELinux to the <code class="literal">permissive</code> or
+      <code class="literal">enforcing</code> mode temporarily, use the command
+      <code class="command">setenforce</code>.
+    </p><p>
+      The <code class="command">setenforce</code> command has the following syntax:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>setenforce <em class="replaceable">MODE_ID</em></pre></div><p>
+      where <em class="replaceable">MODE_ID</em> is <em class="replaceable">0</em>
+      for the <code class="literal">permissive</code> mode or
+      <em class="replaceable">1</em> for the <code class="literal">enforcing</code> mode.
+    </p><p>
+      Remember that you cannot disable SELinux using the
+      <code class="command">setenforce</code> command.
+    </p></section><section class="sect3" id="selinux-permanent-mode-changes" data-id-title="Changing the SELinux mode permanently"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">3.1.3 </span><span class="title-name">Changing the SELinux mode permanently</span></span> <a title="Permalink" class="permalink" href="#selinux-permanent-mode-changes">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      To perform changes to the SELinux mode that persists after a reboot, edit the <code class="filename">/etc/selinux/config</code> configuration
+      file. If SELinux is causing issues on your system, switch to the <code class="literal">permissive</code> mode and debug your system.
+    </p><p>
+      In the file <code class="filename">/etc/selinux/config</code>, change the value of
+      <code class="literal">SELINUX</code> to <code class="literal">permissive</code>, or <code class="literal">enforcing</code> as follows:
+    </p><div class="verbatim-wrap"><pre class="screen">SELINUX=permissive</pre></div><p>
+      The changes in the file are applied after the next reboot.
+    </p></section><section xml:lang="en" class="sect3" id="task-verification" data-id-title="Switching from permissive to enforcing mode"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">3.1.4 </span><span class="title-name">Switching from permissive to enforcing mode</span></span> <a title="Permalink" class="permalink" href="#task-verification">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+   When switching from permissive to enforcing mode, it is essential that the security context is reset on all files.
+   They might have changed during the time in permissive mode.
+  </p><p>
+   Some additional steps are necessary to ensure that your system works properly in <code class="literal">enforcing</code> mode:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Reset the security context on the running system:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">restorecon -R /</code></pre></div><p>
+        Or mark a reset that is done during boot:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">touch /etc/selinux/.autorelabel</code></pre></div></li><li class="step"><p>
+        Switch to enforcing mode by setting
+        <code class="option">SELINUX=enforcing</code> in the
+        <code class="filename">/etc/selinux/config</code>.
+      </p></li><li class="step"><p>
+        Reboot the system and log in again.
+      </p></li><li class="step"><p>
+        Run the <code class="command">sestatus -v</code> command. It should give you an
+        output similar to the following one:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">sestatus -v</code>
+SELinux status:                 enabled
+SELinuxfs mount:                /sys/fs/selinux
+SELinux root directory:         /etc/selinux
+Loaded policy name:             targeted
+Current mode:                   enforcing
+Mode from config file:          enforcing
+Policy MLS status:              enabled
+Policy deny_unknown status:     allowed
+Memory protection checking:     actual (secure)
+Max kernel policy version:      33
+
+Process contexts:
+Current context:                unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+Init context:                   system_u:system_r:init_t:s0
+/sbin/agetty                    system_u:system_r:getty_t:s0-s0:c0.c1023
+/usr/sbin/sshd                  system_u:system_r:sshd_t:s0-s0:c0.c1023
+
+File contexts:
+Controlling terminal:           unconfined_u:object_r:user_devpts_t:s0
+/etc/passwd                     system_u:object_r:passwd_file_t:s0
+/etc/shadow                     system_u:object_r:shadow_t:s0
+/bin/bash                       system_u:object_r:shell_exec_t:s0
+/bin/login                      system_u:object_r:login_exec_t:s0
+/bin/sh                         system_u:object_r:bin_t:s0 -&gt; system_u:object_r:shell_exec_t:s0
+/sbin/agetty                    system_u:object_r:getty_exec_t:s0
+/sbin/init                      system_u:object_r:bin_t:s0 -&gt; system_u:object_r:init_exec_t:s0
+/usr/sbin/sshd                  system_u:object_r:sshd_exec_t:s0</pre></div></li><li class="step"><p>
+        If the system is not working properly, check the log files in
+        <code class="filename">/var/log/audit/audit.log</code>.
+        
+      </p></li></ol></div></div></section></section></section><section xml:lang="en" class="sect1" id="selinux-policy" data-id-title="SELinux policy overview"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">SELinux policy overview</span></span> <a title="Permalink" class="permalink" href="#selinux-policy">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    The policy is the key component of SELinux. In SELinux, Mandatory Access Control (MAC) is implemented through security labels known as SELinux contexts.
+    Each process and system resource is assigned a unique SELinux security context, also referred to as an SELinux label.
+    An SELinux context is an identifier that focuses only on the security properties of the entity.
+    This provides a consistent and unambiguous method for referencing objects within the SELinux policy.
+  </p><p>
+    An SELinux policy contains a huge number of security contexts and access rules between those
+    security contexts. These are split into modules.
+    This allows the administrator to customize policies for different parts of the
+    system.
+  </p><p>For SAP workloads:</p><p> The <code class="literal">selinux-policy-sapenablement</code> package is for SELinux policy changes for running SAP.
+    Currently it sets the settings that are needed to run SAP applications in an unconfined context, but still sets SELinux to <code class="literal">permissive</code> mode.
+    This package is installed by default.</p><section xml:lang="en" class="sect2" id="selinux-context" data-id-title="SELinux security context"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.1 </span><span class="title-name">SELinux security context</span></span> <a title="Permalink" class="permalink" href="#selinux-context">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    The security context is a set of information assigned to a file or a
+    process. It consists of SELinux user, role, type, level and category. This
+    information is used to make access control decisions.
+  </p><p>A SELinux context looks like this:</p><div class="verbatim-wrap"><pre class="screen">user_u:role_r:type_t:level:category</pre></div><div id="id-1.5.6.5" data-id-title="Focus on the SELinux type" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Focus on the SELinux type</div><p>
+    For beginners working with SELinux, it is recommended to focus first on the SELinux type, which is <code class="literal">type_t</code>.
+    This is because SELinux rules mainly use the SELinux type to define allowed access, a core concept known as <span><em class="emphasis">Type Enforcement</em></span>.
+   </p><p>
+    An understanding of SELinux types is critical, as they are frequently modified during SELinux administration.
+   </p></div><div class="variablelist"><div class="title-container"><div class="variablelist-title-wrap"><div class="variablelist-title"><span class="title-number-name"><span class="title-name">SELinux context fields </span></span><a title="Permalink" class="permalink" href="#id-1.5.6.6">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><dl class="variablelist"><dt id="id-1.5.6.6.2"><span class="term">SELinux user</span></dt><dd><p>
+          An identity defined in the policy that is authorized for a specific
+          set of roles and for a specific <span><em class="emphasis">level</em></span> range.
+          Each Linux user is mapped to only one SELinux user. However, one
+          SELinux user can have several roles.
+        </p><p>
+          SELinux does not use the list of user accounts maintained by Linux in
+          <code class="filename">/etc/passwd</code>, but uses its own database and
+          mapping. By convention, the identity name is suffixed with
+          <code class="literal">_u</code>, for example, <code class="literal">user_u</code>.
+        </p><p>
+          When a new Linux account is created and the SELinux user is not
+          assigned to the account, the default SELinux user is used. Usually,
+          the default value is <code class="literal">unconfined_u</code>. For a procedure
+          on how to change the default value, refer to
+          <a class="xref" href="#semanage-login-command" title="9.5.2. The semanage login command">Section 9.5.2, “The <code class="command">semanage login</code> command”</a>.
+        </p></dd><dt id="id-1.5.6.6.3"><span class="term">role</span></dt><dd><p>
+          Defines a set of permissions that a user can be granted. A role
+          defines which <span><em class="emphasis">types</em></span> a user assigned to this role
+          can access. By convention, the role name is suffixed with
+          <code class="literal">_r</code>, for example, <code class="literal">system_r</code>.
+        </p></dd><dt id="id-1.5.6.6.4"><span class="term">type</span></dt><dd><p>
+          The type conveys information about how particular files and processes
+          can interact. SELinux policy rules define which types are allowed
+          to access each other. This concept is called <span><em class="emphasis">Type Enforcement</em></span>.
+          In the context of processes, this is also sometimes called a <span><em class="emphasis">domain</em></span>.
+          By convention, the type name is suffixed with <code class="literal">_t</code>, for example,
+          <code class="literal">var_t</code>.
+        </p></dd><dt id="id-1.5.6.6.5"><span class="term">level</span></dt><dd><p>
+          An optional attribute that specifies the range of levels of clearance
+          in the multilevel security.
+        </p></dd><dt id="id-1.5.6.6.6"><span class="term">category</span></dt><dd><p>
+          An optional attribute that allows you to add categories to processes,
+          files and users. A user can then access files that have the same
+          category.
+        </p></dd></dl></div><p>
+    To check the current security context of a file, you can list the file with <code class="command">ls -Z</code>.
+    The following example lists the security context of the file <code class="filename">/etc/shadow</code>:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code> ls -Z /etc/shadow
+system_u:object_r:shadow_t:s0 /etc/shadow</pre></div><p>
+    To check the current security context of a process, you can display the current
+    process state with <code class="command">ps -Z</code>. The following example lists the
+    security context of the <code class="systemitem">systemd</code> process:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code> ps -eZ | grep systemd
+system_u:system_r:init_t:s0           1 ?        00:00:01 systemd
+...</pre></div><div id="id-1.5.6.11" data-id-title="The -Z flag convention" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: The <code class="command">-Z</code> flag convention</div><p>
+    Many command-line tools, such as <code class="command">ls</code>, <code class="command">ps</code>, <code class="command">mkdir</code>,
+    <code class="command">id</code>, <code class="command">cp</code>, and many more, implement their explicit SELinux handling by adding a <code class="command">-Z</code> flag or option. To check for explicit SELinux handling, refer
+    to the man page of the tool and look out for <code class="command">-Z</code>.
+   </p></div></section><section xml:lang="en" class="sect2" id="selinux-rules" data-id-title="SELinux Rules"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.2 </span><span class="title-name">SELinux Rules</span></span> <a title="Permalink" class="permalink" href="#selinux-rules">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    SELinux rules define whether a subject's security context (source) is permitted or denied access to an object's security context (target), explicitly specifying the allowed or denied permissions and the class of the object being accessed.
+  </p><p>SELinux rules generally follow this format:</p><div class="verbatim-wrap"><pre class="screen">rule_name source target:class permissions;</pre></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.5.7.5.1"><span class="term">rule_name</span></dt><dd><p>
+             An access vector rule (AVC rule) is a rule that defines access control for object classes. The permissions for an object class are represented by a bitmask called an access vector, hence the term <code class="literal">access vector rule</code>. </p></dd><dt id="id-1.5.7.5.2"><span class="term">source</span></dt><dd><p> The SELinux context of the process (subject)</p></dd><dt id="id-1.5.7.5.3"><span class="term">target</span></dt><dd><p>The SELinux context of the resource (object) </p></dd><dt id="id-1.5.7.5.4"><span class="term">class</span></dt><dd><p>Type of object, such as a file, process or socket</p></dd><dt id="id-1.5.7.5.5"><span class="term">permissions</span></dt><dd><p>Allowed actions such as read, write and execute</p></dd></dl></div><div id="id-1.5.7.6" data-id-title="Listing SELinux rules" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Listing SELinux rules</div><p>
+      The <code class="command">setools-console</code> package contains <code class="command">sesearch</code>,
+      which is a convenient tool to list all rules.
+    </p><p>
+      For example, to check if the loaded policy has a rule that allows passwd (process running with <code class="literal">passwd_t</code> type) write access to the <code class="filename">/etc/shadow</code> file (labeled as <code class="literal">shadow_t</code>), run:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code> sesearch -A -s passwd_t -t shadow_t -p write
+allow passwd_t shadow_t:file { append create getattr ioctl link lock map open read relabelfrom relabelto rename setattr unlink watch watch_reads write };</pre></div><p>
+      This output shows that there is a rule, so the access is allowed.
+    </p></div></section><section xml:lang="en" class="sect2" id="selinux-policy-targeted" data-id-title="Design principles of the targeted SELinux policy"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.3 </span><span class="title-name">Design principles of the targeted SELinux policy</span></span> <a title="Permalink" class="permalink" href="#selinux-policy-targeted">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    In the SELinux ecosystem, various policy types, such as the widely used targeted policy, are designed with distinct security concepts and enforcement methodologies to address diverse requirements.
+  </p><p>
+    <span class="phrase"><span class="phrase">SLES</span></span> 16.1 is shipped with the <code class="literal">targeted</code> SELinux policy by default.
+  </p><p>
+   The design of this policy prioritizes the confinement of long-running and network-facing services, particularly on general-purpose server systems.
+  </p><p>
+   While the default targeted policy is designed to cover the most common use cases in default configuration, specialized workloads often need policy adjustments.
+   For instance, scenarios involving custom network ports or unique file system layouts will require administrators to refine the existing policy.
+  </p><p>
+   Additionally, SELinux Booleans encapsulate specific policy modifications that, while potentially reducing the baseline security of a general-purpose system, are necessary for certain common workloads.
+   This design allows administrators to selectively enable these adjustments only when required, maintaining a more secure default posture.
+  </p><p>
+   To facilitate such modifications, SELinux offers various tools. System administrators and software developers can customize the default policy to their specific requirements.
+  </p></section><section xml:lang="en" class="sect2" id="switch-minimum-policy" data-id-title="Switching from targeted to minimum policy"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.4 </span><span class="title-name">Switching from <code class="literal">targeted</code> to <code class="literal">minimum</code> policy</span></span> <a title="Permalink" class="permalink" href="#switch-minimum-policy">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+  <span class="phrase"><span class="phrase">SLES</span></span> 16.1 is shipped with the <code class="literal">targeted</code> SELinux policy by default.
+  The <code class="literal">minimum</code> policy is also included. The <code class="literal">minimum</code> policy in SELinux is a lightweight configuration that secures only the most essential core system services. It provides a minimal baseline, allowing for further customization in specialized or resource-constrained environments.
+ </p><div class="procedure" id="id-1.5.9.3" data-id-title="How to switch from a targeted to a minimum policy"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 1: </span><span class="title-name">How to switch from a <code class="literal">targeted</code> to a <code class="literal">minimum</code> policy </span></span><a title="Permalink" class="permalink" href="#id-1.5.9.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>Check the current active policy:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  sestatus
+  SELinux status:                 enabled
+  SELinuxfs mount:                /sys/fs/selinux
+  SELinux root directory:         /etc/selinux
+  Loaded policy name:             targeted
+  Current mode:                   enforcing
+  Mode from config file:          enforcing
+  Policy MLS status:              enabled
+  Policy deny_unknown status:     allowed
+  Memory protection checking:     actual (secure)
+  Max kernel policy version:      33</pre></div><p>Look for <code class="literal">Loaded policy name: targeted</code></p></li><li class="step"><p>Install the minimum policy package:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  zypper install selinux-policy-minimum</pre></div></li><li class="step"><p>Edit the SELinux configuration file to tell the kernel which policy to load at the next boot:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  vi /etc/selinux/config</pre></div><p>Change the <code class="literal">SELINUXTYPE</code> variable from <code class="literal">targeted</code> to <code class="literal">minimum</code>.</p></li><li class="step"><p>Check if the <span class="package">selinux-autorelabel</span> package is installed. If not, install it. A relabel is required to ensure all files have the correct security contexts assigned under the new policy framework:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  zypper info selinux-autorelabel</pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  zypper install selinux-autorelabel</pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  touch /.autorelabel</pre></div></li><li class="step"><p>Reboot the system and verify the change:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  reboot</pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  sestatus
+  SELinux status:                 enabled
+  SELinuxfs mount:                /sys/fs/selinux
+  SELinux root directory:         /etc/selinux
+  Loaded policy name:             minimum
+  Current mode:                   enforcing
+  Mode from config file:          enforcing
+  Policy MLS status:              enabled
+  Policy deny_unknown status:     allowed
+  Memory protection checking:     actual (secure)
+  Max kernel policy version:      33</pre></div><p>Note that the <code class="literal">SELINUXTYPE</code> variable has changed from <code class="literal">targeted</code> to <code class="literal">minimum</code>.</p></li></ol></div></div></section></section><section xml:lang="en" class="sect1" id="selinux-logs" data-id-title="Understanding SELinux logs"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Understanding SELinux logs</span></span> <a title="Permalink" class="permalink" href="#selinux-logs">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    When SELinux blocks an action, it generates a detailed log message. Understanding these logs is very important for troubleshooting and auditing the system's security with SELinux.
+  </p><p>
+    The primary service responsible for handling SELinux logs is the audit daemon, <code class="command">auditd</code>. On a standard system, this service is enabled by default.
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        <span><span class="emphasis"><strong>With <code class="command">auditd</code> running (default):</strong></span></span> All SELinux log messages are written to <code class="filename">/var/log/audit/audit.log</code>.
+      </p></li><li class="listitem"><p>
+       <span><span class="emphasis"><strong>Without <code class="command">auditd</code> running:</strong></span></span> If the <code class="command">auditd</code> service fails or is not running, SELinux log messages can be found instead in the <span><em class="emphasis">systemd journal</em></span> as a fallback.
+      </p></li></ul></div><p>
+  The most common log messages that are created by SELinux are <span><span class="emphasis"><strong>Access Vector Cache (AVC) denials</strong></span></span>, which record that a process was denied permission to access an object.
+  </p><p>
+  An AVC denial is a symptom, not the problem itself, so it is important to understand why the denial occurred.
+  When initially setting up a workload or on upgrade scenarios, SELinux blocking actions can be easily fixed by using the tools mentioned in <a class="xref" href="#selinux-administration" title="7. SELinux administration">Section 7, “SELinux administration”</a>.
+  In contrast, AVCs occurring at later stages when the workload is running for while, might indicate a blocked intrusion attempt.
+  </p><section xml:lang="en" class="sect2" id="selinux-search-audit-log" data-id-title="Reading the audit log"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.1 </span><span class="title-name">Reading the audit log</span></span> <a title="Permalink" class="permalink" href="#selinux-search-audit-log">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+      The <code class="filename">audit.log</code> file contains structured records. The <code class="command">ausearch</code> utility is designed to query these logs effectively.
+      The most common use is to search for recent AVC denials.
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">ausearch -m AVC -ts recent</code>
+type=AVC msg=audit(1753703741.779:1779): avc:  denied  { getattr } for  pid=22212 comm="httpd-prefork" path="/srv/wwwcustom/vhosts/example.com/index.html" dev="vda3" ino=278 scontext=system_u:system_r:httpd_t:s0 tcontext=system_u:object_r:var_t:s0 tclass=file permissive=0</pre></div><p>
+      Here, <code class="option">-m AVC</code> filters for SELinux denials, and <code class="option">-ts recent</code> limits the search to events that happened in the last 10 minutes.
+      You can also use values like <code class="literal">today</code>, a specific date or <code class="literal">boot</code>.
+    </p><p>
+      The log entry contains all the information needed to understand the denial. The key fields are:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.6.7.6.1"><span class="term">denied  { getattr }</span></dt><dd><p>The specific <span><span class="emphasis"><strong>permission</strong></span></span> that was denied.</p></dd><dt id="id-1.6.7.6.2"><span class="term">comm="httpd-prefork"</span></dt><dd><p>The <span><span class="emphasis"><strong>command</strong></span></span> that triggered the denial.</p></dd><dt id="id-1.6.7.6.3"><span class="term">path="/srv/wwwcustom/vhosts/example.com/index.html"</span></dt><dd><p>The <span><span class="emphasis"><strong>path</strong></span></span> that was accessed (only for files).</p></dd><dt id="id-1.6.7.6.4"><span class="term">scontext=...:httpd_t:...</span></dt><dd><p>The <span><span class="emphasis"><strong>Source Context</strong></span></span> of the process that attempted the action.</p></dd><dt id="id-1.6.7.6.5"><span class="term">tcontext=...:var_t:...</span></dt><dd><p>The <span><span class="emphasis"><strong>Target Context</strong></span></span> of the object (file, directory, port) that was being accessed.</p></dd><dt id="id-1.6.7.6.6"><span class="term">tclass=file</span></dt><dd><p>The <span><span class="emphasis"><strong>Target Class</strong></span></span>, which specifies the type of object (e.g., <code class="literal">file</code>, <code class="literal">dir</code>, <code class="literal">tcp_socket</code>).</p></dd><dt id="id-1.6.7.6.7"><span class="term">permissive=0</span></dt><dd><p>The <span><span class="emphasis"><strong>Mode</strong></span></span> of the source domain. <code class="literal">permissive=0</code>
+          means the security policy is enforced, while <code class="literal">permissive=1</code> means logging only.
+          </p></dd></dl></div><p>
+      The example log states the process named <code class="command">httpd-prefork</code> (running with the <code class="literal">httpd_t</code> context) was denied permission to <code class="literal">getattr</code> a <code class="literal">file</code> that has the <code class="literal">var_t</code> context.
+    </p><p>
+     This example AVC occurred when a Web server was configured to use a different
+     directory (<code class="filename">/srv/wwwcustom</code>) for the served files instead of
+     the default path.
+     This needs to be adjusted in SUSE Enterprise Storage as well, which can be
+     seen in <a class="xref" href="#modify-context-type" title="7.2. Managing custom file contexts">Section 7.2, “Managing custom file contexts”</a>.
+    </p></section></section><section xml:lang="en" class="sect1" id="selinux-packages" data-id-title="SELinux packages"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">SELinux packages</span></span> <a title="Permalink" class="permalink" href="#selinux-packages">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    <span class="phrase"><span class="phrase">SLES</span></span> 16.1 provides you with tools to manage SELinux on your
+    system.
+  </p><p>
+    The <code class="literal">policycoreutils</code> package contains the basic tools needed
+    for SELinux administration and is installed by default.
+    It contains <code class="command">sestatus</code>, <code class="command">restorecon</code>,
+    <code class="command">semodule</code>, <code class="command">setsebool</code> and many other
+    tools.
+  </p><p>
+    Additionally, the <code class="literal">policycoreutils-python-utils</code> package provides helper tools that make SELinux administration
+    easier. This includes tools such as <code class="command">audit2allow</code> and
+    <code class="command">semanage</code>. If the package is missing, run the following command to install it:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper install policycoreutils-python-utils</code></pre></div><p>
+    The SELinux man pages contain comprehensive documentation on the options
+    that administrators can customize for every confined service.
+    These can be found in <code class="literal">selinux-policy-doc</code>.
+    You can install:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper install man selinux-policy-doc</code></pre></div><p>
+    For advanced policy analysis, the <code class="literal">setools-console</code> package
+    provides the appropriate tooling and can be installed with:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper install setools-console</code></pre></div><p>
+    Advanced policy development requires additional <code class="literal">-devel</code>
+    packages, which can be installed by:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper install selinux-policy-devel policycoreutils-devel</code></pre></div></section><section xml:lang="en" class="sect1" id="selinux-administration" data-id-title="SELinux administration"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">SELinux administration</span></span> <a title="Permalink" class="permalink" href="#selinux-administration">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+  As software developers and system administrators, you may need to adapt various aspects of the SELinux policy for specialized workloads and deployment scenarios.
+  This is because of the design principles of the <span><em class="emphasis">targeted</em></span> policy, as seen in <a class="xref" href="#selinux-policy-targeted" title="4.3. Design principles of the targeted SELinux policy">Section 4.3, “Design principles of the targeted SELinux policy”</a>.
+  </p><p>
+  Necessary adaptions might include:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+      Controlling policy behavior via Booleans
+      </p></li><li class="listitem"><p>
+       Defining and modifying file contexts
+      </p></li><li class="listitem"><p>
+       Adjusting network port contexts
+      </p></li><li class="listitem"><p>
+      Setting domains to <code class="literal">permissive</code> mode for troubleshooting
+      </p></li><li class="listitem"><p>
+       Managing policy modules
+      </p></li><li class="listitem"><p>
+     Enabling or disabling <code class="literal">dontaudit</code> rules to enhance policy development or auditing
+      </p></li></ul></div><section xml:lang="en" class="sect2" id="selinux-booleans" data-id-title="SELinux Booleans"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.1 </span><span class="title-name">SELinux Booleans</span></span> <a title="Permalink" class="permalink" href="#selinux-booleans">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    Instead of requiring the development and compilation of custom policy rules,
+    booleans encapsulate predefined policy adjustments.
+    Their primary purpose is to accommodate common operational workloads that,
+    if permitted by default in the main policy, could potentially reduce the
+    baseline security posture of a general-purpose system.
+  </p><p>
+    Instead of requiring the development and compilation of custom policy rules,
+    booleans encapsulate predefined policy adjustments.
+    This allows selectively enabling or disabling specific functionalities on
+    an as-needed basis.
+  </p><p>
+    These changes can be applied at runtime and take effect immediately.
+    Administrators can configure Booleans to be effective temporarily for the
+    current session or persistently across reboots.
+  </p><section xml:lang="en" class="sect3" id="selinux-working-with-booleans" data-id-title="Working with Booleans"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">7.1.1 </span><span class="title-name">Working with Booleans</span></span> <a title="Permalink" class="permalink" href="#selinux-working-with-booleans">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><section class="sect4" id="listing-booleans" data-id-title="Listing Booleans"><div class="titlepage"><div><div><div class="title-container"><h5 class="title"><span class="title-number-name"><span class="title-number">7.1.1.1 </span><span class="title-name">Listing Booleans</span></span> <a title="Permalink" class="permalink" href="#listing-booleans">#</a></h5><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      You can use the <code class="command">getsebool</code> or
+      <code class="command">semanage</code> command to list currently defined Booleans.
+      To list all currently defined Booleans, along with their state, run the
+      following command:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>getsebool -a
+
+abrt_anon_write --&gt; off
+abrt_handle_event --&gt; off
+abrt_upload_watch_anon_write --&gt; on
+...</pre></div><p>
+      To get more details about particular Booleans, you can use the
+      <code class="command">semanage</code> command as follows:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>semanage boolean -l
+
+SELinux boolean               State   Default     Description
+
+abrt_anon_write               (off  ,  off)       Allow abrt to anon write
+abrt_handle_event             (off  ,  off)       Allow abrt to handle event
+abrt_upload_watch_anon_write  (on   ,   on)       Allow abrt to upload watch anon write</pre></div><p>
+      Additionally, confined services have a man page, which contains
+      the corresponding Booleans and a description.
+      Man pages have the prefix of the service name and the
+      <span><em class="emphasis">_selinux</em></span> suffix: <code class="command">SERVICE_selinux</code>.
+      For example, the SELinux man page for Web servers is named
+      <code class="command">httpd_selinux</code>.
+    </p><p>
+      To get the status of an individual Boolean, you can use the following
+      command:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>getsebool <em class="replaceable">BOOLEAN_NAME</em></pre></div><p>
+      Alternatively, you can just use the <code class="command">grep</code> command on
+      the <code class="command">semanage boolean</code> output:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>semanage boolean -l | grep <em class="replaceable">BOOLEAN_NAME</em></pre></div><p>
+      A single Boolean can enable or disable several policy rules. To see
+      which policy rules are enabled or disabled by specific Booleans,
+      use the <code class="command">sedispol</code> tool to analyze the policy file:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>sedispol /etc/selinux/targeted/policy/policy.34</pre></div><p>
+      As the policy rules are usually huge, we recommend setting an output file
+      by selecting the <code class="option">f</code> and specifying a file name. After
+      specifying the file name, press <code class="option">6</code>. Then you can inspect
+      the file.
+    </p></section><section class="sect4" id="switching-booleans" data-id-title="Toggling Booleans"><div class="titlepage"><div><div><div class="title-container"><h5 class="title"><span class="title-number-name"><span class="title-number">7.1.1.2 </span><span class="title-name">Toggling Booleans</span></span> <a title="Permalink" class="permalink" href="#switching-booleans">#</a></h5><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The commands <code class="command">setsebool</code> and <code class="command">semanage</code>
+      can be used to toggle the value of Booleans. You can change the Boolean status
+      persistently or just temporarily until the session ends. To change a
+      Boolean value temporarily, run the following command:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>setsebool <em class="replaceable">BOOLEAN_NAME</em> <em class="replaceable">BOOLEAN_VALUE</em></pre></div><p>
+      where <em class="replaceable">BOOLEAN_VALUE</em> is either
+      <code class="literal">on</code> or <code class="literal">off</code>.
+    </p><p>
+      To change a Boolean value persistently, run one of the following two
+      commands:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>setsebool -P <em class="replaceable">BOOLEAN_NAME</em> <em class="replaceable">BOOLEAN_VALUE</em></pre></div><p>
+      Alternatively, using the <code class="command">semanage</code> command:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>semanage boolean -m --<em class="replaceable">BOOLEAN_VALUE</em>  <em class="replaceable">BOOLEAN_NAME</em></pre></div><p>
+      where <em class="replaceable">BOOLEAN_VALUE</em> is either
+      <code class="literal">on</code> or <code class="literal">off</code>.
+    </p></section></section></section><section xml:lang="en" class="sect2" id="modify-context-type" data-id-title="Managing custom file contexts"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.2 </span><span class="title-name">Managing custom file contexts</span></span> <a title="Permalink" class="permalink" href="#modify-context-type">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    When changing the default location of configuration files or other files
+    of a confined service, you likely need to define or modify the security contexts.
+    These contexts, also called <span><em class="emphasis">labels</em></span>, are attached to certain files by SELinux.
+  </p><p>
+    For instance, if a Web server is configured to serve Web pages from a custom directory other than its
+    default location, the corresponding SELinux file contexts need to be updated as well to permit this operation.
+  </p><p>
+    To update the security context of the files in a custom location permanently,
+    you can use the <code class="command">semanage fcontext</code> command.
+   This command writes the new file context to the policy.
+    Additionally, the <code class="command">restorecon</code> command needs to be run
+    afterward to reflect the policy change in the file system.
+  </p><p>
+    The challenge when updating the SELinux context for a workload is
+    determining which SELinux context is needed during the customization.
+    You can list all mappings of security contexts to files in the file system
+    using:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage fcontext -l</code></pre></div><p>
+    This will show a long list of regular expressions, to which file type they
+    match and which security context the files will be assigned.
+    This can be searched to find the appropriate labels.
+  </p><div class="example" id="ex-selnx-semanage" data-id-title="Viewing default file contexts"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 1: </span><span class="title-name">Viewing default file contexts </span></span><a title="Permalink" class="permalink" href="#ex-selnx-semanage">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage fcontext -l | less</code>
+SELinux fcontext                                   type               Context
+
+/                                                  directory          system_u:object_r:root_t:s0
+/.*                                                all files          system_u:object_r:default_t:s0
+/[^/]+                                             regular file       system_u:object_r:etc_runtime_t:s0
+/\.autofsck                                        regular file       system_u:object_r:etc_runtime_t:s0
+/\.autorelabel                                     regular file       system_u:object_r:etc_runtime_t:s0
+/\.journal                                         all files          X:&gt;&gt;None&gt;&gt;
+/\.suspended                                       regular file       system_u:object_r:etc_runtime_t:s0
+/a?quota\.(user|group)                             regular file       system_u:object_r:quota_db_t:s0
+/afs                                               directory          system_u:object_r:mnt_t:s0
+/bin                                               directory          system_u:object_r:bin_t:s0
+/bin/.*                                            all files          system_u:object_r:bin_t:s0</pre></div></div></div><p>
+    Another way is to consult the SELinux man page of the service that has the custom
+    path and check which type needs to be set. The man page convention is
+    <code class="command">SERVICE_selinux</code>. For example, the SELinux man page for
+    Web servers is named <code class="command">httpd_selinux</code>.
+  </p><p>
+    When the correct type for the custom path has been identified, you can set it
+    by using <code class="command">semanage fcontext</code> and using the <code class="literal">TYPE</code>
+    and a regular expression <code class="literal">REGEX</code> to match the custom file path:
+  </p><div class="verbatim-wrap"><pre class="screen"> <code class="prompt root"># </code><code class="command">semanage fcontext -a -t TYPE REGEX</code></pre></div><p>
+    For example, to set all files below <code class="filename">/srv/wwwcustom</code> to have
+the type <code class="literal">httpd_sys_content_t</code>:
+  </p><div class="verbatim-wrap"><pre class="screen"> <code class="prompt root"># </code><code class="command">semanage fcontext -a -t httpd_sys_content_t "/srv/wwwcustom(/.*)?"</code></pre></div><p>
+   You can verify if your modification is set up correctly by using the <code class="command">matchpathcon</code> command:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">matchpathcon /srv/wwwcustom</code>
+/srv/wwwcustom	system_u:object_r:httpd_sys_content_t:s0</pre></div><p>
+  Then reflect the security context in the file system for that directory
+   by resetting the security context:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">restorecon -Rv /srv/wwwcustom</code></pre></div><div id="id-1.8.6.18" data-id-title="Set equivalencies between the label of the default and custom location" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Set equivalencies between the label of the default and custom location</div><p>
+      When you are using a different location in the file system than the default one,
+      you can check which security context would have been assigned
+      to the default location and assign the same to the new location.
+      For example, the default served location of a Web server is <code class="filename">/srv/www</code>.
+      You want to move it to <code class="filename">/srv/wwwcustom</code>.
+      Check out the label of the default location:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">matchpathcon /srv/www</code>
+/srv/www	system_u:object_r:httpd_sys_content_t:s0</pre></div><p>
+      Check out the label of the new custom location:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">matchpathcon /srv/wwwcustom</code>
+/srv/wwwcustom	system_u:object_r:var_t:s0</pre></div><p>
+      Set an equivalency between /srv/www and /srv/wwwcustom by running:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage fcontext -a -e /srv/www /srv/wwwcustom</code></pre></div><p>
+      The new custom location now has the same label as the default one:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">matchpathcon /srv/wwwcustom</code>
+/srv/wwwcustom	system_u:object_r:httpd_sys_content_t:s0</pre></div><p>
+      Then, reset the security contexts in the file system:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">restorecon -Rv /srv/wwwcustom</code></pre></div><p>
+      Your workload should work now as expected.
+    </p></div><p>
+    In case you would like to remove the customization again, run:
+  </p><div class="verbatim-wrap"><pre class="screen"> <code class="prompt root"># </code><code class="command">semanage fcontext -d "/srv/wwwcustom(/.*)?"</code></pre></div></section><section xml:lang="en" class="sect2" id="selinux-modify-port" data-id-title="Managing SELinux port contexts"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.3 </span><span class="title-name">Managing SELinux port contexts</span></span> <a title="Permalink" class="permalink" href="#selinux-modify-port">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    By default, an SELinux-confined service can only bind to network ports that are defined in the policy with the correct port type.
+    If you configure a service to listen on a non-standard port, SELinux will prevent it from starting.
+  </p><p>
+    For example, if you configure the SSH daemon to listen on port 2222, SELinux blocks it because only ports with the <code class="literal">ssh_port_t</code> type are accessible to the SSH service.
+    To allow this, you must add the new port number to the SELinux policy.
+  </p><p>
+    To add a custom port definition permanently, you can use the <code class="command">semanage port</code> command. This command writes the new port definition directly
+    into the active SELinux policy. Unlike file contexts, you do not need to run a separate command like the <code class="command">restorecon</code> command; the changes take effect immediately.
+    However, you may need to restart the affected service.
+  </p><p>
+    To identify the correct port type for your service, list all existing port definitions:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage port -l</code></pre></div><p>
+    This shows a list of port types, protocols and the port numbers or ranges assigned to them. You can search this list or consult the service's SELinux man page. For example,
+    use the <code class="command">man sshd_selinux</code> command to find the appropriate port type.
+  </p><div class="example" id="ex-selnx-semanage-port" data-id-title="Viewing default port contexts"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 2: </span><span class="title-name">Viewing default port contexts </span></span><a title="Permalink" class="permalink" href="#ex-selnx-semanage-port">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage port -l | less</code>
+SELinux Port                          Proto    Port Number
+
+...
+ssh_port_t                     tcp      22
+...</pre></div></div></div><p>
+    Once you have identified the correct port type, you can add your custom port using <code class="command">semanage port</code> with the port type <code class="literal">TYPE</code>, protocol <code class="literal">PROTO</code>, and port number <code class="literal">PORT</code>:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage port -a -t TYPE -p PROTO PORT</code></pre></div><p>
+    For example, to allow the SSH daemon to bind to the custom TCP port 2222, use:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage port -a -t ssh_port_t -p tcp 2222</code></pre></div><p>
+    You can then verify your modification was added to the policy by listing the ports again and filtering for the type:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage port -l | grep ssh_port_t</code>
+ssh_port_t                     tcp      2222, 22</pre></div><p>
+  After adding the port definition and modifying the port on the actual SSH daemon side,
+  restart the SSH service and the daemon should be accessible on the custom port 2222.
+  </p><p>
+    If you need to remove the customization, use the <code class="option">-d</code>flag:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage port -d -t ssh_port_t -p tcp 2222</code></pre></div></section><section xml:lang="en" class="sect2" id="selinux-permissive-domains" data-id-title="Setting permissive domains"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.4 </span><span class="title-name">Setting permissive domains</span></span> <a title="Permalink" class="permalink" href="#selinux-permissive-domains">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    When troubleshooting an issue with a specific service, it can be useful to disable SELinux enforcement for that specific service.
+    Making a domain permissive means that SELinux logs policy violations for that domain but does not block any actions.
+    This is a more targeted and secure alternative to switching the entire system to <code class="literal">permissive</code> mode with <code class="command">setenforce 0</code> command.
+  </p><p>
+    The <code class="command">semanage permissive</code> command allows you to manage a list of domains that operate permissively even while the system is enforcing the policy globally.
+    This change is persistent across reboots.
+  </p><section class="sect3" id="finding-permissive-domain" data-id-title="Finding the appropriate domain"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">7.4.1 </span><span class="title-name">Finding the appropriate domain</span></span> <a title="Permalink" class="permalink" href="#finding-permissive-domain">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Before you can make a service permissive, you must find the correct domain name associated with its process. You can do this by listing running processes with their security contexts using the <code class="command">ps -eZ</code> command
+      and filtering for the process name.
+    </p><p>
+      For example, to find the domain for the HAProxy service:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">ps -eZ | grep haproxy</code>
+system_u:system_r:haproxy_t:s0    45248 ?        00:00:00 haproxy</pre></div><p>
+      The first column of the output shows the context, and the type component (ending in <code class="literal">_t</code>) is the domain.
+      In this example, the domain for HAProxy is <code class="literal">haproxy_t</code>.
+    </p></section><section class="sect3" id="setting-permissive-domain" data-id-title="Setting a domain to permissive mode"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">7.4.2 </span><span class="title-name">Setting a domain to permissive mode</span></span> <a title="Permalink" class="permalink" href="#setting-permissive-domain">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Once you know the domain, you can add it to the permissive list using the <code class="command">semanage permissive -a</code> command.
+      This command makes the specific domain permissive without affecting the global enforcing mode.
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage permissive -a haproxy_t</code></pre></div><p>
+      Verify that the domain has been added to the list of custom permissive domains:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage permissive -l</code>
+
+Builtin Permissive Types
+...
+
+Customized Permissive Types
+
+haproxy_t</pre></div><p>
+      With the <code class="literal">haproxy_t</code> domain now permissive, the HAProxy service can perform any action, even those that violate the SELinux policy.
+      Instead of being blocked, these violations are recorded as AVC denials in the audit log <code class="filename">/var/log/audit/audit.log</code> with a <code class="literal">permissive=1</code> flag.
+      This allows you to gather data on what rules might be missing from your policy without interrupting the service's operation.
+    </p><p>
+      After you have finished troubleshooting, you must return the domain to <code class="literal">enforcing</code> mode to ensure the system is secure.
+      To do this, delete the domain from the permissive list using the <code class="option">-d</code> flag:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage permissive -d haproxy_t</code></pre></div><p>
+      The <code class="literal">haproxy_t</code> domain is now fully protected by the SELinux policy again.
+    </p></section></section><section xml:lang="en" class="sect2" id="selinux-switching-modules" data-id-title="Working with SELinux modules"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.5 </span><span class="title-name">Working with SELinux modules</span></span> <a title="Permalink" class="permalink" href="#selinux-switching-modules">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    The <code class="command">semanage module</code> command is used to manage policy modules. Some non-SELinux packages ship their independent policy modules, which enhance
+    the rules in the main SELinux policy. These are usually installed only when the application package is installed.
+  </p><p>
+    Additionally, system administrators and software developers can enhance the SELinux policy with
+    their custom set of rules, by introducing a custom policy module.
+  </p><p>
+    To view all modules currently installed in the policy, along with their priority and language, use the <code class="option">-l</code> option.
+    Modules included in the main policy usually have priority 100, whereas
+    a priority of 200 suggests the module is included in a different package.
+    Custom modules added by the user have a priority of 400 if not
+    specified differently, for example:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage module -l</code>
+
+Module Name               Priority  Language
+
+abrt                      100       pp
+accountsd                 100       pp
+acct                      100       pp
+afs                       100       pp
+...</pre></div><p>
+   To disable a module for troubleshooting, use the <code class="option">-d</code> option:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage module -d <em class="replaceable">MODULE_NAME</em></code></pre></div><p>
+    For example, to disable the <code class="command">container</code> module, run:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage module -d container</code></pre></div><p>
+   To verify that the module has been disabled, check the output of <code class="command">semodule -l</code>.
+   It should add a <code class="option">Disabled</code> column:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage module -l | grep container</code>
+container                 200       pp    Disabled</pre></div><p>
+    To reenable a module, run:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage module -e <em class="replaceable">MODULE_NAME</em></code></pre></div><p>
+   To permanently remove a module and all of its rules from the policy store, use the <code class="option">-r</code> flag.
+   This option is usually only needed when working with custom SELinux modules
+   created by the user.
+   It is not recommended or supported to remove modules that were shipped with the
+   operating system.
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage module -r my-local-module</code></pre></div><section xml:lang="en" class="sect3" id="selinux-creating-custom-module" data-id-title="Creating a custom module (advanced)"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">7.5.1 </span><span class="title-name">Creating a custom module (advanced)</span></span> <a title="Permalink" class="permalink" href="#selinux-creating-custom-module">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    If the diagnosis indicates a rule is genuinely missing from the policy and there is no
+    policy module available for the specific workload, you can generate a custom module.
+    Many open source projects provide their own SELinux module, which can be
+    used to enhance the existing policy, so check for the specific workload.
+    This workflow includes a critical review step.
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>Use the <code class="command">ausearch</code> command to fetch all the AVCs in the time frame.
+        Then, optionally, isolate the specific denials related to your issue with <code class="command">grep</code>.
+        Pipe the results to <code class="command">audit2allow</code>.
+        For example, to generate a module only for denials that have occurred recently, use:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">ausearch -m avc -ts recent | audit2allow -M my-fix</code></pre></div><p>This command creates two files: <code class="filename">my-fix.te</code> (human-readable source) and <code class="filename">my-fix.pp</code> (installable module).</p></li><li class="step"><p>Critically review the contents of the human-readable <code class="filename">.te</code> file to ensure the proposed rules are appropriate and expected.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">cat my-fix.te</code></pre></div><div id="id-1.8.9.16.3.2.3" data-id-title="Security analysis of generated rules" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning: Security analysis of generated rules</div><p>The <code class="command">audit2allow</code> tool translates denials into allow rules mechanically. It does not understand context or intent.
+             Only proceed with installing a module if you fully understand the rule and are certain it does not violate your security principles.</p></div></li><li class="step"><p><span><em class="emphasis">Optional</em></span>. Modify and rebuild the module: If the generated rules need to be adjusted, edit the <code class="filename">.te</code> file.
+        Save your changes and you can then manually recompile the module.</p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>Use a text editor to modify <code class="filename">my-fix.te</code>.</p></li><li class="listitem"><p>Recreate <code class="filename">my-fix.pp</code>:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">make -f /usr/share/selinux/devel/Makefile my-fix.pp</code></pre></div></li></ol></div></li><li class="step"><p>After a review, the generated rules are deemed safe and necessary for a legitimate application function. Install the compiled module package.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semodule -i my-fix.pp</code></pre></div></li></ol></div></div></section></section></section><section xml:lang="en" class="sect1" id="selinux-troubleshooting" data-id-title="SELinux troubleshooting"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name">SELinux troubleshooting</span></span> <a title="Permalink" class="permalink" href="#selinux-troubleshooting">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    An SELinux issue occurs when the security policy blocks a legitimate action that an application needs to perform its function.
+    This topic provides a systematic workflow for resolving these issues. The process involves confirming that SELinux is the cause, gathering evidence from logs, diagnosing the underlying problem and implementing the correct solution.
+  </p><section class="sect2" id="workflow-step1-triage" data-id-title="Confirm the issue is SELinux related"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">8.1 </span><span class="title-name">Confirm the issue is SELinux related</span></span> <a title="Permalink" class="permalink" href="#workflow-step1-triage">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The initial diagnostic step is to determine if SELinux is the cause of the unexpected behavior. This is done by temporarily placing the system into <span><span class="emphasis"><strong>permissive mode</strong></span></span>, where denials are logged but not enforced.
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>Switch to permissive mode:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">setenforce 0</code></pre></div></li><li class="step"><p>Retry the action that was previously failing.</p></li><li class="step"><p>Analyze the result:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>If the application <span><span class="emphasis"><strong>succeeds</strong></span></span>, the problem is confirmed to be related to the SELinux policy. Proceed to the next step.</p></li><li class="listitem"><p>If the application <span><span class="emphasis"><strong>still fails</strong></span></span>, the root cause is likely unrelated to SELinux and may involve other factors such as standard file permissions, firewall rules, or application configuration.</p></li></ul></div></li></ol></div></div><div id="id-1.9.3.4" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important</div><p>It is important to return the system back to enforcing mode once the test is completed:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">setenforce 1</code></pre></div></div></section><section class="sect2" id="workflow-step2-evidence" data-id-title="Gather evidence to find the denial"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">8.2 </span><span class="title-name">Gather evidence to find the denial</span></span> <a title="Permalink" class="permalink" href="#workflow-step2-evidence">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        Once SELinux is confirmed as the cause, the next step is to find the specific denial message in the audit logs. The primary log file is located in <code class="filename">/var/log/audit/audit.log</code>.
+       Use the <code class="command">ausearch</code> utility to query these logs for recent Access Vector Cache (AVC) denials.
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">ausearch -m avc -ts recent</code>
+ type=AVC msg=audit(1753703741.779:1779): avc:  denied  { getattr } for  pid=22212 comm="httpd-prefork" path="/srv/wwwcustom/vhosts/example.com/index.html" dev="vda3" ino=278 scontext=system_u:system_r:httpd_t:s0 tcontext=system_u:object_r:var_t:s0 tclass=file permissive=0</pre></div><p>
+        This log entry contains the essential details: the source process context (<code class="literal">scontext</code>), the target object's context (<code class="literal">tcontext</code>) and the permission denied.
+        More information on interpreting the log file can be found in <a class="xref" href="#selinux-logs" title="5. Understanding SELinux logs">Section 5, “Understanding SELinux logs”</a>.
+    </p></section><section class="sect2" id="workflow-step3-diagnosis" data-id-title="Understanding the cause of the denial"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">8.3 </span><span class="title-name">Understanding the cause of the denial</span></span> <a title="Permalink" class="permalink" href="#workflow-step3-diagnosis">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>After reviewing the log, the denial is likely caused by one of the following common issues:</p><div class="variablelist"><dl class="variablelist"><dt id="id-1.9.5.3.1"><span class="term">Incorrect file label</span></dt><dd><p>This denial typically occurs in one of two scenarios: a file has an incorrect label for its current location or the file is in a non-standard location and needs to be assigned a correct label in the policy.</p></dd><dt id="id-1.9.5.3.2"><span class="term">Service using a non-standard port</span></dt><dd><p>A denial occurs if a service attempts to bind to a network port that is not assigned the correct port type in the SELinux policy.</p></dd><dt id="id-1.9.5.3.3"><span class="term">Missing policy rule</span></dt><dd><p>The system's SELinux policy may lack a specific rule required for an application's operation. This happens when the application is not shipped by default with the distribution.
+           In this case, the resulting AVC denial is valid and indicates the policy needs to be extended.</p></dd></dl></div></section><section class="sect2" id="workflow-step4-solution" data-id-title="Applying the correct fix"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">8.4 </span><span class="title-name">Applying the correct fix</span></span> <a title="Permalink" class="permalink" href="#workflow-step4-solution">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>Based on the diagnosis, apply the appropriate solution.</p><div class="variablelist"><dl class="variablelist"><dt id="id-1.9.6.3.1"><span class="term">For incorrect file labels</span></dt><dd><p>The solution depends on the cause of the mislabeling:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                   <span><span class="emphasis"><strong>Case 1: Incorrectly labeled file in the file system.</strong></span></span> If files in a standard location have the wrong labels, for example, after using <code class="command">mv</code> or <code class="command">cp</code> without the <code class="command">-Z</code> flag,
+                   use the <code class="command">restorecon</code> command to reset them to the policy default.
+                   For example, to restore the context of <code class="filename">/srv/www/vhosts/example.com</code>, use:
+                </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">restorecon -Rv /srv/www/vhosts/example.com</code></pre></div></li><li class="listitem"><p><span><span class="emphasis"><strong>Case 2: Tell SELinux about a custom path.</strong></span></span> If you intentionally chose a non-standard location for your files, for example, serving Web content from <code class="filename">/srv/wwwcustom</code>,
+                   you must add a new rule to the SELinux policy with the<code class="command">semanage fcontext</code>command.
+                  Then, use the <code class="command">restorecon</code> command to apply the new rule.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage fcontext -a -t httpd_sys_content_t "/srv/wwwcustom(/.*)?"</code>
+<code class="prompt root"># </code><code class="command">restorecon -Rv /srv/wwwcustom</code></pre></div><p>For more information on adding custom file paths, see <a class="xref" href="#modify-context-type" title="7.2. Managing custom file contexts">Section 7.2, “Managing custom file contexts”</a>.</p></li></ul></div></dd><dt id="id-1.9.6.3.2"><span class="term">For non-standard ports</span></dt><dd><p>
+                Use the <code class="command">semanage port</code> command to add the custom port to the policy with the correct type.
+                For example:
+              </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage port -a -t ssh_port_t -p tcp 2222</code></pre></div><p>For more information on adding custom file paths, see <a class="xref" href="#selinux-modify-port" title="7.3. Managing SELinux port contexts">Section 7.3, “Managing SELinux port contexts”</a>.</p></dd><dt id="id-1.9.6.3.3"><span class="term">For missing policy rules</span></dt><dd><p>
+                If the issue is that policy rules are missing, ensure to
+                check if the corresponding module is loaded and enabled:
+              </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage module -l | less</code></pre></div><p>
+                If that is the case, or there is no corresponding module as the
+                workload is highly customized, you can consider writing and including
+                a custom policy module with your own rules as described in <a class="xref" href="#selinux-creating-custom-module" title="7.5.1. Creating a custom module (advanced)">Section 7.5.1, “Creating a custom module (advanced)”</a>.
+              </p><p>
+                To unblock the workload while working on the custom module, you can
+                set the domains blocking the access into <code class="literal">permissive</code> mode, as described
+                in <a class="xref" href="#selinux-permissive-domains" title="7.4. Setting permissive domains">Section 7.4, “Setting permissive domains”</a>.
+              </p></dd></dl></div></section><section class="sect2" id="workflow-advanced" data-id-title="Advanced Scenarios and Recovery"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">8.5 </span><span class="title-name">Advanced Scenarios and Recovery</span></span> <a title="Permalink" class="permalink" href="#workflow-advanced">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><section class="sect3" id="ts-dontaudit" data-id-title="Handling missing log entries"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">8.5.1 </span><span class="title-name">Handling missing log entries</span></span> <a title="Permalink" class="permalink" href="#ts-dontaudit">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>If an application fails but no denial is logged, a <code class="literal">dontaudit</code> rule may be silently suppressing it.
+          You can temporarily disable these rules to make all denials visible.</p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>Disable all <code class="literal">dontaudit</code> rules:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semodule -DB</code></pre></div></li><li class="step"><p>Retry the failing action to generate the denial log.</p></li><li class="step"><p>Reenable the rules to restore normal logging behavior:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage -B</code></pre></div></li></ol></div></div></section><section class="sect3" id="ts-boot-recovery" data-id-title="Recovering from an SELinux-related boot failure"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">8.5.2 </span><span class="title-name">Recovering from an SELinux-related boot failure</span></span> <a title="Permalink" class="permalink" href="#ts-boot-recovery">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>If an SELinux policy or labeling issue prevents the system from booting, the primary goal is to regain access to a shell to diagnose and fix the problem.
+          This is achieved by booting the system in <code class="literal">permissive</code> mode.</p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>Restart the machine and interrupt the boot sequence to access the GRUB menu.</p></li><li class="listitem"><p>Select the desired kernel and press <span class="keycap">e</span> to edit its boot parameters.</p></li><li class="listitem"><p>Locate the line beginning with the keyword <code class="literal">linux</code>.</p></li><li class="listitem"><p>Append the parameter <code class="literal">enforcing=0</code> to the end of this line. This instructs the kernel to boot in <code class="literal">permissive</code> mode for this session only.</p></li><li class="listitem"><p>Press <span class="keycap">Ctrl</span><span class="key-connector">–</span><span class="keycap">X</span> or <span class="keycap">F10</span> to proceed with booting.</p></li><li class="listitem"><p>Once the system has booted successfully, log in and use the standard troubleshooting tools described in this chapter to find the denial and apply the correct fix.</p></li></ol></div><div id="id-1.9.7.3.4" data-id-title="Fixing widespread labeling issues at boot" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Fixing widespread labeling issues at boot</div><p>In the specific case where the boot failure is caused by incorrect file labels across the entire system, the most effective solution is to schedule a full relabel.
+              After booting into <code class="literal">permissive</code> mode using the steps above, execute the following commands before rebooting:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">touch /etc/selinux/.autorelabel</code>
+<code class="prompt root"># </code><code class="command">reboot</code></pre></div><p>The system now reboots and begins a comprehensive relabeling of the file system.</p></div></section></section></section><section xml:lang="en" class="sect1" id="selinux-tools" data-id-title="Tools for managing SELinux"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">9 </span><span class="title-name">Tools for managing SELinux</span></span> <a title="Permalink" class="permalink" href="#selinux-tools">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        The topic provides a list of tools that you can use to configure SELinux.
+      </p></div></div></div></div><section class="sect2" id="selinux-z-option" data-id-title="Using the Z option"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.1 </span><span class="title-name">Using the <code class="option">Z</code> option</span></span> <a title="Permalink" class="permalink" href="#selinux-z-option">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Where SELinux is installed and configured, you can use the
+      <code class="option">-Z</code> to regular commands like <code class="command">ls</code>,
+      <code class="command">id</code> or <code class="command">ps</code>. Using this option, you
+      can display the security context of files or processes. For example, with the
+      <code class="command">ls</code> command:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>ls -Z /etc/shadow
+        system_u:object_r:shadow_t:s0 /etc/shadow</pre></div></section><section class="sect2" id="sec-chcon-command" data-id-title="The chcon command"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.2 </span><span class="title-name">The <code class="command">chcon</code> command</span></span> <a title="Permalink" class="permalink" href="#sec-chcon-command">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The command name <code class="command">chcon</code> stands for change context. The
+      command can change the full security context of a file to the value
+      provided on the CLI, or it can change parts of the context.
+      Alternatively, you can provide a file that serves as a reference.
+      The change is not reflected in the policy, so a relabel of the file will
+      reset the context back to its definition in the policy.
+    </p><p>
+      To change the full security context of a file, the command syntax looks
+      as follows:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>chcon <em class="replaceable">SECURITY_CONTEXT</em> <em class="replaceable">FILENAME</em></pre></div><p>
+      where:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          <em class="replaceable">SECURITY_CONTEXT</em> is in the format:
+          <em class="replaceable">SELinux_USER</em>:<em class="replaceable">ROLE</em>:<em class="replaceable">TYPE</em>:<em class="replaceable">LEVEL</em>:<em class="replaceable">CATEGORY</em>.
+          For example, the context could be:
+          <span><em class="emphasis">system_u:object_r:httpd_config_t:s0</em></span>.
+        </p></li><li class="listitem"><p>
+          <em class="replaceable">FILENAME</em> is a path to the file whose
+          context should be changed.
+        </p></li></ul></div><p>
+      To set a security context according to a provided file that serves as a
+      reference, run <code class="command">chcon</code> as follows:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>chcon --reference=<em class="replaceable">REFERENCE_FILE</em> <em class="replaceable">FILENAME</em></pre></div><p>
+      where:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          <em class="replaceable">REFERENCE_FILE</em> is a path to a file that
+          should be used as a reference.
+        </p></li><li class="listitem"><p>
+          <em class="replaceable">FILENAME</em> is a path to the file whose
+          context should be changed.
+        </p></li></ul></div><p>
+      Alternatively, you can change only one part of the security context. The
+      general syntax of the <code class="command">chcon</code> command is as follows:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>chcon <em class="replaceable">CONTEXT_OPTION</em> <em class="replaceable">CONTEXT_PART</em> <em class="replaceable">FILENAME</em></pre></div><p>
+      The options and arguments have the following meaning:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          depending on the context part,
+          <em class="replaceable">CONTEXT_OPTION</em> can be any of the
+          following:
+        </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.10.5.14.1.2.1"><span class="term"><code class="option">-u</code> resp <code class="option">--user</code></span></dt><dd><p>
+                denotes that an SELinux user context will be changed on the
+                provided file:
+              </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>chcon -u system_u logind.conf</pre></div></dd><dt id="id-1.10.5.14.1.2.2"><span class="term"><code class="option">-r</code> resp <code class="option">--role</code></span></dt><dd><p>
+                only the role part will be changed in the context of the
+                provided file:
+              </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>chcon -r object_r logind.conf</pre></div></dd><dt id="id-1.10.5.14.1.2.3"><span class="term"><code class="option">-t</code> resp <code class="option">--type</code></span></dt><dd><p>
+                only the type part will be changed in the context of the
+                provided file:
+              </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>chcon -t etc_t logind.conf</pre></div></dd><dt id="id-1.10.5.14.1.2.4"><span class="term"><code class="option">-l</code> resp <code class="option">--range</code></span></dt><dd><p>
+                only the range part of the security context will be changed:
+              </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>chcon -l s0 logind.conf</pre></div></dd></dl></div></li><li class="listitem"><p>
+          <em class="replaceable">CONTEXT_PART</em> is the particular value of
+          the security context to be set.
+        </p></li><li class="listitem"><p>
+          <em class="replaceable">FILENAME</em> is a path to the file whose
+          context will be changed.
+        </p></li></ul></div><div id="id-1.10.5.15" data-id-title="Using chcon on symbolic links" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Using <code class="command">chcon</code> on symbolic links</div><p>
+        By default, when you change the security context on a symbolic link,
+        the context of the link target is changed and the symbolic link context
+        is <span><span class="emphasis"><strong>not</strong></span></span> changed. To force
+        <code class="command">chcon</code> to change the context of the symbolic link and
+        not the link target, use the <code class="option">--no-dereference</code> option
+        as shown below:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>chcon --no-dereference -u system_u -t etc_t network.conf</pre></div></div><p>
+      You can change the context of all files in a directory by using the
+      recursive option:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>chcon --recursive  system_u:object_r:httpd_config_t:s0 conf.d</pre></div></section><section class="sect2" id="sec-getenforce-setenforce" data-id-title="getenforce and setenforce commands"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.3 </span><span class="title-name"><code class="command">getenforce</code> and <code class="command">setenforce</code> commands</span></span> <a title="Permalink" class="permalink" href="#sec-getenforce-setenforce">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The <code class="command">getenforce</code> command returns the current SELinux
+      mode: <code class="literal">Enforcing</code>, <code class="literal">Permissive</code> or
+      <code class="literal">Disabled</code>.
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>getenforce
+
+Permissive</pre></div><p>
+      The <code class="command">setenforce</code> command temporarily changes the SELinux
+      mode to enforcing or permissive. You cannot use this command to disable
+      SELinux. Remember that the change persists only until the next reboot. To
+      change the state permanently, follow the description in
+      <a class="xref" href="#selinux-switching-modes" title="3.1. Changing the SELinux mode">Section 3.1, “Changing the SELinux mode”</a>.
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>setenforce <em class="replaceable">MODE_ID</em></pre></div><p>
+      where <em class="replaceable">MODE_ID</em> is <em class="replaceable">0</em>
+      for the <code class="literal">permissive</code> mode or
+      <em class="replaceable">1</em> for the <code class="literal">enforcing</code> mode.
+    </p></section><section class="sect2" id="sec-fixfiles-command" data-id-title="The fixfiles script"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.4 </span><span class="title-name">The <code class="command">fixfiles</code> script</span></span> <a title="Permalink" class="permalink" href="#sec-fixfiles-command">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The script enables you to perform the following tasks with the security
+      context:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          check if the context is correct
+        </p></li><li class="listitem"><p>
+          change any incorrect file context labels
+        </p></li><li class="listitem"><p>
+          relabel your system if you added a new policy
+        </p></li></ul></div><p>
+      The script syntax is as follows:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>fixfiles [<em class="replaceable">OPTIONS</em>] <em class="replaceable">ARGUMENT</em></pre></div><p>
+      where:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          <em class="replaceable">OPTIONS</em> can be the following:
+        </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.10.7.7.1.2.1"><span class="term"><code class="option">-l</code> <em class="replaceable">LOGFILE</em></span></dt><dd><p>
+                saves the output to the provided file
+              </p></dd><dt id="id-1.10.7.7.1.2.2"><span class="term"><code class="option">-o</code> <em class="replaceable">OUTPUT_FILE</em></span></dt><dd><p>
+                saves to the provided output file the names of all files whose
+                file context differs from the default
+              </p></dd><dt id="id-1.10.7.7.1.2.3"><span class="term"><code class="option">-F</code></span></dt><dd><p>
+                forces a reset of context
+              </p></dd></dl></div></li><li class="listitem"><p>
+          <em class="replaceable">ARGUMENT</em> can be one of the following:
+        </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.10.7.7.2.2.1"><span class="term"><code class="command">check</code></span></dt><dd><p>
+                shows previous and current file context for an incorrect label
+                without performing any changes
+              </p></dd><dt id="id-1.10.7.7.2.2.2"><span class="term"><code class="command">relabel</code></span></dt><dd><p>
+                relabels incorrect file contexts according to the currently
+                loaded policy
+              </p></dd><dt id="id-1.10.7.7.2.2.3"><span class="term"><code class="command">restore</code></span></dt><dd><p>
+                restores incorrect file contexts to the default values
+              </p></dd><dt id="id-1.10.7.7.2.2.4"><span class="term"><code class="command">verify</code></span></dt><dd><p>
+                lists all files with incorrect file context labels without
+                performing any changes
+              </p></dd></dl></div></li></ul></div></section><section class="sect2" id="sec-semanage-command" data-id-title="The semanage command"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.5 </span><span class="title-name">The <code class="command">semanage</code> command</span></span> <a title="Permalink" class="permalink" href="#sec-semanage-command">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The <code class="command">semanage</code> command can be used to configure parts of
+      the policy without the need to recompile the policy from sources. The
+      command enables you to perform the following tasks:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          manage Booleans by using the <code class="option">boolean</code> argument. For
+          details about Booleans, refer to
+          <a class="xref" href="#selinux-working-with-booleans" title="7.1.1. Working with Booleans">Section 7.1.1, “Working with Booleans”</a>.
+        </p></li><li class="listitem"><p>
+          adjust the context of files by using the <code class="option">fcontext</code>
+          argument.
+        </p></li><li class="listitem"><p>
+          manage user mappings using the <code class="option">login</code> argument
+        </p></li><li class="listitem"><p>
+          manage SELinux users using the <code class="option">user</code> argument
+        </p></li><li class="listitem"><p>
+          manage SELinux policy modules using the <code class="option">module</code>
+          argument
+        </p></li></ul></div><p>
+      The general command syntax looks as follows:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>semanage <em class="replaceable">ARGUMENT</em> <em class="replaceable">OPTIONS</em> [<em class="replaceable">OBJECT_NAME</em>]</pre></div><p>
+      where:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          <em class="replaceable">ARGUMENT</em> is one of the following:
+          <code class="command">login</code>, <code class="command">user</code>,
+          <code class="command">fcontext</code>, <code class="command">boolean</code>,
+          <code class="command">module</code>.
+        </p></li><li class="listitem"><p>
+          <em class="replaceable">OPTIONS</em> depends on the provided
+          <em class="replaceable">ARGUMENT</em>. Common options are described in
+          <a class="xref" href="#list-common-options" title="Common options">Common options</a>.
+        </p></li><li class="listitem"><p>
+          <em class="replaceable">OBJECT_NAME</em>, depending on the provided
+          <em class="replaceable">ARGUMENT</em>, can be a login name, module name,
+          file name or SELinux user.
+        </p></li></ul></div><div class="variablelist" id="list-common-options" data-id-title="Common options"><div class="title-container"><div class="variablelist-title-wrap"><div class="variablelist-title"><span class="title-number-name"><span class="title-name">Common options </span></span><a title="Permalink" class="permalink" href="#list-common-options">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><dl class="variablelist"><dt id="id-1.10.8.8.2"><span class="term"><code class="option">-a</code>, <code class="option">--add</code></span></dt><dd><p>
+            adds a provided object
+          </p></dd><dt id="id-1.10.8.8.3"><span class="term"><code class="option">-h</code>, <code class="option">--help</code></span></dt><dd><p>
+            prints the command help
+          </p></dd><dt id="id-1.10.8.8.4"><span class="term">--extract</span></dt><dd><p>
+            displays commands that were used to change the system (Booleans,
+            file context, and so on)
+          </p></dd><dt id="id-1.10.8.8.5"><span class="term"><code class="option">-l</code>, <code class="option">--list</code></span></dt><dd><p>
+            lists all objects
+          </p></dd><dt id="id-1.10.8.8.6"><span class="term"><code class="option">-m</code>, <code class="option">--modify</code></span></dt><dd><p>
+            modifies the provided object
+          </p></dd><dt id="id-1.10.8.8.7"><span class="term"><code class="option">-n</code>, <code class="option">--noheading</code></span></dt><dd><p>
+            modifies the output of the listing operation by omitting headings
+          </p></dd><dt id="id-1.10.8.8.8"><span class="term"><code class="option">-s</code>, <code class="option">--seuser</code></span></dt><dd><p>
+            specifies the SELinux user
+          </p></dd></dl></div><p>
+      Other options are specific to particular <code class="command">semanage</code>
+      commands and are described in corresponding sections.
+    </p><section class="sect3" id="sec-semanage-fcontext" data-id-title="The semanage fcontext command"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">9.5.1 </span><span class="title-name">The <code class="command">semanage fcontext</code> command</span></span> <a title="Permalink" class="permalink" href="#sec-semanage-fcontext">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        Using the <code class="command">semanage fcontext</code> command, you can perform
+        the following tasks:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            query file context definitions
+          </p></li><li class="listitem"><p>
+            add contexts on files
+          </p></li><li class="listitem"><p>
+            add your own rules
+          </p></li></ul></div><p>
+        Changes performed to the file context using the <code class="command">semanage
+        fcontext</code> command do not require modifications or
+        recompilation of the policy.
+      </p><p>
+        On top of the common options described in
+        <a class="xref" href="#list-common-options" title="Common options">Common options</a>, the <code class="command">semanage
+        fcontext</code> command takes the following options:
+      </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.10.8.10.6.1"><span class="term"><code class="option">-e</code>, <code class="option">--equal</code></span></dt><dd><p>
+              The option enables you to use the context of the provided path
+              context to label files in a different directory (the provided
+              target path). For example, you want to assign the same context as
+              <code class="filename">/home</code> has to an alternative home directory
+              <code class="filename">/export/home</code>. If you use this option, you
+              need to provide the source path and the target path:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>semanage fcontext -a -e /home /export/home</pre></div></dd><dt id="id-1.10.8.10.6.2"><span class="term"><code class="option">-f</code>, <code class="option">--ftype</code></span></dt><dd><p>
+              To specify a file type. Use one of the following values:
+            </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                  <code class="option">a</code> - all files, which is also the default
+                  value
+                </p></li><li class="listitem"><p>
+                  <code class="option">b</code> - a block device
+                </p></li><li class="listitem"><p>
+                  <code class="option">c</code> - a character device
+                </p></li><li class="listitem"><p>
+                  <code class="option">d</code> - a directory
+                </p></li><li class="listitem"><p>
+                  <code class="option">f</code> - regular files
+                </p></li><li class="listitem"><p>
+                  <code class="option">l</code> - a symbolic link
+                </p></li><li class="listitem"><p>
+                  <code class="option">p</code> - a named pipe
+                </p></li><li class="listitem"><p>
+                  <code class="option">s</code> - a socket
+                </p></li></ul></div></dd></dl></div></section><section class="sect3" id="semanage-login-command" data-id-title="The semanage login command"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">9.5.2 </span><span class="title-name">The <code class="command">semanage login</code> command</span></span> <a title="Permalink" class="permalink" href="#semanage-login-command">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        The <code class="command">semanage login</code> enables you the perform the
+        following tasks:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            Mapping of Linux users on a particular SELinux user. For example,
+            to map the Linux user <span><em class="emphasis">tux</em></span> on
+            <code class="literal">sysadm_u</code>, run the command:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage login -a -s sysadm_u tux</code></pre></div></li><li class="listitem"><p>
+            Mapping of a group of Linux users on a particular SELinux user. For
+            example, to map users of the <span><em class="emphasis">writers</em></span> group on
+            <code class="literal">user_u</code>, run the command:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage login -a -s user_u %writers</code></pre></div><p>
+            The group is then listed in the output of <code class="command">semanage login
+            -l</code>, prefixed with the % character.
+          </p><p>
+            Keep in mind that the user group should be primary because mapping
+            SELinux users on supplementary groups may result in incompatible
+            mappings.
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage login -m -s staff_u %writers</code></pre></div></li><li class="listitem"><p>
+            Mapping of Linux users on a particular SELinux MLS/MCS security
+            range.
+          </p></li><li class="listitem"><p>
+            Modifying of the already created mapping. For this purpose, just
+            replace the <code class="option">-a</code> option with <code class="option">-m</code> in
+            the previous commands.
+          </p></li><li class="listitem"><p>
+            Setting the default SELinux user for new Linux users. The usual
+            default SELinux user is <code class="literal">unconfined_u</code>. To change
+            the value to <code class="literal">staff_u</code>, run the command:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage login -m -s staff_u __default__</code></pre></div></li></ul></div></section><section class="sect3" id="semanage-boolean-command" data-id-title="The semanage boolean command"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">9.5.3 </span><span class="title-name">The <code class="command">semanage boolean</code> command</span></span> <a title="Permalink" class="permalink" href="#semanage-boolean-command">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        The <code class="command">semanage boolean</code> command is used to control
+        Booleans in the SELinux policy.
+      </p><p>
+        The command synopsis looks as follows:
+      </p><div class="verbatim-wrap"><pre class="screen">semanage boolean [-h] [-n]  [ --extract |
+       --deleteall | --list [-C] | --modify ( --on | --off | -1 | -0 ) boolean ]</pre></div><p>
+        On top of the common options, you can use the following ones specific
+        to the <code class="command">semanage boolean</code> command:
+      </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.10.8.12.6.1"><span class="term">--list -C</span></dt><dd><p>
+              To display a list of local modifications to Booleans.
+            </p></dd><dt id="id-1.10.8.12.6.2"><span class="term">-m --on | -1</span></dt><dd><p>
+              To switch the provided Boolean on.
+            </p></dd><dt id="id-1.10.8.12.6.3"><span class="term">-m --off | -0</span></dt><dd><p>
+              To switch the provided Boolean off.
+            </p></dd><dt id="id-1.10.8.12.6.4"><span class="term">-D, --deleteall</span></dt><dd><p>
+              To delete all local modifications to Booleans.
+            </p></dd></dl></div><p>
+        The most common usage of the command is to switch on or off a
+        particular Boolean. For example, to switch on the
+        <code class="literal">authlogin_yubikey</code> Boolean, run:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage boolean -m --on authlogin_yubikey</code></pre></div></section><section class="sect3" id="semanage-user-command" data-id-title="The semanage user command"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">9.5.4 </span><span class="title-name">The <code class="command">semanage user</code> command</span></span> <a title="Permalink" class="permalink" href="#semanage-user-command">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        The <code class="command">semanage user</code> command controls the mapping
+        between the SELinux user and the roles and MLS/MCS levels.
+      </p><p>
+        On top of the common options described in
+        <a class="xref" href="#list-common-options" title="Common options">Common options</a>, the <code class="command">semanage
+        user</code> command takes the following options:
+      </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.10.8.13.4.1"><span class="term">-R [ROLES], --roles [ROLES]</span></dt><dd><p>
+              A list of SELinux roles. You can enclose multiple roles within
+              double quotes and separate them by spaces, or you can use the
+              <code class="option">-R</code> several times.
+            </p></dd></dl></div><p>
+        Using this command, you can perform the following tasks:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            Listing the mapping of SELinux users on roles by running:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage user -l</code></pre></div></li><li class="listitem"><p>
+            Changing the roles assigned to the <code class="literal">user_u</code>
+            SELinux user:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage user -m -R "system_r unconfined_r user_r"</code></pre></div></li><li class="listitem"><p>
+            Assigning to <code class="literal">admin_u</code> the role
+            <code class="literal">staff_r</code> and a category <code class="literal">s0</code>:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage user -a -R "staff_r -r s0 admin_u</code></pre></div></li><li class="listitem"><p>
+            Creating a new SELinux user, for example,
+            <code class="literal">admin_u</code> with the <code class="literal">staff_r</code>
+            role. You also need to define the labeling prefix for this user by
+            using the <code class="option">-P</code>:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage user -a -R "staff_r" -P admin admin_u</code></pre></div></li></ul></div></section><section class="sect3" id="semanage-module-command" data-id-title="The semanage module command"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">9.5.5 </span><span class="title-name">The <code class="command">semanage module</code> command</span></span> <a title="Permalink" class="permalink" href="#semanage-module-command">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        The <code class="command">semanage module</code> command can install, remove,
+        disable or enable SELinux policy modules.
+      </p><p>
+        On top of the common options described in
+        <a class="xref" href="#list-common-options" title="Common options">Common options</a>, the <code class="command">semanage
+        fcontext</code> command takes the following options:
+      </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.10.8.14.4.1"><span class="term"><code class="option">-d</code>, <code class="option">--disable</code></span></dt><dd><p>
+              To disable the provided SELinux policy module:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage module --disable <em class="replaceable">MODULE_NAME</em></code></pre></div></dd><dt id="id-1.10.8.14.4.2"><span class="term"><code class="option">-e</code>, <code class="option">--enable</code></span></dt><dd><p>
+              To enable the provided SELinux policy module:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">semanage module --enable <em class="replaceable">MODULE_NAME</em></code></pre></div></dd></dl></div></section></section><section class="sect2" id="sestatus-command" data-id-title="The sestatus command"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.6 </span><span class="title-name">The <code class="command">sestatus</code> command</span></span> <a title="Permalink" class="permalink" href="#sestatus-command">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The <code class="command">sestatus</code> gets the status of a system where SELinux
+      is running.
+    </p><p>
+      The generic syntax of the command looks as follows:
+    </p><div class="verbatim-wrap"><pre class="screen">sestatus <em class="replaceable">[OPTION]</em></pre></div><p>
+      When run without any options and arguments, the command outputs the
+      following information:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">sestatus</code>
+
+SELinux status:                 enabled
+SELinuxfs mount:                /sys/fs/selinux
+SELinux root directory:         /etc/selinux
+Loaded policy name:             targeted
+Current mode:                   enforcing
+Mode from config file:          enforcing
+Policy MLS status:              enabled
+Policy deny_unknown status:     allowed
+Memory protection checking:     requested (insecure)
+Max kernel policy version:      33</pre></div><p>
+      The command can take the following options:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.10.9.8.1"><span class="term">-b</span></dt><dd><p>
+            Displays the status of Booleans on the system.
+          </p></dd><dt id="id-1.10.9.8.2"><span class="term">-v</span></dt><dd><p>
+            Displays the security context of files and processes listed in the
+            <code class="filename">/etc/sestatus.conf</code> file.
+          </p></dd></dl></div></section></section><section xml:lang="en" class="sect1" id="selinux-enable-disable" data-id-title="Disabling and reenabling SELinux"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">10 </span><span class="title-name">Disabling and reenabling SELinux</span></span> <a title="Permalink" class="permalink" href="#selinux-enable-disable">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><div id="id-1.11.2" data-id-title="Disabling SELinux is not recommended" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Disabling SELinux is not recommended</div><p>
+    It is not recommended to disable SELinux. If SELinux is possibly causing issues to your system, switch to the <code class="literal">permissive</code> mode to debug your system.
+    </p></div><p>
+    SELinux is enabled by default in <span class="phrase"><span class="phrase">SLES</span></span> 16.1.
+    To disable or reenable SELinux requires a modification of the kernel command-line.
+    This can be done temporarily for one boot or permanently by modifying the
+    boot loader configuration.
+  </p><section class="sect2" id="selinux-enable-disable-grub" data-id-title="Modify the kernel command-line via the GRUB boot loader configuration"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">10.1 </span><span class="title-name">Modify the kernel command-line via the GRUB boot loader configuration</span></span> <a title="Permalink" class="permalink" href="#selinux-enable-disable-grub">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+     To disable SELinux, edit the GRUB configuration file to include <code class="literal">selinux=0</code>:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>update-bootloader --add-option "selinux=0"
+<code class="prompt root"># </code>update-bootloader --config</pre></div><p>
+      Verify that <code class="filename">/etc/default/grub</code> contains <code class="literal">selinux=0</code>:
+    </p><div class="verbatim-wrap"><pre class="screen">GRUB_CMDLINE_LINUX_DEFAULT="...... selinux=0"</pre></div><p>
+      The change will be effective after reboot.</p><p> To verify that SELinux is disabled, run:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>sestatus
+SELinux status:                 disabled</pre></div><p>
+      To enable SELinux again, edit the GRUB configuration
+      file to remove the <code class="literal">selinux=0</code> option and relabel
+      during reboot.
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>update-bootloader --del-option "selinux=0"
+<code class="prompt root"># </code>update-bootloader --config
+<code class="prompt root"># </code>touch /etc/selinux/.autorelabel</pre></div><p>SELinux is reenabled after reboot.</p><div id="id-1.11.4.12" data-id-title="Relabeling your system after reenabling SELinux" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Relabeling your system after reenabling SELinux</div><p>
+        If you disable SELinux on your system and then enable it later, make
+        sure that you relabel your system. When SELinux is disabled and you
+        perform changes to your file system, the changes are not reflected in
+        the context; for example, new files do not have any context.</p><p>You must relabel your system by using the <code class="command">restorecon</code> command and
+the <code class="literal">autorelabel</code> boot parameter. You can also create a file
+        that will trigger relabeling on the next boot. To create the file, run
+        the following command:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>touch /etc/selinux/.autorelabel</pre></div><p>
+        After reboot, the file <code class="filename">/etc/selinux/.autorelabel</code>
+        is replaced with another flag file,
+        <code class="filename">/etc/selinux/.relabelled</code>, to prevent relabeling on
+        subsequent reboots.
+      </p></div></section></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">11 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section><div class="legal-section"><section class="appendix" translate="no" id="doc-gfdl-license" data-id-title="GNU Free Documentation License"><div class="titlepage"><div><div><h1 class="title">GNU Free Documentation License</h1></div></div></div><p>
+    Copyright (C) 2000, 2001, 2002 Free Software Foundation, Inc. 51 Franklin St, Fifth Floor,
+    Boston, MA 02110-1301 USA. Everyone is permitted to copy and distribute verbatim copies of this
+    license document, but changing it is not allowed.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.13.3"><span class="name">
+    0. PREAMBLE
+  </span><a title="Permalink" class="permalink" href="#id-1.13.3">#</a></h5></div><p>
+    The purpose of this License is to make a manual, textbook, or other functional and useful
+    document "free" in the sense of freedom: to assure everyone the effective freedom to copy and
+    redistribute it, with or without modifying it, either commercially or non-commercially.
+    Secondarily, this License preserves for the author and publisher a way to get credit for their
+    work, while not being considered responsible for modifications made by others.
+  </p><p>
+    This License is a kind of "copyleft", which means that derivative works of the document must
+    themselves be free in the same sense. It complements the GNU General Public License, which is a
+    copyleft license designed for free software.
+  </p><p>
+    We have designed this License to use it for manuals for free software, because free software
+    needs free documentation: a free program should come with manuals providing the same freedoms
+    that the software does. But this License is not limited to software manuals; it can be used for
+    any textual work, regardless of subject matter or whether it is published as a printed book. We
+    recommend this License principally for works whose purpose is instruction or reference.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.13.7"><span class="name">
+    1. APPLICABILITY AND DEFINITIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.13.7">#</a></h5></div><p>
+    This License applies to any manual or other work, in any medium, that contains a notice placed
+    by the copyright holder saying it can be distributed under the terms of this License. Such a
+    notice grants a world-wide, royalty-free license, unlimited in duration, to use that work under
+    the conditions stated herein. The "Document", below, refers to any such manual or work. Any
+    member of the public is a licensee, and is addressed as "you". You accept the license if you
+    copy, modify or distribute the work in a way requiring permission under copyright law.
+  </p><p>
+    A "Modified Version" of the Document means any work containing the Document or a portion of it,
+    either copied verbatim, or with modifications and/or translated into another language.
+  </p><p>
+    A "Secondary Section" is a named appendix or a front-matter section of the Document that deals
+    exclusively with the relationship of the publishers or authors of the Document to the
+    Document's overall subject (or to related matters) and contains nothing that could fall
+    directly within that overall subject. (Thus, if the Document is in part a textbook of
+    mathematics, a Secondary Section may not explain any mathematics.) The relationship could be a
+    matter of historical connection with the subject or with related matters, or of legal,
+    commercial, philosophical, ethical or political position regarding them.
+  </p><p>
+    The "Invariant Sections" are certain Secondary Sections whose titles are designated, as being
+    those of Invariant Sections, in the notice that says that the Document is released under this
+    License. If a section does not fit the above definition of Secondary then it is not allowed to
+    be designated as Invariant. The Document may contain zero Invariant Sections. If the Document
+    does not identify any Invariant Sections then there are none.
+  </p><p>
+    The "Cover Texts" are certain short passages of text that are listed, as Front-Cover Texts or
+    Back-Cover Texts, in the notice that says that the Document is released under this License. A
+    Front-Cover Text may be at most 5 words, and a Back-Cover Text may be at most 25 words.
+  </p><p>
+    A "Transparent" copy of the Document means a machine-readable copy, represented in a format
+    whose specification is available to the general public, that is suitable for revising the
+    document straightforwardly with generic text editors or (for images composed of pixels) generic
+    paint programs or (for drawings) some widely available drawing editor, and that is suitable for
+    input to text formatters or for automatic translation to a variety of formats suitable for
+    input to text formatters. A copy made in an otherwise Transparent file format whose markup, or
+    absence of markup, has been arranged to thwart or discourage subsequent modification by readers
+    is not Transparent. An image format is not Transparent if used for any substantial amount of
+    text. A copy that is not "Transparent" is called "Opaque".
+  </p><p>
+    Examples of suitable formats for Transparent copies include plain ASCII without markup, Texinfo
+    input format, LaTeX input format, SGML or XML using a publicly available DTD, and
+    standard-conforming simple HTML, PostScript or PDF designed for human modification. Examples of
+    transparent image formats include PNG, XCF and JPG. Opaque formats include proprietary formats
+    that can be read and edited only by proprietary word processors, SGML or XML for which the DTD
+    and/or processing tools are not generally available, and the machine-generated HTML, PostScript
+    or PDF produced by some word processors for output purposes only.
+  </p><p>
+    The "Title Page" means, for a printed book, the title page itself, plus such following pages as
+    are needed to hold, legibly, the material this License requires to appear in the title page.
+    For works in formats which do not have any title page as such, "Title Page" means the text near
+    the most prominent appearance of the work's title, preceding the beginning of the body of the
+    text.
+  </p><p>
+    A section "Entitled XYZ" means a named subunit of the Document whose title either is precisely
+    XYZ or contains XYZ in parentheses following text that translates XYZ in another language.
+    (Here XYZ stands for a specific section name mentioned below, such as "Acknowledgements",
+    "Dedications", "Endorsements", or "History".) To "Preserve the Title" of such a section when
+    you modify the Document means that it remains a section "Entitled XYZ" according to this
+    definition.
+  </p><p>
+    The Document may include Warranty Disclaimers next to the notice which states that this License
+    applies to the Document. These Warranty Disclaimers are considered to be included by reference
+    in this License, but only as regards disclaiming warranties: any other implication that these
+    Warranty Disclaimers may have is void and has no effect on the meaning of this License.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.13.18"><span class="name">
+    2. VERBATIM COPYING
+  </span><a title="Permalink" class="permalink" href="#id-1.13.18">#</a></h5></div><p>
+    You may copy and distribute the Document in any medium, either commercially or
+    non-commercially, provided that this License, the copyright notices, and the license notice
+    saying this License applies to the Document are reproduced in all copies, and that you add no
+    other conditions whatsoever to those of this License. You may not use technical measures to
+    obstruct or control the reading or further copying of the copies you make or distribute.
+    However, you may accept compensation in exchange for copies. If you distribute a large enough
+    number of copies you must also follow the conditions in section 3.
+  </p><p>
+    You may also lend copies, under the same conditions stated above, and you may publicly display
+    copies.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.13.21"><span class="name">
+    3. COPYING IN QUANTITY
+  </span><a title="Permalink" class="permalink" href="#id-1.13.21">#</a></h5></div><p>
+    If you publish printed copies (or copies in media that commonly have printed covers) of the
+    Document, numbering more than 100, and the Document's license notice requires Cover Texts, you
+    must enclose the copies in covers that carry, clearly and legibly, all these Cover Texts:
+    Front-Cover Texts on the front cover, and Back-Cover Texts on the back cover. Both covers must
+    also clearly and legibly identify you as the publisher of these copies. The front cover must
+    present the full title with all words of the title equally prominent and visible. You may add
+    other material on the covers in addition. Copying with changes limited to the covers, as long
+    as they preserve the title of the Document and satisfy these conditions, can be treated as
+    verbatim copying in other respects.
+  </p><p>
+    If the required texts for either cover are too voluminous to fit legibly, you should put the
+    first ones listed (as many as fit reasonably) on the actual cover, and continue the rest onto
+    adjacent pages.
+  </p><p>
+    If you publish or distribute Opaque copies of the Document numbering more than 100, you must
+    either include a machine-readable Transparent copy along with each Opaque copy, or state in or
+    with each Opaque copy a computer-network location from which the general network-using public
+    has access to download using public-standard network protocols a complete Transparent copy of
+    the Document, free of added material. If you use the latter option, you must take reasonably
+    prudent steps, when you begin distribution of Opaque copies in quantity, to ensure that this
+    Transparent copy will remain thus accessible at the stated location until at least one year
+    after the last time you distribute an Opaque copy (directly or through your agents or
+    retailers) of that edition to the public.
+  </p><p>
+    It is requested, but not required, that you contact the authors of the Document well before
+    redistributing any large number of copies, to give them a chance to provide you with an updated
+    version of the Document.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.13.26"><span class="name">
+    4. MODIFICATIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.13.26">#</a></h5></div><p>
+    You may copy and distribute a Modified Version of the Document under the conditions of sections
+    2 and 3 above, provided that you release the Modified Version under precisely this License,
+    with the Modified Version filling the role of the Document, thus licensing distribution and
+    modification of the Modified Version to whoever possesses a copy of it. In addition, you must
+    do these things in the Modified Version:
+  </p><div class="orderedlist"><ol class="orderedlist" type="A"><li class="listitem"><p>
+        Use in the Title Page (and on the covers, if any) a title distinct from that of the
+        Document, and from those of previous versions (which should, if there were any, be listed
+        in the History section of the Document). You may use the same title as a previous version
+        if the original publisher of that version gives permission.
+      </p></li><li class="listitem"><p>
+        List on the Title Page, as authors, one or more persons or entities responsible for
+        authorship of the modifications in the Modified Version, together with at least five of the
+        principal authors of the Document (all of its principal authors, if it has fewer than
+        five), unless they release you from this requirement.
+      </p></li><li class="listitem"><p>
+        State on the Title page the name of the publisher of the Modified Version, as the
+        publisher.
+      </p></li><li class="listitem"><p>
+        Preserve all the copyright notices of the Document.
+      </p></li><li class="listitem"><p>
+        Add an appropriate copyright notice for your modifications adjacent to the other copyright
+        notices.
+      </p></li><li class="listitem"><p>
+        Include, immediately after the copyright notices, a license notice giving the public
+        permission to use the Modified Version under the terms of this License, in the form shown
+        in the Addendum below.
+      </p></li><li class="listitem"><p>
+        Preserve in that license notice the full lists of Invariant Sections and required Cover
+        Texts given in the Document's license notice.
+      </p></li><li class="listitem"><p>
+        Include an unaltered copy of this License.
+      </p></li><li class="listitem"><p>
+        Preserve the section Entitled "History", Preserve its Title, and add to it an item stating
+        at least the title, year, new authors, and publisher of the Modified Version as given on
+        the Title Page. If there is no section Entitled "History" in the Document, create one
+        stating the title, year, authors, and publisher of the Document as given on its Title Page,
+        then add an item describing the Modified Version as stated in the previous sentence.
+      </p></li><li class="listitem"><p>
+        Preserve the network location, if any, given in the Document for public access to a
+        Transparent copy of the Document, and likewise the network locations given in the Document
+        for previous versions it was based on. These may be placed in the "History" section. You
+        may omit a network location for a work that was published at least four years before the
+        Document itself, or if the original publisher of the version it refers to gives permission.
+      </p></li><li class="listitem"><p>
+        For any section Entitled "Acknowledgements" or "Dedications", Preserve the Title of the
+        section, and preserve in the section all the substance and tone of each of the contributor
+        acknowledgements and/or dedications given therein.
+      </p></li><li class="listitem"><p>
+        Preserve all the Invariant Sections of the Document, unaltered in their text and in their
+        titles. Section numbers or the equivalent are not considered part of the section titles.
+      </p></li><li class="listitem"><p>
+        Delete any section Entitled "Endorsements". Such a section may not be included in the
+        Modified Version.
+      </p></li><li class="listitem"><p>
+        Do not retitle any existing section to be Entitled "Endorsements" or to conflict in title
+        with any Invariant Section.
+      </p></li><li class="listitem"><p>
+        Preserve any Warranty Disclaimers.
+      </p></li></ol></div><p>
+    If the Modified Version includes new front-matter sections or appendices that qualify as
+    Secondary Sections and contain no material copied from the Document, you may at your option
+    designate some or all of these sections as invariant. To do this, add their titles to the list
+    of Invariant Sections in the Modified Version's license notice. These titles must be distinct
+    from any other section titles.
+  </p><p>
+    You may add a section Entitled "Endorsements", provided it contains nothing but endorsements of
+    your Modified Version by various parties--for example, statements of peer review or that the
+    text has been approved by an organization as the authoritative definition of a standard.
+  </p><p>
+    You may add a passage of up to five words as a Front-Cover Text, and a passage of up to 25
+    words as a Back-Cover Text, to the end of the list of Cover Texts in the Modified Version. Only
+    one passage of Front-Cover Text and one of Back-Cover Text may be added by (or through
+    arrangements made by) any one entity. If the Document already includes a cover text for the
+    same cover, previously added by you or by arrangement made by the same entity you are acting on
+    behalf of, you may not add another; but you may replace the old one, on explicit permission
+    from the previous publisher that added the old one.
+  </p><p>
+    The author(s) and publisher(s) of the Document do not by this License give permission to use
+    their names for publicity for or to assert or imply endorsement of any Modified Version.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.13.33"><span class="name">
+    5. COMBINING DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.13.33">#</a></h5></div><p>
+    You may combine the Document with other documents released under this License, under the terms
+    defined in section 4 above for modified versions, provided that you include in the combination
+    all of the Invariant Sections of all of the original documents, unmodified, and list them all
+    as Invariant Sections of your combined work in its license notice, and that you preserve all
+    their Warranty Disclaimers.
+  </p><p>
+    The combined work need only contain one copy of this License, and multiple identical Invariant
+    Sections may be replaced with a single copy. If there are multiple Invariant Sections with the
+    same name but different contents, make the title of each such section unique by adding at the
+    end of it, in parentheses, the name of the original author or publisher of that section if
+    known, or else a unique number. Make the same adjustment to the section titles in the list of
+    Invariant Sections in the license notice of the combined work.
+  </p><p>
+    In the combination, you must combine any sections Entitled "History" in the various original
+    documents, forming one section Entitled "History"; likewise combine any sections Entitled
+    "Acknowledgements", and any sections Entitled "Dedications". You must delete all sections
+    Entitled "Endorsements".
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.13.37"><span class="name">
+    6. COLLECTIONS OF DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.13.37">#</a></h5></div><p>
+    You may make a collection consisting of the Document and other documents released under this
+    License, and replace the individual copies of this License in the various documents with a
+    single copy that is included in the collection, provided that you follow the rules of this
+    License for verbatim copying of each of the documents in all other respects.
+  </p><p>
+    You may extract a single document from such a collection, and distribute it individually under
+    this License, provided you insert a copy of this License into the extracted document, and
+    follow this License in all other respects regarding verbatim copying of that document.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.13.40"><span class="name">
+    7. AGGREGATION WITH INDEPENDENT WORKS
+  </span><a title="Permalink" class="permalink" href="#id-1.13.40">#</a></h5></div><p>
+    A compilation of the Document or its derivatives with other separate and independent documents
+    or works, in or on a volume of a storage or distribution medium, is called an "aggregate" if
+    the copyright resulting from the compilation is not used to limit the legal rights of the
+    compilation's users beyond what the individual works permit. When the Document is included in
+    an aggregate, this License does not apply to the other works in the aggregate which are not
+    themselves derivative works of the Document.
+  </p><p>
+    If the Cover Text requirement of section 3 is applicable to these copies of the Document, then
+    if the Document is less than one half of the entire aggregate, the Document's Cover Texts may
+    be placed on covers that bracket the Document within the aggregate, or the electronic
+    equivalent of covers if the Document is in electronic form. Otherwise they must appear on
+    printed covers that bracket the whole aggregate.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.13.43"><span class="name">
+    8. TRANSLATION
+  </span><a title="Permalink" class="permalink" href="#id-1.13.43">#</a></h5></div><p>
+    Translation is considered a kind of modification, so you may distribute translations of the
+    Document under the terms of section 4. Replacing Invariant Sections with translations requires
+    special permission from their copyright holders, but you may include translations of some or
+    all Invariant Sections in addition to the original versions of these Invariant Sections. You
+    may include a translation of this License, and all the license notices in the Document, and any
+    Warranty Disclaimers, provided that you also include the original English version of this
+    License and the original versions of those notices and disclaimers. In case of a disagreement
+    between the translation and the original version of this License or a notice or disclaimer, the
+    original version will prevail.
+  </p><p>
+    If a section in the Document is Entitled "Acknowledgements", "Dedications", or "History", the
+    requirement (section 4) to Preserve its Title (section 1) will typically require changing the
+    actual title.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.13.46"><span class="name">
+    9. TERMINATION
+  </span><a title="Permalink" class="permalink" href="#id-1.13.46">#</a></h5></div><p>
+    You may not copy, modify, sublicense, or distribute the Document except as expressly provided
+    for under this License. Any other attempt to copy, modify, sublicense or distribute the
+    Document is void, and will automatically terminate your rights under this License. However,
+    parties who have received copies, or rights, from you under this License will not have their
+    licenses terminated so long as such parties remain in full compliance.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.13.48"><span class="name">
+    10. FUTURE REVISIONS OF THIS LICENSE
+  </span><a title="Permalink" class="permalink" href="#id-1.13.48">#</a></h5></div><p>
+    The Free Software Foundation may publish new, revised versions of the GNU Free Documentation
+    License from time to time. Such new versions will be similar in spirit to the present version,
+    but may differ in detail to address new problems or concerns. See
+    <a class="link" href="https://www.gnu.org/copyleft/" target="_blank">https://www.gnu.org/copyleft/</a>.
+  </p><p>
+    Each version of the License is given a distinguishing version number. If the Document specifies
+    that a particular numbered version of this License "or any later version" applies to it, you
+    have the option of following the terms and conditions either of that specified version or of
+    any later version that has been published (not as a draft) by the Free Software Foundation. If
+    the Document does not specify a version number of this License, you may choose any version ever
+    published (not as a draft) by the Free Software Foundation.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.13.51"><span class="name">
+    ADDENDUM: How to use this License for your documents
+  </span><a title="Permalink" class="permalink" href="#id-1.13.51">#</a></h5></div><div class="verbatim-wrap"><pre class="screen">Copyright (c) YEAR YOUR NAME.
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+A copy of the license is included in the section entitled “GNU
+Free Documentation License”.</pre></div><p>
+    If you have Invariant Sections, Front-Cover Texts and Back-Cover Texts, replace the
+    “with...Texts.” line with this:
+  </p><div class="verbatim-wrap"><pre class="screen">with the Invariant Sections being LIST THEIR TITLES, with the
+Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.</pre></div><p>
+    If you have Invariant Sections without Cover Texts, or some other combination of the three,
+    merge those two alternatives to suit the situation.
+  </p><p>
+    If your document contains nontrivial examples of program code, we recommend releasing these
+    examples in parallel under your choice of free software license, such as the GNU General Public
+    License, to permit their use in free software.
+  </p></section></div></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="#selinux-about"><span class="title-number">1 </span><span class="title-name">About SELinux</span></a></span></li><li><span class="section"><a href="#selinux-benefits"><span class="title-number">2 </span><span class="title-name">Why use SELinux?</span></a></span></li><li><span class="section"><a href="#selinux-modes"><span class="title-number">3 </span><span class="title-name">SELinux modes</span></a></span></li><li><span class="section"><a href="#selinux-policy"><span class="title-number">4 </span><span class="title-name">SELinux policy overview</span></a></span></li><li><span class="section"><a href="#selinux-logs"><span class="title-number">5 </span><span class="title-name">Understanding SELinux logs</span></a></span></li><li><span class="section"><a href="#selinux-packages"><span class="title-number">6 </span><span class="title-name">SELinux packages</span></a></span></li><li><span class="section"><a href="#selinux-administration"><span class="title-number">7 </span><span class="title-name">SELinux administration</span></a></span></li><li><span class="section"><a href="#selinux-troubleshooting"><span class="title-number">8 </span><span class="title-name">SELinux troubleshooting</span></a></span></li><li><span class="section"><a href="#selinux-tools"><span class="title-number">9 </span><span class="title-name">Tools for managing SELinux</span></a></span></li><li><span class="section"><a href="#selinux-enable-disable"><span class="title-number">10 </span><span class="title-name">Disabling and reenabling SELinux</span></a></span></li><li><span class="section"><a href="#legal-disclaimer"><span class="title-number">11 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="#doc-gfdl-license"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Introduction to Ansible Core | SUSE Linux Enterprise Server for SAP applications 16.0</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2025-11-04"/>
+<meta name="dcterms.modified" content="2025-11-04"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-25"/>
+<meta name="title" content="Introduction to Ansible Core | SUSE Linux Enterprise S…"/>
+<meta name="description" content="Use Ansible Automation platform to efficiently automate IT tasks"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server for SAP applications"/>
+<meta name="product-number" content="16.0"/>
+<meta name="book-title" content="Introduction to Ansible Core"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="amrita.sakthivel@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.0"/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="amrita.sathivel@suse.com"/><meta property="og:title" content="Introduction to Ansible Core"/>
+<meta property="og:description" content="Learn how to simplify IT tasks and system management using A"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Introduction to Ansible Core"/>
+<meta name="twitter:description" content="Learn how to simplify IT tasks and system management using A"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Introduction to Ansible Core | SUSE Linux Enterprise Server for SAP applications 16.0",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Smart Docs"
+    },
+    "inLanguage": "en",
+    "headline": "Introduction to Ansible Core",
+    "description": "Use Ansible Automation platform to efficiently automate IT tasks",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2025-11-04T00:00+02:00",
+    "dateModified": "2025-11-04T00:00+02:00",
+    "datePublished": "2026-08-25T07:08+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Administration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Security"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server for SAP applications",
+        "softwareVersion": "16.0",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER, IBM Z, AArch64"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Introduction to Ansible Core</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Introduction to Ansible Core</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="ansible" data-id-title="Introduction to Ansible Core"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span></span> 16.0</div><div><h1 class="title">Introduction to Ansible Core</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>25 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+Ansible is an IT automation tool that simplifies configuration management, application deployment and
+task orchestration by enabling you to define infrastructure as code in a simple way.
+              </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
+Learn how to automate IT infrastructure with Ansible, from installation and configuration, to creating
+inventory files and a playbooks.
+              </p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
+The average reading time of this article is approximately 40 minutes.
+              </p></dd><dt id="id-1.1.12.1.4"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+<span><em class="emphasis">Linux fundamentals:</em></span> Understanding basic Linux commands, file permissions, directory structures
+and use of the command line.
+                  </p></li><li class="listitem"><p>
+<span><em class="emphasis">Networking:</em></span> Ansible connects to remote machines via SSH so knowledge of IP addresses, SSH, host names and ports is required.
+                  </p></li><li class="listitem"><p>
+<span><em class="emphasis">YAML:</em></span> Ansible playbooks are written in YAML, so knowing how to structure a YAML file is essential.
+                  </p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Introduction to Ansible Core" hreflang="en" href="rh-ansible.html" target="_blank">Revision History: Introduction to Ansible Core</a></div></div></div></div><section xml:lang="en" class="sect1" id="ansible-intro" data-id-title="What is Ansible core?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">What is Ansible core?</span></span> <a title="Permalink" class="permalink" href="index.html#ansible-intro">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Ansible core is an open source IT automation engine that automates provisioning, configuration management, application deployment and other IT processes.
+        It is has agent less architecture, which means no dedicated connection software is required on the managed nodes.
+      It operates on the following concepts: </p></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            <span><em class="emphasis">Control node:</em></span> The machine where Ansible is installed and executed. </p></li><li class="listitem"><p>
+           <span><em class="emphasis">Managed nodes:</em></span> The target servers or devices that Ansible manages.
+          </p></li><li class="listitem"><p>
+           <span><em class="emphasis">Inventory:</em></span> A file that defines and groups your managed nodes.
+          </p></li><li class="listitem"><p>
+           <span><em class="emphasis">Module:</em></span> A small program that performs actions on a managed node.
+          </p></li><li class="listitem"><p>
+           <span><em class="emphasis">Task:</em></span> A single execution of an Ansible module on a managed node.
+           </p></li><li class="listitem"><p>
+           <span><em class="emphasis">Playbooks:</em></span> Ansible playbooks provide a repeatable, reusable, simple configuration management and multi-machine deployment system.
+       </p></li><li class="listitem"><p>
+             <span><em class="emphasis">Collection:</em></span> A collection of Ansible roles or modules focusing on a specific area.</p></li><li class="listitem"><p>
+           <span><em class="emphasis">Role:</em></span> A standard, self-contained and portable unit of automation that organizes related tasks, variables and files into a predictable directory structure for easy reuse.
+           </p></li></ul></div><div id="id-1.2.3" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important</div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span><span class="emphasis"><strong>Ansible Core</strong></span></span> is the foundational software package that includes command-line tools like <code class="literal">ansible</code> and <code class="literal">ansible-playbook</code> and the execution engine.
+  It provides the essential libraries and basic modules needed to connect to managed nodes and execute tasks. </p></li><li class="listitem"><p><span><span class="emphasis"><strong>Ansible automation components</strong></span></span> are the content that defines the logic, packaged into playbooks, roles and collections.
+  These assets provide the instructions for the core engine, with collections serving as a distribution format that bundles reusable roles, modules and plug-ins. </p></li><li class="listitem"><p> <span><span class="emphasis"><strong>Ansible Orchestration</strong></span></span> is handled by higher-level tools that provide a UI, API and workflow engine to centrally manage and visually chain multiple automation playbooks together for complex multi-system processes.</p></li></ul></div></div></section><section xml:lang="en" class="sect1" id="ansible-install" data-id-title="Installing Ansible"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Installing Ansible </span></span> <a title="Permalink" class="permalink" href="index.html#ansible-install">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+Ansible is available for installation from <span class="phrase"><span class="phrase">SLES for SAP</span></span> <span class="phrase"><span class="phrase">16.0</span></span> base system.
+      </p></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+     Refresh the repository and install Ansible.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper refresh</code></pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper install ansible</code></pre></div></li><li class="step"><p>
+    To verify:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ansible --version</code>
+  ansible [core 2.18.3]
+  config file = None
+  configured module search path = ['/home/amrita/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python3.13/site-packages/ansible
+  ansible collection location = /home/amrita/.ansible/collections:/usr/share/ansible/collections
+  executable location = /usr/bin/ansible
+  python version = 3.13.5 (main, Jun 12 2025, 00:40:24) [GCC] (/usr/bin/python3.13)
+  jinja version = 3.1.6
+  libyaml = True</pre></div></li></ol></div></div></section><section xml:lang="en" class="sect1" id="ansible-configure" data-id-title="Understanding Ansible configuration"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Understanding Ansible configuration</span></span> <a title="Permalink" class="permalink" href="index.html#ansible-configure">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+   Ansible supports several sources for configuring its behavior, including an <code class="literal">INI</code> file named <code class="literal">ansible.cfg</code>, environment variables, command-line options and playbook keywords.
+   The standard configuration is usually sufficient for most users.
+      </p></div></div></div></div><p>The <code class="literal">ansible-config</code> utility provides users with a comprehensive view of all available configuration settings, including their default values,
+    instructions on how to set them and the origin of their current values. Ansible processes the following list and uses the first file found. All others are ignored.</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        <code class="filename">ANSIBLE_CONFIG</code> environment variable if set
+      </p></li><li class="listitem"><p>
+          <code class="filename">ansible.cfg</code> located in the current directory
+        </p></li><li class="listitem"><p>
+          <code class="filename">~/.ansible.cfg</code> located in the home directory
+        </p></li><li class="listitem"><p>
+          <code class="filename">/etc/ansible/ansible.cfg</code>
+        </p></li></ul></div><p>You can generate a sample <code class="filename">ansible.cfg</code> file either with a fully commented out file or
+      a more complete file that includes the existing plug-in. For example: </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  <code class="command">ansible-config init --disabled &gt; ansible.cfg</code></pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  <code class="command">ansible-config init --disabled -t all &gt; ansible.cfg</code></pre></div></section><section xml:lang="en" class="sect1" id="ansible-inventory-file" data-id-title="Structure of an inventory file"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Structure of an inventory file</span></span> <a title="Permalink" class="permalink" href="index.html#ansible-inventory-file">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+    An Ansible inventory file defines the hosts or servers on which Ansible commands and playbooks will run.
+   It can be in either <code class="literal">INI</code> or <code class="literal">YAML</code> format and is a fundamental component of an Ansible project.
+   An Ansible project is a directory structure containing all the files necessary to automate a specific IT goal, such as deploying an application or configuring a multi-tier infrastructure.</p></div></div></div></div><p>Ansible uses several built-in variables to connect to and manage hosts, which are often defined in the inventory file.
+  The most common ones are:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">ansible_host:</code> Specifies the IP address or DNS name of the host.</p></li><li class="listitem"><p><code class="literal">ansible_user</code> The user account to use for SSH connections.</p></li><li class="listitem"><p><code class="literal">ansible_port:</code> The connection port number if not the default, <code class="literal">22</code> for SSH.</p></li><li class="listitem"><p><code class="literal">ansible_private_key_file:</code> Specifies the path to the SSH private key file that Ansible should use to authenticate with and connect to the remote managed nodes.</p></li><li class="listitem"><p><code class="literal">ansible_python_interpreter:</code> Specifies the path to the Python interpreter on the remote host if it is not the default.</p></li></ul></div><section class="sect2" id="inventory-ini" data-id-title="INI format"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.1 </span><span class="title-name"><code class="literal">INI</code> format</span></span> <a title="Permalink" class="permalink" href="index.html#inventory-ini">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>The <code class="literal">INI</code> format is the more traditional and widely used format for inventory files.
+     Hosts can be listed individually or grouped together.</p><div class="variablelist"><dl class="variablelist"><dt id="id-1.5.4.3.1"><span class="term"><span><em class="emphasis">Individual hosts</em></span> </span></dt><dd><p>You can list either the IP addresses or host names. For example:</p><div class="verbatim-wrap"><pre class="screen">host1.example.com
+192.168.1.50</pre></div></dd><dt id="id-1.5.4.3.2"><span class="term"><span><em class="emphasis">Groups</em></span> </span></dt><dd><p>Groups are defined using <code class="literal">[]</code> brackets. You can apply tasks to multiple hosts simultaneously.
+           A host can belong to multiple groups. For example:</p><div class="verbatim-wrap"><pre class="screen">[webservers]
+web1.example.com
+web2.example.com
+
+[databases]
+db1.example.com</pre></div></dd><dt id="id-1.5.4.3.3"><span class="term"><span><em class="emphasis">Group variables</em></span> </span></dt><dd><p>Variables can be assigned to all hosts within a specific group.
+           These are defined under the group name using a <code class="literal">:vars</code> suffix. For example:</p><div class="verbatim-wrap"><pre class="screen">[webservers:vars]
+ansible_user=test
+http_port=80</pre></div></dd><dt id="id-1.5.4.3.4"><span class="term"><span><em class="emphasis">Child groups</em></span> </span></dt><dd><p> You can create a group of groups, known as a parent group, using the <code class="literal">:children</code> suffix.
+            This is useful for combining different host types for a single task. For example:</p><div class="verbatim-wrap"><pre class="screen">[all_servers:children]
+webservers
+databases</pre></div></dd></dl></div></section><section class="sect2" id="inventory-yaml" data-id-title="YAML format"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.2 </span><span class="title-name"><code class="literal">YAML</code> format</span></span> <a title="Permalink" class="permalink" href="index.html#inventory-yaml">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>YAML offers a structured and hierarchical way to represent the inventory.
+      It is often preferred for its readability and ability to handle complex data structures.</p><div class="variablelist"><dl class="variablelist"><dt id="id-1.5.5.3.1"><span class="term"><span><em class="emphasis">Host and group structure:</em></span> </span></dt><dd><p>The inventory is defined under the <code class="literal">all</code> keyword, which contains
+            hosts and children. For example,</p><div class="verbatim-wrap"><pre class="screen">all:
+  hosts:
+    host1.example.com:
+    192.168.1.50:
+  children:
+    webservers:
+      hosts:
+        web1.example.com:
+        web2.example.com:
+    databases:
+      hosts:
+        db1.example.com:</pre></div></dd><dt id="id-1.5.5.3.2"><span class="term"><span><em class="emphasis">Group and host variables</em></span> </span></dt><dd><p>Variables are defined under a <code class="literal">vars</code> dictionary within the host or group.
+          For example:</p><div class="verbatim-wrap"><pre class="screen">  webservers:
+    hosts:
+      web1.example.com:
+      web2.example.com:
+    vars:
+     http_port: 80
+     server_type: nginx
+     max_connections: 500</pre></div></dd><dt id="id-1.5.5.3.3"><span class="term"><span><em class="emphasis">Child groups</em></span> </span></dt><dd><p> You can create a group of groups, known as a parent group, using the <code class="literal">:children</code> suffix.
+            This is useful for combining different host types for a single task. For example:</p><div class="verbatim-wrap"><pre class="screen">all:
+  children:
+    webservers:
+      hosts:
+        web1.example.com:
+          ansible_user: test
+      vars:
+        http_port: 80</pre></div></dd></dl></div></section></section><section xml:lang="en" class="sect1" id="ansible-basic-usage" data-id-title="Basic usage of Ansible"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Basic usage of Ansible</span></span> <a title="Permalink" class="permalink" href="index.html#ansible-basic-usage">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Ansible provides ad hoc commands and several utilities to perform various operation and automation
+        tasks. Ad hoc commands in Ansible are useful for performing quick and one-off tasks that do not need to be saved for future use.
+        They are single-line commands executed directly from the command line. Ad hoc commands use the <code class="literal">ansible</code> CLI tool.
+      </p><p> In contrast, playbooks are a more powerful and scalable solution for defining complex, multi-step IT automation tasks.
+        They are written in YAML and contain a list of plays, with each play associating a group of hosts with a series of tasks.
+        The <code class="literal">ansible-playbook</code> CLI tool is used to execute these playbooks. This approach promotes reusability, version control
+        and collaboration, making it the preferred method for managing and deploying applications at scale. </p><p>You can use either ad hoc commands or create a playbook to automate your IT infrastructure based on your use case. </p></div></div></div></div><section class="sect2" id="ansible-ad-hoc" data-id-title="Ad hoc commands"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.1 </span><span class="title-name">Ad hoc commands</span></span> <a title="Permalink" class="permalink" href="index.html#ansible-ad-hoc">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>Ad-hoc commands are a quick way to run a single task on one or more managed hosts directly from the command line.
+                Ideal for simple operations like checking system uptime or rebooting a server.</p><p>They are useful for quickly managing servers by performing actions like rebooting, copying files and managing packages and users.
+          You can use any of the available Ansible modules in an ad hoc task. Like playbooks, ad hoc tasks use a <span><em class="emphasis">declarative</em></span>
+           model, where you define the desired final state. Ansible then automatically calculates and executes the necessary steps to achieve that state.
+           This approach ensures the task can be run multiple times without causing unintended changes, as Ansible first checks the
+          current state of the host and only performs an action if it differs from the specified final state. Some examples include:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">ansible webservers -m ansible.builtin.service -a "name=httpd state=started"</code></pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">ansible all -m ansible.builtin.setup</code></pre></div></section><section class="sect2" id="ansible-cli-tools" data-id-title="Ansible command-line tools"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.2 </span><span class="title-name">Ansible command-line tools</span></span> <a title="Permalink" class="permalink" href="index.html#ansible-cli-tools">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        Ansible provides the following command-line tools:</p><div class="variablelist"><dl class="variablelist"><dt id="id-1.6.3.3.1"><span class="term"><code class="literal">ansible</code></span></dt><dd><p>
+            A simple tool or framework for remote tasks; this command-line tool allows you to define and run a single task
+           playbook against a set of hosts.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ansible -h</code>
+            usage: ansible [-h] [--version] [-v] [-b] [--become-method BECOME_METHOD] [--become-user BECOME_USER] [-K | --become-password-file BECOME_PASSWORD_FILE] [-i INVENTORY] [--list-hosts]
+                           [-l SUBSET] [-P POLL_INTERVAL] [-B SECONDS] [-o] [-t TREE] [--private-key PRIVATE_KEY_FILE] [-u REMOTE_USER] [-c CONNECTION] [-T TIMEOUT]
+                           [--ssh-common-args SSH_COMMON_ARGS] [--sftp-extra-args SFTP_EXTRA_ARGS] [--scp-extra-args SCP_EXTRA_ARGS] [--ssh-extra-args SSH_EXTRA_ARGS] [-k |
+                           --connection-password-file CONNECTION_PASSWORD_FILE] [-C] [-D] [-e EXTRA_VARS] [--vault-id VAULT_IDS] [-J | --vault-password-file VAULT_PASSWORD_FILES] [-f FORKS]
+                           [-M MODULE_PATH] [--playbook-dir BASEDIR] [--task-timeout TASK_TIMEOUT] [-a MODULE_ARGS] [-m MODULE_NAME]
+                          pattern
+                          Define and run a single task 'playbook' against a set of hosts
+                          [...]</pre></div></dd><dt id="id-1.6.3.3.2"><span class="term"><code class="literal">ansible-config</code></span></dt><dd><p>
+            Used to manage and view Ansible's configuration settings. </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ansible-config -h</code>
+            usage: ansible-config [-h] [--version] [-v] {list,dump,view,init,validate} ...
+
+View ansible configuration.
+
+positional arguments:
+  {list,dump,view,init,validate}
+    list                Print all config options
+    dump                Dump configuration
+    view                View configuration file
+    init                Create initial configuration
+    validate            Validate the configuration file and environment variables. By default it only checks the base settings without accounting for plugins (see -t).
+
+options:
+  --version             show program's version number, config file location, configured module search path, module location, executable location and exit
+  -h, --help            show this help message and exit
+  -v, --verbose         Causes Ansible to print more debug messages. Adding multiple -v will increase the verbosity, the builtin plugins currently evaluate up to -vvvvvv. A
+                        reasonable level to start is -vvv, connection debugging might require -vvvv. This argument may be specified multiple times.</pre></div></dd><dt id="id-1.6.3.3.3"><span class="term"><code class="literal">ansible-console</code></span></dt><dd><p>
+            An interactive command-line tool or Read-Eval-Print Loop (REPL) that lets you run Ansible ad hoc commands in a persistent real-time shell environment.
+            It is a great tool for quickly testing modules, exploring your inventory and debugging issues without having to run a new command for every action.
+              </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ansible-console -h</code>
+            usage: ansible-console [-h] [--version] [-v] [-b] [--become-method BECOME_METHOD] [--become-user BECOME_USER] [-K | --become-password-file BECOME_PASSWORD_FILE] [-i INVENTORY]
+            [--list-hosts] [-l SUBSET] [--private-key PRIVATE_KEY_FILE] [-u REMOTE_USER] [-c CONNECTION] [-T TIMEOUT] [--ssh-common-args SSH_COMMON_ARGS]
+            [--sftp-extra-args SFTP_EXTRA_ARGS] [--scp-extra-args SCP_EXTRA_ARGS] [--ssh-extra-args SSH_EXTRA_ARGS] [-k |
+            --connection-password-file CONNECTION_PASSWORD_FILE] [-C] [-D] [--vault-id VAULT_IDS] [-J | --vault-password-file VAULT_PASSWORD_FILES] [-f FORKS]
+            [-M MODULE_PATH] [--playbook-dir BASEDIR] [-e EXTRA_VARS] [--task-timeout TASK_TIMEOUT] [--step]
+            [pattern]
+
+REPL console for executing Ansible tasks.
+                          [...]</pre></div></dd><dt id="id-1.6.3.3.4"><span class="term"><code class="literal">ansible-doc</code></span></dt><dd><p>
+          A command-line tool that provides documentation for all Ansible's installed modules and plug-ins.
+          It is an essential utility for anyone writing playbooks or ad hoc commands. You can look up a module's purpose, parameters, return , and even usage examples directly from your terminal.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ansible-doc -h</code>
+            usage: ansible-doc [-h] [--version] [-v] [-M MODULE_PATH] [--playbook-dir BASEDIR]
+                   [-t {become,cache,callback,cliconf,connection,httpapi,inventory,lookup,netconf,shell,vars,module,strategy,test,filter,role,keyword}] [-j] [-r ROLES_PATH]
+                   [-e ENTRY_POINT | -s | -F | -l | --metadata-dump] [--no-fail-on-errors]
+                   [plugin ...]
+
+plugin documentation tool
+                          [...]</pre></div></dd><dt id="id-1.6.3.3.5"><span class="term"><code class="literal">ansible-galaxy</code></span></dt><dd><p>
+          A command-line tool that comes with Ansible and is used for managing and sharing roles. </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ansible-galaxy -h</code>
+            Perform various Role and Collection related operations.
+
+positional arguments:
+  TYPE
+    collection   Manage an Ansible Galaxy collection.
+    role         Manage an Ansible Galaxy role.
+
+options:
+  --version      show program's version number, config file location, configured module search path, module location, executable location and exit
+  -h, --help     show this help message and exit
+  -v, --verbose  Causes Ansible to print more debug messages. Adding multiple -v will increase the verbosity, the builtin plugins currently evaluate up to -vvvvvv. A reasonable level
+                 to start is -vvv, connection debugging might require -vvvv. This argument may be specified multiple times.</pre></div></dd><dt id="id-1.6.3.3.6"><span class="term"><code class="literal">ansible-inventory</code></span></dt><dd><p>
+Is a command-line tool that helps you inspect, validate and understand your inventory.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ansible-inventory -h</code>
+            usage: ansible-inventory [-h] [--version] [-v] [-i INVENTORY] [-l SUBSET] [--vault-id VAULT_IDS] [-J | --vault-password-file VAULT_PASSWORD_FILES] [--playbook-dir BASEDIR]
+                         [-e EXTRA_VARS] [--list] [--host HOST] [--graph] [-y] [--toml] [--vars] [--export] [--output OUTPUT_FILE]
+                         [group]
+
+Show Ansible inventory information, by default it uses the inventory script JSON format
+[...]</pre></div></dd><dt id="id-1.6.3.3.7"><span class="term"><code class="literal">ansible-playbook</code></span></dt><dd><p>
+Is the primary command-line tool used to run Ansible's automation blueprints, also known as playbooks, against an inventory of target hosts.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ansible-playbook -h</code>
+            usage: ansible-playbook [-h] [--version] [-v] [--private-key PRIVATE_KEY_FILE] [-u REMOTE_USER] [-c CONNECTION] [-T TIMEOUT] [--ssh-common-args SSH_COMMON_ARGS]
+                        [--sftp-extra-args SFTP_EXTRA_ARGS] [--scp-extra-args SCP_EXTRA_ARGS] [--ssh-extra-args SSH_EXTRA_ARGS] [-k |
+                        --connection-password-file CONNECTION_PASSWORD_FILE] [--force-handlers] [--flush-cache] [-b] [--become-method BECOME_METHOD] [--become-user BECOME_USER] [-K |
+                        --become-password-file BECOME_PASSWORD_FILE] [-t TAGS] [--skip-tags SKIP_TAGS] [-C] [-D] [-i INVENTORY] [--list-hosts] [-l SUBSET] [-e EXTRA_VARS]
+                        [--vault-id VAULT_IDS] [-J | --vault-password-file VAULT_PASSWORD_FILES] [-f FORKS] [-M MODULE_PATH] [--syntax-check] [--list-tasks] [--list-tags] [--step]
+                        [--start-at-task START_AT_TASK]
+                        playbook [playbook ...]
+
+Runs Ansible playbooks, executing the defined tasks on the targeted hosts.
+[...]</pre></div></dd><dt id="id-1.6.3.3.8"><span class="term"><code class="literal">ansible-vault</code></span></dt><dd><p>Is a command-line tool that allows you to encrypt sensitive data, such as passwords, API keys and other secrets
+                and store them securely within your playbooks and other configuration files.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ansible-vault -h</code>
+            usage: ansible-vault [-h] [--version] [-v] {create,decrypt,edit,view,encrypt,encrypt_string,rekey} ...
+
+encryption/decryption utility for Ansible data files
+
+[...]</pre></div></dd></dl></div></section><section class="sect2" id="ansible-ssh-config" data-id-title="Configuring SSH"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.3 </span><span class="title-name">Configuring SSH</span></span> <a title="Permalink" class="permalink" href="index.html#ansible-ssh-config">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>By default, Ansible assumes SSH keys are being used between a control and managed nodes to establish a connection.
+         To set up SSH key-based authentication from the control node to the managed nodes:</p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>Generate a key pair on the control node.</p><p>It is recommended to use a dedicated SSH key that is clearly defined in the variable <code class="literal">ansible_ssh_private_key_file</code>.</p></li><li class="step"><p>Copy the public key to the managed node.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ssh-copy-id -i <em class="replaceable">PATH_TO_PUBLIC_KEY</em> <em class="replaceable">TARGET_USER</em>@<em class="replaceable">IP_ADDRESS/HOSTNAME</em></code></pre></div><p>This onetime setup allows Ansible to connect securely without prompting for credentials during automation.</p></li><li class="step"><p>Add the private key to the control node.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ssh-add <em class="replaceable">PATH_TO_PRIVATE_KEY</em></code></pre></div></li></ol></div></div></section><section class="sect2" id="ansible-playbook" data-id-title="Creating a playbook"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.4 </span><span class="title-name">Creating a playbook </span></span> <a title="Permalink" class="permalink" href="index.html#ansible-playbook">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+         An Ansible playbook is a <code class="literal">YAML</code> file that defines a series of tasks to be executed on one or more hosts.
+         This topic covers the creation of a simple playbook.
+          </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>Define an inventory file, for example:</p><div class="verbatim-wrap"><pre class="screen">      [all]
+      192.168.122.154 ansible_user=user1</pre></div><p>Although Ansible uses <code class="filename">/etc/ansible/hosts</code> by default. It is a best practice to maintain a separate inventory file and specify it using the<code class="literal">--inventory</code> flag.</p></li><li class="step"><p>Verify your inventory file, for example:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ansible-inventory --inventory test.ini --list</code></pre></div></li><li class="step"><p>Test the connection between the control node and managed nodes with the Ansible ad hoc command:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ansible all -i test.ini -m ping</code></pre></div><p>If the configuration is correct, the following message is displayed:</p><div class="verbatim-wrap"><pre class="screen">        [WARNING]: Platform linux on host 192.168.122.73 is using the discovered Python interpreter at /usr/bin/python3.13, but future installation of another Python interpreter could change
+        the meaning of that path. See https://docs.ansible.com/ansible-core/2.18/reference_appendices/interpreter_discovery.html for more information.
+        192.168.122.73 | SUCCESS =&gt; {
+            "ansible_facts": {
+                "discovered_interpreter_python": "/usr/bin/python3.13"
+            },</pre></div><p>This confirms Ansible can reach the managed nodes securely via SSH. </p></li><li class="step"><p>Playbooks are <code class="literal">YAML</code> files that define the tasks Ansible should perform.
+      For example, create a file named <code class="literal">install.yml</code> to define a task to install common packages on all managed SUSE systems:</p><div class="verbatim-wrap"><pre class="screen">    - name: Ensure essential packages are present
+      hosts: all
+      become: true
+
+      tasks:
+        - name: Install vim and curl
+          ansible.builtin.package:
+            name:
+              - suseconnect
+              - curl
+            state: present</pre></div></li><li class="step"><p>Run the playbook in check mode:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code> <code class="command">ansible-playbook install.yml --check</code></pre></div><p>Check mode is a simulation. It does not generate output for tasks. It validates a configuration management playbook and is useful for
+    simple playbooks.</p></li><li class="step"><p>Run the playbook:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code> <code class="command">ansible-playbook -i test.ini install.yml</code></pre></div><p>Ansible connects to each host in your inventory and executes the defined tasks using the system's package manager.</p></li></ol></div></div></section><section class="sect2" id="ansible-roles" data-id-title="Understanding roles"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.5 </span><span class="title-name">Understanding roles</span></span> <a title="Permalink" class="permalink" href="index.html#ansible-roles">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>Roles allow you to easily reuse and share your Ansible Automation by using a known file structure to automatically load all related artifacts, including tasks, variables, files, and handlers.</p><section class="sect3" id="use-role" data-id-title="Using roles"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.5.1 </span><span class="title-name">Using roles</span></span> <a title="Permalink" class="permalink" href="index.html#use-role">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>You can use the role in the following ways:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>At the play level with the <code class="literal">roles</code> option: This is the default way of using roles in a play. </p></li><li class="listitem"><p>At the task level with <code class="literal"> ansible.builtin.include_role</code>: You can reuse roles dynamically anywhere in the <code class="literal">tasks</code> section of a play using <code class="literal">ansible.builtin.include_role</code>.</p></li><li class="listitem"><p>At the task level with <code class="literal"> ansible.builtin.import_role</code>: You can reuse roles statically anywhere in the <code class="literal">tasks</code> section of a play using <code class="literal">ansible.builtin.import_role</code>.</p></li><li class="listitem"><p>As a dependency of another role.</p></li></ul></div><p>A play is the fundamental execution unit within an Ansible playbook.</p></section><section class="sect3" id="import-role" data-id-title="Importing roles"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.5.2 </span><span class="title-name">Importing roles</span></span> <a title="Permalink" class="permalink" href="index.html#import-role">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>You can reuse roles statically anywhere in the <code class="literal">tasks</code> section of a play by using <code class="literal">import_role</code>. For example:</p><div class="verbatim-wrap"><pre class="screen">  ---
+  - hosts: webservers
+    tasks:
+      - name: Print a message before executing role
+        ansible.builtin.debug:
+          msg: "Debug message before executing role"
+
+      - name: Apply standard user and group setup from 'base_users' role
+        ansible.builtin.import_role:
+          name: base_users
+
+      - name: Print a message after executing role
+        ansible.builtin.debug:
+          msg: "Debug message after executing role"</pre></div><p>You can use other keywords, for example:</p><div class="verbatim-wrap"><pre class="screen">  ---
+  - hosts: webservers
+    tasks:
+      - name: Import the foo_app_instance role
+        ansible.builtin.import_role:
+          name: test_app_instance
+        vars:
+          dir: '/opt/a'
+          app_port: 5000</pre></div></section></section><section class="sect2" id="about-variables" data-id-title="About variables"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.6 </span><span class="title-name">About variables</span></span> <a title="Permalink" class="permalink" href="index.html#about-variables">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>With Ansible, you can run tasks and playbooks with a single command.
+ Variables are placeholders for values that allow you to make your playbooks dynamic, reusable, and flexible. For example,
+ instead of hard-coding values like a username, port number, or a list of packages, directly into your tasks, you can use a variable.
+  You can define these variables using standard YAML syntax (including lists and dictionaries) in your playbooks, inventories, roles, or at the command line.
+  You can also create new variables dynamically during a playbook run.</p><section class="sect3" id="var-place" data-id-title="Variable placement"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.6.1 </span><span class="title-name">Variable placement</span></span> <a title="Permalink" class="permalink" href="index.html#var-place">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>When you define the same variable in multiple locations, Ansible uses variable precedence to determine which value to apply.
+   This fixed order governs how different variable sources override one another during execution.
+  Variable precedence is defined in the following order, from least to greatest (the last listed variable overrides all other variables):
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Command-line values </p></li><li class="listitem"><p>Role defaults </p></li><li class="listitem"><p>Inventory file or script group vars  </p></li><li class="listitem"><p>Inventory <code class="literal">group_vars/all</code> </p></li><li class="listitem"><p>Playbook <code class="literal">group_vars/all</code> </p></li><li class="listitem"><p>Inventory <code class="literal">group_vars/*</code> </p></li><li class="listitem"><p>Playbook <code class="literal">group_vars/* </code> </p></li><li class="listitem"><p>Inventory file or script host vars</p></li><li class="listitem"><p>Inventory <code class="literal">host_vars/*</code> </p></li><li class="listitem"><p>Playbook <code class="literal">host_vars/*</code> </p></li><li class="listitem"><p>Host facts and cached <code class="literal">set_facts</code> </p></li><li class="listitem"><p>Play <code class="literal">vars</code> </p></li><li class="listitem"><p>Play <code class="literal">vars_prompt</code> </p></li><li class="listitem"><p>Play <code class="literal">vars_files</code> </p></li><li class="listitem"><p>Role vars </p></li><li class="listitem"><p>Block vars</p></li><li class="listitem"><p>Task vars</p></li><li class="listitem"><p><code class="literal">include_vars</code> </p></li><li class="listitem"><p>Registered vars and  <code class="literal">set_facts</code> </p></li><li class="listitem"><p>Role and <code class="literal">include_role</code> params </p></li><li class="listitem"><p>include params </p></li><li class="listitem"><p>extra vars </p></li></ul></div><p>Ansible gives precedence to variables defined more recently, more active and with more explicit scope. Variables inside the <code class="literal">default
+</code>folder are easily overridden. Anything in the <code class="literal">vars</code> directory of the role overrides previous versions
+of that variable in the namespace. For more on variable precedence, refer to <a class="link" href="https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_variables.html#variable-precedence-where-should-i-put-a-variable" target="_blank">https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_variables.html#variable-precedence-where-should-i-put-a-variable</a>.</p></section><section class="sect3" id="set-variables" data-id-title="Setting variables"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.6.2 </span><span class="title-name">Setting variables </span></span> <a title="Permalink" class="permalink" href="index.html#set-variables">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+You can define variables in an inventory, in playbooks, in reusable files, in roles and at the command line.
+Ansible loads all the variables it finds and then chooses which variable to apply based on variable precedence.
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span><span class="emphasis"><strong> Defining variables in an inventory</strong></span></span>: You can either define different variables for each host or set shared variables for a group of hosts in your inventory.
+For example, if all systems in the <code class="literal">manhattan</code> group use <code class="literal">manhattan.ntp.example.com</code> as an NTP server, you can use a group variable.
+</p></li><li class="listitem"><p><span><span class="emphasis"><strong> Defining variables in a play</strong></span></span>: You can define variables directly in a play. When you define variables directly, they are visible only to the tasks executed in that play.
+  </p></li><li class="listitem"><p><span><span class="emphasis"><strong> Defining variables in include files and roles</strong></span></span>:
+    You can define variables in reusable variable files or reusable roles. If you define variables in reusable variable files or roles, the sensitive variables are separated from playbooks.
+    This separation enables you to store your playbooks in a source control software and even share the playbooks, without the risk of exposing passwords or other sensitive and personal data.
+    For example:</p><div class="verbatim-wrap"><pre class="screen">  ---
+
+  - hosts: all
+    remote_user: root
+    vars:
+      favcolor: blue
+    vars_files:
+      - /vars/test.yml
+
+    tasks:
+
+    - name: This is just a placeholder
+      ansible.builtin.command: /bin/echo foo</pre></div><p>The content of each variable file is a simple YAML dictionary. For example, <code class="filename">/vars/test.yml</code> :</p><div class="verbatim-wrap"><pre class="screen">  - name: Show foo and bar
+    ansible.builtin.debug:
+      msg:
+        foo: "{{ foo }}"
+        bar: "{{ bar }}"</pre></div></li></ul></div></section></section></section><section xml:lang="en" class="sect1" id="ansible-best-practices" data-id-title="Ansible best practices"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Ansible best practices</span></span> <a title="Permalink" class="permalink" href="index.html#ansible-best-practices">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p> To get the most out of Ansible and Ansible playbooks , here are some best practices you can follow:
+      </p></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span><span class="emphasis"><strong>Group by roles</strong></span></span>:
+    A system can belong to multiple groups, a powerful concept exemplified by naming groups descriptively, such as <code class="literal">webservers</code>
+    and <code class="literal">dbservers</code>. This structure enables playbooks to target machines based on their role and to assign role-specific variables through the group variable system.
+    </p></li><li class="listitem"><p><span><span class="emphasis"><strong>Describe the tasks</strong></span></span>:
+     It is recommended to provide a clear, descriptive <code class="literal">name</code> for the <code class="literal">tasks</code>.
+     This description explains why the task is being performed and is displayed when the playbook executes.
+      </p></li><li class="listitem"><p><span><span class="emphasis"><strong>Use the <code class="literal">name</code> directive</strong></span></span>:
+It is a good practice to use the <code class="literal">name</code> directive to name your plays, tasks and blocks.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>Simplicity</strong></span></span>:
+         Keep it simple and use only the Ansible features you need.</p></li></ul></div><section class="sect2" id="vault-best-practices" data-id-title="Protect sensitive data with the ansible-vault command-line tool"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.1 </span><span class="title-name">Protect sensitive data with the <code class="command">ansible-vault</code> command-line tool</span></span> <a title="Permalink" class="permalink" href="index.html#vault-best-practices">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>With Vault, you can encrypt variables and files so you can protect sensitive content such as passwords or keys rather than leaving it visible as plaintext in playbooks or roles.
+Some best practices include:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span><span class="emphasis"><strong>Managing Vault passwords</strong></span></span>: To keep track and manage your Vault , it is best to have
+a strategy. For example, for a small project or a few sensitive values, you can use a single password for encryption.
+You can use multiple passwords for a large project or many sensitive values. You can distinguish between different passwords with Vault IDs.
+Based on your use case, you might want a different password for each encrypted file, for each directory, or for each environment.
+There are two options within Ansible, to store Vault passwords: in files or using a third-party tool, such as a system keyring or a secret manager.
+For passwords stored in a third-party tool, you need a vault password client script to retrieve them from within Ansible.
+</p></li><li class="listitem"><p><span><span class="emphasis"><strong>Encrypting individual variables or files</strong></span></span>: The two types of encryption content in Ansible are variables and files. Encrypted content is identified with the <code class="literal">!vault</code> tag, which tells Ansible and YAML that the content needs to be decrypted.
+ The <code class="literal">|</code> character is used for multi-line strings.
+ Ansible Vault can encrypt any structured data file used by Ansible and the encryption is done in the Vault.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>Using encrypted individual variables or files</strong></span></span>: You must provide passwords for encrypted variables or files when running a task or playbook that uses them.
+ You can supply these passwords either directly at the command line or by configuring a default password source using a configuration option or an environment variable.
+For a single password , use <code class="literal">--ask-vault-pass</code> or <code class="literal">--vault-password-file</code> options.
+When you use multiple vaults in a single inventory, use the <code class="literal">--vault-id option.</code>
+You can also use multiple <code class="literal">--vault-id</code> options to specify the Vault IDs.
+</p></li></ul></div></section></section><section xml:lang="en" class="sect1" id="ansible-support-coverage" data-id-title="Ansible support coverage"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Ansible support coverage</span></span> <a title="Permalink" class="permalink" href="index.html#ansible-support-coverage">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+The support matrix for Ansible and Python compatibility:</p></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span><span class="emphasis"><strong>Control node:</strong></span></span></p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Python 3.11 - 3.13</p></li><li class="listitem"><p>ansible-core 2.18</p></li><li class="listitem"><p>Ansible 11</p></li></ul></div></li><li class="listitem"><p><span><span class="emphasis"><strong>Managed node:</strong></span></span></p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Python 3.11 - 3.13</p></li></ul></div></li></ul></div><div id="id-1.8.3" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important</div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Python and Ansible versions in the control and managed nodes must be compatible.</p></li><li class="listitem"><p>Third-party software is not supported.</p></li><li class="listitem"><p>Only versions provided in packages that install into System Python are supported. </p></li><li class="listitem"><p>Python Virtual Environment or alternatives like pyenv are not supported. </p></li></ul></div></div></section><section xml:lang="en" class="sect1" id="ansible-more-info" data-id-title="More information"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name">More information</span></span> <a title="Permalink" class="permalink" href="index.html#ansible-more-info">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+  To learn more about Ansible, refer to <a class="link" href="https://docs.ansible.com/ansible-core/devel/index.html" target="_blank">The official source for Ansible core.
+  </a>
+  </p></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">9 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#ansible-intro"><span class="title-number">1 </span><span class="title-name">What is Ansible core?</span></a></span></li><li><span class="section"><a href="index.html#ansible-install"><span class="title-number">2 </span><span class="title-name">Installing Ansible </span></a></span></li><li><span class="section"><a href="index.html#ansible-configure"><span class="title-number">3 </span><span class="title-name">Understanding Ansible configuration</span></a></span></li><li><span class="section"><a href="index.html#ansible-inventory-file"><span class="title-number">4 </span><span class="title-name">Structure of an inventory file</span></a></span></li><li><span class="section"><a href="index.html#ansible-basic-usage"><span class="title-number">5 </span><span class="title-name">Basic usage of Ansible</span></a></span></li><li><span class="section"><a href="index.html#ansible-best-practices"><span class="title-number">6 </span><span class="title-name">Ansible best practices</span></a></span></li><li><span class="section"><a href="index.html#ansible-support-coverage"><span class="title-number">7 </span><span class="title-name">Ansible support coverage</span></a></span></li><li><span class="section"><a href="index.html#ansible-more-info"><span class="title-number">8 </span><span class="title-name">More information</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">9 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

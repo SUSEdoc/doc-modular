@@ -1,0 +1,923 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Virtualization Support in SUSE Linux Enterprise Server for SAP applications | SUSE Linux Enterprise Server for SAP applications 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2025-11-27"/>
+<meta name="dcterms.modified" content="2026-08-20"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-26"/>
+<meta name="title" content="Virtualization Support in SUSE Linux Enterprise Server…"/>
+<meta name="description" content="Supported KVM virtualization architectures, limits, features and guest operating systems in SUSE Linux Enterprise Server for SAP applications"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server for SAP applications"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="Virtualization Support in SUSE Linux Enterprise Server for SAP applications"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="souvik.sarkar@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="souvik.sarkar@suse.com"/><meta property="og:title" content="KVM Virtualization Support in SUSE Linux Enterprise Se…"/>
+<meta property="og:description" content="KVM virtualization support and limits in SUSE Linux Enterpri"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="KVM Virtualization Support in SUSE Linux Enterprise Se…"/>
+<meta name="twitter:description" content="KVM virtualization support and limits in SUSE Linux Enterpri"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "KVM Virtualization Support in SUSE Linux Enterprise Server for SAP applications | SUSE Linux Enterprise Server for SAP applications 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "KVM Virtualization Support in SUSE Linux Enterprise Server for SAP applications",
+    "description": "Supported KVM virtualization architectures, limits, features and guest operating systems in SUSE Linux Enterprise Server for SAP applications",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2025-11-27T00:00+02:00",
+    "dateModified": "2026-08-20T00:00+02:00",
+    "datePublished": "2026-08-26T09:48+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Virtualization"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server for SAP applications",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#virtualization">Virtualization Support in SUSE Linux Enterprise Server for SAP applications</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="virtualization" data-id-title="Virtualization Support in SUSE Linux Enterprise Server for SAP applications"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span></span> 16.1</div><div><h1 class="title">Virtualization Support in <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span></h1></div><div class="date"><span class="imprint-label">Publication Date: </span>26 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+                Virtualization support in SUSE Linux defines the supported host and guest configurations, architectures, limits and features for KVM-based virtualization.
+              </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
+                Use virtualization in <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> to consolidate hardware, improve resource utilization, reduce operational costs, and support enterprise cloud and container-based workloads.
+              </p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                It takes approximately 10 minutes to read this article and assumes basic knowledge of Linux system administration and virtualization concepts.
+              </p></dd><dt id="id-1.1.12.1.4"><span class="term">WHY?</span></dt><dd><p>
+                By the end of this article, you will understand the supported virtualization architectures, limits, and guest operating systems in <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span>.
+              </p></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Virtualization Support in SUSE Linux Enterprise Server for SAP applications" hreflang="en" href="rh-virtualization.html" target="_blank">Revision History: Virtualization Support in SUSE Linux Enterprise Server for SAP applications</a></div></div></div></div><section xml:lang="en" class="sect1" id="virtualization-support" data-id-title="Virtualization Limits and Support"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Virtualization Limits and Support</span></span> <a title="Permalink" class="permalink" href="#virtualization-support">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+    Virtualization limits and support
+   </p></div></div></div></div><div id="id-1.2.2" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important</div><p>
+      QEMU is only supported when used for virtualization together with the
+      KVM hypervisors. The TCG accelerator is not supported, even
+      when it is distributed within SUSE products. Users must not rely on
+      QEMU TCG to provide guest isolation, or for any security guarantees. See
+      also
+      <a class="link" href="https://qemu-project.gitlab.io/qemu/system/security.html" target="_blank">https://qemu-project.gitlab.io/qemu/system/security.html</a>.
+    </p></div><section class="sect2" id="sec-architecture-support" data-id-title="Architecture support"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">Architecture support</span></span> <a title="Permalink" class="permalink" href="#sec-architecture-support">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><section class="sect3" id="sec-kvm-requires-hardware" data-id-title="KVM hardware requirements"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">1.1.1 </span><span class="title-name">KVM hardware requirements</span></span> <a title="Permalink" class="permalink" href="#sec-kvm-requires-hardware">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        SUSE supports KVM full virtualization on AMD64/Intel 64, AArch64,
+        IBM Z and IBM LinuxONE hosts.
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            On the AMD64/Intel 64 architecture, KVM is designed around hardware
+            virtualization features included in AMD* (AMD-V) and Intel* (VT-x)
+            CPUs. It supports virtualization features of chipsets and PCI
+            devices, such as an I/O Memory Mapping Unit (IOMMU)
+            and Single Root I/O
+            Virtualization (SR-IOV). You can test whether
+            your CPU supports hardware virtualization with the following
+            command:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>egrep '(vmx|svm)' /proc/cpuinfo</pre></div><p>
+            If this command returns no output, your processor either does not
+            support hardware virtualization, or this feature has been disabled
+            in the BIOS or firmware.
+          </p><p>
+            The following Web sites identify AMD64/Intel 64 processors that support
+            hardware virtualization:
+            <a class="link" href="https://ark.intel.com/Products/VirtualizationTechnology" target="_blank">https://ark.intel.com/Products/VirtualizationTechnology</a>
+            (for Intel CPUs), and <a class="link" href="https://products.amd.com/" target="_blank">https://products.amd.com/</a>
+            (for AMD CPUs).
+          </p></li><li class="listitem"><p>
+            On the Arm architecture, Armv8-A processors include support for
+            virtualization.
+          </p></li><li class="listitem"><p>
+            On the Arm architecture, we only support running QEMU/KVM via
+            the CPU model <code class="literal">host</code> (it is named
+            <code class="literal">host-passthrough</code> in Virtual Machine Manager or <code class="systemitem">libvirt</code>).
+          </p></li></ul></div><div id="id-1.2.3.2.4" data-id-title="KVM kernel modules not loading" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: KVM kernel modules not loading</div><p>
+          The KVM kernel modules only load if the CPU hardware virtualization
+          features are available.
+        </p></div><p>
+        However,
+        additional RAM for each virtualized guest is needed. It should at least
+        be the same amount that is needed for a physical installation. It is
+        also strongly recommended having at least one processor core or
+        hyper-thread for each running guest.
+      </p></section></section><section class="sect2" id="virt-hypervisors-limits" data-id-title="Hypervisor limits"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Hypervisor limits</span></span> <a title="Permalink" class="permalink" href="#virt-hypervisors-limits">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Only packages that are part of the official repositories for SUSE Linux Enterprise Server are
+      supported. Conversely, all optional subpackages and plug-ins (for QEMU,
+      <code class="systemitem">libvirt</code>) provided at
+      <a class="link" href="https://packagehub.suse.com/" target="_blank">packagehub</a> are
+      not supported.
+    </p><section class="sect3" id="virt-kvm-limits" data-id-title="KVM limits"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">1.2.1 </span><span class="title-name">KVM limits</span></span> <a title="Permalink" class="permalink" href="#virt-kvm-limits">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        Supported (and tested) virtualization limits of a <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span>
+        16.1 host running Linux guests on AMD64/Intel 64. For other
+        operating systems, refer to the specific vendor.
+      </p><div class="table" id="id-1.2.4.3.3" data-id-title="KVM VM limits"><div class="title-container"><div class="table-title-wrap"><div class="table-title"><span class="title-number-name"><span class="title-number">Table 1: </span><span class="title-name">KVM VM limits </span></span><a title="Permalink" class="permalink" href="#id-1.2.4.3.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="table-contents"><table style="border-collapse: collapse; border-top: 1px solid ; border-bottom: 1px solid ; border-left: 1px solid ; border-right: 1px solid ; "><colgroup><col class="1"/><col class="2"/></colgroup><tbody><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">
+                <p>
+                  Maximum virtual CPUs per VM
+                </p>
+              </td><td style="border-bottom: 1px solid ; ">
+                <p>
+                  768
+                </p>
+              </td></tr><tr><td style="border-right: 1px solid ; ">
+                <p>
+                  Maximum memory per VM
+                </p>
+              </td><td>
+                <p>
+                  8 TiB
+                </p>
+              </td></tr></tbody></table></div></div></section></section><section class="sect2" id="sec-secure-vm-restrictions" data-id-title="AMD SEV-SNP confidential computing VM restrictions"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.3 </span><span class="title-name">AMD SEV-SNP confidential computing VM restrictions</span></span> <a title="Permalink" class="permalink" href="#sec-secure-vm-restrictions">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The following limitations apply only to guest VMs running with AMD SEV-SNP (Secure Encrypted Virtualization-Secure Nested Paging) confidential computing enabled. These restrictions are inherent to the SEV-SNP architecture and do not affect standard (non-confidential) virtual machines.
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span><span class="emphasis"><strong>Secure Boot (AMD side):</strong></span></span> Secure Boot functionality is not supported on the AMD platform for guest VMs within this secure environment. This means that guest VMs cannot leverage the UEFI Secure Boot mechanism to verify the digital signatures of boot components, which typically helps prevent the loading of unauthorized or malicious software during the boot process. Users should consider alternative methods for ensuring software integrity post-boot.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>VM migration:</strong></span></span> The live migration of virtual machines between hosts is currently not supported. This implies that planned maintenance, load balancing, or disaster recovery scenarios requiring VM movement without downtime will need to involve a full shutdown and restart of the guest VM on the new host. This limitation is often a consequence of maintaining the cryptographic isolation and attestation state of secure VMs.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>Suspend/restore:</strong></span></span> The ability to suspend a VM's execution state to disk and later restore it is not available. This impacts operational flexibility, as VMs cannot be paused and resumed seamlessly. Any interruption to a guest VM's operation will require a full shutdown and a fresh boot cycle, losing the immediate operational state.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>Pass-through devices:</strong></span></span> Direct pass-through of host devices (such as GPUs, network cards, or storage controllers) to the guest VM is not supported. This limitation restricts scenarios where guest VMs require exclusive, high-performance access to specific hardware components. Workloads that heavily rely on direct hardware interaction, like certain graphical applications or specialized I/O operations, may experience reduced performance or incompatibility.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>VM reboot:</strong></span></span> The internal reboot functionality for guest VMs is not supported. If a guest VM requires a restart, it must be fully shut down and then started again from the host management interface. This ensures that the secure state of the VM is properly re-established upon each boot, rather than relying on an internal reset that might bypass certain security checks.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>Memory ballooning:</strong></span></span> Memory ballooning, which allows dynamic adjustment of VM memory by reclaiming unused guest memory back to the host, is not supported. This means that the allocated memory for a guest VM will remain fixed, regardless of its actual usage. Consequently, memory overcommitment strategies, where the sum of allocated VM memory exceeds the physical host memory, cannot be effectively utilized, potentially leading to less efficient memory utilization on the host.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>Hotplug CPU/memory:</strong></span></span> The hotplugging (adding or removing) of CPU cores or memory modules while the VM is running is not supported. Any changes to the vCPU or memory configuration of a guest VM will require a full shutdown and a restart of the VM for the changes to take effect. This affects the agility and flexibility in dynamically scaling resources for running workloads.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>Virtio graphics:</strong></span></span> Only Virtio block devices (for storage) and network devices are supported. Virtio graphics are not available for guest VMs in this environment. This implies that guest VMs will rely on basic graphics emulation, which may not provide optimal performance for graphically intensive applications, user interfaces, or remote desktop protocols requiring accelerated graphics.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>Huge pages:</strong></span></span> The use of huge pages for memory
+        allocation within the guest VM is not supported. Huge pages can improve performance by
+        reducing Translation Lookaside Buffer (TLB) misses, especially for applications with large
+        memory footprints. Without huge page support, memory management might incur slightly higher
+        overhead, which could subtly impact the performance of memory-intensive applications.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>vCPU limit (AMD SNP):</strong></span></span> The number of virtual CPUs (vCPUs) that can be assigned to a guest VM is limited to 255 when utilizing AMD Secure Nested Paging (SNP). This specific limitation is imposed by the AMD SNP architecture to maintain the integrity and performance characteristics of the secure execution environment. Workloads requiring more than 255 vCPUs cannot be deployed on these secure VMs.</p></li></ul></div></section><section class="sect2" id="virt-support-hosts" data-id-title="Supported host environments (hypervisors)"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.4 </span><span class="title-name">Supported host environments (hypervisors)</span></span> <a title="Permalink" class="permalink" href="#virt-support-hosts">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      This section describes the support status of <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> 16.1
+      running as a guest operating system on top of different virtualization
+      hosts (hypervisors).
+    </p><div class="table" id="id-1.2.6.3" data-id-title="The following SUSE host environments are supported:"><div class="title-container"><div class="table-title-wrap"><div class="table-title"><span class="title-number-name"><span class="title-number">Table 2: </span><span class="title-name">The following SUSE host environments are supported: </span></span><a title="Permalink" class="permalink" href="#id-1.2.6.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="table-contents"><table style="border-collapse: collapse; border-top: 1px solid ; border-bottom: 1px solid ; border-left: 1px solid ; border-right: 1px solid ; "><colgroup><col class="1"/><col class="2"/></colgroup><thead><tr><th style="border-right: 1px solid ; border-bottom: 1px solid ; ">
+              <p>
+                SUSE Linux Enterprise Server
+              </p>
+            </th><th style="border-bottom: 1px solid ; ">
+              <p>
+                Hypervisors
+              </p>
+            </th></tr></thead><tbody><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">
+              <p>
+                SUSE Linux Enterprise Server 12 SP5
+              </p>
+            </td><td style="border-bottom: 1px solid ; ">
+              <p>
+                KVM (using <code class="command">virt-manager</code>)
+              </p>
+            </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">
+              <p>
+                SUSE Linux Enterprise Server 15 SP3 to SP7
+              </p>
+            </td><td style="border-bottom: 1px solid ; ">
+              <p>
+                KVM
+              </p>
+            </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">
+              <p>
+                SUSE Virtualization (Harvester)
+              </p>
+            </td><td style="border-bottom: 1px solid ; ">
+              <p>
+                KVM
+              </p>
+            </td></tr><tr><td style="border-right: 1px solid ; ">
+              <p>
+                SUSE Linux 16.0
+              </p>
+            </td><td>
+              <p>
+                KVM
+              </p>
+            </td></tr></tbody></table></div></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">The following third-party host environments are supported: </span></span><a title="Permalink" class="permalink" href="#id-1.2.6.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+          <a class="link" href="https://portal.nutanix.com/page/documents/compatibility-matrix/guestos" target="_blank">Nutanix
+          Acropolis Hypervisor with AOS</a>
+        </p></li><li class="listitem"><p>
+          <a class="link" href="https://www.oracle.com/virtualization/technologies/vm/downloads/ovm-downloads.html" target="_blank">Oracle
+          VM Server 3.X</a>
+        </p></li><li class="listitem"><p>
+          <a class="link" href="https://www.oracle.com/linux/" target="_blank">Oracle Linux KVM 7,
+          8</a>
+        </p></li><li class="listitem"><p>
+          <a class="link" href="https://www.vmware.com/products/esxi-and-esx.html" target="_blank">VMware
+          ESXi 6.7, 7.0, 8.0</a>
+        </p></li><li class="listitem"><p>
+          Windows Server 2019, 2022, 2025
+        </p></li></ul></div><p>
+      You can also search in the
+      <a class="link" href="https://www.suse.com/yessearch/Search.jsp" target="_blank">SUSE YES
+      certification database</a>.
+    </p><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">The level of support is as follows: </span></span><a title="Permalink" class="permalink" href="#id-1.2.6.6">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+          Support for SUSE host operating systems is full L3 (both for the guest
+          and host), according to the respective
+          <a class="link" href="https://www.suse.com/lifecycle/" target="_blank">product lifecycle</a>.
+        </p></li><li class="listitem"><p>
+          SUSE provides full L3 support for <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> guests within
+          third-party host environments.
+        </p></li><li class="listitem"><p>
+          Support for the host and cooperation with <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> guests must be
+          provided by the host system's vendor.
+        </p></li></ul></div></section><section class="sect2" id="virt-support-guests" data-id-title="Supported guest operating systems"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.5 </span><span class="title-name">Supported guest operating systems</span></span> <a title="Permalink" class="permalink" href="#virt-support-guests">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      This section lists the support status for guest operating systems
+      virtualized on top of <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> 16.1 for KVM
+      hypervisors.
+    </p><div id="id-1.2.7.3" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important</div><p>
+        Microsoft Windows guests can be rebooted by <code class="systemitem">libvirt</code>/<code class="command">virsh</code> only if
+        paravirtualized drivers are installed in the guest. Refer to
+        <a class="link" href="https://documentation.suse.com/sle-vmdp/" target="_blank">https://documentation.suse.com/sle-vmdp/</a> for
+        more details on downloading and installing PV drivers. See
+        <a class="xref" href="#virt-support-guests" title="1.5. Supported guest operating systems">Section 1.5, “Supported guest operating systems”</a> for the current list of
+        supported Windows Server versions.
+      </p></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">The following guest operating systems are fully supported (L3): </span></span><a title="Permalink" class="permalink" href="#id-1.2.7.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+          SUSE Linux Enterprise Server 12 SP5
+        </p></li><li class="listitem"><p>
+          SUSE Linux Enterprise Server 15 SP3, 15 SP4, 15 SP5, 15 SP6, 15 SP7
+        </p></li><li class="listitem"><p>
+        SUSE Linux Enterprise Server 16.0
+       </p></li><li class="listitem"><p>
+          SUSE Linux Enterprise Server for SAP applications 15 SP3, 15 SP4, 15 SP5, 15 SP6, 15 SP7, 16.0
+        </p></li><li class="listitem"><p>
+          SUSE Linux Enterprise Micro 6.0, 6.1, 6.2
+        </p></li><li class="listitem"><p>
+          Windows Server 2022, 2025
+        </p></li><li class="listitem"><p>
+          Oracle Linux 7, 8
+        </p></li></ul></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">The following guest operating systems are supported as a technology preview (L2, fixes if reasonable): </span></span><a title="Permalink" class="permalink" href="#id-1.2.7.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+          SLED 15 SP3
+        </p></li><li class="listitem"><p>
+          Windows 10 / 11
+        </p></li></ul></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Red Hat and CentOS guest operating systems are fully supported (L3) if the customer has purchased SUSE Multi-Linux Support. </span></span><a title="Permalink" class="permalink" href="#id-1.2.7.6">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+          Refer to the SUSE Multi-Linux Support documentation at
+          <a class="link" href="https://documentation.suse.com/liberty" target="_blank">https://documentation.suse.com/liberty</a>. The list of
+          available combinations and supported releases is provided in the
+          Introduction section of the guide for your SUSE Multi-Linux Support version. In other
+          cases, they are supported on a limited basis (L2, fixes if reasonable).
+        </p></li></ul></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">All other guest operating systems </span></span><a title="Permalink" class="permalink" href="#id-1.2.7.7">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+          In other combinations, L2 support is provided but fixes are available
+          only if feasible. SUSE fully supports the host OS (hypervisor). The
+          guest OS issues need to be supported by the respective OS vendor. If
+          an issue fix involves both the host and guest environments, the
+          customer needs to approach both SUSE and the guest VM OS vendor.
+        </p></li><li class="listitem"><p>
+          All guest operating systems are supported both fully virtualized and
+          paravirtualized. The exception is Windows systems, which are only
+          supported fully virtualized (but they can use PV drivers:
+          <a class="link" href="https://documentation.suse.com/sle-vmdp/" target="_blank">https://documentation.suse.com/sle-vmdp/</a>; see
+          <a class="xref" href="#virt-support-guests" title="1.5. Supported guest operating systems">Section 1.5, “Supported guest operating systems”</a> for supported versions), and
+          OES operating systems, which are supported only paravirtualized.
+        </p></li><li class="listitem"><p>
+          All guest operating systems are supported both in 32-bit and 64-bit
+          environments, unless stated otherwise.
+        </p></li></ul></div><section class="sect3" id="sec-kvm-requires-guests-virt-drivers" data-id-title="Availability of paravirtualized drivers"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">1.5.1 </span><span class="title-name">Availability of paravirtualized drivers</span></span> <a title="Permalink" class="permalink" href="#sec-kvm-requires-guests-virt-drivers">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        To improve the performance of the guest operating system,
+        paravirtualized drivers are provided when available. Although they are
+        not required, it is strongly recommended to use them.
+      </p><p>
+        The paravirtualized drivers are available as follows:
+      </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.7.8.4.1"><span class="term">Red Hat</span></dt><dd><p>
+              Available since Red Hat Enterprise Linux 5.4. Starting from Red Hat Enterprise Linux 7.2, Red Hat
+              removed the PV drivers.
+            </p></dd><dt id="id-1.2.7.8.4.2"><span class="term">Windows</span></dt><dd><p>
+              SUSE has developed Virtio-based drivers for Windows, which are
+              available in the Virtual Machine Driver Pack (VMDP). For more
+              information, see
+              <a class="link" href="https://documentation.suse.com/sle-vmdp/" target="_blank">https://documentation.suse.com/sle-vmdp/</a>. See
+              <a class="xref" href="#virt-support-guests" title="1.5. Supported guest operating systems">Section 1.5, “Supported guest operating systems”</a> for the current list of
+              supported Windows Server versions.
+            </p></dd></dl></div></section></section><section class="sect2" id="virt-migration-support" data-id-title="Supported VM migration scenarios"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.6 </span><span class="title-name">Supported VM migration scenarios</span></span> <a title="Permalink" class="permalink" href="#virt-migration-support">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> supports migrating a virtual machine from one physical host
+      to another.
+    </p><section class="sect3" id="virt-migration-offline" data-id-title="Offline migration scenarios"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">1.6.1 </span><span class="title-name">Offline migration scenarios</span></span> <a title="Permalink" class="permalink" href="#virt-migration-offline">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        SUSE supports offline migration, powering off a guest VM, then moving
+        it to a host running a different <span class="phrase"><span class="phrase">SLES for SAP</span></span> product, from <span class="phrase"><span class="phrase">SLES for SAP</span></span> 12 to
+        <span class="phrase"><span class="phrase">SLES for SAP</span></span> 15 SP<em class="replaceable">X</em>. The following host operating
+        system combinations are fully supported (L3) for migrating guests from
+        one host to another:
+      </p><div class="table" id="id-1.2.8.3.3" data-id-title="Supported offline migration guests"><div class="title-container"><div class="table-title-wrap"><div class="table-title"><span class="title-number-name"><span class="title-number">Table 3: </span><span class="title-name">Supported offline migration guests </span></span><a title="Permalink" class="permalink" href="#id-1.2.8.3.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="table-contents"><table style="border-collapse: collapse; border-top: 1px solid ; border-bottom: 1px solid ; border-left: 1px solid ; border-right: 1px solid ; "><colgroup><col style="text-align: center; " class="c1"/><col style="text-align: center; " class="c2"/><col style="text-align: center; " class="c3"/><col style="text-align: center; " class="c4"/><col style="text-align: center; " class="c5"/><col style="text-align: center; " class="c6"/><col style="text-align: center; " class="c7"/><col style="text-align: center; " class="c8"/><col style="text-align: center; " class="c9"/><col style="text-align: center; " class="c10"/><col style="text-align: center; " class="c11"/></colgroup><thead><tr valign="middle"><th style="text-align: right; vertical-align: middle; border-right: 1px solid ; border-bottom: 1px solid ; "> Target SLES host </th><th style="text-align: center; vertical-align: middle; border-right: 1px solid ; border-bottom: 1px solid ; " rowspan="2"> 12 SP3 </th><th style="text-align: center; vertical-align: middle; border-right: 1px solid ; border-bottom: 1px solid ; " rowspan="2"> 12 SP4 </th><th style="text-align: center; vertical-align: middle; border-right: 1px solid ; border-bottom: 1px solid ; " rowspan="2"> 12 SP5 </th><th style="text-align: center; vertical-align: middle; border-right: 1px solid ; border-bottom: 1px solid ; " rowspan="2"> 15 GA </th><th style="text-align: center; vertical-align: middle; border-right: 1px solid ; border-bottom: 1px solid ; " rowspan="2"> 15 SP1 </th><th style="text-align: center; vertical-align: middle; border-right: 1px solid ; border-bottom: 1px solid ; " rowspan="2"> 15 SP2 </th><th style="text-align: center; vertical-align: middle; border-right: 1px solid ; border-bottom: 1px solid ; " rowspan="2"> 15 SP3 </th><th style="text-align: center; vertical-align: middle; border-right: 1px solid ; border-bottom: 1px solid ; " rowspan="2"> 15 SP4 </th><th style="text-align: center; vertical-align: middle; border-right: 1px solid ; border-bottom: 1px solid ; " rowspan="2"> 15 SP5 </th><th style="text-align: center; vertical-align: middle; border-bottom: 1px solid ; " rowspan="2"> 15 SP6 </th></tr><tr><th style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; "> Source SLES host </th></tr></thead><tbody><tr><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span><span class="emphasis"><strong>12 SP3</strong></span></span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td></tr><tr><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span><span class="emphasis"><strong>12 SP4</strong></span></span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span><sup>1</sup>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td></tr><tr><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span><span class="emphasis"><strong>12 SP5</strong></span></span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td></tr><tr><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span><span class="emphasis"><strong>15 GA</strong></span></span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td></tr><tr><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span><span class="emphasis"><strong>15 SP1</strong></span></span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td></tr><tr><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span><span class="emphasis"><strong>15 SP2</strong></span></span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td></tr><tr><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span><span class="emphasis"><strong>15 SP3</strong></span></span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="text-align: center; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td></tr><tr><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span><span class="emphasis"><strong>15 SP4</strong></span></span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="text-align: center; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td></tr><tr><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span><span class="emphasis"><strong>15 SP5</strong></span></span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="text-align: center; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td></tr><tr><td style="text-align: center; border-right: 1px solid ; "><span><span class="emphasis"><strong>15 SP6</strong></span></span>
+              </td><td style="text-align: center; border-right: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; border-right: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; "><span style="color:#30BA78;">✓</span>
+              </td></tr></tbody></table></div></div><div class="informaltable"><table style="border: none;"><colgroup><col style="width: .5in; text-align: left; "/><col style="width: 100%; text-align: left; "/></colgroup><tbody><tr><td style="text-align: left; "><span style="color:#30BA78;">✓</span>
+              </td><td style="text-align: left; ">
+                <p>
+                  Fully compatible and fully supported
+                </p>
+              </td></tr><tr><td style="text-align: left; "><span style="color:#30BA78;">✓</span><sup>1</sup>
+              </td><td style="text-align: left; ">
+                <p>
+                  Supported for KVM hypervisor only
+                </p>
+              </td></tr><tr><td style="text-align: left; "><span style="color:red;">❌</span>
+              </td><td style="text-align: left; ">
+                <p>
+                  Not supported
+                </p>
+              </td></tr></tbody></table></div></section><section class="sect3" id="virt-migration-live" data-id-title="Live migration scenarios"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">1.6.2 </span><span class="title-name">Live migration scenarios</span></span> <a title="Permalink" class="permalink" href="#virt-migration-live">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        This section lists support status of live migration scenarios when
+        
+        running virtualized on top of SLES. The
+        following host operating system combinations are fully supported (L3
+        according to the respective
+        <a class="link" href="https://www.suse.com/lifecycle" target="_blank">product life
+        cycle</a>).
+      </p><div id="id-1.2.8.4.3" data-id-title="Live migration" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Live migration</div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+              SUSE always supports live migration of virtual machines between
+              hosts running SLES with successive service pack numbers. For
+              example, from SLES 16 to 16.1.
+            </p></li><li class="listitem"><p>
+              SUSE strives to support live migration of virtual machines from
+              a host running a service pack under LTSS to a host running a newer
+              service pack, within the same major version of SUSE Linux Enterprise Server.
+              SUSE only performs minimal testing of LTSS-to-newer
+              migration scenarios and recommends thorough on-site testing before
+              attempting to migrate critical virtual machines.
+            </p></li></ul></div></div><div id="id-1.2.8.4.4" data-id-title="Confidential Computing" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Confidential Computing</div><p>
+	For information about Confidential computing, refer to the release notes:
+	<a class="link" href="https://documentation.suse.com/releasenotes/sles/16.0/index.html#v160-confidential-computing" target="_blank">https://documentation.suse.com/releasenotes/sles/16.0/index.html#v160-confidential-computing</a>.
+        </p></div><div class="table" id="id-1.2.8.4.5" data-id-title="Supported live migration guests"><div class="title-container"><div class="table-title-wrap"><div class="table-title"><span class="title-number-name"><span class="title-number">Table 4: </span><span class="title-name">Supported live migration guests </span></span><a title="Permalink" class="permalink" href="#id-1.2.8.4.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="table-contents"><table style="border-collapse: collapse; border-top: 1px solid ; border-bottom: 1px solid ; border-left: 1px solid ; border-right: 1px solid ; "><colgroup><col style="text-align: center; " class="c1"/><col style="text-align: center; " class="c2"/><col style="text-align: center; " class="c3"/></colgroup><thead><tr valign="middle"><th style="text-align: right; vertical-align: middle; border-right: 1px solid ; border-bottom: 1px solid ; "> Target SLES host </th><th style="text-align: center; vertical-align: middle; border-right: 1px solid ; border-bottom: 1px solid ; " rowspan="2"> 15 SP7 </th><th style="text-align: center; vertical-align: middle; border-bottom: 1px solid ; " rowspan="2"> 16 </th></tr><tr><th style="text-align: left; border-right: 1px solid ; border-bottom: 1px solid ; "> Source SLES host </th></tr></thead><tbody><tr><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span><span class="emphasis"><strong>15 SP7</strong></span></span>
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="text-align: center; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td></tr><tr><td style="text-align: center; border-right: 1px solid ; "><span><span class="emphasis"><strong>16</strong></span></span>
+              </td><td style="text-align: center; border-right: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="text-align: center; "><span style="color:#30BA78;">✓<sup>2</sup></span>
+              </td></tr></tbody></table></div></div><div class="informaltable"><table style="border: none;"><colgroup><col style="width: .5in; text-align: left; "/><col style="width: 100%; text-align: left; "/></colgroup><tbody><tr><td style="text-align: left; "><span style="color:#30BA78;">✓</span></td><td style="text-align: left; ">
+                <p>
+                  Fully compatible and fully supported
+                </p>
+              </td></tr><tr><td style="text-align: left; "><span style="color:#30BA78;">✓<sup>2</sup></span>
+              </td><td style="text-align: left; ">
+                <p>
+                  When available
+                </p>
+              </td></tr><tr><td style="text-align: left; "><span style="color:red;">❌</span>
+              </td><td style="text-align: left; ">
+                <p>
+                  Not supported
+                </p>
+              </td></tr></tbody></table></div></section></section><section class="sect2" id="virt-support-feature-support" data-id-title="Feature support"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.7 </span><span class="title-name">Feature support</span></span> <a title="Permalink" class="permalink" href="#virt-support-feature-support">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div id="id-1.2.9.2" data-id-title="Nested virtualization: technology preview" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Nested virtualization: technology preview</div><p>
+        Nested virtualization allows you to run a virtual machine inside another
+        VM while still using hardware acceleration from the host. It has low
+        performance and adds more complexity while debugging. Nested
+        virtualization is normally used for testing purposes. In SUSE Linux Enterprise Server, nested
+        virtualization is a technology preview. It is only provided for testing
+        and is not supported. Bugs can be reported, but they are treated with
+        low priority. Any attempt to live migrate or to save or restore VMs in
+        the presence of nested virtualization is also explicitly unsupported.
+      </p></div><div id="id-1.2.9.3" data-id-title="Post-copy live migration: technology preview" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Post-copy live migration: technology preview</div><p>
+        Post-copy is a method to live migrate virtual machines that is intended
+        to get VMs running as soon as possible on the destination host, and have
+        the VM RAM transferred gradually in the background over time as needed.
+        Under certain conditions, this can be an optimization compared to the
+        traditional pre-copy method. However, this comes with a major drawback:
+        An error occurring during the migration (especially a network failure)
+        can cause the whole VM RAM contents to be lost. Therefore, we recommend
+        using pre-copy only in production, while post-copy can be used for
+        testing and experimentation in case losing the VM state is not a major
+        concern.
+      </p></div><section class="sect3" id="virt-support-feature-support-fv" data-id-title="Guest feature support"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">1.7.1 </span><span class="title-name">Guest feature support</span></span> <a title="Permalink" class="permalink" href="#virt-support-feature-support-fv">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div id="id-1.2.9.4.2" data-id-title="Windows guest" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Windows guest</div><p>
+          Hotplugging of virtual network and virtual block devices, and
+          resizing, shrinking and restoring dynamic virtual memory are supported
+          in KVM only when PV drivers are used
+          (<a class="link" href="https://documentation.suse.com/sle-vmdp/" target="_blank">VMDP</a>).
+          See <a class="xref" href="#virt-support-guests" title="1.5. Supported guest operating systems">Section 1.5, “Supported guest operating systems”</a> for the current list of
+          supported Windows Server versions.
+        </p></div><div id="id-1.2.9.4.3" data-id-title="Intel FlexMigration" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Intel FlexMigration</div><p>
+          For machines that support Intel FlexMigration, CPU-ID masking and
+          faulting allow for more flexibility in cross-CPU migration.
+        </p></div><div id="id-1.2.9.4.4" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
+          For KVM, a detailed description of supported limits, features,
+          recommended settings and scenarios, and other useful information is
+          maintained in <code class="filename">kvm-supported.txt</code>. This file is
+          part of the KVM package and can be found in
+          <code class="filename">/usr/share/doc/packages/qemu-kvm</code>.
+        </p></div><div class="table" id="id-1.2.9.4.5" data-id-title="Guest feature support for KVM"><div class="title-container"><div class="table-title-wrap"><div class="table-title"><span class="title-number-name"><span class="title-number">Table 5: </span><span class="title-name">Guest feature support for KVM </span></span><a title="Permalink" class="permalink" href="#id-1.2.9.4.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="table-contents"><table style="border-collapse: collapse; border-top: 1px solid ; border-bottom: 1px solid ; border-left: 1px solid ; border-right: 1px solid ; "><colgroup><col class="c1"/><col style="text-align: center; " class="c2"/><col style="text-align: center; " class="c3"/><col style="text-align: center; " class="c4"/></colgroup><thead><tr><th style="border-right: 1px solid ; border-bottom: 1px solid ; ">
+         Features
+       </th><th style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; ">
+         KVM FV guest
+       </th><td style="border-right: 1px solid ; border-bottom: 1px solid ; " class="auto-generated"> </td><td style="border-bottom: 1px solid ; " class="auto-generated"> </td></tr></thead><tbody><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">
+         Virtual network and virtual block device hotplugging
+       </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="border-right: 1px solid ; border-bottom: 1px solid ; " class="auto-generated"> </td><td style="border-bottom: 1px solid ; " class="auto-generated"> </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">
+         Virtual CPU Hotplug
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="border-right: 1px solid ; border-bottom: 1px solid ; " class="auto-generated"> </td><td style="border-bottom: 1px solid ; " class="auto-generated"> </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">
+         Virtual CPU Overcommit
+              </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="border-right: 1px solid ; border-bottom: 1px solid ; " class="auto-generated"> </td><td style="border-bottom: 1px solid ; " class="auto-generated"> </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">
+         Dynamic virtual memory resize
+       </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="border-right: 1px solid ; border-bottom: 1px solid ; " class="auto-generated"> </td><td style="border-bottom: 1px solid ; " class="auto-generated"> </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">
+         VM save and restore
+       </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="border-right: 1px solid ; border-bottom: 1px solid ; " class="auto-generated"> </td><td style="border-bottom: 1px solid ; " class="auto-generated"> </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">
+         VM Live Migration
+       </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="border-right: 1px solid ; border-bottom: 1px solid ; " class="auto-generated"> </td><td style="border-bottom: 1px solid ; " class="auto-generated"> </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">
+         VM snapshot
+       </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="border-right: 1px solid ; border-bottom: 1px solid ; " class="auto-generated"> </td><td style="border-bottom: 1px solid ; " class="auto-generated"> </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">
+         Advanced debugging with GDBC
+       </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="border-right: 1px solid ; border-bottom: 1px solid ; " class="auto-generated"> </td><td style="border-bottom: 1px solid ; " class="auto-generated"> </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">
+         Memory ballooning
+       </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:red;">❌</span>
+              </td><td style="border-right: 1px solid ; border-bottom: 1px solid ; " class="auto-generated"> </td><td style="border-bottom: 1px solid ; " class="auto-generated"> </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">
+         PCI pass-through
+       </td><td style="text-align: center; border-right: 1px solid ; border-bottom: 1px solid ; "><span style="color:#30BA78;">✓</span>
+              </td><td style="border-right: 1px solid ; border-bottom: 1px solid ; " class="auto-generated"> </td><td style="border-bottom: 1px solid ; " class="auto-generated"> </td></tr><tr><td style="border-right: 1px solid ; ">
+         AMD SEV ans SEV-SNP
+       </td><td style="text-align: center; border-right: 1px solid ; "><span style="color:#30BA78;">✓</span> [3]
+       </td><td style="border-right: 1px solid ; " class="auto-generated"> </td><td class="auto-generated"> </td></tr></tbody></table></div></div><div class="informaltable"><table style="border: none;"><colgroup><col style="width: .5in; text-align: left; " class="c1"/><col style="width: 100%; text-align: left; " class="c2"/></colgroup><tbody><tr><td style="text-align: left; "><span style="color:#30BA78;">✓</span>
+              </td><td style="text-align: left; ">
+                <p>
+                  Fully compatible and fully supported
+                </p>
+              </td></tr><tr><td style="text-align: left; "><span style="color:red;">❌</span>
+              </td><td style="text-align: left; ">
+                <p>
+                  Not supported
+                </p>
+              </td></tr><tr><td style="text-align: left; ">
+        [1]
+       </td><td style="text-align: left; ">
+         NetWare guests are excluded.
+       </td></tr><tr><td style="text-align: left; ">
+        [2]
+       </td><td style="text-align: left; ">
+        See
+       <a class="link" href="https://documentation.suse.com/sles/html/SLES-amd-sev/article-amd-sev.html" target="_blank">https://documentation.suse.com/sles/html/SLES-amd-sev/article-amd-sev.html</a>.
+              </td></tr></tbody></table></div></section></section></section><section xml:lang="en" class="sect1" id="glue-alp-containers-podman-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="#glue-alp-containers-podman-more-info">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    For further steps in virtualization, refer to the following sources:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/concept-manage-virtual-machines-libvirt/concept-manage-virtual-machines-libvirt.html" target="_blank">Managing
+        virtual machines with <code class="systemitem">libvirt</code></a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/task-configure-virtual-machine-manager/task-configure-virtual-machine-manager.html" target="_blank">Configuring
+        Virtual Machines with Virtual Machine Manager</a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/vm-assign-pci-device/vm-assign-pci-device.html" target="_blank">Assigning
+        Host Devices to Virtual Machines</a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/virtual-disk-cache-mode-configure/virtual-disk-cache-mode-configure.html" target="_blank">Configuring
+        a Virtual Disk Cache Mode</a>
+      </p></li><li class="listitem"><p>
+        Converting VMware Virtual Machines to KVM with virt-v2v
+      </p></li></ul></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section><div class="legal-section"><section class="appendix" translate="no" id="doc-gfdl-license" data-id-title="GNU Free Documentation License"><div class="titlepage"><div><div><h1 class="title">GNU Free Documentation License</h1></div></div></div><p>
+    Copyright (C) 2000, 2001, 2002 Free Software Foundation, Inc. 51 Franklin St, Fifth Floor,
+    Boston, MA 02110-1301 USA. Everyone is permitted to copy and distribute verbatim copies of this
+    license document, but changing it is not allowed.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.5.3"><span class="name">
+    0. PREAMBLE
+  </span><a title="Permalink" class="permalink" href="#id-1.5.3">#</a></h5></div><p>
+    The purpose of this License is to make a manual, textbook, or other functional and useful
+    document "free" in the sense of freedom: to assure everyone the effective freedom to copy and
+    redistribute it, with or without modifying it, either commercially or non-commercially.
+    Secondarily, this License preserves for the author and publisher a way to get credit for their
+    work, while not being considered responsible for modifications made by others.
+  </p><p>
+    This License is a kind of "copyleft", which means that derivative works of the document must
+    themselves be free in the same sense. It complements the GNU General Public License, which is a
+    copyleft license designed for free software.
+  </p><p>
+    We have designed this License to use it for manuals for free software, because free software
+    needs free documentation: a free program should come with manuals providing the same freedoms
+    that the software does. But this License is not limited to software manuals; it can be used for
+    any textual work, regardless of subject matter or whether it is published as a printed book. We
+    recommend this License principally for works whose purpose is instruction or reference.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.5.7"><span class="name">
+    1. APPLICABILITY AND DEFINITIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.5.7">#</a></h5></div><p>
+    This License applies to any manual or other work, in any medium, that contains a notice placed
+    by the copyright holder saying it can be distributed under the terms of this License. Such a
+    notice grants a world-wide, royalty-free license, unlimited in duration, to use that work under
+    the conditions stated herein. The "Document", below, refers to any such manual or work. Any
+    member of the public is a licensee, and is addressed as "you". You accept the license if you
+    copy, modify or distribute the work in a way requiring permission under copyright law.
+  </p><p>
+    A "Modified Version" of the Document means any work containing the Document or a portion of it,
+    either copied verbatim, or with modifications and/or translated into another language.
+  </p><p>
+    A "Secondary Section" is a named appendix or a front-matter section of the Document that deals
+    exclusively with the relationship of the publishers or authors of the Document to the
+    Document's overall subject (or to related matters) and contains nothing that could fall
+    directly within that overall subject. (Thus, if the Document is in part a textbook of
+    mathematics, a Secondary Section may not explain any mathematics.) The relationship could be a
+    matter of historical connection with the subject or with related matters, or of legal,
+    commercial, philosophical, ethical or political position regarding them.
+  </p><p>
+    The "Invariant Sections" are certain Secondary Sections whose titles are designated, as being
+    those of Invariant Sections, in the notice that says that the Document is released under this
+    License. If a section does not fit the above definition of Secondary then it is not allowed to
+    be designated as Invariant. The Document may contain zero Invariant Sections. If the Document
+    does not identify any Invariant Sections then there are none.
+  </p><p>
+    The "Cover Texts" are certain short passages of text that are listed, as Front-Cover Texts or
+    Back-Cover Texts, in the notice that says that the Document is released under this License. A
+    Front-Cover Text may be at most 5 words, and a Back-Cover Text may be at most 25 words.
+  </p><p>
+    A "Transparent" copy of the Document means a machine-readable copy, represented in a format
+    whose specification is available to the general public, that is suitable for revising the
+    document straightforwardly with generic text editors or (for images composed of pixels) generic
+    paint programs or (for drawings) some widely available drawing editor, and that is suitable for
+    input to text formatters or for automatic translation to a variety of formats suitable for
+    input to text formatters. A copy made in an otherwise Transparent file format whose markup, or
+    absence of markup, has been arranged to thwart or discourage subsequent modification by readers
+    is not Transparent. An image format is not Transparent if used for any substantial amount of
+    text. A copy that is not "Transparent" is called "Opaque".
+  </p><p>
+    Examples of suitable formats for Transparent copies include plain ASCII without markup, Texinfo
+    input format, LaTeX input format, SGML or XML using a publicly available DTD, and
+    standard-conforming simple HTML, PostScript or PDF designed for human modification. Examples of
+    transparent image formats include PNG, XCF and JPG. Opaque formats include proprietary formats
+    that can be read and edited only by proprietary word processors, SGML or XML for which the DTD
+    and/or processing tools are not generally available, and the machine-generated HTML, PostScript
+    or PDF produced by some word processors for output purposes only.
+  </p><p>
+    The "Title Page" means, for a printed book, the title page itself, plus such following pages as
+    are needed to hold, legibly, the material this License requires to appear in the title page.
+    For works in formats which do not have any title page as such, "Title Page" means the text near
+    the most prominent appearance of the work's title, preceding the beginning of the body of the
+    text.
+  </p><p>
+    A section "Entitled XYZ" means a named subunit of the Document whose title either is precisely
+    XYZ or contains XYZ in parentheses following text that translates XYZ in another language.
+    (Here XYZ stands for a specific section name mentioned below, such as "Acknowledgements",
+    "Dedications", "Endorsements", or "History".) To "Preserve the Title" of such a section when
+    you modify the Document means that it remains a section "Entitled XYZ" according to this
+    definition.
+  </p><p>
+    The Document may include Warranty Disclaimers next to the notice which states that this License
+    applies to the Document. These Warranty Disclaimers are considered to be included by reference
+    in this License, but only as regards disclaiming warranties: any other implication that these
+    Warranty Disclaimers may have is void and has no effect on the meaning of this License.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.5.18"><span class="name">
+    2. VERBATIM COPYING
+  </span><a title="Permalink" class="permalink" href="#id-1.5.18">#</a></h5></div><p>
+    You may copy and distribute the Document in any medium, either commercially or
+    non-commercially, provided that this License, the copyright notices, and the license notice
+    saying this License applies to the Document are reproduced in all copies, and that you add no
+    other conditions whatsoever to those of this License. You may not use technical measures to
+    obstruct or control the reading or further copying of the copies you make or distribute.
+    However, you may accept compensation in exchange for copies. If you distribute a large enough
+    number of copies you must also follow the conditions in section 3.
+  </p><p>
+    You may also lend copies, under the same conditions stated above, and you may publicly display
+    copies.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.5.21"><span class="name">
+    3. COPYING IN QUANTITY
+  </span><a title="Permalink" class="permalink" href="#id-1.5.21">#</a></h5></div><p>
+    If you publish printed copies (or copies in media that commonly have printed covers) of the
+    Document, numbering more than 100, and the Document's license notice requires Cover Texts, you
+    must enclose the copies in covers that carry, clearly and legibly, all these Cover Texts:
+    Front-Cover Texts on the front cover, and Back-Cover Texts on the back cover. Both covers must
+    also clearly and legibly identify you as the publisher of these copies. The front cover must
+    present the full title with all words of the title equally prominent and visible. You may add
+    other material on the covers in addition. Copying with changes limited to the covers, as long
+    as they preserve the title of the Document and satisfy these conditions, can be treated as
+    verbatim copying in other respects.
+  </p><p>
+    If the required texts for either cover are too voluminous to fit legibly, you should put the
+    first ones listed (as many as fit reasonably) on the actual cover, and continue the rest onto
+    adjacent pages.
+  </p><p>
+    If you publish or distribute Opaque copies of the Document numbering more than 100, you must
+    either include a machine-readable Transparent copy along with each Opaque copy, or state in or
+    with each Opaque copy a computer-network location from which the general network-using public
+    has access to download using public-standard network protocols a complete Transparent copy of
+    the Document, free of added material. If you use the latter option, you must take reasonably
+    prudent steps, when you begin distribution of Opaque copies in quantity, to ensure that this
+    Transparent copy will remain thus accessible at the stated location until at least one year
+    after the last time you distribute an Opaque copy (directly or through your agents or
+    retailers) of that edition to the public.
+  </p><p>
+    It is requested, but not required, that you contact the authors of the Document well before
+    redistributing any large number of copies, to give them a chance to provide you with an updated
+    version of the Document.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.5.26"><span class="name">
+    4. MODIFICATIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.5.26">#</a></h5></div><p>
+    You may copy and distribute a Modified Version of the Document under the conditions of sections
+    2 and 3 above, provided that you release the Modified Version under precisely this License,
+    with the Modified Version filling the role of the Document, thus licensing distribution and
+    modification of the Modified Version to whoever possesses a copy of it. In addition, you must
+    do these things in the Modified Version:
+  </p><div class="orderedlist"><ol class="orderedlist" type="A"><li class="listitem"><p>
+        Use in the Title Page (and on the covers, if any) a title distinct from that of the
+        Document, and from those of previous versions (which should, if there were any, be listed
+        in the History section of the Document). You may use the same title as a previous version
+        if the original publisher of that version gives permission.
+      </p></li><li class="listitem"><p>
+        List on the Title Page, as authors, one or more persons or entities responsible for
+        authorship of the modifications in the Modified Version, together with at least five of the
+        principal authors of the Document (all of its principal authors, if it has fewer than
+        five), unless they release you from this requirement.
+      </p></li><li class="listitem"><p>
+        State on the Title page the name of the publisher of the Modified Version, as the
+        publisher.
+      </p></li><li class="listitem"><p>
+        Preserve all the copyright notices of the Document.
+      </p></li><li class="listitem"><p>
+        Add an appropriate copyright notice for your modifications adjacent to the other copyright
+        notices.
+      </p></li><li class="listitem"><p>
+        Include, immediately after the copyright notices, a license notice giving the public
+        permission to use the Modified Version under the terms of this License, in the form shown
+        in the Addendum below.
+      </p></li><li class="listitem"><p>
+        Preserve in that license notice the full lists of Invariant Sections and required Cover
+        Texts given in the Document's license notice.
+      </p></li><li class="listitem"><p>
+        Include an unaltered copy of this License.
+      </p></li><li class="listitem"><p>
+        Preserve the section Entitled "History", Preserve its Title, and add to it an item stating
+        at least the title, year, new authors, and publisher of the Modified Version as given on
+        the Title Page. If there is no section Entitled "History" in the Document, create one
+        stating the title, year, authors, and publisher of the Document as given on its Title Page,
+        then add an item describing the Modified Version as stated in the previous sentence.
+      </p></li><li class="listitem"><p>
+        Preserve the network location, if any, given in the Document for public access to a
+        Transparent copy of the Document, and likewise the network locations given in the Document
+        for previous versions it was based on. These may be placed in the "History" section. You
+        may omit a network location for a work that was published at least four years before the
+        Document itself, or if the original publisher of the version it refers to gives permission.
+      </p></li><li class="listitem"><p>
+        For any section Entitled "Acknowledgements" or "Dedications", Preserve the Title of the
+        section, and preserve in the section all the substance and tone of each of the contributor
+        acknowledgements and/or dedications given therein.
+      </p></li><li class="listitem"><p>
+        Preserve all the Invariant Sections of the Document, unaltered in their text and in their
+        titles. Section numbers or the equivalent are not considered part of the section titles.
+      </p></li><li class="listitem"><p>
+        Delete any section Entitled "Endorsements". Such a section may not be included in the
+        Modified Version.
+      </p></li><li class="listitem"><p>
+        Do not retitle any existing section to be Entitled "Endorsements" or to conflict in title
+        with any Invariant Section.
+      </p></li><li class="listitem"><p>
+        Preserve any Warranty Disclaimers.
+      </p></li></ol></div><p>
+    If the Modified Version includes new front-matter sections or appendices that qualify as
+    Secondary Sections and contain no material copied from the Document, you may at your option
+    designate some or all of these sections as invariant. To do this, add their titles to the list
+    of Invariant Sections in the Modified Version's license notice. These titles must be distinct
+    from any other section titles.
+  </p><p>
+    You may add a section Entitled "Endorsements", provided it contains nothing but endorsements of
+    your Modified Version by various parties--for example, statements of peer review or that the
+    text has been approved by an organization as the authoritative definition of a standard.
+  </p><p>
+    You may add a passage of up to five words as a Front-Cover Text, and a passage of up to 25
+    words as a Back-Cover Text, to the end of the list of Cover Texts in the Modified Version. Only
+    one passage of Front-Cover Text and one of Back-Cover Text may be added by (or through
+    arrangements made by) any one entity. If the Document already includes a cover text for the
+    same cover, previously added by you or by arrangement made by the same entity you are acting on
+    behalf of, you may not add another; but you may replace the old one, on explicit permission
+    from the previous publisher that added the old one.
+  </p><p>
+    The author(s) and publisher(s) of the Document do not by this License give permission to use
+    their names for publicity for or to assert or imply endorsement of any Modified Version.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.5.33"><span class="name">
+    5. COMBINING DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.5.33">#</a></h5></div><p>
+    You may combine the Document with other documents released under this License, under the terms
+    defined in section 4 above for modified versions, provided that you include in the combination
+    all of the Invariant Sections of all of the original documents, unmodified, and list them all
+    as Invariant Sections of your combined work in its license notice, and that you preserve all
+    their Warranty Disclaimers.
+  </p><p>
+    The combined work need only contain one copy of this License, and multiple identical Invariant
+    Sections may be replaced with a single copy. If there are multiple Invariant Sections with the
+    same name but different contents, make the title of each such section unique by adding at the
+    end of it, in parentheses, the name of the original author or publisher of that section if
+    known, or else a unique number. Make the same adjustment to the section titles in the list of
+    Invariant Sections in the license notice of the combined work.
+  </p><p>
+    In the combination, you must combine any sections Entitled "History" in the various original
+    documents, forming one section Entitled "History"; likewise combine any sections Entitled
+    "Acknowledgements", and any sections Entitled "Dedications". You must delete all sections
+    Entitled "Endorsements".
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.5.37"><span class="name">
+    6. COLLECTIONS OF DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.5.37">#</a></h5></div><p>
+    You may make a collection consisting of the Document and other documents released under this
+    License, and replace the individual copies of this License in the various documents with a
+    single copy that is included in the collection, provided that you follow the rules of this
+    License for verbatim copying of each of the documents in all other respects.
+  </p><p>
+    You may extract a single document from such a collection, and distribute it individually under
+    this License, provided you insert a copy of this License into the extracted document, and
+    follow this License in all other respects regarding verbatim copying of that document.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.5.40"><span class="name">
+    7. AGGREGATION WITH INDEPENDENT WORKS
+  </span><a title="Permalink" class="permalink" href="#id-1.5.40">#</a></h5></div><p>
+    A compilation of the Document or its derivatives with other separate and independent documents
+    or works, in or on a volume of a storage or distribution medium, is called an "aggregate" if
+    the copyright resulting from the compilation is not used to limit the legal rights of the
+    compilation's users beyond what the individual works permit. When the Document is included in
+    an aggregate, this License does not apply to the other works in the aggregate which are not
+    themselves derivative works of the Document.
+  </p><p>
+    If the Cover Text requirement of section 3 is applicable to these copies of the Document, then
+    if the Document is less than one half of the entire aggregate, the Document's Cover Texts may
+    be placed on covers that bracket the Document within the aggregate, or the electronic
+    equivalent of covers if the Document is in electronic form. Otherwise they must appear on
+    printed covers that bracket the whole aggregate.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.5.43"><span class="name">
+    8. TRANSLATION
+  </span><a title="Permalink" class="permalink" href="#id-1.5.43">#</a></h5></div><p>
+    Translation is considered a kind of modification, so you may distribute translations of the
+    Document under the terms of section 4. Replacing Invariant Sections with translations requires
+    special permission from their copyright holders, but you may include translations of some or
+    all Invariant Sections in addition to the original versions of these Invariant Sections. You
+    may include a translation of this License, and all the license notices in the Document, and any
+    Warranty Disclaimers, provided that you also include the original English version of this
+    License and the original versions of those notices and disclaimers. In case of a disagreement
+    between the translation and the original version of this License or a notice or disclaimer, the
+    original version will prevail.
+  </p><p>
+    If a section in the Document is Entitled "Acknowledgements", "Dedications", or "History", the
+    requirement (section 4) to Preserve its Title (section 1) will typically require changing the
+    actual title.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.5.46"><span class="name">
+    9. TERMINATION
+  </span><a title="Permalink" class="permalink" href="#id-1.5.46">#</a></h5></div><p>
+    You may not copy, modify, sublicense, or distribute the Document except as expressly provided
+    for under this License. Any other attempt to copy, modify, sublicense or distribute the
+    Document is void, and will automatically terminate your rights under this License. However,
+    parties who have received copies, or rights, from you under this License will not have their
+    licenses terminated so long as such parties remain in full compliance.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.5.48"><span class="name">
+    10. FUTURE REVISIONS OF THIS LICENSE
+  </span><a title="Permalink" class="permalink" href="#id-1.5.48">#</a></h5></div><p>
+    The Free Software Foundation may publish new, revised versions of the GNU Free Documentation
+    License from time to time. Such new versions will be similar in spirit to the present version,
+    but may differ in detail to address new problems or concerns. See
+    <a class="link" href="https://www.gnu.org/copyleft/" target="_blank">https://www.gnu.org/copyleft/</a>.
+  </p><p>
+    Each version of the License is given a distinguishing version number. If the Document specifies
+    that a particular numbered version of this License "or any later version" applies to it, you
+    have the option of following the terms and conditions either of that specified version or of
+    any later version that has been published (not as a draft) by the Free Software Foundation. If
+    the Document does not specify a version number of this License, you may choose any version ever
+    published (not as a draft) by the Free Software Foundation.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.5.51"><span class="name">
+    ADDENDUM: How to use this License for your documents
+  </span><a title="Permalink" class="permalink" href="#id-1.5.51">#</a></h5></div><div class="verbatim-wrap"><pre class="screen">Copyright (c) YEAR YOUR NAME.
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+A copy of the license is included in the section entitled “GNU
+Free Documentation License”.</pre></div><p>
+    If you have Invariant Sections, Front-Cover Texts and Back-Cover Texts, replace the
+    “with...Texts.” line with this:
+  </p><div class="verbatim-wrap"><pre class="screen">with the Invariant Sections being LIST THEIR TITLES, with the
+Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.</pre></div><p>
+    If you have Invariant Sections without Cover Texts, or some other combination of the three,
+    merge those two alternatives to suit the situation.
+  </p><p>
+    If your document contains nontrivial examples of program code, we recommend releasing these
+    examples in parallel under your choice of free software license, such as the GNU General Public
+    License, to permit their use in free software.
+  </p></section></div></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="#virtualization-support"><span class="title-number">1 </span><span class="title-name">Virtualization Limits and Support</span></a></span></li><li><span class="section"><a href="#glue-alp-containers-podman-more-info"><span class="title-number">2 </span><span class="title-name">For more information</span></a></span></li><li><span class="section"><a href="#legal-disclaimer"><span class="title-number">3 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="#doc-gfdl-license"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

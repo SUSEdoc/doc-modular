@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Setting Up a systemd Service | SUSE Linux Enterprise Server for SAP applications 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2025-11-04"/>
+<meta name="dcterms.modified" content="2025-11-04"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-26"/>
+<meta name="title" content="Setting Up a systemd Service | SUSE Linux Enterprise S…"/>
+<meta name="description" content="How to set up a systemd service"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server for SAP applications"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="Setting Up a systemd Service"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="amrita.sakthivel@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="amrita.sakthivel@suse.com"/><meta property="og:title" content="Setting Up a systemd Service"/>
+<meta property="og:description" content="Set up a systemd service"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Setting Up a systemd Service"/>
+<meta name="twitter:description" content="Set up a systemd service"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Setting Up a systemd Service | SUSE Linux Enterprise Server for SAP applications 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Product &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Setting Up a systemd Service",
+    "description": "How to set up a systemd service",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2025-11-04T00:00+02:00",
+    "dateModified": "2025-11-04T00:00+02:00",
+    "datePublished": "2026-08-26T09:47+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Administration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server for SAP applications",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Setting Up a systemd Service</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Setting Up a <code class="systemitem">systemd</code> Service</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="systemd-setting-up-service" data-id-title="Setting Up a systemd Service"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span></span> 16.1</div><div><h1 class="title">Setting Up a <code class="systemitem">systemd</code> Service</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>26 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+                <code class="systemitem">systemd</code> is used to manage system settings and services.
+                <code class="systemitem">systemd</code> organizes tasks into components called <span><em class="emphasis">units</em></span> and groups multiple units into
+                <span><em class="emphasis">targets</em></span>.
+              </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
+                Learn about the basics of setting up a <code class="systemitem">systemd</code> service, including the types of services, editing and debugging
+                <code class="systemitem">systemd</code> services and configuring e-mail notifications for failed <code class="systemitem">systemd</code> services.</p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                It takes 20 minutes to read this article.
+              </p></dd><dt id="id-1.1.12.1.4"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                      Basic understanding of Linux commands
+                    </p></li><li class="listitem"><p>
+                   Basic understanding of Linux processes, daemons, and control groups
+                  </p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Setting Up a systemd Service" hreflang="en" href="rh-setting-up-systemd.html" target="_blank">Revision History: Setting Up a systemd Service</a></div></div></div></div><section xml:lang="en" class="sect1" id="about-systemd" data-id-title="What is systemd?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">What is <code class="systemitem">systemd</code>?</span></span> <a title="Permalink" class="permalink" href="index.html#about-systemd">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      <code class="systemitem">systemd</code> is a system and service manager for Linux operating systems. It is the default initialization system for major Linux distributions.
+      <code class="systemitem">systemd</code> is not directly initiated by the user, but installed through the <code class="filename">/sbin/init </code> and started during the early boot.
+      <code class="systemitem">systemd</code> acts as the init system that brings up and maintains user space services when run as the first process on boot (PID 1).
+      PID 1 is known as <span><em class="emphasis">init</em></span> and is the first Linux user-mode process created.
+      It runs until the system shutdown.
+      </p><p><code class="systemitem">systemd</code> owns PID 1, and is started directly by the kernel. All other processes are started directly
+       by <code class="systemitem">systemd</code> or one of its child processes. <code class="systemitem">systemd</code> mounts the host's file system and manages temporary files.
+       It is backward compatible with the SysV init scripts. SysV is an initialization system that predates <code class="systemitem">systemd</code>.</p><p>In <code class="systemitem">systemd</code>, a unit is a resource that the system knows how to operate on and manage. This is
+            the primary object that the <code class="systemitem">systemd</code> tools use. These resources are defined with configuration files called unit files.</p><p><code class="command">systemctl</code> is the central management tool for controlling the init system. It is used to
+        examine and control the state of the <code class="systemitem">systemd</code> system and service manager.</p><p>Targets in <code class="systemitem">systemd</code> are groups of related units that act as synchronization points during a system boot.
+          Target unit files have a <code class="literal">.target</code> file extension. Target units group together various <code class="systemitem">systemd</code>
+          units through a chain of dependencies.
+        </p><p>For troubleshooting, you can use <code class="command">journalctl</code>, which is
+         used to query and display log messages from the <code class="systemitem">systemd</code> journal.</p><p>For more information on <code class="systemitem">systemd</code>, you can refer to <a class="link" href="https://systemd.io" target="_blank">https://systemd.io</a> and <code class="command">man 1 systemd</code>.</p></section><section xml:lang="en" class="sect1" id="unit-file" data-id-title="Structure of a unit file"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Structure of a unit file</span></span> <a title="Permalink" class="permalink" href="index.html#unit-file">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+In <code class="systemitem">systemd</code>, a unit refers to any resource that the system knows how to operate on and manage.
+This is the primary object that the <code class="systemitem">systemd</code> tools use. These resources are defined using configuration files
+called unit files. Administration is easier when you understand unit files when working with <code class="systemitem">systemd</code>.
+Unit files use a simple declarative syntax that allows you to see easily the purpose and effects of a
+unit upon activation. Unit files have sections with directives, for example:
+      </p></div></div></div></div><div class="verbatim-wrap"><pre class="screen">        [Section]
+        Directive1=value
+        Directive2=value
+        . . .</pre></div><p>Unit file types include the following sections:</p><div class="variablelist"><dl class="variablelist"><dt id="id-1.3.4.1"><span class="term"><code class="literal">[Unit]</code></span></dt><dd><p>
+         The first section found in most unit files is the <code class="literal">[Unit]</code> section. This section is used to define
+         the metadata of the unit file and configure the relationship of the unit file to other unit files. This section is usually placed
+         at the top because it provides an overview of the unit file.
+        </p></dd><dt id="id-1.3.4.2"><span class="term"><code class="literal">[Automount] / [Mount] / [Path] / [Service] / [Slice] / [Socket] /[Swap] / [Timer]</code></span></dt><dd><p>
+          Sections containing directives that are specific to the respective type. See
+          <a class="xref" href="index.html#type-unit-file" title="3. Unit file types">Section 3, “Unit file types”</a>
+          for a list of available types.
+          Note that the types <code class="literal">device</code>, <code class="literal">target</code>, <code class="literal">snapshot</code>
+          and <code class="literal">scope</code> do not have a type-specific section.
+         </p></dd><dt id="id-1.3.4.3"><span class="term"><code class="literal">[Install]</code></span></dt><dd><p>
+         This is often the last section in the unit file and is optional. This section is used to define the behavior of a unit file when
+         it is enabled or disabled. When you enable a unit file, it automatically starts at boot. Based on the specific unit,
+         there could be a dependency on other related units to work properly. For example, <code class="systemitem">chrony</code> requires
+         the directives <code class="literal">After</code>, <code class="literal">Wants</code>, and <code class="literal">Before</code>, which are all dependencies for
+         <code class="systemitem">chrony</code> to work with.
+        </p></dd></dl></div><div class="example" id="systemd-unit-file-example" data-id-title="A systemd service file"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 1: </span><span class="title-name">A <code class="systemitem">systemd</code> service file  </span></span><a title="Permalink" class="permalink" href="index.html#systemd-unit-file-example">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">[Unit]
+Description=usbguard <span class="callout" id="systemd-unit-file-descr">1</span>
+
+[Service]
+ExecStart=/usr/sbin/usb-daemon <span class="callout" id="systemd-unit-file-exec">2</span>
+
+[Install]
+WantedBy=multi-user.target <span class="callout" id="systemd-unit-file-multiuser">3</span></pre></div></div></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#systemd-unit-file-descr"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+            A brief and meaningful description explaining the service file's purpose.
+          </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#systemd-unit-file-exec"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+            Specifies the program to be executed when the service is started.
+          </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#systemd-unit-file-multiuser"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+            Starts a multi-user system with networking, and no graphical environment.
+            This directive allows you to specify a dependency relationship.
+          </p></td></tr></table></div></section><section xml:lang="en" class="sect1" id="type-unit-file" data-id-title="Unit file types"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Unit file types</span></span> <a title="Permalink" class="permalink" href="index.html#type-unit-file">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+      You can determine the type of unit by its file extension. <code class="systemitem">systemd</code> categorizes units according to the type of resource they describe.
+      </p></div></div></div></div><p>Types of unit files available for <code class="systemitem">systemd</code>:</p><div class="variablelist"><dl class="variablelist"><dt id="id-1.4.3.1"><span class="term"><code class="literal">.service</code></span></dt><dd><p>
+          Describes how to manage a service or application.
+          This includes how to start or stop the service, reload its configuration file (if applicable),
+          under what conditions the service starts automatically, and the dependency or the hierarchy information for related unit files.
+         </p></dd><dt id="id-1.4.3.2"><span class="term"><code class="literal">.scope</code></span></dt><dd><p>
+         This unit file is automatically created by <code class="systemitem">systemd</code> from the information received from the D-Bus interface
+         and is used to manage sets of system processes that are created externally.
+         </p></dd><dt id="id-1.4.3.3"><span class="term"><code class="literal">.path</code></span></dt><dd><p>
+       Defines a path for path-based activation.
+        By default, a <code class="literal">.service</code> unit file of the same base name is activated.
+        <code class="literal">inotify</code> is a kernel API that is used by programs
+        that want to be notified about changes to files.
+         </p></dd><dt id="id-1.4.3.4"><span class="term"><code class="literal">.snapshot</code></span></dt><dd><p>
+        The <code class="command">systemctl snapshot</code> command automatically creates a <code class="literal">.snapshot</code> unit file.
+        This command creates temporary snapshots of the current state of the system.
+        You can modify the current state of the system after making changes. Snapshots are used for rolling back temporary states.
+        </p></dd><dt id="id-1.4.3.5"><span class="term"><code class="literal">.timer</code></span></dt><dd><p>
+        Defines a timer that is managed by <code class="systemitem">systemd</code>. This is similar to a cron job for delayed or scheduled activation.
+        A unit file with the same name, but with file extension <code class="filename">.service</code> is started when the timer is reached.
+        </p></dd><dt id="id-1.4.3.6"><span class="term"><code class="literal">.slice</code></span></dt><dd><p>
+        Associate Linux Control Group nodes, which allow resources
+        to be assigned or restricted to any processes associated with the slice.
+         The name indicates the hierarchy within the control group tree. Units are placed in slices by default depending on their type.
+         </p></dd><dt id="id-1.4.3.7"><span class="term"><code class="literal">.target</code></span></dt><dd><p>
+         Provides synchronization for other units during a boot up or
+          a change in state, or brings the system to a new state. Other units specify their relation to targets
+          in order to sync with the target's operations.
+                </p></dd><dt id="id-1.4.3.8"><span class="term"><code class="literal">.socket</code></span></dt><dd><p>
+         Describes a network, an IPC socket, or a FIFO buffer that <code class="systemitem">systemd</code> uses for socket-based activation.
+          There is an associated <code class="literal">.service</code> file that starts when an activity is seen on the socket that this unit defines.
+                </p></dd><dt id="id-1.4.3.9"><span class="term"><code class="literal">.device</code></span></dt><dd><p>
+        Defines a device that has been designated for <code class="systemitem">systemd</code> management by <code class="literal">udev</code>
+        or <code class="literal">sysfs</code> file system. Not all devices have the <code class="literal">.device</code> file.
+        This unit file is required when ordering, mounting, or accessing a device.
+         </p></dd><dt id="id-1.4.3.10"><span class="term"><code class="literal">.swap</code></span></dt><dd><p>
+          Defines the swap space on the system.
+          The name of the unit file must reflect the device or file path of the space.
+          </p></dd><dt id="id-1.4.3.11"><span class="term"><code class="literal">.mount</code></span></dt><dd><p>
+         Defines a mount point on the system to be managed by <code class="systemitem">systemd</code>.
+          This file is named after the mount path, with the slashes changed to dashes.
+          Entries within <code class="filename">/etc/fstab</code> can have units created automatically.
+                </p></dd><dt id="id-1.4.3.12"><span class="term"><code class="literal">.automount</code></span></dt><dd><p>
+         Defines a mount point that is automatically mounted. Name the file after
+         the mount point that it refers to. A matching <code class="literal">.mount</code> unit file is required
+         to define the specifics of the mount.
+         </p></dd></dl></div></section><section xml:lang="en" class="sect1" id="concept-unit-dependencies" data-id-title="Unit dependencies and order"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Unit dependencies and order</span></span> <a title="Permalink" class="permalink" href="index.html#concept-unit-dependencies">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+<code class="systemitem">systemd</code> has two types of dependencies: requirement and order dependencies. Requirement dependencies specify
+which other units must be either started or stopped when activating a unit.
+Order dependencies specify the order in which units must be started.
+      </p></div></div></div></div><p> <span><em class="emphasis">Unit dependencies</em></span></p><p>Unit files have the dependencies feature. A unit may want or require one or more other units before it can run.
+    These dependencies are set in unit files with the directives <code class="literal">Wants</code> and <code class="literal">Requires</code>.</p><div class="variablelist"><dl class="variablelist"><dt id="id-1.5.4.1"><span class="term"><code class="literal">Wants</code></span></dt><dd><p>For example, if unit A has <code class="literal">Wants=unit B</code>, when unit A is
+          run, unit B runs as well. But if unit B starts successfully or not, does not have an influence on unit A running
+          successfully.
+        </p></dd><dt id="id-1.5.4.2"><span class="term"><code class="literal">Requires</code></span></dt><dd><p>If unit A has <code class="literal">Requires=unit B</code>, both units run but if unit B does not run successfully,
+         unit A is deactivated. It does not matter if the processes of unit A would have run successfully.
+        </p></dd></dl></div><p><span><em class="emphasis">Unit order</em></span> </p><p>Without proper instructions, <code class="systemitem">systemd</code> can run a group of units at the same time. Starting services in the right order
+      is important for a good functioning of the Linux system. You can arrange the order with the unit file directives <code class="literal">Before</code>
+       and <code class="literal">After</code>.</p><div class="variablelist"><dl class="variablelist"><dt id="id-1.5.7.1"><span class="term"><code class="literal">Before</code></span></dt><dd><p>For example, if unit A has <code class="literal">Before=unit B</code>, when both units are run, unit A is executed fully
+            before unit B.
+          </p></dd><dt id="id-1.5.7.2"><span class="term"><code class="literal">After</code></span></dt><dd><p>If unit A has <code class="literal">After=unit B</code>, when both units are run, unit B is executed fully
+            before unit A.
+          </p></dd></dl></div></section><section xml:lang="en" class="sect1" id="create-systemd-service" data-id-title="Creating a Linux service with systemd"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Creating a Linux service with <code class="systemitem">systemd</code></span></span> <a title="Permalink" class="permalink" href="index.html#create-systemd-service">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       Create an auto-start task or program that executes every time that you boot or reboot your system
+        by creating a Linux service with <code class="systemitem">systemd</code>.
+        </p></div></div></div></div><div class="complex-example"><div class="example" id="systemd-auto-task" data-id-title="Automating task execution with systemd"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 2: </span><span class="title-name">Automating task execution with <code class="systemitem">systemd</code> </span></span><a title="Permalink" class="permalink" href="index.html#systemd-auto-task">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><p>Creating a custom <code class="systemitem">systemd</code> service, involves creating a service unit file,
+        which defines the service and its behavior. </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>Create a new script at the specified location, that is used by the <code class="systemitem">systemd</code> service:</p><div class="verbatim-wrap"><pre class="screen">vi /usr/local/bin/<em class="replaceable">FILE_NAME.sh</em></pre></div><p>The <code class="filename">/usr/local/bin</code> is the standard location for installing custom scripts and executables
+      specific to the system. By placing the script in this location, you make it accessible to all system users
+    without a need to specify the full path. </p></li><li class="step"><p>Paste the following in the file:</p><div class="verbatim-wrap"><pre class="screen">#!/bin/bash
+     echo "Hello, Everyone!"</pre></div></li><li class="step"><p>Make the script executable:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  chmod +x /usr/local/bin/<em class="replaceable">FILE_NAME.sh</em></pre></div></li><li class="step"><p>Create a <code class="systemitem">systemd</code> unit file at the specified location:</p><div class="verbatim-wrap"><pre class="screen">vi /etc/systemd/system/<em class="replaceable">FILE_NAME.service</em></pre></div></li><li class="step"><p>Paste the following in the file:</p><div class="verbatim-wrap"><pre class="screen">[Unit]
+Description= <em class="replaceable">Name</em> service
+
+[Service]
+ExecStart=/usr/local/bin/<em class="replaceable">FILE_NAME.sh</em>
+
+[Install]
+WantedBy=multi-user.target</pre></div><p>The <code class="literal">Unit</code> section gives you a description of the service.
+     The <code class="literal">Service</code> section defines the service and its behavior.
+              The <code class="literal">ExecStart</code> directive specifies the command to start the service.
+              The <code class="literal">Install</code> section specifies when the service should start.
+              </p></li><li class="step"><p>Save and exit the file.</p></li><li class="step"><p>To make <code class="systemitem">systemd</code> aware of the new service, run:
+                  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl <em class="replaceable">SERVICE_NAME</em></pre></div></li><li class="step"><p>Start,enable and check the status of the service:</p><div class="verbatim-wrap"><pre class="screen">systemctl start <em class="replaceable">SERVICE_NAME</em></pre></div><div class="verbatim-wrap"><pre class="screen">systemctl enable <em class="replaceable">SERVICE_NAME</em></pre></div><div class="verbatim-wrap"><pre class="screen">systemctl status <em class="replaceable">SERVICE_NAME</em></pre></div></li></ol></div></div></div></div></div></section><section xml:lang="en" class="sect1" id="systemctl-edit-service-file" data-id-title="The sysctemctl edit command"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">The <code class="command">sysctemctl edit</code> command </span></span> <a title="Permalink" class="permalink" href="index.html#systemctl-edit-service-file">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        You can use the <code class="command">systemctl</code> command to edit and modify an existing service file.
+      </p></div></div></div></div><p>There are three main directories where unit files are stored on the system: </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.7.3.1"><span class="term"><code class="filename">/usr/lib/systemd/system/</code></span></dt><dd><p>
+          When the RPM packages are installed, <code class="systemitem">systemd</code> unit files reside here.
+         </p></dd><dt id="id-1.7.3.2"><span class="term"><code class="filename">/run/systemd/system/</code></span></dt><dd><p>
+          <code class="systemitem">systemd</code> unit files created at run time. This directory takes precedence over the directory with installed service unit files.
+        </p></dd><dt id="id-1.7.3.3"><span class="term"><code class="filename">/etc/systemd/system/</code></span></dt><dd><p>
+         <code class="systemitem">systemd</code> unit files that are created by the <code class="command">systemctl enable</code> command and also unit files added for extending a service.
+         This directory takes precedence over the directory with unit files created at run time.
+        </p></dd></dl></div><p>By default, the <code class="command">sysctemctl edit</code> command opens a unit file snippet, for example:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl edit testhttp.service</pre></div><p>This creates a blank file that is used to override or add directives to the unit file definition.
+A directory is created in <code class="filename">/etc/systemd/system</code>, which contains the name of the unit file
+with <code class="literal">.d</code> appended. For example, a directory called <code class="literal">testhttp.service.d</code> is created.
+  </p><p>Within the directory, a snippet called <code class="literal">override.conf</code> is created. <code class="systemitem">systemd</code> merges
+    the override snippet with the full unit file when the unit is loaded. This snippet's directives take precedence
+    over those directives in the original unit file.
+  </p><p>With the <code class="literal">--full</code> flag, you can edit the full unit file instead of creating a snippet. For example:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl edit --full testhttp.service</pre></div><p>This loads the current unit file into the editor, allowing you to make modifications. When you save and exit the editor,
+the modified file is written to <code class="filename">/etc/systemd/system</code>, which takes precedence over the system's unit definition, usually located
+in <code class="filename">/lib/systemd/system</code>.</p><p>To remove any additions you have made, you can delete the unit's <code class="literal">.d</code> configuration directory or the
+  the modified service file from <code class="filename">/etc/systemd/system</code>. After deleting the file or directory, reload the <code class="systemitem">systemd</code> process
+  so that it reverts back to the initial system process.
+</p></section><section xml:lang="en" class="sect1" id="systemd-secure-services" data-id-title="Securing systemd services"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Securing <code class="systemitem">systemd</code> services</span></span> <a title="Permalink" class="permalink" href="index.html#systemd-secure-services">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Linux increases its security by separating privileges between individual components of the
+        operating system. System services already have a default level of security. For example,
+        their processes run under their own user ID, which limits the changes they can perform on
+        the system.
+      </p><p>
+        The default level of privilege separation provides only a basic protection. Services can
+        still perform as many changes as normal local users, though not as many as <code class="systemitem">root</code>. A
+        higher level of system security requires limiting what services can perform and prevents
+        them from certain privileges that normal users are allowed to use.
+      </p></div></div></div></div><section class="sect2" id="benefits-securing-with-systemd" data-id-title="Why is securing systemd services important?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.1 </span><span class="title-name">Why is securing <code class="systemitem">systemd</code> services important?</span></span> <a title="Permalink" class="permalink" href="index.html#benefits-securing-with-systemd">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Securing <code class="systemitem">systemd</code> services increases the security of the whole operating system and protects
+      sensitive data contained on its file system. With <code class="systemitem">systemd</code>, you can configure your system in many ways.
+      <code class="systemitem">systemd</code> runs as the first process on boot (PID1) so it has a lot of power on your Linux environment.
+    </p><p><code class="systemitem">systemd</code> can apply additional restrictions to local services by using technologies included in the kernel.
+      These restrictions are activated by adding specific options to the systemd service definition and restarting the service.
+      <code class="systemitem">systemd</code> has a command-line tool <code class="command">systemd-analyze security</code>. This command analyzes the services and checks
+      whether the services are using its security options.</p></section><section class="sect2" id="what-is-systemd-aalyze-security-command" data-id-title="What is the systemd-analyze security command?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.2 </span><span class="title-name">What is the <code class="command">systemd-analyze security</code> command?</span></span> <a title="Permalink" class="permalink" href="index.html#what-is-systemd-aalyze-security-command">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+       The command analyzes the security and sandboxing settings of the specified service units.
+       A detailed analysis of the security settings is executed and displayed.
+       If a service unit is not specified, all currently loaded, long-running service units are inspected and the results are displayed in a terse table.
+       </p><p>Upon checking the security settings, the command assigns a numeric value , also known as <span><em class="emphasis">exposure level</em></span>.
+    This value depends on how important a setting is. It then calculates the overall exposure level for the entire unit. This value ranges
+    from 0.0 to 10.0, which is an indicator of how exposed a service is security-wise.
+    High exposure levels indicate that the service might benefit from additional security settings.
+    Low exposure levels indicate tight security restrictions.
+  </p></section><section class="sect2" id="systemd-analyze" data-id-title="Using the systemd-analyze security command"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.3 </span><span class="title-name">Using the <code class="command">systemd-analyze security</code> command </span></span> <a title="Permalink" class="permalink" href="index.html#systemd-analyze">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Use the <code class="command">systemd-analyze security</code> command to analyze the security settings of a  <code class="systemitem">systemd</code> service.
+      The <code class="literal">security</code> option analyzes the security and the sandboxing settings of one or more specified services.
+      </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>Create a <code class="systemitem">systemd</code> service in the <code class="filename">/etc/systemd/system</code>. </p></li><li class="step"><p>Reload the service files to include the new service:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl daemon-reload</pre></div></li><li class="step"><p>Start, enable and check the status of the service:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl start <em class="replaceable">SERVICE_NAME</em></pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl enable <em class="replaceable">SERVICE_NAME</em></pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl status <em class="replaceable">SERVICE_NAME</em></pre></div></li><li class="step"><p>Analyze the security settings of the service:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemd-analyze security <em class="replaceable">SERVICE_NAME</em></pre></div><p>For example:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemd-analyze security test.service
+  NAME                DESCRIPTION                              EXPOSURE
+  ✗ PrivateNetwork=     Service has access to the host's network      0.5
+  ✗ User=/DynamicUser=  Service runs as root user                     0.4
+  ✗ DeviceAllow=        Service has no device ACL
+  ...
+  → Overall exposure level for test.service: 9.6 UNSAFE 😨</pre></div></li></ol></div></div></section><section class="sect2" id="systemd-exposure" data-id-title="How to improve the overall exposure"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.4 </span><span class="title-name">How to improve the overall exposure</span></span> <a title="Permalink" class="permalink" href="index.html#systemd-exposure">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>If you get <span><em class="emphasis">9.6 UNSAFE</em></span>, you can use <code class="literal">[Service]</code> part of the service definition file to add any of the below options. For example:</p><div class="verbatim-wrap"><pre class="screen">  [Service]
+  NoNewPrivileges=yes
+  PrivateTmp=yes
+  PrivateNetwork=yes
+  InaccessibleDirectories=/home
+  .....</pre></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.8.5.4.1"><span class="term">NoNewPrivileges=yes</span></dt><dd><p>
+                       New privileges are not required.
+                      </p></dd><dt id="id-1.8.5.4.2"><span class="term">PrivateTmp=yes</span></dt><dd><p>
+                       Private directory for temporary files. This option provides the service with a private <code class="filename">/tmp</code> isolated from
+                       the host system's <code class="filename">/tmp</code>. The shared host <code class="filename">/tmp</code>
+                       directory is a major source of security problems, such as symlink attacks and DoS
+                       <code class="filename">/tmp</code> temporary files.
+                      </p></dd><dt id="id-1.8.5.4.3"><span class="term">PrivateNetwork=yes</span></dt><dd><p>
+                        This option isolates the service and its processes from networking. This prevents
+                        external network requests from reaching the protected service. Be aware that certain
+                        services require the network to be operational.
+                      </p></dd><dt id="id-1.8.5.4.4"><span class="term">InaccessibleDirectories=/home</span></dt><dd><p>
+                        This option makes the specified directories inaccessible to the service. This option
+                        narrows the range of directories that can be read or modified by the service, for
+                        example, to secure users' private files.
+                      </p></dd><dt id="id-1.8.5.4.5"><span class="term">ReadOnlyDirectories=/var</span></dt><dd><p>
+                        This option makes the specified directories inaccessible for writing to the service. The
+                        example configuration makes the whole tree below <code class="filename">/var</code> read-only.
+                        This option prevents the service from damaging the system files.
+                      </p></dd><dt id="id-1.8.5.4.6"><span class="term">CapabilityBoundingSet=CAP_CHOWN CAP_KILL</span></dt><dd><p>
+                        This option restricts the kernel capabilities that a service can retain. In the example
+                        above, only the <code class="literal">CAP_CHOWN</code> and <code class="literal">CAP_KILL</code> capabilities
+                        are retained by the service, and the service and any processes it creates cannot obtain
+                        any other capabilities, not even via setuid binaries.
+                      </p><div id="id-1.8.5.4.6.2.2" data-id-title="The pscap command tool" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: The <code class="command">pscap</code> command tool</div><p>
+                                                To easily identify which processes on your system retain which capabilities, use the
+                          <code class="command">pscap</code> command tool from the <span class="package">libcap-ng-utils</span> package.
+                        </p></div><p>
+                          The <code class="literal">~</code> prefix inverts the meaning of the option—. Instead of
+                          listing all capabilities that the service retains, you can list the ones it does not
+                          retain:
+                        </p><div class="verbatim-wrap"><pre class="screen">...
+  [Service]
+  CapabilityBoundingSet=~CAP_SYS_PTRACE
+  ...</pre></div></dd><dt id="id-1.8.5.4.7"><span class="term">LimitNPROC=1, LimitFSIZE=0</span></dt><dd><p>
+                        You can use <span><em class="emphasis">resource limits</em></span> to apply security limits on services.
+                        Two of them can disable specific operating system features:
+                        <code class="option">RLIMIT_NPROC=1</code> disables process forking, while
+                        <code class="option">RLIMIT_FSIZE=0</code> disables creating non-empty files on the file system.
+                      </p></dd><dt id="id-1.8.5.4.8"><span class="term">DeviceAllow=/dev/null rw</span></dt><dd><p>
+                        This option limits access to <code class="filename">/dev/null</code>, disallowing access to any
+                        other device nodes.
+                      </p></dd></dl></div><p>These are some options you can use.</p><div class="complex-example"><div class="example" id="id-1.8.5.6" data-id-title="NoNewPrivileges=yes option example"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 3: </span><span class="title-name"><code class="literal">NoNewPrivileges=yes</code> option example </span></span><a title="Permalink" class="permalink" href="index.html#id-1.8.5.6">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><p>This example shows a basic script configured to run as a specific user with privilege escalation strictly disabled.</p><div class="verbatim-wrap"><pre class="screen">[Unit]
+Description=Simple Secure Service
+
+[Service]
+# Run as a non-root user
+User=john
+Group=john
+
+# Disable gaining new privileges (setuid, setgid, etc.)
+NoNewPrivileges=yes</pre></div></div></div></div></section></section><section xml:lang="en" class="sect1" id="debugg-systemd-service" data-id-title="Debugging a systemd service"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name">Debugging a <code class="systemitem">systemd</code> service</span></span> <a title="Permalink" class="permalink" href="index.html#debugg-systemd-service">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+Use the <code class="command">systemctl</code> and <code class="command">journalctl</code> commands to investigate the reasons for a failed system service.
+        </p></div></div></div></div><p>When <code class="systemitem">systemd</code> fails to start a service, a generic error message is displayed, for example:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">systemctl</code> start apache2
+Job for apache2.service failed because the control process exited with error code.
+See "systemctl status apache2.service" and "journalctl -xe" for details.</pre></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.9.4.1"><span class="term">
+List all available services and their current status
+            </span></dt><dd><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">systemctl list-units -t service --all</code></pre></div><p>For example:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">systemctl list-units -t service --all</code>
+  UNIT                                   LOAD      ACTIVE   SUB     DESCRIPTION&gt;
+  accounts-daemon.service                loaded    active   running Accounts Se&gt;
+  apache2.service                        loaded    failed   failed  The Apache HTTP server&gt;
+\u25cf acpid.service                     not-found inactive dead    acpid.servi&gt;
+ after-local.service                    loaded    inactive dead    /etc/init.d&gt;
+  alsa-restore.service                   loaded    active   exited  Save/Restor&gt;
+  alsa-state.service                     loaded    inactive dead    Manage Soun&gt;
+\u25cf amavis.service                    not-found inactive dead    amavis.serv&gt;
+  apparmor.service                       loaded    active   exited  Load AppArm&gt;
+  appstream-sync-cache.service           loaded    inactive dead    Synchronize&gt;
+  auditd.service                         loaded    active   running Security Au&gt;
+  augenrules.service                     loaded    active   exited  auditd rule&gt;</pre></div></dd><dt id="id-1.9.4.2"><span class="term"> Check whether a specific service has failed</span></dt><dd><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">systemctl is-failed apache2.service</code>
+              failed</pre></div></dd><dt id="id-1.9.4.3"><span class="term">
+            Check the status of the failed service</span></dt><dd><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">systemctl status --full --lines=50 apache2</code>
+  ● apache2.service - Apache HTTP Server
+  Loaded: loaded (/usr/lib/systemd/system/apache2.service; enabled; vendor preset: disabled)
+  Active: failed (Result: exit-code) since Fri 2021-08-20 10:24:15 CEST; 2min 24s ago
+    Docs: https://httpd.apache.org/docs
+ Process: 2491 ExecStart=/usr/bin/apache2 --add-runtime oci=/usr/sbin/apache-runc $DOCKER_NETWORK_OPTIONS $DOCKER_OPTS &gt;
+Main PID: 2491 (code=exited, status=1/FAILURE)</pre></div><p> In the above example, the service ran as process ID 2491, but failed. Error messages give you a hint on what to do.
+                 </p></dd><dt id="id-1.9.4.4"><span class="term">
+          Check the logs of the failed service</span></dt><dd><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code> <code class="command">journalctl --catalog --pager-end --unit=apache2</code>
+[...]
+  Aug 20 10:24:15 localhost.localdomain dockerd[2479]: unable to configure the Docker daemon with file /etc/apache2/daemon.json:
+cannot unmarshal string into Go value of type map[string]interface {}</pre></div><p> The option <code class="literal">--unit</code> limits the log entries only to the failed Apache2 service.
+The error message suggests looking into the file <code class="filename">/etc/docker/daemon.json</code>. In this scenario,
+the error was caused by a wrong syntax. You can fix this and restart the Apache2 service. </p></dd></dl></div></section><section xml:lang="en" class="sect1" id="systemctl-commands" data-id-title="systemctl commands overview"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">9 </span><span class="title-name"><code class="command">systemctl</code> commands overview</span></span> <a title="Permalink" class="permalink" href="index.html#systemctl-commands">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        The <code class="command">systemctl</code> command is used to examine and control
+        the state of <code class="systemitem">systemd</code> and service manager.
+      </p></div></div></div></div><p>
+    You can use the following common <code class="command">systemctl</code> commands and
+    refer to the <span><em class="emphasis">man systemctl</em></span> page.
+  </p><section class="sect2" id="systemctl-commands-view-information" data-id-title="Viewing systemd information"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.1 </span><span class="title-name">Viewing <code class="systemitem">systemd</code> information</span></span> <a title="Permalink" class="permalink" href="index.html#systemctl-commands-view-information">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      To view information about <code class="systemitem">systemd</code> components, you can use the following
+      commands:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.10.3.3.1"><span class="term">systemctl list-units</span></dt><dd><p>
+            Lists the <code class="systemitem">systemd</code> units. You can use the optional arguments:
+            <code class="command">--state=running</code> to show the active units and
+            <code class="command">--type=service</code> to show the exited and active
+            units.
+          </p></dd><dt id="id-1.10.3.3.2"><span class="term">systemctl list-unit-files</span></dt><dd><p>
+            Lists the <code class="systemitem">systemd</code> units and the status, such as static,
+            generated, disabled, alias, masked, and enabled.
+          </p></dd><dt id="id-1.10.3.3.3"><span class="term">systemctl list-dependencies</span></dt><dd><p>
+            Lists the dependency tree.
+          </p></dd><dt id="id-1.10.3.3.4"><span class="term">systemctl list-dependencies <em class="replaceable">UNIT_FILE</em></span></dt><dd><p>
+            Lists the dependencies of a unit file.
+          </p></dd></dl></div></section><section class="sect2" id="systemctl-commands-managing-services" data-id-title="Managing systemd services"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.2 </span><span class="title-name">Managing <code class="systemitem">systemd</code> services</span></span> <a title="Permalink" class="permalink" href="index.html#systemctl-commands-managing-services">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The <code class="command">systemctl</code> command enables you to perform the
+      following tasks with services.
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.10.4.3.1"><span class="term">systemctl status <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Checks the status of the specific service.
+          </p></dd><dt id="id-1.10.4.3.2"><span class="term">systemctl show <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Displays the service information.
+          </p></dd><dt id="id-1.10.4.3.3"><span class="term">systemctl start <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Instead of manually starting the service, use the
+            <code class="command">start</code> command. When a change is made to the
+            configuration file, the related service must be started again.
+          </p></dd><dt id="id-1.10.4.3.4"><span class="term">systemctl stop <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Stops a specific running service.
+          </p></dd><dt id="id-1.10.4.3.5"><span class="term">systemctl restart <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Instead of manually restarting the service, use the
+            <code class="command">restart</code> command. When a change is made to the
+            configuration file, the related service must be restarted again.
+          </p></dd><dt id="id-1.10.4.3.6"><span class="term">systemctl enable <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Enables the service on boot.
+          </p></dd><dt id="id-1.10.4.3.7"><span class="term">systemctl disable <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Disables the service on boot.
+          </p></dd><dt id="id-1.10.4.3.8"><span class="term">systemctl reload-or-restart <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Reload the service if it supports reloading, otherwise it restarts
+            the service. If the service is not running, it is restarted.
+          </p></dd><dt id="id-1.10.4.3.9"><span class="term">systemctl mask <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            When a service is masked, this means the unit file is symlinked to
+            <code class="filename">/dev/null</code>. A symlink for a masked service is
+            created from <code class="filename">/etc/systemd/system</code> to point to
+            <code class="filename">/dev/null</code>. This makes it impossible to load
+            the service even if another enabled service requires it. It must be
+            stopped manually, or it continues to run in the background. You can
+            use <code class="command">--runtime</code> option to only mask temporarily
+            until the next reboot of the system.
+          </p><div class="verbatim-wrap"><pre class="screen">Created symlink /etc/systemd/system/FOSSLinux.service → /dev/null.</pre></div></dd><dt id="id-1.10.4.3.10"><span class="term">systemctl unmask <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Unmasks the service. It is effective when the system is started or
+            restarted manually.
+          </p></dd></dl></div></section><section class="sect2" id="systemctl-commands-managing-states" data-id-title="Managing system states"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.3 </span><span class="title-name">Managing system states</span></span> <a title="Permalink" class="permalink" href="index.html#systemctl-commands-managing-states">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The <code class="command">systemctl</code> command enables you to perform power
+      management processes on your system, like restarting, shutting down and
+      so on, as described below.
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.10.5.3.1"><span class="term">systemctl reboot</span></dt><dd><p>
+            Reboots the system <code class="literal">reboot.target</code>.
+          </p></dd><dt id="id-1.10.5.3.2"><span class="term">systemctl poweroff</span></dt><dd><p>
+            Powers off the system <code class="literal">poweroff.target</code>.
+          </p></dd><dt id="id-1.10.5.3.3"><span class="term">systemctl emergency</span></dt><dd><p>
+            Goes into the emergency mode <code class="literal">emergency.target</code>.
+          </p></dd><dt id="id-1.10.5.3.4"><span class="term">systemctl default</span></dt><dd><p>
+            Goes back to default target <code class="literal">multi-user.target</code>.
+          </p></dd></dl></div></section></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">10 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#about-systemd"><span class="title-number">1 </span><span class="title-name">What is <code class="systemitem">systemd</code>?</span></a></span></li><li><span class="section"><a href="index.html#unit-file"><span class="title-number">2 </span><span class="title-name">Structure of a unit file</span></a></span></li><li><span class="section"><a href="index.html#type-unit-file"><span class="title-number">3 </span><span class="title-name">Unit file types</span></a></span></li><li><span class="section"><a href="index.html#concept-unit-dependencies"><span class="title-number">4 </span><span class="title-name">Unit dependencies and order</span></a></span></li><li><span class="section"><a href="index.html#create-systemd-service"><span class="title-number">5 </span><span class="title-name">Creating a Linux service with <code class="systemitem">systemd</code></span></a></span></li><li><span class="section"><a href="index.html#systemctl-edit-service-file"><span class="title-number">6 </span><span class="title-name">The <code class="command">sysctemctl edit</code> command </span></a></span></li><li><span class="section"><a href="index.html#systemd-secure-services"><span class="title-number">7 </span><span class="title-name">Securing <code class="systemitem">systemd</code> services</span></a></span></li><li><span class="section"><a href="index.html#debugg-systemd-service"><span class="title-number">8 </span><span class="title-name">Debugging a <code class="systemitem">systemd</code> service</span></a></span></li><li><span class="section"><a href="index.html#systemctl-commands"><span class="title-number">9 </span><span class="title-name"><code class="command">systemctl</code> commands overview</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">10 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

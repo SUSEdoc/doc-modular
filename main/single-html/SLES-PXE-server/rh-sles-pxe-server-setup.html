@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Revision History: Setting Up a PXE Boot Server</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2025-11-04"/>
+<meta name="dcterms.modified" content="2026-08-13"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-26"/>
+<meta name="title" content="Revision History | SUSE Linux Enterprise Server 16.1"/>
+<meta name="description" content="Revision History: Clarified Secure Boot requirements across architectures: the unsigned core.efi boot file works for AMD64/Intel 64/AArch64 clients that d…"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="Setting Up a PXE Boot Server"/>
+<meta name="chapter-title" content="Revision History"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="souvik.sarkar@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="souvik.sarkar@suse.com"/><meta property="og:title" content="Setting Up a PXE Boot Server"/>
+<meta property="og:description" content="Set up a PXE boot server with GRUB 2 and Agama"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Setting Up a PXE Boot Server"/>
+<meta name="twitter:description" content="Set up a PXE boot server with GRUB 2 and Agama"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "| SUSE Linux Enterprise Server 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2025-11-04T00:00+02:00",
+    "dateModified": "2026-08-13T00:00+02:00",
+    "datePublished": "2026-08-26T09:48+02:00",
+    "about": [
+
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, AArch64, ppc64le"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="revhistory" id="rh-sles-pxe-server-setup"><h1 class="title">Revision History: Setting Up a PXE Boot Server</h1><section class="revision"><h2><span class="revision date">2026-08-13</span></h2>
+         <p>
+          Clarified Secure Boot requirements across architectures: the unsigned
+          <code class="filename">core.efi</code> boot file works for AMD64/Intel 64/AArch64 clients that do not
+          have UEFI Secure Boot enabled (only the signed <code class="filename">bootx64.efi</code>/<code class="filename">bootaa64.efi</code>
+          files require it), and ppc64le uses its own OpenFirmware/OPAL-based Secure Boot
+          mechanism, separate from UEFI Secure Boot.
+         </p>
+         <p>
+          Corrected the dnsmasq active-lease file path, which incorrectly pointed to the ISC DHCP
+          server's lease file.
+         </p>
+         <p>
+          Corrected the ISC DHCP package availability statement: the <span class="package">dhcp-server</span>
+          package is unsupported on <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> 16.1, but available through the
+          PackageHub/Backports-16.0 repository, not unavailable outright.
+         </p>
+         <p>
+          Clarified when NTP configuration on the PXE server is actually needed, and added an
+          optional step to let PXE clients sync time from it when it also acts as the network's
+          gateway.
+         </p>
+         <p>
+          Corrected the expected result when checking installation repository access over HTTP:
+          nginx intentionally returns <code class="literal">403 Forbidden</code> rather than a directory
+          listing.
+         </p>
+         <p>
+          Fixed a nonexistent path segment in the installer file check used to verify nginx HTTP
+          access, and added examples for all supported architectures.
+         </p>
+        </section><section class="revision"><h2><span class="revision date">2026-04-15</span></h2>
+         <p>
+          Fixed missing <code class="literal">config</code> variable in <code class="filename">grub.cfg</code>.
+         </p>
+         <p>
+          Standardized menu entry names for consistency across the documentation.
+         </p>
+         <p>
+          Simplified <code class="command">grub2-mknetdir</code> to a single command that creates the
+          NetBoot directories for all installed target architectures automatically.
+         </p>
+         <p>
+          Clarified that the <code class="literal">shim</code> package option applies only to AMD64/Intel 64 and AArch64 architectures.
+         </p>
+         <p>
+          Added a note clarifying when to explicitly override the boot protocol for loading
+          kernel and initrd files in boot menu entries.
+         </p>
+         <p>
+          Moved installation repositories to <code class="filename">/srv/www/htdocs/install</code> and
+          removed the custom SELinux policy for the nginx installation directory.
+         </p>
+         <p>
+          Corrected the GRUB 2 platform package names for AArch64 and ppc64le
+          (<span class="package">grub2-arm64-efi</span> and <span class="package">grub2-powerpc-ieee1275</span>).
+         </p>
+         <p>
+          Removed a broken nginx <code class="literal">location /install</code> block that had no effect
+          on request handling.
+         </p>
+         <p>
+          Clarified how to determine the <code class="literal">${BUILD}</code> value when downloading
+          installation media.
+         </p>
+        </section><section class="revision"><h2><span class="revision date">2026-03-30</span></h2>
+            <p>
+              Added a note on <code class="filename">core.efi</code> prefix limitation and guidance for multi-environment subdirectory PXE setups.
+            </p>
+          </section><section class="revision"><h2><span class="revision date">2026-03-19</span></h2>
+         <p>
+          Clarified Secure Boot scope to UEFI-based architectures only, documented architecture-specific limitation of the shim package, and updated signed EFI file sourcing guidance.
+         </p>
+        </section><section class="revision"><h2><span class="revision date">2026-03-18</span></h2>
+           <p>
+            Clarified that TFTP is mandatory for ppc64le and that the <code class="filename">loader</code>
+            subdirectory in the installation media may or may not be present depending on the media version.
+           </p>
+          </section><section class="revision"><h2><span class="revision date">2026-03-16</span></h2>
+         <p>
+          Modified procedures for extracting files for online and full iso images based on processor architecture.
+         </p>
+        </section><section class="revision"><h2><span class="revision date">2025-11-04</span></h2>
+            <p>
+              Initial version
+            </p>
+          </section></div></body></html>

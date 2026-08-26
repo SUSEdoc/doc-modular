@@ -1,0 +1,1130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Virtualization on SUSE Linux with Benefits and Setup | SUSE Linux Enterprise Server for SAP applications 16.0</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2025-11-04"/>
+<meta name="dcterms.modified" content="2026-06-18"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-25"/>
+<meta name="title" content="Virtualization on SUSE Linux with Benefits and Setup |…"/>
+<meta name="description" content="Using virtualization, you can run multiple virtual machines on a single bare-metal host to save resources"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server for SAP applications"/>
+<meta name="product-number" content="16.0"/>
+<meta name="book-title" content="Virtualization on SUSE Linux with Benefits and Setup"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="souvik.sarkar@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.0"/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="souvik.sarkar@suse.com"/><meta property="og:title" content="Introduction to virtualization"/>
+<meta property="og:description" content="Learn about the basic concepts of virtualization"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Introduction to virtualization"/>
+<meta name="twitter:description" content="Learn about the basic concepts of virtualization"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Introduction to virtualization | SUSE Linux Enterprise Server for SAP applications 16.0",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Introduction to virtualization",
+    "description": "Using virtualization, you can run multiple virtual machines on a single bare-metal host to save resources",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2025-11-04T00:00+02:00",
+    "dateModified": "2026-06-18T00:00+02:00",
+    "datePublished": "2026-08-25T07:08+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Virtualization"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server for SAP applications",
+        "softwareVersion": "16.0",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#virtualization">Virtualization on SUSE Linux with Benefits and Setup</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="virtualization" data-id-title="Virtualization on SUSE Linux with Benefits and Setup"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span></span> 16.0</div><div><h1 class="title">Virtualization on SUSE Linux with Benefits and Setup</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>25 Aug 2026</div><div><div class="abstract"><p>
+         Virtualization is a technology that allows a single physical server
+         (host) to run multiple virtual machines (guests), each with its own
+         operating system. Use it to reduce hardware costs, save power and
+         space, and improve infrastructure flexibility and productivity. By
+         the end of this article, you will understand the benefits of
+         virtualization and the basic setup of a virtual machine host and
+         guest environment.
+        </p></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Virtualization on SUSE Linux with Benefits and Setup" hreflang="en" href="rh-virtualization.html" target="_blank">Revision History: Virtualization on SUSE Linux with Benefits and Setup</a></div></div></div></div><section xml:lang="en" class="sect1" id="virtualization-introduction" data-id-title="Introduction to virtualization"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Introduction to virtualization</span></span> <a title="Permalink" class="permalink" href="#virtualization-introduction">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Virtualization is a technology that provides a way for a machine (VM Host Server) to run another
+        operating system (VM Guest) on top of the host operating system.
+      </p></div></div></div></div><section class="sect2" id="how-it-works-virtualization" data-id-title="How does virtualization work?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">How does virtualization work?</span></span> <a title="Permalink" class="permalink" href="#how-it-works-virtualization">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The primary component of VM Host Server that enables virtualization is a
+      <span><em class="emphasis">hypervisor</em></span>. A hypervisor is a layer of software that runs directly on
+      VM Host Server's hardware. It controls platform resources, sharing them among multiple VM Guests
+      and their operating systems by presenting virtualized hardware interfaces to each VM Guest.      
+    </p><div class="figure" id="virtualization-schema"><div class="figure-contents"><div class="mediaobject"><a href="images/virtualization-schema.png"><img src="images/virtualization-schema.png" alt="A general schema of virtualization" title="A general schema of virtualization"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 1: </span><span class="title-name">A general schema of virtualization </span></span><a title="Permalink" class="permalink" href="#virtualization-schema">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></section><section class="sect2" id="benefits-virtualization" data-id-title="Benefits of virtualization"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Benefits of virtualization</span></span> <a title="Permalink" class="permalink" href="#benefits-virtualization">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Virtualization brings a lot of advantages while providing the same service as a hardware
+      server.
+    </p><p>
+      Virtualization reduces the cost of your infrastructure. Servers are mainly used to provide a
+      service to a customer. A virtualized operating system can provide the same service but with
+      the following advantages:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          Less hardware: you can run several operating systems on one host, therefore all hardware
+          maintenance is reduced.
+        </p></li><li class="listitem"><p>
+          Less power/cooling: less hardware means you do not need to invest more in electric power,
+          backup power, and cooling if you need more service.
+        </p></li><li class="listitem"><p>
+          Save space: your data center space is saved because you do not need more hardware servers
+          (fewer servers than services running).
+        </p></li><li class="listitem"><p>
+          Less management: using a VM Guest simplifies the administration of your infrastructure.
+        </p></li><li class="listitem"><p>
+          Agility and productivity: virtualization provides <span><em class="emphasis">migration</em></span>
+          capabilities, <span><em class="emphasis">live migration</em></span> and <span><em class="emphasis">snapshots</em></span>.
+          These features reduce downtime and bring an easy way to move your service from one place
+          to another without any service interruption.
+        </p></li></ul></div></section></section><section xml:lang="en" class="sect1" id="virt-components-installation-patterns" data-id-title="Installation of virtualization components"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Installation of virtualization components</span></span> <a title="Permalink" class="permalink" href="#virt-components-installation-patterns">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+  To run a virtualization server (VM Host Server) that can host multiple guest systems
+  (VM Guests), you need to install required virtualization components on the
+  server. These components vary depending on which virtualization technology you
+  want to use.
+</p></div></div></div></div><p>
+    You can install the virtualization tools required to run a VM Host Server either when installing the
+    system (see the <a class="link" href="https://documentation.suse.com/sles-sap/16.0/html/SAP-x86-64-agama-based-installation/index.html#agama-manual-installation" target="_blank">manual
+    installation</a>), or from an alerady installed system by installing a virtualization pattern. The later
+    option is described bellow:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> zypper install -t pattern <em class="replaceable">PATTERN_NAME</em></pre></div><p>
+  Replace the <em class="replaceable">PATTERN_NAME</em> with one of the following values:
+</p><div class="variablelist"><dl class="variablelist"><dt id="id-1.3.5.1"><span class="term"><code class="literal">kvm_server</code></span></dt><dd><p>
+          Installs a basic VM Host Server with the KVM and QEMU environments.
+        </p></dd><dt id="id-1.3.5.2"><span class="term"><code class="literal">kvm_tools</code></span></dt><dd><p>
+          Installs <code class="systemitem">libvirt</code> tools for managing and monitoring VM Guests in
+          the KVM environment.
+        </p></dd></dl></div></section><section xml:lang="en" class="sect1" id="virtualization-modes" data-id-title="Virtualization modes"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Virtualization modes</span></span> <a title="Permalink" class="permalink" href="#virtualization-modes">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Virtualization is a technology that provides a way for a machine (VM Host Server) to run another
+        operating system (VM Guest) on top of the host operating system. There are two basic modes
+        of hosting VM Guests on virtual machines—<span><em class="emphasis">full virtualization</em></span>
+        mode and <span><em class="emphasis">paravirtual</em></span> mode.
+      </p></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="virtualization-mode-full"><span class="term">Full virtualization (FV)</span></dt><dd><p>
+          FV lets virtual machines run unmodified operating systems. It uses either Binary
+          Translation or hardware-assisted virtualization technology, such as AMD* Virtualization
+          or Intel* Virtualization Technology, to improve performance on processors that support
+          it. In FV mode, VM Guest is also called the <span><em class="emphasis">Hardware Virtual
+          Machine</em></span> (HVM).
+        </p><div id="id-1.4.2.1.2.2" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
+            Certain guest operating systems hosted in full virtualization mode can be configured to
+            use drivers from the SUSE Virtual Machine Drivers Pack (VMDP) instead of drivers
+            included in the operating system. Running virtual machine drivers improves performance
+            on guest operating systems, such as Windows Server.
+          </p></div></dd><dt id="id-1.4.2.2"><span class="term">Paravirtualization (PV)</span></dt><dd><p>
+          PV normally requires that guest operating systems are modified for the virtualization
+          environment. VM Guests running in paravirtual mode have better performance than those
+          running under full virtualization. Operating systems currently modified to run in
+          paravirtual mode are called <span><em class="emphasis">paravirtualized</em></span> operating systems and
+          include <span class="phrase"><span class="phrase">SLES for SAP</span></span>.
+        </p></dd><dt id="id-1.4.2.3"><span class="term">PV on HVM (PVHVM)</span></dt><dd><p>
+          PVHVM enhances HVM (see <a class="xref" href="#virtualization-mode-full">Full virtualization (FV)</a>) with paravirtualized
+          drivers, and handling of paravirtualized interrupts and timers.
+        </p></dd></dl></div></section><section xml:lang="en" class="sect1" id="kvm-virtualization-basics" data-id-title="Introduction to KVM virtualization"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Introduction to KVM virtualization</span></span> <a title="Permalink" class="permalink" href="#kvm-virtualization-basics">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+    KVM (Kernel Virtual Machine) is a full virtualization solution that transforms the Linux kernel into a hypervisor for running multiple isolated virtual environments.
+   </p></div></div></div></div><section class="sect2" id="sec-kvm-intro" data-id-title="Basic components"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.1 </span><span class="title-name">Basic components</span></span> <a title="Permalink" class="permalink" href="#sec-kvm-intro">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   KVM is a full virtualization solution for hardware architectures that
+   support hardware virtualization.
+  </p><p>
+   VM Guests (virtual machines), virtual storage and virtual networks can
+   be managed with QEMU tools directly or with the <code class="systemitem">libvirt</code>-based stack.
+   The QEMU tools include <code class="command">qemu-system-<em class="replaceable">ARCH</em></code>, the QEMU
+   monitor, <code class="command">qemu-img</code>, and <code class="command">qemu-nbd</code>. A
+   <code class="systemitem">libvirt</code>-based stack includes <code class="systemitem">libvirt</code> itself, along with
+   <code class="systemitem">libvirt</code>-based applications such as <code class="command">virsh</code>,
+   <code class="command">virt-manager</code>, <code class="command">virt-install</code>, and
+   <code class="command">virt-viewer</code>.
+  </p></section><section class="sect2" id="sec-kvm-intro-arch" data-id-title="KVM virtualization architecture"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.2 </span><span class="title-name">KVM virtualization architecture</span></span> <a title="Permalink" class="permalink" href="#sec-kvm-intro-arch">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   This full virtualization solution consists of two main components:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     A set of kernel modules (<code class="systemitem">kvm.ko</code>,
+     <code class="systemitem">kvm-intel.ko</code>, and
+     <code class="systemitem">kvm-amd.ko</code>) that provides the core
+     virtualization infrastructure and processor-specific drivers.
+    </p></li><li class="listitem"><p>
+     A user space program
+     (<code class="command">qemu-system-<em class="replaceable">ARCH</em></code>) that
+     provides emulation for virtual devices and control mechanisms to
+     manage VM Guests (virtual machines).
+    </p></li></ul></div><p>
+   The term KVM more properly refers to the kernel level virtualization
+   functionality, but is in practice more commonly used to refer to the user
+   space component.
+  </p><div class="figure" id="fig-kvm-basics-arch"><div class="figure-contents"><div class="mediaobject"><a href="images/kvm_qemu.png"><img src="images/kvm_qemu.png" width="100%" alt="Layered diagram of the KVM stack: hardware virtualization support at the base, the Linux kernel with the KVM kernel modules above it, and QEMU with the guest kernel and guest user space processes on top, alongside regular host user space processes." title="Layered diagram of the KVM stack: hardware virtualization support at the base, the Linux kernel with the KVM kernel modules above it, and QEMU with the guest kernel and guest user space processes on top, alongside regular host user space processes."/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 2: </span><span class="title-name">KVM virtualization architecture </span></span><a title="Permalink" class="permalink" href="#fig-kvm-basics-arch">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></section></section><section xml:lang="en" class="sect1" id="vt-installation" data-id-title="Installation of virtualization components"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Installation of virtualization components</span></span> <a title="Permalink" class="permalink" href="#vt-installation">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+    To run a virtualization server (VM Host Server) that can host one or more guest systems (VM Guests), you need to install required virtualization components on the server.
+   </p></div></div></div></div><section class="sect2" id="install-virtualization-components" data-id-title="Installing virtualization components"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.1 </span><span class="title-name">Installing virtualization components</span></span> <a title="Permalink" class="permalink" href="#install-virtualization-components">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   The virtualization components you need vary depending on which
+   virtualization technology you want to use. You can install the
+   virtualization tools required to run a VM Host Server in one of the following
+   ways:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     By selecting a specific system role during <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> installation
+     on the VM Host Server
+    </p></li><li class="listitem"><p>
+     By installing specific installation patterns on an already installed
+     and running <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span>.
+    </p></li></ul></div><section class="sect3" id="install-virtualization-components-system-role" data-id-title="Specifying a system role"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.1.1 </span><span class="title-name">Specifying a system role</span></span> <a title="Permalink" class="permalink" href="#install-virtualization-components-system-role">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    You can install all the tools required for virtualization during the
+    installation of <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> on the VM Host Server. During the installation,
+    you are presented with the <span class="guimenu">System Role</span> screen.
+   </p><div class="figure" id="fig-vt-installation-system-role"><div class="figure-contents"><div class="mediaobject"><a href="images/virt-system-roles.png"><img src="images/virt-system-roles.png" width="75%" alt="The System Role screen listing the available roles, with KVM Virtualization Host selected." title="The System Role screen listing the available roles, with KVM Virtualization Host selected."/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 3: </span><span class="title-name">System Role screen </span></span><a title="Permalink" class="permalink" href="#fig-vt-installation-system-role">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><p>
+    Here you can select the <span class="guimenu">KVM Virtualization Host</span> role.
+    The appropriate software selection and setup is automatically performed
+    during <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> installation.
+   </p><div id="id-1.6.2.4.5" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
+     Both virtualization system roles create a dedicated
+     <code class="filename">/var/lib/libvirt</code> partition, and enable the
+     <code class="systemitem">firewalld</code> and Kdump services.
+    </p></div></section><section class="sect3" id="install-virtualization-components-pattern" data-id-title="Installing specific installation patterns"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.1.2 </span><span class="title-name">Installing specific installation patterns</span></span> <a title="Permalink" class="permalink" href="#install-virtualization-components-pattern">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Related software packages from <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> software repositories are
+    organized into <span><em class="emphasis">installation patterns</em></span>. You can use
+    these patterns to install specific virtualization components on an
+    already running <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span>. Use <code class="command">zypper</code> to install
+    them:
+   </p><div class="verbatim-wrap"><pre class="screen"><code class="command">zypper install -t pattern <em class="replaceable">PATTERN_NAME</em></code></pre></div><p>
+    To install the KVM environment, consider the following patterns:
+   </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.6.2.5.5.1"><span class="term"><code class="literal">kvm_server</code></span></dt><dd><p>
+       Installs basic VM Host Server with the KVM and QEMU environments.
+      </p></dd><dt id="id-1.6.2.5.5.2"><span class="term"><code class="literal">kvm_tools</code></span></dt><dd><p>
+       Installs <code class="systemitem">libvirt</code> tools for managing and monitoring VM Guests
+       in KVM environment.
+      </p></dd></dl></div></section></section><section class="sect2" id="sec-vt-installation-nested-vms" data-id-title="Enable nested virtualization in KVM"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.2 </span><span class="title-name">Enable nested virtualization in KVM</span></span> <a title="Permalink" class="permalink" href="#sec-vt-installation-nested-vms">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div id="id-1.6.3.2" data-id-title="Technology preview" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Technology preview</div><p>
+    Nested virtualization in KVM is still a technology preview. It is
+    provided for testing purposes and is not supported.
+   </p></div><p>
+   Nested guests are KVM guests run in a KVM guest. This section
+   describes nested guests using the following virtualization layers:
+  </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.6.3.4.1"><span class="term">L0</span></dt><dd><p>
+      A bare metal host running KVM.
+     </p></dd><dt id="id-1.6.3.4.2"><span class="term">L1</span></dt><dd><p>
+      A virtual machine running on L0. Because it can run another KVM,
+      it is called a <span><em class="emphasis">guest hypervisor</em></span>.
+     </p></dd><dt id="id-1.6.3.4.3"><span class="term">L2</span></dt><dd><p>
+      A virtual machine running on L1. It is called a <span><em class="emphasis">nested
+      guest</em></span>.
+     </p></dd></dl></div><p>
+   Nested virtualization has many advantages. You can benefit from it in the
+   following scenarios:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     Manage your own virtual machines directly with your hypervisor of
+     choice in cloud environments.
+    </p></li><li class="listitem"><p>
+     Enable the live migration of hypervisors and their guest virtual
+     machines as a single entity.
+    </p><div id="id-1.6.3.6.2.2" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+      Live migration of a nested VM Guest is not supported.
+     </p></div></li><li class="listitem"><p>
+     Use it for software development and testing.
+    </p></li></ul></div><p>
+   To enable nesting temporarily, remove the module and reload it with the
+   <code class="option">nested</code> KVM module parameter:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     For Intel CPUs, run:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">modprobe -r kvm_intel &amp;&amp; modprobe kvm_intel nested=1</code></pre></div></li><li class="listitem"><p>
+     For AMD CPUs, run:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">modprobe -r kvm_amd &amp;&amp; modprobe kvm_amd nested=1</code></pre></div></li></ul></div><p>
+   To enable nesting permanently, enable the <code class="option">nested</code> KVM
+   module parameter in the <code class="filename">/etc/modprobe.d/kvm_*.conf</code>
+   file, depending on your CPU:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     For Intel CPUs, edit
+     <code class="filename">/etc/modprobe.d/kvm_intel.conf</code> and add the
+     following line:
+    </p><div class="verbatim-wrap"><pre class="screen">options kvm_intel nested=1</pre></div></li><li class="listitem"><p>
+     For AMD CPUs, edit <code class="filename">/etc/modprobe.d/kvm_amd.conf</code>
+     and add the following line:
+    </p><div class="verbatim-wrap"><pre class="screen">options kvm_amd nested=1</pre></div></li></ul></div><p>
+   When your L0 host is capable of nesting, you can start an L1 guest in one
+   of the following ways:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     Use the <code class="option">-cpu host</code> QEMU command-line option.
+    </p></li><li class="listitem"><p>
+     Add the <code class="literal">vmx</code> (for Intel CPUs) or the
+     <code class="literal">svm</code> (for AMD CPUs) CPU feature to the
+     <code class="option">-cpu</code> QEMU command-line option, which enables
+     virtualization for the virtual CPU.
+    </p></li></ul></div><section class="sect3" id="sec-vt-installation-nested-vms-esxi" data-id-title="VMware ESX as a guest hypervisor"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.2.1 </span><span class="title-name">VMware ESX as a guest hypervisor</span></span> <a title="Permalink" class="permalink" href="#sec-vt-installation-nested-vms-esxi">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    If you use VMware ESX as a guest hypervisor on top of a KVM bare metal
+    hypervisor, you may experience unstable network communication. This
+    problem occurs especially between nested KVM guests and the KVM
+    bare metal hypervisor or external network. The following default CPU
+    configuration of the nested KVM guest is causing the problem:
+   </p><div class="verbatim-wrap"><pre class="screen">&lt;cpu mode='host-model' check='partial'/&gt;</pre></div><p>
+    To fix it, modify the CPU configuration as follows:
+   </p><div class="verbatim-wrap"><pre class="screen">[...]
+&lt;cpu mode='host-passthrough' check='none'&gt;
+ &lt;cache mode='passthrough'/&gt;
+&lt;/cpu&gt;
+[...]</pre></div></section></section></section><section xml:lang="en" class="sect1" id="manage-vm-on-commandline-tools" data-id-title="Command-line tools"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Command-line tools</span></span> <a title="Permalink" class="permalink" href="#manage-vm-on-commandline-tools">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p><code class="systemitem">libvirt</code> includes several command-line utilities to manage virtual machines. A few of the command-line utilities are listed below:</p></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.7.2.1"><span class="term"><code class="literal">virsh</code> (Package: libvirt-client)</span></dt><dd><p>A command-line tool to manage VM Guests with similar functionality as the Virtual Machine Manager. Allows you to change a VM Guest's status (start, stop, pause, etc.), to set up new guests and devices, or to edit existing configurations. virsh is also useful to script VM Guest management operations.</p></dd><dt id="id-1.7.2.2"><span class="term"><code class="literal">virt-install</code> (Package: virt-install)</span></dt><dd><p>A command-line tool for creating new VM Guests using the libvirt library. It supports graphical installations via VNC or SPICE protocols. Given suitable command-line arguments, virt-install can run completely unattended. This allows for easy automation of guest installs. virt-install is the default installation tool used by the Virtual Machine Manager.</p></dd><dt id="id-1.7.2.3"><span class="term"><code class="literal">remote-viewer</code> (Package: virt-viewer)</span></dt><dd><p>A simple viewer of a remote desktop. It supports SPICE and VNC protocols.</p></dd><dt id="id-1.7.2.4"><span class="term"><code class="literal">virt-clone</code> (Package: virt-install)</span></dt><dd><p>A tool for cloning existing virtual machine images using the libvirt hypervisor management library.</p></dd><dt id="id-1.7.2.5"><span class="term"><code class="literal">virt-host-validate</code> (Package: libvirt-client)</span></dt><dd><p>A tool that validates whether the host is configured in a suitable way to run libvirt hypervisor drivers.</p></dd></dl></div></section><section xml:lang="en" class="sect1" id="virt-v2v-vmware-migration" data-id-title="Converting VMware virtual machines to KVM with virt-v2v"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Converting VMware virtual machines to KVM with <code class="command">virt-v2v</code></span></span> <a title="Permalink" class="permalink" href="#virt-v2v-vmware-migration">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        <code class="command">virt-v2v</code> converts virtual machines from VMware and other hypervisors to run on KVM. This guide covers the prerequisites, preparation, and conversion process, with a focus on converting Windows Server 2022 guests.
+      </p></div></div></div></div><section class="sect2" id="sec-virt-v2v-overview" data-id-title="Overview"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.1 </span><span class="title-name">Overview</span></span> <a title="Permalink" class="permalink" href="#sec-virt-v2v-overview">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      <code class="command">virt-v2v</code> is a command-line tool for converting third-party virtual machines into a format that runs on QEMU/KVM. It is part of the <code class="command">virt-v2v</code> package and uses libguestfs under the hood.
+    </p><p>
+      SUSE Virtualization uses <code class="command">virt-v2v</code> via the Forklift migration tool to convert VMware virtual machines. The same tool can be used directly on the command line for individual conversions.
+    </p><div id="id-1.8.2.4" data-id-title="Supported source formats" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Supported source formats</div><p>
+        <code class="command">virt-v2v</code> supports conversion from VMware (VMX/VMDK), Xen, libvirt, and physical machines. This section covers VMware to KVM conversion.
+      </p></div></section><section class="sect2" id="sec-virt-v2v-prerequisites" data-id-title="Prerequisites"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.2 </span><span class="title-name">Prerequisites</span></span> <a title="Permalink" class="permalink" href="#sec-virt-v2v-prerequisites">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Before converting a virtual machine, ensure the following requirements are met on the KVM host:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          <code class="literal">virt-v2v</code> package installed:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper install virt-v2v</code></pre></div></li><li class="listitem"><p>
+          <code class="literal">guestfs-winsupport</code> package installed (required for Windows guests):
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper install guestfs-winsupport</code></pre></div></li><li class="listitem"><p>
+          SUSE Linux Enterprise Virtual Machine Driver Pack ISO image. Download the latest SLE VMDP ISO from the SUSE Customer Center or the SUSE download portal.
+        </p></li><li class="listitem"><p>
+          Source VMware VM files (VMX and VMDK) accessible on the KVM host, either locally or via NFS.
+        </p></li><li class="listitem"><p>
+          Sufficient disk space on the target host to store the converted VM disk images.
+        </p></li></ul></div></section><section class="sect2" id="sec-virt-v2v-preparation" data-id-title="Preparing the VMDP drivers"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.3 </span><span class="title-name">Preparing the VMDP drivers</span></span> <a title="Permalink" class="permalink" href="#sec-virt-v2v-preparation">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      For Windows guests, <code class="command">virt-v2v</code> requires virtio drivers and Windows tools to be available on the host. The SLE VMDP ISO provides a helper script that sets up the correct directory structure.
+    </p><section class="sect3" id="pro-virt-v2v-prepare-vmdp" data-id-title="Setting up VMDP drivers"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">7.3.1 </span><span class="title-name">Setting up VMDP drivers</span></span> <a title="Permalink" class="permalink" href="#pro-virt-v2v-prepare-vmdp">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        Mount the SLE VMDP ISO and run the <code class="command">virt-v2v-vmdp.sh</code> script from the <code class="filename">v2v_scripts</code> directory:
+      </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+         Mount the SLE VMDP ISO:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">mount -o loop /path/to/vmdp-<em class="replaceable">VERSION</em>.iso /mnt</code></pre></div></li><li class="step"><p>
+         Run the setup script:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">/mnt/v2v_scripts/virt-v2v-vmdp.sh /mnt/vmdp-<em class="replaceable">VERSION</em></code></pre></div></li><li class="step"><p>
+         Unmount the ISO:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">umount /mnt</code></pre></div></li></ol></div></div><p>
+        The script performs the following actions:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            Installs virtio drivers to <code class="filename">/usr/share/virtio-win/</code> in the directory layout expected by <code class="command">virt-v2v</code>.
+          </p></li><li class="listitem"><p>
+            Places <code class="filename">pvxsvc.exe</code> and other required Windows tools in <code class="filename">/usr/share/virt-tools/</code>.
+          </p></li><li class="listitem"><p>
+            Creates placeholder files for the QEMU Guest Agent MSI and Balloon Server to suppress non-critical warnings.
+          </p></li></ul></div><div id="id-1.8.4.3.6" data-id-title="Do not manually copy driver files" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Do not manually copy driver files</div><p>
+          Do not manually extract and copy VMDP files to <code class="filename">/usr/share/virt-tools/</code> or <code class="filename">/usr/share/virtio-win/</code>. The directory structure expected by <code class="command">virt-v2v</code> on <span class="phrase"><span class="phrase">SLES for SAP</span></span> <span class="phrase"><span class="phrase">16.0</span></span> differs from earlier versions. Always use the <code class="command">virt-v2v-vmdp.sh</code> script to ensure the correct layout.
+        </p></div></section></section><section class="sect2" id="sec-virt-v2v-conversion" data-id-title="Converting a VMware VM"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.4 </span><span class="title-name">Converting a VMware VM</span></span> <a title="Permalink" class="permalink" href="#sec-virt-v2v-conversion">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Use the <code class="command">virt-v2v</code> command to convert the VMware VM. The following example converts a Windows Server 2022 VM:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">virt-v2v -i vmx /path/to/windows2022.vmx \
+  -o local -of qcow2 -os /path/to/output/dir \
+  --network vmware-network-name:target-bridge-name</code></pre></div><p>
+      Key command options:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.8.5.5.1"><span class="term"><code class="option">-i vmx</code></span></dt><dd><p>
+            Input mode: read VMware VMX configuration file.
+          </p></dd><dt id="id-1.8.5.5.2"><span class="term"><code class="option">-o local</code></span></dt><dd><p>
+            Output mode: write disk image and XML configuration to the local filesystem. Use <code class="option">-o libvirt</code> to define the VM directly in libvirt (requires pre-configured storage pools).
+          </p></dd><dt id="id-1.8.5.5.3"><span class="term"><code class="option">-of qcow2</code></span></dt><dd><p>
+            Output disk format. <code class="literal">qcow2</code> is recommended for space efficiency.
+          </p></dd><dt id="id-1.8.5.5.4"><span class="term"><code class="option">-os</code> <em class="replaceable">output-storage</em></span></dt><dd><p>
+            Output storage path. For <code class="option">-o local</code>, this is a directory path. For <code class="option">-o libvirt</code>, this is a libvirt storage pool name.
+          </p></dd><dt id="id-1.8.5.5.5"><span class="term"><code class="option">--network</code> <em class="replaceable">source:target</em></span></dt><dd><p>
+            Map a VMware network name to a target bridge or libvirt network name. If omitted, the network device mapping may require manual adjustment in the generated XML.
+          </p></dd></dl></div><section class="sect3" id="sec-virt-v2v-conversion-libvirt" data-id-title="Using libvirt output mode"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">7.4.1 </span><span class="title-name">Using libvirt output mode</span></span> <a title="Permalink" class="permalink" href="#sec-virt-v2v-conversion-libvirt">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        To define the converted VM directly in libvirt, use <code class="option">-o libvirt</code>:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">virt-v2v -i vmx /path/to/windows2022.vmx \
+  -o libvirt -of qcow2 -os default \
+  --network vm-network:default</code></pre></div><p>
+        The <code class="option">-os</code> parameter specifies a libvirt storage pool name. Ensure the pool exists and has sufficient free space before running the conversion.
+      </p></section></section><section class="sect2" id="sec-virt-v2v-post-conversion" data-id-title="Post-conversion steps"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.5 </span><span class="title-name">Post-conversion steps</span></span> <a title="Permalink" class="permalink" href="#sec-virt-v2v-post-conversion">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      After a successful conversion, follow these steps to complete the migration:
+    </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>
+          Start the converted VM. On first boot, the VM will install virtio drivers. The VM may reboot one or two times during this process.
+        </p></li><li class="listitem"><p>
+          After the VM stabilizes, power it off and change the video adapter to virtio (viogpudo) for optimal graphics performance. This can be done via <code class="command">virsh edit</code> or the Virtual Machine Manager GUI.
+        </p></li><li class="listitem"><p>
+          Start the VM again. It will complete the driver installation and boot normally.
+        </p></li><li class="listitem"><p>
+          Verify that virtio drivers are active for disk, network, and graphics in the Windows Device Manager.
+        </p></li></ol></div><div id="id-1.8.6.4" data-id-title="UEFI boot requirement" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: UEFI boot requirement</div><p>
+        Windows Server 2022 and other modern Windows guests may require UEFI boot firmware on the target. <code class="command">virt-v2v</code> detects this automatically and sets the appropriate firmware type. If the VM fails to boot, verify the firmware setting in the VM configuration.
+      </p></div></section><section class="sect2" id="sec-virt-v2v-warnings" data-id-title="Expected warnings during conversion"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.6 </span><span class="title-name">Expected warnings during conversion</span></span> <a title="Permalink" class="permalink" href="#sec-virt-v2v-warnings">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The following warnings are informational and can be safely ignored:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.8.7.3.1"><span class="term">QEMU Guest Agent MSI not found</span></dt><dd><p>
+            <code class="literal">virt-v2v: warning: QEMU Guest Agent MSI not found on tools ISO/directory.</code>
+          </p><p>
+            SLE VMDP does not provide a standalone QEMU Guest Agent MSI package. The guest agent is included in the VMDP <code class="filename">setup.exe</code> and is installed automatically during first boot of the converted VM.
+          </p></dd><dt id="id-1.8.7.3.2"><span class="term">Balloon Server not found</span></dt><dd><p>
+            <code class="literal">virt-v2v: warning: Balloon Server (blnsvr.exe) not found on tools ISO/directory.</code>
+          </p><p>
+            SLE VMDP uses <code class="filename">pvxsvc.exe</code> instead of <code class="filename">blnsvr.exe</code> to provide balloon functionality. The service is installed during the first boot of the converted VM.
+          </p></dd><dt id="id-1.8.7.3.3"><span class="term">Random seed could not be set</span></dt><dd><p>
+            <code class="literal">virt-v2v: warning: random seed could not be set for this type of guest</code>
+          </p><p>
+            This warning indicates that <code class="command">virt-v2v</code> was unable to set a random seed for the guest. This does not affect the conversion result.
+          </p></dd></dl></div></section><section class="sect2" id="sec-virt-v2v-troubleshooting" data-id-title="Troubleshooting"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.7 </span><span class="title-name">Troubleshooting</span></span> <a title="Permalink" class="permalink" href="#sec-virt-v2v-troubleshooting">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><section class="sect3" id="sec-virt-v2v-trouble-hivex" data-id-title="Hivex.Error during inspection"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">7.7.1 </span><span class="title-name"><code class="literal">Hivex.Error</code> during inspection</span></span> <a title="Permalink" class="permalink" href="#sec-virt-v2v-trouble-hivex">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        If <code class="command">virt-v2v</code> fails with:
+      </p><div class="verbatim-wrap"><pre class="screen">virt-v2v: error: libguestfs error: inspect_os: internal error:
+inspect_os: unhandled exception thrown: Hivex.Error</pre></div><p>
+        This error occurs when libguestfs cannot parse the Windows registry hive files. Possible causes and resolutions:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            Ensure you are running the latest version of <code class="literal">virt-v2v</code> and <code class="literal">guestfs-winsupport</code>.
+          </p></li><li class="listitem"><p>
+            Set the environment variable <code class="envar">LIBGUESTFS_BACKEND=direct</code> before running the conversion:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">export LIBGUESTFS_BACKEND=direct</code></pre></div></li><li class="listitem"><p>
+            Verify that the source VMDK disk is not corrupted by running a disk check on the VMware VM before conversion.
+          </p></li></ul></div></section><section class="sect3" id="sec-virt-v2v-trouble-drivers-missing" data-id-title="Virtio drivers not found"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">7.7.2 </span><span class="title-name">Virtio drivers not found</span></span> <a title="Permalink" class="permalink" href="#sec-virt-v2v-trouble-drivers-missing">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        If you see the warning:
+      </p><div class="verbatim-wrap"><pre class="screen">virt-v2v: warning: there are no virtio drivers available for this
+version of Windows (10.0 x86_64 Server win2k22).  virt-v2v looks
+for drivers in /usr/share/virtio-win</pre></div><p>
+        This means <code class="command">virt-v2v</code> could not find the virtio drivers for the detected Windows version. The guest will be configured with slower emulated devices instead of virtio.
+      </p><p>
+        Resolution: run the <code class="command">virt-v2v-vmdp.sh</code> script from the SLE VMDP ISO. The script installs drivers in the correct directory layout. On SLES 16, the expected driver path for Windows Server 2022 is <code class="filename">/usr/share/virtio-win/drivers/amd64/2k22/</code>.
+      </p><div id="id-1.8.8.3.6" data-id-title="Do not manually create symlinks as a workaround" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Do not manually create symlinks as a workaround</div><p>
+          While creating a symbolic link from <code class="filename">2k22</code> to another driver directory (e.g., <code class="filename">win11</code>) may suppress the warning, it is not a supported configuration. Always use the <code class="command">virt-v2v-vmdp.sh</code> script with an up-to-date SLE VMDP ISO.
+        </p></div></section><section class="sect3" id="sec-virt-v2v-trouble-boot-fail" data-id-title="VM fails to boot after conversion (Windows Server 2019/2022/2025)"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">7.7.3 </span><span class="title-name">VM fails to boot after conversion (Windows Server 2019/2022/2025)</span></span> <a title="Permalink" class="permalink" href="#sec-virt-v2v-trouble-boot-fail">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        After converting Windows Server 2019, 2022, or 2025, the VM may fail to boot with an <span class="quote">“<span class="quote">Inaccessible Boot Device</span>”</span> error or a page fault blue screen.
+      </p><p>
+        This issue is caused by the virtio block driver installation path. On these Windows versions, the VMDP setup installs the updated virtio block driver to the driver store directory (<code class="filename">\windows\system32\driverstore\filerepository</code>) using DIRID 13, while removing the driver from <code class="filename">\windows\system32\drivers</code> (DIRID 12). Windows fails to locate the block driver on next boot.
+      </p><p>
+        Resolution: ensure you are using a recent SLE VMDP ISO version (2.5 or later) that includes the fix. The updated VMDP <code class="filename">setup.exe</code> copies the driver to both locations, allowing the VM to boot correctly.
+      </p><p>
+        If the VM fails to boot with an older VMDP version, you can manually copy the virtio block driver from the driver store to <code class="filename">\windows\system32\drivers</code> to restore boot capability.
+      </p></section><section class="sect3" id="sec-virt-v2v-trouble-network" data-id-title="Network mapping issues"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">7.7.4 </span><span class="title-name">Network mapping issues</span></span> <a title="Permalink" class="permalink" href="#sec-virt-v2v-trouble-network">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        If the <code class="option">--network</code> mapping fails, the converted VM may not have a correctly configured network interface. To resolve:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            Verify the source network name matches the network name defined in the VMware VMX file.
+          </p></li><li class="listitem"><p>
+            Ensure the target bridge or libvirt network exists on the host before conversion.
+          </p></li><li class="listitem"><p>
+            If using <code class="option">-o libvirt</code>, create a libvirt network with a matching name using <code class="command">virsh net-create</code>.
+          </p></li></ul></div></section><section class="sect3" id="sec-virt-v2v-trouble-debug" data-id-title="Debugging virt-v2v"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">7.7.5 </span><span class="title-name">Debugging <code class="command">virt-v2v</code></span></span> <a title="Permalink" class="permalink" href="#sec-virt-v2v-trouble-debug">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        To enable verbose output for debugging, run <code class="command">virt-v2v</code> with the <code class="option">-v</code> option:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">virt-v2v -v -i vmx /path/to/vm.vmx -o local -of qcow2 -os /output/dir</code></pre></div><p>
+        For additional libguestfs debugging, set:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">export LIBGUESTFS_DEBUG=1</code></pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">export LIBGUESTFS_TRACE=1</code></pre></div></section></section><section class="sect2" id="sec-vmdp-iso-contents" data-id-title="VMDP ISO contents and other uses"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.8 </span><span class="title-name">VMDP ISO contents and other uses</span></span> <a title="Permalink" class="permalink" href="#sec-vmdp-iso-contents">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><section class="sect3" id="sec-vmdp-iso-install-drivers" data-id-title="Installing drivers at VM creation"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">7.8.1 </span><span class="title-name">Installing drivers at VM creation</span></span> <a title="Permalink" class="permalink" href="#sec-vmdp-iso-install-drivers">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        The VMDP ISO can be loaded as a virtual CD in a KVM VM to provide VirtIO Block or SCSI drivers during Windows installation.
+        On the <span class="guimenu">Where do you want to install Windows</span> screen, select <span class="guimenu">Load driver</span> and follow the prompts to select the appropriate driver.
+      </p></section><section class="sect3" id="sec-vmdp-iso-full-content" data-id-title="Full VMDP contents for Xen and KVM"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">7.8.2 </span><span class="title-name">Full VMDP contents for Xen and KVM</span></span> <a title="Permalink" class="permalink" href="#sec-vmdp-iso-full-content">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        The ISO also contains the full VMDP <code class="filename">setup.exe</code> along with expanded contents for installation flexibility.
+        These can be used for both Xen and KVM hosted Windows VMs.
+      </p></section></section><section class="sect2" id="sec-virt-v2v-example-w2k22" data-id-title="Complete example: Windows Server 2022"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.9 </span><span class="title-name">Complete example: Windows Server 2022</span></span> <a title="Permalink" class="permalink" href="#sec-virt-v2v-example-w2k22">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The following example demonstrates a full conversion of a Windows Server 2022 VM from VMware to KVM:
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+       Mount the SLE VMDP ISO:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">mount -o loop /data/isos/vmdp/vmdp-VERSION.iso /mnt</code></pre></div></li><li class="step"><p>
+       Run the setup script:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">/mnt/v2v_scripts/virt-v2v-vmdp.sh /mnt/vmdp-VERSION</code></pre></div></li><li class="step"><p>
+       Unmount the ISO:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">umount /mnt</code></pre></div></li><li class="step"><p>
+       Work around the <code class="literal">Hivex.Error</code> issue by using the direct back end:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">export LIBGUESTFS_BACKEND=direct</code></pre></div></li><li class="step"><p>
+       Convert the VM and define it directly in libvirt:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">virt-v2v -i vmx /srv/vmware/windows2022/windows2022.vmx \
+  -o libvirt -of qcow2 -os default \
+  --network "VM Network":default</code></pre></div></li></ol></div></div><p>
+      After conversion completes:
+    </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>
+          Start the VM: <code class="command">virsh start windows2022</code>
+        </p></li><li class="listitem"><p>
+          Allow the VM to reboot (virtio driver installation)
+        </p></li><li class="listitem"><p>
+          Once stable, power off and switch video to virtio
+        </p></li><li class="listitem"><p>
+          Restart and verify all virtio drivers are active
+        </p></li></ol></div></section></section><section xml:lang="en" class="sect1" id="glue-alp-containers-podman-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="#glue-alp-containers-podman-more-info">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    For further steps in virtualization, refer to the following sources:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/concept-manage-virtual-machines-libvirt/concept-manage-virtual-machines-libvirt.html" target="_blank">Managing
+        virtual machines with <code class="systemitem">libvirt</code></a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/task-configure-virtual-machine-manager/task-configure-virtual-machine-manager.html" target="_blank">Configuring
+        Virtual Machines with Virtual Machine Manager</a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/vm-assign-pci-device/vm-assign-pci-device.html" target="_blank">Assigning
+        Host Devices to Virtual Machines</a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/virtual-disk-cache-mode-configure/virtual-disk-cache-mode-configure.html" target="_blank">Configuring
+        a Virtual Disk Cache Mode</a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="#virt-v2v-vmware-migration" title="7. Converting VMware virtual machines to KVM with virt-v2v">Converting VMware Virtual Machines to KVM with virt-v2v</a>
+      </p></li></ul></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">9 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section><div class="legal-section"><section class="appendix" translate="no" id="doc-gfdl-license" data-id-title="GNU Free Documentation License"><div class="titlepage"><div><div><h1 class="title">GNU Free Documentation License</h1></div></div></div><p>
+    Copyright (C) 2000, 2001, 2002 Free Software Foundation, Inc. 51 Franklin St, Fifth Floor,
+    Boston, MA 02110-1301 USA. Everyone is permitted to copy and distribute verbatim copies of this
+    license document, but changing it is not allowed.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.3"><span class="name">
+    0. PREAMBLE
+  </span><a title="Permalink" class="permalink" href="#id-1.11.3">#</a></h5></div><p>
+    The purpose of this License is to make a manual, textbook, or other functional and useful
+    document "free" in the sense of freedom: to assure everyone the effective freedom to copy and
+    redistribute it, with or without modifying it, either commercially or non-commercially.
+    Secondarily, this License preserves for the author and publisher a way to get credit for their
+    work, while not being considered responsible for modifications made by others.
+  </p><p>
+    This License is a kind of "copyleft", which means that derivative works of the document must
+    themselves be free in the same sense. It complements the GNU General Public License, which is a
+    copyleft license designed for free software.
+  </p><p>
+    We have designed this License to use it for manuals for free software, because free software
+    needs free documentation: a free program should come with manuals providing the same freedoms
+    that the software does. But this License is not limited to software manuals; it can be used for
+    any textual work, regardless of subject matter or whether it is published as a printed book. We
+    recommend this License principally for works whose purpose is instruction or reference.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.7"><span class="name">
+    1. APPLICABILITY AND DEFINITIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.11.7">#</a></h5></div><p>
+    This License applies to any manual or other work, in any medium, that contains a notice placed
+    by the copyright holder saying it can be distributed under the terms of this License. Such a
+    notice grants a world-wide, royalty-free license, unlimited in duration, to use that work under
+    the conditions stated herein. The "Document", below, refers to any such manual or work. Any
+    member of the public is a licensee, and is addressed as "you". You accept the license if you
+    copy, modify or distribute the work in a way requiring permission under copyright law.
+  </p><p>
+    A "Modified Version" of the Document means any work containing the Document or a portion of it,
+    either copied verbatim, or with modifications and/or translated into another language.
+  </p><p>
+    A "Secondary Section" is a named appendix or a front-matter section of the Document that deals
+    exclusively with the relationship of the publishers or authors of the Document to the
+    Document's overall subject (or to related matters) and contains nothing that could fall
+    directly within that overall subject. (Thus, if the Document is in part a textbook of
+    mathematics, a Secondary Section may not explain any mathematics.) The relationship could be a
+    matter of historical connection with the subject or with related matters, or of legal,
+    commercial, philosophical, ethical or political position regarding them.
+  </p><p>
+    The "Invariant Sections" are certain Secondary Sections whose titles are designated, as being
+    those of Invariant Sections, in the notice that says that the Document is released under this
+    License. If a section does not fit the above definition of Secondary then it is not allowed to
+    be designated as Invariant. The Document may contain zero Invariant Sections. If the Document
+    does not identify any Invariant Sections then there are none.
+  </p><p>
+    The "Cover Texts" are certain short passages of text that are listed, as Front-Cover Texts or
+    Back-Cover Texts, in the notice that says that the Document is released under this License. A
+    Front-Cover Text may be at most 5 words, and a Back-Cover Text may be at most 25 words.
+  </p><p>
+    A "Transparent" copy of the Document means a machine-readable copy, represented in a format
+    whose specification is available to the general public, that is suitable for revising the
+    document straightforwardly with generic text editors or (for images composed of pixels) generic
+    paint programs or (for drawings) some widely available drawing editor, and that is suitable for
+    input to text formatters or for automatic translation to a variety of formats suitable for
+    input to text formatters. A copy made in an otherwise Transparent file format whose markup, or
+    absence of markup, has been arranged to thwart or discourage subsequent modification by readers
+    is not Transparent. An image format is not Transparent if used for any substantial amount of
+    text. A copy that is not "Transparent" is called "Opaque".
+  </p><p>
+    Examples of suitable formats for Transparent copies include plain ASCII without markup, Texinfo
+    input format, LaTeX input format, SGML or XML using a publicly available DTD, and
+    standard-conforming simple HTML, PostScript or PDF designed for human modification. Examples of
+    transparent image formats include PNG, XCF and JPG. Opaque formats include proprietary formats
+    that can be read and edited only by proprietary word processors, SGML or XML for which the DTD
+    and/or processing tools are not generally available, and the machine-generated HTML, PostScript
+    or PDF produced by some word processors for output purposes only.
+  </p><p>
+    The "Title Page" means, for a printed book, the title page itself, plus such following pages as
+    are needed to hold, legibly, the material this License requires to appear in the title page.
+    For works in formats which do not have any title page as such, "Title Page" means the text near
+    the most prominent appearance of the work's title, preceding the beginning of the body of the
+    text.
+  </p><p>
+    A section "Entitled XYZ" means a named subunit of the Document whose title either is precisely
+    XYZ or contains XYZ in parentheses following text that translates XYZ in another language.
+    (Here XYZ stands for a specific section name mentioned below, such as "Acknowledgements",
+    "Dedications", "Endorsements", or "History".) To "Preserve the Title" of such a section when
+    you modify the Document means that it remains a section "Entitled XYZ" according to this
+    definition.
+  </p><p>
+    The Document may include Warranty Disclaimers next to the notice which states that this License
+    applies to the Document. These Warranty Disclaimers are considered to be included by reference
+    in this License, but only as regards disclaiming warranties: any other implication that these
+    Warranty Disclaimers may have is void and has no effect on the meaning of this License.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.18"><span class="name">
+    2. VERBATIM COPYING
+  </span><a title="Permalink" class="permalink" href="#id-1.11.18">#</a></h5></div><p>
+    You may copy and distribute the Document in any medium, either commercially or
+    non-commercially, provided that this License, the copyright notices, and the license notice
+    saying this License applies to the Document are reproduced in all copies, and that you add no
+    other conditions whatsoever to those of this License. You may not use technical measures to
+    obstruct or control the reading or further copying of the copies you make or distribute.
+    However, you may accept compensation in exchange for copies. If you distribute a large enough
+    number of copies you must also follow the conditions in section 3.
+  </p><p>
+    You may also lend copies, under the same conditions stated above, and you may publicly display
+    copies.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.21"><span class="name">
+    3. COPYING IN QUANTITY
+  </span><a title="Permalink" class="permalink" href="#id-1.11.21">#</a></h5></div><p>
+    If you publish printed copies (or copies in media that commonly have printed covers) of the
+    Document, numbering more than 100, and the Document's license notice requires Cover Texts, you
+    must enclose the copies in covers that carry, clearly and legibly, all these Cover Texts:
+    Front-Cover Texts on the front cover, and Back-Cover Texts on the back cover. Both covers must
+    also clearly and legibly identify you as the publisher of these copies. The front cover must
+    present the full title with all words of the title equally prominent and visible. You may add
+    other material on the covers in addition. Copying with changes limited to the covers, as long
+    as they preserve the title of the Document and satisfy these conditions, can be treated as
+    verbatim copying in other respects.
+  </p><p>
+    If the required texts for either cover are too voluminous to fit legibly, you should put the
+    first ones listed (as many as fit reasonably) on the actual cover, and continue the rest onto
+    adjacent pages.
+  </p><p>
+    If you publish or distribute Opaque copies of the Document numbering more than 100, you must
+    either include a machine-readable Transparent copy along with each Opaque copy, or state in or
+    with each Opaque copy a computer-network location from which the general network-using public
+    has access to download using public-standard network protocols a complete Transparent copy of
+    the Document, free of added material. If you use the latter option, you must take reasonably
+    prudent steps, when you begin distribution of Opaque copies in quantity, to ensure that this
+    Transparent copy will remain thus accessible at the stated location until at least one year
+    after the last time you distribute an Opaque copy (directly or through your agents or
+    retailers) of that edition to the public.
+  </p><p>
+    It is requested, but not required, that you contact the authors of the Document well before
+    redistributing any large number of copies, to give them a chance to provide you with an updated
+    version of the Document.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.26"><span class="name">
+    4. MODIFICATIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.11.26">#</a></h5></div><p>
+    You may copy and distribute a Modified Version of the Document under the conditions of sections
+    2 and 3 above, provided that you release the Modified Version under precisely this License,
+    with the Modified Version filling the role of the Document, thus licensing distribution and
+    modification of the Modified Version to whoever possesses a copy of it. In addition, you must
+    do these things in the Modified Version:
+  </p><div class="orderedlist"><ol class="orderedlist" type="A"><li class="listitem"><p>
+        Use in the Title Page (and on the covers, if any) a title distinct from that of the
+        Document, and from those of previous versions (which should, if there were any, be listed
+        in the History section of the Document). You may use the same title as a previous version
+        if the original publisher of that version gives permission.
+      </p></li><li class="listitem"><p>
+        List on the Title Page, as authors, one or more persons or entities responsible for
+        authorship of the modifications in the Modified Version, together with at least five of the
+        principal authors of the Document (all of its principal authors, if it has fewer than
+        five), unless they release you from this requirement.
+      </p></li><li class="listitem"><p>
+        State on the Title page the name of the publisher of the Modified Version, as the
+        publisher.
+      </p></li><li class="listitem"><p>
+        Preserve all the copyright notices of the Document.
+      </p></li><li class="listitem"><p>
+        Add an appropriate copyright notice for your modifications adjacent to the other copyright
+        notices.
+      </p></li><li class="listitem"><p>
+        Include, immediately after the copyright notices, a license notice giving the public
+        permission to use the Modified Version under the terms of this License, in the form shown
+        in the Addendum below.
+      </p></li><li class="listitem"><p>
+        Preserve in that license notice the full lists of Invariant Sections and required Cover
+        Texts given in the Document's license notice.
+      </p></li><li class="listitem"><p>
+        Include an unaltered copy of this License.
+      </p></li><li class="listitem"><p>
+        Preserve the section Entitled "History", Preserve its Title, and add to it an item stating
+        at least the title, year, new authors, and publisher of the Modified Version as given on
+        the Title Page. If there is no section Entitled "History" in the Document, create one
+        stating the title, year, authors, and publisher of the Document as given on its Title Page,
+        then add an item describing the Modified Version as stated in the previous sentence.
+      </p></li><li class="listitem"><p>
+        Preserve the network location, if any, given in the Document for public access to a
+        Transparent copy of the Document, and likewise the network locations given in the Document
+        for previous versions it was based on. These may be placed in the "History" section. You
+        may omit a network location for a work that was published at least four years before the
+        Document itself, or if the original publisher of the version it refers to gives permission.
+      </p></li><li class="listitem"><p>
+        For any section Entitled "Acknowledgements" or "Dedications", Preserve the Title of the
+        section, and preserve in the section all the substance and tone of each of the contributor
+        acknowledgements and/or dedications given therein.
+      </p></li><li class="listitem"><p>
+        Preserve all the Invariant Sections of the Document, unaltered in their text and in their
+        titles. Section numbers or the equivalent are not considered part of the section titles.
+      </p></li><li class="listitem"><p>
+        Delete any section Entitled "Endorsements". Such a section may not be included in the
+        Modified Version.
+      </p></li><li class="listitem"><p>
+        Do not retitle any existing section to be Entitled "Endorsements" or to conflict in title
+        with any Invariant Section.
+      </p></li><li class="listitem"><p>
+        Preserve any Warranty Disclaimers.
+      </p></li></ol></div><p>
+    If the Modified Version includes new front-matter sections or appendices that qualify as
+    Secondary Sections and contain no material copied from the Document, you may at your option
+    designate some or all of these sections as invariant. To do this, add their titles to the list
+    of Invariant Sections in the Modified Version's license notice. These titles must be distinct
+    from any other section titles.
+  </p><p>
+    You may add a section Entitled "Endorsements", provided it contains nothing but endorsements of
+    your Modified Version by various parties--for example, statements of peer review or that the
+    text has been approved by an organization as the authoritative definition of a standard.
+  </p><p>
+    You may add a passage of up to five words as a Front-Cover Text, and a passage of up to 25
+    words as a Back-Cover Text, to the end of the list of Cover Texts in the Modified Version. Only
+    one passage of Front-Cover Text and one of Back-Cover Text may be added by (or through
+    arrangements made by) any one entity. If the Document already includes a cover text for the
+    same cover, previously added by you or by arrangement made by the same entity you are acting on
+    behalf of, you may not add another; but you may replace the old one, on explicit permission
+    from the previous publisher that added the old one.
+  </p><p>
+    The author(s) and publisher(s) of the Document do not by this License give permission to use
+    their names for publicity for or to assert or imply endorsement of any Modified Version.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.33"><span class="name">
+    5. COMBINING DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.11.33">#</a></h5></div><p>
+    You may combine the Document with other documents released under this License, under the terms
+    defined in section 4 above for modified versions, provided that you include in the combination
+    all of the Invariant Sections of all of the original documents, unmodified, and list them all
+    as Invariant Sections of your combined work in its license notice, and that you preserve all
+    their Warranty Disclaimers.
+  </p><p>
+    The combined work need only contain one copy of this License, and multiple identical Invariant
+    Sections may be replaced with a single copy. If there are multiple Invariant Sections with the
+    same name but different contents, make the title of each such section unique by adding at the
+    end of it, in parentheses, the name of the original author or publisher of that section if
+    known, or else a unique number. Make the same adjustment to the section titles in the list of
+    Invariant Sections in the license notice of the combined work.
+  </p><p>
+    In the combination, you must combine any sections Entitled "History" in the various original
+    documents, forming one section Entitled "History"; likewise combine any sections Entitled
+    "Acknowledgements", and any sections Entitled "Dedications". You must delete all sections
+    Entitled "Endorsements".
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.37"><span class="name">
+    6. COLLECTIONS OF DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.11.37">#</a></h5></div><p>
+    You may make a collection consisting of the Document and other documents released under this
+    License, and replace the individual copies of this License in the various documents with a
+    single copy that is included in the collection, provided that you follow the rules of this
+    License for verbatim copying of each of the documents in all other respects.
+  </p><p>
+    You may extract a single document from such a collection, and distribute it individually under
+    this License, provided you insert a copy of this License into the extracted document, and
+    follow this License in all other respects regarding verbatim copying of that document.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.40"><span class="name">
+    7. AGGREGATION WITH INDEPENDENT WORKS
+  </span><a title="Permalink" class="permalink" href="#id-1.11.40">#</a></h5></div><p>
+    A compilation of the Document or its derivatives with other separate and independent documents
+    or works, in or on a volume of a storage or distribution medium, is called an "aggregate" if
+    the copyright resulting from the compilation is not used to limit the legal rights of the
+    compilation's users beyond what the individual works permit. When the Document is included in
+    an aggregate, this License does not apply to the other works in the aggregate which are not
+    themselves derivative works of the Document.
+  </p><p>
+    If the Cover Text requirement of section 3 is applicable to these copies of the Document, then
+    if the Document is less than one half of the entire aggregate, the Document's Cover Texts may
+    be placed on covers that bracket the Document within the aggregate, or the electronic
+    equivalent of covers if the Document is in electronic form. Otherwise they must appear on
+    printed covers that bracket the whole aggregate.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.43"><span class="name">
+    8. TRANSLATION
+  </span><a title="Permalink" class="permalink" href="#id-1.11.43">#</a></h5></div><p>
+    Translation is considered a kind of modification, so you may distribute translations of the
+    Document under the terms of section 4. Replacing Invariant Sections with translations requires
+    special permission from their copyright holders, but you may include translations of some or
+    all Invariant Sections in addition to the original versions of these Invariant Sections. You
+    may include a translation of this License, and all the license notices in the Document, and any
+    Warranty Disclaimers, provided that you also include the original English version of this
+    License and the original versions of those notices and disclaimers. In case of a disagreement
+    between the translation and the original version of this License or a notice or disclaimer, the
+    original version will prevail.
+  </p><p>
+    If a section in the Document is Entitled "Acknowledgements", "Dedications", or "History", the
+    requirement (section 4) to Preserve its Title (section 1) will typically require changing the
+    actual title.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.46"><span class="name">
+    9. TERMINATION
+  </span><a title="Permalink" class="permalink" href="#id-1.11.46">#</a></h5></div><p>
+    You may not copy, modify, sublicense, or distribute the Document except as expressly provided
+    for under this License. Any other attempt to copy, modify, sublicense or distribute the
+    Document is void, and will automatically terminate your rights under this License. However,
+    parties who have received copies, or rights, from you under this License will not have their
+    licenses terminated so long as such parties remain in full compliance.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.48"><span class="name">
+    10. FUTURE REVISIONS OF THIS LICENSE
+  </span><a title="Permalink" class="permalink" href="#id-1.11.48">#</a></h5></div><p>
+    The Free Software Foundation may publish new, revised versions of the GNU Free Documentation
+    License from time to time. Such new versions will be similar in spirit to the present version,
+    but may differ in detail to address new problems or concerns. See
+    <a class="link" href="https://www.gnu.org/copyleft/" target="_blank">https://www.gnu.org/copyleft/</a>.
+  </p><p>
+    Each version of the License is given a distinguishing version number. If the Document specifies
+    that a particular numbered version of this License "or any later version" applies to it, you
+    have the option of following the terms and conditions either of that specified version or of
+    any later version that has been published (not as a draft) by the Free Software Foundation. If
+    the Document does not specify a version number of this License, you may choose any version ever
+    published (not as a draft) by the Free Software Foundation.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.51"><span class="name">
+    ADDENDUM: How to use this License for your documents
+  </span><a title="Permalink" class="permalink" href="#id-1.11.51">#</a></h5></div><div class="verbatim-wrap"><pre class="screen">Copyright (c) YEAR YOUR NAME.
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+A copy of the license is included in the section entitled “GNU
+Free Documentation License”.</pre></div><p>
+    If you have Invariant Sections, Front-Cover Texts and Back-Cover Texts, replace the
+    “with...Texts.” line with this:
+  </p><div class="verbatim-wrap"><pre class="screen">with the Invariant Sections being LIST THEIR TITLES, with the
+Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.</pre></div><p>
+    If you have Invariant Sections without Cover Texts, or some other combination of the three,
+    merge those two alternatives to suit the situation.
+  </p><p>
+    If your document contains nontrivial examples of program code, we recommend releasing these
+    examples in parallel under your choice of free software license, such as the GNU General Public
+    License, to permit their use in free software.
+  </p></section></div><section xml:lang="en" class="glossary"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number"> </span><span class="title-name">Acronyms</span></span> <a title="Permalink" class="permalink" href="#vt-acronyms">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="line"/><dl><dt id="gloss-vt-acpi"><span><span class="glossterm">ACPI</span> <a title="Permalink" class="permalink" href="#gloss-vt-acpi">#</a></span></dt><dd class="glossdef"><p>
+    Advanced Configuration and Power Interface (ACPI) specification provides
+    an open standard for device configuration and power management by the
+    operating system.
+   </p></dd><dt id="gloss-vt-acronym-aer"><span><span class="glossterm">AER</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-aer">#</a></span></dt><dd class="glossdef"><p>
+    Advanced Error Reporting
+   </p><p>
+    AER is a capability provided by the PCI Express specification which
+    allows for reporting of PCI errors and recovery from some of them.
+   </p></dd><dt id="gloss-vt-apic"><span><span class="glossterm">APIC</span> <a title="Permalink" class="permalink" href="#gloss-vt-apic">#</a></span></dt><dd class="glossdef"><p>
+    Advanced Programmable Interrupt Controller (APIC) is a family of
+    interrupt controllers.
+   </p></dd><dt id="gloss-xmtoxl-vt-bdf"><span><span class="glossterm">BDF</span> <a title="Permalink" class="permalink" href="#gloss-xmtoxl-vt-bdf">#</a></span></dt><dd class="glossdef"><p>
+    Bus:Device:Function
+   </p><p>
+    Notation used to succinctly describe PCI and PCIe devices.
+   </p></dd><dt id="gloss-vt-acronym-cg"><span><span class="glossterm">CG</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-cg">#</a></span></dt><dd class="glossdef"><p>
+    Control Groups
+   </p><p>
+    Feature to limit, account and isolate resource usage (CPU, memory, disk
+    I/O, etc.).
+   </p></dd><dt id="gloss-xmtoxl-vt-edf"><span><span class="glossterm">EDF</span> <a title="Permalink" class="permalink" href="#gloss-xmtoxl-vt-edf">#</a></span></dt><dd class="glossdef"><p>
+    Earliest Deadline First
+   </p><p>
+    This scheduler provides weighted CPU sharing in an intuitive way and
+    uses real-time algorithms to ensure time guarantees.
+   </p></dd><dt id="gloss-vt-acronym-ept"><span><span class="glossterm">EPT</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-ept">#</a></span></dt><dd class="glossdef"><p>
+    Extended Page Tables
+   </p><p>
+    Performance in a virtualized environment is close to that in a native
+    environment. Virtualization does create some overheads, however. These
+    come from the virtualization of the CPU, the
+    <a class="xref" href="#gloss-vt-acronym-mmu" title="MMU">MMU</a>, and the I/O devices. In some
+    recent x86 processors AMD and Intel have begun to provide hardware
+    extensions to help bridge this performance gap. In 2006, both vendors
+    introduced their first generation hardware support for x86
+    virtualization with AMD-Virtualization (AMD-V) and Intel® VT-x
+    technologies. Recently Intel introduced its second generation of
+    hardware support that incorporates MMU-virtualization, called Extended
+    Page Tables (EPT). EPT-enabled systems can improve performance compared
+    to using shadow paging for <a class="xref" href="#gloss-vt-acronym-mmu" title="MMU">MMU</a>
+    virtualization. EPT increases memory access latencies for a few
+    workloads. This cost can be reduced by effectively using large pages in
+    the guest and the hypervisor.
+   </p></dd><dt id="gloss-vt-acronym-hap"><span><span class="glossterm">HAP</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-hap">#</a></span></dt><dd class="glossdef"><p>
+    High Assurance Platform
+   </p><p>
+    HAP combines hardware and software technologies to improve workstation
+    and network security.
+   </p></dd><dt id="gloss-vt-acronym-hvm"><span><span class="glossterm">HVM</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-hvm">#</a></span></dt><dd class="glossdef"><p>
+    Hardware Virtual Machine.
+   </p></dd><dt id="gloss-vt-acronym-iommu"><span><span class="glossterm">IOMMU</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-iommu">#</a></span></dt><dd class="glossdef"><p>
+    Input/Output Memory Management Unit
+   </p><p>
+    IOMMU (AMD* technology) is a memory management unit
+    (<a class="xref" href="#gloss-vt-acronym-mmu" title="MMU">MMU</a>) that connects a direct memory
+    access-capable (DMA-capable) I/O bus to the main memory.
+   </p></dd><dt id="gloss-vt-acronym-ksm"><span><span class="glossterm">KSM</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-ksm">#</a></span></dt><dd class="glossdef"><p>
+    Kernel Same Page Merging
+   </p><p>
+    KSM allows for automatic sharing of identical memory pages between
+    guests to save host memory. KVM is optimized to use KSM if enabled
+    on the VM Host Server.
+   </p></dd><dt id="gloss-vt-acronym-mmu"><span><span class="glossterm">MMU</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-mmu">#</a></span></dt><dd class="glossdef"><p>
+    Memory Management Unit
+   </p><p>
+    is a computer hardware component responsible for handling accesses to
+    memory requested by the CPU. Its functions include translation of
+    virtual addresses to physical addresses (that is, virtual memory
+    management), memory protection, cache control, bus arbitration and in
+    simpler computer architectures (especially 8-bit systems) bank
+    switching.
+   </p></dd><dt id="gloss-vt-acronym-pae"><span><span class="glossterm">PAE</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-pae">#</a></span></dt><dd class="glossdef"><p>
+    Physical Address Extension
+   </p><p>
+    32-bit x86 operating systems use Physical Address Extension (PAE) mode
+    to enable addressing of more than 4 GB of physical memory. In PAE mode,
+    page table entries (PTEs) are 64 bits in size.
+   </p></dd><dt id="gloss-vt-acronym-pcid"><span><span class="glossterm">PCID</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-pcid">#</a></span></dt><dd class="glossdef"><p>
+    Process-context identifiers
+   </p><p>
+    These are a facility by which a logical processor may cache information
+    for multiple linear-address spaces so that the processor may retain
+    cached information when software switches to a different linear address
+    space. INVPCID instruction is used for fine-grained
+    <a class="xref" href="#gloss-vt-acronym-tlb" title="TLB">TLB</a> flush, which is benefit for
+    kernel.
+   </p></dd><dt id="gloss-vt-acronym-pcie"><span><span class="glossterm">PCIe</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-pcie">#</a></span></dt><dd class="glossdef"><p>
+    Peripheral Component Interconnect Express
+   </p><p>
+    PCIe was designed to replace older PCI, PCI-X and AGP bus standards.
+    PCIe has numerous improvements including a higher maximum system bus
+    throughput, a lower I/O pin count and smaller physical footprint.
+    Moreover it also has a more detailed error detection and reporting
+    mechanism (<a class="xref" href="#gloss-vt-acronym-aer" title="AER">AER</a>), and a native
+    hotplug functionality. It is also backward compatible with PCI.
+   </p></dd><dt id="gloss-vt-acronym-pse-pse36"><span><span class="glossterm">PSE and PSE36</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-pse-pse36">#</a></span></dt><dd class="glossdef"><p>
+    Page Size Extended
+   </p><p>
+    PSE refers to a feature of x86 processors that allows for pages larger
+    than the traditional 4 KiB size. PSE-36 capability offers 4 more bits,
+    in addition to the normal 10 bits, which are used inside a page
+    directory entry pointing to a large page. This allows a large page to be
+    located in 36-bit address space.
+   </p></dd><dt id="gloss-vt-acronym-pt"><span><span class="glossterm">PT</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-pt">#</a></span></dt><dd class="glossdef"><p>
+    Page Table
+   </p><p>
+    A page table is the data structure used by a virtual memory system in a
+    computer operating system to store the mapping between virtual addresses
+    and physical addresses. Virtual addresses are those unique to the
+    accessing process. Physical addresses are those unique to the hardware
+    (RAM).
+   </p></dd><dt id="gloss-vt-acronym-qxl"><span><span class="glossterm">QXL</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-qxl">#</a></span></dt><dd class="glossdef"><p>
+    QXL is a cirrus VGA framebuffer (8M) driver for virtualized environment.
+   </p></dd><dt id="gloss-vt-acronym-rvi-npt"><span><span class="glossterm">RVI or NPT</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-rvi-npt">#</a></span></dt><dd class="glossdef"><p>
+    Rapid Virtualization Indexing, Nested Page Tables
+   </p><p>
+    An AMD second generation hardware-assisted virtualization technology for
+    the processor memory management unit
+    (<a class="xref" href="#gloss-vt-acronym-mmu" title="MMU">MMU</a>).
+   </p></dd><dt id="gloss-vt-acronym-sata"><span><span class="glossterm">SATA</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-sata">#</a></span></dt><dd class="glossdef"><p>
+    Serial ATA
+   </p><p>
+    SATA is a computer bus interface that connects host bus adapters to mass
+    storage devices such as hard disks and optical drives.
+   </p></dd><dt id="gloss-vt-acronym-seccomp2-based-sandboxing"><span><span class="glossterm">Seccomp2-based sandboxing</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-seccomp2-based-sandboxing">#</a></span></dt><dd class="glossdef"><p>
+    Sandboxed environment where only predetermined system calls are
+    permitted for added protection against malicious behavior.
+   </p></dd><dt id="gloss-vt-acronym-spice"><span><span class="glossterm">SPICE</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-spice">#</a></span></dt><dd class="glossdef"><p>
+    Simple Protocol for Independent Computing Environments
+   </p></dd><dt id="gloss-vt-acronym-tcg"><span><span class="glossterm">TCG</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-tcg">#</a></span></dt><dd class="glossdef"><p>
+    Tiny Code Generator
+   </p><p>
+    Instructions are emulated rather than executed by the CPU.
+   </p></dd><dt id="gloss-vt-acronym-thp"><span><span class="glossterm">THP</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-thp">#</a></span></dt><dd class="glossdef"><p>
+    Transparent Huge Pages
+   </p><p>
+    This allows CPUs to address memory using pages larger than the default 4
+    KB. This helps reduce memory consumption and CPU cache usage. KVM
+    is optimized to use THP (via madvise and opportunistic methods) if
+    enabled on the VM Host Server.
+   </p></dd><dt id="gloss-vt-acronym-tlb"><span><span class="glossterm">TLB</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-tlb">#</a></span></dt><dd class="glossdef"><p>
+    Translation Lookaside Buffer
+   </p><p>
+    TLB is a cache that memory management hardware uses to improve virtual
+    address translation speed. All current desktop, notebook, and server
+    processors use a TLB to map virtual and physical address spaces, and it
+    is nearly always present in any hardware that uses virtual memory.
+   </p></dd><dt id="gloss-vt-acronym-vcpu"><span><span class="glossterm">VCPU</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-vcpu">#</a></span></dt><dd class="glossdef"><p>
+    A scheduling entity, containing each state for virtualized CPU.
+   </p></dd><dt id="gloss-vt-acronym-vdi"><span><span class="glossterm">VDI</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-vdi">#</a></span></dt><dd class="glossdef"><p>
+    Virtual Desktop Infrastructure
+   </p></dd><dt id="gloss-vt-acronym-vfio"><span><span class="glossterm">VFIO</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-vfio">#</a></span></dt><dd class="glossdef"><p>
+    Since kernel v3.6; a new method of accessing PCI devices from user space
+    called VFIO.
+   </p></dd><dt id="gloss-vt-acronym-vhs"><span><span class="glossterm">VHS</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-vhs">#</a></span></dt><dd class="glossdef"><p>
+    Virtualization Host Server
+   </p></dd><dt id="gloss-vt-acronym-vmroot"><span><span class="glossterm">VM root</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-vmroot">#</a></span></dt><dd class="glossdef"><p>
+    <a class="xref" href="#gloss-vt-acronym-hypervisor-vmm" title="VMM">VMM</a> will run in
+    <a class="xref" href="#gloss-vt-acronym-vmx" title="VMX">VMX</a> root operation and guest software
+    will run in <a class="xref" href="#gloss-vt-acronym-vmx" title="VMX">VMX</a> non-root operation.
+    Transitions between <a class="xref" href="#gloss-vt-acronym-vmx" title="VMX">VMX</a> root
+    operation and <a class="xref" href="#gloss-vt-acronym-vmx" title="VMX">VMX</a> non-root operation
+    are called <a class="xref" href="#gloss-vt-acronym-vmx" title="VMX">VMX</a> transitions.
+   </p></dd><dt id="gloss-vt-acronym-vmcs"><span><span class="glossterm">VMCS</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-vmcs">#</a></span></dt><dd class="glossdef"><p>
+    Virtual Machine Control Structure
+   </p><p>
+    VMX non-root operation and VMX transitions are controlled by a data
+    structure called a virtual-machine control structure (VMCS). Access to
+    the VMCS is managed through a component of processor state called the
+    VMCS pointer (one per logical processor). The value of the VMCS pointer
+    is the 64-bit address of the VMCS. The VMCS pointer is read and written
+    using the instructions VMPTRST and VMPTRLD. The
+    <a class="xref" href="#gloss-vt-acronym-hypervisor-vmm" title="VMM">VMM</a> configures a VMCS
+    using the VMREAD, VMWRITE, and VMCLEAR instructions. A
+    <a class="xref" href="#gloss-vt-acronym-hypervisor-vmm" title="VMM">VMM</a> could use a different
+    VMCS for each virtual machine that it supports. For a virtual machine
+    with multiple logical processors (virtual processors), the
+    <a class="xref" href="#gloss-vt-acronym-hypervisor-vmm" title="VMM">VMM</a> could use a different
+    VMCS for each virtual processor.
+   </p></dd><dt id="gloss-vt-acronym-vmdq"><span><span class="glossterm">VMDq</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-vmdq">#</a></span></dt><dd class="glossdef"><p>
+    Virtual Machine Device Queue
+   </p><p>
+    Multi-queue network adapters exist which support multiple VMs at the
+    hardware level, having separate packet queues associated to the
+    different hosted VMs (by means of the IP addresses of the VMs).
+   </p></dd><dt id="gloss-vt-acronym-hypervisor-vmm"><span><span class="glossterm">VMM</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-hypervisor-vmm">#</a></span></dt><dd class="glossdef"><p>
+    Virtual Machine Monitor (Hypervisor)
+   </p><p>
+    When the processor encounters an instruction or event of interest to the
+    Hypervisor (<a class="xref" href="#gloss-vt-acronym-hypervisor-vmm" title="VMM">VMM</a>), it exits
+    from guest mode back to the VMM. The VMM emulates the instruction or
+    other event, at a fraction of native speed, and then returns to guest
+    mode. The transitions from guest mode to the VMM and back again are
+    high-latency operations, during which guest execution is completely
+    stalled.
+   </p></dd><dt id="gloss-vt-acronym-vmx"><span><span class="glossterm">VMX</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-vmx">#</a></span></dt><dd class="glossdef"><p>
+    Virtual Machine eXtensions
+   </p></dd><dt id="gloss-vt-acronym-vpid"><span><span class="glossterm">VPID</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-vpid">#</a></span></dt><dd class="glossdef"><p>
+    New support for software control of
+    <a class="xref" href="#gloss-vt-acronym-tlb" title="TLB">TLB</a> (VPID improves
+    <a class="xref" href="#gloss-vt-acronym-tlb" title="TLB">TLB</a> performance with small
+    <a class="xref" href="#gloss-vt-acronym-hypervisor-vmm" title="VMM">VMM</a> development effort).
+   </p></dd><dt id="gloss-vt-acronym-vtd"><span><span class="glossterm">VT-d</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-vtd">#</a></span></dt><dd class="glossdef"><p>
+    Virtualization Technology for Directed I/O
+   </p><p>
+    Like <a class="xref" href="#gloss-vt-acronym-iommu" title="IOMMU">IOMMU</a> for
+    <a class="link" href="https://software.intel.com/en-us/articles/intel-virtualization-technology-for-directed-io-vt-d-enhancing-intel-platforms-for-efficient-virtualization-of-io-devices" target="_blank">Intel*</a>.
+   </p></dd><dt id="gloss-vt-acronym-vtpm"><span><span class="glossterm">vTPM</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-vtpm">#</a></span></dt><dd class="glossdef"><p>
+    Component to establish end-to-end integrity for guests via Trusted
+    Computing.
+   </p></dd></dl></section><section xml:lang="en" class="glossary"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number"> </span><span class="title-name">Glossary</span></span> <a title="Permalink" class="permalink" href="#vt-glossary">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="line"/><div class="glossdiv" id="gloss-vt-general" data-id-title="General"><h3 class="title">General</h3><dl><dt id="gloss-vt-createvm"><span><span class="glossterm">Create Virtual Machine Wizard</span> <a title="Permalink" class="permalink" href="#gloss-vt-createvm">#</a></span></dt><dd class="glossdef"><p>
+          Virtual Machine Manager
+          provides a graphical interface to guide you through the steps to
+          create virtual machines. It can also be run in text mode by entering
+          <code class="command">virt-install</code> at a command prompt in the host
+          environment.
+        </p></dd><dt id="gloss-vt-hwassisted"><span><span class="glossterm">hardware-assisted</span> <a title="Permalink" class="permalink" href="#gloss-vt-hwassisted">#</a></span></dt><dd class="glossdef"><p>
+          Intel* and AMD* provide virtualization hardware-assisted technology.
+          This reduces the frequency of VM IN/OUT (fewer VM traps), because
+          software is a major source of overhead, and increases the efficiency
+          (the execution is done by the hardware). Moreover, this reduces the
+          memory footprint, provides better resource control, and allows secure
+          assignment of specific I/O devices.
+        </p></dd><dt id="gloss-vt-hostenv"><span><span class="glossterm">Host Environment</span> <a title="Permalink" class="permalink" href="#gloss-vt-hostenv">#</a></span></dt><dd class="glossdef"><p>
+          The desktop or command line environment that allows interaction with
+          the host computer's environment. It provides a command line
+          environment and can also include a graphical desktop, such as GNOME
+          or IceWM. The host environment runs as a special type of virtual
+          machine that has privileges to control and manage other virtual
+		machines.
+        </p></dd><dt id="gloss-vt-hypervisor"><span><span class="glossterm">Hypervisor</span> <a title="Permalink" class="permalink" href="#gloss-vt-hypervisor">#</a></span></dt><dd class="glossdef"><p>
+          The software that coordinates the low-level interaction between
+          virtual machines and the underlying physical computer hardware.
+        </p></dd><dt id="gloss-vt-parafb"><span><span class="glossterm">Paravirtualized Frame Buffer</span> <a title="Permalink" class="permalink" href="#gloss-vt-parafb">#</a></span></dt><dd class="glossdef"><p>
+          The video output device that drives a video display from a memory
+          buffer containing a complete frame of data for virtual machine
+          displays running in paravirtual mode.
+        </p></dd><dt id="gloss-vt-vhs"><span><span class="glossterm">VHS</span> <a title="Permalink" class="permalink" href="#gloss-vt-vhs">#</a></span></dt><dd class="glossdef"><p>
+          Virtualization Host Server
+        </p><p>
+          The physical computer running a SUSE virtualization platform
+          software. The virtualization environment consists of the hypervisor,
+          the host environment, virtual machines and associated tools, commands
+          and configuration files. Other commonly used terms include host, Host
+          Computer, Host Machine (HM), Virtual Server (VS), Virtual Machine
+          Host (VMH), and VM Host Server (VHS).
+        </p></dd><dt id="gloss-vt-virtfs"><span><span class="glossterm">VirtFS</span> <a title="Permalink" class="permalink" href="#gloss-vt-virtfs">#</a></span></dt><dd class="glossdef"><p>
+          VirtFS is a new paravirtualized file system interface designed for
+          improving pass-through technologies in the KVM environment. It is
+          based on the VirtIO framework.
+        </p></dd><dt id="gloss-vt-vm"><span><span class="glossterm">Virtual Machine</span> <a title="Permalink" class="permalink" href="#gloss-vt-vm">#</a></span></dt><dd class="glossdef"><p>
+          A virtualized PC environment (VM) capable of hosting a guest
+          operating system and associated applications. Could be also called a
+          VM Guest.
+        </p></dd><dt id="gloss-vt-vmm"><span><span class="glossterm">Virtual Machine Manager</span> <a title="Permalink" class="permalink" href="#gloss-vt-vmm">#</a></span></dt><dd class="glossdef"><p>
+          A software program that provides a graphical user interface for
+          creating and managing virtual machines.
+        </p></dd><dt id="gloss-vt-virtualized"><span><span class="glossterm">Virtualized</span> <a title="Permalink" class="permalink" href="#gloss-vt-virtualized">#</a></span></dt><dd class="glossdef"><p>
+          A guest operating system or application running on a virtual machine.
+        </p></dd></dl></div><div class="glossdiv" id="gloss-vt-cpu" data-id-title="CPU"><h3 class="title">CPU</h3><dl><dt id="gloss-vt-cpu-capping"><span><span class="glossterm">CPU capping</span> <a title="Permalink" class="permalink" href="#gloss-vt-cpu-capping">#</a></span></dt><dd class="glossdef"><p>
+          Virtual CPU capping allows you to set vCPU capacity to 1–100 percent
+          of the physical CPU capacity.
+        </p></dd><dt id="gloss-vt-cpu-hotplug"><span><span class="glossterm">CPU hotplugging</span> <a title="Permalink" class="permalink" href="#gloss-vt-cpu-hotplug">#</a></span></dt><dd class="glossdef"><p>
+          CPU hotplugging is used to describe the functions of
+          replacing/adding/removing a CPU without shutting down the system.
+        </p></dd><dt id="gloss-vt-cpu-overcommit"><span><span class="glossterm">CPU over-commitment</span> <a title="Permalink" class="permalink" href="#gloss-vt-cpu-overcommit">#</a></span></dt><dd class="glossdef"><p>
+          Virtual CPU over-commitment is the ability to assign more virtual
+          CPUs to VMs than the actual number of physical CPUs present in the
+          physical system. This procedure does not increase the overall
+          performance of the system, but may be useful for testing purposes.
+        </p></dd><dt id="gloss-vt-cpu-pinning"><span><span class="glossterm">CPU pinning</span> <a title="Permalink" class="permalink" href="#gloss-vt-cpu-pinning">#</a></span></dt><dd class="glossdef"><p>
+          Processor affinity, or CPU pinning enables the binding and unbinding
+          of a process or a thread to a central processing unit (CPU) or a
+          range of CPUs.
+        </p></dd></dl></div><div class="glossdiv" id="gloss-vt-network" data-id-title="Network"><h3 class="title">Network</h3><dl><dt id="gloss-vt-network-bridgenet"><span><span class="glossterm">Bridged Networking</span> <a title="Permalink" class="permalink" href="#gloss-vt-network-bridgenet">#</a></span></dt><dd class="glossdef"><p>
+          A type of network connection that lets a virtual machine be
+          identified on an external network as a unique identity that is
+          separate from and unrelated to its host computer.
+        </p></dd><dt id="gloss-vt-network-emptybridge"><span><span class="glossterm">Empty Bridge</span> <a title="Permalink" class="permalink" href="#gloss-vt-network-emptybridge">#</a></span></dt><dd class="glossdef"><p>
+          A type of network bridge that has no physical network device or
+          virtual network device provided by the host. This lets virtual
+          machines communicate with other virtual machines on the same host but
+          not with the host or on an external network.
+        </p></dd><dt id="gloss-vt-network-externalnet"><span><span class="glossterm">External Network</span> <a title="Permalink" class="permalink" href="#gloss-vt-network-externalnet">#</a></span></dt><dd class="glossdef"><p>
+          The network outside a host's internal network environment.
+        </p></dd><dt id="gloss-vt-network-internalnetwork"><span><span class="glossterm">Internal Network</span> <a title="Permalink" class="permalink" href="#gloss-vt-network-internalnetwork">#</a></span></dt><dd class="glossdef"><p>
+          A type of network configuration that restricts virtual machines to
+          their host environment.
+        </p></dd><dt id="gloss-vt-network-localbridge"><span><span class="glossterm">Local Bridge</span> <a title="Permalink" class="permalink" href="#gloss-vt-network-localbridge">#</a></span></dt><dd class="glossdef"><p>
+          A type of network bridge that has a virtual network device but no
+          physical network device provided by the host. This lets virtual
+          machines communicate with the host and other virtual machines on the
+          host. Virtual machines can communicate on an external network through
+          the host.
+        </p></dd><dt id="gloss-vt-network-nat"><span><span class="glossterm">Network Address Translation (NAT)</span> <a title="Permalink" class="permalink" href="#gloss-vt-network-nat">#</a></span></dt><dd class="glossdef"><p>
+          A type of network connection that lets a virtual machine use the IP
+          address and MAC address of the host.
+        </p></dd><dt id="gloss-vt-network-nohostbridge"><span><span class="glossterm">No Host Bridge</span> <a title="Permalink" class="permalink" href="#gloss-vt-network-nohostbridge">#</a></span></dt><dd class="glossdef"><p>
+          A type of network bridge that has a physical network device but no
+          virtual network device provided by the host. This lets virtual
+          machines communicate on an external network but not with the host.
+          This lets you separate virtual machine network communications from
+          the host environment.
+        </p></dd><dt id="gloss-vt-network-traditionalbridge"><span><span class="glossterm">Traditional Bridge</span> <a title="Permalink" class="permalink" href="#gloss-vt-network-traditionalbridge">#</a></span></dt><dd class="glossdef"><p>
+          A type of network bridge that has both a physical network device and
+          a virtual network device provided by the host.
+        </p></dd></dl></div><div class="glossdiv" id="gloss-vt-storage" data-id-title="Storage"><h3 class="title">Storage</h3><dl><dt id="gloss-vt-storage-ahci"><span><span class="glossterm">AHCI</span> <a title="Permalink" class="permalink" href="#gloss-vt-storage-ahci">#</a></span></dt><dd class="glossdef"><p>
+          The Advanced Host Controller Interface (AHCI) is a technical standard
+          defined by Intel* that specifies the operation of Serial ATA (SATA)
+          host bus adapters in a non-implementation-specific manner.
+        </p></dd><dt id="gloss-vt-storage-bd"><span><span class="glossterm">Block Device</span> <a title="Permalink" class="permalink" href="#gloss-vt-storage-bd">#</a></span></dt><dd class="glossdef"><p>
+          Data storage devices, such as CD-ROM drives or disk drives, that move
+          data in the form of blocks. Partitions and volumes are also
+          considered block devices.
+        </p></dd><dt id="gloss-vt-storage-fbvd"><span><span class="glossterm">File-Backed Virtual Disk</span> <a title="Permalink" class="permalink" href="#gloss-vt-storage-fbvd">#</a></span></dt><dd class="glossdef"><p>
+          A virtual disk based on a file, also called a disk image file.
+        </p></dd><dt id="gloss-vt-storage-rawdisk"><span><span class="glossterm">Raw Disk</span> <a title="Permalink" class="permalink" href="#gloss-vt-storage-rawdisk">#</a></span></dt><dd class="glossdef"><p>
+          A method of accessing data on a disk at the individual byte level
+          instead of through its file system.
+        </p></dd><dt id="gloss-vt-storage-sparse"><span><span class="glossterm">Sparse image file</span> <a title="Permalink" class="permalink" href="#gloss-vt-storage-sparse">#</a></span></dt><dd class="glossdef"><p>
+          A disk image file that does not reserve its entire amount of disk
+          space but expands as data is written to it.
+        </p></dd><dt id="gloss-vt-storage-xvda"><span><span class="glossterm">xvda</span> <a title="Permalink" class="permalink" href="#gloss-vt-storage-xvda">#</a></span></dt><dd class="glossdef"><p>
+          The drive designation given to the first virtual disk on a
+          paravirtual machine.
+        </p></dd></dl></div></section></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="#virtualization-introduction"><span class="title-number">1 </span><span class="title-name">Introduction to virtualization</span></a></span></li><li><span class="section"><a href="#virt-components-installation-patterns"><span class="title-number">2 </span><span class="title-name">Installation of virtualization components</span></a></span></li><li><span class="section"><a href="#virtualization-modes"><span class="title-number">3 </span><span class="title-name">Virtualization modes</span></a></span></li><li><span class="section"><a href="#kvm-virtualization-basics"><span class="title-number">4 </span><span class="title-name">Introduction to KVM virtualization</span></a></span></li><li><span class="section"><a href="#vt-installation"><span class="title-number">5 </span><span class="title-name">Installation of virtualization components</span></a></span></li><li><span class="section"><a href="#manage-vm-on-commandline-tools"><span class="title-number">6 </span><span class="title-name">Command-line tools</span></a></span></li><li><span class="section"><a href="#virt-v2v-vmware-migration"><span class="title-number">7 </span><span class="title-name">Converting VMware virtual machines to KVM with <code class="command">virt-v2v</code></span></a></span></li><li><span class="section"><a href="#glue-alp-containers-podman-more-info"><span class="title-number">8 </span><span class="title-name">For more information</span></a></span></li><li><span class="section"><a href="#legal-disclaimer"><span class="title-number">9 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="#doc-gfdl-license"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li><li><span class="glossary"><a href="#vt-acronyms"><span class="title-name">Acronyms</span></a></span></li><li><span class="glossary"><a href="#vt-glossary"><span class="title-name">Glossary</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

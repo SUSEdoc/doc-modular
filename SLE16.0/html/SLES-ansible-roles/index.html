@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Ansible Linux System Roles | SUSE Linux Enterprise Server 16.0</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2025-11-04"/>
+<meta name="dcterms.modified" content="2026-05-06"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-25"/>
+<meta name="title" content="Ansible Linux System Roles | SUSE Linux Enterprise Ser…"/>
+<meta name="description" content="Save time by using Ansible Linux system roles to automate IT tasks"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server"/>
+<meta name="product-number" content="16.0"/>
+<meta name="book-title" content="Ansible Linux System Roles"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="amrita.sakthivel@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.0"/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="amrita.sathivel@suse.com"/><meta property="og:title" content="Ansible Linux System Roles"/>
+<meta property="og:description" content="Learn about Ansible Linux System Roles"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Ansible Linux System Roles"/>
+<meta name="twitter:description" content="Learn about Ansible Linux System Roles"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Ansible Linux System Roles | SUSE Linux Enterprise Server 16.0",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Smart Docs"
+    },
+    "inLanguage": "en",
+    "headline": "Ansible Linux System Roles",
+    "description": "Save time by using Ansible Linux system roles to automate IT tasks",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2025-11-04T00:00+02:00",
+    "dateModified": "2026-05-06T00:00+02:00",
+    "datePublished": "2026-08-25T07:09+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Administration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Security"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server",
+        "softwareVersion": "16.0",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER, IBM Z, AArch64"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Ansible Linux System Roles</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Ansible Linux System Roles</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="ansible-roles" data-id-title="Ansible Linux System Roles"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span></span> 16.0</div><div><h1 class="title">Ansible Linux System Roles</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>25 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+This article gives an introduction to various Ansible Linux system roles that help to automate the configuration and management
+on <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span>  <span class="phrase"><span class="phrase">16.0</span></span> systems.
+              </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
+Learn how to automate IT infrastructure with Ansible Linux system roles.
+              </p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
+The average reading time of this article is approximately 40 minutes.
+              </p></dd><dt id="id-1.1.12.1.4"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+<span><em class="emphasis">Linux fundamentals:</em></span> Understanding basic Linux commands,file permissions, directory structures
+and usage of the command line.
+                  </p></li><li class="listitem"><p>
+<span><em class="emphasis">Networking:</em></span> Ansible connects to remote machines via SSH so knowledge of IP addresses, SSH, host names and ports is required.
+                  </p></li><li class="listitem"><p>
+<span><em class="emphasis">YAML:</em></span> Ansible playbooks are written in YAML so knowing how to structure a YAML file is essential.
+                  </p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Ansible Linux System Roles" hreflang="en" href="rh-ansible.html" target="_blank">Revision History: Ansible Linux System Roles</a></div></div></div></div><section xml:lang="en" class="sect1" id="about-ansible-roles" data-id-title="About Ansible Linux system roles"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">About Ansible Linux system roles</span></span> <a title="Permalink" class="permalink" href="index.html#about-ansible-roles">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Linux system roles are a set of Ansible roles designed to automate and configure common components and services of the Linux operating system.
+      </p></div></div></div></div><p>Linux system roles are always used with Ansible playbooks. You define the desired state of your systems in an Ansible playbook, specifying which roles to apply
+    and with what parameters. Ansible then connects to your Linux hosts and executes the tasks defined within the roles to bring your systems into the desired state.
+  </p><p>The system roles are shipped in the <span class="package">ansible-linux-system-roles</span> package on <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> <span class="phrase"><span class="phrase">16.0</span></span> systems.
+    </p><p>
+  Once the <span class="package">ansible-linux-system-roles</span> package is installed, you can access:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span><em class="emphasis">Roles</em></span>:<code class="filename">/usr/share/ansible/collections/ansible_collections/suse/linux_system_roles/roles</code> </p></li><li class="listitem"><p><span><em class="emphasis">Documentation</em></span>:<code class="filename">/usr/share/ansible/collections/ansible_collections/suse/linux_system_roles/docs
+  </code> </p></li></ul></div><p>Each role has a <code class="literal">README</code> in the <code class="literal">docs</code> directory that includes:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Description of the role</p></li><li class="listitem"><p>Supported variables and their usage</p></li><li class="listitem"><p>Example playbooks</p></li></ul></div><p>The <code class="literal">README.md</code> files for each role: </p><div class="verbatim-wrap"><pre class="screen">/usr/share/ansible/collections/ansible_collections/suse/linux_system_roles/docs # ls
+    CHANGELOG_aide.md            CHANGELOG_timesync.md     README_suseconnect.md
+    CHANGELOG_certificate.md     README_aide.md            README_systemd.md
+    CHANGELOG_cockpit.md         README_certificate.md     README_timesync.md
+    CHANGELOG_crypto_policies.md README_cockpit.md         aide
+    CHANGELOG_firewall.md        README_crypto_policies.md certificate
+    CHANGELOG_ha_cluster.md      README_firewall.md        firewall
+    CHANGELOG_journald.md        README_ha_cluster.md      ha_cluster
+    CHANGELOG_keylime_server.md  README_journald.md        journald
+    CHANGELOG_mssql.md           README_keylime_server.md  keylime_server
+    CHANGELOG_podman.md          README_mssql.md           podman
+    CHANGELOG_postfix.md         README_podman.md          selinux
+    CHANGELOG_selinux.md         README_postfix.md         ssh
+    CHANGELOG_ssh.md             README_selinux.md         systemd
+    CHANGELOG_systemd.md         README_ssh.md             timesync</pre></div></section><section xml:lang="en" class="sect1" id="install-ansible-role" data-id-title="Installing Ansible Linux system roles"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Installing Ansible Linux system roles</span></span> <a title="Permalink" class="permalink" href="index.html#install-ansible-role">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        To install Ansible Linux system roles on a <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> control node:
+      </p></div></div></div></div><div class="procedure"><div class="procedure-contents"><ul class="procedure"><li class="step"><p>
+        Install the roles on a control node: </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper install ansible-linux-system-roles</code></pre></div></li></ul></div></div><p>
+      The control node is where Ansible and the Linux system roles are installed.
+      It is not required to have Ansible or Linux system roles installed on managed nodes.
+    </p></section><section xml:lang="en" class="sect1" id="ansible-role-firewalld" data-id-title="About the firewall Linux system role"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">About the firewall Linux system role</span></span> <a title="Permalink" class="permalink" href="index.html#ansible-role-firewalld">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       The firewall Linux system role in Ansible is a pre-packaged and reusable set of tasks and defaults designed to configure and manage the <code class="systemitem">firewalld</code> service
+       on <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> 16.0 systems.
+      </p></div></div></div></div><p>You can use this role to:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Install and enable the <code class="systemitem">firewalld</code> service.</p></li><li class="listitem"><p>Manage zones such as <code class="literal">public</code>, <code class="literal">home</code> or <code class="literal">internal.</code></p></li><li class="listitem"><p>Add or remove services such as <code class="literal">ssh</code> to specific zones.</p></li><li class="listitem"><p>Open or close ports, for example, <code class="literal">8080</code> or <code class="literal">TCP</code> for particular zones.</p></li><li class="listitem"><p>Configure port forwarding and masquerading (NAT).</p></li><li class="listitem"><p>Handle permanent and runtime configuration.</p></li></ul></div><div class="complex-example"><div class="example" id="id-1.4.4" data-id-title="Reset firewall and enable SSH service"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 1: </span><span class="title-name">Reset firewall and enable SSH service </span></span><a title="Permalink" class="permalink" href="index.html#id-1.4.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">  ---
+  - name: Erase existing config and enable ssh service
+    hosts: managed_nodes
+    become: true
+
+    tasks:
+      - name: reset firewall and enable SSH service
+        vars:
+          firewall:
+            - previous: replaced
+            - service: ssh
+              state: enabled
+        ansible.builtin.include_role:
+          name: suse.linux_system_roles.firewall</pre></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">previous: replaced</code>: Resets the <code class="systemitem">firewalld</code> configuration by removing all existing user-defined settings.
+<code class="literal">previous</code> is a <code class="literal">string</code> datatype and accepts value <code class="literal">replaced</code>.
+ </p></li><li class="listitem"><p><code class="literal">service: ssh</code>: Secure Shell (SSH) as the specific network traffic type to be managed.
+<code class="literal">service</code> is a <code class="literal">string</code> datatype and accepts values <code class="literal">ssh</code>,<code class="literal">http</code>,<code class="literal">tftp</code>etc.
+</p></li><li class="listitem"><p><code class="literal">state: enabled</code>: Permanently opens the firewall for incoming SSH traffic.
+  <code class="literal">state</code> is a <code class="literal">string</code> datatype and accepts values <code class="literal">enabled</code> or <code class="literal">disabled</code>.
+</p></li></ul></div></div></div></div><div class="complex-example"><div class="example" id="id-1.4.5" data-id-title="Disable TFTP service"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 2: </span><span class="title-name">Disable TFTP service </span></span><a title="Permalink" class="permalink" href="index.html#id-1.4.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">  ---
+  - name: Disable TFTP service on managed nodes
+    hosts: managed_nodes
+    become: true
+
+    tasks:
+      - name: Configure firewall to disable TFTP service
+        vars:
+          firewall:
+            - service: tftp
+              state: disabled
+        ansible.builtin.include_role:
+          name: suse.linux_system_roles.firewall</pre></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">service: tftp</code>: Defines the Trivial File Transfer Protocol (TFTP) as the specific network service to be managed.
+    <code class="literal">service</code> is a <code class="literal">string</code> datatype and accepts values <code class="literal">ssh</code>,<code class="literal">http</code><code class="literal">tftp</code>etc.
+  </p></li><li class="listitem"><p><code class="literal">state: disabled</code>: Permanently block all incoming network traffic related to <code class="literal">tftp</code>.
+    <code class="literal">state</code> is a <code class="literal">string</code> datatype and accepts values <code class="literal">enabled</code> or <code class="literal">disabled</code>
+  </p></li></ul></div></div></div></div><p>For more details about all the variables in the firewall Linux system role,
+  refer to the specific <code class="literal">README.md</code> file on the control node:</p><div class="verbatim-wrap"><pre class="screen">/usr/share/ansible/collections/ansible_collections/suse/linux_system_roles/docs</pre></div></section><section xml:lang="en" class="sect1" id="ansible-role-aide" data-id-title="About the AIDE Linux system role"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">About the AIDE Linux system role</span></span> <a title="Permalink" class="permalink" href="index.html#ansible-role-aide">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       The AIDE Linux system role in Ansible installs, configures and manages the Advanced Intrusion Detection Environment (AIDE) utility on <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> <span class="phrase"><span class="phrase">16.0</span></span> systems.
+      </p></div></div></div></div><p>You can use this role to:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Ensure the AIDE package is installed on the managed node.</p></li><li class="listitem"><p>Optionally generate and deploys a custom <code class="filename">/etc/aide.conf</code>file.</p></li><li class="listitem"><p>Create the baseline AIDE database on the managed node.</p></li><li class="listitem"><p>Run checks against the live system and reports any file additions, deletions, or modifications. This is used for daily intrusion detection.</p></li><li class="listitem"><p>Securely fetch the AIDE database files from the remote host back to the control node.</p></li></ul></div><div class="complex-example"><div class="example" id="id-1.5.4" data-id-title="AIDE role"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 3: </span><span class="title-name">AIDE role </span></span><a title="Permalink" class="permalink" href="index.html#id-1.5.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">  ---
+  - name: Example aide role invocation
+    hosts: managed_hosts
+    become: true
+
+    tasks:
+      - name: Include role aide
+        vars:
+          aide_db_fetch_dir: files
+          aide_init: true
+          aide_check: false
+          aide_update: false
+        ansible.builtin.include_role:
+          name: suse.linux_system_roles.aide</pre></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">aide_db_fetch_dir: files</code>: is a <code class="literal">string</code> datatype that specifies the directory on control node, where the AIDE database files are fetched and stored from the remote managed nodes.
+  The default is <code class="literal">files</code>, which means the role expects a directory named <code class="literal">files</code> to exist in the same directory as the playbook being executed.</p></li><li class="listitem"><p><code class="literal">aide_init: true</code>: is a <code class="literal">Boolean</code> datatype that controls whether a AIDE database should be initialized on a managed node.
+    The default is <code class="literal">false</code>. When set to <code class="literal">true</code>, a AIDE database is created on the managed node, it is then fetched to the control node.
+  </p></li><li class="listitem"><p><code class="literal">aide_check: false</code>: is a <code class="literal">Boolean</code> datatype that controls whether an integrity check should be immediately run on the managed nodes.
+    The default is <code class="literal">false</code>. When set to <code class="literal">true</code>, the AIDE check is run, data is compared with the current state of the file system with the trusted baseline database and a report is generated.
+  </p></li><li class="listitem"><p><code class="literal">aide_update: false</code>: is a <code class="literal">Boolean</code> datatype that controls the creation of a new AIDE database to replace the current trusted baseline.
+    The default is <code class="literal">false</code>. When set to <code class="literal">true</code>, the AIDE update command is run on the managed system, which performs an integrity check, creates a new AIDE database reflecting the current system state and establishes this new file as the trusted baseline for future checks.
+  </p></li></ul></div></div></div></div><p>For more details about all the variables in the AIDE Linux system role,
+  refer to the specific <code class="literal">README.md</code> file on the control node:</p><div class="verbatim-wrap"><pre class="screen">/usr/share/ansible/collections/ansible_collections/suse/linux_system_roles/docs</pre></div></section><section xml:lang="en" class="sect1" id="ansible-role-cockpit" data-id-title="About the Cockpit Linux system role"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">About the Cockpit Linux system role</span></span> <a title="Permalink" class="permalink" href="index.html#ansible-role-cockpit">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       The Cockpit Linux system role in Ansible automates the installation and configuration of the Cockpit Web Console, a web-based graphical interface for administering  <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> 16.0 systems.
+      </p></div></div></div></div><p>You can use this role to:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Ensure the necessary Cockpit packages are installed.</p></li><li class="listitem"><p>Ensure <code class="literal">cockpit.socket</code> is enabled for socket-based activation.</p></li><li class="listitem"><p>Allow the administrator to set specific options in the <code class="filename">/etc/cockpit/cockpit.conf</code>file, such as the login title or session timeouts <code class="literal">cockpit_config</code>.</p></li></ul></div><div class="example" id="id-1.6.4" data-id-title="Install Cockpit on all hosts"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 4: </span><span class="title-name">Install Cockpit on all hosts </span></span><a title="Permalink" class="permalink" href="index.html#id-1.6.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">---
+- name: install Cockpit on all hosts
+  hosts: managed_nodes
+  become : true
+
+  tasks:
+    - name: Dynamically execute the Cockpit role
+      ansible.builtin.include_role:
+        name: suse.linux_system_roles.cockpit</pre></div></div></div><div class="complex-example"><div class="example" id="id-1.6.5" data-id-title="Install Cockpit on all hosts and automatically open the firewall port"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 5: </span><span class="title-name">Install Cockpit on all hosts and automatically open the firewall port </span></span><a title="Permalink" class="permalink" href="index.html#id-1.6.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">  ---
+  - name: Install Cockpit and automatically open firewall port
+    hosts: managed_hosts
+    become: true
+
+    tasks:
+      - name: Dynamically install Cockpit and open firewall
+        vars:
+          cockpit_enabled: true
+          cockpit_started: true
+          cockpit_manage_firewall: true
+        ansible.builtin.include_role:
+          name: suse.linux_system_roles.cockpit</pre></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">cockpit_enabled: true</code>: controls the <code class="systemitem">systemd</code> service setting for the Cockpit Web Console.
+    <code class="literal">cockpit_enabled</code> is a <code class="literal">Boolean</code> datatype and accepts values <code class="literal">true</code> and <code class="literal">false</code>.
+  Default is <code class="literal">true</code>, which means the Cockpit service is configured to start automatically at system boot.
+  </p></li><li class="listitem"><p><code class="literal">cockpit_started: true</code>: controls the immediate runtime status of the Cockpit Web Console service.
+    <code class="literal">cockpit_started</code> is a <code class="literal">Boolean</code> datatype and accepts values <code class="literal">true</code> and <code class="literal">false</code>.
+  Default is <code class="literal">true</code>, which means the Cockpit service is running immediately on the managed host. </p></li><li class="listitem"><p><code class="literal">cockpit_manage_firewall: true</code>: delegates the task of configuring the firewall to the role itself, ensuring the Cockpit web interface is network-accessible.
+    <code class="literal">cockpit_manage_firewall</code> is a <code class="literal">Boolean</code> datatype and accepts values <code class="literal">true</code> and <code class="literal">false</code>.
+  Default is <code class="literal">false</code>, which means the role installs and enables Cockpit but makes no changes to the firewall, leaving that task to be handled manually or by a separate dedicated firewall role.
+  </p></li></ul></div></div></div></div><p>For more details about all the variables in the Cockpit Linux system role,
+  refer to the specific <code class="literal">REDADME.md</code> file on the control node:</p><div class="verbatim-wrap"><pre class="screen">/usr/share/ansible/collections/ansible_collections/suse/linux_system_roles/docs</pre></div></section><section xml:lang="en" class="sect1" id="ansible-role-ha-cluster" data-id-title="About the HA cluster Linux system role"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">About the HA cluster Linux system role</span></span> <a title="Permalink" class="permalink" href="index.html#ansible-role-ha-cluster">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       The HA cluster Linux system role in Ansible is designed to fully install, configure and manage a
+       Pacemaker and Corosync High Availability (HA) cluster on <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> 16.0 systems.
+      </p></div></div></div></div><p>You can use this role to:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Automate the installation of core cluster components like Pacemaker and Corosync.</p></li><li class="listitem"><p>Create and initialize a robust, multi-node High Availability cluster.</p></li><li class="listitem"><p>Configure fencing devices to ensure true node isolation and data integrity upon failure.</p></li><li class="listitem"><p>Define and manage cluster resources, such as floating IP addresses, application services, and shared storage mounts.</p></li><li class="listitem"><p>Set resource constraints and dependencies to control which nodes run specific services.</p></li><li class="listitem"><p>Enable and manage cluster services across the defined cluster nodes.</p></li><li class="listitem"><p>Ensure consistent HA setup across multiple environments, adhering to best practices and minimizing manual errors.</p></li></ul></div><div class="complex-example"><div class="example" id="id-1.7.4" data-id-title="Configure firewall for managed nodes"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 6: </span><span class="title-name">Configure firewall for managed nodes </span></span><a title="Permalink" class="permalink" href="index.html#id-1.7.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">  ---
+  - name: Configure firewall for managed nodes
+    hosts: managed_nodes
+    become: true
+
+    tasks:
+      - name: Manage firewall
+        vars:
+          ha_cluster_manage_firewall: true
+        ansible.builtin.include_role:
+          name: suse.linux_system_roles.ha_cluster</pre></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">ha_cluster_manage_firewall: true</code>: It controls whether the role should automatically configure the system's firewall to permit necessary cluster communication.
+<code class="literal">ha_cluster_manage_firewall</code> is a <code class="literal">Boolean</code> datatype and accepts values <code class="literal">true</code> and <code class="literal">false</code>.
+When set to <code class="literal">true</code>, it automatically adds firewall rules to open the necessary ports for the cluster to function. Default is <code class="literal">false</code>.
+</p></li></ul></div></div></div></div><p>For more details about all the variables in the HA cluster Linux system role,
+  refer to the specific <code class="literal">README.md</code> file on the control node:</p><div class="verbatim-wrap"><pre class="screen">/usr/share/ansible/collections/ansible_collections/suse/linux_system_roles/docs</pre></div></section><section xml:lang="en" class="sect1" id="ansible-role-suseconnect" data-id-title="About the SUSEconnect Linux system role"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">About the SUSEconnect Linux system role</span></span> <a title="Permalink" class="permalink" href="index.html#ansible-role-suseconnect">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       The SUSEconnect Linux system role in Ansible manages SUSE Linux system registrations with SUSE Customer Center or a SMT server. It automates the process of
+       registering and deregistering systems, as well as managing additional products and modules on a SUSE system.
+      </p></div></div></div></div><p>You can use this role to:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Register a SUSE system to the SCC or  servers.</p></li><li class="listitem"><p>Activate or remove specific add-on products or modules.</p></li><li class="listitem"><p>Deregister systems or products.</p></li><li class="listitem"><p>Support transactional update register SLE-MICRO.</p></li><li class="listitem"><p>Recheck tasks to ensure a smooth registration process.</p></li><li class="listitem"><p>Ensure compatibility with public cloud environments.</p></li></ul></div><div class="complex-example"><div class="example" id="id-1.8.4" data-id-title="Register a SUSE Linux Enterprise Server 16.0 system"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 7: </span><span class="title-name">Register a <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> 16.0 system </span></span><a title="Permalink" class="permalink" href="index.html#id-1.8.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">---
+- name: Register with SCC and activate modules
+  hosts: managed_nodes
+  become: true
+
+  tasks:
+    - name: Register system and modules with SUSE Customer Center
+      vars:
+        suseconnect_base_product:
+          key: '{{ sles_registration_key }}'
+          product: '{{ ansible_distribution }}'
+
+        suseconnect_subscriptions:
+          - {name: "sle-module-containers", state: enabled}
+          - {name: "PackageHub", state: disabled}
+          - {name: "sle-module-python3", state: enabled}
+      ansible.builtin.include_role:
+        name: suse.linux_system_roles.suseconnect</pre></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">suseconnect_base_product</code>: defines the required parameters for registering the core operating system of a SUSE Linux machine.
+  <code class="literal">suseconnect_base_product</code> is defined as a YAML Dictionary containing key-value pairs that map directly to the requirements of SCC or SMT servers.
+  Accepted string values are <code class="literal">key</code>, <code class="literal">product</code>, <code class="literal">version</code> and <code class="literal">arch</code>. </p></li><li class="listitem"><p><code class="literal">suseconnect_subscriptions</code>: is a crucial component for enterprise SUSE deployments, as it controls which features, for example, High Availability, containers, or web application platforms
+     enabled on the registered base operating system.
+    <code class="literal">suseconnect_subscriptions</code> is defined as a YAML Dictionary containing key-value pairs that map directly to the requirements of SCC or SMT servers.
+    Accepted string values are <code class="literal">name</code>, <code class="literal">state</code>, <code class="literal">version</code> and <code class="literal">key</code>. </p></li></ul></div></div></div></div><div class="complex-example"><div class="example" id="id-1.8.5" data-id-title="Deregister base products"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 8: </span><span class="title-name">Deregister base products </span></span><a title="Permalink" class="permalink" href="index.html#id-1.8.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">---
+- name: Deregister products from SCC
+  hosts: managed_nodes
+  become: true
+
+  tasks:
+    - name: Deregister products from SUSE Customer Center
+      vars:
+        suseconnect_deregister: true
+      ansible.builtin.include_role:
+        name: suse.linux_system_roles.suseconnect</pre></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">suseconnect_deregister: true</code>: instructs the system to deactivate its base subscription and remove it from the SCC or SMT servers.
+     <code class="literal">suseconnect_deregister</code> is a <code class="literal">Boolean</code> datatype and accepts values <code class="literal">false</code> and <code class="literal">true</code>. When set to
+     <code class="literal">true</code>, it executes the necessary SUSEConnect command to deregister the system's base product subscription. Default is <code class="literal">false</code>. </p></li></ul></div></div></div></div><p>For more details about all the variables in the SUSEConnect Linux system role,
+  refer to the specific <code class="literal">README.md</code> file on the control node:</p><div class="verbatim-wrap"><pre class="screen">/usr/share/ansible/collections/ansible_collections/suse/linux_system_roles/docs</pre></div></section><section xml:lang="en" class="sect1" id="ansible-role-journald" data-id-title="About the Journald Linux system role"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name">About the Journald Linux system role</span></span> <a title="Permalink" class="permalink" href="index.html#ansible-role-journald">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       The Journald Linux system role in Ansible is designed to configure and manage the <code class="literal">systemd-journald</code> service on <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> 16.0 systems.
+      </p></div></div></div></div><p>The role automates changes to <code class="filename">/etc/systemd/journald.conf</code>file. You can use this role to:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Determine where journal logs are stored. Logs can be stored temporarily in memory or persistently on the disk.</p></li><li class="listitem"><p>Set hard limits on how much disk space the journal can consume before old logs are deleted.</p></li><li class="listitem"><p>Configure how much disk space the journal should always leave free for other system uses.</p></li><li class="listitem"><p>Control whether journal data objects should be compressed to save space.</p></li><li class="listitem"><p>Configure whether log data is kept separate for individual users.</p></li><li class="listitem"><p>Manage the running state of the <code class="literal">systemd-journald</code>service.</p></li></ul></div><div class="complex-example"><div class="example" id="id-1.9.4" data-id-title="Configure persistent storage, limit disk usage, enable user logging and set synchronization frequency"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 9: </span><span class="title-name">Configure persistent storage, limit disk usage, enable user logging and set synchronization frequency </span></span><a title="Permalink" class="permalink" href="index.html#id-1.9.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">  ---
+  - name: Configure persistent storage, limit disk usage, enable user logging and set synchronization frequency
+    hosts: managed_nodes
+    become: true
+
+    tasks:
+      - name: Configure persistent storage, limit disk usage, enable user logging and set synchronization frequency
+        vars:
+          journald_persistent: true
+          journald_max_disk_size: 1024
+          journald_per_user: true
+          journald_sync_interval: 1
+        ansible.builtin.include_role:
+          name: suse.linux_system_roles.journald</pre></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">journald_persistent: true</code>: instructs journald to create the <code class="filename"> /var/log/journal</code> directory and store logs permanently.
+   <code class="literal">journald_persistent</code> is a <code class="literal">Boolean</code> datatype and accepts values accepts values <code class="literal">true</code> and<code class="literal">false</code>.
+ Default is <code class="literal">false</code>.</p></li><li class="listitem"><p><code class="literal">journald_max_disk_size: 1024</code>: limits the total disk space the journal files may use up to 1 Gigabyte (1024 MB).
+   <code class="literal">journald_max_disk_size</code> is an <code class="literal">integer</code> datatype and accepts an integer representing a size in megabytes (MB).
+   No value is explicitly configured by this role; therefore, the default sizing logic from <code class="literal">man 5 journald.conf</code> applies.
+ </p></li><li class="listitem"><p><code class="literal">journald_per_user: true</code>: Enables per-user logging. Logs are kept separate for individual users, allowing unprivileged users to read logs related only to their own services.
+  <code class="literal">journald_per_user</code> is a <code class="literal">Boolean</code> datatype and accepts values <code class="literal">true</code>,<code class="literal">false</code>,<code class="literal">yes</code>,<code class="literal">no</code>, <code class="literal">0</code> and <code class="literal">1</code>.
+  Default is <code class="literal">false</code>.
+</p></li><li class="listitem"><p><code class="literal">journald_sync_interval: 1</code>: limits the total disk space the journal files may use up to 1 Gigabyte (1024 MB).
+  <code class="literal">journald_sync_interval</code> is an <code class="literal">integer</code> datatype and accepts an integer representing a time span in minutes.
+  By default role does not alter currently used value.
+</p></li></ul></div></div></div></div><div class="complex-example"><div class="example" id="id-1.9.5" data-id-title="Configure journald for persistent storage and disk limits"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 10: </span><span class="title-name">Configure journald for persistent storage and disk limits </span></span><a title="Permalink" class="permalink" href="index.html#id-1.9.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">  ---
+     - name: Configure systemd-journald for persistent storage and disk limits
+       hosts: managed_nodes
+       become: true
+
+       tasks:
+         - name: Configure journald for persistent storage and disk limits
+           vars:
+             journald_persistent: true
+             journald_max_disk_size: 1024
+           ansible.builtin.include_role:
+             name: suse.linux_system_roles.journald</pre></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">journald_persistent: true</code>: instructs journald to create the <code class="filename"> /var/log/journal</code> directory and store logs permanently.
+    <code class="literal">service</code> is a <code class="literal">Boolean</code> datatype and accepts values accepts values <code class="literal">true</code>,<code class="literal">false</code>,<code class="literal">yes</code>,<code class="literal">no</code>, <code class="literal">0</code> and <code class="literal">1</code>.
+  Default is <code class="literal">false</code>.</p></li><li class="listitem"><p><code class="literal">journald_max_disk_size: 1024</code>: limits the total disk space the journal files may use up to 1 Gigabyte (1024 MB).
+    <code class="literal">journald_max_disk_size</code> is an <code class="literal">integer</code> datatype and accepts an integer representing a size in megabytes (MB).
+    No value is explicitly configured by this role; therefore, the default sizing logic from <code class="literal">man 5 journald.conf</code> applies.
+  </p></li></ul></div></div></div></div><p>For more details about all the variables in the journald Linux system role,
+  refer to the specific <code class="literal">README.md</code> file on the control node:</p><div class="verbatim-wrap"><pre class="screen">/usr/share/ansible/collections/ansible_collections/suse/linux_system_roles/docs</pre></div></section><section xml:lang="en" class="sect1" id="ansible-role-podman" data-id-title="About the Podman Linux system role"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">9 </span><span class="title-name">About the Podman Linux system role</span></span> <a title="Permalink" class="permalink" href="index.html#ansible-role-podman">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       The Podman Linux system role in Ansible automates the deployment and lifecycle management of containers as system services at scale, ensuring consistent and often rootless container orchestration across an infrastructure.
+      </p></div></div></div></div><p>You can use this role to:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Ensure the necessary Podman packages and related tools are installed and updated.</p></li><li class="listitem"><p>Automate the prerequisite setup for running containers as unprivileged users. Also includes managing the correct entries in <code class="filename">/etc/subuid</code> and <code class="filename">/etc/subgid</code>files.</p></li><li class="listitem"><p>Manage the creation, starting, stopping and removal of containers.</p></li><li class="listitem"><p>Leverage Podman's deep integration with <code class="systemitem">systemd</code> by automatically generating <code class="systemitem">systemd</code> unit files (or Quadlet files on newer systems) to manage containers and pods as persistent services that start automatically at boot.</p></li><li class="listitem"><p>Deploy complex multi-container workloads defined using standard Kubernetes YAML manifests.</p></li></ul></div><div class="complex-example"><div class="example" id="id-1.10.4" data-id-title="Create a container running as root with Podman volume"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 11: </span><span class="title-name">Create a container running as root with Podman volume   </span></span><a title="Permalink" class="permalink" href="index.html#id-1.10.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">---
+- name: Manage podman root containers and services
+  hosts: managed_hosts
+  become: true
+
+  tasks:
+    - name: Dynamically install Cockpit and open firewall
+      vars:
+        podman_firewall:
+          - port: 8080/tcp
+            state: enabled
+        podman_kube_specs:
+          - state: started
+            kube_file_content:
+              apiVersion: v1
+              kind: Pod
+              metadata:
+                name: test1-httpd
+              spec:
+              containers:
+                - name: test1-httpd
+                  image: registry.access.suse.com/test1/httpd-24
+                  ports:
+                    - containerPort: 8080
+                      hostPort: 8080
+                  volumeMounts:
+                    - mountPath: /var/www/html:Z
+                      name: test1-html
+              volumes:
+                - name: test1-html
+                  persistentVolumeClaim:
+                    claimName: test1-html-volume
+      ansible.builtin.include_role:
+        name: suse.linux_system_roles.podman</pre></div><p>In this example , a Kubernetes pod <code class="literal">test1-httpd</code> running an HTTP server container from the <code class="literal">registry.access.suse.com/test1/httpd-24</code> image.
+ The container’s web content is mounted from a persistent volume named <code class="literal">test1-html-volume</code>.
+ By default, the role creates rootful containers.</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">podman_firewall</code>: controls the necessary firewall configurations on the host to ensure container ports are accessible.
+It is a list of dictionaries, where each dictionary defines a single firewall rule for a container. The accepted values are specified as key-value pairs within these dictionaries.
+The most common and crucial keys accepted within each dictionary item are <code class="literal">port</code>, <code class="literal">state</code>, <code class="literal">zone</code> and <code class="literal">masquerade</code>.
+Default is an empty list <code class="literal">[]</code> or <code class="literal">null</code>.
+</p></li><li class="listitem"><p><code class="literal">podman_kube_specs</code>: defines and manage Podman containers or pods based on Kubernetes YAML specifications.
+  It is a list of dictionaries and each dictionary item defines one container or pod deployment and requires one of the following keys to specify the Kubernetes YAML source:
+  <code class="literal">kube_file_src</code> or <code class="literal">kube_file_content</code>. Default is an empty list <code class="literal">[]</code> or <code class="literal">null</code>.
+  </p></li></ul></div></div></div></div><p>For more details about all the variables in the Podman Linux system role,
+  refer to the specific <code class="literal">README.md</code> file on the control node:</p><div class="verbatim-wrap"><pre class="screen">/usr/share/ansible/collections/ansible_collections/suse/linux_system_roles/docs</pre></div></section><section xml:lang="en" class="sect1" id="ansible-role-certificate" data-id-title="About the certificate Linux system role"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">10 </span><span class="title-name">About the certificate Linux system role</span></span> <a title="Permalink" class="permalink" href="index.html#ansible-role-certificate">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       The certificate Linux system role in Ansible automates the entire lifecycle of TLS and SSL certificates on managed Linux hosts.
+      </p></div></div></div></div><p>You can use this role to:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Generate the private key and the Certificate Signing Request (CSR) locally on the managed node, ensuring the private key never leaves the host.</p></li><li class="listitem"><p>Handle the submission of the CSR to a designated Certificate Authority (CA).</p></li><li class="listitem"><p>Save the newly issued certificate, key, and CA chain files to the correct, secure locations on the file system, managing file ownership and permissions.</p></li><li class="listitem"><p>Set up mechanisms such as <code class="literal">certmonger</code> to automatically monitor the certificate's expiration date and attempt renewal before it expires.</p></li></ul></div><div class="complex-example"><div class="example" id="id-1.11.4" data-id-title="Issue a self signed certificate"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 12: </span><span class="title-name">Issue a self signed certificate </span></span><a title="Permalink" class="permalink" href="index.html#id-1.11.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">---
+-name: Issue a self signed certificate
+ hosts: managed_nodes
+ become: true
+
+ tasks:
+   - name: Issue a self signed certificate
+     vars:
+       certificate_requests:
+         - name: mycert
+           dns: *.example.com
+           ca: self-sign
+      ansible.builtin.include_role:
+        name: suse.linux_system_roles.certificate</pre></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">certificate_requests</code>: defines the specific details of the certificates the role needs to issue, manage, or renew.
+ It is a list of dictionaries and each item in the list is a dictionary specifies the properties of one unique certificate to be managed. The default is an empty list <code class="literal">[]</code>.
+ If this list is empty, the role performs no certificate management actions. Each dictionary within the <code class="literal">certificate_requests</code> list must define at least the certificate name and the issuing Certificate Authority.
+ Other parameters specify the key size, subject, and domains. In this example, <code class="literal">name</code>, <code class="literal">ca</code> are <code class="literal">string</code> data types and required. <code class="literal">dns</code> can be either a <code class="literal">list</code>
+or <code class="literal">string</code> and is optional.
+</p></li></ul></div><p>You can find the directory at:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Certificates: <code class="filename">/etc/ssl/certs</code></p></li><li class="listitem"><p>Keys: <code class="filename">/etc/ssl/certs/private</code></p></li></ul></div></div></div></div><div class="complex-example"><div class="example" id="id-1.11.5" data-id-title="Issue a certificate and key and specify location to place them"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 13: </span><span class="title-name">Issue a certificate and key and specify location to place them </span></span><a title="Permalink" class="permalink" href="index.html#id-1.11.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">  ---
+  -name: Issue a certificate and specify location
+   hosts: managed_nodes
+   become: true
+
+   tasks:
+     - name: Issue a certificate and specify location
+       vars:
+         certificate_requests:
+           - name: test/path/mycert
+             dns: *.example.com
+             ca: self-sign
+        ansible.builtin.include_role:
+          name: suse.linux_system_roles.certificate</pre></div><p>This example creates a certificate file in <code class="filename">/test/path/mycert.crt</code> and a key file in <code class="filename">/test/path/mycert.key</code> .</p></div></div></div><p>For more details about all the variables in the certificate Linux system role,
+  refer to the specific <code class="literal">README.md</code> file on the control node:</p><div class="verbatim-wrap"><pre class="screen">/usr/share/ansible/collections/ansible_collections/suse/linux_system_roles/docs</pre></div></section><section xml:lang="en" class="sect1" id="ansible-role-crypto-policies" data-id-title="About the Crypto policies Linux system role"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">11 </span><span class="title-name">About the Crypto policies Linux system role</span></span> <a title="Permalink" class="permalink" href="index.html#ansible-role-crypto-policies">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       The Crypto policies system role in Ansible is to establish the rules, guidelines, and standards for the proper and effective use of cryptography on <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> 16.0 systems.
+      </p></div></div></div></div><p>You can use this role to:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Specify when and how different types of data must be encrypted.</p></li><li class="listitem"><p>Ensure that organizations adheres to legal, regulatory and industry mandates that require specific, strong cryptographic controls for data protection. </p></li><li class="listitem"><p>Prohibit the use of weak, outdated, or known-vulnerable algorithms and protocols, thereby reducing the risk of a security breach.</p></li><li class="listitem"><p>System-wide cryptographic policy that provides a centralized way for administrators to configure core cryptographic  like TLS, SSH, etc. so that most applications use a default, secure configuration.</p></li><li class="listitem"><p>Specify when and how different types of data must be encrypted.</p></li><li class="listitem"><p>Define the procedures for the entire lifecycle of cryptographic keys.</p></li><li class="listitem"><p>Mandate which cryptographic algorithms are approved for use, ensuring a consistent, secure level of protection across all systems and applications.</p></li></ul></div><div class="complex-example"><div class="example" id="id-1.12.4" data-id-title="Enforce FUTURE policy"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 14: </span><span class="title-name">Enforce FUTURE policy </span></span><a title="Permalink" class="permalink" href="index.html#id-1.12.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">---
+- name: Enforce the 'FUTURE' system-wide cryptographic policy
+  hosts: managed_nodes
+  become: true
+
+  tasks:
+    - name: Enforce the FUTURE policy
+      vars:
+        crypto_policies_policy: "FUTURE"
+        crypto_policies_reload: true
+        crypto_policies_reboot_ok: false
+      ansible.builtin.include_role:
+        name: suse.linux_system_roles.crypto_policies</pre></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">crypto_policies_policy: "FUTURE"</code>: is used to system-wide cryptographic settings on compatible Linux distributions.
+  <code class="literal">crypto_policies_policy</code>is a <code class="literal">string</code>datatype and accepts values <code class="literal">DEFAULT</code>, <code class="literal">FUTURE</code>, <code class="literal">LEGACY</code> and custom policies that Administrators can define. Default is <code class="literal">null</code>.</p></li><li class="listitem"><p><code class="literal">crypto_policies_reload: true</code>: ensures that the new cryptographic policy takes effect immediately by attempting to restart or reload services that rely on the system's cryptographic libraries.
+    <code class="literal">crypto_policies_reload</code>is a <code class="literal">Boolean</code>datatype and accepts values <code class="literal">true</code> and <code class="literal">false</code> can define. Default is <code class="literal">true</code>.</p></li><li class="listitem"><p><code class="literal">crypto_policies_reboot_ok: false</code>: dictates whether the playbook is permitted to automatically reboot the managed server after changing the cryptographic policy.
+      <code class="literal">crypto_policies_reboot_ok</code>is a <code class="literal">Boolean</code>datatype and accepts values <code class="literal">true</code> and <code class="literal">false</code> can define. Default is <code class="literal">false</code>.</p></li></ul></div></div></div></div><div class="complex-example"><div class="example" id="id-1.12.5" data-id-title="Configures the default crypto policy level without SHA1"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 15: </span><span class="title-name">Configures the default crypto policy level without SHA1 </span></span><a title="Permalink" class="permalink" href="index.html#id-1.12.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">---
+- name: Manage crypto policies
+  hosts: managed_nodes
+  become: true
+
+  tasks:
+    - name: Configure default crypto policy level without SHA1
+      vars:
+        crypto_policies_policy: "DEFAULT:NO-SHA1"
+        crypto_policies_reload: false
+      ansible.builtin.include_role:
+        name: suse.linux_system_roles.crypto_policies</pre></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">crypto_policies_policy: "DEFAULT:NO-SHA1</code>: is used to system-wide cryptographic settings on compatible Linux distributions.
+    <code class="literal">crypto_policies_policy</code>is a <code class="literal">string</code>datatype and accepts values <code class="literal">DEFAULT</code>, <code class="literal">FUTURE</code>, <code class="literal">LEGACY</code> and custom policies that Administrators can define.
+    Default is <code class="literal">null</code>. In this example, you are using the <code class="literal">DEFAULT</code> policy as a starting point and then modifying it with the built-in <code class="literal">NO-SHA1</code>  sub-policy.</p></li><li class="listitem"><p><code class="literal">crypto_policies_reload: false</code>: ensures that the new cryptographic policy takes effect immediately by attempting to restart or reload services that rely on the system's cryptographic libraries.
+      <code class="literal">crypto_policies_reload</code>is a <code class="literal">Boolean</code>datatype and accepts values <code class="literal">true</code> and <code class="literal">false</code> can define. Default is <code class="literal">true</code>.</p></li></ul></div></div></div></div><p>For more details about all the variables in the Crypto policies Linux system role,
+  refer to the specific <code class="literal">README.md</code> file on the control node:</p></section><section xml:lang="en" class="sect1" id="ansible-role-mssql" data-id-title="About the MSSQL Linux system role"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">12 </span><span class="title-name">About the MSSQL Linux system role</span></span> <a title="Permalink" class="permalink" href="index.html#ansible-role-mssql">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       The MSSQL Linux system role in Ansible automates the installation, configuration and initial deployment of Microsoft SQL Server (MSSQL) on <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> 16.0 systems.
+      </p></div></div></div></div><p>You can use this role to:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Install the necessary SQL Server packages and tools. </p></li><li class="listitem"><p>Manages the acceptance of the End-User License Agreement (EULA), which is required for installation.</p></li><li class="listitem"><p>Set the required System Administrator <code class="literal">sa</code> and  <code class="literal">mssql_password</code>. This is a mandatory variable for initial setup.</p></li><li class="listitem"><p>Configures the TCP Port the server listens on.</p></li><li class="listitem"><p>Manages TLS/SSL certificates to ensure encrypted connections to the database.</p></li><li class="listitem"><p>Optimize the operating system for database performance and throughput, by applying the <code class="literal">mssql</code> Tuned profile.</p></li></ul></div><div class="complex-example"><div class="example" id="id-1.13.4" data-id-title="Install and Configure Basic Microsoft SQL Server"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 16: </span><span class="title-name">Install and Configure Basic Microsoft SQL Server </span></span><a title="Permalink" class="permalink" href="index.html#id-1.13.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">---
+- name: Install and configure basic Microsoft SQL Server
+  hosts: managed_nodes
+  become: true
+
+  tasks:
+    - name: Manage basic Microsoft SQL Server
+      vars:
+        mssql_accept_microsoft_sql_server_standard_eula: true
+        mssql_password: "{{ sa_secret_password }}"
+        mssql_edition: "Developer"
+      ansible.builtin.include_role:
+        name: suse.linux_system_roles.mssql</pre></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">mssql_accept_microsoft_sql_server_standard_eula</code>: explicitly confirms the user agrees to the Microsoft SQL Server End-User License Agreement (EULA).
+  It is a mandatory <code class="literal">Boolean</code> datatype and accpets values <code class="literal">true</code>or <code class="literal">false</code>. It must be set to <code class="literal">true</code> in your playbook
+  or inventory for the role to proceed with the installation of SQL Server. If set to <code class="literal">false</code>, the installation tasks will fail or be skipped.
+  The default is empty<code class="literal">{}</code>.</p></li><li class="listitem"><p><code class="literal">mssql_password</code>: sets the password for the Administrator <code class="literal">sa</code> user.
+    It is a mandatory <code class="literal">string</code> datatype. The password must have a minimum length of 8 characters, include uppercase and lowercase letters, base 10 digits or non-alphanumeric symbols.
+    Default is <code class="literal">null</code>.</p></li><li class="listitem"><p><code class="literal">mssql_edition</code>: defines the specific version of Microsoft SQL Server to be installed on the host.
+It is a mandatory <code class="literal">string</code> datatype and accepts values <code class="literal">Enterprise</code>, <code class="literal">Standard</code>, <code class="literal">Web</code>, <code class="literal">Developer</code>, <code class="literal">Express</code>, <code class="literal">Evaluation</code> and a product key in form of <code class="literal">#####-#####-#####-#####-#####</code>
+where <code class="literal">#</code> is a number or letter. Default is <code class="literal">null</code>.
+</p></li></ul></div></div></div></div><p>For more details about all the variables in the MSSQL Linux system role,
+  refer to the specific <code class="literal">README.md</code> file on the control node:</p><div class="verbatim-wrap"><pre class="screen">/usr/share/ansible/collections/ansible_collections/suse/linux_system_roles/docs</pre></div></section><section xml:lang="en" class="sect1" id="ansible-role-selinux" data-id-title="About the SELinux Linux system role"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">13 </span><span class="title-name">About the SELinux Linux system role</span></span> <a title="Permalink" class="permalink" href="index.html#ansible-role-selinux">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       The SELinux Linux system role in Ansible automates the full management and enforcement of the SELinux policy on managed nodes in a standardized and idempotent way.
+      </p></div></div></div></div><p>You can use this role to:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Set the global SELinux mode to <code class="literal">enforcing</code>, <code class="literal">permissive</code> or <code class="literal">disabled</code> using the <code class="literal">selinux_state</code> variable.</p></li><li class="listitem"><p>Manage the state of SELinux booleans.</p></li><li class="listitem"><p>Define persistent rules for file system labeling (file contexts) for custom directories or applications.</p></li><li class="listitem"><p>Define security types for non-standard network ports, allowing services to listen on them without violating the policy.</p></li><li class="listitem"><p>Manage the mapping between Linux user accounts and specific SELinux user identities.</p></li></ul></div><div class="complex-example"><div class="example" id="id-1.14.4" data-id-title="Reset the SELinux context"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 17: </span><span class="title-name">Reset the SELinux context  </span></span><a title="Permalink" class="permalink" href="index.html#id-1.14.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">---
+- name: Reset the selinux context
+  hosts: managed_nodes
+  become: true
+
+  tasks:
+    - name: reset the selinux context
+      vars:
+        selinux_restore_dirs:
+          - /var/www/
+          - /etc/
+      ansible.builtin.include_role:
+        name: suse.linux_system_roles.selinux</pre></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">selinux_restore_dirs</code>: specifies file system paths on the managed node where the SELinux contexts should be immediately reapplied or corrected (using the equivalent of the <code class="literal">restorecon</code> utility).
+  It is a list of strings, where each string is a file system tree where you want to run <code class="literal">restorecon</code>.</p></li></ul></div></div></div></div><div class="complex-example"><div class="example" id="id-1.14.5" data-id-title="Set a SELinux network port label"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 18: </span><span class="title-name">Set a SELinux network port label </span></span><a title="Permalink" class="permalink" href="index.html#id-1.14.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">---
+- name: set a selinux port label
+  hosts: managed_nodes
+  become: true
+
+  tasks:
+    - name: set a selinux port label
+      vars:
+        selinux_ports:
+          - ports: 8080
+            proto: tcp
+            setype: http_port_t
+            state: present
+      ansible.builtin.include_role:
+        name: suse.linux_system_roles.selinux</pre></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">selinux_ports</code>: manages the SELinux port labeling policy on a managed node.
+  It is a list of dictionaries  with each dictionary defining a specific port rule. <code class="literal">ports</code> are strings or a list
+  and define port numbers to which you want to assign the SELinux label. Multiple values separated by a comma are accepted.
+ <code class="literal">proto</code> is a <code class="literal">string</code> datatype and defines the network protocol. <code class="literal">setype</code> is a <code class="literal">string</code> datatype and defines the SELinux type (label) to assign to the port.
+</p></li></ul></div></div></div></div><p>For more details about all the variables in the SELinux Linux system role,
+  refer to the specific <code class="literal">REDADME.md</code> file on the control node:</p><div class="verbatim-wrap"><pre class="screen">/usr/share/ansible/collections/ansible_collections/suse/linux_system_roles/docs</pre></div></section><section xml:lang="en" class="sect1" id="ansible-role-ssh" data-id-title="About the SSH Linux system role"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">14 </span><span class="title-name">About the SSH Linux system role</span></span> <a title="Permalink" class="permalink" href="index.html#ansible-role-ssh">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       The SSH Linux system role in Ansible automates the configuration and management of the Secure Shell (SSH) service on <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> 16.0 systems.
+      </p></div></div></div></div><p>You can use this role to:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Enforce security best practices on the SSH daemon.</p></li><li class="listitem"><p>Set default client options for all managed users.</p></li><li class="listitem"><p>Deploy public keys for specific users to enable passwordless access.</p></li><li class="listitem"><p>Define which users or groups are permitted to log in via SSH.</p></li></ul></div><div class="complex-example"><div class="example" id="id-1.15.4" data-id-title="Manage SSH clients"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 19: </span><span class="title-name">Manage SSH clients </span></span><a title="Permalink" class="permalink" href="index.html#id-1.15.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">---
+- name: Manage ssh clients
+  hosts: managed_nodes
+  become: true
+
+  tasks:
+    - name: manage SSH clients
+      vars:
+        ssh_user: root
+        ssh:
+          Compression: true
+          # wokeignore:rule=master
+          ControlMaster: auto
+          ControlPath: ~/.ssh/.cm%C
+          Match:
+            - Condition: "final all"
+              GSSAPIAuthentication: true
+          Host:
+            - Condition: example
+              Hostname: example.com
+              User: user1
+        ssh_ForwardX11: false
+      ansible.builtin.include_role:
+        name: suse.linux_system_roles.ssh</pre></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">ssh_user</code>: is a role specific variable used to determine the scope of the SSH client configuration being deployed.
+  The default value is <code class="literal">null</code> or undefined, which means the role is configured to manage the global, system-wide SSH client configuration, which is located at <code class="filename">/etc/ssh/ssh_config</code> on the managed node.</p></li><li class="listitem"><p><code class="literal">ssh_ForwardX11</code>: controls whether X11 forwarding should be automatically enabled when establishing an SSH connection to a remote host.
+It determines if the graphical interface environment (X Window System) of the remote host should be tunneled securely back to the local client machine, allowing the user to run remote graphical applications.
+It is a <code class="literal">Boolean</code> datatype with values <code class="literal">yes</code> and <code class="literal">no</code>.</p></li></ul></div></div></div></div><p>For more details about all the variables in the SSH Linux system role,
+  refer to the specific <code class="literal">README.md</code> file on the control node:</p><div class="verbatim-wrap"><pre class="screen">/usr/share/ansible/collections/ansible_collections/suse/linux_system_roles/docs</pre></div></section><section xml:lang="en" class="sect1" id="ansible-role-systemd" data-id-title="About the systemd Linux system role"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">15 </span><span class="title-name">About the systemd Linux system role</span></span> <a title="Permalink" class="permalink" href="index.html#ansible-role-systemd">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       The systemd Linux system role in Ansible automates the full lifecycle management and deployment of <code class="systemitem">systemd</code> units and configurations <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> 16.0 systems.
+      </p></div></div></div></div><p>You can use this role to:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Place custom or templated <code class="systemitem">systemd</code> unit files such as <code class="literal">.service</code>, <code class="literal">.timer</code> etc. into the correct directories <code class="filename">/etc/systemd/system/</code>.</p></li><li class="listitem"><p>Control the execution status of services, allowing you to easily start, stop, restart, or reload specific units.</p></li><li class="listitem"><p>Control whether units are configured to start automatically at boot or are prevented from doing so.</p></li><li class="listitem"><p>Use the most aggressive method to prevent a service from ever running or being manually started by setting the unit as <code class="literal">masked</code>.</p></li></ul></div><div class="complex-example"><div class="example" id="id-1.16.4" data-id-title="Start and enable a systemd unit"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 20: </span><span class="title-name">Start and enable a systemd unit </span></span><a title="Permalink" class="permalink" href="index.html#id-1.16.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">---
+- name: Deploy and start a systemd unit
+  hosts: managed_nodes
+  become: true
+
+  tasks:
+    - name: Manage a systemd unit
+      vars:
+        systemd_unit_file_templates:
+          - test.service.j2
+        systemd_started_units:
+          - item: test.service
+            user: root
+          - item: test1.service
+            user: user1
+        systemd_enabled_units:
+          - test.service
+      ansible.builtin.include_role:
+        name: suse.linux_system_roles.systemd</pre></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">systemd_unit_file_templates</code>: specifies a list of Jinja2 template file names residing on the control node that should be rendered and deployed as full <code class="systemitem">systemd</code> unit files on the managed nodes.
+It is a list of strings or dictionaries. Each item specifies a Jinja2 template file located in the role's <code class="filename">templates/</code> directory. Default is an empty list <code class="literal">[]</code> or <code class="literal">null</code>.</p></li><li class="listitem"><p><code class="literal">systemd_started_units</code>: specifies which <code class="systemitem">systemd</code> units should be set to the started state on the managed nodes.
+    It is a list of strings or dictionaries. Default is an empty list <code class="literal">[]</code>.</p></li><li class="listitem"><p><code class="literal">systemd_enabled_units</code>: specifies which <code class="systemitem">systemd</code> unit files should be enabled on the managed nodes, ensuring they start automatically at boot.
+    It is a list of strings or dictionaries. Default is an empty list <code class="literal">[]</code>
+  </p></li></ul></div></div></div></div><p>For more details about all the variables in the systemd Linux system role,
+  refer to the specific <code class="literal">README.md</code> file on the control node:</p><div class="verbatim-wrap"><pre class="screen">/usr/share/ansible/collections/ansible_collections/suse/linux_system_roles/docs</pre></div></section><section xml:lang="en" class="sect1" id="ansible-role-timesync" data-id-title="About the time synchronization Linux system role"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">16 </span><span class="title-name">About the time synchronization Linux system role</span></span> <a title="Permalink" class="permalink" href="index.html#ansible-role-timesync">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       The time synchronization Linux system role in Ansible automates the configuration and enforcement of system time synchronization on managed Linux hosts.
+       NTP and PTP are essential standards used to synchronize computer clocks across a network. Accurate time synchronization is crucial because many critical network services rely on precise time to function correctly.
+      </p></div></div></div></div><p>You can use this role to:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Install and configure the preferred time synchronization service such as Chrony or NTPD.</p></li><li class="listitem"><p>Set the list of reliable time servers like NTP peers and servers the system should synchronize with.</p></li><li class="listitem"><p>Ensure the system uses the desired synchronization method.</p></li><li class="listitem"><p>Helps ensure that systems are compliant with security requirements that mandate accurate logging and synchronized authentication, for example, Kerberos.</p></li></ul></div><div class="complex-example"><div class="example" id="id-1.17.4" data-id-title="Install and configure NTP to synchronize the system clock with managed nodes"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 21: </span><span class="title-name">Install and configure NTP to synchronize the system clock with managed nodes </span></span><a title="Permalink" class="permalink" href="index.html#id-1.17.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">---
+- name: Manage timesync
+  hosts: managed_nodes
+  become: true
+
+  tasks:
+    - name: Manage timesync
+      vars:
+        timesync_ntp_servers:
+          - hostname: ntp.example.com
+              iburst: true
+          - hostname: time.example.com
+              iburst: true
+          - hostname: sync.example.com
+              iburst: true
+      ansible.builtin.include_role:
+        name: suse.linux_system_roles.timesync</pre></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">timesync_ntp_servers</code>: is a primary mechanism for an administrator to specify which external network time sources (NTP servers) the managed Linux host should use for clock synchronization.
+It is a list of dictionaries.The default is an empty list<code class="literal">[]</code>.
+ Each dictionary entry within the <code class="literal">timesync_ntp_servers</code>list defines a single time source and its desired configuration options. In this example, <code class="literal">hostname</code> is a
+required <code class="literal">string</code> datatype and <code class="literal">iburst</code> is an optional <code class="literal">Boolean</code> datatype.
+</p></li></ul></div></div></div></div><div class="complex-example"><div class="example" id="id-1.17.5" data-id-title="Install and configure linuxptp"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 22: </span><span class="title-name">Install and configure linuxptp </span></span><a title="Permalink" class="permalink" href="index.html#id-1.17.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">---
+- name: Manage timesync in PTP domain 0, interface eth0
+  hosts: managed_nodes
+  become: true
+
+  tasks:
+    - name: Manage linuxptp
+      vars:
+        timesync_ptp_domains:
+          - number: 0
+            interfaces: [eth0]
+      ansible.builtin.include_role:
+        name: suse.linux_system_roles.timesync</pre></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">timesync_ptp_domains</code>: configures Precision Time Protocol (PTP) synchronization
+It is a list of dictionaries. Default is an empty list <code class="literal">[]</code>. In this example, <code class="literal">number</code>
+is a required <code class="literal">string</code> datatype and <code class="literal">interfaces</code> are optional <code class="literal">list of strings</code> data types.</p></li></ul></div></div></div></div><p>For more details about all the variables in the time synchronization Linux system role,
+  refer to the specific <code class="literal">README.md</code> file on the control node:</p><div class="verbatim-wrap"><pre class="screen">/usr/share/ansible/collections/ansible_collections/suse/linux_system_roles/docs</pre></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">17 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#about-ansible-roles"><span class="title-number">1 </span><span class="title-name">About Ansible Linux system roles</span></a></span></li><li><span class="section"><a href="index.html#install-ansible-role"><span class="title-number">2 </span><span class="title-name">Installing Ansible Linux system roles</span></a></span></li><li><span class="section"><a href="index.html#ansible-role-firewalld"><span class="title-number">3 </span><span class="title-name">About the firewall Linux system role</span></a></span></li><li><span class="section"><a href="index.html#ansible-role-aide"><span class="title-number">4 </span><span class="title-name">About the AIDE Linux system role</span></a></span></li><li><span class="section"><a href="index.html#ansible-role-cockpit"><span class="title-number">5 </span><span class="title-name">About the Cockpit Linux system role</span></a></span></li><li><span class="section"><a href="index.html#ansible-role-ha-cluster"><span class="title-number">6 </span><span class="title-name">About the HA cluster Linux system role</span></a></span></li><li><span class="section"><a href="index.html#ansible-role-suseconnect"><span class="title-number">7 </span><span class="title-name">About the SUSEconnect Linux system role</span></a></span></li><li><span class="section"><a href="index.html#ansible-role-journald"><span class="title-number">8 </span><span class="title-name">About the Journald Linux system role</span></a></span></li><li><span class="section"><a href="index.html#ansible-role-podman"><span class="title-number">9 </span><span class="title-name">About the Podman Linux system role</span></a></span></li><li><span class="section"><a href="index.html#ansible-role-certificate"><span class="title-number">10 </span><span class="title-name">About the certificate Linux system role</span></a></span></li><li><span class="section"><a href="index.html#ansible-role-crypto-policies"><span class="title-number">11 </span><span class="title-name">About the Crypto policies Linux system role</span></a></span></li><li><span class="section"><a href="index.html#ansible-role-mssql"><span class="title-number">12 </span><span class="title-name">About the MSSQL Linux system role</span></a></span></li><li><span class="section"><a href="index.html#ansible-role-selinux"><span class="title-number">13 </span><span class="title-name">About the SELinux Linux system role</span></a></span></li><li><span class="section"><a href="index.html#ansible-role-ssh"><span class="title-number">14 </span><span class="title-name">About the SSH Linux system role</span></a></span></li><li><span class="section"><a href="index.html#ansible-role-systemd"><span class="title-number">15 </span><span class="title-name">About the systemd Linux system role</span></a></span></li><li><span class="section"><a href="index.html#ansible-role-timesync"><span class="title-number">16 </span><span class="title-name">About the time synchronization Linux system role</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">17 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

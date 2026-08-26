@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Performing Maintenance Tasks on Cluster Nodes | SUSE Linux Enterprise High Availability 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2026-07-06"/>
+<meta name="dcterms.modified" content="2026-07-06"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-26"/>
+<meta name="title" content="Performing Maintenance Tasks on Cluster Nodes | SUSE L…"/>
+<meta name="description" content="How to minimize risk and resource downtime while making changes to one or more cluster nodes"/>
+<meta name="product-name" content="SUSE Linux Enterprise High Availability"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="Performing Maintenance Tasks on Cluster Nodes"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="tahlia.richardson@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise High Availability 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="category" content="."/><meta name="dc.creator" content="tahlia.richardson@suse.com"/><meta property="og:title" content="Performing Maintenance Tasks on Cluster Nodes"/>
+<meta property="og:description" content="Minimize risk while maintaining cluster nodes"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Performing Maintenance Tasks on Cluster Nodes"/>
+<meta name="twitter:description" content="Minimize risk while maintaining cluster nodes"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Performing Maintenance Tasks on Cluster Nodes | SUSE Linux Enterprise High Availability 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Performing Maintenance Tasks on Cluster Nodes",
+    "description": "How to minimize risk and resource downtime while making changes to one or more cluster nodes",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2026-07-06T00:00+02:00",
+    "dateModified": "2026-07-06T00:00+02:00",
+    "datePublished": "2026-08-26T09:47+02:00",
+
+    "articleSection": [ 
+        "Administration"
+        
+    ],
+        "about": [
+      {
+        "@type": "Thing",
+        "name": "Administration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Clustering"
+      },
+      {
+        "@type": "Thing",
+        "name": "High Availability"
+      },
+      {
+        "@type": "Thing",
+        "name": "Maintenance"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise High Availability",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER, IBM Z"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Performing Maintenance Tasks on Cluster Nodes</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Performing Maintenance Tasks on Cluster Nodes</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="ha-maintenance-performing-tasks-cluster-nodes" data-id-title="Performing Maintenance Tasks on Cluster Nodes"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise High Availability</span></span></span> 16.1</div><div><h1 class="title">Performing Maintenance Tasks on Cluster Nodes</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>26 Aug 2026</div><div><div class="abstract"><p>
+          High Availability clusters require extra preparation steps before you can perform maintenance tasks,
+          or you risk side effects such as resource failure, unsynchronized CIBs, or data loss.
+          Use this workflow when making changes to the cluster nodes, such as hardware, software
+          or firmware updates. This involves putting a node into standby mode and stopping the
+          cluster services on just that node, then rebooting if required. To make changes to
+          multiple nodes, repeat these steps on one node at a time.
+        </p><div id="id-1.1.13.2" class="admonition tip compact"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><p>
+            If this isn't the workflow you need, see <a class="xref" href="index.html#ha-maintenance-other-workflows" title="7. Other maintenance workflows">Section 7, “Other maintenance workflows”</a>
+            to choose the right one.
+          </p></div><div id="id-1.1.13.3" data-id-title="Maintenance window" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Maintenance window</div><p>
+            Preparing a node for maintenance only takes a few minutes. In this scenario, most
+            resources don't require downtime because the cluster moves them to other nodes, but
+            some resources might stop if constraints prevent them from moving. The resources
+            will still be highly available because only one node at a time is offline.
+          </p></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Performing Maintenance Tasks on Cluster Nodes" hreflang="en" href="rh-ha-maintenance-performing-tasks-cluster-nodes.html" target="_blank">Revision History: Performing Maintenance Tasks on Cluster Nodes</a></div></div></div></div><section xml:lang="en" class="sect1" id="ha-maintenance-for-clusters" data-id-title="What are HA administrative modes?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">What are HA administrative modes?</span></span> <a title="Permalink" class="permalink" href="index.html#ha-maintenance-for-clusters">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        While under High Availability cluster management, resources must <span><em class="emphasis">not</em></span> be started or
+        stopped from outside the cluster (for example, with <code class="command">systemctl</code>). This
+        means that if you need to manually touch a resource, you must release it from cluster
+        management first. Resources are also vulnerable if something goes wrong when you make
+        changes to the cluster nodes or infrastructure. You must protect the cluster and its
+        resources before performing maintenance tasks or you risk unwanted side effects such as
+        resource failure, unsynchronized CIBs, or even data loss.
+      </p></div></div></div></div><section class="sect2" id="ha-maintenance-workflow-basic-steps" data-id-title="Basic steps"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">Basic steps</span></span> <a title="Permalink" class="permalink" href="index.html#ha-maintenance-workflow-basic-steps">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      These are the basic steps for performing any maintenance tasks in a High Availability cluster:
+   </p><div class="procedure" id="pro-ha-maintenance-workflow-steps"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Determine the workflow you need, depending on your maintenance tasks.
+        </p></li><li class="step"><p>
+          Apply one or more administrative modes, depending on the workflow.
+        </p></li><li class="step"><p>
+          Perform your maintenance tasks on the cluster, node or individual resource.
+        </p></li><li class="step"><p>
+          Put the cluster, node or resource back into <span class="quote">“<span class="quote">normal</span>”</span> operation.
+        </p></li></ol></div></div></section><section class="sect2" id="ha-maintenance-workflow-modes" data-id-title="Administrative modes"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Administrative modes</span></span> <a title="Permalink" class="permalink" href="index.html#ha-maintenance-workflow-modes">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      SUSE Linux Enterprise High Availability has the following modes for protecting the cluster during maintenance tasks. Depending
+      on your task, you might need to use one of these modes or a combination of multiple modes.
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.3.3.1"><span class="term">Stopping the cluster services</span></dt><dd><p>
+            Stopping the cluster services means stopping Pacemaker and Corosync. In this mode, the
+            cluster is <span><em class="emphasis">no longer running</em></span>, either entirely or just on one node.
+            Use this mode when you need to manage infrastructure, such as storage or networking, or
+            when you need to change the configuration of the cluster services.
+          </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                <span><span class="emphasis"><strong>For the whole cluster:</strong></span></span> Stopping the cluster
+                services on all nodes at once allows you to shut down a cluster while avoiding
+                the mass migration of resources that would happen if you shut down each node one
+                by one. When this mode is used on its own, all the resources stop. However, this
+                doesn't guarantee a graceful shutdown. If stopping a resource fails or
+                times out, the resource's node is fenced. Alternatively, you can avoid resource
+                downtime by using this mode in combination with maintenance mode.
+              </p></li><li class="listitem"><p>
+                <span><span class="emphasis"><strong>For one node:</strong></span></span> Stopping the cluster services on
+                just one node allows the rest of the cluster to continue running while you perform
+                maintenance tasks on the offline node. The node's resources either move to another
+                node, or stop if constraints prevent them from moving. However, if stopping a
+                resource fails or times out, the node is fenced. To avoid attempting to stop
+                resources and the cluster services at the same time, we recommend using this mode
+                in combination with standby mode.
+              </p></li></ul></div></dd><dt id="id-1.2.3.3.2"><span class="term">Maintenance mode</span></dt><dd><p>
+            In maintenance mode, the cluster stops managing the resources and won't start, stop or
+            monitor them. This allows you to manually manage applications or services without
+            interference from the cluster. However, resources aren't highly available while in this
+            mode, so they won't fail over to another node if the current node shuts down or reboots.
+          </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                <span><span class="emphasis"><strong>For the whole cluster:</strong></span></span> Cluster maintenance mode
+                puts <span><em class="emphasis">all</em></span> the resources into maintenance mode at once.
+                If you stop or restart the cluster services while in this mode, most resources can
+                continue to run even while the cluster is offline. This allows you to make cluster
+                configuration changes with minimal resource downtime. However, any resources that
+                depend on Corosync, such as DLM, must be stopped.
+              </p></li><li class="listitem"><p>
+                <span><span class="emphasis"><strong>For one node:</strong></span></span> Node maintenance mode puts all the
+                resources that are running on a specific node into maintenance mode at once.
+                <span><em class="emphasis">Don't</em></span> stop or restart the cluster services while in this mode.
+                Without proper caution, this can lead to undesirable effects, such as concurrency
+                violations, where resources mistakenly run on multiple nodes instead of only one node.
+              </p></li><li class="listitem"><p>
+                <span><span class="emphasis"><strong>For one resource:</strong></span></span> Resource maintenance mode puts
+                a single resource into maintenance mode. You can also put groups and clones into
+                resource maintenance mode.
+              </p></li></ul></div></dd><dt id="id-1.2.3.3.3"><span class="term">Standby mode</span></dt><dd><p>
+            When a <span><span class="emphasis"><strong>node</strong></span></span> is in standby mode, it can't run
+            resources. Any resources that were running on it either move to another node, or
+            stop if constraints prevent them from moving. Standby mode gives the resources more
+            time to move or stop successfully because they aren't limited by the shutdown timeout
+            of the cluster services. Therefore, this mode is useful for gracefully evacuating a
+            node before stopping the cluster services or rebooting the node.
+          </p></dd><dt id="id-1.2.3.3.4"><span class="term">Unmanaged mode</span></dt><dd><p>
+            When a <span><span class="emphasis"><strong>resource</strong></span></span> is in unmanaged mode, the cluster
+            won't start or stop it. However, unlike maintenance mode, the cluster still
+            <span><em class="emphasis">monitors</em></span> the resource and reports any failures. This can be useful
+            for troubleshooting. In most other cases, maintenance mode is more appropriate.
+          </p></dd></dl></div></section><section class="sect2" id="ha-maintenance-workflow-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.3 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="index.html#ha-maintenance-workflow-more-info">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      For more information, see
+      <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Administration/html/administrative.html" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Administration/html/administrative.html</a>.
+    </p></section></section><section xml:lang="en" class="sect1" id="ha-maintenance-putting-node-into-standby-mode" data-id-title="Putting a node into standby mode"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Putting a node into standby mode</span></span> <a title="Permalink" class="permalink" href="index.html#ha-maintenance-putting-node-into-standby-mode">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Use standby mode to gracefully evacuate a node before stopping the cluster services or
+        rebooting the node. When you put a node into standby mode, its resources either move to
+        another node, or stop if constraints prevent them from moving.
+      </p></div></div></div></div><div class="tab-structure"><ul class="tabs" onclick="showTabContent(event)"><li class="tab active-tab">CRM Shell</li><li class="tab">Hawk</li></ul><div class="content-container"><div class="tab-content" id="tabContent1"><p>
+          Perform this procedure on the node you want to put into standby mode.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              Log in to the node either as the <code class="systemitem">root</code> user or as a user with
+              <code class="command">sudo</code> privileges.
+            </p></li><li class="step"><p>
+              Put the node into standby mode:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm --wait node standby</code></pre></div><p>
+              Use <code class="option">--wait</code> to make sure the node's resources have really moved
+              or stopped before the command returns.
+            </p><p>
+              By default, the node will remain in <code class="literal">standby</code> mode after rebooting.
+              Alternatively, you can set the node to come back online automatically with
+              <code class="command">crm --wait node standby reboot</code>.
+            </p></li><li class="step"><p>
+              Check the status of the cluster:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div><p>
+              The node should show the status <code class="literal">standby</code>.
+            </p></li></ol></div></div></div><div class="tab-content" id="tabContent2" style="display: none;"><p>
+          You can use Hawk on any machine with a Web browser and network access to the nodes.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              In a Web browser, go to
+              <code class="literal">https://<em class="replaceable">HAWKSERVER</em>:7630/</code> and log in.
+            </p></li><li class="step"><p>
+              In the left navigation bar, select <span class="guimenu">Monitoring</span> › <span class="guimenu">Status</span>.
+            </p></li><li class="step"><p>
+              Switch to the <span class="guimenu">Nodes</span> tab and find the node you want to put into
+              standby mode.
+            </p></li><li class="step"><p>
+              In the <span class="guimenu">Standby</span> column, click the toggle to turn on standby mode.
+            </p></li><li class="step"><p>
+              Click <span class="guimenu">OK</span> to confirm.
+            </p><p>
+              The toggle changes from green to red.
+            </p></li><li class="step"><p>
+              Switch to the <span class="guimenu">Resources</span> tab.
+            </p><p>
+              No resources should be running on the node, including resource clones.
+            </p></li></ol></div></div></div></div></div></section><section xml:lang="en" class="sect1" id="ha-maintenance-stopping-cluster-services-one-node" data-id-title="Stopping the cluster services for one node"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Stopping the cluster services for one node</span></span> <a title="Permalink" class="permalink" href="index.html#ha-maintenance-stopping-cluster-services-one-node">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Stopping the cluster services means stopping Pacemaker and Corosync. When used on one node,
+        the node is no longer an active member of the cluster. The node's resources either move to
+        another node, or stop if constraints prevent them from moving. However, if stopping a
+        resource fails or times out, the node is fenced. To avoid attempting to stop resources
+        and the cluster services at the same time, we recommend using this mode in combination
+        with standby mode.
+      </p></div></div></div></div><div id="id-1.4.2" data-id-title="Dont stop the cluster services in single-node maintenance mode" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning: Don't stop the cluster services in single-node maintenance mode</div><p>
+      Stopping the cluster services while in single-node maintenance mode can lead to undesirable
+      effects. Resources running on this node might also start on another node. Caution is
+      required to prevent potential concurrency violations.
+    </p></div><p>
+    Perform this procedure on the node you want to stop.
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Log in to the node either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code>
+        privileges.
+      </p></li><li class="step"><p>
+        Check the status of the cluster:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            If the node is in <code class="literal">maintenance</code> mode: Don't stop the cluster services,
+            as this can lead to undesirable effects. Take the node out of maintenance mode first.
+          </p></li><li class="listitem"><p>
+            If the node is in <code class="literal">standby</code> mode: The resources have either moved to
+            other nodes or stopped, so you can safely stop the cluster services.
+          </p></li><li class="listitem"><p>
+            If the node isn't in either mode: When you stop the cluster services, the resources
+            attempt to move to other nodes. If they can't move, they stop. However, if any
+            resources fail to stop before the cluster's shutdown timeout, the node will be fenced.
+          </p></li></ul></div></li><li class="step"><p>
+        Stop the cluster services on the node:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster stop</code></pre></div></li><li class="step"><p>
+        Check the status of the cluster services:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster status</code></pre></div><p>
+        Both Pacemaker and Corosync should be <code class="literal">inactive</code>.
+      </p></li></ol></div></div></section><section xml:lang="en" class="sect1" id="ha-maintenance-performing-the-tasks" data-id-title="Performing the maintenance tasks"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Performing the maintenance tasks</span></span> <a title="Permalink" class="permalink" href="index.html#ha-maintenance-performing-the-tasks">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Perform your maintenance tasks on the cluster node. This could be hardware, software or
+    firmware updates, for example. In this workflow, you can safely shut down or reboot the node
+    if required.
+  </p><div id="id-1.5.3" data-id-title="Only make changes to one node at a time" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning: Only make changes to one node at a time</div><p>
+      If you need to make changes to other nodes, wait until this node is an active member of the
+      cluster again before repeating this workflow on the next node.
+    </p></div></section><section xml:lang="en" class="sect1" id="ha-maintenance-starting-cluster-services-one-node" data-id-title="Starting the cluster services for one node"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Starting the cluster services for one node</span></span> <a title="Permalink" class="permalink" href="index.html#ha-maintenance-starting-cluster-services-one-node">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Starting the cluster services means starting Pacemaker and Corosync. The node becomes an
+        active member of the cluster again.
+      </p></div></div></div></div><p>
+    Perform this procedure on the node you want to start.
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Log in to the node either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code>
+        privileges.
+      </p></li><li class="step"><p>
+        If you rebooted the node, check whether the cluster services started automatically:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster status</code></pre></div><p>
+        If the cluster services started automatically, both Pacemaker and Corosync will be
+        <code class="literal">active</code>.
+      </p></li><li class="step"><p>
+        If the cluster services didn't start automatically, start them manually:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster start</code></pre></div></li><li class="step"><p>
+        Check the status of the cluster:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div><p>
+        The node should be <code class="literal">Online</code>. It might also have the status
+        <code class="literal">standby</code>. If the node is in standby mode, it won't be able to run
+        resources again until you take it out of standby mode.
+      </p></li></ol></div></div></section><section xml:lang="en" class="sect1" id="ha-maintenance-taking-node-out-of-standby-mode" data-id-title="Taking a node out of standby mode"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Taking a node out of standby mode</span></span> <a title="Permalink" class="permalink" href="index.html#ha-maintenance-taking-node-out-of-standby-mode">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Taking a node out of standby mode allows resources to run on it again. The resources that
+        moved away from the node might return to it automatically, depending on their constraint
+        scores and stickiness.
+      </p></div></div></div></div><div class="tab-structure"><ul class="tabs" onclick="showTabContent(event)"><li class="tab active-tab">CRM Shell</li><li class="tab">Hawk</li></ul><div class="content-container"><div class="tab-content" id="tabContent1"><p>
+          Perform this procedure on the node you want to take out of standby mode.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              Log in to the node either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code>
+              privileges.
+            </p></li><li class="step"><p>
+              Check the status of the cluster:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div><p>
+              The node might have come back online automatically if you used the
+              <code class="option">reboot</code> option.
+            </p></li><li class="step"><p>
+              If the node still has the status <code class="literal">standby</code>, bring it back online:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm node online</code></pre></div></li><li class="step"><p>
+              Check the status of the cluster again. The node should no longer have the status
+              <code class="literal">standby</code>, and resource clones should be running on the node again.
+              Other resources might return to the node automatically, depending on their constraint
+              scores and stickiness.
+            </p></li></ol></div></div></div><div class="tab-content" id="tabContent2" style="display: none;"><p>
+          You can use Hawk on any machine with a Web browser and network access to the nodes.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              In a Web browser, go to
+              <code class="literal">https://<em class="replaceable">HAWKSERVER</em>:7630/</code> and log in.
+            </p></li><li class="step"><p>
+              In the left navigation bar, select <span class="guimenu">Monitoring</span> › <span class="guimenu">Status</span>.
+            </p></li><li class="step"><p>
+              Switch to the <span class="guimenu">Nodes</span> tab and find the node you want to take out of
+              standby mode.
+            </p></li><li class="step"><p>
+              In the <span class="guimenu">Standby</span> column, click the toggle to turn off
+              standby mode.
+            </p></li><li class="step"><p>
+              Click <span class="guimenu">OK</span> to confirm.
+            </p><p>
+              The toggle changes from red to green.
+            </p></li><li class="step"><p>
+              Switch to the <span class="guimenu">Resources</span> tab.
+            </p><p>
+              Resource clones should now be running on the node again. Other resources might return
+              to the node automatically, depending on their constraint scores and stickiness.
+            </p></li></ol></div></div></div></div></div></section><section xml:lang="en" class="sect1" id="ha-maintenance-other-workflows" data-id-title="Other maintenance workflows"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Other maintenance workflows</span></span> <a title="Permalink" class="permalink" href="index.html#ha-maintenance-other-workflows">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    If you need a different workflow, or to perform a specific task, check this list of other
+    articles:
+  </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.8.3.1"><span class="term">General workflows</span></dt><dd><p>
+          These articles describe general workflows for different scenarios:
+        </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.8.3.1.2.2.1"><span class="term">
+              
+              <a class="link" href="https://documentation.suse.com/sle-ha/16.1/html/HA-maintenance-performing-tasks-cluster-infra/" target="_blank">
+              <em class="citetitle">Performing maintenance tasks on cluster infrastructure</em></a>
+            </span></dt><dd><p>
+                Make changes to the configuration of the cluster services, or to infrastructure
+                used by the cluster services, such as storage or networking. This involves
+                putting the whole cluster into maintenance mode and stopping the cluster services
+                on all nodes at once, but <span><em class="emphasis">not</em></span> rebooting any nodes.
+              </p></dd><dt id="id-1.8.3.1.2.2.2"><span class="term">
+              <span class="phrase">(This article)</span>
+              <a class="link" href="https://documentation.suse.com/sle-ha/16.1/html/HA-maintenance-performing-tasks-cluster-nodes/" target="_blank">
+              <em class="citetitle">Performing maintenance tasks on cluster nodes</em></a>
+            </span></dt><dd><p>
+                Make changes to the cluster nodes, such as hardware, software or firmware updates.
+                This involves putting a node into standby mode and stopping the cluster services
+                on just that node, then rebooting if required.
+              </p></dd><dt id="id-1.8.3.1.2.2.3"><span class="term">
+              
+              <a class="link" href="https://documentation.suse.com/sle-ha/16.1/html/HA-maintenance-performing-tasks-cluster-resources/" target="_blank">
+              <em class="citetitle">Performing maintenance tasks on cluster resources</em></a>
+            </span></dt><dd><p>
+                Manually manage applications or services without interference from the cluster.
+                This involves putting one or more resources into maintenance mode so you can
+                temporarily manage them manually.
+              </p></dd></dl></div></dd><dt id="id-1.8.3.2"><span class="term">Specific tasks</span></dt><dd><p>
+          These articles describe specific maintenance or administration tasks:
+        </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.8.3.2.2.2.1"><span class="term"><a class="link" href="https://documentation.suse.com/sle-ha/16.1/html/HA-sbd-changing-configuration/" target="_blank">
+            <em class="citetitle">Changing the Configuration of SBD</em></a></span></dt><dd><p>
+                This article describes different ways to update the configuration of SBD for node
+                fencing. Most of these tasks require stopping the cluster services, and might also
+                require cluster maintenance mode.
+              </p></dd></dl></div></dd></dl></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#ha-maintenance-for-clusters"><span class="title-number">1 </span><span class="title-name">What are HA administrative modes?</span></a></span></li><li><span class="section"><a href="index.html#ha-maintenance-putting-node-into-standby-mode"><span class="title-number">2 </span><span class="title-name">Putting a node into standby mode</span></a></span></li><li><span class="section"><a href="index.html#ha-maintenance-stopping-cluster-services-one-node"><span class="title-number">3 </span><span class="title-name">Stopping the cluster services for one node</span></a></span></li><li><span class="section"><a href="index.html#ha-maintenance-performing-the-tasks"><span class="title-number">4 </span><span class="title-name">Performing the maintenance tasks</span></a></span></li><li><span class="section"><a href="index.html#ha-maintenance-starting-cluster-services-one-node"><span class="title-number">5 </span><span class="title-name">Starting the cluster services for one node</span></a></span></li><li><span class="section"><a href="index.html#ha-maintenance-taking-node-out-of-standby-mode"><span class="title-number">6 </span><span class="title-name">Taking a node out of standby mode</span></a></span></li><li><span class="section"><a href="index.html#ha-maintenance-other-workflows"><span class="title-number">7 </span><span class="title-name">Other maintenance workflows</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">8 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li><li><span class="glossary"><a href="ha-glossary.html"><span class="title-name">HA glossary</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

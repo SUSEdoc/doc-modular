@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Key Technical Differences Between SLE 15 and SUSE Linux 16 | SUSE Linux 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2025-11-04"/>
+<meta name="dcterms.modified" content="2026-02-12"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-26"/>
+<meta name="title" content="Key Technical Differences Between SLE 15 and SUSE Linu…"/>
+<meta name="description" content="Technical information about the significant changes from SLES15 to 16"/>
+<meta name="product-name" content="SUSE Linux"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="Key Technical Differences Between SLE 15 and SUSE Linux 16"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="jsindelarova@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="jsindelarova@suse.com"/><meta property="og:title" content="Key Technical Differences Between SLE 15 and SUSE Linu…"/>
+<meta property="og:description" content="Learn about the key technical differences between SLE 15 and"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Key Technical Differences Between SLE 15 and SUSE Linu…"/>
+<meta name="twitter:description" content="Learn about the key technical differences between S"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Key Technical Differences Between SLE 15 and SUSE Linux 16 | SUSE Linux 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Key Technical Differences Between SLE 15 and SUSE Linux 16",
+    "description": "Technical information about the significant changes from SLES15 to 16",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2025-11-04T00:00+02:00",
+    "dateModified": "2026-02-12T00:00+02:00",
+    "datePublished": "2026-08-26T09:48+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "About"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Key Technical Differences Between SLE 15 and SUSE Linux 16</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Key Technical Differences Between SLE 15 and SUSE Linux 16</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="sle16-differences-faq" data-id-title="Key Technical Differences Between SLE 15 and SUSE Linux 16"><div class="titlepage"><div><div class="big-version-info"><span class="productname">SUSE Linux</span> 16.1</div><div><h1 class="title">Key Technical Differences Between SLE 15 and SUSE Linux 16</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>26 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+              This article addresses common technical questions about installing and using 
+              SUSE Linux 16.
+            </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
+              SUSE Linux 16 introduces significant changes compared to its predecessor, SLE 15.
+              This article helps you navigate those differences.
+            </p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                It takes approximately 20 minutes to read the article.
+              </p></dd><dt id="id-1.1.12.1.4"><span class="term">GOAL</span></dt><dd><p>
+                You will have a clear understanding of what has been added or removed in SUSE Linux 16.
+              </p></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Key Technical Differences Between SLE 15 and SUSE Linux 16" hreflang="en" href="rh-sle16-differences-faq.html" target="_blank">Revision History: Key Technical Differences Between SLE 15 and SUSE Linux 16</a></div></div></div></div><section xml:lang="en" class="sect1" id="sle16-differences-faq-installation" data-id-title="Changes in the installation process"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Changes in the installation process</span></span> <a title="Permalink" class="permalink" href="index.html#sle16-differences-faq-installation">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       This section answers common questions about the new installer and deployment process.
+      </p></div></div></div></div><section class="sect2" id="sle16-differences-faq-installation-yast" data-id-title="What happened to YaST?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">What happened to YaST?</span></span> <a title="Permalink" class="permalink" href="index.html#sle16-differences-faq-installation-yast">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      YaST is the installation and configuration tool used on SUSE Linux Enterprise 15 that also can be used from the running
+      system. SUSE Linux 16 comes with installer images based on a new technology
+      called
+      Agama. The sole purpose of Agama is to install a new system and not to serve as a
+      management tool like YaST was.
+    </p><p>
+      Agama images are delivered in several flavors. To name several of them:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          minimal: for installation from the network
+        </p></li><li class="listitem"><p>
+          full: with a full copy of the package repositories for all product flavors
+        </p></li><li class="listitem"><p>
+remote installation: deployment using the PXE client
+        </p></li></ul></div><p>
+      Agama supports unattended installation and maintains a high degree of compatibility
+      with AutoYaST's file format and data schema. However, Agama is not a fully
+      compatible drop-in replacement for AutoYaST. Although you can use many existing profiles, 
+      some adjustments to the profiles are expected. Additionally, a new, more powerful profile schema 
+      based on JSON/Jsonnet is also available.
+    </p><p>
+      You can install SUSE Linux 16 using repositories provided by a local RMT server inside the
+      customer's network. There is no RMT version based on SUSE Linux 16 yet. However, RMT 15  is
+      fully supported as an installation source for  16.
+    </p></section><section class="sect2" id="sle16-differences-faq-installation-rescue" data-id-title="Where is the rescue system?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Where is the rescue system?</span></span> <a title="Permalink" class="permalink" href="index.html#sle16-differences-faq-installation-rescue">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The Agama installation images no longer come with a separate rescue system. In a future
+      release of  16, we plan to provide a separate image for this purpose.</p><p> To enter a rescue
+      shell (without starting Agama), you can use the live media. Alternatively, you can
+      use the Agama image to access the installed for diagnosis and repair in any of the following ways:
+        </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          Boot the  installation image, switch to another virtual console and log in as <code class="systemitem">root</code>.
+        </p></li><li class="listitem"><p>
+          Boot the installation image and open a terminal window.
+        </p></li><li class="listitem"><p>
+          Boot the installation image, and before starting the Linux kernel, add
+          <code class="literal">3</code> to the kernel CLI. This will boot into runlevel 3, skipping the graphical system and thus the installer.
+        </p></li></ul></div><p>
+      Any of these methods will give you a root shell that should allow you to access your root partition. 
+      Many of the tools needed to repair or recover a potentially broken installation should be available inside the Agama live media.
+    </p></section></section><section xml:lang="en" class="sect1" id="sle16-differences-faq-migration" data-id-title="Migration from previous SLE releases"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Migration from previous SLE releases</span></span> <a title="Permalink" class="permalink" href="index.html#sle16-differences-faq-migration">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+For migration from SLE 15 to SUSE Linux 16, we use a new approach to migration based on a technology called <span><em class="emphasis">SUSE Migration Services</em></span>.
+  </p><p>
+    This technology uses a special medium that attempts the migration in several
+    steps after booting. The first, pre-migration step analyzes the existing installation to identify problematic
+    settings that cannot be converted automatically, such as AppArmor profiles. Such issues are
+    flagged, and you are given the option to either accept an
+    incomplete migration or cancel the process. In the second step, the system boots into a special medium that
+    performs the actual migration. After that, the system boots into the migrated system and performs
+    optional final tasks.
+    </p><p>
+      Migration of a running system is no longer provided.
+    </p><p>
+      SUSE Linux 16.1 is the target release for delivering full migration support. 16.0 provides limited 
+      migration capabilities, supporting only migrations from SLE 15 SP7. Furthermore, the 
+      tools in 16.0 do not cover all aspects of migration. 
+    </p></section><section xml:lang="en" class="sect1" id="sle16-differences-faq-basesystem" data-id-title="Changes in the base system and the boot process"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Changes in the base system and the boot process</span></span> <a title="Permalink" class="permalink" href="index.html#sle16-differences-faq-basesystem">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       Let us dive into the foundational changes affecting system services, core libraries, and essential utilities.
+      </p></div></div></div></div><section class="sect2" id="sle16-differences-faq-basesystem-bootloader" data-id-title="Are there any changes to the boot loader in SLE 16?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.1 </span><span class="title-name">Are there any changes to the boot loader in SLE 16?</span></span> <a title="Permalink" class="permalink" href="index.html#sle16-differences-faq-basesystem-bootloader">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    The boot loader in SUSE Linux 16 is GRUB 2 2.12. BLS and <code class="systemitem">systemd</code>-boot are not used now, but may
+    be added in the future.
+  </p><p>
+    On AMD64/Intel 64, full disk encryption is supported using PCR to unlock the disk if the TPM chip
+    supports TPM v2.1 and later.
+  </p></section><section class="sect2" id="sle16-differences-faq-basesystem-etc" data-id-title="Where have the configuration files from /etc been moved?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.2 </span><span class="title-name">Where have the configuration files from <code class="filename">/etc</code> been moved?</span></span> <a title="Permalink" class="permalink" href="index.html#sle16-differences-faq-basesystem-etc">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    SUSE continues to move configuration files delivered by SUSE from <code class="filename">/etc</code>
+    to <code class="filename">/usr</code>. This solution enables you to maintain your settings in
+    <code class="filename">/etc</code> without worrying about maintenance updates overwriting them. Even though many packages follow the paradigm, certain tools are still
+    shipped with regular configuration files located in <code class="filename">/etc</code>. The process is
+    still ongoing, and we expect that the other tools will be adapted in a future SUSE Linux release.
+  </p><p>
+    You have three options for how to modify the configuration of a service or tool. For example, the
+    tool <code class="literal">frobnicator</code> usually has configuration files in
+    <code class="filename">/etc/frob.conf</code>. Starting with SUSE Linux 16.0, the default configuration file
+    of the tool is <code class="filename">/usr/etc/frob.conf</code>. Do not modify this file as it may be
+    overwritten by future maintenance updates. To apply your custom changes, you have the following options:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        Place your  own copy of the configuration file into <code class="filename">/etc/frob.conf</code>,
+        which has a precedence and the configuration file supplied by SUSE is then ignored.
+      </p></li><li class="listitem"><p>
+        You can place drop-in files into <code class="filename">/etc/frob.d</code>. The tool first loads
+        the configuration from <code class="filename">/usr/etc/frob.conf</code> and then updates it 
+        using the drop-in files in <code class="filename">/etc/frob.d</code>.
+      </p></li></ul></div><div id="id-1.4.3.5" data-id-title="Possible unexpected errors" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Possible unexpected errors</div><p>
+This solution can lead to unexpected results if you have tools that try to update configuration files in <code class="filename">/etc</code> blindly. In particular, creating an empty <code class="filename">/etc/ssh/sshd_config</code> file may result in getting locked out of your system.
+</p></div><p>
+    For more information and a list of affected packages, refer to <a class="link" href="https://en.opensuse.org/openSUSE:Packaging_UsrEtc" target="_blank">configuration split details</a>.
+    </p></section><section class="sect2" id="sle16-differences-faq-basesystem-tmpfs" data-id-title="Are there any changes in the way the base system works in general?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.3 </span><span class="title-name">Are there any changes in the way the base system works in general?</span></span> <a title="Permalink" class="permalink" href="index.html#sle16-differences-faq-basesystem-tmpfs">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Yes, <code class="filename">/tmp</code> is no longer persistent on reboot but uses <span><em class="emphasis">tmpfs</em></span>.
+  </p></section><section class="sect2" id="sle16-differences-faq-basesystem-tr-up" data-id-title="Do you support transactional updates in SUSE Linux Enterprise Server?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.4 </span><span class="title-name">Do you support transactional updates in SUSE Linux Enterprise Server?</span></span> <a title="Permalink" class="permalink" href="index.html#sle16-differences-faq-basesystem-tr-up">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Currently, transactional updates are not supported on SUSE Linux Enterprise Server. The transactional update is
+    supported by another product—SUSE Linux Micro.
+  </p></section><section class="sect2" id="sle16-differences-faq-basesystem-deprecated" data-id-title="Removed technologies in the base system"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.5 </span><span class="title-name">Removed technologies in the base system</span></span> <a title="Permalink" class="permalink" href="index.html#sle16-differences-faq-basesystem-deprecated">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    The following technologies have been removed:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+NIS aka Yellow Pages
+      </p></li><li class="listitem"><p>
+        <code class="literal">nscd</code>: The name service caching daemon
+      </p></li><li class="listitem"><p>
+<code class="literal">wicked</code>: Replaced by NetworkManager for managing network connections
+      </p></li><li class="listitem"><p>
+        AppArmor: SELinux is used exclusively as the security framework
+      </p></li><li class="listitem"><p>
+        SystemV init support
+      </p></li></ul></div></section><section class="sect2" id="sle16-differences-faq-basesystem-architecture" data-id-title="What architecture level sets are supported?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.6 </span><span class="title-name">What architecture level sets are supported?</span></span> <a title="Permalink" class="permalink" href="index.html#sle16-differences-faq-basesystem-architecture">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    The following table summarizes supported architecture level sets.
+  </p><div class="table" id="id-1.4.7.3" data-id-title="Supported architecture level sets"><div class="title-container"><div class="table-title-wrap"><div class="table-title"><span class="title-number-name"><span class="title-number">Table 1: </span><span class="title-name">Supported architecture level sets </span></span><a title="Permalink" class="permalink" href="index.html#id-1.4.7.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="table-contents"><table style="border-collapse: collapse; border-top: 1px solid ; border-bottom: 1px solid ; border-left: 1px solid ; border-right: 1px solid ; "><colgroup><col class="arch"/><col class="ver"/><col class="notes"/></colgroup><thead><tr><th style="border-right: 1px solid ; border-bottom: 1px solid ; ">Architecture</th><th style="border-right: 1px solid ; border-bottom: 1px solid ; ">Supported version</th><th style="border-bottom: 1px solid ; ">Notes</th></tr></thead><tbody><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">AMD64/Intel 64</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">AMD64/Intel 64-v2</td><td style="border-bottom: 1px solid ; ">Optimized v3 versions of certain shared libraries are now available. These libraries, which follow 
+              the naming scheme <code class="literal">libfoo-x86-64-v3</code>, are installed automatically on systems
+              that support the new instruction set.</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Intel 32-bit</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Not supported</td><td style="border-bottom: 1px solid ; ">A 32-bit runtime is no longer supported, and SUSE does not provide any 32-bit libraries
+        anymore.</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">IBM POWER</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">POWER 9 and higher</td><td style="border-bottom: 1px solid ; ">SUSE Linux 16.0 is supported on POWER 10 and POWER 11.
+Even though SUSE Linux 16.0 continues to work on POWER 9 (except for KVM), this is not supported by IBM.</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">IBM POWER 32-bit</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Not supported</td><td style="border-bottom: 1px solid ; ">Support for a 32-bit runtime has been discontinued since SLES 15 SP3.</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">IBM IBM Z</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">IBM Z14</td><td style="border-bottom: 1px solid ; "> </td></tr><tr><td style="border-right: 1px solid ; ">AArch64</td><td style="border-right: 1px solid ; ">Armv8.0-A</td><td>No change from SLE 15.</td></tr></tbody></table></div></div></section><section class="sect2" id="sle16-differences-faq-basesystem-bios" data-id-title="Do you still support legacy BIOS on AMD64/Intel 64?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.7 </span><span class="title-name">Do you still support legacy BIOS on AMD64/Intel 64?</span></span> <a title="Permalink" class="permalink" href="index.html#sle16-differences-faq-basesystem-bios">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    The default for fresh installations of SUSE Linux 16.0 is UEFI.
+      Support for legacy BIOS is deprecated and will be removed in a future version of the product. However, support for legacy BIOS is provided for backward compatibility in the following scenarios: 
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        migration of VMs that use Legacy BIOS 
+      </p></li><li class="listitem"><p>
+        certain instances in public clouds
+      </p></li><li class="listitem"><p>
+        systems upgraded from SLE 15
+      </p></li></ul></div><p>
+    Some features may not be available when using Legacy BIOS, such as full disk encryption with TPM.
+  </p></section></section><section xml:lang="en" class="sect1" id="sle16-differences-faq-security" data-id-title="Changes in security"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Changes in security</span></span> <a title="Permalink" class="permalink" href="index.html#sle16-differences-faq-security">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       This section covers the most critical security updates and changes.
+      </p></div></div></div></div><section class="sect2" id="sle16-differences-faq-security-selinux" data-id-title="What is the status of SELinux?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.1 </span><span class="title-name">What is the status of SELinux?</span></span> <a title="Permalink" class="permalink" href="index.html#sle16-differences-faq-security-selinux">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    In standard installations, SELinux is enabled by default and set to <code class="literal">enforcing</code>
+    mode. When configuring a SLES or SLES for SAP applications system to run SAP, SELinux is changed to <code class="literal">permissive</code> mode transparently. 
+  </p><p>
+    For details on SELinux, refer to the <a class="link" href="https://documentation.suse.com/sles/16.0/html/SLES-SELinux/" target="_blank">Understanding SELinux
+    Basics</a> article.
+  </p></section><section class="sect2" id="sle16-differences-faq-security-root" data-id-title="Are you changing the rules for root access?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.2 </span><span class="title-name">Are you changing the rules for <code class="systemitem">root</code> access?</span></span> <a title="Permalink" class="permalink" href="index.html#sle16-differences-faq-security-root">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Starting with SUSE Linux 16, <code class="systemitem">root</code> access is modified to be more secure by default. For users
+    with physical access to the system (that is, text console, serial, graphical desktop), login as
+    <code class="systemitem">root</code> is still allowed by default. There is no change in behavior compared to SLE 15.
+    However, for remote access via SSH, <code class="systemitem">root</code> login is <span><span class="emphasis"><strong><span><em class="emphasis">disabled</em></span></strong></span></span> when trying to use
+    password authentication. To allow it, install the
+    <code class="literal">openssh-server-config-rootlogin</code> package. Also, <code class="systemitem">root</code> login is still
+    possible when you configure SSH keys in <code class="filename">/root/.ssh/authorized_keys*</code>.
+  </p></section><section class="sect2" id="sle16-differences-faq-security-sudo" data-id-title="What about sudo?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.3 </span><span class="title-name">What about sudo?</span></span> <a title="Permalink" class="permalink" href="index.html#sle16-differences-faq-security-sudo">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    In SLE (15 and older), <code class="command">sudo</code> is configured to prompt for the password of the target user (the account you want to switch to). 
+      In SUSE Linux 16, we have strengthened the security of the default setup:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        The first user created by the installer is now added to the <code class="literal">wheel</code> group.
+      </p></li><li class="listitem"><p>
+        When using <code class="command">sudo -i</code>, <code class="literal">kexec</code> or
+        <code class="literal">polkit</code> for authentication, the following rules apply:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            If the user is part of the <code class="literal">wheel</code> group, they are prompted for their own password, rather than the <code class="systemitem">root</code> password.
+          </p></li><li class="listitem"><p>
+            If the user is <span><em class="emphasis"><span><span class="emphasis"><strong>not</strong></span></span></em></span> part of
+            the <code class="literal">wheel</code> group, they are prompted for the <code class="systemitem">root</code> password.
+          </p></li></ul></div></li></ul></div><p>
+    This new policy is implemented with the <code class="literal">sudo-policy-wheel-auth-self</code> package, which is installed by default on new SUSE Linux 16.0 systems.
+  </p></section></section><section xml:lang="en" class="sect1" id="sle16-differences-faq-kernel" data-id-title="Changes in kernel and storage"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Changes in kernel and storage</span></span> <a title="Permalink" class="permalink" href="index.html#sle16-differences-faq-kernel">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       Explore the updates at the core of the system, from the Linux kernel to the storage stack.
+      </p></div></div></div></div><section class="sect2" id="sle16-differences-faq-kernel-version" data-id-title="Kernel version and kernel subsystem changes"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.1 </span><span class="title-name">Kernel version and kernel subsystem changes</span></span> <a title="Permalink" class="permalink" href="index.html#sle16-differences-faq-kernel-version">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Support of the following core kernel subsystems has been dropped:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+      quota v1
+    </p></li><li class="listitem"><p>
+      cgroups v1 interface
+    </p></li></ul></div><p>
+    SUSE Linux 16.0 is delivered with kernel version 6.12.
+  </p></section><section class="sect2" id="sle16-differences-faq-kernel-filesystem" data-id-title="Support status of file systems"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.2 </span><span class="title-name">Support status of file systems</span></span> <a title="Permalink" class="permalink" href="index.html#sle16-differences-faq-kernel-filesystem">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+The following table provides an overview of the file system status in SUSE Linux 16:
+</p><div class="table" id="id-1.6.3.3" data-id-title="Supported architecture level sets"><div class="title-container"><div class="table-title-wrap"><div class="table-title"><span class="title-number-name"><span class="title-number">Table 2: </span><span class="title-name">Supported architecture level sets </span></span><a title="Permalink" class="permalink" href="index.html#id-1.6.3.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="table-contents"><table style="border-collapse: collapse; border-top: 1px solid ; border-bottom: 1px solid ; border-left: 1px solid ; border-right: 1px solid ; "><colgroup><col class="filesystem"/><col class="notes"/></colgroup><thead><tr><th style="border-right: 1px solid ; border-bottom: 1px solid ; ">File system</th><th style="border-bottom: 1px solid ; ">Status</th></tr></thead><tbody><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">reiserfs</td><td style="border-bottom: 1px solid ; ">Dropped</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">hfsplus</td><td style="border-bottom: 1px solid ; ">Dropped</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">UFS</td><td style="border-bottom: 1px solid ; ">Dropped</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">quota v1</td><td style="border-bottom: 1px solid ; ">Dropped</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">ocfs2</td><td style="border-bottom: 1px solid ; ">Dropped. Use gfs2 instead (available only on SLE HA).</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">btrfs</td><td style="border-bottom: 1px solid ; ">Supported and set as the default file system</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">xfs</td><td style="border-bottom: 1px solid ; ">Supported</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">ext</td><td style="border-bottom: 1px solid ; ">Supported</td></tr><tr><td style="border-right: 1px solid ; ">gfs2</td><td>Supported—both read and write operations. Available on SLE HA only. </td></tr></tbody></table></div></div></section><section class="sect2" id="sle16-differences-faq-kernel-kdump" data-id-title="How do I configure Kdump?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.3 </span><span class="title-name">How do I configure Kdump?</span></span> <a title="Permalink" class="permalink" href="index.html#sle16-differences-faq-kernel-kdump">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    On SLE 15 you could configure Kdump using YaST. However, with YaST not available on
+    SUSE Linux 16, the <code class="command">kdumptool</code> tool is now used to configure Kdump. You can
+    control settings using the following variables in <code class="filename"> /etc/sysconfig/kdump</code>:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+KDUMP_CRASHKERNEL
+        </p></li><li class="listitem"><p>
+KDUMP_UPDATE_BOOTLOADER
+        </p></li></ul></div><p>
+      Using <code class="command">kdumptool</code>, you can perform the following tasks:
+     </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          Check whether the running kernel has the expected crashkernel settings
+        </p></li><li class="listitem"><p>
+          Update the bootloader configuration to enforce the expected settings on next reboot
+        </p></li><li class="listitem"><p>
+          Disable kdump by removing crashkernel settings from your boot loader configuration
+        </p></li></ul></div></section></section><section xml:lang="en" class="sect1" id="sle16-differences-faq-virtualization" data-id-title="Changes in virtualization"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Changes in virtualization</span></span> <a title="Permalink" class="permalink" href="index.html#sle16-differences-faq-virtualization">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+  SUSE Linux 16 continues to support KVM. Support for Xen has been dropped.
+</p></section><section xml:lang="en" class="sect1" id="sle16-differences-faq-desktop" data-id-title="Changes in the desktop environment"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Changes in the desktop environment</span></span> <a title="Permalink" class="permalink" href="index.html#sle16-differences-faq-desktop">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+  The desktop product has been discontinued. SUSE Linux 16 is available with a minimal desktop
+  environment based on GNOME 48, including essential applications such as the Firefox Web browser, file browser, viewers for PDFs and images, and so on.
+</p><p>
+  Changes in desktop technologies:
+</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+      X11 is no longer shipped. Desktop sessions now use Wayland.
+    </p></li><li class="listitem"><p>
+      The VNC server is no longer shipped. Remote desktop and sharing are now provided using RDP.
+    </p></li><li class="listitem"><p>
+      The <code class="literal">GTK2, Qt5</code> and <code class="literal">wxWidgets</code> widget libraries have been dropped.
+    </p></li></ul></div></section><section xml:lang="en" class="sect1" id="sle16-differences-faq-management" data-id-title="Changes in the system management"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name">Changes in the system management</span></span> <a title="Permalink" class="permalink" href="index.html#sle16-differences-faq-management">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       Here, we answer your questions about the changes to system administration tools and automation frameworks.
+      </p></div></div></div></div><section class="sect2" id="sle16-differences-faq-management-frameworks" data-id-title="Which management frameworks are available?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">8.1 </span><span class="title-name">Which management frameworks are available?</span></span> <a title="Permalink" class="permalink" href="index.html#sle16-differences-faq-management-frameworks">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    The YaST management tool is not shipped anymore, so for general 1:1 management tasks you can
+    use the delivered Cockpit. However, Cockpit does not provide a full replacement, and some
+    modules YaST used are missing in it. For details regarding Cockpit, refer to the <a class="link" href="https://documentation.suse.com/sles/16.0/html/SLES-cockpit/" target="_blank">Cockpit guide</a>.
+  </p><p>
+For management automation, SUSE Linux 16 supports Ansible. SUSE Multi-Linux Manager is another option for managing
+SUSE Linux 16 installations that use Salt internally. However, SUSE Linux 16 itself does not contain Salt packages.
+  </p><p>
+    Support of WBEM has been dropped (in SLE 15 it was provided by the SBLIM packages).
+  </p></section><section class="sect2" id="sle16-differences-faq-management-update" data-id-title="What has changed in the update stack and package management?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">8.2 </span><span class="title-name">What has changed in the update stack and package management?</span></span> <a title="Permalink" class="permalink" href="index.html#sle16-differences-faq-management-update">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    In SUSE Linux 16, there are no modules anymore to distinguish between, for example, the base
+    system, server applications or development packages. There are also no longer separate channels
+    for <code class="literal">pool</code> and <code class="literal">update</code>. These changes, together with
+    improvements to <code class="command">zypper</code>, should result in better performance when applying updates. SUSE Linux minor
+    releases (aka 16.1, 16.2 and so on) will continue to have separate repositories.
+  </p><p>
+    SUSE Linux 16  instances can register against (and receive updates from) an RMT server. Currently,
+    the RMT service has to run on a SLE 15 instance as we do not support the RMT service on
+    SUSE Linux 16 yet. RMT on SUSE Linux 16 is expected to be delivered with SUSE Linux 16.1.
+  </p></section></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">9 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#sle16-differences-faq-installation"><span class="title-number">1 </span><span class="title-name">Changes in the installation process</span></a></span></li><li><span class="section"><a href="index.html#sle16-differences-faq-migration"><span class="title-number">2 </span><span class="title-name">Migration from previous SLE releases</span></a></span></li><li><span class="section"><a href="index.html#sle16-differences-faq-basesystem"><span class="title-number">3 </span><span class="title-name">Changes in the base system and the boot process</span></a></span></li><li><span class="section"><a href="index.html#sle16-differences-faq-security"><span class="title-number">4 </span><span class="title-name">Changes in security</span></a></span></li><li><span class="section"><a href="index.html#sle16-differences-faq-kernel"><span class="title-number">5 </span><span class="title-name">Changes in kernel and storage</span></a></span></li><li><span class="section"><a href="index.html#sle16-differences-faq-virtualization"><span class="title-number">6 </span><span class="title-name">Changes in virtualization</span></a></span></li><li><span class="section"><a href="index.html#sle16-differences-faq-desktop"><span class="title-number">7 </span><span class="title-name">Changes in the desktop environment</span></a></span></li><li><span class="section"><a href="index.html#sle16-differences-faq-management"><span class="title-number">8 </span><span class="title-name">Changes in the system management</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">9 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

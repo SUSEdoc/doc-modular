@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Accessing Active Directory from SUSE Linux Enterprise Server for SAP applications</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2025-11-04"/>
+<meta name="dcterms.modified" content="2025-11-04"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-26"/>
+<meta name="title" content="Accessing Active Directory from SUSE Linux Enterprise …"/>
+<meta name="description" content="How to join an Active Directory domain"/>
+<meta name="book-title" content="Accessing Active Directory from SUSE Linux Enterprise Server for SAP applications"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="jsindelarova@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="dcterms.modified" content="2024-11-16"/><meta name="dc.creator" content="jsindelarova@suse.com"/><meta property="og:title" content="Accessing Active Directory from SUSE Linux Enterprise …"/>
+<meta property="og:description" content="How to join an Active Directory domain"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Accessing Active Directory from SUSE Linux Enterprise …"/>
+<meta name="twitter:description" content="How to join an Active Directory domain"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Accessing Active Directory from SUSE Linux Enterprise Server for SAP applications",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Accessing Active Directory from SUSE Linux Enterprise Server for SAP applications",
+    "description": "How to join an Active Directory domain",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2025-11-04T00:00+02:00",
+    "dateModified": "2025-11-04T00:00+02:00",
+    "datePublished": "2026-08-26T09:48+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Administration"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Accessing Active Directory from SUSE Linux Enterprise Server for SAP applications</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Accessing Active Directory from <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span></div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="active-directory" data-id-title="Accessing Active Directory from SUSE Linux Enterprise Server for SAP applications"><div class="titlepage"><div><div><h1 class="title">Accessing Active Directory from <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span></h1></div><div class="date"><span class="imprint-label">Publication Date: </span>26 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.13.1.1"><span class="term">WHAT?</span></dt><dd><p>
+                <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> enables you to work with data stored in Active Directory.
+              </p></dd><dt id="id-1.1.13.1.2"><span class="term">WHY?</span></dt><dd><p>
+                The topic provides instructions how to join an Active Directory domain.
+              </p></dd><dt id="id-1.1.13.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                It takes approximately 5 minutes to read the article.
+              </p></dd><dt id="id-1.1.13.1.4"><span class="term">GOAL</span></dt><dd><p>
+                You will be able to access data stored in an Active Directory domain.
+              </p></dd><dt id="id-1.1.13.1.5"><span class="term">REQUIREMENTS</span></dt><dd><p>
+                    Credentials for a particular Active Directory domain
+                  </p></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Accessing Active Directory from SUSE Linux Enterprise Server for SAP applications" hreflang="en" href="rh-active-directory.html" target="_blank">Revision History: Accessing Active Directory from SUSE Linux Enterprise Server for SAP applications</a></div></div></div></div><section xml:lang="en" class="sect1" id="active-directory-about" data-id-title="What is Active Directory"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">What is Active Directory</span></span> <a title="Permalink" class="permalink" href="index.html#active-directory-about">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    Active Directory* (AD) is a directory-service based on LDAP, Kerberos, and other services. It is used by
+    Microsoft* Windows* to manage resources, services, and people. In a Microsoft
+    Windows network, Active Directory provides information about these objects, restricts access to them, and
+    enforces policies. <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> lets you join existing Active Directory domains and integrate your Linux
+    machine into a Windows environment.
+  </p><p>
+    <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> offers you the following benefits when integrated with Active Directory
+  </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.4.1"><span class="term">Offline authentication</span></dt><dd><p>
+          Users can log in and access their local data on the Linux machine even if they are
+          offline or the Active Directory server is unavailable for other reasons.
+        </p></dd><dt id="id-1.2.4.2"><span class="term">Windows password change</span></dt><dd><p>
+          This port of Active Directory support in Linux enforces corporate password policies stored in Active Directory.
+          The console support password change messages and accept your input. You can even use the
+          Linux <code class="command">passwd</code> command to set Windows passwords.
+        </p></dd><dt id="id-1.2.4.3"><span class="term">Single-sign-on through Kerberos</span></dt><dd><p>
+          <code class="command">adcli</code> can transparently handle authentication for the user without the
+          need for password reentry at Web servers, proxies, groupware applications, or other
+          locations.
+        </p></dd></dl></div><p>
+    To communicate with the directory service, the client needs to share at least two protocols
+    with the server:
+  </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.6.1"><span class="term">LDAP</span></dt><dd><p>
+          LDAP is a protocol optimized for managing directory information. A Windows domain
+          controller with Active Directory can use the LDAP protocol to exchange directory information with the
+          clients.
+        </p></dd><dt id="id-1.2.6.2"><span class="term">Kerberos</span></dt><dd><p>
+          Kerberos is a third-party trusted authentication service. All its clients trust Kerberos
+          authorization of another client's identity, enabling kerberized single-sign-on (SSO)
+          solutions. Windows supports a Kerberos implementation, making Kerberos SSO possible even
+          with Linux clients.
+        </p></dd></dl></div></section><section xml:lang="en" class="sect1" id="active-directory-preparation" data-id-title="Prerequisites needed to join Active Directory"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Prerequisites needed to join Active Directory</span></span> <a title="Permalink" class="permalink" href="index.html#active-directory-preparation">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    Before you try to join an Active Directory domain, make sure that the following requirements
+    are met:
+  </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.3.3.1"><span class="term">DNS</span></dt><dd><p>
+          DNS is configured to forward DNS requests to the Active Directory DNS server.
+          Alternatively, configure your client to use the Active Directory DNS.
+        </p></dd><dt id="id-1.3.3.2"><span class="term">NTP</span></dt><dd><p>
+          Make sure that the time is properly synchronized when using Kerberos. It is highly
+          recommended to use a central NTP time server for this purpose (this can be also the NTP
+          server running on your Active Directory domain controller). For details, refer to
+          <a class="link" href="https://documentation.suse.com/sl-micro/6.0/" target="_blank">NTP time
+          synchronization</a>.
+        </p></dd><dt id="id-1.3.3.3"><span class="term">Firewall</span></dt><dd><p>
+          Either disable the firewall entirely or mark the interface used for browsing as part of
+          the internal zone. You can use Cockpit to configure the internal firewall zone.
+        </p></dd><dt id="id-1.3.3.4"><span class="term">Active Directory account</span></dt><dd><p>
+          Make sure that you have proper credentials to access the Active Directory domain.
+        </p></dd></dl></div></section><section xml:lang="en" class="sect1" id="active-directory-join-domain" data-id-title="Joining an Active Directory domain"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Joining an Active Directory domain</span></span> <a title="Permalink" class="permalink" href="index.html#active-directory-join-domain">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    On <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> you need to first join an active directory domain. To do so, use the
+    <code class="command">adcli</code> command, which creates a computer account for the machine joining the
+    domain and if Kerberos is used, a keytab is created for the machine.
+  </p><p>
+    To join a domain, proceed as follows:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p><span class="step-optional">(Optional)</span> 
+        To use offline authentication using <code class="literal">SSSD</code>, install it first:
+      </p><ol type="a" class="substeps"><li class="step"><p>
+            Run the command:
+          </p><div class="verbatim-wrap"><pre class="screen">            <code class="prompt user">&gt; </code><code class="command">sudo</code>  transactional-update pkg install sssd</pre></div></li><li class="step"><p>
+            Reboot the system.
+          </p></li><li class="step"><p>
+            Review the <code class="filename">/etc/sssd/sssd.conf</code> if it needs any adjustment.
+          </p></li><li class="step"><p>
+            To allow <code class="literal">SSSD</code> to use Kerberos, switch on the
+            <code class="literal">kerberos_enabled</code> boolean by running:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> setsebool -P kerberos_enabled 1</pre></div></li></ol></li><li class="step"><p>
+        Run the <code class="command">adcli</code> command as follows:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> adcli join -d <em class="replaceable">DOMAIN_NAME</em></pre></div></li><li class="step"><p>
+        Provide your credentials for the domain.
+      </p></li></ol></div></div><p>
+    After you join a domain, you can login to Active directory and you can use offline
+    authentication.
+  </p></section><section xml:lang="en" class="sect1" id="active-directory-login" data-id-title="Logging to the Active Directory domain"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Logging to the Active Directory domain</span></span> <a title="Permalink" class="permalink" href="index.html#active-directory-login">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    You can log in to the Active Directory client machine either using the text-based console or
+    even remotely using SSH
+  </p><p>
+    To login via the console, enter at the <code class="literal">login:</code> prompt:
+  </p><div class="verbatim-wrap"><pre class="screen"><em class="replaceable">DOMAIN_NAME\USER_NAME</em></pre></div><p>
+    Then provide the password.
+  </p><p>
+    For remote login, use the SSH as follows:
+  </p><div class="verbatim-wrap"><pre class="screen">    <code class="prompt user">&gt; </code><code class="command">sudo</code> ssh <em class="replaceable">DOMAIN_NAME\\USER_NAME@HOST_NAME</em></pre></div><p>
+    The <code class="literal">\</code> domain and login delimiter is escaped with another
+    <code class="literal">\</code> sign.
+  </p><p>
+    Then provide your password to login.
+  </p></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#active-directory-about"><span class="title-number">1 </span><span class="title-name">What is Active Directory</span></a></span></li><li><span class="section"><a href="index.html#active-directory-preparation"><span class="title-number">2 </span><span class="title-name">Prerequisites needed to join Active Directory</span></a></span></li><li><span class="section"><a href="index.html#active-directory-join-domain"><span class="title-number">3 </span><span class="title-name">Joining an Active Directory domain</span></a></span></li><li><span class="section"><a href="index.html#active-directory-login"><span class="title-number">4 </span><span class="title-name">Logging to the Active Directory domain</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">5 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

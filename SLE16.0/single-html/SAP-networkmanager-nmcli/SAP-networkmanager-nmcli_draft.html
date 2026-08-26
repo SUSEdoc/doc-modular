@@ -1,0 +1,1083 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Setting Up and Managing Network Connections Using NetworkManager | SUSE Linux Enterprise Server for SAP applications 16.0</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2025-11-04"/>
+<meta name="dcterms.modified" content="2026-06-15"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-25"/>
+<meta name="title" content="Setting Up and Managing Network Connections Using Netw…"/>
+<meta name="description" content="How to configure, manage and monitor network connections with NetworkManager"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server for SAP applications"/>
+<meta name="product-number" content="16.0"/>
+<meta name="book-title" content="Setting Up and Managing Network Connections Using NetworkManager"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="shalaka.harne@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.0"/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="shalaka.harne@suse.com"/><meta property="og:title" content="Setting Up and Managing Network Connections Using Netw…"/>
+<meta property="og:description" content="Manage network connections with NetworkManager"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Setting Up and Managing Network Connections Using Netw…"/>
+<meta name="twitter:description" content="Manage network connections with NetworkManager"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Setting Up and Managing Network Connections Using NetworkManager | SUSE Linux Enterprise Server for SAP applications 16.0",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Setting Up and Managing Network Connections Using NetworkManager",
+    "description": "How to configure, manage and monitor network connections with NetworkManager",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2025-11-04T00:00+02:00",
+    "dateModified": "2026-06-15T00:00+02:00",
+    "datePublished": "2026-08-25T07:09+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Administration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server for SAP applications",
+        "softwareVersion": "16.0",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER, IBM Z, AArch64"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#networkmanager-nmcli">Setting Up and Managing Network Connections Using NetworkManager</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="networkmanager-nmcli" data-id-title="Setting Up and Managing Network Connections Using NetworkManager"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span></span> 16.0</div><div><h1 class="title">Setting Up and Managing Network Connections Using NetworkManager</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>25 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+              NetworkManager is a dynamic network control and configuration tool that enables you to keep network devices up and running.</p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
+              This article provides a complete overview of NetworkManager and how to configure, manage, monitor and edit network connections using NetworkManager.</p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                 It takes 15 minutes to install and configure NetworkManager. You need up to an hour to fully understand the NetworkManager concept and functionalities.
+              </p></dd><dt id="id-1.1.12.1.4"><span class="term">GOAL</span></dt><dd><p>
+                Basic understanding of managing network connections.
+              </p></dd><dt id="id-1.1.12.1.5"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Root access to install and manage NetworkManager</p></li><li class="listitem"><p>A package manager to install NetworkManager</p></li><li class="listitem"><p>
+          Basic understanding of networking and IP addresses
+        </p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Setting Up and Managing Network Connections Using NetworkManager" hreflang="en" href="rh-networkmanager-nmcli.html" target="_blank">Revision History: Setting Up and Managing Network Connections Using NetworkManager</a></div></div></div></div><section xml:lang="en" class="sect1" id="networkmanager-nmcli-concept" data-id-title="The NetworkManager concept"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">The NetworkManager concept</span></span> <a title="Permalink" class="permalink" href="#networkmanager-nmcli-concept">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        NetworkManager is a tool that enables managing network connections and devices. NetworkManager allows you to create, configure and manage network connections and devices.</p></div></div></div></div><p>On
+  <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span>, NetworkManager has been designed to be fully automatic by default. It is enabled by
+  default and is shipped with all necessary service unit files for managing primary network connection and other network interfaces. NetworkManager supports state-of-the-art
+  encryption types and standards for network connections,
+  including connections to 802.1X protected networks. 802.1X is the IEEE Standard for Local and
+  Metropolitan Area Networks—Port-Based Network Access Control.</p><p>
+  You can switch between  wired or wireless networks seamlessly, as NetworkManager automatically connects to known wireless networks and manages several network connections in parallel. You can also manually switch between available networks. 
+</p><p>NetworkManager typically consists of the following parts:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>NetworkManager daemon—you can interact with the daemon using standard
+  <code class="systemitem">systemd</code> commands</p></li><li class="listitem"><p>the <code class="command">nmcli</code> command-line interface</p></li><li class="listitem"><p>
+  the ncurses interface <code class="literal">nmtui</code>
+  </p></li><li class="listitem"><p>
+  NetworkManager libraries
+  </p></li><li class="listitem"><p>
+configuration files.
+  </p></li></ul></div></section><section class="sect1" id="id-1.3" data-id-title="Installing and Configuring NetworkManager"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Installing and Configuring NetworkManager</span></span> <a title="Permalink" class="permalink" href="#id-1.3">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+    On <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span>, NetworkManager is installed and enabled by default and thus runs out of the box.
+    Usually, you do not have to reinstall it or change the configuration, but if such an action is
+    needed, these sections provide guidance.
+        </p></div></div></div></div><section xml:lang="en" class="sect2" id="networkmanager-nmcli-install" data-id-title="Installing NetworkManager"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">Installing NetworkManager</span></span> <a title="Permalink" class="permalink" href="#networkmanager-nmcli-install">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        You can install NetworkManager using <code class="command">zypper</code>. Once you 
+        install, you can enable NetworkManager to start automatically at boot time.</p></div></div></div></div><p>Install NetworkManager:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> zypper install NetworkManager</pre></div><p>Enable NetworkManager:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl enable NetworkManager</pre></div><p>Once NetworkManager is enabled, the change persists across reboots.</p></section><section xml:lang="en" class="sect2" id="networkmanager-nmcli-conf-nwbehavior" data-id-title="Configuring NetworkManager behavior"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.2 </span><span class="title-name">Configuring NetworkManager behavior</span></span> <a title="Permalink" class="permalink" href="#networkmanager-nmcli-conf-nwbehavior">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>The behavior of NetworkManager is defined in its central configuration file <code class="filename">/usr/lib/NetworkManager/NetworkManager.conf</code>.
+      The system runs with the built-in defaults and the <code class="filename">NetworkManager.conf</code>
+      file is not mandatory. To modify the behavior of NetworkManager, create spinoff files in the directory
+      <code class="filename">/etc/NetworkManager/conf.d</code>. </p></div></div></div></div><p><code class="filename">NetworkManager.conf</code> is the primary location for viewing the default behavior and settings of NetworkManager, including logging, connection management, and network device handling.</p><p>The file consists of sections of key-value pairs. Each key-value pair must belong to a section. A section starts with a name enclosed in <code class="literal">[]</code>. Lines beginning with a <code class="literal">#</code> are considered comments. A common configuration includes the <code class="literal">[main]</code> section with the <code class="literal">plugins</code> value, <code class="literal">[logging]</code>, and <code class="literal">[connectivity]</code>:</p><div class="verbatim-wrap"><pre class="screen">[main]<span class="callout" id="co-nm-config-main">1</span>
+plugins=keyfile<span class="callout" id="co-nm-config-keyfile">2</span>
+dhcp=dhclient
+
+[connectivity]<span class="callout" id="co-nm-config-connectivity">3</span>
+uri=http://name.org
+
+[logging]<span class="callout" id="co-nm-config-logging">4</span>
+level=INFO
+domains=ALL</pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-nm-config-main"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+       Controls the general settings for NetworkManager.
+      </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-nm-config-keyfile"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+        Manages how the connection profiles are stored. The [keyfile] plug-in supports all the  connection types and capabilities of NetworkManager.
+      </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-nm-config-connectivity"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+        Defines connection defaults and options and specifies the URI to check the network connection.
+      </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-nm-config-logging"><span class="callout">4</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+        Manages the NetworkManager logging levels and domains.
+      </p></td></tr></table></div><div class="procedure" id="config-networkmanager" data-id-title="Configuring NetworkManager.conf"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 1: </span><span class="title-name">Configuring NetworkManager.conf </span></span><a title="Permalink" class="permalink" href="#config-networkmanager">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+Stop the NetworkManager service:
+</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl stop network</pre></div></li><li class="step"><p>
+    Create spinoff files in the <code class="filename">/etc/NetworkManager/conf.d/</code> if they do not exist.
+  </p></li><li class="step"><p>To prevent NetworkManager from managing specific interfaces such as Ethernet ports, add them to <code class="filename">/etc/NetworkManager/conf.d/unmanaged-devices.conf</code>.</p></li><li class="step"><p>Alternatively, back up the existing configuration files before modifying them.</p></li><li class="step"><p>Modify the spinoff files to suit your needs.</p></li><li class="step"><p>Save the changes.</p></li><li class="step"><p>
+ Start NetworkManager:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl start network</pre></div></li><li class="step"><p>View the existing configuration and settings:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  nmcli general show</pre></div></li></ol></div></div></section></section><section xml:lang="en" class="sect1" id="networkmanager-nmcli-start" data-id-title="Managing the NetworkManager daemon"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Managing the NetworkManager daemon</span></span> <a title="Permalink" class="permalink" href="#networkmanager-nmcli-start">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+      The NetworkManager daemon is a standard <code class="systemitem">systemd</code> service so you can use the
+      <code class="command">systemctl</code> command to manage the daemon.
+        </p></div></div></div></div><p>
+  You can use any of the following commands to manage the NetworkManager daemon:
+  </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.4.3.1"><span class="term">Checking status</span></dt><dd><p>
+  To check if the NetworkManager daemon is running and thus the network should be active:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>systemctl status network</pre></div></dd><dt id="id-1.4.3.2"><span class="term">Restarting the daemon</span></dt><dd><p>
+For example, in cases of networking problem, you can try to restart the NetworkManager Daemon by using the
+following command:
+</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl restart network</pre></div></dd><dt id="id-1.4.3.3"><span class="term">Stopping the daemon</span></dt><dd><p>You can stop NetworkManager during network configuration changes or to switch to manual control. You
+  can also stop the service for troubleshooting or debugging network issues. Stopping NetworkManager
+  prevents it from automatically managing the interface or changing your manual 
+  configuration. You can also stop NetworkManager to manually address specific requirements for
+  network interfaces.</p><p>
+  To stop the NetworkManager daemon:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl stop network</pre></div></dd><dt id="id-1.4.3.4"><span class="term">Starting the NetworkManager daemon</span></dt><dd><p>
+  If you stopped the daemon, you need to start it again to manage all network connections:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl start NetworkManager</pre></div></dd></dl></div></section><section xml:lang="en" class="sect1" id="networkmanager-nmcli-configure" data-id-title="Creating network connections"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Creating network connections</span></span> <a title="Permalink" class="permalink" href="#networkmanager-nmcli-configure">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>You can create a network connection profile using the <code class="command">nmcli</code> command.</p></div></div></div></div><p>NetworkManager stores all network configurations as a connection profile, which is a collection of data
+that describes how to create or connect to a network. These connection profiles are stored as files in the
+<code class="filename">/etc/NetworkManager/system-connections/</code> directory by default. Each network
+connection profile (Wi-Fi, Ethernet, VPN) is represented by a separate file in this directory.</p><p>A connection is an instance of a particular connection profile that is active when a
+particular device uses the connection. The device may have more than one connection profile
+configured. The other connections can be used to fast
+switch from one connection to another. For example, if the active connection is not available, NetworkManager
+tries to connect the device to another configured connection.</p><p>The NetworkManager daemon manages network connections. You can interact with it 
+using a command-line interface: <code class="command">nmcli</code> or ncurses interface:
+<code class="command">nmtui</code>.</p><section class="sect2" id="id-1.5.5" data-id-title="Creating an Ethernet connection"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.1 </span><span class="title-name">Creating an Ethernet connection</span></span> <a title="Permalink" class="permalink" href="#id-1.5.5">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>Configure the Ethernet connection using the <code class="command">nmcli</code> 
+  command and proceed as follows:</p><div class="procedure" id="networkmanager-ethernet"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>List available devices to get the exact device name:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>nmcli device</pre></div></li><li class="step"><p>View the list of connections to make sure the profile name you want to use is not already taken:</p><div class="verbatim-wrap"><pre class="screen">nmcli connection show</pre></div><p>The NetworkManager creates a profile for each Network Interface Controller (NIC). To connect the NIC to networks with different settings, you must create separate profiles for each network.</p></li><li class="step"><p>Create a new connection profile:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection add con-name <em class="replaceable">CONNECTION_NAME</em> ifname <em class="replaceable">DEVICE_NAME</em> type ethernet</pre></div></li><li class="step"><p>View the existing network settings of the new connection profile:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>nmcli connection show <em class="replaceable">CONNECTION_NAME</em></pre></div></li><li class="step"><p>Configure the connection profile.</p><p>The generic command syntax is the following:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection modify <em class="replaceable">CONNECTION_NAME</em> <em class="replaceable">SETTING</em> <em class="replaceable">VALUE</em></pre></div><p>For example, automatic IP address assignment through DHCP or SLAAC is enabled by default. You may want to configure a static IP address:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>for IPv4</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection modify <em class="replaceable">CONNECTION_NAME</em> ipv4.method manual ipv4.addresses 192.0.2.1/24 ipv4.gateway 192.0.2.254 ipv4.dns 192.0.2.200 ipv4.dns-search example.com</pre></div></li><li class="listitem"><p>for IPv6</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection modify <em class="replaceable">INTERNAL-LAN</em> ipv6.method manual ipv6.addresses 2001:db8:1::fffe/64 ipv6.gateway 2001:db8:1::fffe ipv6.dns 2001:db8:1::ffbb ipv6.dns-search example.com</pre></div></li></ul></div></li><li class="step"><p>Configure the system to handle network-dependent services. To prevent services from failing or experiencing race conditions if they are activated before the static IP address is fully assigned by NetworkManager, choose one of the following methods:</p><ul class="stepalternatives">
+    
+    <li class="step"><ol type="a" class="substeps"><li class="step"><p>Enable <code class="filename">NetworkManager-wait-online.service</code> to force the system to wait until network interfaces are up before proceeding with the boot target:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl enable NetworkManager-wait-online.service</pre></div></li><li class="step"><p>Individual systemd unit overrides: For each service binding to a specific static IP, manually create a systemd unit override that enforces proper startup ordering and behavior:</p><div class="verbatim-wrap"><pre class="screen">/etc/systemd/system/sshd.service.d/override.conf
+[Unit]
+After=network-online.target
+[Service]
+Restart=always</pre></div></li></ol></li>
+<li class="step"><ol type="a" class="substeps"><li class="step"><p>Centralized Non-Local Binding (Alternative): Instead of managing overrides per service, you can allow applications to safely bind to IPv4 and IPv6 addresses that are not yet fully initialized on the system. Create a custom sysctl file at <code class="filename">/etc/sysctl.d/90-nonlocal_bind.conf</code> containing the following lines:</p><div class="verbatim-wrap"><pre class="screen">net.ipv4.ip_nonlocal_bind = 1
+net.ipv6.ip_nonlocal_bind = 1</pre></div></li><li class="step"><p>Apply the sysctl configuration immediately by running:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> sysctl --system</pre></div><div id="id-1.5.5.3.6.2.2.1.2.3" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>Non-local binding should not be enabled by default unless required, as it may cause unexpected behavior or errors in certain strict or legacy applications.</p></div></li></ol></li>
+</ul></li><li class="step"><p>Activate the profile:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection up <em class="replaceable">CONNECTION_NAME</em></pre></div></li><li class="step"><p>Verify the configurations:</p><ol type="a" class="substeps"><li class="step"><p>Verify the IP settings of the NIC:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>ip address show <em class="replaceable">HOSTNAME</em></pre></div></li><li class="step"><p>Verify the default IPv4 gateway:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>ip route show default</pre></div></li><li class="step"><p>Verify the default IPv6 gateway:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>ip -6 route show default</pre></div></li><li class="step"><p>View the DNS settings:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>cat /etc/resolv.conf</pre></div></li></ol></li></ol></div></div></section><section class="sect2" id="configure-wifi" data-id-title="Creating a Wi-Fi connection profile"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.2 </span><span class="title-name">Creating a Wi-Fi connection profile</span></span> <a title="Permalink" class="permalink" href="#configure-wifi">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>You can connect to a Wi-Fi using the <code class="command">nmcli</code> command. The NetworkManager creates a new
+connection profile when you connect to a Wi-Fi for the first time. You can configure the profile after connecting to
+the Wi-Fi.</p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>Enable the Wi-Fi radio:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli radio wifi on</pre></div></li><li class="step"><p>View the list of available devices: </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli device</pre></div></li><li class="step"><p>Connect to Wi-Fi:
+     </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli device wifi connect <em class="replaceable">WI-FI_CONNECTION_NAME</em>
+     <em class="replaceable">PASSWORD</em></pre></div></li><li class="step"><p>View the existing network settings of the new connection profile:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection show <em class="replaceable">CONNECTION_NAME</em></pre></div></li><li class="step"><p>
+     Configure the connection profile as needed, using the command:
+     </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection modify <em class="replaceable">CONNECTION_NAME</em>
+  <em class="replaceable">SETTING</em> <em class="replaceable">VALUE</em></pre></div><p>
+  For example, to configure a static IPv4:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection modify <em class="replaceable">WI-FI_CONNECTION_NAME</em> ipv4.method manual ipv4.addresses <em class="replaceable">IP_ADDRESS/SUBNET_MASK</em></pre></div><p>
+  To configure a static IPv6 address
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection modify <em class="replaceable">WI-FI_CONNECTION_NAME</em> ipv6.method manual ipv6.addresses <em class="replaceable">IP_ADDRESS/SUBNET_MASK</em></pre></div></li><li class="step"><p>Restart the connection:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection up <em class="replaceable">WI-FI_CONNECTION_NAME</em></pre></div></li><li class="step"><p>Verify the connection using the command: .</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">nmcli connection show --active</code></pre></div><p>The list of available active connections appears.</p></li></ol></div></div></section><section class="sect2" id="configure-network-bond" data-id-title="Creating a network bond"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.3 </span><span class="title-name">Creating a network bond</span></span> <a title="Permalink" class="permalink" href="#configure-network-bond">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>A network bond combines physical and virtual network interfaces and provides a logical interface. You can create network bonds on Ethernet devices, Virtual LANs, and so on. Network bonding can increase bandwidth and/or provide redundancy.</p><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Requirements </span></span><a title="Permalink" class="permalink" href="#id-1.5.7.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        Network connection: two or more physical or virtual networks installed on the server
+</p></li><li class="listitem"><p>
+          Existing network interfaces to include in the bonded device
+        </p></li><li class="listitem"><p>
+          Switch support, depending on the bonding mode
+        </p></li><li class="listitem"><p>To use Ethernet devices for network 
+bonding, you must install the physical or virtual Ethernet devices 
+on the server.</p></li><li class="listitem"><p>When using network teams, bridges or VLAN devices 
+as ports for a bond, you can create them either during the bond 
+creation process or beforehand.</p></li></ul></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Restrictions </span></span><a title="Permalink" class="permalink" href="#id-1.5.7.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>Do not split bonds over multiple switches.</p><p>
+            In most hardware setups, all network interfaces in a bonded device must be connected to
+            the same switch. For more information, consult your switch vendor documentation.
+          </p></li><li class="listitem"><p>IBM POWER: Bonding modes 5 and 6 (<code class="literal">balance-tlb</code> and
+        <code class="literal">balance-alb</code>) unsupported by ibmveth.</p><p>
+            The bonding drivers in <code class="literal">tlb</code> or <code class="literal">alb</code> modes send
+            Ethernet Loopback packets with both the source and destination MAC addresses listed as
+            the Virtual Ethernet MAC address. These packets are not supported by POWER firmware.
+            Therefore, bonding modes 5 and 6 are unsupported by ibmveth.
+          </p></li><li class="listitem"><p>Bonding and virtualization: Bonded devices are made up of multiple network 
+        interfaces. In most configurations, you should only configure bonding in the host. 
+        Virtual interfaces to guests are then created as a bridge with the bonded devices, 
+        simplifying guest creation and deployment.
+          </p><p>
+            It is possible, but not recommended, to configure bonding in a guest. When configuring
+            bonding in a guest, you must assign multiple interfaces to the guest and configure the
+            host without bonding. You must also be careful to configure the host and its network
+            bridges so that you do not mix bonding in the host and guests.
+          </p></li></ul></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Bonding modes </span></span><a title="Permalink" class="permalink" href="#id-1.5.7.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><p>
+      The following bonding modes are available:
+    </p><ul class="itemizedlist"><li class="listitem"><p>(<span class="guimenu">0</span>) <span class="guimenu">balance-rr</span></p><p>
+            Packets are transmitted in round-robin fashion from the first to the last available
+            interface. Provides fault tolerance and load balancing. Requires switch support.
+            Certain switches might fail with this mode.
+          </p></li><li class="listitem"><p>(<span class="guimenu">1</span>) <span class="guimenu">active-backup</span></p><p>
+            Only one network interface is active. If it fails, a different interface becomes active.
+            Provides fault tolerance. This is the default mode. No specific switch support is required.
+      </p></li><li class="listitem"><p>(<span class="guimenu">2</span>) <span class="guimenu">balance-xor</span></p><p>
+            Traffic is split between all available interfaces based on the number of interfaces
+            included in the bonded device. Provides fault tolerance and load balancing. Requires
+            switch support. Certain switches might fail with this mode.
+          </p></li><li class="listitem"><p>(<span class="guimenu">3</span>) <span class="guimenu">broadcast</span></p><p>
+            All traffic is broadcast on all interfaces. Provides fault tolerance.
+            Requires switch support. Certain switches might fail with this mode. If possible,
+            use mode <span class="guimenu">1</span> instead, or use this mode to provide sniffing capability
+            by connecting each member of the bond to a different switch or device.
+          </p></li><li class="listitem"><p>(<span class="guimenu">4</span>) <span class="guimenu">802.3ad</span></p><p>
+            Also called <span><em class="emphasis">LACP</em></span>. All interfaces in the LACP group must share the
+            same speed and duplex settings, and must be connected to the same switch. Provides
+            fault tolerance and load balancing. Requires <code class="command">ethtool</code> support in the
+            interface drivers, and a switch that supports and is configured for IEEE 802.3ad Dynamic
+            link aggregation. If your switch supports it, this is the preferred mode.
+          </p></li><li class="listitem"><p>(<span class="guimenu">5</span>) <span class="guimenu">balance-tlb</span></p><p>
+            Adaptive transmit load balancing. Provides fault tolerance and load balancing. Requires
+            <code class="command">ethtool</code> support in the interface drivers. No specific switch support
+            is required, but certain switches might fail with this mode.
+          </p></li><li class="listitem"><p>(<span class="guimenu">6</span>) <span class="guimenu">balance-alb</span></p><p>
+            Adaptive load balancing. Provides fault tolerance and load balancing. Requires
+            <code class="command">ethtool</code> support in the interface drivers. No specific switch support
+            is required, but certain switches might fail with this mode.
+          </p></li></ul></div><p>
+      Consult your hardware manual to check which modes your switch supports.
+    </p><p>
+      For a more detailed description of the modes, see
+      <a class="link" href="https://www.kernel.org/doc/Documentation/networking/bonding.txt" target="_blank">https://www.kernel.org/doc/Documentation/networking/bonding.txt</a>.
+    </p><div class="procedure" id="network-bond-configuration" data-id-title="Creating a network bond"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 2: </span><span class="title-name">Creating a network bond </span></span><a title="Permalink" class="permalink" href="#network-bond-configuration">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>Create a bond interface:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection add type bond con-name <em class="replaceable">NWBOND</em> ifname <em class="replaceable">NWBOND</em> bond.options "mode=active-backup"</pre></div><p>
+   A network bond, <em class="replaceable">NETWORK_BOND</em> that uses <code class="varname">active-backup</code> mode is created.
+  </p></li><li class="step"><p>View the list of network interfaces:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>nmcli device status
+
+    DEVICE         TYPE      STATE                   CONNECTION    
+    wlan0          wifi      connected               Vision 
+    virbr0         bridge    connected (externally)  virbr0        
+    p2p-dev-wlan0  wifi-p2p  disconnected            --            
+    eth0           ethernet  unavailable             --            
+    lo             loopback  unmanaged               --</pre></div><p>The list of available network interfaces appears. You can also add devices that are not configured to the bond.
+  In the given list, <code class="literal">p2p-dev-wlan0</code> is not configured,
+  while <code class="literal">virbr0</code> is configured and has a connection profile.</p></li><li class="step"><p>To configure <code class="literal">p2p-dev-wlan0</code> as a port, 
+create a connection profile:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection add type wifi-p2p slave-type bond con-name bond0-port1 ifname p2p-dev-wlan0 master bond0</pre></div><p>This creates a new profile for <code class="literal">p2p-dev-wlan0</code> and adds it to the <code class="literal">bond0</code> connection. The name of the bond is <code class="literal">bond0</code>.</p></li><li class="step"><p>To assign <code class="literal">virbr0</code> to a bond:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection modify virbr0 master bond0</pre></div><p>The  connection profile for <code class="literal">virbr0</code> is added to the <code class="literal">bond0</code> connection.</p></li><li class="step"><p>Activate the connection:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection up virbr0</pre></div></li><li class="step"><p>Configure the IPv4 settings:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>To use <code class="literal">bond0</code> as a port for other devices:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection modify bond0 ipv4.method disabled</pre></div></li><li class="listitem"><p>To use DHCP, no configuration is required.</p></li><li class="listitem"><p>To configure a static IPv4 address, network mask, default gateway and DNS server to the <code class="literal">bond0</code> connection:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection modify bond0 ipv4.addresses '192.0.2.1/24' ipv4.gateway '192.0.2.254' ipv4.dns '192.0.2.253' ipv4.dns-search 'example.com' ipv4.method manual</pre></div></li></ul></div></li><li class="step"><p>Configure the IPv6 settings:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>To use this bond device as a port of other devices:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection modify bond0 ipv6.method disabled</pre></div></li><li class="listitem"><p>To use stateless address autoconfiguration (SLAAC), no action is required. </p></li><li class="listitem"><p>To set a static IPv6 address, network mask, default gateway and DNS server to the <code class="literal">bond0</code> connection:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection modify bond0 ipv6.addresses '2001:db8:1::1/64' ipv6.gateway '2001:db8:1::fffe' ipv6.dns '2001:db8:1::fffd' ipv6.dns-search 'example.com' ipv6.method manual</pre></div></li></ul></div></li><li class="step"><p>Activate the connection:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection up bond0</pre></div></li><li class="step"><p>View and verify the connections:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>nmcli device</pre></div><p>The list of connections appears.</p></li></ol></div></div></section><section class="sect2" id="configure-network-team" data-id-title="Configuring a network team"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.4 </span><span class="title-name">Configuring a network team</span></span> <a title="Permalink" class="permalink" href="#configure-network-team">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p> Network teaming combines two or more network interfaces into a single teamed device to increase bandwidth and/or provide redundancy. The behavior of the teamed device is configured using teaming modes.     Network teaming can increase bandwidth and/or provide redundancy. 
+</p><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Requirements </span></span><a title="Permalink" class="permalink" href="#id-1.5.8.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+          Network connection
+        </p></li><li class="listitem"><p>
+          Existing network interfaces to include in the teamed device
+        </p></li><li class="listitem"><p>
+          Switch support in kernel, depending on the teaming mode
+        </p></li><li class="listitem"><p>
+          The package <span class="package">libteam-tools</span> is installed
+        </p></li><li class="listitem"><p>Install the <code class="literal">teamd</code> and <code class="literal">NetworkManager-team</code> packages:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  zypper install teamd
+<code class="prompt user">&gt; </code><code class="command">sudo</code>  zypper install NetworkManager-team</pre></div><p>The <code class="literal">teamd</code>, <code class="literal">NetworkManager-team</code> and <code class="literal">libteam-tools</code> packages are deprecated in <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> <span class="phrase"><span class="phrase">16.0</span></span> as the upstream activities are deprecated. You must migrate existing team interfaces to bonding configurations managed through NetworkManager. NetworkManager bonding supports many bonding scenarios, including LACP.</p></li><li class="listitem"><p>Install two or more physical or virtual devices on the server:</p></li><li class="listitem"><p>
+    To use Ethernet devices as ports of the team, the physical or virtual Ethernet devices must be installed on the server and connected to a switch.
+  </p></li><li class="listitem"><p>To use bond, bridge or VLAN devices as ports of the team, create them in advance or
+  when you create the team.</p></li></ul></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Restrictions </span></span><a title="Permalink" class="permalink" href="#id-1.5.8.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>Do not split teams over multiple switches.</p><p>
+            In most hardware setups, all network interfaces in a teamed device must be connected to
+            the same switch. For more information, consult your switch vendor documentation.
+          </p></li><li class="listitem"><p>Teaming and virtualization:</p><p>
+            Teamed devices are made up of multiple network interfaces. In most configurations
+            you should only configure teaming in the host. Virtual interfaces to guests are then
+            created as a bridge with the teamed devices, simplifying guest creation and deployment.
+          </p><p>
+            It is possible, but not recommended, to configure teaming in a guest. When configuring
+            teaming in a guest, you must assign multiple interfaces to the guest and configure the
+            host without teaming. You must also be careful to configure the host and its network
+            bridges so that you do not mix teaming in the host and guests.
+      </p></li></ul></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Teaming modes </span></span><a title="Permalink" class="permalink" href="#id-1.5.8.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><p>
+      The following teaming modes are available:
+    </p><ul class="itemizedlist"><li class="listitem"><p><span class="guimenu">broadcast</span></p><p>
+            All traffic is broadcast on all interfaces. Provides fault tolerance.
+            Requires switch support.
+          </p></li><li class="listitem"><p><span class="guimenu">roundrobin</span></p><p>
+            Packets are transmitted in round-robin fashion from the first to the last available
+            interface. Provides fault tolerance and load balancing. Requires switch support.
+          </p></li><li class="listitem"><p><span class="guimenu">activebackup</span></p><p>
+            Only one network interface is active. If it fails, a different interface becomes active.
+            Provides fault tolerance.
+          </p></li><li class="listitem"><p><span class="guimenu">loadbalance</span></p><p>
+            The teamed device transmits packets via all its interfaces, performing load balancing
+            (passive or active) with a use of hash functions. For passive load balancing, only
+            the BPF hash function is used. For active load balancing, the runner finds the best
+            balance by moving hashes between available interfaces. Provides fault tolerance and
+            load balancing. No specific switch support is required.
+          </p></li><li class="listitem"><p><span class="guimenu">lacp</span></p><p>
+            All interfaces in the LACP group must share the same speed and duplex settings, and
+            must be connected to the same switch. Provides fault tolerance and load balancing.
+            Requires <code class="command">ethtool</code> support in the interface drivers, and a switch that
+            supports and is configured for IEEE 802.3ad Dynamic link aggregation. If your switch
+            supports it, this is the preferred mode.
+          </p></li></ul></div><p>
+      Consult your hardware manual to check which modes your switch supports.
+    </p><div class="procedure" id="id-1.5.8.7" data-id-title="Creating a network team"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 3: </span><span class="title-name">Creating a network team </span></span><a title="Permalink" class="permalink" href="#id-1.5.8.7">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>Create a team interface:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection add type team con-name <em class="replaceable">CONNECTION_NAME</em> ifname <em class="replaceable">TEAM_NAME</em> team.runner <em class="replaceable">RUNNER-TYPE</em></pre></div><p>
+  For example, to create a network team <code class="literal">team0</code> with the
+  <code class="literal">activebackup</code> runner, run:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection add type team con-name team0 ifname team0 team.runner active.backup</pre></div></li><li class="step"><p>View the list of network interfaces:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>nmcli device status</pre></div><div class="verbatim-wrap"><pre class="screen">DEVICE         TYPE      STATE                   CONNECTION    
+    wlan0          wifi      connected               Vision 
+    virbr0         bridge    connected (externally)  virbr0        
+    p2p-dev-wlan0  wifi-p2p  disconnected            --            
+    eth0         ethernet  unavailable             --            
+    lo             loopback  unmanaged               --</pre></div><p>You can add the listed devices to the team. The following examples use 
+<code class="literal">p2p-dev-wlan0</code> and <code class="literal">virbr0</code>. Note that 
+<code class="literal">p2p-dev-wlan0</code> is not configured, while <code class="literal">virbr0</code> 
+has a connection profile.
+  </p></li><li class="step"><p>Configure port interfaces to the team:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection add type wifi-p2p slave-type team con-name team0-port1 ifname p2p-dev-wlan0 master team0</pre></div><p>A new profile is created for  <code class="literal">p2p-dev-wlan0</code> and added to the <code class="literal">team0</code> connection.</p></li><li class="step"><p>Assign the existing connection to the team:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection modify bond0 master team0</pre></div><p>The  connection profile for <code class="literal">bond0</code>  is added to the <code class="literal">team0</code> connection.</p></li><li class="step"><p>Activate the connection:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection up bond0</pre></div></li><li class="step"><p>Configure the IPv4 settings:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>To use the team device as a port of other devices:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection modify team0 ipv4.method disabled</pre></div></li><li class="listitem"><p>To use DHCP, no configuration is required.
+</p></li><li class="listitem"><p>To configure a static IPv4 address, network mask, default gateway and DNS server to the <code class="literal">bond0</code> connection, run the command:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection modify team0 ipv4.addresses '192.0.2.1/24' ipv4.gateway '192.0.2.254' ipv4.dns '192.0.2.253' ipv4.dns-search 'example.com' ipv4.method manual</pre></div></li></ul></div></li><li class="step"><p>Configure the IPv6 settings:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>To use this team device as a port of other devices:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection modify team0 ipv6.method disabled</pre></div></li><li class="listitem"><p>To use stateless address autoconfiguration (SLAAC), no action is required.</p></li><li class="listitem"><p>To set a static IPv6 address, network mask, default gateway and DNS server to the <code class="literal">team0</code> connection:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection modify team0 ipv6.addresses '2001:db8:1::1/64' ipv6.gateway '2001:db8:1::fffe' ipv6.dns '2001:db8:1::fffd' ipv6.dns-search 'example.com' ipv6.method manual</pre></div></li></ul></div></li><li class="step"><p>Activate the connection:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection up team0</pre></div></li><li class="step"><p>To view the status of the team:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> teamdctl team0 state</pre></div></li></ol></div></div></section><section class="sect2" id="configure-network-bridge" data-id-title="Configuring a network bridge"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.5 </span><span class="title-name">Configuring a network bridge</span></span> <a title="Permalink" class="permalink" href="#configure-network-bridge">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+  A network bridge is a device that facilitates communication between two or more network segments, creating a single network from multiple segments
+  </p><p>To configure a network bridge, ensure the following:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Install two or more physical or virtual devices on the server.</p></li><li class="listitem"><p>
+    To use Ethernet devices as ports for the bridge, ensure the server
+    has physical or virtual Ethernet devices installed and connected 
+    to a switch.
+  </p></li><li class="listitem"><p>When using team, bond or VLAN devices as ports for the
+   bridge, you can create these devices either during bridge creation 
+   or beforehand.</p></li></ul></div><div class="procedure" id="network-bridge-configuration" data-id-title="Creating a network bridge"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 4: </span><span class="title-name">Creating a network bridge </span></span><a title="Permalink" class="permalink" href="#network-bridge-configuration">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>Create a bridge interface:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection add type bridge con-name <em class="replaceable">CONNECTION_NAME</em> ifname <em class="replaceable">BRIDGE_NAME</em></pre></div><p>
+   For example, create a bridge <code class="literal">bridge0</code> by running the command:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection add type bridge con-name bridge0 ifname bridge0</pre></div></li><li class="step"><p>View the list of network interfaces to verify that
+   <code class="literal">bridge0</code> is created:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>nmcli device status
+  
+    DEVICE         TYPE      STATE                                    CONNECTION    
+    wlan0                wifi      connected                                Vision 
+    virbr0               bridge    connected (externally)                   virbr0        
+    p2p-dev-wlan0        wifi-p2p  disconnected                             --            
+    eth0                 ethernet  unavailable                              --            
+    lo                   loopback  unmanaged                                --      
+    bridge0              bridge    connecting (getting IP configuration)    brdige0</pre></div><p>The bridge is in the state <span><em class="emphasis">getting IP configuration</em></span>, because you have not
+assigned interfaces to it yet. Later you will assign the interfaces: <code class="literal">p2p-dev-wlan0</code> 
+(not configured) and <code class="literal">virbr0</code> (configured with a
+connection profile).
+  </p></li><li class="step"><p>Add interfaces to the bridge:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection add type wifi-p2p slave-type bridge con-name bridge0-port1 ifname p2p-dev-wlan0 master bridge0</pre></div><p>This creates a new profile for p2p-dev-wlan0 and adds it to the <code class="literal">bridge0</code> connection.</p></li><li class="step"><p>To assign an existing connection to the bridge:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection modify bond0 master bridge0</pre></div><p>This adds the connection profile for <code class="literal">bond0</code>
+  to the <code class="literal">bridge0</code> connection.</p></li><li class="step"><p>Restart the connection:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection up bond0</pre></div></li><li class="step"><p>Configure the IPv4 settings:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>To use the bridge device as a port of other devices:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection modify bridge0 ipv4.method disabled</pre></div></li><li class="listitem"><p>To use DHCP, no configuration is required.
+</p></li><li class="listitem"><p>To configure a static IPv4 address, network mask, 
+default gateway and DNS server to the <code class="literal">bridge0</code>
+connection:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection modify bridge0 ipv4.addresses '192.0.2.1/24' ipv4.gateway '192.0.2.254' ipv4.dns '192.0.2.253' ipv4.dns-search 'example.com' ipv4.method manual</pre></div></li></ul></div></li><li class="step"><p>Configure the IPv6 settings:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>To use this bridge device as a port of other devices:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection modify bridge0 ipv6.method disabled</pre></div></li><li class="listitem"><p>To use stateless address autoconfiguration (SLAAC), no action is required.</p></li><li class="listitem"><p>To set a static IPv6 address, network mask, default gateway and DNS server to the <code class="literal">bridge0</code> connection:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection modify bridge0 ipv6.addresses '2001:db8:1::1/64' ipv6.gateway '2001:db8:1::fffe' ipv6.dns '2001:db8:1::fffd' ipv6.dns-search 'example.com' ipv6.method manual</pre></div></li></ul></div></li><li class="step"><p>Activate the connection:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection up bridge0</pre></div></li><li class="step"><p>Verify the connection:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>nmcli device</pre></div><p>When you activate any port of the connection, NetworkManager also activates the bridge, but not the other ports of it.</p><p>Enable all ports automatically when the bridge is enabled:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection modify bridge0 connection.autoconnect-slaves 1</pre></div></li><li class="step"><p>View the link status of Ethernet devices that are ports of a specific bridge.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> ip link show master bridge0</pre></div></li><li class="step"><p>
+    View the status of Ethernet devices that are ports of any bridge device. 
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> bridge link show</pre></div></li></ol></div></div></section><section class="sect2" id="configure-vpn-connection" data-id-title="Configuring a VPN connection"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.6 </span><span class="title-name">Configuring a VPN connection</span></span> <a title="Permalink" class="permalink" href="#configure-vpn-connection">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+  A VPN (Virtual Private Network) connection is a secure, encrypted tunnel between your device and another network over the Internet.
+  </p><p>You can configure a VPN connection using the <code class="command">nmcli</code> command.</p><div class="procedure" id="configure-vpn-connections" data-id-title="Installing and configuring a VPN connection"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 5: </span><span class="title-name">Installing and configuring a VPN connection </span></span><a title="Permalink" class="permalink" href="#configure-vpn-connections">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>Install OpenVPN:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  zypper install networkmanager-openvpn</pre></div></li><li class="step"><p>Create a VPN connection:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection add type vpn con-name MyOpenVPN ifname -- vpn-type openvpn</pre></div></li><li class="step"><p>Configure the settings:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection modify MyOpenVPN vpn.data "remote=<em class="replaceable">VPN-SERVER-ADDRESS</em>,username=<em class="replaceable">YOUR-USERNAME</em>"</pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection modify MyOpenVPN vpn.secrets "password=<em class="replaceable">YOUR-PASSWORD</em>"</pre></div></li><li class="step"><p>Configure DNS settings:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection modify MyOpenVPN ipv4.dns "8.8.8.8 8.8.4.4"</pre></div></li><li class="step"><p>Add routes:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection modify MyOpenVPN ipv4.routes "192.168.1.0/24 192.168.1.1"</pre></div></li><li class="step"><p>Activate the VPN connections:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> nmcli connection up MyOpenVPN</pre></div></li><li class="step"><p>Verify if the configured connection is active:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>nmcli connection show --active</pre></div></li></ol></div></div></section><section class="sect2" id="migrate-teamd" data-id-title="Convert teamd configuration to NetworkManager"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.7 </span><span class="title-name">Convert teamd configuration to NetworkManager</span></span> <a title="Permalink" class="permalink" href="#migrate-teamd">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>In <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span><span class="phrase"><span class="phrase">16.0</span></span>, <code class="command">libteam</code> and <code class="command">teamd</code> are deprecated and hence Network Load Balancing configurations that relied on <code class="command">libteam</code> in the past must be converted to a NetworkManager based bonding interface.</p><div class="procedure" id="active-load-balancing-lacp" data-id-title="Active Load Balancing with LACP"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 6: </span><span class="title-name">Active Load Balancing with LACP </span></span><a title="Permalink" class="permalink" href="#active-load-balancing-lacp">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>A sample <code class="literal">team0</code> interface configuration (<code class="filename">/etc/sysconfig/network/ifcfg-team0</code>) is mentioned below based on which the commands are described.</p><div class="verbatim-wrap"><pre class="screen">BOOTPROTO="static"
+STARTMODE="onboot"
+
+TEAM_RUNNER="lacp"
+TEAM_LACP_TX_HASH="l4,l3,eth,vlan"
+TEAM_LACP_TX_BALANCER_NAME="basic"
+TEAM_LACP_TX_BALANCER_INTERVAL="100"
+TEAM_LACP_ACTIVE=true
+TEAM_LACP_SELECT_POLICY="lacp_prio"
+TEAM_LW_NAME="ethtool"
+TEAM_LW_ETHTOOL_DELAY_UP="10"
+TEAM_LW_ETHTOOL_DELAY_DOWN="10"
+IPADDR="10.1.1.1"
+NETMASK="255.255.255.0"
+IPADDR_0="2001:db8::1"
+PREFIXLEN_0="64"
+TEAM_PORT_DEVICE_0="eth0"
+TEAM_PORT_DEVICE_1="eth3"</pre></div><p>This configuration describes a network bond using active transmit load balancing. Any load balancing that happens on incoming traffic is performed by the switch.</p></li><li class="step"><p>Run the following <code class="command">nmcli</code> commands to configure a bonding interface (bond0), and add the Ethernet ports to it:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  nmcli connection add type bond bond-options "...." \
+ifname bond0 con-name bond0 \
+ipv4.method manual ipv4.address 10.1.1.1/24 \
+ipv6.method manual ipv6.address 2001:db8::1/64
+<code class="prompt user">&gt; </code><code class="command">sudo</code>  nmcli connection add type ethernet ifname eth0 con-name eth0 master bond0
+<code class="prompt user">&gt; </code><code class="command">sudo</code>  nmcli connection add type ethernet ifname eth3 con-name eth3 master bond0
+<code class="prompt user">&gt; </code><code class="command">sudo</code>  nmcli connection modify bond0 connection.autoconnect-slaves yes</pre></div></li><li class="step"><p>For the specific <code class="literal">ifcfg-team0</code> example shown above, you can translate the LACP settings into options for the bond device shown as "..." as given below:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="command">TX_BALANCER_NAME=basic</code> indicates active load balancing. There is no other balancer in <code class="literal">teamd</code>, so this is actually redundant and can be ignored.</p></li><li class="listitem"><p>The protocol chosen for managing the bond needs to be provided to the kernel via the mode option. The <code class="command">TEAM_RUNNER</code> variable above specifies LACP, the Link Aggregation Protocol. This is defined by IEEE 802.3ad, and that's also the name by which it is referred to in the kernel bond documentation. So the corresponding option is <code class="command">mode=802.3ad</code></p></li><li class="listitem"><p>The <code class="command">TX_HASH</code> setting describes which headers are used to distribute outgoing packets to links. The bonding equivalent to the above settings is <code class="command">xmit_hash_policy=layer3+4</code></p></li><li class="listitem"><p>The <code class="command">TX_BALANCER_INTERVAL</code> describes how frequently the status of the Ethernet ports is inspected (in milliseconds). The corresponding option is <code class="command">miimon=100</code>.</p></li><li class="listitem"><p>The <code class="command">LW_NAME</code> variable specifies the link watch method. The bonding driver can check the availability of a link using one of two methods; one, by using some generic ioctls, or by using the NIC driver's internal <code class="command">netif_carrier_ok</code> logic. When <code class="command">LW_NAME</code> is set to <code class="command">ethtool</code>, choose <code class="command">use_carrier=0</code>; otherwise, choose <code class="command">use_carrier=1</code>.</p><p>When ethtool is used, the corresponding DELAY values can be translated to bonding options updelay; and downdelay, respectively.</p><p>So with all of the above together, the first <code class="command">nmcli</code> command would use bond-options <code class="command">mode=802.3ad,miimon=100,xmit_hash_policy=layer3+4,use_carrier=0,updelay=10,downdelay=10</code>.</p><p>The resulting configuration is persistent, it activates whenever the system reboots.</p></li></ul></div></li></ol></div></div><div class="procedure" id="active-passive" data-id-title="Active-Passive setups using MII monitoring"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 7: </span><span class="title-name">Active-Passive setups using MII monitoring </span></span><a title="Permalink" class="permalink" href="#active-passive">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>This is another way of using is active-backup, where two or more Ethernet ports are used for redundancy in the face of network failures. Usually, each NIC is connected to a different switch in order to establish a separate network path. When the active link is failing, the connection will automatically fail over to the secondary port.</p><p>A typical ifcfg file for a teaming based active-backup setup would look like this (excluding the BOOTPROTO, IPADDR settings and so on from the example given above).</p><div class="verbatim-wrap"><pre class="screen">TEAM_RUNNER="activebackup"
+TEAM_LW_NAME="ethtool"
+TEAM_PORT_DEVICE_0="eth0"
+TEAM_PORT_DEVICE_1="eth3"</pre></div></li><li class="step"><p>Run the following command to migrate configurations to NetworkManager based bonding connections.</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>The mode parameter needs to be set as <code class="command">mode=active-backup</code>.</p></li><li class="listitem"><p>The link watch method chosen here is ethtool, which translated to <code class="command">miimon=100 use_carrier=0</code>.</p></li></ul></div></li></ol></div></div><div class="procedure" id="active-passive-arp" data-id-title="Active-Passive setups using ARP for link monitoring"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 8: </span><span class="title-name">Active-Passive setups using ARP for link monitoring </span></span><a title="Permalink" class="permalink" href="#active-passive-arp">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>The activebackup runner in teamd supports other link watch methods apart from ethtool; in particular, ARP pings. A typical configuration snippet would look like this:</p><div class="verbatim-wrap"><pre class="screen">TEAM_RUNNER="activebackup"
+TEAM_LW_NAME="arp_ping"
+TEAM_LW_ARP_PING_TARGET=10.1.2.3
+TEAM_LW_ARP_PING_INTERVAL=60</pre></div></li><li class="step"><p>This is translated to bond-options <code class="command">mode=active-backup arp_ip_target=10.1.2.3 arp_interval=60</code>.</p><p>Other link watch types supported by teams are not supported by the kernel bonding driver. In particular, if you are using <code class="command">nsna_ping</code>, you need to change to using ARP pings.</p></li></ol></div></div><div class="procedure" id="manage-unused-interface" data-id-title="Managing Unused Interfaces"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 9: </span><span class="title-name">Managing Unused Interfaces </span></span><a title="Permalink" class="permalink" href="#manage-unused-interface">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><p>By default, NetworkManager manages all network interfaces available on the system. This may sometimes cause issues in some configurations. In this case, you can configure NetworkManager to not manage the NIC by adding them to <code class="command">/etc/NetworkManager/conf.d/unmanaged-devices.conf</code>.</p><ul class="procedure"><li class="step"><p>To ignore eth1 completely,including across reboots, add the following content to <code class="command">/etc/NetworkManager/conf.d/unmanaged-devices.conf</code>:</p><div class="verbatim-wrap"><pre class="screen">[keyfile]
+unmanaged-devices=interface-name:eth1</pre></div></li></ul></div></div></section></section><section xml:lang="en" class="sect1" id="networkmanager-nm-modify" data-id-title="Modifying network connections"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Modifying network connections</span></span> <a title="Permalink" class="permalink" href="#networkmanager-nm-modify">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>You can use the <code class="command">nmcli connection modify</code> command to modify network
+      connections. The generic syntax of the command follows:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli connection modify
+      <em class="replaceable">CONNECTION-NAME</em> <em class="replaceable">PROPERTY</em> <em class="replaceable">VALUE</em></code></pre></div><p>
+      To obtain the value of <em class="replaceable">CONNECTION-NAME</em>, list connections using the
+      command: <code class="command">nmcli connection show</code>. Available properties and their possible
+      values are described in the following section.
+      </p></div></div></div></div><section class="sect2" id="sec-networkmanager-modify-connections" data-id-title="Connections attributes"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.1 </span><span class="title-name">Connections attributes</span></span> <a title="Permalink" class="permalink" href="#sec-networkmanager-modify-connections">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    This section lists and describes attributes you can modify on connections:
+    </p><div class="table" id="id-1.6.2.3" data-id-title="Connections details"><div class="title-container"><div class="table-title-wrap"><div class="table-title"><span class="title-number-name"><span class="title-number">Table 1: </span><span class="title-name">Connections details </span></span><a title="Permalink" class="permalink" href="#id-1.6.2.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="table-contents"><table style="border-collapse: collapse; border-top: 1px solid ; border-bottom: 1px solid ; border-left: 1px solid ; border-right: 1px solid ; "><colgroup><col class="property"/><col class="description"/><col class="value"/></colgroup><thead><tr><th style="border-right: 1px solid ; border-bottom: 1px solid ; ">Property</th><th style="border-right: 1px solid ; border-bottom: 1px solid ; ">Description</th><th style="border-bottom: 1px solid ; ">Values      
+            </th></tr></thead><tbody><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">ipv4.method</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">It defines how the interface obtains and handles its IPv4 address configuration</td><td style="border-bottom: 1px solid ; "><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            <code class="literal">auto</code>—the default value used to allocate IP addresses dynamically using DHCP
+            </p></li><li class="listitem"><p>
+            <code class="literal">manual</code>—to configure a static IP address
+            </p><p>You must set <code class="literal">ipv4.address1</code> if you set <code class="literal">ipv4.method</code> as <code class="literal">manual</code>.</p></li><li class="listitem"><p>
+            <code class="literal">link-local</code>—to use IPv4 link-local addressing only (169.254.0.0/16)
+            </p></li><li class="listitem"><p>
+            <code class="literal">shared</code>—to share the connection with other computers
+            </p></li><li class="listitem"><p>
+            <code class="literal">disabled</code>—to disable IPv4.
+            </p></li></ul></div></td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">ipv4.dns</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">A space separated list of DNS IP addresses</td><td style="border-bottom: 1px solid ; ">For example, "8.8.8.8 8.8.4.4"</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">ipv4.gateway</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">The property is the router address that your system uses to reach networks beyond your local network</td><td style="border-bottom: 1px solid ; ">An IP address of the gateway</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">connection.id</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">It renames the connection</td><td style="border-bottom: 1px solid ; ">a string representing the new connection name</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">802-11-wireless.ssid</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">The property renames a Wi-Fi network</td><td style="border-bottom: 1px solid ; ">A string representing the new Wi-Fi SSID</td></tr><tr><td style="border-right: 1px solid ; ">connection.autoconnect</td><td style="border-right: 1px solid ; ">Toggles on/off automatic connection when the device is online</td><td><code class="literal">on</code> or <code class="literal">off</code></td></tr></tbody></table></div></div></section></section><section xml:lang="en" class="sect1" id="networkmanager-nm-enabledisable" data-id-title="Establishing and terminating network connections"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Establishing and terminating network connections</span></span> <a title="Permalink" class="permalink" href="#networkmanager-nm-enabledisable">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>Enable the network connection to access and connect devices and resources.</p></div></div></div></div><section class="sect2" id="sec-networkmanager-enable-connections" data-id-title="Enabling network connections"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.1 </span><span class="title-name">Enabling network connections</span></span> <a title="Permalink" class="permalink" href="#sec-networkmanager-enable-connections">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Particular connections may be disabled, or all of the connections may be disabled. To activate
+    all connections, run the command:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli networking on</code></pre></div><p>
+    Bear in mind that the command does not activate manually disabled connections. To activate such a
+    connection, proceed as described in the following procedure:
+    </p><div class="procedure" id="id-1.7.2.5" data-id-title="Activating an existing connection"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 10: </span><span class="title-name">Activating an existing connection </span></span><a title="Permalink" class="permalink" href="#id-1.7.2.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+    View the list of existing connections:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli connection show</code></pre></div></li><li class="step"><p>
+    Enable a connection using the name or UUID:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli connection up uuid <em class="replaceable">CONNECTION-UUID</em></code></pre></div></li><li class="step"><p>
+    Check the connection status:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli connection show --active</code></pre></div></li></ol></div></div></section><section class="sect2" id="sec-networkmanager-disable-connections" data-id-title="Disabling network connections"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.2 </span><span class="title-name">Disabling network connections</span></span> <a title="Permalink" class="permalink" href="#sec-networkmanager-disable-connections">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>You can temporarily disconnect your system from external
+  networks using the <code class="command">nmcli</code> command to
+  disable your network connection.</p><p>
+  To disable a particular connection, proceed as described in the following procedure:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+  View the list of active connections:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli connection show --active</code>
+  
+NAME                UUID                                  TYPE      DEVICE       
+Wired connection 2  7b0c32ee-851e-3015-a658-f4372b426273  ethernet  enp6s0f3u1u4
+lo                  8041ed2a-e4ae-4bf7-a0db-d4b513b9d745  loopback  lo           
+virbr0              1bec1271-4bb6-46a7-a50a-4b329fa318d3  bridge    virbr0       
+vnet0               ac196c81-0505-49f0-9328-b78e1746b4a9  tun       vnet0</pre></div></li><li class="step"><p>
+  Terminate a specific connection:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli connection down <em class="replaceable">CONNECTION-NAME/CONNECTION-UUID</em></code></pre></div><p>
+  For example:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli connection down virbr0</code></pre></div></li></ol></div></div><p>
+    To disable <span><span class="emphasis"><strong>all</strong></span></span> connections temporarily, run:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli networking off</code></pre></div><div id="id-1.7.3.7" data-id-title="Temporal changes only" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Temporal changes only</div><p>
+    In both cases, the changes persist only till the system reboots. After reboot, NetworkManager and
+    connections are active again. 
+    </p></div></section></section><section xml:lang="en" class="sect1" id="networkmanager-nm-monitor" data-id-title="Monitoring network connections"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Monitoring network connections</span></span> <a title="Permalink" class="permalink" href="#networkmanager-nm-monitor">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Use the <code class="command">nmcli</code> command to view the status, activity and details of network connections managed by NetworkManager.</p></div></div></div></div><p>The following list provides commands for basic monitoring of network connections.</p><div class="variablelist"><dl class="variablelist"><dt id="id-1.8.3.1"><span class="term">View the list of active connections</span></dt><dd><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">nmcli connection show --active</code></pre></div></dd><dt id="id-1.8.3.2"><span class="term">View the status of NetworkManager</span></dt><dd><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">nmcli monitor</code></pre></div><p>The real-time updates about the network states and connections appear.</p></dd><dt id="id-1.8.3.3"><span class="term">View details of a specific network connection</span></dt><dd><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">nmcli connection monitor <em class="replaceable">CONNECTION-NAME</em></code></pre></div><p>
+          Each time the connection changes, NetworkManager prints a line.
+          </p></dd><dt id="id-1.8.3.4"><span class="term">Monitor the status of network devices</span></dt><dd><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">nmcli device monitor</code></pre></div><p>The list of all network devices with device name, type, state and connection name appears.</p></dd><dt id="id-1.8.3.5"><span class="term">View the signal strength of Wi-Fi connections</span></dt><dd><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">nmcli device wifi list</code></pre></div><p>The list of available Wi-Fi networks with SSID, signal strength (in %) and security type appears.</p></dd></dl></div></section><section xml:lang="en" class="sect1" id="networkmanager-nmcli-log" data-id-title="NetworkManager logging"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name">NetworkManager logging</span></span> <a title="Permalink" class="permalink" href="#networkmanager-nmcli-log">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        NetworkManager activities are logged by the <code class="literal">journald</code> system logging mechanism. The NetworkManager logs are saved in <code class="filename">/var/log/syslog</code>, and you can access the details using the <code class="command">journalctl</code> command.</p></div></div></div></div><p>
+       The type of logged NetworkManager activities differs according to the 
+       current logging level. Available levels are described below:
+       </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span><em class="emphasis">ERR</em></span>—logs only error messages. For example, connection failures.</p></li><li class="listitem"><p><span><em class="emphasis">WARN</em></span>—logs warnings and errors. For example, authentication issues.</p></li><li class="listitem"><p><span><em class="emphasis">INFO</em></span>—logs informational messages. That is the default level for all
+    logging domains.</p></li><li class="listitem"><p><span><em class="emphasis">DEBUG</em></span>—logs detailed debugging information. For example, detailed DHCP negotiations</p></li><li class="listitem"><p><span><em class="emphasis">TRACE</em></span>—logs very detailed, usually unimportant events. For example, packet-level details.</p></li></ul></div><p>
+       To check the current logging level, run:
+       </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">nmcli general logging</code>
+INFO   PLATFORM,RFKILL,ETHER,WIFI,BT,MB,DHCP4,DHCP6,PPP,IP4,IP6,AUTOIP4,DNS,VPN,SHARING,
+SUPPLICANT,AGENTS,SETTINGS,SUSPEND,CORE,DEVICE,OLPC,INFINIBAND,FIREWALL,ADSL,BOND,VLAN,
+BRIDGE,TEAM,CONCHECK,DCB,DISPATCH,AUDIT,SYSTEMD,PROXY</pre></div><p>
+The output shows that the logging level is INFO for all domains—that is the default setting. You can
+modify logging levels on particular domains and then the command outputs only the modified domains.
+</p><p>
+To change the logging level on all domains, run:
+</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">general logging level <em class="replaceable">LEVEL</em> domains ALL</code></pre></div><p>
+For example, to revert changes to the default setting:
+</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli general logging level INFO domains ALL</code></pre></div><p>
+To change a logging level on particular domains, for example, to set <code class="literal">DEBUG</code> on
+<code class="literal">DNS</code> and <code class="literal">FIREWALL</code>, run:
+</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli general logging level DEBUG domains FIREWALL,DNS</code></pre></div><p>
+The following list provides commands to manage NetworkManager logs using <code class="command">journald</code>.
+</p><div class="variablelist" id="view-networkmanager-logs" data-id-title="Managing NetworkManager logs"><div class="title-container"><div class="variablelist-title-wrap"><div class="variablelist-title"><span class="title-number-name"><span class="title-name">Managing NetworkManager logs </span></span><a title="Permalink" class="permalink" href="#view-networkmanager-logs">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><dl class="variablelist"><dt id="id-1.9.14.2"><span class="term">Viewing logs</span></dt><dd><p>
+To view the NetworkManager logs
+</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">journalctl -u NetworkManager</code></pre></div><p>
+To view the NetworkManager logs in real time:
+</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">journalctl -u NetworkManager -f</code></pre></div><p>
+To view only specific logs, use <code class="command">grep</code> to filter the <code class="command">journalctl</code>
+output. For example, for log related to DHCP, run:
+</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">journalctl -u NetworkManager | grep DHCP</code></pre></div></dd><dt id="id-1.9.14.3"><span class="term">Saving logs</span></dt><dd><p>To save NetworkManager logs to a file, for example, to
+<code class="filename">networkmanager.log</code>:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">journalctl -u NetworkManager &gt; networkmanager.log</code></pre></div><p>
+To save the NetworkManager logs of a specific time to a file, for example, to <code class="filename">networkmanager_timerange.log</code>:
+</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">journalctl -u NetworkManager --since "<em class="replaceable">YYYY-MM-DD HH:MM:SS</em>" --until "<em class="replaceable">YYYY-MM-DD HH:MM:SS</em>" &gt; networkmanager_timerange.log</code></pre></div><p>To save the NetworkManager logs with real-time monitoring and save them as and when generated:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">journalctl -u NetworkManager -f &gt;&gt; live_networkmanager.log</code></pre></div></dd></dl></div></section><section xml:lang="en" class="sect1" id="nmcli-usage" data-id-title="The nmcli command reference"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">9 </span><span class="title-name">The <code class="command">nmcli</code> command reference</span></span> <a title="Permalink" class="permalink" href="#nmcli-usage">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        This section provides a summary of options and
+        subcommands of the <code class="command">nmcli</code> command you can use to interact with NetworkManager
+        daemon to manage the network.
+      </p></div></div></div></div><p>
+       The <code class="command">nmcli</code> command has the following generic syntax:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>nmcli <em class="replaceable">OPTIONS</em> <em class="replaceable">SUBCOMMAND</em> <em class="replaceable">SUBCOMMAND_ARGUMENTS</em></pre></div><p>
+      where <em class="replaceable">OPTIONS</em> are described in
+      <a class="xref" href="#sec-nmcli-options" title="9.1. The nmcli command options">Section 9.1, “The <code class="command">nmcli</code> command options”</a> and
+      <em class="replaceable">SUBCOMMAND</em> can be any of the following:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.10.5.1"><span class="term"><code class="command">connection</code></span></dt><dd><p>
+            enables you to configure your network connection. For details,
+            refer to <a class="xref" href="#sec-connection-command" title="9.2. The connection subcommand">Section 9.2, “The <code class="command">connection</code> subcommand”</a>.
+          </p></dd><dt id="id-1.10.5.2"><span class="term"><code class="command">device</code></span></dt><dd><p>
+            used for network device management. For details, refer to <a class="xref" href="#sec-device-command" title="9.3. The device subcommand">Section 9.3, “The <code class="command">device</code> subcommand”</a>.
+          </p></dd><dt id="id-1.10.5.3"><span class="term"><code class="command">general</code></span></dt><dd><p>
+            shows status and permissions. For details refer to
+            <a class="xref" href="#sec-general-command" title="9.4. The general subcommand">Section 9.4, “The <code class="command">general</code> subcommand”</a>.
+          </p></dd><dt id="id-1.10.5.4"><span class="term"><code class="command">monitor</code></span></dt><dd><p>
+            monitors activity of NetworkManager and watches for changes in the state of
+            connectivity and devices. This subcommand does not take any
+            arguments.
+          </p></dd><dt id="id-1.10.5.5"><span class="term"><code class="command">networking</code></span></dt><dd><p>
+            queries the networking status. For details, refer to
+            <a class="xref" href="#sec-networking-command" title="9.5. The networking subcommand">Section 9.5, “The <code class="command">networking</code> subcommand”</a>.
+          </p></dd></dl></div><section class="sect2" id="sec-nmcli-options" data-id-title="The nmcli command options"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.1 </span><span class="title-name">The <code class="command">nmcli</code> command options</span></span> <a title="Permalink" class="permalink" href="#sec-nmcli-options">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        Besides the subcommands and their arguments, the
+        <code class="command">nmcli</code> command can take the following options:
+      </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.10.6.3.1"><span class="term"><code class="option">-a|--ask</code></span></dt><dd><p>
+              The command stops its run to ask for any missing arguments,
+              for example, for a password to connect to a network.
+            </p></dd><dt id="id-1.10.6.3.2"><span class="term"><code class="option">-c|--color {yes|no|auto}</code></span></dt><dd><p>
+              controls the color output: <code class="literal">yes</code> to enable the
+              colors, <code class="literal">no</code> to disable them, and
+              <code class="literal">auto</code> creates color output only when the
+              standard output is directed to a terminal.
+            </p></dd><dt id="id-1.10.6.3.3"><span class="term"><code class="option">-m|--mode {tabular|multiline}</code></span></dt><dd><p>
+              switches between <code class="literal">tabular</code> (each line describes a
+              single entry, columns define particular properties of the entry)
+              and <code class="literal">multiline</code> (each entry comprises more
+              lines, each property is on its own line).
+              <code class="literal">tabular</code> is the default value.
+            </p></dd><dt id="id-1.10.6.3.4"><span class="term"><code class="option">-h|--help</code></span></dt><dd><p>
+              prints help.
+            </p></dd><dt id="id-1.10.6.3.5"><span class="term"><code class="option">-w|--wait seconds</code></span></dt><dd><p>
+              sets a time-out period for which to wait for NetworkManager to finish
+              operations. Using this option is recommended for commands that
+              might take longer to complete, for example, connection
+              activation.
+            </p></dd></dl></div></section><section class="sect2" id="sec-connection-command" data-id-title="The connection subcommand"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.2 </span><span class="title-name">The <code class="command">connection</code> subcommand</span></span> <a title="Permalink" class="permalink" href="#sec-connection-command">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        The <code class="command">connection</code> command enables you to manage
+        connections or view any information about particular connections. The
+        <code class="command">nmcli connection</code> provides the following commands to
+        manage your network connections:
+      </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.10.7.3.1"><span class="term"><code class="command">show</code></span></dt><dd><p>
+              to list connections:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">nmcli connection show</code></pre></div><p>
+              You can also use this command to show details about a specified
+              connection:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">nmcli connection show <em class="replaceable">CONNECTION_ID</em></code></pre></div><p>
+              where <em class="replaceable">CONNECTION_ID</em> is any of the
+              identifiers: <span><em class="emphasis">a connection name, UUID or a
+              path</em></span>
+            </p></dd><dt id="id-1.10.7.3.2"><span class="term"><code class="command">up</code></span></dt><dd><p>
+              to activate the provided connection. Use the command to reload a
+              connection. Also run this command after you perform any change to
+              the connection.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli connection up [--active] [<em class="replaceable">CONNECTION_ID</em>]</code></pre></div><p>
+              When <code class="option">--active</code> is specified, only the active
+              profiles are displayed. The default is to display both active
+              connections and static configuration.
+            </p></dd><dt id="id-1.10.7.3.3"><span class="term"><code class="command">down</code></span></dt><dd><p>
+              to deactivate a connection.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli connection down <em class="replaceable">CONNECTION_ID</em></code></pre></div><p>
+              where: <em class="replaceable">CONNECTION_ID</em> is any of the
+              identifiers: <span><em class="emphasis">a connection name, UUID or a
+              path</em></span>
+            </p><p>
+              If you deactivate the connection, it will not reconnect later
+              even if it has the <code class="literal">autoconnect</code> flag.
+            </p></dd><dt id="id-1.10.7.3.4"><span class="term"><code class="command">modify</code></span></dt><dd><p>
+              to change or delete a property of a connection.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli connection modify <em class="replaceable">CONNECTION_ID</em> <em class="replaceable">SETTING.PROPERTY</em> <em class="replaceable">PROPERTY_VALUE</em></code></pre></div><p>
+              where:
+            </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                  <em class="replaceable">CONNECTION_ID</em> is any of the
+                  identifiers: <span><em class="emphasis">a connection name, UUID, or a
+                  path</em></span>
+                </p></li><li class="listitem"><p>
+                  <em class="replaceable">SETTING.PROPERTY</em> is the name of
+                  the property, for example, <code class="literal">ipv4.addresses</code>
+                </p></li><li class="listitem"><p>
+                  <em class="replaceable">PROPERTY_VALUE</em> is the desired
+                  value of <em class="replaceable">SETTING.PROPERTY</em>
+                </p></li></ul></div><p>
+              The following example deactivates the
+              <code class="option">autoconnect</code> option on the
+              <code class="literal">ethernet1</code> connection:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli connection modify ethernet1 connection.autoconnect no</code></pre></div></dd><dt id="id-1.10.7.3.5"><span class="term"><code class="command">add</code></span></dt><dd><p>
+              to add a connection with the provided details. The command syntax
+              is similar to the <code class="command">modify</code> command:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli connection add <em class="replaceable">CONNECTION_ID</em> <em class="replaceable">save YES|NO</em> <em class="replaceable">SETTING.PROPERTY</em> <em class="replaceable">PROPERTY_VALUE</em></code></pre></div><p>
+              You should at least specify a <code class="literal">connection.type</code>
+              or use <code class="literal">type</code>. The following example adds an
+              Ethernet connection tied to the <code class="literal">eth0</code> interface
+              with DHCP and disables the connection's
+              <code class="option">autoconnect</code> flag:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli connection add type ethernet autoconnect no ifname eth0</code></pre></div></dd><dt id="id-1.10.7.3.6"><span class="term"><code class="command">edit</code></span></dt><dd><p>
+              to edit an existing connection using an interactive editor.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli connection edit <em class="replaceable">CONNECTION_ID</em></code></pre></div></dd><dt id="id-1.10.7.3.7"><span class="term"><code class="command">clone</code></span></dt><dd><p>
+              to clone an existing connection. The minimal syntax
+              follows:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli connection clone <em class="replaceable">CONNECTION_ID</em> <em class="replaceable">NEW_NAME</em></code></pre></div><p>
+              where <em class="replaceable">CONNECTION_ID</em> is the connection
+              to be cloned.
+            </p></dd><dt id="id-1.10.7.3.8"><span class="term"><code class="command">delete</code></span></dt><dd><p>
+              to delete an existing connection:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli connection delete <em class="replaceable">CONNECTION_ID</em></code></pre></div></dd><dt id="id-1.10.7.3.9"><span class="term"><code class="command">monitor</code></span></dt><dd><p>
+              to monitor the provided connection. Each time the connection
+              changes, NetworkManager prints a line.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli connection monitor <em class="replaceable">CONNECTION_ID</em></code></pre></div></dd><dt id="id-1.10.7.3.10"><span class="term"><code class="command">reload</code></span></dt><dd><p>
+              to reload all connection files from the disk. As NetworkManager does not
+              monitor changes performed to the connection files, you need to
+              use this command whenever you make changes to the files. This
+              command does not take any further subcommands.
+            </p></dd><dt id="id-1.10.7.3.11"><span class="term"><code class="command">load</code></span></dt><dd><p>
+              to load/reload a particular connection file, run:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli connection load <em class="replaceable">CONNECTION_FILE</em></code></pre></div></dd></dl></div><p>
+        For details about the above-mentioned commands, refer to the
+        <a class="link" href="https://networkmanager.dev/docs/api/latest/nmcli.html" target="_blank"><code class="command">nmcli</code>
+        documentation</a>.
+      </p></section><section class="sect2" id="sec-device-command" data-id-title="The device subcommand"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.3 </span><span class="title-name">The <code class="command">device</code> subcommand</span></span> <a title="Permalink" class="permalink" href="#sec-device-command">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        The <code class="command">device</code> subcommand enables you to show and manage
+        network interfaces. The <code class="command">nmcli device</code> command
+        recognizes the following commands:
+      </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.10.8.3.1"><span class="term"><code class="command">status</code></span></dt><dd><p>
+              to print the status of all devices.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">nmcli device status</code></pre></div></dd><dt id="id-1.10.8.3.2"><span class="term"><code class="command">show</code></span></dt><dd><p>
+              shows detailed information about a device. If no device is
+              specified, all devices are displayed.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">mcli device show [<em class="replaceable">DEVICE_NAME</em>]</code></pre></div></dd><dt id="id-1.10.8.3.3"><span class="term"><code class="command">connect</code></span></dt><dd><p>
+              to connect a device. NetworkManager tries to find a suitable connection
+              to activate. If there is no compatible connection, a
+              new profile is created.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli device connect <em class="replaceable">DEVICE_NAME</em></code></pre></div></dd><dt id="id-1.10.8.3.4"><span class="term"><code class="command">modify</code></span></dt><dd><p>
+              performs temporary changes to the configuration that is active on
+              the particular device. The changes are not stored in the
+              connection profile.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli device modify <em class="replaceable">DEVICE_NAME</em> [+|-] <em class="replaceable">SETTING.PROPERTY</em> <em class="replaceable">VALUE</em></code></pre></div><p>
+              For possible <em class="replaceable">SETTING.PROPERTY</em> values,
+              refer to <span><em class="emphasis">nm-settings-nmcli(5)</em></span>.
+            </p><p>
+              The example below starts the IPv4 shared connection sharing on
+              the device <code class="literal">con1</code>.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli dev modify con1 ipv4.method shared</code></pre></div></dd><dt id="id-1.10.8.3.5"><span class="term"><code class="command">disconnect</code></span></dt><dd><p>
+              disconnects a device and prevents the device from automatically
+              activating further connections without manual intervention.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli device disconnect <em class="replaceable">DEVICE_NAME</em></code></pre></div></dd><dt id="id-1.10.8.3.6"><span class="term"><code class="command">delete</code></span></dt><dd><p>
+              to delete the interface from the system. You can use the command
+              to delete only software devices like bonds and bridges. You
+              cannot delete hardware devices with this command.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli device delete <em class="replaceable">DEVICE_NAME</em></code></pre></div></dd><dt id="id-1.10.8.3.7"><span class="term"><code class="command">wifi</code></span></dt><dd><p>
+              lists all available access points.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">nmcli device wifi</code></pre></div></dd><dt id="id-1.10.8.3.8"><span class="term"><code class="command">wifi connect</code></span></dt><dd><p>
+              connects to a Wi-Fi network specified by its SSID or BSSID. The
+              command takes the following options:
+            </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                  <code class="option">password</code> - password for secured networks
+                </p></li><li class="listitem"><p>
+                  <code class="option">ifname</code> - interface used for
+                  activation
+                </p></li><li class="listitem"><p>
+                  <code class="option">name</code> - you can give the connection a name
+                </p></li></ul></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli device wifi connect <em class="replaceable">SSID</em> [password <em class="replaceable">PASSWORD_VALUE</em>] [ifname <em class="replaceable">INTERFACE_NAME</em>]</code></pre></div><p>
+              To connect to a Wi-Fi <span><em class="emphasis">GUESTWiFi</em></span> with a
+              password <code class="literal">pass$word2#@@</code>, run:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli device wifi connect <em class="replaceable">GUESTWiFi</em> password pass$word2#@@</code></pre></div></dd></dl></div></section><section class="sect2" id="sec-general-command" data-id-title="The general subcommand"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.4 </span><span class="title-name">The <code class="command">general</code> subcommand</span></span> <a title="Permalink" class="permalink" href="#sec-general-command">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        You can use this command to view NetworkManager status and permissions, and
+        change the host name and logging level. The <code class="command">nmcli
+        general</code> recognizes the following commands:
+      </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.10.9.3.1"><span class="term"><code class="command">status</code></span></dt><dd><p>
+              displays the overall status of NetworkManager. Whenever you do not specify
+              a command to the <code class="command">nmcli general</code> command, status
+              is used by default.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">nmcli general status</code></pre></div></dd><dt id="id-1.10.9.3.2"><span class="term"><code class="command">hostname</code></span></dt><dd><p>
+              if you do not provide a new host name as an argument, the current
+              host name is displayed. If you specify a new host name, the value
+              is used to set a new host name.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli general hostname [<em class="replaceable">HOSTNAME</em>]</code></pre></div><p>
+              For example, to set <code class="literal">MyHostname</code>, run:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli general hostname MyHostname</code></pre></div></dd><dt id="id-1.10.9.3.3"><span class="term"><code class="command">permissions</code></span></dt><dd><p>
+              shows your permission for NetworkManager operations like enabling or
+              disabling networking, modifying connections, etc.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">nmcli general permissions</code></pre></div></dd><dt id="id-1.10.9.3.4"><span class="term"><code class="command">logging</code></span></dt><dd><p>
+              shows and changes NetworkManager logging levels and domains. Without any
+              arguments, the command displays current logging levels and
+              domains.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli general logging [level <em class="replaceable">LEVEL</em> domains <em class="replaceable">DOMAIN</em>]</code></pre></div><p>
+              <em class="replaceable">LEVEL</em> is any of the values:
+              <code class="literal">OFF</code>, <code class="literal">ERR</code>,
+              <code class="literal">WARN</code>, <code class="literal">INFO</code>,
+              <code class="literal">DEBUG</code>, or <code class="literal">TRACE</code>.
+            </p><p>
+              <em class="replaceable">DOMAIN</em> is a list of values that can be
+              as follows: <code class="literal">PLATFORM, RFKILL, ETHER, WIFI, BT, MB,
+              DHCP4, DHCP6, PPP, WIFI_SCAN, IP4, IP6, AUTOIP4, DNS, VPN,
+              SHARING, SUPPLICANT, AGENTS, SETTINGS, SUSPEND, CORE, DEVICE,
+              OLPC, WIMAX, INFINIBAND, FIREWALL, ADSL, BOND, VLAN, BRIDGE,
+              DBUS_PROPS, TEAM, CONCHECK, DCB, DISPATCH, AUDIT, SYSTEMD,
+              VPN_PLUGIN, PROXY</code>.
+            </p></dd></dl></div></section><section class="sect2" id="sec-networking-command" data-id-title="The networking subcommand"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.5 </span><span class="title-name">The <code class="command">networking</code> subcommand</span></span> <a title="Permalink" class="permalink" href="#sec-networking-command">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        The subcommand enables you to query the status of the network. Also, by
+        using this command, you can enable or disable networking. The
+        <code class="command">nmcli networking</code> command takes the following
+        commands:
+      </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.10.10.3.1"><span class="term"><code class="command">on/off</code></span></dt><dd><p>
+              enables or disables networking. The <code class="command">off</code>
+              command deactivates all interfaces managed by NetworkManager.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli networking on</code></pre></div></dd><dt id="id-1.10.10.3.2"><span class="term">connectivity</span></dt><dd><p>
+              displays the network connectivity state. If
+              <code class="option">check</code> is used, NetworkManager performs a new check of the
+              state. Otherwise, the last detected state is displayed.
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">nmcli networking connectivity</code></pre></div><p>
+              Possible states are the following:
+            </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                  <span><em class="emphasis">none</em></span> - the host is not connected to any
+                  network.
+                </p></li><li class="listitem"><p>
+                  <span><em class="emphasis">portal</em></span> - the host is behind a captive
+                  portal and cannot reach the full Internet.
+                </p></li><li class="listitem"><p>
+                  <span><em class="emphasis">limited</em></span> - the host is connected to a
+                  network, but it has no access to the Internet.
+                </p></li><li class="listitem"><p>
+                  <span><em class="emphasis">full</em></span> - the host is connected to a
+                  network and has full access to the Internet.
+                </p></li><li class="listitem"><p>
+                  <span><em class="emphasis">unknown</em></span> - NetworkManager could not determine the
+                  network state.
+                </p></li></ul></div></dd></dl></div></section></section><section xml:lang="en" class="sect1" id="networkmanager-nmcli-troubleshoot" data-id-title="Troubleshooting"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">10 </span><span class="title-name">Troubleshooting</span></span> <a title="Permalink" class="permalink" href="#networkmanager-nmcli-troubleshoot">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+      Learn how to debug and troubleshoot NetworkManager installation and configuration issues.
+      </p></div></div></div></div><section class="sect2" id="networkmanager-nmcli-troubleshoot-verify-status" data-id-title="Network is not running"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">10.1 </span><span class="title-name">Network is not running</span></span> <a title="Permalink" class="permalink" href="#networkmanager-nmcli-troubleshoot-verify-status">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    If the network is not working, this may be caused by NetworkManager itself. To check that, proceed as follows:
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+    Check that  NetworkManager is enabled and active:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">systemctl status network</code></pre></div></li><li class="step"><p>
+    If NetworkManager is disabled, enable it:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">systemctl enable NetworkManager</code></pre></div></li><li class="step"><p>
+    If NetworkManager is inactive, restart it:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">restart NetworkManager</code></pre></div></li></ol></div></div></section><section class="sect2" id="networkmanager-nmcli-troubleshoot-wifi-connection" data-id-title="Wi-Fi connectivity issue"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">10.2 </span><span class="title-name">Wi-Fi connectivity issue</span></span> <a title="Permalink" class="permalink" href="#networkmanager-nmcli-troubleshoot-wifi-connection">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    If you are experiencing problems with Wi-Fi connectivity, proceed as described below:
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+      View the list of Wi-Fi connections:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli device wifi list</code></pre></div></li><li class="step"><p>
+      If a particular device is listed, make sure its Wi-Fi connection is active:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli connection show --active</code></pre></div></li><li class="step"><p>
+      If the Wi-Fi connection is not listed, verify the Wi-Fi status:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli device status</code></pre></div><ol type="a" class="substeps"><li class="step"><p>
+If the status is <code class="literal">disconnected</code>, activate the connection.
+</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli connection up <em class="replaceable">CONNECTION_NAME</em></code></pre></div></li><li class="step"><p>
+If the status is <code class="literal">unavailable</code>, restart NetworkManager:
+</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">systemctl restart NetworkManager</code></pre></div></li></ol></li><li class="step"><p>Inspect the NetworkManager logs for error messages.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">journalctl -u NetworkManager -n 100</code></pre></div></li><li class="step"><p>The Wi-Fi device may be blocked:</p><ol type="a" class="substeps"><li class="step"><p>
+ Check if the device is blocked:
+ </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">rfkill list</code>
+ 
+phy0: Wireless LAN
+Soft blocked: yes
+Hard blocked: no</pre></div></li><li class="step"><p>
+ Unblock the device:
+ </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">rfkill unblock all</code></pre></div></li></ol></li><li class="step"><p>
+ IPv4 static address may be configured incorrectly, to check that, reset to use DHCP:
+ </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli connection modify <em class="replaceable">SSID</em> ipv4.method auto</code></pre></div></li><li class="step"><p>
+  Try to activate the connection again:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli connection up <em class="replaceable">SSID</em></code></pre></div></li><li class="step"><p>
+  Try to reconnect to the Wi-Fi network:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nmcli device wifi connect <em class="replaceable">SSID</em> password <em class="replaceable">PASSWORD</em></code></pre></div></li></ol></div></div></section><section class="sect2" id="id-1.11.4" data-id-title="Network bonding issues"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">10.3 </span><span class="title-name">Network bonding issues</span></span> <a title="Permalink" class="permalink" href="#id-1.11.4">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>To troubleshoot network bonding issues, verify connection status, check the bonding interface's status, and restart network services using the <code class="command">nmcli</code> command.</p><div class="procedure" id="id-1.11.4.3" data-id-title="Network bonding troubleshooting"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 11: </span><span class="title-name">Network bonding troubleshooting </span></span><a title="Permalink" class="permalink" href="#id-1.11.4.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>List and view status of connections:</p><div class="verbatim-wrap"><pre class="screen"><code class="command">nmcli connection status</code></pre></div></li><li class="step"><p>Check the status of network devices, including the bonded interface.</p><div class="verbatim-wrap"><pre class="screen"><code class="command">nmcli device status</code></pre></div></li><li class="step"><p>Check the bonding interface status in 
+  <code class="filename">/proc/net/bonding/<em class="replaceable">bond0</em></code></p><p>This file provides information about the bonding mode, active slaves, and other relevant details.</p></li><li class="step"><p>If the connections are inactive, activate the connections:</p><div class="verbatim-wrap"><pre class="screen"><code class="command">nmcli con up <em class="replaceable">connectionname</em></code></pre></div></li><li class="step"><p>Modify the connection if required.</p><div class="verbatim-wrap"><pre class="screen"><code class="command">nmcli con edit <em class="replaceable">connectionname</em></code></pre></div></li><li class="step"><p>Restart the connection.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  nmcli connection up <em class="replaceable">bond0</em></pre></div></li></ol></div></div></section><section class="sect2" id="id-1.11.5" data-id-title="Network teaming issues"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">10.4 </span><span class="title-name">Network teaming issues</span></span> <a title="Permalink" class="permalink" href="#id-1.11.5">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>Verify the error messages related to network teaming in <code class="filename">/var/log/messages</code>.</p><p>You can troubleshoot network teaming issues by analyzing the devices and team connection details, enabling the device if it is disabled, and modifying the bonding mode if required. After making any changes, reload the network team connection and restart NetworkManager.</p><div class="procedure" id="id-1.11.5.4" data-id-title="Network teaming troubleshooting"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 12: </span><span class="title-name">Network teaming troubleshooting </span></span><a title="Permalink" class="permalink" href="#id-1.11.5.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>View the list of devices:</p><div class="verbatim-wrap"><pre class="screen"><code class="command">nmcli device</code></pre></div></li><li class="step"><p>View the team connection details:</p><div class="verbatim-wrap"><pre class="screen"><code class="command">nmcli connection show <em class="replaceable">teamname</em></code></pre></div></li><li class="step"><p>Enable interface:</p><div class="verbatim-wrap"><pre class="screen"><code class="command">nmcli connection modify <em class="replaceable">teamname</em> bond.options "mode=active-backup"</code></pre></div></li><li class="step"><p>Reload the network team connection:</p><div class="verbatim-wrap"><pre class="screen"><code class="command">nmcli connection reload <em class="replaceable">teamname</em></code></pre></div></li><li class="step"><p>Restart the NetworkManager.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">systemctl restart NetworkManager.service</code></pre></div></li></ol></div></div></section></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">11 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section><div class="legal-section"><section class="appendix" translate="no" id="doc-gfdl-license" data-id-title="GNU Free Documentation License"><div class="titlepage"><div><div><h1 class="title">GNU Free Documentation License</h1></div></div></div><p>
+    Copyright (C) 2000, 2001, 2002 Free Software Foundation, Inc. 51 Franklin St, Fifth Floor,
+    Boston, MA 02110-1301 USA. Everyone is permitted to copy and distribute verbatim copies of this
+    license document, but changing it is not allowed.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.13.3"><span class="name">
+    0. PREAMBLE
+  </span><a title="Permalink" class="permalink" href="#id-1.13.3">#</a></h5></div><p>
+    The purpose of this License is to make a manual, textbook, or other functional and useful
+    document "free" in the sense of freedom: to assure everyone the effective freedom to copy and
+    redistribute it, with or without modifying it, either commercially or non-commercially.
+    Secondarily, this License preserves for the author and publisher a way to get credit for their
+    work, while not being considered responsible for modifications made by others.
+  </p><p>
+    This License is a kind of "copyleft", which means that derivative works of the document must
+    themselves be free in the same sense. It complements the GNU General Public License, which is a
+    copyleft license designed for free software.
+  </p><p>
+    We have designed this License to use it for manuals for free software, because free software
+    needs free documentation: a free program should come with manuals providing the same freedoms
+    that the software does. But this License is not limited to software manuals; it can be used for
+    any textual work, regardless of subject matter or whether it is published as a printed book. We
+    recommend this License principally for works whose purpose is instruction or reference.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.13.7"><span class="name">
+    1. APPLICABILITY AND DEFINITIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.13.7">#</a></h5></div><p>
+    This License applies to any manual or other work, in any medium, that contains a notice placed
+    by the copyright holder saying it can be distributed under the terms of this License. Such a
+    notice grants a world-wide, royalty-free license, unlimited in duration, to use that work under
+    the conditions stated herein. The "Document", below, refers to any such manual or work. Any
+    member of the public is a licensee, and is addressed as "you". You accept the license if you
+    copy, modify or distribute the work in a way requiring permission under copyright law.
+  </p><p>
+    A "Modified Version" of the Document means any work containing the Document or a portion of it,
+    either copied verbatim, or with modifications and/or translated into another language.
+  </p><p>
+    A "Secondary Section" is a named appendix or a front-matter section of the Document that deals
+    exclusively with the relationship of the publishers or authors of the Document to the
+    Document's overall subject (or to related matters) and contains nothing that could fall
+    directly within that overall subject. (Thus, if the Document is in part a textbook of
+    mathematics, a Secondary Section may not explain any mathematics.) The relationship could be a
+    matter of historical connection with the subject or with related matters, or of legal,
+    commercial, philosophical, ethical or political position regarding them.
+  </p><p>
+    The "Invariant Sections" are certain Secondary Sections whose titles are designated, as being
+    those of Invariant Sections, in the notice that says that the Document is released under this
+    License. If a section does not fit the above definition of Secondary then it is not allowed to
+    be designated as Invariant. The Document may contain zero Invariant Sections. If the Document
+    does not identify any Invariant Sections then there are none.
+  </p><p>
+    The "Cover Texts" are certain short passages of text that are listed, as Front-Cover Texts or
+    Back-Cover Texts, in the notice that says that the Document is released under this License. A
+    Front-Cover Text may be at most 5 words, and a Back-Cover Text may be at most 25 words.
+  </p><p>
+    A "Transparent" copy of the Document means a machine-readable copy, represented in a format
+    whose specification is available to the general public, that is suitable for revising the
+    document straightforwardly with generic text editors or (for images composed of pixels) generic
+    paint programs or (for drawings) some widely available drawing editor, and that is suitable for
+    input to text formatters or for automatic translation to a variety of formats suitable for
+    input to text formatters. A copy made in an otherwise Transparent file format whose markup, or
+    absence of markup, has been arranged to thwart or discourage subsequent modification by readers
+    is not Transparent. An image format is not Transparent if used for any substantial amount of
+    text. A copy that is not "Transparent" is called "Opaque".
+  </p><p>
+    Examples of suitable formats for Transparent copies include plain ASCII without markup, Texinfo
+    input format, LaTeX input format, SGML or XML using a publicly available DTD, and
+    standard-conforming simple HTML, PostScript or PDF designed for human modification. Examples of
+    transparent image formats include PNG, XCF and JPG. Opaque formats include proprietary formats
+    that can be read and edited only by proprietary word processors, SGML or XML for which the DTD
+    and/or processing tools are not generally available, and the machine-generated HTML, PostScript
+    or PDF produced by some word processors for output purposes only.
+  </p><p>
+    The "Title Page" means, for a printed book, the title page itself, plus such following pages as
+    are needed to hold, legibly, the material this License requires to appear in the title page.
+    For works in formats which do not have any title page as such, "Title Page" means the text near
+    the most prominent appearance of the work's title, preceding the beginning of the body of the
+    text.
+  </p><p>
+    A section "Entitled XYZ" means a named subunit of the Document whose title either is precisely
+    XYZ or contains XYZ in parentheses following text that translates XYZ in another language.
+    (Here XYZ stands for a specific section name mentioned below, such as "Acknowledgements",
+    "Dedications", "Endorsements", or "History".) To "Preserve the Title" of such a section when
+    you modify the Document means that it remains a section "Entitled XYZ" according to this
+    definition.
+  </p><p>
+    The Document may include Warranty Disclaimers next to the notice which states that this License
+    applies to the Document. These Warranty Disclaimers are considered to be included by reference
+    in this License, but only as regards disclaiming warranties: any other implication that these
+    Warranty Disclaimers may have is void and has no effect on the meaning of this License.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.13.18"><span class="name">
+    2. VERBATIM COPYING
+  </span><a title="Permalink" class="permalink" href="#id-1.13.18">#</a></h5></div><p>
+    You may copy and distribute the Document in any medium, either commercially or
+    non-commercially, provided that this License, the copyright notices, and the license notice
+    saying this License applies to the Document are reproduced in all copies, and that you add no
+    other conditions whatsoever to those of this License. You may not use technical measures to
+    obstruct or control the reading or further copying of the copies you make or distribute.
+    However, you may accept compensation in exchange for copies. If you distribute a large enough
+    number of copies you must also follow the conditions in section 3.
+  </p><p>
+    You may also lend copies, under the same conditions stated above, and you may publicly display
+    copies.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.13.21"><span class="name">
+    3. COPYING IN QUANTITY
+  </span><a title="Permalink" class="permalink" href="#id-1.13.21">#</a></h5></div><p>
+    If you publish printed copies (or copies in media that commonly have printed covers) of the
+    Document, numbering more than 100, and the Document's license notice requires Cover Texts, you
+    must enclose the copies in covers that carry, clearly and legibly, all these Cover Texts:
+    Front-Cover Texts on the front cover, and Back-Cover Texts on the back cover. Both covers must
+    also clearly and legibly identify you as the publisher of these copies. The front cover must
+    present the full title with all words of the title equally prominent and visible. You may add
+    other material on the covers in addition. Copying with changes limited to the covers, as long
+    as they preserve the title of the Document and satisfy these conditions, can be treated as
+    verbatim copying in other respects.
+  </p><p>
+    If the required texts for either cover are too voluminous to fit legibly, you should put the
+    first ones listed (as many as fit reasonably) on the actual cover, and continue the rest onto
+    adjacent pages.
+  </p><p>
+    If you publish or distribute Opaque copies of the Document numbering more than 100, you must
+    either include a machine-readable Transparent copy along with each Opaque copy, or state in or
+    with each Opaque copy a computer-network location from which the general network-using public
+    has access to download using public-standard network protocols a complete Transparent copy of
+    the Document, free of added material. If you use the latter option, you must take reasonably
+    prudent steps, when you begin distribution of Opaque copies in quantity, to ensure that this
+    Transparent copy will remain thus accessible at the stated location until at least one year
+    after the last time you distribute an Opaque copy (directly or through your agents or
+    retailers) of that edition to the public.
+  </p><p>
+    It is requested, but not required, that you contact the authors of the Document well before
+    redistributing any large number of copies, to give them a chance to provide you with an updated
+    version of the Document.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.13.26"><span class="name">
+    4. MODIFICATIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.13.26">#</a></h5></div><p>
+    You may copy and distribute a Modified Version of the Document under the conditions of sections
+    2 and 3 above, provided that you release the Modified Version under precisely this License,
+    with the Modified Version filling the role of the Document, thus licensing distribution and
+    modification of the Modified Version to whoever possesses a copy of it. In addition, you must
+    do these things in the Modified Version:
+  </p><div class="orderedlist"><ol class="orderedlist" type="A"><li class="listitem"><p>
+        Use in the Title Page (and on the covers, if any) a title distinct from that of the
+        Document, and from those of previous versions (which should, if there were any, be listed
+        in the History section of the Document). You may use the same title as a previous version
+        if the original publisher of that version gives permission.
+      </p></li><li class="listitem"><p>
+        List on the Title Page, as authors, one or more persons or entities responsible for
+        authorship of the modifications in the Modified Version, together with at least five of the
+        principal authors of the Document (all of its principal authors, if it has fewer than
+        five), unless they release you from this requirement.
+      </p></li><li class="listitem"><p>
+        State on the Title page the name of the publisher of the Modified Version, as the
+        publisher.
+      </p></li><li class="listitem"><p>
+        Preserve all the copyright notices of the Document.
+      </p></li><li class="listitem"><p>
+        Add an appropriate copyright notice for your modifications adjacent to the other copyright
+        notices.
+      </p></li><li class="listitem"><p>
+        Include, immediately after the copyright notices, a license notice giving the public
+        permission to use the Modified Version under the terms of this License, in the form shown
+        in the Addendum below.
+      </p></li><li class="listitem"><p>
+        Preserve in that license notice the full lists of Invariant Sections and required Cover
+        Texts given in the Document's license notice.
+      </p></li><li class="listitem"><p>
+        Include an unaltered copy of this License.
+      </p></li><li class="listitem"><p>
+        Preserve the section Entitled "History", Preserve its Title, and add to it an item stating
+        at least the title, year, new authors, and publisher of the Modified Version as given on
+        the Title Page. If there is no section Entitled "History" in the Document, create one
+        stating the title, year, authors, and publisher of the Document as given on its Title Page,
+        then add an item describing the Modified Version as stated in the previous sentence.
+      </p></li><li class="listitem"><p>
+        Preserve the network location, if any, given in the Document for public access to a
+        Transparent copy of the Document, and likewise the network locations given in the Document
+        for previous versions it was based on. These may be placed in the "History" section. You
+        may omit a network location for a work that was published at least four years before the
+        Document itself, or if the original publisher of the version it refers to gives permission.
+      </p></li><li class="listitem"><p>
+        For any section Entitled "Acknowledgements" or "Dedications", Preserve the Title of the
+        section, and preserve in the section all the substance and tone of each of the contributor
+        acknowledgements and/or dedications given therein.
+      </p></li><li class="listitem"><p>
+        Preserve all the Invariant Sections of the Document, unaltered in their text and in their
+        titles. Section numbers or the equivalent are not considered part of the section titles.
+      </p></li><li class="listitem"><p>
+        Delete any section Entitled "Endorsements". Such a section may not be included in the
+        Modified Version.
+      </p></li><li class="listitem"><p>
+        Do not retitle any existing section to be Entitled "Endorsements" or to conflict in title
+        with any Invariant Section.
+      </p></li><li class="listitem"><p>
+        Preserve any Warranty Disclaimers.
+      </p></li></ol></div><p>
+    If the Modified Version includes new front-matter sections or appendices that qualify as
+    Secondary Sections and contain no material copied from the Document, you may at your option
+    designate some or all of these sections as invariant. To do this, add their titles to the list
+    of Invariant Sections in the Modified Version's license notice. These titles must be distinct
+    from any other section titles.
+  </p><p>
+    You may add a section Entitled "Endorsements", provided it contains nothing but endorsements of
+    your Modified Version by various parties--for example, statements of peer review or that the
+    text has been approved by an organization as the authoritative definition of a standard.
+  </p><p>
+    You may add a passage of up to five words as a Front-Cover Text, and a passage of up to 25
+    words as a Back-Cover Text, to the end of the list of Cover Texts in the Modified Version. Only
+    one passage of Front-Cover Text and one of Back-Cover Text may be added by (or through
+    arrangements made by) any one entity. If the Document already includes a cover text for the
+    same cover, previously added by you or by arrangement made by the same entity you are acting on
+    behalf of, you may not add another; but you may replace the old one, on explicit permission
+    from the previous publisher that added the old one.
+  </p><p>
+    The author(s) and publisher(s) of the Document do not by this License give permission to use
+    their names for publicity for or to assert or imply endorsement of any Modified Version.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.13.33"><span class="name">
+    5. COMBINING DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.13.33">#</a></h5></div><p>
+    You may combine the Document with other documents released under this License, under the terms
+    defined in section 4 above for modified versions, provided that you include in the combination
+    all of the Invariant Sections of all of the original documents, unmodified, and list them all
+    as Invariant Sections of your combined work in its license notice, and that you preserve all
+    their Warranty Disclaimers.
+  </p><p>
+    The combined work need only contain one copy of this License, and multiple identical Invariant
+    Sections may be replaced with a single copy. If there are multiple Invariant Sections with the
+    same name but different contents, make the title of each such section unique by adding at the
+    end of it, in parentheses, the name of the original author or publisher of that section if
+    known, or else a unique number. Make the same adjustment to the section titles in the list of
+    Invariant Sections in the license notice of the combined work.
+  </p><p>
+    In the combination, you must combine any sections Entitled "History" in the various original
+    documents, forming one section Entitled "History"; likewise combine any sections Entitled
+    "Acknowledgements", and any sections Entitled "Dedications". You must delete all sections
+    Entitled "Endorsements".
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.13.37"><span class="name">
+    6. COLLECTIONS OF DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.13.37">#</a></h5></div><p>
+    You may make a collection consisting of the Document and other documents released under this
+    License, and replace the individual copies of this License in the various documents with a
+    single copy that is included in the collection, provided that you follow the rules of this
+    License for verbatim copying of each of the documents in all other respects.
+  </p><p>
+    You may extract a single document from such a collection, and distribute it individually under
+    this License, provided you insert a copy of this License into the extracted document, and
+    follow this License in all other respects regarding verbatim copying of that document.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.13.40"><span class="name">
+    7. AGGREGATION WITH INDEPENDENT WORKS
+  </span><a title="Permalink" class="permalink" href="#id-1.13.40">#</a></h5></div><p>
+    A compilation of the Document or its derivatives with other separate and independent documents
+    or works, in or on a volume of a storage or distribution medium, is called an "aggregate" if
+    the copyright resulting from the compilation is not used to limit the legal rights of the
+    compilation's users beyond what the individual works permit. When the Document is included in
+    an aggregate, this License does not apply to the other works in the aggregate which are not
+    themselves derivative works of the Document.
+  </p><p>
+    If the Cover Text requirement of section 3 is applicable to these copies of the Document, then
+    if the Document is less than one half of the entire aggregate, the Document's Cover Texts may
+    be placed on covers that bracket the Document within the aggregate, or the electronic
+    equivalent of covers if the Document is in electronic form. Otherwise they must appear on
+    printed covers that bracket the whole aggregate.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.13.43"><span class="name">
+    8. TRANSLATION
+  </span><a title="Permalink" class="permalink" href="#id-1.13.43">#</a></h5></div><p>
+    Translation is considered a kind of modification, so you may distribute translations of the
+    Document under the terms of section 4. Replacing Invariant Sections with translations requires
+    special permission from their copyright holders, but you may include translations of some or
+    all Invariant Sections in addition to the original versions of these Invariant Sections. You
+    may include a translation of this License, and all the license notices in the Document, and any
+    Warranty Disclaimers, provided that you also include the original English version of this
+    License and the original versions of those notices and disclaimers. In case of a disagreement
+    between the translation and the original version of this License or a notice or disclaimer, the
+    original version will prevail.
+  </p><p>
+    If a section in the Document is Entitled "Acknowledgements", "Dedications", or "History", the
+    requirement (section 4) to Preserve its Title (section 1) will typically require changing the
+    actual title.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.13.46"><span class="name">
+    9. TERMINATION
+  </span><a title="Permalink" class="permalink" href="#id-1.13.46">#</a></h5></div><p>
+    You may not copy, modify, sublicense, or distribute the Document except as expressly provided
+    for under this License. Any other attempt to copy, modify, sublicense or distribute the
+    Document is void, and will automatically terminate your rights under this License. However,
+    parties who have received copies, or rights, from you under this License will not have their
+    licenses terminated so long as such parties remain in full compliance.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.13.48"><span class="name">
+    10. FUTURE REVISIONS OF THIS LICENSE
+  </span><a title="Permalink" class="permalink" href="#id-1.13.48">#</a></h5></div><p>
+    The Free Software Foundation may publish new, revised versions of the GNU Free Documentation
+    License from time to time. Such new versions will be similar in spirit to the present version,
+    but may differ in detail to address new problems or concerns. See
+    <a class="link" href="https://www.gnu.org/copyleft/" target="_blank">https://www.gnu.org/copyleft/</a>.
+  </p><p>
+    Each version of the License is given a distinguishing version number. If the Document specifies
+    that a particular numbered version of this License "or any later version" applies to it, you
+    have the option of following the terms and conditions either of that specified version or of
+    any later version that has been published (not as a draft) by the Free Software Foundation. If
+    the Document does not specify a version number of this License, you may choose any version ever
+    published (not as a draft) by the Free Software Foundation.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.13.51"><span class="name">
+    ADDENDUM: How to use this License for your documents
+  </span><a title="Permalink" class="permalink" href="#id-1.13.51">#</a></h5></div><div class="verbatim-wrap"><pre class="screen">Copyright (c) YEAR YOUR NAME.
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+A copy of the license is included in the section entitled “GNU
+Free Documentation License”.</pre></div><p>
+    If you have Invariant Sections, Front-Cover Texts and Back-Cover Texts, replace the
+    “with...Texts.” line with this:
+  </p><div class="verbatim-wrap"><pre class="screen">with the Invariant Sections being LIST THEIR TITLES, with the
+Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.</pre></div><p>
+    If you have Invariant Sections without Cover Texts, or some other combination of the three,
+    merge those two alternatives to suit the situation.
+  </p><p>
+    If your document contains nontrivial examples of program code, we recommend releasing these
+    examples in parallel under your choice of free software license, such as the GNU General Public
+    License, to permit their use in free software.
+  </p></section></div></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="#networkmanager-nmcli-concept"><span class="title-number">1 </span><span class="title-name">The NetworkManager concept</span></a></span></li><li><span class="section"><a href="#id-1.3"><span class="title-number">2 </span><span class="title-name">Installing and Configuring NetworkManager</span></a></span></li><li><span class="section"><a href="#networkmanager-nmcli-start"><span class="title-number">3 </span><span class="title-name">Managing the NetworkManager daemon</span></a></span></li><li><span class="section"><a href="#networkmanager-nmcli-configure"><span class="title-number">4 </span><span class="title-name">Creating network connections</span></a></span></li><li><span class="section"><a href="#networkmanager-nm-modify"><span class="title-number">5 </span><span class="title-name">Modifying network connections</span></a></span></li><li><span class="section"><a href="#networkmanager-nm-enabledisable"><span class="title-number">6 </span><span class="title-name">Establishing and terminating network connections</span></a></span></li><li><span class="section"><a href="#networkmanager-nm-monitor"><span class="title-number">7 </span><span class="title-name">Monitoring network connections</span></a></span></li><li><span class="section"><a href="#networkmanager-nmcli-log"><span class="title-number">8 </span><span class="title-name">NetworkManager logging</span></a></span></li><li><span class="section"><a href="#nmcli-usage"><span class="title-number">9 </span><span class="title-name">The <code class="command">nmcli</code> command reference</span></a></span></li><li><span class="section"><a href="#networkmanager-nmcli-troubleshoot"><span class="title-number">10 </span><span class="title-name">Troubleshooting</span></a></span></li><li><span class="section"><a href="#legal-disclaimer"><span class="title-number">11 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="#doc-gfdl-license"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

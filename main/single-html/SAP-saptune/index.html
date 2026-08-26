@@ -1,0 +1,852 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>How to Tune Systems with saptune</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2026-11-06"/>
+<meta name="dcterms.modified" content="2026-11-03"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-26"/>
+<meta name="title" content="How to Tune Systems with saptune"/>
+<meta name="description" content="Everything you need to know about how to install, configure and use saptune to tune systems running SAP workloads"/>
+<meta name="book-title" content="How to Tune Systems with saptune"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="eliska.romanova@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server for SAP Applications 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="eliska.romanova@suse.com"/><meta property="og:title" content="How to Tune Systems with saptune"/>
+<meta property="og:description" content="Everything you need to know about using saptune"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="How to Tune Systems with saptune"/>
+<meta name="twitter:description" content="Everything you need to know about using saptune"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "How to Tune Systems with saptune",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "How to Tune Systems with saptune",
+    "description": "Everything you need to know about how to install, configure and use saptune to tune systems running SAP workloads",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2026-11-06T00:00+02:00",
+    "dateModified": "2026-11-03T00:00+02:00",
+    "datePublished": "2026-08-26T09:48+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Administration"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#sap-tuning-saptune">How to Tune Systems with saptune</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="sap-tuning-saptune" data-id-title="How to Tune Systems with saptune"><div class="titlepage"><div><div><h1 class="title">How to Tune Systems with <code class="command">saptune</code></h1></div><div class="date"><span class="imprint-label">Publication Date: </span>26 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+              Using <code class="command">saptune</code> to tune systems for SAP NetWeaver, SAP HANA, SAP BusinessObjects and
+   SAP S/4HANA applications.
+            </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
+              <code class="command">saptune</code> simplifies the process of tuning a system for running SAP workloads.
+            </p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                30 minutes of reading time.
+              </p></dd><dt id="id-1.1.12.1.4"><span class="term">GOAL</span></dt><dd><p>
+                Learn how to install, configure and use <code class="command">saptune</code>.
+              </p></dd><dt id="id-1.1.12.1.5"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                    A SLES 16 system designated for running SAP workloads
+                  </p></li><li class="listitem"><p>
+                    A SLES 16 subscription
+                  </p></li><li class="listitem"><p>
+                    Knowledge of which SAP workload the system is intended to run
+                  </p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: How to Tune Systems with saptune" hreflang="en" href="rh-sap-tuning-saptune.html" target="_blank">Revision History: How to Tune Systems with saptune</a></div></div></div></div><section xml:lang="en" class="sect1" id="about-saptune" data-id-title="About saptune"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">About <code class="command">saptune</code></span></span> <a title="Permalink" class="permalink" href="#about-saptune">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    <code class="command">saptune</code> is a tool designed for tuning the operating system for running SAP workloads. The tool simplifies the mandatory system tuning as described in many SAP Notes. All the required tuning parameters are added to <code class="command">saptune</code> notes. These notes are grouped into solutions representing SAP workloads. This ensures that no parameter is missed, while the <code class="command">saptune</code> service applies all notes and solutions after each system reboot, thus keeping the system reliably tuned at all times.
+  </p><div id="id-1.2.3" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important</div><p>
+  <code class="command">saptune</code> is used exclusively for tuning the system for SAP workloads, and not the SAP workloads themselves. <code class="command">saptune</code> does not make any changes to SAP configuration files.
+  </p></div></section><section xml:lang="en" class="sect1" id="saptune-install" data-id-title="Installing and enabling saptune"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Installing and enabling <code class="command">saptune</code></span></span> <a title="Permalink" class="permalink" href="#saptune-install">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       Learn how to install, enable and update <code class="command">saptune</code>.
+      </p></div></div></div></div><section class="sect2" id="task-example-requirements" data-id-title="Requirements"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">Requirements</span></span> <a title="Permalink" class="permalink" href="#task-example-requirements">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          A system on which you plan to run SAP workloads. The system must have an active SUSE subscription.
+        </p></li></ul></div></section><section class="sect2" id="task-saptune-install-enable" data-id-title="Installing and enabling saptune"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.2 </span><span class="title-name">Installing and enabling <code class="command">saptune</code></span></span> <a title="Permalink" class="permalink" href="#task-saptune-install-enable">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Before you install <code class="command">saptune</code>, check if it is already installed on your system. To do this, run the <code class="command">which saptune</code> command. Proceed with installing <code class="command">saptune</code> if the command returns empty output.
+    </p><p>
+      To install and enable <code class="command">saptune</code>, proceed as follows:
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          To install <code class="command">saptune</code>, run the following command:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>zypper install saptune</pre></div></li><li class="step"><p>
+          Enable and start the <code class="literal">saptune</code> service using the following command:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>saptune service enable</pre></div></li></ol></div></div></section><section class="sect2" id="task-saptune-install-troubleshooting" data-id-title="Troubleshooting"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.3 </span><span class="title-name">Troubleshooting</span></span> <a title="Permalink" class="permalink" href="#task-saptune-install-troubleshooting">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      When installing and updating <code class="command">saptune</code>, pay attention to the <code class="command">zypper</code> output to ensure that installation and updates are performed correctly. The output is also saved in <code class="filename">/var/log/zypp/history</code>.
+    </p><p>
+      Because <code class="command">saptune</code> is installed as a regular RPM package, refer to the Zypper troubleshooting documentation if the <code class="command">saptune</code> installation or update fails.
+    </p></section></section><section xml:lang="en" class="sect1" id="saptune-configure" data-id-title="Configuring saptune"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Configuring <code class="command">saptune</code></span></span> <a title="Permalink" class="permalink" href="#saptune-configure">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Learn how to configure <code class="command">saptune</code> after it has been installed.
+      </p></div></div></div></div><section class="sect2" id="task-saptune-configure-requirements" data-id-title="Requirements"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.1 </span><span class="title-name">Requirements</span></span> <a title="Permalink" class="permalink" href="#task-saptune-configure-requirements">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          A system with <code class="command">saptune</code> installed.
+        </p></li></ul></div></section><section class="sect2" id="task-saptune-configure-perform" data-id-title="Configuring saptune"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.2 </span><span class="title-name">Configuring <code class="command">saptune</code></span></span> <a title="Permalink" class="permalink" href="#task-saptune-configure-perform">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Keep in mind that the <code class="command">configure</code> command manages the <code class="command">saptune</code> configuration and not the tuning itself. The command exposes only user-defined changes,
+      and it helps avoid misconfiguration. Configurable options include the color scheme, skipped
+      <code class="command">sysctl</code> files, etc. (refer to <code class="command">man 8 </code> for more information). The command can be used as
+      follows:
+    </p><div class="verbatim-wrap"><pre class="screen">saptune configure <em class="replaceable">PARAMETER</em> <em class="replaceable">VALUE</em></pre></div><p>
+      For example:
+    </p><div class="verbatim-wrap"><pre class="screen">saptune configure COLOR_SCHEME red-noncmpl</pre></div><p>
+      To view the <code class="command">saptune</code> configuration file, use the <code class="command">saptune configure show</code>
+      command.
+    </p><p>
+      The following command reverts the <code class="command">saptune</code> configuration to its defaults:
+    </p><div class="verbatim-wrap"><pre class="screen">saptune configure reset</pre></div><div id="id-1.4.3.9" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important</div><p>
+        Do not edit <code class="filename">/etc/sysconfig/saptune</code> directly. Use
+        <code class="command">saptune configure</code> instead.
+      </p></div></section></section><section xml:lang="en" class="sect1" id="saptune-configure-tuning" data-id-title="Configuring saptune tuning"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Configuring <code class="command">saptune</code> tuning</span></span> <a title="Permalink" class="permalink" href="#saptune-configure-tuning">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Learn how to configure <code class="command">saptune</code> tuning.
+      </p></div></div></div></div><section class="sect2" id="task-saptune-configure-tuning-requirements" data-id-title="Requirements"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.1 </span><span class="title-name">Requirements</span></span> <a title="Permalink" class="permalink" href="#task-saptune-configure-tuning-requirements">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          A system with <code class="command">saptune</code> installed, configured and enabled.
+        </p></li></ul></div></section><section class="sect2" id="task-saptune-tuning-perform" data-id-title="Configuring saptune tuning"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.2 </span><span class="title-name">Configuring <code class="command">saptune</code> tuning</span></span> <a title="Permalink" class="permalink" href="#task-saptune-tuning-perform">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      After installation, <code class="command">saptune</code> starts tuning your system with a minimal base tuning (SAP_Base Solution) as described in the <a class="link" href="https://me.sap.com/notes/1275776/E" target="_blank">SAP Note 1275776 - Linux: Preparing SLES for SAP environments</a>. However, you should choose the tuning solution that best suits your specific <code class="command">saptune</code> workload.
+    </p><p>
+      The easiest way to tune a system is to apply an SAP Solution that matches your
+      installed SAP software. SAP Solutions are a group of SAP Notes that perform
+      the actual tuning. To display all available Solutions and their Notes, run
+      the following command:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune solution list</code></pre></div><p>
+      <code class="command">saptune</code> recognizes the following tuning SAP Solutions:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          BOBJ Solution for running SAP BusinessObjects.
+        </p></li><li class="listitem"><p>
+          HANA Solution for running an SAP HANA database.
+        </p></li><li class="listitem"><p>
+          MAXDB Solution for running an SAP MaxDB database.
+        </p></li><li class="listitem"><p>
+          NETWEAVER Solution for running SAP NetWeaver application servers.
+        </p></li><li class="listitem"><p>
+          S4HANA-APPSERVER Solution for running SAP S/4HANA Application Servers.
+        </p></li><li class="listitem"><p>
+          S4HANA-APP+DB Solution for running both SAP S/4HANA Application Servers and SAP HANA on the same host.
+        </p></li><li class="listitem"><p>
+          S4HANA-DBSERVER Solution for running the SAP HANA database of an SAP S/4HANA installation.
+        </p></li><li class="listitem"><p>
+          SAP-ASE Solution for running an SAP Adaptive Server Enterprise database. 
+        </p><div id="id-1.5.3.6.8.2" data-id-title="SAP-ASE Solution deprecation" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: SAP-ASE Solution deprecation</div><p>
+            The SAP-ASE Solution and the associated SAP Notes 1805750 and 1680803 are deprecated
+            and removed from <code class="command">saptune</code> 3.2 on SLE 16. The default settings are sufficient for
+            ASE, so no additional tuning is required.
+          </p></div></li><li class="listitem"><p>
+          NETWEAVER+HANA Solution for running both SAP application servers and
+          SAP HANA on the same host.
+        </p></li><li class="listitem"><p>
+          NETWEAVER+MAXDB Solution for running both SAP application servers
+          and MAXDB on the same host.
+        </p></li></ul></div><p>
+      To apply a Solution, run the following command:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune solution apply <em class="replaceable">SOLUTION</em></code></pre></div><p>
+      Keep in mind that only one Solution can be applied at a time.
+    </p><p>
+      To disable a Solution, run the following command:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune solution revert <em class="replaceable">SOLUTION</em></code></pre></div><p>
+      To switch to a different Solution, run the following command:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune solution change <em class="replaceable">SOLUTION</em></code></pre></div><p>
+      Alternatively, you can tune the computer according to recommendations from
+      specific SAP Notes. Use the <code class="command">saptune note list</code> to view
+      a list of notes that you can tune for.
+    </p><p>
+      To apply a Note, run the following command:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune note apply <em class="replaceable">NOTE</em></code></pre></div><p>
+      To revert a Note, run the following command:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune note revert <em class="replaceable">NOTE</em></code></pre></div><div id="id-1.5.3.19" data-id-title="Combining optimizations" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Combining optimizations</div><p>
+        It is possible to combine Solutions and Notes by reverting Notes from an
+        applied Solution or applying additional ones. However, only one solution
+        can be active at a time. The <code class="literal">saptune</code> service restores
+        the combination of Solution and Notes after a service restart or reboot.
+      </p><p>
+        In rare cases, Notes can have conflicting options or parameters. Arrange
+        your Notes carefully to avoid conflicts. The last Note always takes
+        priority over conflicting options or parameters of previous notes. In
+        this situation, create your own Solution (see
+        <a class="xref" href="#sec-saptune-create-solution" title="6.2.2. Creating a new SAP Solution">Section 6.2.2, “Creating a new SAP Solution”</a>) or customize the applied Solution (see
+        <a class="xref" href="#sec-saptune-customize-solution" title="6.2.1. Customizing an SAP Solution">Section 6.2.1, “Customizing an SAP Solution”</a>).
+      </p></div></section></section><section xml:lang="en" class="sect1" id="saptune-manage-sap-notes" data-id-title="Managing SAP Notes"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Managing SAP Notes</span></span> <a title="Permalink" class="permalink" href="#saptune-manage-sap-notes">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Learn how to manage SAP Notes.
+      </p></div></div></div></div><section class="sect2" id="task-saptune-manage-sap-notes-requirements" data-id-title="Requirements"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.1 </span><span class="title-name">Requirements</span></span> <a title="Permalink" class="permalink" href="#task-saptune-manage-sap-notes-requirements">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          A system with <code class="command">saptune</code> installed, configured and enabled.
+        </p></li></ul></div></section><section class="sect2" id="task-saptune-manage-sap-notes-perform" data-id-title="Managing SAP Notes"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.2 </span><span class="title-name">Managing SAP Notes</span></span> <a title="Permalink" class="permalink" href="#task-saptune-manage-sap-notes-perform">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   The following sections provide information on working with SAP Notes.
+  </p><p>
+An SAP Note configuration contains the OS-specific part of the original SAP Note as completely as possible. A parameter is disabled (it is present in the configuration but has no value) if it does not have a value recommendation, or if <code class="command">saptune</code> cannot safely detect the conditions required to set the correct value. To set a suitable value, read the corresponding SAP Note and customize the Note (see <a class="xref" href="#sec-saptune-sap-notes-customize" title="5.2.1. Customizing an SAP Note">Section 5.2.1, “Customizing an SAP Note”</a>).
+  </p><section class="sect3" id="sec-saptune-sap-notes-customize" data-id-title="Customizing an SAP Note"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.2.1 </span><span class="title-name">Customizing an SAP Note</span></span> <a title="Permalink" class="permalink" href="#sec-saptune-sap-notes-customize">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Any SAP Note can be configured using the following command:
+   </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune note customise <em class="replaceable">NOTE</em></code></pre></div><p>
+    The command opens the default editor with a copy of the Note configuration. Remove everything except the parameters you want to change or disable, as well as the header of the section the parameter belongs to.
+    </p><p>
+    You can change or add the value of the parameter. To disable a parameter, remove the value, but leave the parameter and the <code class="literal">=</code> character. <code class="command">saptune</code> lists parameters, but it does not change or check them for the compliance status.
+For more information, refer to the <code class="literal">saptune-note(5)</code> man page.
+   </p><p>
+   This creates a <code class="filename">/etc/saptune/override/<em class="replaceable">NOTE</em></code> file. You can create the file elsewhere and place it in <code class="filename">/etc/saptune/override/</code>.
+   </p><p>
+   Configuration sections can be conditional. This is called tagging. Refer to the <code class="literal">saptune-note(5)</code> for further information.
+   </p><p>
+   When you are done customizing a Note, restart the <code class="literal">saptune</code> service to apply the changes:
+   </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>saptune service restart</pre></div><p>
+        Below is an example of an override file for SAP Note 2382421:
+    </p><div class="verbatim-wrap"><pre class="screen"># Always:
+#  - Changing net.ipv4.tcp_max_syn_backlog from 8192 to 65536
+#  - Disable net.ipv4.tcp_slow_start_after_idle, because the parameter is tuned elsewhere
+#
+# On virtual machines additionally:
+#  - Change net.ipv4.tcp_syn_retries from 8 to 16
+
+[sysctl]
+net.ipv4.tcp_max_syn_backlog = 65536
+net.ipv4.tcp_slow_start_after_idle =
+
+[sysctl:virt=vm]
+net.ipv4.tcp_max_syn_backlog = 65536
+net.ipv4.tcp_slow_start_after_idle =
+net.ipv4.tcp_syn_retries = 16</pre></div><p>
+        Run the
+        <code class="command">saptune note verify 2382421</code> command. If the changes
+        have been applied correctly, the output on a virtual machine should be
+        as follows:
+  </p><div class="verbatim-wrap"><pre class="screen">SAPNote, ... | Parameter                          | Expected | Override  | Actual | Compliant
+----------------+------------------------------------+----------+-----------+--------+-----------
+   ...
+   2382421, 47  | net.ipv4.tcp_max_syn_backlog       | 65536    | 65536     | 65536  | yes 
+   ...
+   2382421, 47  | net.ipv4.tcp_slow_start_after_idle | 0        | untouched | 0      | yes
+   2382421, 47  | net.ipv4.tcp_syn_retries           | 16       | 16        | 16     | yes
+   ...</pre></div><p>
+        On a bare-metal system, the output should be as follows:
+      </p><div class="verbatim-wrap"><pre class="screen">SAPNote, ... | Parameter                          | Expected  | Override  | Actual | Compliant
+----------------+------------------------------------+-----------+-----------+--------+-----------
+   ...
+   2382421, 47  | net.ipv4.tcp_max_syn_backlog       | 65536     | 65536     | 65536  | yes 
+   ...
+   2382421, 47  | net.ipv4.tcp_slow_start_after_idle | 0         | untouched | 0      | yes
+   2382421, 47  | net.ipv4.tcp_syn_retries           | 8         |           | 8      | yes 
+   ...</pre></div><p>
+        If changes have not been applied correctly, and you do not see any errors
+        because of the incorrect config file, the  <code class="literal">Compliant</code> field in
+        the table will display <code class="literal">no</code>, and the values in the
+        <code class="literal">Actual</code> and <code class="literal">Expected</code> fields will
+        differ.
+      </p></section><section class="sect3" id="sec-saptune-sap-notes-create" data-id-title="Creating a new SAP Note"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.2.2 </span><span class="title-name">Creating a new SAP Note</span></span> <a title="Permalink" class="permalink" href="#sec-saptune-sap-notes-create">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    A new SAP Note can be created using the following command:
+   </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune note create <em class="replaceable">NOTE</em></code></pre></div><p>
+    The command opens the default editor with a Note configuration template. All the features of <code class="command">saptune</code> are available here. For more information, refer to the <code class="literal">saptune-note(5)</code> man page.
+    </p><p>
+    This creates a configuration file at <code class="filename">/etc/saptune/extra/<em class="replaceable">NOTE.conf</em></code>. You can also create the file elsewhere and place it in <code class="filename">/etc/saptune/extra/</code>.
+    </p><p>
+    Configuration sections can be conditional. This is called tagging. Refer to the <code class="literal">saptune-note(5)</code> for further information.
+   </p></section><section class="sect3" id="sec-saptune-sap-notes-edit" data-id-title="Editing a custom SAP Note"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.2.3 </span><span class="title-name">Editing a custom SAP Note</span></span> <a title="Permalink" class="permalink" href="#sec-saptune-sap-notes-edit">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   To edit a custom Note, use the following command:
+   </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune note edit <em class="replaceable">NOTE</em></code></pre></div><p>
+The command opens the default editor with the Note configuration. When you are done editing a Note, restart the <code class="literal">saptune</code> service to apply the changes. Custom Notes can be customized like shipped Notes.
+</p></section><section class="sect3" id="sec-saptune-sap-notes-delete" data-id-title="Deleting an SAP Note or a customization"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.2.4 </span><span class="title-name">Deleting an SAP Note or a customization</span></span> <a title="Permalink" class="permalink" href="#sec-saptune-sap-notes-delete">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    When deleting a note, keep in mind the following:
+   </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+      The note can be deleted only if it has not been applied.
+     </p></li><li class="listitem"><p>
+      A confirmation is needed to finish the action.
+     </p></li><li class="listitem"><p>
+      Internal SAP Notes applied by <code class="command">saptune</code> cannot be deleted. Instead, the
+      override file is removed when available.
+     </p></li><li class="listitem"><p>
+      If the Note is already applied, the command is terminated with the
+      message that the note first needs to be reverted before it can be deleted.
+     </p></li></ul></div><p>
+    The following command deletes a note, including the corresponding
+    override file, if available:
+   </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune note delete test</code>
+
+Note to delete is a customer/vendor specific Note.</pre></div></section><section class="sect3" id="sec-saptune-sap-notes-rename" data-id-title="Renaming an SAP Note"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.2.5 </span><span class="title-name">Renaming an SAP Note</span></span> <a title="Permalink" class="permalink" href="#sec-saptune-sap-notes-rename">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Keep in mind the following points:
+   </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+      The note can be renamed only if it has not been applied.
+     </p></li><li class="listitem"><p>
+      A confirmation is needed to finish the action.
+     </p></li><li class="listitem"><p>
+      Internal SAP Notes applied by <code class="command">saptune</code> cannot be renamed.
+     </p></li><li class="listitem"><p>
+      If the Note is already applied, the command is terminated with the
+      information that the Note first needs to be reverted before it can be renamed.
+     </p></li></ul></div><p>
+    The following command allows renaming a created Note to a new name. If a
+    corresponding override file is available, this file is renamed as well:
+   </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune note rename test test2</code></pre></div></section><section class="sect3" id="sec-saptune-sap-notes-show" data-id-title="Showing the configuration of an SAP Note"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.2.6 </span><span class="title-name">Showing the configuration of an SAP Note</span></span> <a title="Permalink" class="permalink" href="#sec-saptune-sap-notes-show">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    The configuration of a Note can be listed using the following command:
+   </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune note show <em class="replaceable">NOTE</em></code></pre></div></section><section class="sect3" id="sec-saptune-sap-notes-verify" data-id-title="Verifying an SAP Note"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.2.7 </span><span class="title-name">Verifying an SAP Note</span></span> <a title="Permalink" class="permalink" href="#sec-saptune-sap-notes-verify">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   To verify the tuning of a Note, use the following command:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune note verify <em class="replaceable">NOTE</em></code></pre></div><p>
+For information about the output of the command and verifying the entire tuning instead of a single Note, refer to <a class="xref" href="#saptune-verify" title="7. Verification and troubleshooting">Section 7, “Verification and troubleshooting”</a>.
+</p></section><section class="sect3" id="sec-saptune-sap-notes-revert" data-id-title="Reverting an SAP Note"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.2.8 </span><span class="title-name">Reverting an SAP Note</span></span> <a title="Permalink" class="permalink" href="#sec-saptune-sap-notes-revert">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>To revert an SAP Note, run the following command:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune note revert <em class="replaceable">NOTE</em></code></pre></div><p>This restores all parameters of the SAP Note to their values at the time of application.</p><p>To revert everything, run the following command:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune note revert all</code></pre></div></section><section class="sect3" id="sec-saptune-sap-notes-list" data-id-title="Listing all enabled or applied SAP Notes"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.2.9 </span><span class="title-name">Listing all enabled or applied SAP Notes</span></span> <a title="Permalink" class="permalink" href="#sec-saptune-sap-notes-list">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    To list all enabled SAP Notes, run the following command:
+   </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune note enabled</code></pre></div><p>To list all applied SAP Notes, run the following command:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune note applied</code></pre></div><p>
+   Both commands are primarily meant for use in scripts.
+   </p></section></section></section><section xml:lang="en" class="sect1" id="saptune-manage-sap-sols" data-id-title="Managing SAP Solutions"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Managing SAP Solutions</span></span> <a title="Permalink" class="permalink" href="#saptune-manage-sap-sols">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Learn how to manage SAP Solutions.
+      </p></div></div></div></div><section class="sect2" id="task-saptune-manage-sap-sols-requirements" data-id-title="Requirements"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.1 </span><span class="title-name">Requirements</span></span> <a title="Permalink" class="permalink" href="#task-saptune-manage-sap-sols-requirements">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          A system with <code class="command">saptune</code> installed, configured and enabled.
+        </p></li></ul></div></section><section class="sect2" id="task-saptune-manage-sap-sols-perform" data-id-title="Managing SAP Solutions"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.2 </span><span class="title-name">Managing SAP Solutions</span></span> <a title="Permalink" class="permalink" href="#task-saptune-manage-sap-sols-perform">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   This chapter explains how to work with SAP Solutions.
+  </p><p>
+An SAP Solution is a combination of SAP Note configurations grouped logically. It generally represents an SAP product or combination. Applying an SAP Solution effectively applies all SAP Note configurations listed in it. Instructions for listing and setting a solution are provided in <a class="xref" href="#task-saptune-tuning-perform" title="4.2. Configuring saptune tuning">Section 4.2, “Configuring <code class="command">saptune</code> tuning”</a>.
+  </p><section class="sect3" id="sec-saptune-customize-solution" data-id-title="Customizing an SAP Solution"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">6.2.1 </span><span class="title-name">Customizing an SAP Solution</span></span> <a title="Permalink" class="permalink" href="#sec-saptune-customize-solution">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>An SAP Solution can be customized using the following command:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune solution customise <em class="replaceable">SOLUTION</em></code></pre></div><p>
+    The command opens the default editor (defined in the environment variable <code class="literal">EDITOR</code>) with a copy of the Solution configuration. Change the Note list for the architecture to your liking. For more information, refer to the <code class="literal">saptune-note(5)</code> man page.
+    </p><p>
+    This creates an override file <code class="filename">/etc/saptune/override/<em class="replaceable">SOLUTION</em>.sol</code>. It is possible to create the file elsewhere and place it in <code class="filename">/etc/saptune/override/</code>.
+    </p><p>
+    When you are done customizing an SAP Solution, restart the <code class="literal">saptune</code> service to apply the changes.
+    </p></section><section class="sect3" id="sec-saptune-create-solution" data-id-title="Creating a new SAP Solution"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">6.2.2 </span><span class="title-name">Creating a new SAP Solution</span></span> <a title="Permalink" class="permalink" href="#sec-saptune-create-solution">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>To create a new SAP Solution, run the following command:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune solution create <em class="replaceable">SOLUTION</em></code></pre></div><p>
+  The command opens the default editor (defined in the environment variable <code class="literal">EDITOR</code>) with a Solution configuration template. Fill in the template.
+  </p><p>
+  This creates a Solution configuration file <code class="filename">/etc/saptune/extra/<em class="replaceable">SOLUTION</em>.sol</code>. You can create the file elsewhere and place it in <code class="filename">/etc/saptune/extra/</code>.
+  </p></section><section class="sect3" id="sec-saptune-edit-solution" data-id-title="Editing a custom SAP Solution"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">6.2.3 </span><span class="title-name">Editing a custom SAP Solution</span></span> <a title="Permalink" class="permalink" href="#sec-saptune-edit-solution">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+ To edit a custom SAP Solution, run the following command:
+ </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune solution edit <em class="replaceable">SOLUTION</em></code></pre></div><p>
+The command opens the default editor (defined in the environment variable <code class="literal">EDITOR</code>) with the Solution configuration.
+</p><p>
+When you are done editing an SAP Solution, restart the <code class="literal">saptune</code> service to apply the changes.
+</p><p>
+Custom Solutions can be customized like shipped Solutions.
+ </p></section><section class="sect3" id="sec-saptune-delete-solution" data-id-title="Deleting an SAP Solution"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">6.2.4 </span><span class="title-name">Deleting an SAP Solution</span></span> <a title="Permalink" class="permalink" href="#sec-saptune-delete-solution">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   The following command deletes a created Solution (in this example, myHANA), including the corresponding override file or the override file of a shipped Solution, if available:
+   </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune solution delete myHANA</code>
+
+Solution to delete is a customer/vendor specific Solution.
+Do you really want to delete this Solution 'myHANA'? [y/n]: y</pre></div><p>
+   The SAP Solution may not be applied at the time of deletion. Keep in mind the following:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     A confirmation is required to finish the action.
+    </p></li><li class="listitem"><p>
+      SAP Solutions shipped with <code class="command">saptune</code> cannot be deleted. Only the override file is removed, if available.
+    </p></li><li class="listitem"><p>
+      If the SAP Solution is already applied, the command is terminated
+      with the information that the SAP Solution first needs to be reverted
+      before it can be deleted.
+    </p></li></ul></div></section><section class="sect3" id="sec-saptune-rename-solution" data-id-title="Renaming an SAP Solution"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">6.2.5 </span><span class="title-name">Renaming an SAP Solution</span></span> <a title="Permalink" class="permalink" href="#sec-saptune-rename-solution">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>To rename an SAP Solution, run the following command:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune solution rename myHANA myHANA2</code>
+
+Solution to rename is a customer/vendor specific Solution.
+Do you really want to rename this Solution 'myHANA' to the new name 'myHANA2'? [y/n]:</pre></div><p>
+   The SAP Solution may not be applied at this time. Keep in mind the following points:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     A confirmation is needed to finish the action.
+    </p></li><li class="listitem"><p>
+      SAP Solutions shipped by <code class="command">saptune</code> cannot be renamed.
+    </p></li><li class="listitem"><p>
+      If the SAP Solution is already applied, the command will be terminated
+      with the information that the SAP Solution first needs to be reverted
+      before it can be renamed.
+    </p></li></ul></div></section><section class="sect3" id="sec-saptune-show-solution" data-id-title="Showing the configuration of an SAP Solution"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">6.2.6 </span><span class="title-name">Showing the configuration of an SAP Solution</span></span> <a title="Permalink" class="permalink" href="#sec-saptune-show-solution">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>To list the configuration of an SAP Solution, run the following command:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune solution show <em class="replaceable">SOLUTION</em></code></pre></div></section><section class="sect3" id="sec-saptune-switch-solution" data-id-title="Switching to another SAP Solution"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">6.2.7 </span><span class="title-name">Switching to another SAP Solution</span></span> <a title="Permalink" class="permalink" href="#sec-saptune-switch-solution">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      You can switch to a different solution using the <code class="command">saptune solution change <em class="replaceable">SOLUTION</em></code> command.
+    </p><p>
+      Keep in mind that internally the current solution is reverted first, and then the new solution is applied. If you have additional notes configured, the order is not preserved.
+    </p><p>
+      If the same solution is already applied, no action is taken. Otherwise the current solution gets reverted and the new one applied. The command prompts for confirmation before making the change. This can be disabled by adding the <code class="option">--force</code> option.
+    </p></section><section class="sect3" id="sec-saptune-verify-solution" data-id-title="Verifying an SAP Solution"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">6.2.8 </span><span class="title-name">Verifying an SAP Solution</span></span> <a title="Permalink" class="permalink" href="#sec-saptune-verify-solution">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+  To verify the tuning of a Solution, run the following command:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune solution verify <em class="replaceable">SOLUTION</em></code></pre></div><p>
+For information about the output of the <code class="command">verify</code> command and how to verify the entire tuning instead of a single Solution, refer to <a class="xref" href="#saptune-verify" title="7. Verification and troubleshooting">Section 7, “Verification and troubleshooting”</a>.
+</p></section><section class="sect3" id="sec-saptune-revert-solution" data-id-title="Reverting an SAP Solution"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">6.2.9 </span><span class="title-name">Reverting an SAP Solution</span></span> <a title="Permalink" class="permalink" href="#sec-saptune-revert-solution">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>To revert an SAP Solution, run the following command:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune solution revert <em class="replaceable">SOLUTION</em></code></pre></div><p>
+     The SAP Solution must be applied. This reverts all SAP Notes that are part of the SAP Solution and are still applied.
+    </p></section><section class="sect3" id="sec-saptune-edit-custom-solution" data-id-title="Editing a custom SAP Solution"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">6.2.10 </span><span class="title-name">Editing a custom SAP Solution</span></span> <a title="Permalink" class="permalink" href="#sec-saptune-edit-custom-solution">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>To edit a custom SAP Solution, run the following command:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune solution edit <em class="replaceable">SOLUTION</em></code></pre></div></section><section class="sect3" id="sec-saptune-list-solution" data-id-title="Listing an enabled or applied SAP Solution"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">6.2.11 </span><span class="title-name">Listing an enabled or applied SAP Solution</span></span> <a title="Permalink" class="permalink" href="#sec-saptune-list-solution">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>To list an enabled SAP Solution, run the following command:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune solution enabled</code></pre></div><p>To list an applied SAP Solution, run the following command:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune solution applied</code></pre></div><p>
+    If you revert SAP Notes from an applied SAP Solution, the string <code class="literal">(partial)</code>
+    appears in the solution name.
+   </p><p>
+   Both commands are primarily meant for use in scripts.
+      </p></section></section></section><section xml:lang="en" class="sect1" id="saptune-verify" data-id-title="Verification and troubleshooting"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Verification and troubleshooting</span></span> <a title="Permalink" class="permalink" href="#saptune-verify">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        This chapter explains how to verify SAP Notes and troubleshoot <code class="command">saptune</code>.
+      </p></div></div></div></div><section class="sect2" id="task-saptune-verify-requirements" data-id-title="Requirements"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.1 </span><span class="title-name">Requirements</span></span> <a title="Permalink" class="permalink" href="#task-saptune-verify-requirements">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          A system with <code class="command">saptune</code> installed, configured and enabled.
+        </p></li></ul></div></section><section class="sect2" id="task-saptune-verify-troubleshoot" data-id-title="Verification and troubleshooting"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.2 </span><span class="title-name">Verification and troubleshooting</span></span> <a title="Permalink" class="permalink" href="#task-saptune-verify-troubleshoot">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>To see the current status of <code class="command">saptune</code>, run the following command:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune status</code></pre></div><p>The output contains the following:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Status of the <code class="command">saptune</code>, <code class="literal">sapconf</code> and <code class="systemitem">tuned</code> services.</p></li><li class="listitem"><p>Version of the package and running <code class="command">saptune</code>.</p></li><li class="listitem"><p>Details about configured SAP Solutions and SAP Notes.</p></li><li class="listitem"><p>Details about staging.</p></li><li class="listitem"><p>Status of the <code class="systemitem">systemd</code> system state.</p></li><li class="listitem"><p>Virtualization environment (new in <code class="command">saptune</code> version 3.1).</p></li><li class="listitem"><p>Tuning compliance (new in <code class="command">saptune</code> version 3.1).</p></li></ul></div><p>
+   To analyze your <code class="command">saptune</code> installation, run the following command:
+   </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune check</code></pre></div><p>
+This command performs the following checks: 
+</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+Check for mandatory or obsolete configuration files.
+</p></li><li class="listitem"><p>
+Check for RPM leftovers.
+</p></li><li class="listitem"><p>
+Check if the <code class="systemitem">systemd</code> system state is degraded and lists failed units.
+</p></li><li class="listitem"><p>
+Check the status of the <code class="literal">sapconf</code>, <code class="command">saptune</code> and <code class="systemitem">tuned</code> services.
+</p></li></ul></div><div id="id-1.8.3.10" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+If <code class="command">saptune check</code> warns about a degraded <code class="systemitem">systemd</code> system status, in most cases it has no impact on <code class="command">saptune</code>. However, failed services require troubleshooting.
+</p></div><p>
+The command does not check the tuning itself. To check the tuning, run the following command:
+</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune note verify</code></pre></div><div id="id-1.8.3.13" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+If <code class="command">saptune note verify</code> is called without specifying a Note,
+it verifies all enabled Notes. To verify the currently applied Notes, use the
+<code class="command">saptune note verify applied</code> or <code class="command">saptune verify
+applied</code> commands. Normally, enabled Notes are also applied, except
+when the system has been rebooted without an enabled <code class="systemitem">saptune.service</code>.
+</p></div><p>
+The <code class="command">saptune note verify</code> command prints a table with all applied Notes, including the following:
+</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+SAP Note and version
+</p></li><li class="listitem"><p>
+The parameter
+</p></li><li class="listitem"><p>
+The expected value of the parameter
+</p></li><li class="listitem"><p>
+The value from an override if one exists
+</p></li><li class="listitem"><p>
+The current system value
+</p></li><li class="listitem"><p>
+The compliance status of the parameter
+</p></li></ul></div><p>
+The last line contains the overall compliance status of the entire tuning.
+</p><div id="id-1.8.3.17" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+Certain parameters of shipped Notes are disabled, meaning they have empty values in the <span class="guimenu">Expected</span> column. In such cases, the SAP Note does not contain a concrete recommendation or <code class="command">saptune</code> cannot detect the conditions for a recommendation. Read the SAP Note and set the value manually by customizing the Note (See <a class="xref" href="#sec-saptune-sap-notes-customize" title="5.2.1. Customizing an SAP Note">Section 5.2.1, “Customizing an SAP Note”</a>).
+</p></div><p>
+If the parameters are not compliant, read the footnote if it exists. For certain tunings, equivalent parameters exist, for example:
+</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+<code class="literal">grub:intel_idle.max_cstate</code> covered by <code class="literal">force_latency</code>
+</p></li><li class="listitem"><p>
+<code class="literal">grub:processor.max_cstate</code> covered by <code class="literal">force_latency</code>
+</p></li><li class="listitem"><p>
+<code class="literal">grub:numa_balancing</code> covered by <code class="literal">kernel.numa_balancing</code>
+</p></li><li class="listitem"><p>
+<code class="literal">grub:transparent_hugepage</code> covered by <code class="literal">THP</code>
+</p></li></ul></div><p>
+A restart of the <code class="literal">saptune</code> service fixes the problems, except for non-compliant packages (parameter starts with <code class="literal">rpm:</code>) or GRUB entries (parameter starts with <code class="literal">grub:</code>). <code class="command">saptune</code> does not install, uninstall or upgrade packages, and it never changes the boot loader.
+</p><p>
+A typical problem is the <code class="command">sysctl</code> parameters that are handled by <code class="command">saptune</code> and <code class="command">sysctl</code>. A footnote in the parameter's compliance column indicates if it is also present in one of the <code class="command">sysctl</code> configuration files. Remove the parameter from the <code class="command">sysctl</code> configuration or disable the parameter in <code class="command">saptune</code>  to fix the problem.
+</p><p>
+Always investigate the cause of the changed tuning and fix it. If <code class="command">saptune</code> does not tune certain parameters, you can revert the Note or disable parameters via an Override.
+   </p></section></section><section xml:lang="en" class="sect1" id="reference-saptune-json-output" data-id-title="saptune machine-readable output"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name"><code class="command">saptune</code> machine-readable output</span></span> <a title="Permalink" class="permalink" href="#reference-saptune-json-output">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       Overview of <code class="command">saptune</code>'s machine-readable output in the JSON format.
+      </p></div></div></div></div><section class="sect2" id="reference-example-section" data-id-title="Machine-readable output"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">8.1 </span><span class="title-name">Machine-readable output</span></span> <a title="Permalink" class="permalink" href="#reference-example-section">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      <code class="command">saptune</code> supports machine-readable output (JSON) for the following commands:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            <code class="command">saptune [service] status</code>
+          </p></li><li class="listitem"><p>
+            <code class="command">saptune note list|verify|enabled|applied</code>
+          </p></li><li class="listitem"><p>
+            <code class="command">saptune solution list|verify|enabled|applied</code>
+          </p></li><li class="listitem"><p>
+            <code class="command">saptune status</code>
+          </p></li><li class="listitem"><p>
+            <code class="command">saptune version</code>
+          </p></li><li class="listitem"><p>
+            <code class="command">saptune check</code>
+          </p></li></ul></div><p>
+      The machine-readable output makes it possible to integrate <code class="command">saptune</code> into scripts and configuration management solutions.
+    </p><p>
+      To generate JSON output, add <code class="option">--format json</code> as the first option, for example:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>saptune --format json note applied | jq
+{
+"$schema": "file:///usr/share/saptune/schemas/1.0/saptune_note_applied.schema.json",
+"publish time": "2023-08-29 17:05:45.627",
+"argv": "saptune --format json note applied",
+"pid": 1538,
+"command": "note applied",
+"exit code": 0,
+"result": {
+    "Notes applied": [
+    "941735",
+    "1771258",
+    "1980196",
+    "2578899",
+    "2684254",
+    "2382421",
+    "2534844",
+    "2993054",
+    "1656250"
+    ]
+},
+"messages": []
+}</pre></div><p>
+  If a command does not yet support JSON output, the command fails with the <code class="literal">result</code> block set to <code class="literal">"implemented": false</code>:
+</p><div class="verbatim-wrap"><pre class="screen">[+]
+<code class="prompt user">&gt; </code>saptune --format json staging status | jq
+{
+"$schema": "file:///usr/share/saptune/schemas/1.0/saptune_staging_status.schema.json",
+"publish time": "2023-08-29 17:08:16.708",
+"argv": "saptune --format json staging status",
+"pid": 1653,
+"command": "staging status",
+"exit code": 1,
+"result": {
+    "implemented": false
+},
+"messages": []
+}</pre></div></section></section><section xml:lang="en" class="sect1" id="task-saptune-staging" data-id-title="saptune staging"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">9 </span><span class="title-name"><code class="command">saptune</code> staging</span></span> <a title="Permalink" class="permalink" href="#task-saptune-staging">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Learn how to use staging with <code class="command">saptune</code>.
+      </p></div></div></div></div><section class="sect2" id="task-saptune-staging-requirements" data-id-title="Requirements"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.1 </span><span class="title-name">Requirements</span></span> <a title="Permalink" class="permalink" href="#task-saptune-staging-requirements">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          A system with <code class="command">saptune</code> installed, configured and enabled.
+        </p></li></ul></div></section><section class="sect2" id="task-saptune-staging-perform" data-id-title="Staging"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.2 </span><span class="title-name">Staging</span></span> <a title="Permalink" class="permalink" href="#task-saptune-staging-perform">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    It is possible that a new <code class="command">saptune</code> package can contain both binary changes
+    (for example, bug fixes) and new or altered SAP Notes and SAP Solutions. In certain situations, it is preferable to deploy bug fixes and new features while leaving modifications to the system configuration out.
+   </p><p>
+    With staging enabled, SAP Note and SAP Solution changes in a package update are
+    <span><em class="emphasis">not</em></span> activated immediately. They are placed in a staging
+    area, which can be reviewed and released later.
+   </p><div id="id-1.10.3.4" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important</div><p>With the current implementation, a package update overwrites the
+    staging if staging is enabled.</p></div><p>Staging is disabled by default, and it can be enabled with the following command:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune staging enable</code></pre></div><p>From that point, SAP Note and SAP Solution changes shipped by a <code class="command">saptune</code>
+   package are put in the staging area. To view the staging area, run:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune staging list</code></pre></div><p>You can print a tabular overview of the differences between the SAP Note
+   and SAP Solution in the staging and working area with the following command:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune staging diff [NOTE...|SOLUTION...|all]</code></pre></div><p>
+    After reviewing the differences, you can perform an analysis to see if a
+    release has potential issues or requires additional steps. To do
+    this, run the following command:
+   </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune staging analysis [NOTE...|SOLUTION...|all]</code></pre></div><p>
+    To release an SAP Note or an SAP Solution from the staging area, use the command as follows:
+   </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">saptune staging [--force|--dry-run] [NOTE..|SOLUTION...|all]</code></pre></div><p>
+    The command presents an analysis (see <code class="command">saptune staging
+    analysis</code>) and carries out the release after asking for
+    confirmation.
+   </p></section></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">10 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section><div class="legal-section"><section class="appendix" translate="no" id="doc-gfdl-license" data-id-title="GNU Free Documentation License"><div class="titlepage"><div><div><h1 class="title">GNU Free Documentation License</h1></div></div></div><p>
+    Copyright (C) 2000, 2001, 2002 Free Software Foundation, Inc. 51 Franklin St, Fifth Floor,
+    Boston, MA 02110-1301 USA. Everyone is permitted to copy and distribute verbatim copies of this
+    license document, but changing it is not allowed.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.3"><span class="name">
+    0. PREAMBLE
+  </span><a title="Permalink" class="permalink" href="#id-1.12.3">#</a></h5></div><p>
+    The purpose of this License is to make a manual, textbook, or other functional and useful
+    document "free" in the sense of freedom: to assure everyone the effective freedom to copy and
+    redistribute it, with or without modifying it, either commercially or non-commercially.
+    Secondarily, this License preserves for the author and publisher a way to get credit for their
+    work, while not being considered responsible for modifications made by others.
+  </p><p>
+    This License is a kind of "copyleft", which means that derivative works of the document must
+    themselves be free in the same sense. It complements the GNU General Public License, which is a
+    copyleft license designed for free software.
+  </p><p>
+    We have designed this License to use it for manuals for free software, because free software
+    needs free documentation: a free program should come with manuals providing the same freedoms
+    that the software does. But this License is not limited to software manuals; it can be used for
+    any textual work, regardless of subject matter or whether it is published as a printed book. We
+    recommend this License principally for works whose purpose is instruction or reference.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.7"><span class="name">
+    1. APPLICABILITY AND DEFINITIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.12.7">#</a></h5></div><p>
+    This License applies to any manual or other work, in any medium, that contains a notice placed
+    by the copyright holder saying it can be distributed under the terms of this License. Such a
+    notice grants a world-wide, royalty-free license, unlimited in duration, to use that work under
+    the conditions stated herein. The "Document", below, refers to any such manual or work. Any
+    member of the public is a licensee, and is addressed as "you". You accept the license if you
+    copy, modify or distribute the work in a way requiring permission under copyright law.
+  </p><p>
+    A "Modified Version" of the Document means any work containing the Document or a portion of it,
+    either copied verbatim, or with modifications and/or translated into another language.
+  </p><p>
+    A "Secondary Section" is a named appendix or a front-matter section of the Document that deals
+    exclusively with the relationship of the publishers or authors of the Document to the
+    Document's overall subject (or to related matters) and contains nothing that could fall
+    directly within that overall subject. (Thus, if the Document is in part a textbook of
+    mathematics, a Secondary Section may not explain any mathematics.) The relationship could be a
+    matter of historical connection with the subject or with related matters, or of legal,
+    commercial, philosophical, ethical or political position regarding them.
+  </p><p>
+    The "Invariant Sections" are certain Secondary Sections whose titles are designated, as being
+    those of Invariant Sections, in the notice that says that the Document is released under this
+    License. If a section does not fit the above definition of Secondary then it is not allowed to
+    be designated as Invariant. The Document may contain zero Invariant Sections. If the Document
+    does not identify any Invariant Sections then there are none.
+  </p><p>
+    The "Cover Texts" are certain short passages of text that are listed, as Front-Cover Texts or
+    Back-Cover Texts, in the notice that says that the Document is released under this License. A
+    Front-Cover Text may be at most 5 words, and a Back-Cover Text may be at most 25 words.
+  </p><p>
+    A "Transparent" copy of the Document means a machine-readable copy, represented in a format
+    whose specification is available to the general public, that is suitable for revising the
+    document straightforwardly with generic text editors or (for images composed of pixels) generic
+    paint programs or (for drawings) some widely available drawing editor, and that is suitable for
+    input to text formatters or for automatic translation to a variety of formats suitable for
+    input to text formatters. A copy made in an otherwise Transparent file format whose markup, or
+    absence of markup, has been arranged to thwart or discourage subsequent modification by readers
+    is not Transparent. An image format is not Transparent if used for any substantial amount of
+    text. A copy that is not "Transparent" is called "Opaque".
+  </p><p>
+    Examples of suitable formats for Transparent copies include plain ASCII without markup, Texinfo
+    input format, LaTeX input format, SGML or XML using a publicly available DTD, and
+    standard-conforming simple HTML, PostScript or PDF designed for human modification. Examples of
+    transparent image formats include PNG, XCF and JPG. Opaque formats include proprietary formats
+    that can be read and edited only by proprietary word processors, SGML or XML for which the DTD
+    and/or processing tools are not generally available, and the machine-generated HTML, PostScript
+    or PDF produced by some word processors for output purposes only.
+  </p><p>
+    The "Title Page" means, for a printed book, the title page itself, plus such following pages as
+    are needed to hold, legibly, the material this License requires to appear in the title page.
+    For works in formats which do not have any title page as such, "Title Page" means the text near
+    the most prominent appearance of the work's title, preceding the beginning of the body of the
+    text.
+  </p><p>
+    A section "Entitled XYZ" means a named subunit of the Document whose title either is precisely
+    XYZ or contains XYZ in parentheses following text that translates XYZ in another language.
+    (Here XYZ stands for a specific section name mentioned below, such as "Acknowledgements",
+    "Dedications", "Endorsements", or "History".) To "Preserve the Title" of such a section when
+    you modify the Document means that it remains a section "Entitled XYZ" according to this
+    definition.
+  </p><p>
+    The Document may include Warranty Disclaimers next to the notice which states that this License
+    applies to the Document. These Warranty Disclaimers are considered to be included by reference
+    in this License, but only as regards disclaiming warranties: any other implication that these
+    Warranty Disclaimers may have is void and has no effect on the meaning of this License.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.18"><span class="name">
+    2. VERBATIM COPYING
+  </span><a title="Permalink" class="permalink" href="#id-1.12.18">#</a></h5></div><p>
+    You may copy and distribute the Document in any medium, either commercially or
+    non-commercially, provided that this License, the copyright notices, and the license notice
+    saying this License applies to the Document are reproduced in all copies, and that you add no
+    other conditions whatsoever to those of this License. You may not use technical measures to
+    obstruct or control the reading or further copying of the copies you make or distribute.
+    However, you may accept compensation in exchange for copies. If you distribute a large enough
+    number of copies you must also follow the conditions in section 3.
+  </p><p>
+    You may also lend copies, under the same conditions stated above, and you may publicly display
+    copies.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.21"><span class="name">
+    3. COPYING IN QUANTITY
+  </span><a title="Permalink" class="permalink" href="#id-1.12.21">#</a></h5></div><p>
+    If you publish printed copies (or copies in media that commonly have printed covers) of the
+    Document, numbering more than 100, and the Document's license notice requires Cover Texts, you
+    must enclose the copies in covers that carry, clearly and legibly, all these Cover Texts:
+    Front-Cover Texts on the front cover, and Back-Cover Texts on the back cover. Both covers must
+    also clearly and legibly identify you as the publisher of these copies. The front cover must
+    present the full title with all words of the title equally prominent and visible. You may add
+    other material on the covers in addition. Copying with changes limited to the covers, as long
+    as they preserve the title of the Document and satisfy these conditions, can be treated as
+    verbatim copying in other respects.
+  </p><p>
+    If the required texts for either cover are too voluminous to fit legibly, you should put the
+    first ones listed (as many as fit reasonably) on the actual cover, and continue the rest onto
+    adjacent pages.
+  </p><p>
+    If you publish or distribute Opaque copies of the Document numbering more than 100, you must
+    either include a machine-readable Transparent copy along with each Opaque copy, or state in or
+    with each Opaque copy a computer-network location from which the general network-using public
+    has access to download using public-standard network protocols a complete Transparent copy of
+    the Document, free of added material. If you use the latter option, you must take reasonably
+    prudent steps, when you begin distribution of Opaque copies in quantity, to ensure that this
+    Transparent copy will remain thus accessible at the stated location until at least one year
+    after the last time you distribute an Opaque copy (directly or through your agents or
+    retailers) of that edition to the public.
+  </p><p>
+    It is requested, but not required, that you contact the authors of the Document well before
+    redistributing any large number of copies, to give them a chance to provide you with an updated
+    version of the Document.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.26"><span class="name">
+    4. MODIFICATIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.12.26">#</a></h5></div><p>
+    You may copy and distribute a Modified Version of the Document under the conditions of sections
+    2 and 3 above, provided that you release the Modified Version under precisely this License,
+    with the Modified Version filling the role of the Document, thus licensing distribution and
+    modification of the Modified Version to whoever possesses a copy of it. In addition, you must
+    do these things in the Modified Version:
+  </p><div class="orderedlist"><ol class="orderedlist" type="A"><li class="listitem"><p>
+        Use in the Title Page (and on the covers, if any) a title distinct from that of the
+        Document, and from those of previous versions (which should, if there were any, be listed
+        in the History section of the Document). You may use the same title as a previous version
+        if the original publisher of that version gives permission.
+      </p></li><li class="listitem"><p>
+        List on the Title Page, as authors, one or more persons or entities responsible for
+        authorship of the modifications in the Modified Version, together with at least five of the
+        principal authors of the Document (all of its principal authors, if it has fewer than
+        five), unless they release you from this requirement.
+      </p></li><li class="listitem"><p>
+        State on the Title page the name of the publisher of the Modified Version, as the
+        publisher.
+      </p></li><li class="listitem"><p>
+        Preserve all the copyright notices of the Document.
+      </p></li><li class="listitem"><p>
+        Add an appropriate copyright notice for your modifications adjacent to the other copyright
+        notices.
+      </p></li><li class="listitem"><p>
+        Include, immediately after the copyright notices, a license notice giving the public
+        permission to use the Modified Version under the terms of this License, in the form shown
+        in the Addendum below.
+      </p></li><li class="listitem"><p>
+        Preserve in that license notice the full lists of Invariant Sections and required Cover
+        Texts given in the Document's license notice.
+      </p></li><li class="listitem"><p>
+        Include an unaltered copy of this License.
+      </p></li><li class="listitem"><p>
+        Preserve the section Entitled "History", Preserve its Title, and add to it an item stating
+        at least the title, year, new authors, and publisher of the Modified Version as given on
+        the Title Page. If there is no section Entitled "History" in the Document, create one
+        stating the title, year, authors, and publisher of the Document as given on its Title Page,
+        then add an item describing the Modified Version as stated in the previous sentence.
+      </p></li><li class="listitem"><p>
+        Preserve the network location, if any, given in the Document for public access to a
+        Transparent copy of the Document, and likewise the network locations given in the Document
+        for previous versions it was based on. These may be placed in the "History" section. You
+        may omit a network location for a work that was published at least four years before the
+        Document itself, or if the original publisher of the version it refers to gives permission.
+      </p></li><li class="listitem"><p>
+        For any section Entitled "Acknowledgements" or "Dedications", Preserve the Title of the
+        section, and preserve in the section all the substance and tone of each of the contributor
+        acknowledgements and/or dedications given therein.
+      </p></li><li class="listitem"><p>
+        Preserve all the Invariant Sections of the Document, unaltered in their text and in their
+        titles. Section numbers or the equivalent are not considered part of the section titles.
+      </p></li><li class="listitem"><p>
+        Delete any section Entitled "Endorsements". Such a section may not be included in the
+        Modified Version.
+      </p></li><li class="listitem"><p>
+        Do not retitle any existing section to be Entitled "Endorsements" or to conflict in title
+        with any Invariant Section.
+      </p></li><li class="listitem"><p>
+        Preserve any Warranty Disclaimers.
+      </p></li></ol></div><p>
+    If the Modified Version includes new front-matter sections or appendices that qualify as
+    Secondary Sections and contain no material copied from the Document, you may at your option
+    designate some or all of these sections as invariant. To do this, add their titles to the list
+    of Invariant Sections in the Modified Version's license notice. These titles must be distinct
+    from any other section titles.
+  </p><p>
+    You may add a section Entitled "Endorsements", provided it contains nothing but endorsements of
+    your Modified Version by various parties--for example, statements of peer review or that the
+    text has been approved by an organization as the authoritative definition of a standard.
+  </p><p>
+    You may add a passage of up to five words as a Front-Cover Text, and a passage of up to 25
+    words as a Back-Cover Text, to the end of the list of Cover Texts in the Modified Version. Only
+    one passage of Front-Cover Text and one of Back-Cover Text may be added by (or through
+    arrangements made by) any one entity. If the Document already includes a cover text for the
+    same cover, previously added by you or by arrangement made by the same entity you are acting on
+    behalf of, you may not add another; but you may replace the old one, on explicit permission
+    from the previous publisher that added the old one.
+  </p><p>
+    The author(s) and publisher(s) of the Document do not by this License give permission to use
+    their names for publicity for or to assert or imply endorsement of any Modified Version.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.33"><span class="name">
+    5. COMBINING DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.12.33">#</a></h5></div><p>
+    You may combine the Document with other documents released under this License, under the terms
+    defined in section 4 above for modified versions, provided that you include in the combination
+    all of the Invariant Sections of all of the original documents, unmodified, and list them all
+    as Invariant Sections of your combined work in its license notice, and that you preserve all
+    their Warranty Disclaimers.
+  </p><p>
+    The combined work need only contain one copy of this License, and multiple identical Invariant
+    Sections may be replaced with a single copy. If there are multiple Invariant Sections with the
+    same name but different contents, make the title of each such section unique by adding at the
+    end of it, in parentheses, the name of the original author or publisher of that section if
+    known, or else a unique number. Make the same adjustment to the section titles in the list of
+    Invariant Sections in the license notice of the combined work.
+  </p><p>
+    In the combination, you must combine any sections Entitled "History" in the various original
+    documents, forming one section Entitled "History"; likewise combine any sections Entitled
+    "Acknowledgements", and any sections Entitled "Dedications". You must delete all sections
+    Entitled "Endorsements".
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.37"><span class="name">
+    6. COLLECTIONS OF DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.12.37">#</a></h5></div><p>
+    You may make a collection consisting of the Document and other documents released under this
+    License, and replace the individual copies of this License in the various documents with a
+    single copy that is included in the collection, provided that you follow the rules of this
+    License for verbatim copying of each of the documents in all other respects.
+  </p><p>
+    You may extract a single document from such a collection, and distribute it individually under
+    this License, provided you insert a copy of this License into the extracted document, and
+    follow this License in all other respects regarding verbatim copying of that document.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.40"><span class="name">
+    7. AGGREGATION WITH INDEPENDENT WORKS
+  </span><a title="Permalink" class="permalink" href="#id-1.12.40">#</a></h5></div><p>
+    A compilation of the Document or its derivatives with other separate and independent documents
+    or works, in or on a volume of a storage or distribution medium, is called an "aggregate" if
+    the copyright resulting from the compilation is not used to limit the legal rights of the
+    compilation's users beyond what the individual works permit. When the Document is included in
+    an aggregate, this License does not apply to the other works in the aggregate which are not
+    themselves derivative works of the Document.
+  </p><p>
+    If the Cover Text requirement of section 3 is applicable to these copies of the Document, then
+    if the Document is less than one half of the entire aggregate, the Document's Cover Texts may
+    be placed on covers that bracket the Document within the aggregate, or the electronic
+    equivalent of covers if the Document is in electronic form. Otherwise they must appear on
+    printed covers that bracket the whole aggregate.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.43"><span class="name">
+    8. TRANSLATION
+  </span><a title="Permalink" class="permalink" href="#id-1.12.43">#</a></h5></div><p>
+    Translation is considered a kind of modification, so you may distribute translations of the
+    Document under the terms of section 4. Replacing Invariant Sections with translations requires
+    special permission from their copyright holders, but you may include translations of some or
+    all Invariant Sections in addition to the original versions of these Invariant Sections. You
+    may include a translation of this License, and all the license notices in the Document, and any
+    Warranty Disclaimers, provided that you also include the original English version of this
+    License and the original versions of those notices and disclaimers. In case of a disagreement
+    between the translation and the original version of this License or a notice or disclaimer, the
+    original version will prevail.
+  </p><p>
+    If a section in the Document is Entitled "Acknowledgements", "Dedications", or "History", the
+    requirement (section 4) to Preserve its Title (section 1) will typically require changing the
+    actual title.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.46"><span class="name">
+    9. TERMINATION
+  </span><a title="Permalink" class="permalink" href="#id-1.12.46">#</a></h5></div><p>
+    You may not copy, modify, sublicense, or distribute the Document except as expressly provided
+    for under this License. Any other attempt to copy, modify, sublicense or distribute the
+    Document is void, and will automatically terminate your rights under this License. However,
+    parties who have received copies, or rights, from you under this License will not have their
+    licenses terminated so long as such parties remain in full compliance.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.48"><span class="name">
+    10. FUTURE REVISIONS OF THIS LICENSE
+  </span><a title="Permalink" class="permalink" href="#id-1.12.48">#</a></h5></div><p>
+    The Free Software Foundation may publish new, revised versions of the GNU Free Documentation
+    License from time to time. Such new versions will be similar in spirit to the present version,
+    but may differ in detail to address new problems or concerns. See
+    <a class="link" href="https://www.gnu.org/copyleft/" target="_blank">https://www.gnu.org/copyleft/</a>.
+  </p><p>
+    Each version of the License is given a distinguishing version number. If the Document specifies
+    that a particular numbered version of this License "or any later version" applies to it, you
+    have the option of following the terms and conditions either of that specified version or of
+    any later version that has been published (not as a draft) by the Free Software Foundation. If
+    the Document does not specify a version number of this License, you may choose any version ever
+    published (not as a draft) by the Free Software Foundation.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.51"><span class="name">
+    ADDENDUM: How to use this License for your documents
+  </span><a title="Permalink" class="permalink" href="#id-1.12.51">#</a></h5></div><div class="verbatim-wrap"><pre class="screen">Copyright (c) YEAR YOUR NAME.
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+A copy of the license is included in the section entitled “GNU
+Free Documentation License”.</pre></div><p>
+    If you have Invariant Sections, Front-Cover Texts and Back-Cover Texts, replace the
+    “with...Texts.” line with this:
+  </p><div class="verbatim-wrap"><pre class="screen">with the Invariant Sections being LIST THEIR TITLES, with the
+Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.</pre></div><p>
+    If you have Invariant Sections without Cover Texts, or some other combination of the three,
+    merge those two alternatives to suit the situation.
+  </p><p>
+    If your document contains nontrivial examples of program code, we recommend releasing these
+    examples in parallel under your choice of free software license, such as the GNU General Public
+    License, to permit their use in free software.
+  </p></section></div></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="#about-saptune"><span class="title-number">1 </span><span class="title-name">About <code class="command">saptune</code></span></a></span></li><li><span class="section"><a href="#saptune-install"><span class="title-number">2 </span><span class="title-name">Installing and enabling <code class="command">saptune</code></span></a></span></li><li><span class="section"><a href="#saptune-configure"><span class="title-number">3 </span><span class="title-name">Configuring <code class="command">saptune</code></span></a></span></li><li><span class="section"><a href="#saptune-configure-tuning"><span class="title-number">4 </span><span class="title-name">Configuring <code class="command">saptune</code> tuning</span></a></span></li><li><span class="section"><a href="#saptune-manage-sap-notes"><span class="title-number">5 </span><span class="title-name">Managing SAP Notes</span></a></span></li><li><span class="section"><a href="#saptune-manage-sap-sols"><span class="title-number">6 </span><span class="title-name">Managing SAP Solutions</span></a></span></li><li><span class="section"><a href="#saptune-verify"><span class="title-number">7 </span><span class="title-name">Verification and troubleshooting</span></a></span></li><li><span class="section"><a href="#reference-saptune-json-output"><span class="title-number">8 </span><span class="title-name"><code class="command">saptune</code> machine-readable output</span></a></span></li><li><span class="section"><a href="#task-saptune-staging"><span class="title-number">9 </span><span class="title-name"><code class="command">saptune</code> staging</span></a></span></li><li><span class="section"><a href="#legal-disclaimer"><span class="title-number">10 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="#doc-gfdl-license"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

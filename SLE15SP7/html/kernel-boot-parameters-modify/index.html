@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Modifying Kernel Boot Parameters | SUSE Linux Enterprise Server 15 SP7</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2024-11-28"/>
+<meta name="dcterms.modified" content="2024-11-28"/>
+<meta name="dcterms.dateSubmitted" content="2026-07-30"/>
+<meta name="title" content="Modifying Kernel Boot Parameters | SUSE Linux Enterpri…"/>
+<meta name="description" content="How to modify kernel boot parameters for customizing the boot process"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server"/>
+<meta name="product-number" content="15 SP7"/>
+<meta name="book-title" content="Modifying Kernel Boot Parameters"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="ssarkar@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.0"/>
+<meta name="publisher" content="SUSE"/><meta name="dcterms.modified" content="2024-11-28"/><meta name="dc.creator" content="ssarkar@suse.com"/><meta property="og:title" content="Modifying Kernel Boot Parameters"/>
+<meta property="og:description" content="Modify kernel boot parameters"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Modifying Kernel Boot Parameters"/>
+<meta name="twitter:description" content="Modify kernel boot parameters"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Modifying Kernel Boot Parameters | SUSE Linux Enterprise Server 15 SP7",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Modifying Kernel Boot Parameters",
+    "description": "How to modify kernel boot parameters for customizing the boot process",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2024-11-28T00:00+02:00",
+    "dateModified": "2024-11-28T00:00+02:00",
+    "datePublished": "2026-07-30T12:24+02:00",
+
+    "articleSection": [ 
+        "Systems Management"
+        
+    ],
+        "about": [
+
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server",
+        "softwareVersion": "15 SP7",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Modifying Kernel Boot Parameters</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Modifying Kernel Boot Parameters</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="kernel-boot-parameters-modify" data-id-title="Modifying Kernel Boot Parameters"><div class="titlepage"><div><div class="big-version-info"><span class="productname">SUSE Linux Enterprise Server</span> 15 SP7</div><div><h1 class="title">Modifying Kernel Boot Parameters</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>30 Jul 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+                This article introduces the concepts, examples and modification process for kernel
+                boot parameters to customize the boot process and optimize the resulting
+                environment.
+              </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
+                Modifying kernel boot parameters is essential for achieving specific system
+                configurations and addressing several scenarios, including performance
+                optimization, better hardware compatibility, and troubleshooting issues such as
+                graphics drivers.
+              </p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                It takes 15 minutes to fully understand the concepts and the process, and five
+                minutes to modify kernel boot parameters and observe their effect after a reboot.
+              </p></dd><dt id="id-1.1.12.1.4"><span class="term">GOAL</span></dt><dd><p>
+                Modify kernel parameters to customize the boot process and the subsequent
+                environment.
+              </p></dd><dt id="id-1.1.12.1.5"><span class="term">REQUIREMENTS</span></dt><dd><p>
+                Depending on whether you want to apply changes in kernel boot parameters to the
+                upcoming boot process, or all subsequent boot processes, the requirements are as
+                follows:
+              </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                    To change kernel boot parameters on an experimental basis only for the upcoming
+                    boot process, there are no requirements.
+                  </p></li><li class="listitem"><p>
+                    To change kernel boot parameters for all subsequent boot processes, you should
+                    have <code class="literal">root</code> or equivalent administrative privileges.
+                  </p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Modifying Kernel Boot Parameters" hreflang="en" href="rh-kernel-boot-parameters-modify.html" target="_blank">Revision History: Modifying Kernel Boot Parameters</a></div></div></div></div><section xml:lang="en" class="sect1" id="kernel-boot-parameters-modify-introduction" data-id-title="Introduction to kernel boot parameters"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Introduction to kernel boot parameters</span></span> <a title="Permalink" class="permalink" href="index.html#kernel-boot-parameters-modify-introduction">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Before modifying kernel boot parameters, it is important to understand the basic concepts:
+        definition, methods, benefits and examples of modifying kernel boot parameters.
+      </p></div></div></div></div><section class="sect2" id="kernel-boot-parameters-modify-definition" data-id-title="What are kernel boot parameters?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">What are kernel boot parameters?</span></span> <a title="Permalink" class="permalink" href="index.html#kernel-boot-parameters-modify-definition">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Kernel boot parameters are configurations passed to the SUSE Linux Enterprise kernel during the boot process
+      managed by the GRUB 2. The configurations are instructions to the GRUB 2 boot loader on how
+      to configure certain features and make them behave in the intended manner. The method of
+      modification depends on whether you want the changes to impact only the next boot, or all
+      subsequent boots until further changes are made.
+    </p></section><section class="sect2" id="kernel-boot-parameters-modification-types" data-id-title="Methods of modification"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Methods of modification</span></span> <a title="Permalink" class="permalink" href="index.html#kernel-boot-parameters-modification-types">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      You can modify the kernel boot parameters using the following methods:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.3.3.1"><span class="term">Temporarily</span></dt><dd><p>
+            Changes are held in memory and apply only to the upcoming boot process. These changes
+            made through the GRUB 2 boot menu are not written to any configuration file and are
+            discarded after reboot.
+          </p></dd><dt id="id-1.2.3.3.2"><span class="term">Permanently</span></dt><dd><p>
+            Changes are written to <code class="filename">/etc/default/grub</code> file and persist across
+            all subsequent boot processes. For permanent changes, we
+            <span><span class="emphasis"><strong>recommend</strong></span></span> using the <span class="guimenu">YaST Control Center</span> instead of directly
+            editing the <code class="filename">/etc/default/grub</code> file.
+          </p><p>
+            However, if you directly edit the <code class="filename">/etc/default/grub</code> file, modify
+            the <code class="varname">GRUB_CMDLINE_LINUX</code> or
+            <code class="varname">GRUB_CMDLINE_LINUX_DEFAULT</code> variables. After modification, regenerate
+            the GRUB 2 configuration by running the following command with administrative
+            privileges.
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">grub2-mkconfig -o /boot/grub2/grub.cfg</code></pre></div></dd></dl></div></section><section class="sect2" id="kernel-boot-parameters-modify-reason" data-id-title="Benefits of modifying kernel boot parameters"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.3 </span><span class="title-name">Benefits of modifying kernel boot parameters</span></span> <a title="Permalink" class="permalink" href="index.html#kernel-boot-parameters-modify-reason">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Modifying kernel boot parameters is essential for achieving specific system configurations
+      and addressing several scenarios, including:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span class="formalpara-title">Performance optimization. </span>
+            Tweaking parameters to enhance system performance, responsiveness, and overall
+            efficiency based on specific system requirements. For example, using the
+            <code class="code">quiet</code> parameter suppresses most boot messages, reducing boot time and
+            improving performance during startup.
+          </p></li><li class="listitem"><p><span class="formalpara-title">Hardware compatibility. </span>
+            Tailoring parameters to ensure compatibility with specific hardware components,
+            addressing potential compatibility issues. For example, the <code class="code">acpi=off</code>
+            parameter can be used to disable the Advanced Configuration and Power Interface (ACPI)
+            to resolve boot problems on older hardware.
+          </p></li><li class="listitem"><p><span class="formalpara-title">Troubleshooting. </span>
+            Altering parameters to troubleshoot issues such as graphics driver problems, ensuring a
+            more stable and functional system. For instance, the <em class="parameter">nomodeset</em>
+            parameter can disable kernel mode setting, which is helpful when troubleshooting issues
+            with graphics drivers that prevent the system from booting.
+          </p></li></ul></div></section><section class="sect2" id="kernel-boot-parameters-modify-examples" data-id-title="Examples of commonly modified kernel boot parameters"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.4 </span><span class="title-name">Examples of commonly modified kernel boot parameters</span></span> <a title="Permalink" class="permalink" href="index.html#kernel-boot-parameters-modify-examples">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      There are several kernel parameters that you can optionally modify to customize your boot
+      process. Based on your use case, you can consider a few of the most commonly modified kernel
+      boot parameters:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          <em class="parameter">root=</em>: Specifies the path to the root file system.
+        </p></li><li class="listitem"><p>
+          <em class="parameter">quiet</em>: Suppresses most boot messages.
+        </p></li><li class="listitem"><p>
+          <em class="parameter">splash</em>: Displays a graphical boot splash screen.
+        </p></li><li class="listitem"><p>
+          <em class="parameter">nomodeset</em>: Disables kernel mode setting.
+        </p></li><li class="listitem"><p>
+          <em class="parameter">debug</em>: Enables debugging output.
+        </p></li><li class="listitem"><p>
+          <em class="parameter">acpi=</em>: Toggles the Advanced Configuration and Power Interface
+          (ACPI) settings.
+        </p></li></ul></div><p>
+      For a detailed understanding of all available kernel parameters and their possible values,
+      source documentation is available at
+      <a class="link" href="https://www.kernel.org/doc/Documentation/admin-guide/kernel-parameters.txt" target="_blank">https://www.kernel.org/doc/Documentation/admin-guide/kernel-parameters.txt</a>.
+    </p></section><section class="sect2" id="kernel-boot-parameters-modify-general-rules" data-id-title="General rules for specifying values of kernel boot parameters"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.5 </span><span class="title-name">General rules for specifying values of kernel boot parameters</span></span> <a title="Permalink" class="permalink" href="index.html#kernel-boot-parameters-modify-general-rules">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      When modifying kernel boot parameters, follow these essential formatting rules:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.6.3.1"><span class="term">Basic Parameter Spacing</span></dt><dd><p>
+            Separate individual parameters with a single space:
+          </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                In YaST, select <span class="guimenu">System</span> › <span class="guimenu">Boot
+                Loader</span> › <span class="guimenu">Boot Loader Settings</span> › <span class="guimenu">Kernel
+                Parameters</span>. Enter parameters in the <span class="guimenu">Optional Kernel
+                Command Line Parameter</span> field with spaces between them.
+              </p></li><li class="listitem"><p>
+                In the <code class="filename">/etc/default/grub</code> configuration file for GRUB 2, use
+                spaces between kernel parameters when passing them as string values to the
+                <code class="varname">GRUB_CMDLINE_LINUX</code> or
+                <code class="varname">GRUB_CMDLINE_LINUX_DEFAULT</code> variables.
+              </p></li><li class="listitem"><p>
+                At the boot menu, press <span class="keycap">E</span> to edit, locate the line starting with
+                <code class="literal">linux</code>, and add parameters with spaces.
+              </p></li></ul></div><div class="example" id="id-1.2.6.3.1.2.3" data-id-title="Separate individual parameters with a single space"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 1: </span><span class="title-name">Separate individual parameters with a single space </span></span><a title="Permalink" class="permalink" href="index.html#id-1.2.6.3.1.2.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">root=/dev/sda1 quiet splash</pre></div></div></div></dd><dt id="id-1.2.6.3.2"><span class="term">Parameter Value Assignment</span></dt><dd><p>
+            When assigning values, use the equals sign (<code class="literal">=</code>) without spaces:
+          </p><div class="example" id="id-1.2.6.3.2.2.2" data-id-title="Correct method of assigning values to kernel parameters"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 2: </span><span class="title-name">Correct method of assigning values to kernel parameters </span></span><a title="Permalink" class="permalink" href="index.html#id-1.2.6.3.2.2.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">root=/dev/sda1 video=1920x1080</pre></div></div></div><div class="example" id="id-1.2.6.3.2.2.3" data-id-title="Incorrect method of assigning values to kernel parameters"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 3: </span><span class="title-name">Incorrect method of assigning values to kernel parameters </span></span><a title="Permalink" class="permalink" href="index.html#id-1.2.6.3.2.2.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">root = /dev/sda1 video = 1920x1080</pre></div></div></div></dd><dt id="id-1.2.6.3.3"><span class="term">Values Containing Spaces</span></dt><dd><p>
+            For values containing spaces, the handling differs between methods:
+          </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.6.3.3.2.2.1"><span class="term"><span class="guimenu">YaST Control Center</span> Boot Loader</span></dt><dd><p>
+                  Enter the value with quotes directly in the parameter field; the <span class="guimenu">YaST Control Center</span> handles
+                  the spacing appropriately before passing it on to GRUB 2.
+                </p><div class="example" id="id-1.2.6.3.3.2.2.1.2.2" data-id-title="Kernel parameter values containing spaces in the YaST Control Center"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 4: </span><span class="title-name">Kernel parameter values containing spaces in the <span class="guimenu">YaST Control Center</span> </span></span><a title="Permalink" class="permalink" href="index.html#id-1.2.6.3.3.2.2.1.2.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">root="/dev/mapper/<em class="replaceable">USER VOLUME</em>"</pre></div></div></div></dd><dt id="id-1.2.6.3.3.2.2.2"><span class="term">GRUB 2 configuration file</span></dt><dd><p>
+                  Use either double quotes with escape characters, or use backslashes.
+                </p><div class="example" id="id-1.2.6.3.3.2.2.2.2.2" data-id-title="Kernel parameter values containing spaces in the GRUB 2 configuration file"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 5: </span><span class="title-name">Kernel parameter values containing spaces in the GRUB 2 configuration file </span></span><a title="Permalink" class="permalink" href="index.html#id-1.2.6.3.3.2.2.2.2.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">GRUB_CMDLINE_LINUX="root=\"/dev/mapper/<em class="replaceable">USER VOLUME</em>\""</pre></div><div class="verbatim-wrap"><pre class="screen">GRUB_CMDLINE_LINUX="root=/dev/mapper/<em class="replaceable">USER<span><em class="emphasis">\</em></span> VOLUME</em>"</pre></div></div></div></dd><dt id="id-1.2.6.3.3.2.2.3"><span class="term">GRUB 2 Boot Menu</span></dt><dd><p>
+                  Use only double quotes for values containing spaces:
+                </p><div class="example" id="id-1.2.6.3.3.2.2.3.2.2" data-id-title="Kernel parameter values containing spaces in the GRUB 2 boot menu"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 6: </span><span class="title-name">Kernel parameter values containing spaces in the GRUB 2 boot menu </span></span><a title="Permalink" class="permalink" href="index.html#id-1.2.6.3.3.2.2.3.2.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">root="/dev/mapper/<em class="replaceable">USER VOLUME</em>"</pre></div></div></div></dd></dl></div></dd><dt id="id-1.2.6.3.4"><span class="term">Multiple values for a kernel parameter</span></dt><dd><p>
+            Use commas without spaces to separate multiple values for a single parameter in all
+            methods:
+          </p><div class="example" id="id-1.2.6.3.4.2.2" data-id-title="Multiple values for a kernel parameter"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 7: </span><span class="title-name">Multiple values for a kernel parameter </span></span><a title="Permalink" class="permalink" href="index.html#id-1.2.6.3.4.2.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">console=tty0,tty1 video=HDMI-A-1:1920x1080@60,VGA-1:1024x768</pre></div></div></div></dd></dl></div></section></section><section xml:lang="en" class="sect1" id="kernel-boot-parameters-modify-difference-linuxrc-parameters" data-id-title="Difference between kernel boot parameters and linuxrc parameters"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Difference between kernel boot parameters and linuxrc parameters</span></span> <a title="Permalink" class="permalink" href="index.html#kernel-boot-parameters-modify-difference-linuxrc-parameters">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Kernel boot parameters and linuxrc parameters are often similar in appearance, but
+        conceptually they are entirely different. It is important that you do not confuse them and
+        understand their basic difference.
+      </p></div></div></div></div><section class="sect2" id="kernel-boot-parameters-modify-linuxrc-parameter-introduction" data-id-title="What are linuxrc parameters and why are they different from kernel boot parameters?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">What are linuxrc parameters and why are they different from kernel boot parameters?</span></span> <a title="Permalink" class="permalink" href="index.html#kernel-boot-parameters-modify-linuxrc-parameter-introduction">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      In SUSE Linux Enterprise, the <code class="literal">linuxrc</code> script is executed during the boot process before
+      the system's root file system is mounted. It acts as the initial RAM disk (initrd) entry
+      point and sets up the environment needed for the kernel to load the root file system.
+      <code class="literal">linuxrc</code> parameters are used to pass configurations that affect this early
+      stage of the boot process, such as driver loading, debugging options, or hardware
+      initialization.
+    </p><p>
+      In contrast, kernel boot parameters are passed to the kernel by the boot loader (such as
+      GRUB 2) after the initial RAM disk has handed control to the kernel. The kernel boot
+      parameters directly influence how the kernel operates and manages system features such as
+      power management, debugging and hardware interaction after the root file system is mounted.
+    </p><p>
+      The distinction is critical because <code class="literal">linuxrc</code> parameters are used to
+      configure the environment before the kernel fully initializes, whereas kernel boot parameters
+      control the behavior of the kernel after this point. Misinterpreting or interchanging the two
+      can lead to improper configurations and boot failures.
+    </p><p>
+      To learn more about the <code class="literal">linuxrc</code> parameters and their usage, refer to
+      <a class="link" href="https://documentation.suse.com/sles/html/SLES-all/appendix-linuxrc.html" target="_blank">https://documentation.suse.com/sles/html/SLES-all/appendix-linuxrc.html</a>.
+    </p></section><section class="sect2" id="kernel-boot-parameters-modify-linuxrc-parameter-examples" data-id-title="Examples of linuxrc parameters"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.2 </span><span class="title-name">Examples of linuxrc parameters</span></span> <a title="Permalink" class="permalink" href="index.html#kernel-boot-parameters-modify-linuxrc-parameter-examples">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The following examples highlight common <code class="literal">linuxrc</code> parameters and their use
+      cases to configure the environment before the kernel initializes:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          <code class="literal">rd.driver.blacklist=</code>: Specifies drivers to be blocked in the initrd.
+          For example, <code class="literal">rd.driver.blacklist=nouveau</code> prevents the
+          <code class="literal">nouveau</code> graphics driver from loading during the early stages of boot.
+          This can be useful when troubleshooting driver-related boot issues.
+        </p></li><li class="listitem"><p>
+          <code class="literal">rd.break</code>: Interrupts the boot process and drops the system to a shell
+          within the initrd for debugging purposes. This parameter is helpful for diagnosing issues
+          related to the early boot process, such as driver loading or file system mounting errors.
+        </p></li><li class="listitem"><p>
+          <code class="literal">rd.retry=</code>: Specifies the number of retries for device scanning in the
+          initrd. For example, <code class="literal">rd.retry=3</code> configures the system to retry
+          scanning devices three times before giving up, which can be critical for resolving
+          transient hardware initialization issues.
+        </p></li><li class="listitem"><p>
+          <code class="literal">rd.luks=1</code>: Enables support for encrypted devices in the initrd. This
+          parameter is essential for systems that use encrypted root file systems, ensuring that
+          decryption takes place during the initial boot stage.
+        </p></li></ul></div><p>
+      By contrast, equivalent kernel boot parameters such as <em class="parameter">quiet</em> or
+      <em class="parameter">nomodeset</em> are not used in the initrd phase but take effect after the
+      kernel is fully initialized. This reinforces the need to distinguish between these two types
+      of parameters.
+    </p></section></section><section xml:lang="en" class="sect1" id="kernel-boot-parameters-modify-temporary" data-id-title="Temporarily modifying kernel boot parameters"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Temporarily modifying kernel boot parameters</span></span> <a title="Permalink" class="permalink" href="index.html#kernel-boot-parameters-modify-temporary">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        To change kernel boot parameters on an experimental basis only for the upcoming boot
+        process, edit the options available on the GRUB 2 boot screen. Such changes are applied
+        only to the upcoming boot process and the resulting session; the changes do not persist
+        after reboot.
+      </p></div></div></div></div><div class="complex-example"><div class="example" id="id-1.4.2" data-id-title="Temporarily modify kernel boot parameters using the GRUB 2 boot menu"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 8: </span><span class="title-name">Temporarily modify kernel boot parameters using the GRUB 2 boot menu </span></span><a title="Permalink" class="permalink" href="index.html#id-1.4.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><p>
+      As an example of modifying kernel boot parameters for the upcoming boot process, we disable
+      the splash screen that you can see during the boot.
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Switch on your computer to start the boot process.
+        </p></li><li class="step"><p>
+          In the GRUB 2 boot screen, highlight the entry you want to modify using the arrow keys
+          <span class="keycap">↑</span> and <span class="keycap">↓</span>.
+        </p></li><li class="step"><p>
+          Press the <span class="keycap">E</span> key. You are presented with an editor and the content of the
+          selected boot entry. It looks similar to the following:
+        </p><div class="verbatim-wrap"><pre class="screen">setparams '<span class="phrase"/> <span class="phrase"/>'
+...
+...
+echo 'Loading Linux <em class="replaceable">KERNEL_VERSION</em> ...'
+linux /boot/vmlinuz-<em class="replaceable">KERNEL_VERSION</em>
+root=UUID=56d052b3-9148-4161-8065-3d97378d5783 ${extra_cmdline} <span><span class="emphasis"><strong>splash=silent</strong></span></span> resume=/dev/disk/by-uuid/69ff0e54-23a7-4ba8-8983-5a29c54ffa5e
+quiet security=apparmor crashkernel=301M,high crashkernel=72M,low mitigations=auto</pre></div></li><li class="step"><p>
+          Search for the string <em class="parameter">splash=silent</em> and remove it.
+        </p></li><li class="step"><p>
+          To boot the entry, press <span class="keycap">F10</span> or <span class="keycap">Ctrl</span><span class="key-connector">–</span><span class="keycap">X</span>.
+        </p><p>
+          To discard the changes and start anew, press the <span class="keycap">Esc</span> key.
+        </p></li></ol></div></div><p>
+      After executing the procedure and continuing with the boot process, no splash screen is
+      observed for the current boot process. On the next boot, the splash screen reappears.
+    </p></div></div></div></section><section xml:lang="en" class="sect1" id="kernel-boot-parameters-modify-permanent" data-id-title="Permanently modifying kernel boot parameters"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Permanently modifying kernel boot parameters</span></span> <a title="Permalink" class="permalink" href="index.html#kernel-boot-parameters-modify-permanent">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        To change kernel boot parameters persistently for all subsequent boot processes, edit the
+        kernel parameters using <span class="guimenu">YaST Control Center</span> as <code class="literal">root</code> or a user with equivalent
+        administrative privileges.
+      </p></div></div></div></div><div class="complex-example"><div class="example" id="id-1.5.2" data-id-title="Permanently modify kernel boot parameters using YaST Control Center"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 9: </span><span class="title-name">Permanently modify kernel boot parameters using <span class="guimenu">YaST Control Center</span> </span></span><a title="Permalink" class="permalink" href="index.html#id-1.5.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><p>
+      As an example of modifying kernel boot parameters persistently for all subsequent boot
+      processes, we disable the splash screen that you can see during the boot.
+    </p><div id="id-1.5.2.3" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning</div><p>
+        Before modifying kernel boot parameters, create a copy of the existing stable GRUB 2
+        configuration (<code class="filename">/etc/default/grub</code>) somewhere outside of your system. If
+        the boat loader gets corrupted and your system fails to boot, or you face problems after
+        booting your system, the backup helps you compare and restore the parameters to the last
+        known working configuration.
+      </p></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Log in to your system as root, or switch to a user with equivalent administrative
+          privileges after logging in to your system.
+        </p></li><li class="step"><p>
+          In your running system, open a root shell and run the following command:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">yast bootloader</code></pre></div><p>
+          Alternatively, open the <span class="guimenu">YaST Control Center</span> application and select
+          <span class="guimenu">System</span> › <span class="guimenu">Boot Loader</span>.
+        </p></li><li class="step"><p>
+          Under the <span class="guimenu">Kernel Parameters</span> tab, edit the string for the
+          <span class="guimenu">Optional Kernel Command Line Parameter</span> field.
+        </p><div class="verbatim-wrap"><pre class="screen"><span><span class="emphasis"><strong>splash=silent</strong></span></span> resume=/dev/disk/by-uuid/69ff0e54-23a7-4ba8-8983-5a29c54ffa5e  quiet security=apparmor crashkernel=301M,high crashkernel=72M,low</pre></div><p>
+          As you can see, the string <em class="parameter">splash=silent</em> is printed. Remove
+          <em class="parameter">splash=silent</em> from the string.
+        </p></li><li class="step"><p>
+          Select <span class="guimenu">OK</span> to save the boot loader configuration.
+        </p></li><li class="step"><p>
+          Reboot. You should see that the splash screen does not appear.
+        </p></li></ol></div></div><p>
+      After executing the procedure and rebooting the system, we do not observe any splash screen
+      for all subsequent boot processes.
+    </p><div id="id-1.5.2.6" data-id-title="Editing the GRUB 2 configuration file" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Editing the GRUB 2 configuration file</div><p>
+        If you directly edit the <code class="filename">/etc/default/grub</code> file, modify the
+        <code class="varname">GRUB_CMDLINE_LINUX</code> or <code class="varname">GRUB_CMDLINE_LINUX_DEFAULT</code>
+        variables. After modification, regenerate the GRUB 2 configuration by running the following
+        command with administrative privileges.
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">grub2-mkconfig -o /boot/grub2/grub.cfg</code></pre></div></div></div></div></div></section><section xml:lang="en" class="sect1" id="kernel-boot-parameters-modify-troubleshoot" data-id-title="Troubleshooting and FAQs"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Troubleshooting and FAQs</span></span> <a title="Permalink" class="permalink" href="index.html#kernel-boot-parameters-modify-troubleshoot">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        While modifying kernel boot parameters, challenges may arise, potentially leading to system
+        instability or boot failure. It is important to understand the potential challenges and
+        systematic approaches to resolving configuration issues.
+      </p></div></div></div></div><section class="sect2" id="kernel-boot-parameters-modify-troubleshoot-common-problems" data-id-title="Troubleshooting kernel boot parameter modifications"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.1 </span><span class="title-name">Troubleshooting kernel boot parameter modifications</span></span> <a title="Permalink" class="permalink" href="index.html#kernel-boot-parameters-modify-troubleshoot-common-problems">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Effective troubleshooting requires a methodical investigation of system behaviors and
+      configuration changes. A few troubleshooting strategies and steps to address a few common
+      issues are listed in this section.
+    </p><section class="sect3" id="sec-kernel-troubleshoot-incorrect-parameters" data-id-title="Identifying and correcting parameter issues"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.1.1 </span><span class="title-name">Identifying and correcting parameter issues</span></span> <a title="Permalink" class="permalink" href="index.html#sec-kernel-troubleshoot-incorrect-parameters">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+            Validate parameter syntax and configuration:
+          </p><ol type="a" class="substeps"><li class="step"><p>
+                Verify the spelling accuracy of all kernel parameters.
+              </p></li><li class="step"><p>
+                Check for correct formatting without unnecessary spaces.
+              </p></li><li class="step"><p>
+                Confirm that the parameters are recognized by the kernel. If you are modifying a
+                parameter that is already part of the standard configuration, check the output of
+                the <code class="command">cat /proc/cmdline</code> command. For a complete list of allowed
+                parameters, refer to the kernel documentation at
+                <a class="link" href="https://www.kernel.org/doc/Documentation/admin-guide/kernel-parameters.txt" target="_blank">https://www.kernel.org/doc/Documentation/admin-guide/kernel-parameters.txt</a>.
+              </p></li></ol></li><li class="step"><p>
+            Investigate system logs for detailed error information:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">dmesg | grep -i error</code></pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">journalctl -b | grep -i "kernel parameter"</code></pre></div></li><li class="step"><p>
+            Temporarily enable or disable suspicious parameters to isolate issues. For example, use
+            <em class="parameter">nomodeset</em> to troubleshoot device driver issues related to
+            graphics cards.
+          </p></li></ol></div></div></section><section class="sect3" id="sec-kernel-troubleshoot-boot-failures" data-id-title="Recovering from boot failures"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.1.2 </span><span class="title-name">Recovering from boot failures</span></span> <a title="Permalink" class="permalink" href="index.html#sec-kernel-troubleshoot-boot-failures">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+            Access system recovery options:
+          </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                Use the GRUB 2 recovery mode during system startup.
+              </p></li><li class="listitem"><p>
+                Select advanced boot options to enter a minimal working environment.
+              </p></li></ul></div></li><li class="step"><p>
+            Restoration methods for different configuration approaches:
+          </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.6.2.4.2.2.2.1"><span class="term"><span class="guimenu">YaST Control Center</span> modifications</span></dt><dd><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>
+                      Open the YaST Boot Loader module.
+                    </p></li><li class="listitem"><p>
+                      Revert to the previous working boot configuration.
+                    </p></li><li class="listitem"><p>
+                      Save changes and reboot.
+                    </p></li></ol></div></dd><dt id="id-1.6.2.4.2.2.2.2"><span class="term">Direct GRUB 2 configuration restoration</span></dt><dd><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>
+                      Restore from pre-modification backup:
+                    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">cp /etc/default/grub.bak /etc/default/grub</code></pre></div></li><li class="listitem"><p>
+                      Regenerate the GRUB 2 configuration:
+                    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">grub2-mkconfig -o /boot/grub2/grub.cfg</code></pre></div></li></ol></div></dd></dl></div></li></ol></div></div></section><section class="sect3" id="sec-kernel-troubleshoot-system-stability" data-id-title="Managing system stability"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.1.3 </span><span class="title-name">Managing system stability</span></span> <a title="Permalink" class="permalink" href="index.html#sec-kernel-troubleshoot-system-stability">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+            Perform a comprehensive system log analysis:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">journalctl -xe</code></pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">dmesg | tail</code></pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">systemd-analyze verify</code></pre></div></li><li class="step"><p>
+            Systematically remove the recently added kernel parameters.
+          </p></li><li class="step"><p>
+            Create configuration backups before modifications:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">cp /etc/default/grub /etc/default/grub.bak</code></pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">cp /boot/grub2/grub.cfg /boot/grub2/grub.cfg.bak</code></pre></div></li><li class="step"><p>
+            If the issues persist, consider restoring the working configurations from a backup or
+            booting using a previously working system snapshot.
+          </p></li></ol></div></div></section></section></section><section xml:lang="en" class="sect1" id="kernel-boot-parameters-modify-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="index.html#kernel-boot-parameters-modify-more-info">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        Detailed information about the parameters in the GRUB 2 configuration file for SUSE Linux Enterprise is
+        available at
+        <a class="link" href="https://documentation.suse.com/sles/html/SLES-all/cha-grub2.html#sec-grub2-etc-default-grub" target="_blank">https://documentation.suse.com/sles/html/SLES-all/cha-grub2.html#sec-grub2-etc-default-grub</a>.
+      </p></li><li class="listitem"><p>
+        Detailed information about boot parameters for SUSE Linux Enterprise is available at
+        <a class="link" href="https://documentation.suse.com/sles/html/SLES-all/cha-boot-parameters.html" target="_blank">https://documentation.suse.com/sles/html/SLES-all/cha-boot-parameters.html</a>.
+      </p></li></ul></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#kernel-boot-parameters-modify-introduction"><span class="title-number">1 </span><span class="title-name">Introduction to kernel boot parameters</span></a></span></li><li><span class="section"><a href="index.html#kernel-boot-parameters-modify-difference-linuxrc-parameters"><span class="title-number">2 </span><span class="title-name">Difference between kernel boot parameters and linuxrc parameters</span></a></span></li><li><span class="section"><a href="index.html#kernel-boot-parameters-modify-temporary"><span class="title-number">3 </span><span class="title-name">Temporarily modifying kernel boot parameters</span></a></span></li><li><span class="section"><a href="index.html#kernel-boot-parameters-modify-permanent"><span class="title-number">4 </span><span class="title-name">Permanently modifying kernel boot parameters</span></a></span></li><li><span class="section"><a href="index.html#kernel-boot-parameters-modify-troubleshoot"><span class="title-number">5 </span><span class="title-name">Troubleshooting and FAQs</span></a></span></li><li><span class="section"><a href="index.html#kernel-boot-parameters-modify-more-info"><span class="title-number">6 </span><span class="title-name">For more information</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">7 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

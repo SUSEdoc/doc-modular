@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Installation, Configuration and Management of zram on SUSE Linux Micro | SUSE Linux Micro 6.2</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2025-11-04"/>
+<meta name="dcterms.modified" content="2025-11-04"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-25"/>
+<meta name="title" content="Installation, Configuration and Management of zram on …"/>
+<meta name="description" content="Installation, configuration and management of zram, a tool for creating swap and disks in RAM"/>
+<meta name="product-name" content="SUSE Linux Micro"/>
+<meta name="product-number" content="6.2"/>
+<meta name="book-title" content="Installation, Configuration and Management of zram on SUSE Linux Micro"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="jsindelarova@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Micro 6.2"/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="jsindelarova@suse.com"/><meta property="og:title" content="Installation and configuration of zram on SUSE Linux M…"/>
+<meta property="og:description" content="Installation and configuration of zram"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Installation and configuration of zram on SUSE Linux M…"/>
+<meta name="twitter:description" content="Installation and configuration of zram"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Installation and configuration of zram on SUSE Linux Micro | SUSE Linux Micro 6.2",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Installation and configuration of zram on SUSE Linux Micro",
+    "description": "Installation, configuration and management of zram, a tool for creating swap and disks in RAM",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2025-11-04T00:00+02:00",
+    "dateModified": "2025-11-04T00:00+02:00",
+    "datePublished": "2026-08-25T07:09+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Administration"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Micro",
+        "softwareVersion": "6.2",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, AArch64, IBM, POWER"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Installation, Configuration and Management of zram on SUSE Linux Micro</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Installation, Configuration and Management of zram on <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span></div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="zram" data-id-title="Installation, Configuration and Management of zram on SUSE Linux Micro"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Micro</span></span></span> 6.2</div><div><h1 class="title">Installation, Configuration and Management of zram on <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span></h1></div><div class="date"><span class="imprint-label">Publication Date: </span>25 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+              zram is a kernel module that creates a compressed block device in RAM. 
+            </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
+              The article describes how to install and configure zram on <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span>.
+            </p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                It takes approximately 15 minutes to read the article.
+              </p></dd><dt id="id-1.1.12.1.4"><span class="term">GOAL</span></dt><dd><p>
+                You will have block devices configured in RAM.
+              </p></dd><dt id="id-1.1.12.1.5"><span class="term">REQUIREMENTS</span></dt><dd><p>
+                    Running and registred instance of <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span>.
+                  </p></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Installation, Configuration and Management of zram on SUSE Linux Micro" hreflang="en" href="rh-zram.html" target="_blank">Revision History: Installation, Configuration and Management of zram on SUSE Linux Micro</a></div></div></div></div><section xml:lang="en" class="sect1" id="zram-about" data-id-title="What is zram?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">What is zram?</span></span> <a title="Permalink" class="permalink" href="index.html#zram-about">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+  zram is a kernel module that creates a compressed block device in RAM. 
+  The block device can be used as a RAM disk (usually to store temporary 
+  files) or for swap.
+ </p><section class="sect2" id="zram-about-benefits" data-id-title="Benefits of zram"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">Benefits of zram</span></span> <a title="Permalink" class="permalink" href="index.html#zram-about-benefits">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Using zram can have the following benefits:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        <span><em class="emphasis">Fast I/O operations</em></span> — due to the RAM-based
+        nature of zram, block devices provide very fast access to data.
+      </p></li><li class="listitem"><p>
+        <span><em class="emphasis">Memory savings</em></span> — as the data is 
+        compressed using zram, a decent amount of memory can be saved. 
+        Thus, zram uses RAM efficiently and is particularly suitable in
+        environments with low RAM size, for example, embedded systems.
+      </p></li><li class="listitem"><p>
+        <span><em class="emphasis">File system on the block device</em></span> — you 
+        can create file systems on the block devices.
+      </p></li></ul></div></section><section class="sect2" id="zram-about-limitations" data-id-title="Limitations of zram"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Limitations of zram</span></span> <a title="Permalink" class="permalink" href="index.html#zram-about-limitations">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+Hibernation to zram swap is not supported even if you configure a backing device on permanent storage.
+  </p></section></section><section xml:lang="en" class="sect1" id="zram-setup" data-id-title="Setting up zram"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Setting up zram</span></span> <a title="Permalink" class="permalink" href="index.html#zram-setup">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    To properly set up zram on your system, perform the following steps. Details are provided in
+    the subsequent sections.
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Install the <code class="literal">zram-generator</code> utility that creates the 
+        RAM block device according to the provided configuration. For 
+        details on the installation, refer to <a class="xref" href="index.html#zram-installation" title="2.1. Installing zram packages">Section 2.1, “Installing zram packages”</a>.
+      </p></li><li class="step"><p>
+        Prepare the configuration as described in <a class="xref" href="index.html#zram-configuration" title="2.2. Configuration needed for zram">Section 2.2, “Configuration needed for zram”</a>.
+      </p></li><li class="step"><p>
+        Run commands to create new device units as described in <a class="xref" href="index.html#zram-systemd-unit" title="2.3. Creating device units">Section 2.3, “Creating device units”</a>.
+      </p></li><li class="step"><p>
+        Reboot your machine.
+      </p></li><li class="step"><p>
+        Verify that everything works correctly. Run the <code class="command">zramctl</code> command, which
+        should produce an output similar to the following:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zramctl</code>
+
+NAME       ALGORITHM DISKSIZE DATA COMPR TOTAL STREAMS MOUNTPOINT
+/dev/zram1 lzo-rle      96.6M   4K   79B   12K       1 [SWAP]
+/dev/zram0 lzo-rle       483M   4K   79B   12K       1 [SWAP]</pre></div></li></ol></div></div><section xml:lang="en" class="sect2" id="zram-installation" data-id-title="Installing zram packages"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">Installing zram packages</span></span> <a title="Permalink" class="permalink" href="index.html#zram-installation">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    The package <code class="literal">zram-generator</code> is not available by default on <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span>. Install the
+    package as follows:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">transactional-update pkg install zram-generator</code></pre></div><p>
+    After successful installation, reboot the system.
+  </p></section><section xml:lang="en" class="sect2" id="zram-configuration" data-id-title="Configuration needed for zram"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.2 </span><span class="title-name">Configuration needed for zram</span></span> <a title="Permalink" class="permalink" href="index.html#zram-configuration">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    The main configuration  file of zram is <code class="filename">/etc/systemd/zram-generator.conf</code>.
+    However, you can create a directory <code class="filename">/etc/systemd/zram-generator.conf.d/</code>
+    with a set of drop-in files that can override entries in the main configuration file.
+  </p><section class="sect3" id="zram-configuration-main-config" data-id-title="The /etc/systemd/zram-generator.conf file"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">2.2.1 </span><span class="title-name">The <code class="filename">/etc/systemd/zram-generator.conf</code> file</span></span> <a title="Permalink" class="permalink" href="index.html#zram-configuration-main-config">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    The file is not installed along with the <code class="literal">zram-generator</code> package, so you need
+    to write your own. Options to add are described below. An example is provided in <a class="xref" href="index.html#zram-configuration-main-config-example" title="2.2.1.1. An example of /etc/systemd/zram-generator.conf">Section 2.2.1.1, “An example of <code class="filename">/etc/systemd/zram-generator.conf</code>”</a>. 
+  </p><p>
+    Define at least one zram device. Numbering starts at 0, so to define one zram device, add a
+    <code class="literal">[zram0]</code> section to the configuration file.
+  </p><p>
+    You can define the following entries under the zram device section:
+  </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.3.5.3.5.1"><span class="term">host-memory-limit</span></dt><dd><p>
+Specify the maximum RAM size of the host in MiB when a block device can be
+created. If the value is higher, the zram device will not be created. If not set or set to
+<code class="literal">none</code>, there is no limit to the host RAM. 
+        </p></dd><dt id="id-1.3.5.3.5.2"><span class="term">zram-size</span></dt><dd><p>
+Specify the size of the zram device as compared to the host RAM. The default value is
+<code class="literal">zram-size = min(ram / 10, <em class="replaceable">RAM_HARD_LIMIT</em>)</code>. 
+It is a minimum of either, where <code class="literal">ram</code> is the host RAM
+size obtained using <code class="command">MemTotal</code>. 
+        </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">ram</code> is the total amount of the host memory in MB.</p></li><li class="listitem"><p>
+              <code class="literal">ram/10</code> – is the ratio of total host memory that can be used
+              for zram. According to the example, zram can use 10% of the total host memory. We recommend
+              fractions of the host RAM in the range 10 – 50%.
+            </p></li><li class="listitem"><p>
+              <em class="replaceable">RAM_HARD_LIMIT</em> is the maximum amount of RAM in MB
+              that can be used by zram.
+            </p></li><li class="listitem"><p><code class="literal">min()</code> is a function that compares the value of
+            <em class="replaceable">RAM_HARD_LIMIT</em> and the calculated ratio 
+            and selects the lower one. </p></li></ul></div></dd><dt id="id-1.3.5.3.5.3"><span class="term">compression-algorithm</span></dt><dd><p>
+          Specify the algorithm used to compress data in zram. You can use any of the following values:
+        </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+              <code class="literal">deflate</code> — a lossless data compression file format
+            </p></li><li class="listitem"><p>
+              <code class="literal">lz4</code> or <code class="literal">lz4hc</code> — a lossless data compression algorithm that is focused on compression and decompression speed
+            </p></li><li class="listitem"><p>
+              <code class="literal">lzo-rle</code> — a lossless data compression algorithm that is focused on decompression speed
+            </p></li><li class="listitem"><p>
+              <code class="literal">zstd</code> aka Zstandard — a lossless data compression algorithm
+              comparable to DEFLATE with the compression ratio but faster during decompression
+              </p></li><li class="listitem"><p>
+              <code class="literal">842</code> — a data compression algorithm
+            </p></li></ul></div><p>
+If omitted, the kernel default is used (usually LZO-RLE).
+        </p></dd><dt id="id-1.3.5.3.5.4"><span class="term">options</span></dt><dd><p>
+          Specify options for swap or mount options for a RAM disk.        
+If set to <code class="literal">discard</code> or omitted, the unused compressed pages are trimmed during the system
+run. Such a solution provides efficient zram management. To override the default
+(<code class="literal">discard</code>), leave the value empty:
+        </p><div class="verbatim-wrap"><pre class="screen">options =</pre></div></dd><dt id="id-1.3.5.3.5.5"><span class="term">writeback-device</span></dt><dd><p>
+         Specify a device where to store incompressible pages. These pages are then removed from zram. 
+        </p></dd><dt id="id-1.3.5.3.5.6"><span class="term">fs-type</span></dt><dd><p>
+          If the device is used as a disk, specify the file system to be used there. For example, <code class="literal">ext4</code>.
+        </p></dd><dt id="id-1.3.5.3.5.7"><span class="term">mount-point</span></dt><dd><p>
+          Specify a directory where to mount the file system. This option is not used when the zram
+          device is used for swap.
+        </p></dd></dl></div><section class="sect4" id="zram-configuration-main-config-example" data-id-title="An example of /etc/systemd/zram-generator.conf"><div class="titlepage"><div><div><div class="title-container"><h5 class="title"><span class="title-number-name"><span class="title-number">2.2.1.1 </span><span class="title-name">An example of <code class="filename">/etc/systemd/zram-generator.conf</code></span></span> <a title="Permalink" class="permalink" href="index.html#zram-configuration-main-config-example">#</a></h5><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The following example creates two block devices in RAM — <code class="literal">zram0</code> for swap
+      and <code class="literal">zram1</code> with the ext4 file system. If the machine has over 9 GB of RAM,
+      <code class="literal">zram0</code> will not be created. Each block device will allocate up to 2 GB of RAM.
+    </p><div class="verbatim-wrap"><pre class="screen">[zram0]
+host-memory-limit = 9048      
+zram-size = min(ram / 10, 2048)    
+compression-algorithm = lzo-rle    
+options = discard      
+writeback-device = /dev/zvol/tarta-zoot/swap-writeback
+    
+[zram1]      
+zram-size = ram / 10
+fs-type = ext4
+mount-point = /run/compressed-mount-point</pre></div></section></section></section><section xml:lang="en" class="sect2" id="zram-systemd-unit" data-id-title="Creating device units"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.3 </span><span class="title-name">Creating device units</span></span> <a title="Permalink" class="permalink" href="index.html#zram-systemd-unit">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    After you prepare the configuration, create and start the devices. To do this, 
+    see the procedure below:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Create the zram device units by running the command:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">systemctl daemon-reload</code></pre></div></li><li class="step"><p>
+        Start the device:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">systemctl start <em class="replaceable">DEVICE_NAME</em></code>
+<em class="replaceable">DEVICE_NAME</em> is the name you configured in
+<code class="filename">/etc/systemd/zram-generator.conf</code> and it is in the format <code class="filename">/dev/zramN</code></pre></div></li><li class="step"><p>
+        To verify that modules were started, run the following command for each device:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">systemctl status <em class="replaceable">DEVICE_NAME</em></code></pre></div></li></ol></div></div></section></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#zram-about"><span class="title-number">1 </span><span class="title-name">What is zram?</span></a></span></li><li><span class="section"><a href="index.html#zram-setup"><span class="title-number">2 </span><span class="title-name">Setting up zram</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">3 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

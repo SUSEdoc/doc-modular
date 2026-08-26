@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Setting Up Virtual Host Metrics Daemon on SUSE Linux Micro | SUSE Linux Micro 6.0</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2025-11-04"/>
+<meta name="dcterms.modified" content="2025-11-04"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-25"/>
+<meta name="title" content="Setting Up Virtual Host Metrics Daemon on SUSE Linux M…"/>
+<meta name="description" content="vhostmd is a tool that collects metrics from a virtual machine host and provides these metrics to virtual machines running on that host."/>
+<meta name="product-name" content="SUSE Linux Micro"/>
+<meta name="product-number" content="6.0"/>
+<meta name="book-title" content="Setting Up Virtual Host Metrics Daemon on SUSE Linux Micro"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="jsindelarova@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Micro 6.2"/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="jsindelarova@suse.com"/><meta property="og:title" content="Setting Up Virtual Host Metrics Daemon"/>
+<meta property="og:description" content="vhostmd is a tool for collecting metrics"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Setting Up Virtual Host Metrics Daemon"/>
+<meta name="twitter:description" content="vhostmd is a tool for collecting metrics"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Setting Up Virtual Host Metrics Daemon | SUSE Linux Micro 6.0",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Setting Up Virtual Host Metrics Daemon",
+    "description": "vhostmd is a tool that collects metrics from a virtual machine host and provides these metrics to virtual machines running on that host.",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2025-11-04T00:00+02:00",
+    "dateModified": "2025-11-04T00:00+02:00",
+    "datePublished": "2026-08-25T07:07+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Virtualization"
+      },
+      {
+        "@type": "Thing",
+        "name": "Monitoring"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Micro",
+        "softwareVersion": "6.0",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER, AArch64, IBM"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Setting Up Virtual Host Metrics Daemon on SUSE Linux Micro</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Setting Up Virtual Host Metrics Daemon on <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span></div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="vhostmd" data-id-title="Setting Up Virtual Host Metrics Daemon on SUSE Linux Micro"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Micro</span></span></span> 6.0</div><div><h1 class="title">Setting Up Virtual Host Metrics Daemon on <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span></h1></div><div class="date"><span class="imprint-label">Publication Date: </span>25 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+              <code class="literal">vhostmd</code> is a tool that collects metrics from a virtual machine host
+              and can provide these metrics to the virtual machines running on that host.
+            </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
+              The article describes how to install and configure <code class="literal">vhostmd</code> to
+              enable collecting metrics.
+            </p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                It takes approximately 15 minutes to read the article.
+              </p></dd><dt id="id-1.1.12.1.4"><span class="term">GOAL</span></dt><dd><p>
+                You will have the <code class="literal">vhostmd</code> tool running and collecting metrics.
+              </p></dd><dt id="id-1.1.12.1.5"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                    a running instance of <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span>
+                  </p></li><li class="listitem"><p>
+                    virtual machines running on that instance
+                  </p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Setting Up Virtual Host Metrics Daemon on SUSE Linux Micro" hreflang="en" href="rh-vhostmd.html" target="_blank">Revision History: Setting Up Virtual Host Metrics Daemon on SUSE Linux Micro</a></div></div></div></div><section xml:lang="en" class="sect1" id="vhostmd-about" data-id-title="What is a virtual host metrics daemon aka vhostmd?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">What is a virtual host metrics daemon aka <code class="literal">vhostmd</code>?</span></span> <a title="Permalink" class="permalink" href="index.html#vhostmd-about">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+<code class="literal">vhostmd</code> is a daemon that runs in a host environment and provides a metrics
+communication channel between the host and guest machines. The daemon provides the guest 
+machine administrator with a limited set of host resource usage data (usually in read-only mode), 
+to help analyze issues with the guest machine.
+</p><p>
+  <code class="literal">vhostdmd</code> periodically writes metrics to a disk. The metrics to be 
+  collected, along with the
+  frequency and storage location of the data, are configurable parameters. 
+</p></section><section xml:lang="en" class="sect1" id="vhostmd-installation" data-id-title="Getting vhostmd"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Getting <code class="literal">vhostmd</code></span></span> <a title="Permalink" class="permalink" href="index.html#vhostmd-installation">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    By default, <code class="literal">vhostmd</code> is not included in the delivered 
+    images. Therefore, you must install it before using it:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Install the daemon by running:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">transactional-update pkg install vhostmd</code></pre></div></li><li class="step"><p>
+        Reboot your system to switch to the new snapshot.
+      </p></li><li class="step"><p>
+        Start the daemon by running:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">vhostmd</code> <em class="replaceable">OPTIONS</em></pre></div><p>
+        You can use the following options to modify the command behavior:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            <code class="literal">-v</code> — for a verbose output
+          </p></li><li class="listitem"><p><code class="literal">--connect <em class="replaceable">URI</em></code>—to pass the URI of the
+            <code class="systemitem">libvirt</code> daemon to establish connections to the daemon</p></li><li class="listitem"><p>
+            <code class="literal">-f <em class="replaceable">FILE_PATH</em></code> — to pass an alternative
+            configuration file. For details regarding configuration, refer to <a class="xref" href="index.html#vhostmd-configuration" title="4. Configuration of vhostmd">Section 4, “Configuration of <code class="literal">vhostmd</code>”</a>. 
+          </p></li><li class="listitem"><p>
+            <code class="literal">-p <em class="replaceable">PID_FILE</em></code> — to create an alternative
+            PID file. The default is <code class="filename">/var/run/vhostmd.pid</code>.
+          </p></li><li class="listitem"><p>
+            <code class="literal">-u <em class="replaceable">USERNAME</em></code> — to use a non-privileged user
+          </p></li></ul></div></li></ol></div></div><p>
+    You can also run <code class="literal">vhostmd</code> as <code class="systemitem">systemd</code> service:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">systemctl enable --now vhostmd</code></pre></div><div id="id-1.3.6" data-id-title="Service restart needed after configuration changes" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Service restart needed after configuration changes</div><p>
+      Whenever you perform changes to configuration as described in <a class="xref" href="index.html#vhostmd-configuration" title="4. Configuration of vhostmd">Section 4, “Configuration of <code class="literal">vhostmd</code>”</a>, restart the <code class="literal">vhostmd</code> service as follows:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">systemctl restart vhostmd</code></pre></div></div></section><section xml:lang="en" class="sect1" id="vhostmd-providing-info-to-vm" data-id-title="Providing collected metrics to a virtual machine"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Providing collected metrics to a virtual machine</span></span> <a title="Permalink" class="permalink" href="index.html#vhostmd-providing-info-to-vm">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    You can make the collected metrics visible to particular virtual machines for further use or
+    just for reading. There are two ways to achieve this. You can either attach the 
+    metrics disk using the <code class="command">virsh</code> command or adjust the domain configuration.
+  </p><p>
+    To attach the metrics disk in a read-only mode, run <code class="command">virsh</code> as follows:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">virsh attach-disk <em class="replaceable">VIRTUAL_MACHINE</em> \ 
+  <em class="replaceable">PATH_TO_METRICS_DISC</em> --driver tap \
+  --subdriver aio --type disk --mode readonly</code></pre></div><p>
+    To change the domain configuration, proceed as follows:
+   </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>Run the command</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">virsh edit
+   <em class="replaceable">GUEST_NAME</em></code></pre></div></li><li class="step"><p>
+      Update the <code class="literal">&lt;devices&gt;</code> section by adding the following snippet:
+    </p><div class="verbatim-wrap"><pre class="screen">&lt;disk type='block' device='disk'&gt;
+  &lt;source dev='/dev/shm/vhostmd0'/&gt;
+  &lt;target dev='hdb' bus='ide'/&gt;
+  &lt;readonly/&gt;
+&lt;/disk&gt;</pre></div><p>
+      Adjust the <code class="literal">dev</code> and <code class="literal">dbus</code> values of the target.
+    </p></li></ol></div></div></section><section xml:lang="en" class="sect1" id="vhostmd-configuration" data-id-title="Configuration of vhostmd"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Configuration of <code class="literal">vhostmd</code></span></span> <a title="Permalink" class="permalink" href="index.html#vhostmd-configuration">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    The default configuration file of <code class="literal">vhostmd</code> is located in
+    <code class="filename">/etc/vhostmd/vhostmd.conf</code>. You can adjust this file to suit your needs. The configuration file is an XML file that must
+    include the <code class="literal">&lt;vhostmd&gt;</code> element. <code class="literal">&lt;vhostmd&gt;</code> then
+    includes <code class="literal">&lt;globals&gt;</code> and <code class="literal">&lt;metrics&gt;</code> that are
+    described in the following sections. Use the default configuration file as a reference for
+    custom changes.
+  </p><section class="sect2" id="vhostmd-configuration-globals" data-id-title="The globals element"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.1 </span><span class="title-name">The <code class="literal">&lt;globals&gt;</code> element</span></span> <a title="Permalink" class="permalink" href="index.html#vhostmd-configuration-globals">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The <code class="literal">&lt;globals&gt;</code> element defines the disk storage location, data update
+     frequency and the method of transporting data
+     to guest machines. It contains the following elements:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.5.3.3.1"><span class="term"><code class="literal">&lt;disk&gt;</code></span></dt><dd><p>
+The element is used to define the path of the disk where metrics data is stored and also the size
+of the disk. It may contain the following elements:
+        </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+              <code class="literal">&lt;name&gt;</code> — defines the name of the disk
+            </p></li><li class="listitem"><p>
+              <code class="literal">&lt;path&gt;</code> — an absolute path where the disk is mounted
+            </p></li><li class="listitem"><p>
+              <code class="literal">&lt;size&gt;</code> — using the <code class="literal">unit</code> attribute,
+              specify the maximum size of the metrics. Use <code class="literal">k</code> for KB, 
+              <code class="literal">m</code> for MB.
+            </p></li></ul></div></dd><dt id="id-1.5.3.3.2"><span class="term"><code class="literal">&lt;update_period&gt;</code></span></dt><dd><p>
+          Defines how often the metrics are updated. The value is in seconds.
+        </p></dd><dt id="id-1.5.3.3.3"><span class="term"><code class="literal">&lt;transport&gt;</code></span></dt><dd><p>
+          Specifies how the metrics are transported to guest machines. In the case of 
+          <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span>, use the default of <code class="literal">virtio</code>.
+        </p></dd><dt id="id-1.5.3.3.4"><span class="term"><code class="literal">&lt;virtio&gt;</code></span></dt><dd><p>
+Here you can use the following elements:
+        </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+              <code class="literal">&lt;max_channels&gt;</code>—specifies the maximum number <code class="literal">virtion</code> can use
+              between the host and guest systems.
+            </p></li><li class="listitem"><p>
+              <code class="literal">&lt;expiration_time&gt;</code>—defines the time interval after which a
+              <code class="literal">virtio</code> channel of a virtual machine is closed when being idle. The default value is
+              three times the <code class="literal">&lt;update_period&gt;</code>.
+            </p></li></ul></div></dd></dl></div></section><section class="sect2" id="vhostmd-configuration-metrics" data-id-title="The metrics element"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.2 </span><span class="title-name">The <code class="literal">&lt;metrics&gt;</code> element</span></span> <a title="Permalink" class="permalink" href="index.html#vhostmd-configuration-metrics">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The <code class="literal">&lt;metrics&gt;</code> element contains a list of metrics to be collected. Each
+      metric has two attributes:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.5.4.3.1"><span class="term"><code class="literal">type</code></span></dt><dd><p>
+Describes the metrics value data type. Possible values are the following: <code class="literal">int32</code>,
+<code class="literal">uint32</code>, <code class="literal">int64</code>, <code class="literal">uint64</code>,
+<code class="literal">real32</code>, <code class="literal">real64</code>, <code class="literal">string</code>,
+<code class="literal">group</code> and <code class="literal">xml</code>.
+          </p><p>
+           Use <code class="literal">group</code> when a metric returns several values.
+           <code class="literal">xml</code> is a versatile form when the metric returns a valid XML.
+          </p></dd><dt id="id-1.5.4.3.2"><span class="term"><code class="literal">context</code></span></dt><dd><p>
+    Defines where the particular metric is collected. Possible values are:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        <code class="literal">host</code> for metrics collected on the host machine
+      </p></li><li class="listitem"><p>
+        <code class="literal">vm</code> for metrics collected on the guest machine
+      </p></li></ul></div></dd></dl></div><p>
+      Each metric must have a unique name and a command to run to record the metrics. The following
+      list describes possible elements to define a metric:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.5.4.5.1"><span class="term"><code class="literal">&lt;name&gt;</code></span></dt><dd><p>
+Defines the unique variable name. If the metric is collected on a virtual machine, you can use the
+following values here: <code class="literal">NAME</code>, <code class="literal">ID</code> and <code class="literal">UUID</code>.
+Those values are then replaced with the actual ones of the virtual machine currently being checked.
+          </p></dd><dt id="id-1.5.4.5.2"><span class="term"><code class="literal">&lt;action&gt;</code></span></dt><dd><p>
+Specifies a command or script to run to collect a metric. For example, 
+to gather total CPU time, use:
+  </p><div class="verbatim-wrap"><pre class="screen">&lt;action&gt;virsh dominfo NAME | sed 's/: */:/' | \
+    gawk -F: '/CPU time/ {print $2;}'&lt;action&gt;</pre></div></dd><dt id="id-1.5.4.5.3"><span class="term"><code class="literal">&lt;variable&gt;</code></span></dt><dd><p>
+            if an action retuns a group of values, define variables that store particular data. The
+            element needs to have the following attributes defined:
+          </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                <code class="literal">name</code> — specify the name of a variable
+              </p></li><li class="listitem"><p>
+                <code class="literal">type</code> — specify the data type of the variable
+              </p></li></ul></div></dd></dl></div></section></section><section xml:lang="en" class="sect1" id="vhostmd-data-format" data-id-title="How are the collected metrics stored?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">How are the collected metrics stored?</span></span> <a title="Permalink" class="permalink" href="index.html#vhostmd-data-format">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    <code class="literal">vhostmd</code> stores the collected metrics data on the metrics disk in a raw
+    format. The disk contains a 32-byte header followed by the metrics data in XML format.
+  </p><section class="sect2" id="vhostmd-data-format-xml" data-id-title="Metrics XML format"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.1 </span><span class="title-name">Metrics XML format</span></span> <a title="Permalink" class="permalink" href="index.html#vhostmd-data-format-xml">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+  The collected metrics results are similar to the configured metrics definition. The <code class="literal">&lt;metric&gt;</code>
+  element can have the following attributes:
+</p><div class="variablelist"><dl class="variablelist"><dt id="id-1.6.3.3.1"><span class="term"><code class="literal">type</code></span></dt><dd><p>
+        Denotes the data type of the particular metric, for example, <code class="literal">string</code>.
+      </p></dd><dt id="id-1.6.3.3.2"><span class="term"><code class="literal">context</code></span></dt><dd><p>
+      Identifies whether the metric is collected on the host (<code class="literal">host</code>) or on a virtual machine (<code class="literal">vm</code>).
+    </p></dd><dt id="id-1.6.3.3.3"><span class="term"><code class="literal">id</code></span></dt><dd><p>
+        Used in the <code class="literal">vm</code> context. Conveys the ID number of the virtual machine.
+      </p></dd><dt id="id-1.6.3.3.4"><span class="term"><code class="literal">uuid</code></span></dt><dd><p>
+        Used in the <code class="literal">vm</code> context. Conveys the Universally Unique Identifier of the virtual machine.
+      </p></dd></dl></div><p>
+  The <code class="literal">&lt;metric&gt;</code> element contains the following elements:
+</p><div class="variablelist"><dl class="variablelist"><dt id="id-1.6.3.5.1"><span class="term"><code class="literal">&lt;name&gt;</code></span></dt><dd><p>
+        Conveys the metric name.
+      </p></dd><dt id="id-1.6.3.5.2"><span class="term"><code class="literal">&lt;value&gt;</code></span></dt><dd><p>
+        Conveys the metrics actual value.
+      </p></dd></dl></div><div id="id-1.6.3.6" data-id-title="No multiple values within one metric" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: No multiple values within one metric</div><p>
+    When the <code class="literal">group</code> type of a metric has been configured, each configured <code class="literal">&lt;variable&gt;</code> is stored
+    as a separate metric in the result. For example, the following configuration snippet:
+  </p><div class="verbatim-wrap"><pre class="screen">&lt;metric type="group" context="host"&gt;
+  &lt;name&gt;PageRates&lt;/name&gt;
+  &lt;action&gt;pagerate.pl&lt;/action&gt;
+  &lt;variable name="PageInRate" type="uint64"/&gt;
+  &lt;variable name="PageFaultRate" type="uint64"/&gt;
+&lt;/metric&gt;</pre></div><p>
+  Results in the following snippet:
+</p><div class="verbatim-wrap"><pre class="screen">&lt;metric type='uint64' context='host'&gt;
+  &lt;name&gt;PageInRate&lt;/name&gt;
+  &lt;value&gt;0.000000&lt;/value&gt;
+&lt;/metric&gt;
+&lt;metric type='uint64' context='host'&gt;
+  &lt;name&gt;PageFaultRate&lt;/name&gt;
+  &lt;value&gt;0.000000&lt;/value&gt;
+&lt;/metric&gt;</pre></div></div></section></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#vhostmd-about"><span class="title-number">1 </span><span class="title-name">What is a virtual host metrics daemon aka <code class="literal">vhostmd</code>?</span></a></span></li><li><span class="section"><a href="index.html#vhostmd-installation"><span class="title-number">2 </span><span class="title-name">Getting <code class="literal">vhostmd</code></span></a></span></li><li><span class="section"><a href="index.html#vhostmd-providing-info-to-vm"><span class="title-number">3 </span><span class="title-name">Providing collected metrics to a virtual machine</span></a></span></li><li><span class="section"><a href="index.html#vhostmd-configuration"><span class="title-number">4 </span><span class="title-name">Configuration of <code class="literal">vhostmd</code></span></a></span></li><li><span class="section"><a href="index.html#vhostmd-data-format"><span class="title-number">5 </span><span class="title-name">How are the collected metrics stored?</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">6 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

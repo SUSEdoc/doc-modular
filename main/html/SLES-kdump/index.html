@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Kdump Configuration and Troubleshooting Guide | SUSE Linux Enterprise Server 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2026-01-12"/>
+<meta name="dcterms.modified" content="2026-01-12"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-26"/>
+<meta name="title" content="Kdump Configuration and Troubleshooting Guide | SUSE L…"/>
+<meta name="description" content="Learn how to install, configure and troubleshoot Kdump on standard and immutable SUSE Linux systems to capture memory snapshots during a kernel crash"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="Kdump Configuration and Troubleshooting Guide"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="amrita.sakthivel@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="amrita.sathivel@suse.com"/><meta property="og:title" content="SUSE Linux Kdump Setup and Troubleshooting Guide"/>
+<meta property="og:description" content="Configure and troubleshoot Kdump on SUSE Linux"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SUSE Linux Kdump Setup and Troubleshooting Guide"/>
+<meta name="twitter:description" content="Configure and troubleshoot Kdump on SUSE Linux"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "SUSE Linux Kdump Setup and Troubleshooting Guide | SUSE Linux Enterprise Server 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "SUSE Linux Kdump Setup and Troubleshooting Guide",
+    "description": "Learn how to install, configure and troubleshoot Kdump on standard and immutable SUSE Linux systems to capture memory snapshots during a kernel crash",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2026-01-12T00:00+02:00",
+    "dateModified": "2026-01-12T00:00+02:00",
+    "datePublished": "2026-08-26T09:48+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Administration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Security"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER, IBM Z, AArch64"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Kdump Configuration and Troubleshooting Guide</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Kdump Configuration and Troubleshooting Guide</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="ansible" data-id-title="Kdump Configuration and Troubleshooting Guide"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span></span> 16.1</div><div><h1 class="title">Kdump Configuration and Troubleshooting Guide</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>26 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+                Kdump is a Linux kernel crash dumping mechanism that captures
+                a snapshot of system memory (a vmcore file) when the Linux kernel
+                encounters a fatal error (kernel panic).
+              </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
+                Use Kdump to collect diagnostic data for kernel crash analysis and root-cause
+                investigation. Correctly setting up Kdump and obtaining the memory dump may
+                help SUSE support or kernel developers to debug a potential kernel crash.
+</p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
+The average reading time of this article is approximately 40 minutes.
+              </p></dd><dt id="id-1.1.12.1.4"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+<span><em class="emphasis">Linux fundamentals:</em></span> Understanding basic Linux commands, file permissions, directory structures
+and use of the command line.
+                  </p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Kdump Configuration and Troubleshooting Guide" hreflang="en" href="rh-ansible.html" target="_blank">Revision History: Kdump Configuration and Troubleshooting Guide</a></div></div></div></div><section xml:lang="en" class="sect1" id="about-kdump" data-id-title="What is Kdump and how does it work?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">What is Kdump and how does it work?</span></span> <a title="Permalink" class="permalink" href="index.html#about-kdump">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+Kdump is a kernel crash dumping mechanism that captures the system’s memory state into a vmcore file when
+a system crash occurs. A vmcore file is a snapshot of your computer's system memory (RAM) taken at the exact moment the Linux kernel crashed.
+      </p></div></div></div></div><section class="sect2" id="important-kdump" data-id-title="Why is Kdump critical for system crash debugging?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">Why is Kdump critical for system crash debugging?</span></span> <a title="Permalink" class="permalink" href="index.html#important-kdump">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>The primary importance of Kdump lies in its ability to capture a snapshot of a system's memory at the exact moment of a critical failure.</p><p> When a Linux kernel experiences a fatal error, syslog or journald usually fail along with it, often leaving no record of what went wrong. Kdump bypasses this limitation by using Kexec to boot a secondary capture kernel in a reserved slice of RAM.
+ The unstable crashed system is replaced with a freshly started and stable capture kernel.</p><p> Without this tool, administrators are often left with nothing but a blank screen or a frozen console, making it nearly impossible to diagnose the root cause of intermittent or silent system crashes.</p></section><section class="sect2" id="dual-kernel-kdump" data-id-title="Understanding the dual-kernel model"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Understanding the dual-kernel model</span></span> <a title="Permalink" class="permalink" href="index.html#dual-kernel-kdump">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>Kdump uses a second isolated kernel referred to as the capture or crash kernel to handle a system crash safely. When the main system kernel fails, you cannot trust it to write its own crash logs to disk— because the kernel memory might be corrupted and the kernel itself is no longer reliable. The dual-kernel approach solves this by jumping into a completely different environment.</p><p>The model relies on two distinct kernels residing in memory simultaneously:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span><span class="emphasis"><strong>The production (primary) kernel</strong></span></span> is the kernel you use every day. It runs your applications and services.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>The capture (crash) kernel</strong></span></span> is a second copy of the kernel loaded in a small reserved area of RAM. It only starts when the primary kernel panics. Alongside the crash kernel, a special-purpose <code class="filename">initramfs</code> image is loaded to the reserved RAM.
+It is built by the Kdump tool and includes all the drivers, settings, and programs to store the vmcore file.
+    </p></li></ul></div></section><section class="sect2" id="kexec-kdump" data-id-title="What is Kexec and how does it boot the crash kernel?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.3 </span><span class="title-name">What is Kexec and how does it boot the crash kernel? </span></span> <a title="Permalink" class="permalink" href="index.html#kexec-kdump">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>Kexec is a system call that functions as a software-defined boot loader, allowing a running kernel to bypass the hardware BIOS/UEFI stage and directly hand over control to a new kernel.
+      By loading the secondary kernel's image and parameters into memory while the system is still active, Kexec performs a warm boot that preserves the state of RAM and significantly reduces downtime.
+      This mechanism is the backbone of the Kdump dual-kernel model, as it provides a reliable way to jump from a crashing production environment into a clean recovery environment for data capture.</p><p>The most important component of Kexec is the <code class="command">kexec</code> command. You can load a kernel with Kexec in two ways:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Load the kernel to the address space of a production kernel for a regular reboot:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  kexec -l <em class="replaceable">KERNEL_IMAGE</em></pre></div><p>You can later boot to this kernel with the command <code class="command">kexec -e</code>.
+Instead of using Kexec, you can directly use a program called <code class="filename">kexec-bootloader</code>. It finds the default kernel,
+initrd and command-line options from the boot loader configuration and passes everything to Kexec to load the default kernel properly.
+</p></li><li class="listitem"><p>Load the kernel to a reserved area of memory:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  kexec -p <em class="replaceable">KERNEL_IMAGE</em></pre></div><p>This kernel is booted automatically when the system crashes.This is what Kdump uses to load the capture kernel. </p></li></ul></div></section><section class="sect2" id="vmcore-file-kdump" data-id-title="What data is captured in a Linux vmcore file?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.4 </span><span class="title-name">What data is captured in a Linux vmcore file?</span></span> <a title="Permalink" class="permalink" href="index.html#vmcore-file-kdump">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+A vmcore file is a snapshot of your system's physical memory (RAM) taken at the exact moment the Linux kernel crashed.
+When kdump is set up on a system, the kdump service loads the capture kernel and <code class="filename">initramfs</code> on system boot, using the <code class="literal">kexec</code> program, into a pre-reserved area of RAM— the crash kernel area.
+If at some point the system crashes, the capture kernel is started. Its memory is restricted to the pre-reserved crash kernel area, so none of the memory used by the crashed production kernel is overwritten.
+The job of the capture kernel and <code class="filename">initramfs</code> is to save the contents of the production kernel's memory into a vmcore file.
+       </p><p>The vmcore file is a snapshot of the RAM and includes:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span><span class="emphasis"><strong>The Kernel state:</strong></span></span> All active kernel data structures, global variables and the call stack, showing what the CPU was executing at the time of the crash.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>Process information:</strong></span></span> A list of every process that was running, including their individual stacks and registers.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>Memory pages:</strong></span></span> Depending on your settings, it can contain the actual data held in RAM by applications.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>VMCOREINFO:</strong></span></span> special section that tells analysis tools how the kernel's memory was laid out so they can make sense of the raw data.</p></li></ul></div></section></section><section xml:lang="en" class="sect1" id="configure-kdump" data-id-title="Installing and configuring Kdump"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Installing and configuring Kdump</span></span> <a title="Permalink" class="permalink" href="index.html#configure-kdump">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>This section describes how to install and configure Kdump.</p></div></div></div></div><p>To install Kdump on the immutable system, run the following command and reboot:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  <code class="command">transactional-update pkg install kdump</code></pre></div><p>To install Kdump<span class="phrase"> on the mutable system</span>, run the following command:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  <code class="command">zypper install kdump</code></pre></div><p>This command downloads the following packages:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="command">kdump</code></p></li><li class="listitem"><p><code class="command">kexec-tools</code></p></li><li class="listitem"><p><code class="command">makedumpfile</code></p></li></ul></div><p>To store the vmcore file remotely, you can install any of the following recommended packages:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Install the <span class="package">cifs-utils</span> package to store on Samba stores. </p></li><li class="listitem"><p>Install the <span class="package">lftp</span> package to store on FTP / SFTP servers. </p></li><li class="listitem"><p>Install the <span class="package">nfs-client</span> package to store on NFS servers.</p></li><li class="listitem"><p>Install the <span class="package">openssh-clients</span> package to store over SSH.</p></li></ul></div><div id="id-1.3.10" data-id-title="Managing Kdump and GRUB configuration conflicts" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Managing Kdump and GRUB configuration conflicts</div><p>The <code class="literal">kdump-commandline</code> service automatically manages your crash memory allocation. It will overwrite any manual <code class="literal">crashkernel=</code> entries in <code class="literal">GRUB_CMDLINE_LINUX_DEFAULT</code> inside <code class="filename">/etc/default/grub</code> unless the automation is explicitly disabled.
+  To prevent this behavior, modify the <code class="literal">KDUMP_UPDATE_BOOTLOADER</code> variable to <code class="literal">false</code>.</p><p><span><span class="emphasis"><strong>How do you stop Kdump from overwriting GRUB configurations?</strong></span></span></p><p>To keep your manual <code class="literal">crashkernel=</code> settings from being erased, update your configuration with these rules:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Set <code class="literal">KDUMP_UPDATE_BOOTLOADER="false"</code> to disable automatic updates.</p></li><li class="listitem"><p>Keep all <code class="literal">crashkernel=</code> parameters out of the <code class="literal">GRUB_CMDLINE_LINUX</code> line.</p></li><li class="listitem"><p>Manual configurations belong exclusively in <code class="literal">GRUB_CMDLINE_LINUX_DEFAULT</code>.</p></li></ul></div><p><span><span class="emphasis"><strong>Why should you avoid adding crash kernel settings to <code class="literal">GRUB_CMDLINE_LINUX</code>?</strong></span></span></p><p>Adding <code class="literal">crashkernel=</code> to <code class="literal">GRUB_CMDLINE_LINUX</code> causes system conflicts.</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          Settings in <code class="literal">GRUB_CMDLINE_LINUX</code> apply globally to all boot targets.
+      </p></li><li class="listitem"><p>
+          This includes the rescue system, which does not run Kdump.
+      </p></li><li class="listitem"><p>
+          The <code class="literal">kdump-commandline</code> service never alters this specific line.
+      </p></li><li class="listitem"><p>
+          Leaving values here creates direct conflicts with automated service settings.
+      </p></li></ul></div></div><section class="sect2" id="kdump-non-transact" data-id-title="Configuring Kdump for non-immutable systems"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">Configuring Kdump for non-immutable systems</span></span> <a title="Permalink" class="permalink" href="index.html#kdump-non-transact">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>To use Kdump, a specific amount of system memory (RAM)—often referred to as crash kernel memory- must be permanently reserved at boot time for the capture kernel and initramfs.
+    The amount of memory to reserve is specified using the <code class="literal">crashkernel= kernel</code> command-line parameter. Kdump includes <code class="literal">kdumptool calibrate</code> and <code class="literal">kdumptool commandline</code> to calculate exactly how much memory needs to be reserved.</p><p>When the <code class="command"> systemctl enable --now kdump</code> command triggers the main <code class="literal">kdump.service</code>, it automatically calls a helper service named <code class="literal">kdump-commandline.service</code> before attempting to load the kernel.
+    This helper service verifies if the current kernel command line contains the expected <code class="literal">crashkernel= </code> options.
+   The options are:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Fixed memory allocation (e.g. ,<code class="literal">256M</code>) reserves a strict hardcoded amount of RAM.</p></li><li class="listitem"><p>Range-based allocation (e.g. <code class="literal">2G-8G:192M</code> ) dynamically scales the reserved memory based on the total RAM installed in the system.</p></li><li class="listitem"><p>Automatic allocation ( <code class="literal">auto</code>) where the kernel automatically calculates the required memory based on system architecture.</p></li><li class="listitem"><p>High/low split (e.g. <code class="literal">512M,high crashkernel=128M,low</code>) allocates memory across different addressable zones specifically to accommodate hardware drivers on large enterprise systems.</p></li></ul></div><p>If the options are missing, the helper service automatically modifies the boot loader configuration to contain the crash kernel options to be applied on the next boot.</p><p>Before attempting to load, the <code class="literal">kdump.service</code>: </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Starts the <code class="literal">kdump-commandline.service</code> </p></li><li class="listitem"><p>Updates the boot loader</p></li><li class="listitem"><p>Builds the capture initramfs </p></li></ul></div><p>To verify that the service successfully checked and updated your kernel boot options, inspect the system logs:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  journalctl -u kdump-commandline.service</pre></div><p>Expected output:</p><div class="verbatim-wrap"><pre class="screen">  Started Check and update kdump options on the kernel command line.
+  Kdump expects these crashkernel= values on the kernel command line:
+  crashkernel=72M,low crashkernel=443M,high
+  (based on the output of 'kdumptool calibrate')
+  No crashkernel= found in /proc/cmdline. Kdump can't be started.
+  Updated the command line options in the bootloader.
+  Changes will take effect on next boot.</pre></div><p>The boot loader has been updated. Reboot the machine to apply the changes and start Kdump.</p><p><span><span class="emphasis"><strong>Other configurations:</strong></span></span></p><p>The <code class="filename">/etc/sysconfig/kdump</code> file is the primary configuration file for managing the Kdump service.
+  It includes essential options such as:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p> <code class="literal">KDUMP_CRASHKERNEL</code> for defining the reserved crash memory size</p></li><li class="listitem"><p> <code class="literal">KDUMP_VERBOSE</code> for increasing debugging log levels</p></li><li class="listitem"><p> <code class="literal">KDUMP_SAVEDIR</code> for specifying the core dump (vmcore) storage location </p></li></ul></div><div class="example" id="id-1.3.11.16" data-id-title="Contents of a /etc/sysconfig/kdump file"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 1: </span><span class="title-name">Contents of a <code class="filename">/etc/sysconfig/kdump</code> file  </span></span><a title="Permalink" class="permalink" href="index.html#id-1.3.11.16">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">cat /etc/sysconfig/kdump
+  ## Path:        System/Kernel/Kdump
+  ## Description: Crash Dump Configuration
+
+  ## Type:        string
+  ## Default:     "auto"
+  ## ServiceRestart:      kdump
+  #
+  # KDUMP_CRASHKERNEL is used by "kdumptool commandline" to determine
+  # the value of the kernel "crashkernel=" command-line options.
+  #
+  # Possible values are "auto" or one or more "crashkernel=..." values.
+  #
+  # KDUMP_CRASHKERNEL="auto" makes "kdumptool commandline" use the default
+  # values as proposed by "kdumptool calibrate".
+  #
+  # If the default values are not adequate you may provide a manual setting,
+  # e.g., KDUMP_CRASHKERNEL="crashkernel=72M,low crashkernel=300M,high"
+  #
+  # See also: kdump(5).
+  #
+  KDUMP_CRASHKERNEL="auto"
+
+
+  ## Type:        boolean
+  ## Default:     "true"
+  ## ServiceRestart:      kdump
+  #
+  # When KDUMP_UPDATE_BOOTLOADER is set to "true" "kdumptool commandline -c -U"
+  # called from the kdump-commandline.service  will check if the expected kernel
+  # command-line options are present and update the bootloader using *pbl*(8) if
+  # not.
+  #
+  # Also the kdump options are removed from the command line when kdump is
+  # uninstalled.
+  #
+  # When set to false "kdumptool commandline -c -U" will only check the options
+  # and report possible warnings but bootloader will not be updated.
+  #
+  KDUMP_UPDATE_BOOTLOADER="true"
+
+  ## Type:        string
+  ## Default:     ""
+  ## ServiceRestart:      kdump
+  #
+  # Kernel Version string for the -kdump kernel. Use an empty string to
+  # auto-detect a suitable kernel.
+  #
+  # See also: kdump(5).
+  #
+  KDUMP_KERNELVER=""
+
+  ## Type:        integer
+  ## Default:     32
+  ## ServiceRestart:      kdump
+  #
+  # Number of CPUs to be used in the kdump environment. You may want to
+  # increase the number if computing power is the bottleneck in your setup.
+  #
+  # If the value is zero, use all available CPUs.
+  #
+  # Decreasing the number of CPUs lowers the memory required by kdump.
+  # Increasing it raises memory usage and may cause failures if crashkernel
+  # memory is insufficient.
+  #
+  # See also: kdump(5).
+  #
+  KDUMP_CPUS=32
+
+  ## Type:        string
+  ## Default:     ""
+  ## ServiceRestart:      kdump
+  #
+  # The kdump commandline is the command line that needs to be passed off to
+  # the kdump kernel. If a command line is not specified, the default will be
+  # taken from /proc/cmdline and adjusted.
+  #
+  # WARNING: There are a few options that always should be passed to the kdump
+  # kernel. See kdump(5) for details. Don't use that variable, consider using
+  # KDUMP_COMMANDLINE_APPEND instead.
+  #
+  KDUMP_COMMANDLINE=""
+
+  ## Type:        string
+  ## Default:     ""
+  ## ServiceRestart:     kdump
+  #
+  # Set this variable if you only want to _append_ values to the default
+  # command line string. The string also gets appended if KDUMP_COMMANDLINE
+  # is set.
+  #
+  # For network based dumps, you may have to add a "net_delay" parameter
+  # here. Consult the man page for details.
+[...]</pre></div></div></div><p>For more information, refer to <code class="literal">man kdump(5)</code> and <code class="literal">man kdump(7)</code>.</p><p>Any modifications made to this configuration file require a manual restart of the Kdump service to take effect. However, if any changes are made specifically to the <code class="literal">KDUMP_CRASHKERNEL</code>  memory allocation size, a full system reboot is required because these settings alter the system's core boot parameters.</p></section><section class="sect2" id="kdump-transact" data-id-title="Configuring Kdump for immutable systems"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.2 </span><span class="title-name">Configuring Kdump for immutable systems </span></span> <a title="Permalink" class="permalink" href="index.html#kdump-transact">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>On an immutable file system, the standard <code class="literal">kdump-commandline.service</code> is unable to directly modify the boot loader configuration.
+    To configure Kdump in these specialized environments, use the <code class="literal">transactional-update setup-kdump</code> command instead.
+    Executing this command handles the entire configuration process by automatically installing Kdump, disabling <code class="literal">KDUMP_UPDATE_BOOTLOADER</code>, and running the necessary calibration and command-line tools to update the boot loader within a new system snapshot.
+  A reboot is required to boot into the new snapshot and activate the updated Kdump configuration.
+  </p><p>If the automatically calculated memory allocation estimated by the calibration tool proves to be insufficient for your system requirements, you can manually override the settings.
+  To specify custom memory sizes directly on an immutable system, you can append the <code class="literal">crashkernel</code> parameter to the command by running:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  transactional-update setup-kdump [--crashkernel=low,high]</pre></div><p><span><span class="emphasis"><strong>Other configurations:</strong></span></span></p><p>Modifying the <code class="filename">/etc/sysconfig/kdump </code> configuration file on an immutable system requires the execution of the <code class="command">transactional-update</code> command and reboot for the changes to take effect.
+    However, if your modifications alter the crashkernel memory allocation size, you must perform an additional step to ensure the changes are safely written to the read-only environment; you need to execute the <code class="command">transactional-update run kdumptool commandline -u</code> command. This applies the new memory settings directly to the boot loader configuration so they can take physical effect during the next system boot.</p><p>The <code class="filename">/etc/sysconfig/kdump</code> file is the primary configuration file for managing the Kdump service.
+      It includes essential options such as:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p> <code class="literal">KDUMP_CRASHKERNEL</code> for defining reserved crash memory size</p></li><li class="listitem"><p> <code class="literal">KDUMP_VERBOSE</code> for increasing debugging log levels</p></li><li class="listitem"><p> <code class="literal">KDUMP_SAVEDIR</code> for specifying the core dump (vmcore) storage location </p></li></ul></div><div class="example" id="id-1.3.12.9" data-id-title="Contents of a /etc/sysconfig/kdump file"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 2: </span><span class="title-name">Contents of a <code class="filename">/etc/sysconfig/kdump</code> file  </span></span><a title="Permalink" class="permalink" href="index.html#id-1.3.12.9">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">cat /etc/sysconfig/kdump
+      ## Path:        System/Kernel/Kdump
+      ## Description: Crash Dump Configuration
+
+      ## Type:        string
+      ## Default:     "auto"
+      ## ServiceRestart:      kdump
+      #
+      # KDUMP_CRASHKERNEL is used by "kdumptool commandline" to determine
+      # the value of the kernel "crashkernel=" command-line options.
+      #
+      # Possible values are "auto" or one or more "crashkernel=..." values.
+      #
+      # KDUMP_CRASHKERNEL="auto" makes "kdumptool commandline" use the default
+      # values as proposed by "kdumptool calibrate".
+      #
+      # If the default values are not adequate you may provide a manual setting,
+      # e.g., KDUMP_CRASHKERNEL="crashkernel=72M,low crashkernel=300M,high"
+      #
+      # See also: kdump(5).
+      #
+      KDUMP_CRASHKERNEL="auto"
+
+
+      ## Type:        boolean
+      ## Default:     "true"
+      ## ServiceRestart:      kdump
+      #
+      # When KDUMP_UPDATE_BOOTLOADER is set to "true" "kdumptool commandline -c -U"
+      # called from the kdump-commandline.service  will check if the expected kernel
+      # command-line options are present and update the bootloader using *pbl*(8) if
+      # not.
+      #
+      # Also the kdump options are removed from the command line when kdump is
+      # uninstalled.
+      #
+      # When set to false "kdumptool commandline -c -U" will only check the options
+      # and report possible warnings but bootloader will not be updated.
+      #
+      KDUMP_UPDATE_BOOTLOADER="true"
+
+      ## Type:        string
+      ## Default:     ""
+      ## ServiceRestart:      kdump
+      #
+      # Kernel Version string for the -kdump kernel. Use an empty string to
+      # auto-detect a suitable kernel.
+      #
+      # See also: kdump(5).
+      #
+      KDUMP_KERNELVER=""
+
+      ## Type:        integer
+      ## Default:     32
+      ## ServiceRestart:      kdump
+      #
+      # Number of CPUs to be used in the kdump environment. You may want to
+      # increase the number if computing power is the bottleneck in your setup.
+      #
+      # If the value is zero, use all available CPUs.
+      #
+      # Decreasing the number of CPUs lowers the memory required by kdump.
+      # Increasing it raises memory usage and may cause failures if crashkernel
+      # memory is insufficient.
+      #
+      # See also: kdump(5).
+      #
+      KDUMP_CPUS=32
+
+      ## Type:        string
+      ## Default:     ""
+      ## ServiceRestart:      kdump
+      #
+      # The kdump commandline is the command line that needs to be passed off to
+      # the kdump kernel. If a command line is not specified, the default will be
+      # taken from /proc/cmdline and adjusted.
+      #
+      # WARNING: There are a few options that always should be passed to the kdump
+      # kernel. See kdump(5) for details. Don't use that variable, consider using
+      # KDUMP_COMMANDLINE_APPEND instead.
+      #
+      KDUMP_COMMANDLINE=""
+
+      ## Type:        string
+      ## Default:     ""
+      ## ServiceRestart:     kdump
+      #
+      # Set this variable if you only want to _append_ values to the default
+      # command line string. The string also gets appended if KDUMP_COMMANDLINE
+      # is set.
+      #
+      # For network based dumps, you may have to add a "net_delay" parameter
+      # here. Consult the man page for details.
+    [...]</pre></div></div></div></section><section class="sect2" id="testing-kdump" data-id-title="Testing Kdump"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.3 </span><span class="title-name">Testing Kdump</span></span> <a title="Permalink" class="permalink" href="index.html#testing-kdump">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>It is advisable to test Kdump after configuring it by simulating a kernel crash.
+Otherwise, you may only find out that it does not work when an actual kernel crash occurs, leaving you with no possibility to debug the crash.
+Ensure no critical workloads are running and no unsaved data is present on the system. Additionally, ensure to
+sync and unmount file systems:</p><p>Force an immediate emergency sync of all cached memory data to your hard drives to prevent data loss:</p><div class="verbatim-wrap"><pre class="screen">echo s &gt; /proc/sysrq-trigger</pre></div><p>Force an immediate emergency remount of all file systems to read-only mode to prevent data corruption:</p><div class="verbatim-wrap"><pre class="screen">echo u &gt; /proc/sysrq-trigger</pre></div><p>Then you can simulate a kernel crash:</p><div class="verbatim-wrap"><pre class="screen">echo c &gt; /proc/sysrq-trigger</pre></div><p>Check if there is a new directory created under your <code class="literal">KDUMP_SAVEDIR</code>, which is <code class="filename">/var/crash</code> by default. This contains the dmesg and
+vmcore of the crashed kernel.
+  </p></section></section><section xml:lang="en" class="sect1" id="troubleshoot-kdump" data-id-title="How to troubleshoot common Kdump issues"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">How to troubleshoot common Kdump issues</span></span> <a title="Permalink" class="permalink" href="index.html#troubleshoot-kdump">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+Troubleshooting Kdump is a critical process to ensure that your system can successfully capture a vmcore file during a kernel crash, which is often the only way to diagnose system crashes.
+When troubleshooting Kdump, the process usually fails at one of three stages: during boot (memory reservation), during the crash when the dump does not start, or during the save process when the file is not written.
+</p></div></div></div></div><section class="sect2" id="troubleshooting-kdump" data-id-title="Crash kernel memory reserved is insufficient"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.1 </span><span class="title-name">Crash kernel memory reserved is insufficient</span></span> <a title="Permalink" class="permalink" href="index.html#troubleshooting-kdump">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>One of the most common reasons Kdump fails is that the amount of crash kernel
+      memory reserved is insufficient. Different system configurations may require
+      more memory than estimated by <code class="command">kdumptool calibrate</code> and set up automatically in
+      the boot loader config by the <code class="literal">kdump-commandline.service</code>.</p><p>During Kdump, if you see error messages mentioning low memory and invoking the
+Out of Memory (OOM) killer, this is the likely cause. If you don't see such messages, trying with increased crash kernel reservation is a good
+first step.</p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>Find the size of the current automatically configured crash kernel reservation
+  by checking the kernel command line:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  cat /proc/cmdline</pre></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">crashkernel=X M</code></p></li><li class="listitem"><p><code class="literal">crashkernel=Y M,low</code></p></li><li class="listitem"><p><code class="literal">crashkernel=Z M,high</code></p></li></ul></div><p>
+  Add up the values of <em class="replaceable">X</em>, <em class="replaceable">Y</em>,
+  and <em class="replaceable">Z</em> to determine the total size of the current
+  reservation in MiB (<em class="replaceable">current</em>).
+</p></li><li class="step"><p>Manually set the new reservation by editing the <code class="filename">/etc/sysconfig/kdump</code>
+  file. Locate and change the value of the <code class="varname">KDUMP_CRASHKERNEL</code>
+  variable to double the current size:</p><div class="verbatim-wrap"><pre class="screen">KDUMP_CRASHKERNEL="crashkernel=&lt;2 * current&gt;M"</pre></div></li><li class="step"><p>
+      Reboot the system to apply the new memory parameters:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  reboot</pre></div></li><li class="step"><p>
+      Repeat this process a few times until Kdump successfully executes without errors.
+  </p><div id="id-1.4.2.4.4.2" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+          Fine-tuning crash kernel memory involves finding the smallest RAM reservation
+          that successfully captures a crash dump without triggering OOM errors in the
+          capture kernel. Fine-tune your final setting using the range between your
+          last working and non-working values to avoid wasting system memory.
+      </p></div></li></ol></div></div><section class="sect3" id="related-termination-signals-systemd" data-id-title="Other troubleshooting issues"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">3.1.1 </span><span class="title-name">Other troubleshooting issues</span></span> <a title="Permalink" class="permalink" href="index.html#related-termination-signals-systemd">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.4.2.5.2.1"><span class="term">Issues with switching to a text virtual terminal</span></dt><dd><p>Check the Kdump boot messages for errors. If the screen is blank, the system is likely failing to switch to the text virtual terminal. To fix this, configure a serial console to capture the output; you cannot troubleshoot the issue without these messages.</p><p>Once you get some output, you can increase Kdump verbosity. Setting
+  <code class="literal">KDUMP_VERBOSE</code> to 11 turns on debugging output during all stages of the Kdump
+   process and results in the following behavior:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Removes the quiet option from the capture kernel command line.</p></li><li class="listitem"><p>Runs the <code class="literal">kdump-save</code> script with -x.</p></li><li class="listitem"><p>Runs <code class="literal">makedumpfile </code> with debugging.</p></li></ul></div></dd><dt id="id-1.4.2.5.2.2"><span class="term"> <code class="literal">makedumpfile</code> or network config errors </span></dt><dd><p> During the capture kernel boot, if you see problems with
+     <code class="literal">makedumpfile</code>, network config, etc., set <code class="literal">KDUMP_CONTINUE_ON_ERROR=false</code>
+      or <code class="literal">KDUMP_IMMEDIATE_REBOOT=false</code>. This opens up an interactive shell when
+      an error occurs or when <code class="literal">makedumpfile</code> finishes, enabling you to manually debug problems
+      from within the capture system.
+    </p></dd><dt id="id-1.4.2.5.2.3"><span class="term">Dracut errors</span></dt><dd><p>If you see dracut errors during the boot of the capture system, add
+        dracut debugging options to <code class="literal"> KDUMP_COMMANDLINE_APPEND</code>.
+      </p></dd><dt id="id-1.4.2.5.2.4"><span class="term"> <code class="literal">kdump initramfs</code> does not generate correctly</span></dt><dd><p>If <code class="literal">kdump initramfs</code> does not generate correctly, turn on debugging when generating it;
+<code class="command">mkdumprd -fd</code>. You can also unpack and inspect the generated initramfs image with the <code class="command">lsinitrd --unpack /var/lib/kdump/initrd
+</code> command. </p></dd></dl></div></section></section></section><section xml:lang="en" class="sect1" id="more-info-kdump" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="index.html#more-info-kdump">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    For information on Kdump, refer to the following resources:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        Man pages:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>man 7 kdump</p></li><li class="listitem"><p>man 5 kdump</p></li></ul></div></li><li class="listitem"><p>
+        Official Linux kernel documentation:
+        <a class="link" href="https://docs.kernel.org/admin-guide/kdump/kdump.html" target="_blank">https://docs.kernel.org/admin-guide/kdump/kdump.html</a>
+      </p></li><li class="listitem"><p>
+       Man page for Kexec:
+       <a class="link" href="https://man7.org/linux/man-pages/man8/kexec.8.html" target="_blank">https://man7.org/linux/man-pages/man8/kexec.8.html</a>
+      </p></li></ul></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#about-kdump"><span class="title-number">1 </span><span class="title-name">What is Kdump and how does it work?</span></a></span></li><li><span class="section"><a href="index.html#configure-kdump"><span class="title-number">2 </span><span class="title-name">Installing and configuring Kdump</span></a></span></li><li><span class="section"><a href="index.html#troubleshoot-kdump"><span class="title-number">3 </span><span class="title-name">How to troubleshoot common Kdump issues</span></a></span></li><li><span class="section"><a href="index.html#more-info-kdump"><span class="title-number">4 </span><span class="title-name">For more information</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">5 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

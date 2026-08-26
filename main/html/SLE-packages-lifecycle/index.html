@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Lifecycles of SUSE Linux Components | SUSE Linux 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2025-11-04"/>
+<meta name="dcterms.modified" content="2026-08-07"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-26"/>
+<meta name="title" content="Lifecycles of SUSE Linux Components | SUSE Linux 16.1"/>
+<meta name="description" content="Learn how SUSE Linux 16 categorizes packages into stable, balanced and agile lifecycles to manage updates and system stability"/>
+<meta name="product-name" content="SUSE Linux"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="Lifecycles of SUSE Linux Components"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="jsindelarova@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="jsindelarova@suse.com"/><meta property="og:title" content="Lifecycles of SUSE Linux Components"/>
+<meta property="og:description" content="Understand different types of component lifecycles"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Lifecycles of SUSE Linux Components"/>
+<meta name="twitter:description" content="Understand different types of component lifecycles"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Lifecycles of SUSE Linux Components | SUSE Linux 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Lifecycles of SUSE Linux Components",
+    "description": "Learn how SUSE Linux 16 categorizes packages into stable, balanced and agile lifecycles to manage updates and system stability",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2025-11-04T00:00+02:00",
+    "dateModified": "2026-08-07T00:00+02:00",
+    "datePublished": "2026-08-26T09:48+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "About"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER, AArch64, IBMIBM Z"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Lifecycles of SUSE Linux Components</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Lifecycles of SUSE Linux Components</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="packages-life-cycle" data-id-title="Lifecycles of SUSE Linux Components"><div class="titlepage"><div><div class="big-version-info"><span class="productname">SUSE Linux</span> 16.1</div><div><h1 class="title">Lifecycles of SUSE Linux Components</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>26 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+              This article outlines how every SUSE Linux 16 software package is assigned one of three specific update policies: stable, balanced or agile.
+            </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
+              To understand how package updates may affect system stability and compatibility.
+            </p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                No configuration is required; only awareness and planning are needed.
+              </p></dd><dt id="id-1.1.12.1.4"><span class="term">GOAL</span></dt><dd><p>
+                You will have an overview of how SUSE categorizes packages.
+              </p></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Lifecycles of SUSE Linux Components" hreflang="en" href="rh-packages-life-cycle.html" target="_blank">Revision History: Lifecycles of SUSE Linux Components</a></div></div></div></div><section xml:lang="en" class="sect1" id="package-lifecycle-categories" data-id-title="Types of package lifecycles"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Types of package lifecycles</span></span> <a title="Permalink" class="permalink" href="index.html#package-lifecycle-categories">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       On SUSE Linux 16, component packages are sorted into different lifecycle categories. This section describes
+       the criteria for such a sorting.       
+      </p></div></div></div></div><p>
+    When categorizing a package, the impact of its changes on the system is considered. To estimate this impact, the interfaces of the component must first be identified. For example, in the case of a shared library, changes to its API or ABI may disrupt the system. For a compiler or interpreter, disruptive changes may involve supported languages, command-line options, or the performance of the compiled code. By contrast, a minor backward compatible change may have little to no impact.
+  </p><p>
+  In general, a package falls exactly into one of the categories: <span><span class="emphasis"><strong>stable</strong></span></span>, <span><span class="emphasis"><strong>balanced</strong></span></span>, or <span><span class="emphasis"><strong>agile</strong></span></span>. However, some technologies may have
+  packages sorted into several categories, for example, Python. The following sections
+  describe the package categories in detail.  
+</p><section class="sect2" id="package-lifecycle-categories-stable" data-id-title="Stable"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">Stable</span></span> <a title="Permalink" class="permalink" href="index.html#package-lifecycle-categories-stable">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Packages that are marked as stable (also called conservative) are those that do not deliver a disruptive change
+      while a customer is on any of the 16 minor versions. During the upgrade to another minor
+      version, the package version may change but the newer version does <span><span class="emphasis"><strong>not</strong></span></span> introduce incompatible behavior. Customers expect to have LTS on
+      these packages.
+    </p><p>
+      The packages belonging to this category can change, but the following criteria apply:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          changes in functionality are backward compatible: functionality can be added, but not removed
+        </p></li><li class="listitem"><p>
+          changes to interfaces are backward compatible
+        </p></li><li class="listitem"><p>
+the default behavior of applications does not change unexpectedly
+        </p></li></ul></div><p>
+      Under exceptional circumstances like serious security issues, the package can be updated even
+      at the cost of bringing disruptive changes. Alternatively, if a new version of a package
+      contains disruptive changes, this version can be delivered as an alternative to the previous one.
+    </p><p>
+      A typical example of a stable package is <code class="literal">util-linux</code>. Another is
+      <code class="literal">glibc</code>, which remains backward compatible except for symbols deprecated upstream.
+    </p></section><section class="sect2" id="package-lifecycle-categories-balanced" data-id-title="Balanced"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Balanced</span></span> <a title="Permalink" class="permalink" href="index.html#package-lifecycle-categories-balanced">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Packages categorized as balanced are changing (driven by upstream evolution and customer demands), but should not cause disruptive changes
+      within one minor version. A few incompatible changes are possible, but always
+      documented in the release notes for that particular minor release.
+    </p><p>
+      Customers expect a moderate number of changes during the upgrade from a minor release.
+      However, the transition must be smooth, either by getting back to the original behavior or by
+      providing the older version in parallel with the new one.  
+    </p><p>
+      When change is being introduced, it can be in one of the following ways:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+A single version is provided with the minor release. The new version replaces the previous one while
+allowing for smooth transitions between the versions. New versions are released only with a new
+minor release.
+        </p></li><li class="listitem"><p>
+          Two versions are provided simultaneously. The new version is introduced in addition to the
+          existing version, which then becomes obsolete with the next minor release.
+        </p></li></ul></div><p>
+      Such versions are supported at least until the end of the LTS of the minor release that introduced them.
+    </p><p>
+      To help with incorporating changes in a conservative environment, the tick-tock model can be
+      used. For example, we could mark even-numbered minor releases as <span><em class="emphasis">tick</em></span>
+      releases and odd-numbered minor releases as <span><em class="emphasis">tock</em></span>. These <span><em class="emphasis">tock</em></span> releases could still introduce version updates in packages with a balanced lifecycle, but these updates remain fully backward compatible in all relevant aspects.   
+    </p><p>
+      For ISVs, a stable runtime environment is critical. Therefore, not to break third-party
+      applications, in the case of shared libraries where SUSE provides the corresponding
+      <code class="literal">-devel</code> package, the older <code class="literal">.so</code> version is not deprecated
+      immediately. For example, for a package called <code class="literal">foo</code>, there are packages:
+      <code class="literal">libfoo-0_1</code>, <code class="literal">foo-devel</code> and <code class="literal">foo-utils</code>. 
+      If the package is updated and the shared library version changes to 
+      <code class="literal">libfoo-0_2</code>, <code class="literal">libfoo-0_1</code> is not removed. 
+    </p><p>
+      Typical examples of balanced packages include the following:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          <code class="systemitem">systemd</code>: changes should be backward compatible; incompatible changes are
+          documented in the release notes
+        </p></li><li class="listitem"><p>
+kernel: the kernel is updated with each minor release
+        </p></li><li class="listitem"><p>
+          virtualization components: they are updated with each minor release
+        </p></li><li class="listitem"><p>
+          MariaDB: a new minor version with each minor release
+        </p></li><li class="listitem"><p>
+          PostgreSQL: upstream versions are released on a roughly annual basis, so the
+          new version is introduced either with a minor release or as part of a maintenance update for
+          an older minor release
+        </p></li><li class="listitem"><p>
+          Python: a version supported for a longer period of time with a set of modules on top
+        </p></li></ul></div></section><section class="sect2" id="package-lifecycle-categories-agile" data-id-title="Agile"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.3 </span><span class="title-name">Agile</span></span> <a title="Permalink" class="permalink" href="index.html#package-lifecycle-categories-agile">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Packages categorized as agile are up to date with upstream even though they may bring
+      incompatible changes to the system.
+    </p><p>
+      Updates to these packages are done in two possible ways:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          With the release of a new package version, one or more older versions are supported for
+          customers that cannot switch easily to the new version. There is a sliding window in
+          which different versions are supported concurrently (for example, for version N and
+          version N - 1). These concurrent versions are supported for a certain period of time that
+          can differ from the lifetime of the minor release. 
+        </p></li><li class="listitem"><p>
+         The package is just updated without support for the older version. 
+        </p></li></ul></div><p>
+      All new package versions are released simultaneously to all minor releases under general support and generally also in LTS.
+    </p><p>
+      The following packages are categorized as agile:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          Go and Rust: a new version is released roughly every 6 months with a sliding
+          window of 2 months.
+        </p></li><li class="listitem"><p>
+          GCC: a new version of the compiler is released with each minor release. Those introduced in odd minor versions
+          are not used by default and have a shorter support period. See
+          <a class="xref" href="index.html#packages-lifecycle-toolchain-applications" title="17.2. Compiler for user space applications and libraries">Section 17.2, “Compiler for user space applications and libraries”</a> for details. However, the libraries
+          <code class="literal">libgcc</code> and <code class="literal">libstdc++</code> are categorized as stable.
+        </p></li><li class="listitem"><p>
+          CLI and SDK for Public Cloud: a new version every quarter, and the new version
+          replaces the previous one.
+        </p></li><li class="listitem"><p>
+          Python interpreter, library and pip: a new version is released annually.
+        </p></li><li class="listitem"><p>
+          Data files for time zones: a new version is released when a new set of definitions becomes available.
+        </p></li></ul></div></section></section><section xml:lang="en" class="sect1" id="packages-lifecycle-ansible" data-id-title="Ansible update strategy"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Ansible update strategy</span></span> <a title="Permalink" class="permalink" href="index.html#packages-lifecycle-ansible">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       Ansible is an open source IT automation engine that simplifies the process of provisioning, configuration management, application deployment, and orchestration by using a human-readable, agentless language.
+      </p></div></div></div></div><p>
+    The Ansible stack follows the agile lifecycle category. Ansible packages are updated
+    as described below:
+  </p><div class="table" id="id-1.3.3" data-id-title="Ansible components release frequency"><div class="title-container"><div class="table-title-wrap"><div class="table-title"><span class="title-number-name"><span class="title-number">Table 1: </span><span class="title-name">Ansible components release frequency </span></span><a title="Permalink" class="permalink" href="index.html#id-1.3.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="table-contents"><table style="border-collapse: collapse; border-top: 1px solid ; border-bottom: 1px solid ; border-left: 1px solid ; border-right: 1px solid ; "><colgroup><col class="c1"/><col class="c2"/><col class="c3"/></colgroup><thead><tr><th style="border-right: 1px solid ; border-bottom: 1px solid ; ">Component</th><th style="border-right: 1px solid ; border-bottom: 1px solid ; ">Packages</th><th style="border-bottom: 1px solid ; ">Release frequency</th></tr></thead><tbody><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Ansible interpreter</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><code class="literal">ansible</code>, <code class="literal">ansible-core</code></td><td style="border-bottom: 1px solid ; ">Twice a yea (typically May and November)</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Linux System Roles</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><code class="literal">ansible-linux-system-roles</code></td><td style="border-bottom: 1px solid ; ">Frequently</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">SAP roles &amp; playbooks</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><code class="literal">ansible-sap-install</code>,
+        <code class="literal">ansible-sap-infrastructure</code>,
+        <code class="literal">ansible-sap-operations</code>, <code class="literal">ansible-sap-playbooks</code>
+        </td><td style="border-bottom: 1px solid ; ">Irregularly</td></tr><tr><td style="border-right: 1px solid ; ">Unsupported SAP roles</td><td style="border-right: 1px solid ; "><code class="literal">ansible-sap-launchpad</code>
+        </td><td>Irregularly</td></tr></tbody></table></div></div><p>
+  On SUSE Linux Enterprise Server, the Ansible interpreter and Linux system roles are supported. On SLES for SAP, also SAP
+  roles &amp; playbooks are supported. The support covers only the roles and playbooks that are
+  delivered by SUSE.
+</p></section><section xml:lang="en" class="sect1" id="packages-lifecycle-cockpit" data-id-title="Cockpit update strategy"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Cockpit update strategy</span></span> <a title="Permalink" class="permalink" href="index.html#packages-lifecycle-cockpit">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       Cockpit is a Web-based graphical interface that enables you to manage
+       most administration tasks from one place. This section explains how often 
+       Cockpit is updated.
+      </p></div></div></div></div><p>
+    Cockpit is updated and supported according to the following rules:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        Each SUSE Linux minor release comes with the latest Cockpit version.
+      </p></li><li class="listitem"><p>
+        Support for this version continues throughout the entire lifecycle of the minor release,
+        with any necessary fixes provided through backports.
+      </p></li><li class="listitem"><p>
+To make use of upstream improvements, SUSE may upgrade to a newer version when reasonable (for example, due to bug fixes, security updates, or usability improvements), especially in LTS situations.
+      </p></li></ul></div></section><section xml:lang="en" class="sect1" id="packages-lifecycle-desktop" data-id-title="Update strategy of desktop components"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Update strategy of desktop components</span></span> <a title="Permalink" class="permalink" href="index.html#packages-lifecycle-desktop">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       In general, desktop components follow the balanced lifecycle of their packages. 
+      </p></div></div></div></div><p>
+    The SLE 16 desktop environment provides the following components:
+  </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.5.3.1"><span class="term">GNOME desktop</span></dt><dd><p>
+The minimum version is <span><em class="emphasis">48.0</em></span>. The exact version must be determined before the
+end of beta releases.
+</p></dd><dt id="id-1.5.3.2"><span class="term">GStreamer, PipeWire and Flatpak</span></dt><dd><p>
+These components are updated to the latest stable branch version at the last beta release.
+        </p></dd><dt id="id-1.5.3.3"><span class="term">Firefox</span></dt><dd><p>
+          The minimum version is <span><em class="emphasis">140.3</em></span>. The update strategy follows the ESR update lifecycle.
+        </p></dd><dt id="id-1.5.3.4"><span class="term">WebKit</span></dt><dd><p>
+          The minimum version is <span><em class="emphasis">2.46</em></span>. WebKit has a periodic update cycle
+          determined by critical CVEs. The component is updated but not backported.
+        </p></dd><dt id="id-1.5.3.5"><span class="term">BRLTTY</span></dt><dd><p>
+The accessibility tools are at the latest upstream stable versions in the 16.0. Only bug fixes will
+happen in this minor release.
+        </p></dd><dt id="id-1.5.3.6"><span class="term">QT</span></dt><dd><p>
+The Qt 6 is delivered. The initial version is Qt 6.9.
+        </p></dd><dt id="id-1.5.3.7"><span class="term">KDE</span></dt><dd><p>
+Not a standard SUSE Linux delivery; available only in PackageHub 16. 
+        </p></dd></dl></div></section><section xml:lang="en" class="sect1" id="packages-lifecycle-go" data-id-title="Go update strategy"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Go update strategy</span></span> <a title="Permalink" class="permalink" href="index.html#packages-lifecycle-go">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+                Go is an open source, statically typed, compiled programming language designed 
+                for building reliable and efficient software. Go follows the agile lifecycle category. 
+            </p></div></div></div></div><section class="sect2" id="go-lifecycle-support" data-id-title="Lifecycle and support policy"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.1 </span><span class="title-name">Lifecycle and support policy</span></span> <a title="Permalink" class="permalink" href="index.html#go-lifecycle-support">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        On SUSE Linux 16, Go and its components are updated and supported according to 
+        the following rules:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                <span><span class="emphasis"><strong>Release cycle:</strong></span></span> Releases are kept in sync with upstream, 
+                which nominally occur every 6 months in February and August.
+            </p></li><li class="listitem"><p>
+                <span><span class="emphasis"><strong>Version support:</strong></span></span> SUSE maintains versions N and N-1, 
+                mirroring the upstream support policy.
+            </p></li><li class="listitem"><p>
+                <span><span class="emphasis"><strong>Minor releases:</strong></span></span> Go minor releases are continuously 
+                made available shortly after the upstream release.
+            </p></li><li class="listitem"><p>
+                <span><span class="emphasis"><strong>Parallel installation:</strong></span></span> Different versions are 
+                parallel installable and undergo automated testing. The <span class="package">go</span> 
+                metapackage always points to the latest <span class="package">go1.x</span> package.
+            </p></li><li class="listitem"><p>
+                <span><span class="emphasis"><strong>Support phases:</strong></span></span> Go is supported across the General 
+                Support and LTSS phases for all relevant SUSE Linux minor releases.
+            </p></li></ul></div></section><section class="sect2" id="go-building-apps" data-id-title="Building Go applications"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.2 </span><span class="title-name">Building Go applications</span></span> <a title="Permalink" class="permalink" href="index.html#go-building-apps">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>When building applications, developers have two options regarding versions:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>To build with the latest recommended version, Go applications may 
+                    depend on <code class="literal">BuildRequires: golang(API) &gt;= go1.23</code>.
+                    </p></li><li class="listitem"><p>To control the timing of build changes, applications may pin to a 
+                    specific <span class="package">go1.x</span> package using 
+                    <code class="literal">BuildRequires: golang(API) == go1.23</code>.
+                    </p></li></ul></div><p>
+            In both cases, you must use the major version of <span class="package">go1.x</span> 
+            specified in the Go application's <code class="filename">go.mod</code> file, as the Go 
+            compiler now requires this as a minimum version.
+            </p></section><section class="sect2" id="go-fips-compliance" data-id-title="FIPS compliance"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.3 </span><span class="title-name">FIPS compliance</span></span> <a title="Permalink" class="permalink" href="index.html#go-fips-compliance">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+            Alongside standard <span class="package">go1.xx</span> releases, SUSE provides a parallel 
+        <span class="package">go1.xx-openssl</span> variant. This version is specifically patched to 
+        utilize OpenSSL for FIPS-compliant cryptographic operations.</p><p>Starting with <span class="package">go1.24</span>, Go upstream introduced an integrated FIPS 140-3 
+            cryptographic implementation. As this implementation achieves certification, the 
+            parallel <span class="package">go1.xx-openssl</span> variant will be 
+            deprecated in favor of the upstream-supported FIPS mechanism. SUSE packaging 
+            will follow the upstream deprecation schedule and support lifecycle.    
+        </p></section></section><section xml:lang="en" class="sect1" id="packages-lifecycle-java" data-id-title="Java update strategy"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Java update strategy</span></span> <a title="Permalink" class="permalink" href="index.html#packages-lifecycle-java">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       On SUSE Linux 16, Java is delivered and supported in the following versions:
+      </p></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        <span><em class="emphasis">Java 17</em></span>: supported until December 2027
+      </p></li><li class="listitem"><p>
+        <span><em class="emphasis">Java 21</em></span>: supported until October 2031
+      </p></li><li class="listitem"><p>
+        <span><em class="emphasis">Java 25</em></span>: support date to be confirmed after this version is
+        released, expected support date is October 2033
+      </p></li></ul></div><p>
+For the available versions, the following criteria apply:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        Concurrent installation of different versions is supported
+      </p></li><li class="listitem"><p>
+        The Java versions are maintained independently of the SUSE Linux minor version release cycle
+      </p></li><li class="listitem"><p>
+        Each version is supported throughout the general support and LTS phase
+      </p></li><li class="listitem"><p>
+        Java packages can be updated in an agile manner
+      </p></li></ul></div></section><section xml:lang="en" class="sect1" id="packages-lifecycle-mariadb" data-id-title="MariaDB update strategy"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">MariaDB update strategy</span></span> <a title="Permalink" class="permalink" href="index.html#packages-lifecycle-mariadb">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       MariaDB is a high-performance, open source relational database management system (RDBMS) that was created as a community-developed fork of MySQL to ensure the software remains free and accessible under the GPL license.
+      </p></div></div></div></div><p>
+    MariaDB follows the balanced lifecycle—only LTS MariaDB releases are supported. 
+  </p><p>
+    Each SUSE Linux minor version gets a new version of MariaDB. This version
+    is supported for the General Support or LTS period. The starting version of 
+    MariaDB is 11.4.5.
+  </p><p>
+    Minor version updates, aligned with upstream releases, are provided exclusively for the <code class="literal">mariadb</code> and <code class="literal">mariadb-connector-c</code> packages.</p></section><section xml:lang="en" class="sect1" id="packages-lifecycle-nodejs" data-id-title="node.js update strategy"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name"><code class="literal">node.js</code> update strategy</span></span> <a title="Permalink" class="permalink" href="index.html#packages-lifecycle-nodejs">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       <code class="literal">Node.js</code> is an open source, cross-platform JavaScript runtime environment that allows developers to build and run server-side applications outside of a web browser. It is built on Google Chrome's V8 engine and uses an event-driven, non-blocking I/O model, making it highly efficient for creating scalable network applications.
+      </p></div></div></div></div><p>
+   On SUSE Linux 16, <code class="literal">node.js</code> is updated and supported according to the following rules:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        The <code class="literal">node.js</code> version is kept in sync with the upstream LTS version.
+      </p></li><li class="listitem"><p>
+        Each SUSE Linux 16 minor release has the <a class="link" href="https://nodejs.org/en/about/previous-releases" target="_blank">latest Active LTS version</a>,
+        starting with <code class="literal">nodejs 22</code>, and comes with a default version of <code class="literal">node.js</code>.
+      </p></li><li class="listitem"><p>
+All <code class="literal">node.js</code> minor releases are available generally after security fixes or on request.
+      </p></li><li class="listitem"><p>
+       Different <code class="literal">node.js</code> versions can be installed in parallel.
+      </p></li><li class="listitem"><p>
+        Versions in a specific SUSE Linux minor release are supported until the end of LTS.
+      </p></li><li class="listitem"><p>
+        To always use the most recent recommended version available in the repository, applications should use <code class="literal">BuildRequires: nodejs &gt;= 22</code>.
+      </p></li></ul></div></section><section xml:lang="en" class="sect1" id="packages-lifecycle-perl" data-id-title="Perl update strategy"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">9 </span><span class="title-name">Perl update strategy</span></span> <a title="Permalink" class="permalink" href="index.html#packages-lifecycle-perl">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       Perl is a high-level, general-purpose programming language originally developed for text manipulation that has since evolved into a versatile tool used for system administration, Web development, and network programming.
+      </p></div></div></div></div><p>
+    The Perl update strategy is considered stable and no new version is expected to be released.
+  </p></section><section xml:lang="en" class="sect1" id="packages-lifecycle-php" data-id-title="PHP update strategy"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">10 </span><span class="title-name">PHP update strategy</span></span> <a title="Permalink" class="permalink" href="index.html#packages-lifecycle-php">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       PHP is an open source server-side scripting language designed specifically for Web 
+       development. It is used to create dynamic, interactive content that interacts with databases.
+      </p></div></div></div></div><p>
+    PHP packages follow the balanced lifecycle. The starting version is 8.4, and a new PHP version 
+    is shipped with each minor release of SUSE Linux 16. Patch-level version updates are delivered 
+    throughout the support period of each SUSE Linux minor release.
+  </p></section><section xml:lang="en" class="sect1" id="packages-lifecycle-postgresql" data-id-title="PostgreSQL"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">11 </span><span class="title-name">PostgreSQL</span></span> <a title="Permalink" class="permalink" href="index.html#packages-lifecycle-postgresql">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       PostgreSQL is an open-source object-relational database management system (ORDBMS) known for its reliability and extensive support for advanced data types and complex queries.
+      </p></div></div></div></div><p>
+    On SUSE Linux 16, all PostgreSQL versions maintained by the upstream community are supported.
+    When a new version is released by upstream, it is added to each minor SUSE Linux version under
+    general or LTS support.
+  </p><p>
+    Once a PostgreSQL version reaches its end of life, it remains accessible within the repositories but will no longer receive security patches or bug fixes. 
+  </p></section><section xml:lang="en" class="sect1" id="packages-lifecycle-python" data-id-title="Python update strategy"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">12 </span><span class="title-name">Python update strategy</span></span> <a title="Permalink" class="permalink" href="index.html#packages-lifecycle-python">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        For SUSE Linux Enterprise 16.1, the System Python is Python 3.13.
+      </p></div></div></div></div><section class="sect2" id="packages-lifecycle-python-interpreter" data-id-title="Python interpreter lifecycles"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">12.1 </span><span class="title-name">Python interpreter lifecycles</span></span> <a title="Permalink" class="permalink" href="index.html#packages-lifecycle-python-interpreter">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      SUSE Linux Enterprise 16.1 includes several Python interpreter versions with 
+      different support lifecycles:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.13.2.3.1"><span class="term">System Python interpreter</span></dt><dd><p>
+            System Python is the Python version for which SUSE provides a large set of 
+            Python modules needed for SUSE Linux Enterprise 16.1 applications and solutions.
+          </p><p>
+            The System Python version and its modules remain stable and are supported throughout
+            the SUSE Linux Enterprise 16.1 lifecycle.
+          </p><p>
+            Support covers both the General Support and Long Term Support (LTS) 
+            periods of SLES 16.1 and applies for each future SUSE Linux Enterprise 16.x minor release.
+          </p></dd><dt id="id-1.13.2.3.2"><span class="term">Developer Python interpreter</span></dt><dd><p>
+            Developer Python provides a more recent Python version. Unlike System Python, it is 
+            intended to be used together with Python wheels provided by PyPI, which are installed 
+            and maintained via <code class="literal">pip</code> and <code class="literal">pipx</code>.
+          </p><p>
+            It is supported during the General Support period of SLES 16.1 but excludes
+            LTS.
+          </p></dd><dt id="id-1.13.2.3.3"><span class="term">Legacy Python interpreter</span></dt><dd><p>
+            In future SUSE Linux Enterprise 16.x minor releases, System Python will be updated to a newer 
+            version. At that time, the previous System Python version and all its modules 
+            will be provided as legacy Python.
+          </p></dd></dl></div></section><section class="sect2" id="packages-lifecycle-python-release-cycle" data-id-title="Python release cycle"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">12.2 </span><span class="title-name">Python release cycle</span></span> <a title="Permalink" class="permalink" href="index.html#packages-lifecycle-python-release-cycle">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        SUSE Linux Enterprise 16.1 follows a defined release and support 
+        schedule for Python interpreter versions.
+      </p><p>
+        In SUSE Linux Enterprise 16.1, the System Python is Python 3.13. 
+        The current plan (subject to change) is to provide newer Python versions in 
+        future SUSE Linux Enterprise 16.x releases.
+      </p><p>
+        A Developer Python version will be released with each minor release and 
+        will be supported only for the general support period of that 
+        release (two years).
+      </p></section></section><section xml:lang="en" class="sect1" id="packages-lifecycle-ruby" data-id-title="Ruby delivery strategy"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">13 </span><span class="title-name">Ruby delivery strategy</span></span> <a title="Permalink" class="permalink" href="index.html#packages-lifecycle-ruby">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+                The Ruby stack is not delivered as a standard component of SUSE Linux 16. 
+            </p></div></div></div></div><p>However, specific components that depend on Ruby include it as a supported dependency:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                <span><span class="emphasis"><strong>Hawk (High Availability Web Konsole):</strong></span></span> 
+                As a component of SUSE Linux Enterprise High Availability built on the Ruby on Rails
+                framework, Hawk inherently requires a Ruby runtime environment to function.
+            </p></li><li class="listitem"><p>
+                <span><span class="emphasis"><strong>RMT (Repository Mirroring Tool):</strong></span></span> RMT requires Ruby 
+                and is provided as a supported exception.
+            </p></li></ul></div></section><section xml:lang="en" class="sect1" id="packages-lifecycle-rust" data-id-title="Rust update strategy"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">14 </span><span class="title-name">Rust update strategy</span></span> <a title="Permalink" class="permalink" href="index.html#packages-lifecycle-rust">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>Rust is a multi-paradigm, general-purpose programming language designed for 
+                performance and safety, especially safe concurrency. Rust follows the agile 
+                lifecycle category.</p></div></div></div></div><p>On SUSE Linux 16, Rust and its components are updated and supported according 
+        to the following rules:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                    <span><span class="emphasis"><strong>Release cycle:</strong></span></span> Releases are 
+                kept in sync with upstream updates, which occur every six weeks.</p></li><li class="listitem"><p>
+                            <span><span class="emphasis"><strong>Version support:</strong></span></span> SUSE maintains 
+                versions N and N-1.</p></li><li class="listitem"><p>
+                            <span><span class="emphasis"><strong>Upgrade window:</strong></span></span> There is a 6-week 
+                window provided to perform upgrades and find any potential issues.</p></li><li class="listitem"><p>
+                            <span><span class="emphasis"><strong>Parallel installation:</strong></span></span> Parallel 
+                installable versions are available and undergo automated testing.</p></li><li class="listitem"><p>
+                            <span><span class="emphasis"><strong>Support phases:</strong></span></span> Rust is supported 
+                across the General Support and LTSS phases.</p></li></ul></div></section><section xml:lang="en" class="sect1" id="packages-lifecycle-timezone" data-id-title="Time zone update strategy"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">15 </span><span class="title-name">Time zone update strategy</span></span> <a title="Permalink" class="permalink" href="index.html#packages-lifecycle-timezone">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>Data files for time zones are categorized under the agile lifecycle.</p><p>
+        Within the SUSE Linux 16 code stream, the <span class="package">timezone</span>
+        is updated and supported according to the following rules:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                <span><span class="emphasis"><strong>Release syncing:</strong></span></span> When a new set of 
+                time zone definitions becomes available, the package needs to be updated 
+                across all supported SUSE Linux systems.
+            </p></li><li class="listitem"><p>
+                <span><span class="emphasis"><strong>Support for older versions:</strong></span></span> As is standard for
+                certain agile packages, the package is simply updated to the newer version without
+                providing ongoing support for the older version.
+            </p></li></ul></div><p>This update model maintains the exact same approach that is taken for SLE 15.</p></section><section xml:lang="en" class="sect1" id="packages-lifecycle-security" data-id-title="Update strategy of security components"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">16 </span><span class="title-name">Update strategy of security components</span></span> <a title="Permalink" class="permalink" href="index.html#packages-lifecycle-security">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       This document defines the update policy and lifecycle strategy for core security components within the SUSE Linux 16 code stream.
+      </p></div></div></div></div><section class="sect2" id="packages-lifecycle-security-stable" data-id-title="Stable security components"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">16.1 </span><span class="title-name">Stable security components</span></span> <a title="Permalink" class="permalink" href="index.html#packages-lifecycle-security-stable">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The following security components follow the stable life cycle and remains the same within the same minor version. New versions are typically introduced only to the next minor release:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+         OpenSSL: The version is fixed for the purpose of FIPS 140-3 certification within the minor release.
+        </p></li><li class="listitem"><p>GNUTLS, Nettle: The version is fixed for the FIPS 140-3 certification.</p></li><li class="listitem"><p><code class="literal">libgcrypt</code>: The version is fixed for the FIPS 140-3 certification.</p></li><li class="listitem"><p>
+          OpenSSH 
+        </p></li><li class="listitem"><p>
+      <code class="literal">liboqs</code>/<code class="literal">oqs-provider</code>
+      </p></li><li class="listitem"><p>
+          GnuPG
+        </p></li><li class="listitem"><p>krb5</p></li><li class="listitem"><p>smartcards and u2f tokens</p></li><li class="listitem"><p>IMA tools</p></li><li class="listitem"><p><code class="literal">openCryptoki</code></p></li><li class="listitem"><p>rage</p></li><li class="listitem"><p>rsign2</p></li><li class="listitem"><p>PAM stack and polkit</p></li></ul></div></section><section class="sect2" id="packages-lifecycle-security-balanced" data-id-title="Balanced security components"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">16.2 </span><span class="title-name">Balanced security components</span></span> <a title="Permalink" class="permalink" href="index.html#packages-lifecycle-security-balanced">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The following security components follow the balanced life cycle and can be updated with a maintenance update or get version update with releasing a new minor release:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>firewalld</p></li><li class="listitem"><p>SELinux: Policies are updated with monthly snapshots.</p></li><li class="listitem"><p>Network Security Services (<code class="literal">mozilla-nss</code>): The version is fixed for the FIPS 140-3. However, updates of the package matches the Firefox ESR updates</p></li><li class="listitem"><p>strongSwan: new versions are typically introduced with new minor release.</p></li><li class="listitem"><p>Stunnel</p></li><li class="listitem"><p>TPM libraries and tools</p></li></ul></div></section><section class="sect2" id="packages-lifecycle-security-agile" data-id-title="Agile security components"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">16.3 </span><span class="title-name">Agile security components</span></span> <a title="Permalink" class="permalink" href="index.html#packages-lifecycle-security-agile">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+       The following security components follow the agile life cycle and are kept up-to-date with upstream:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Cosign and Rekor</p></li><li class="listitem"><p>ClamAV</p></li><li class="listitem"><p><code class="literal">scap-security-guide</code></p></li><li class="listitem"><p><code class="literal">ca-certificates-mozilla</code>: Updated when new NSS certificates bundle is released.</p></li></ul></div></section></section><section xml:lang="en" class="sect1" id="packages-lifecycle-toolchain" data-id-title="Update strategy of toolchain components"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">17 </span><span class="title-name">Update strategy of toolchain components</span></span> <a title="Permalink" class="permalink" href="index.html#packages-lifecycle-toolchain">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       The toolchain components include the following tools: the GNU C library, the GCC and G++
+       compilers, <code class="literal">binutils</code>, GDB and LLVM. Each of the component update
+       strategies is described in corresponding sections.
+      </p></div></div></div></div><section class="sect2" id="packages-lifecycle-toolchain-glibc" data-id-title="GNU C library (glibc)"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">17.1 </span><span class="title-name">GNU C library (<code class="literal">glibc</code>)</span></span> <a title="Permalink" class="permalink" href="index.html#packages-lifecycle-toolchain-glibc">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The initial <code class="literal">glibc</code> version is <span><em class="emphasis">2.40</em></span>. The package is
+      updated with each minor SUSE Linux release if there are reasons for changes to the package (for
+      example feature requests, performance tuning and so on). 
+    </p><p>
+      Package updates provide backward compatibility for dynamic linking, allowing programs built
+      on previous SUSE Linux 16 releases to run. On the contrary, symbols deprecated in the
+      upstream <code class="literal">glibc</code> version will not be declared for the compiler and not
+      available for link editing (static linking).
+    </p></section><section class="sect2" id="packages-lifecycle-toolchain-applications" data-id-title="Compiler for user space applications and libraries"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">17.2 </span><span class="title-name">Compiler for user space applications and libraries</span></span> <a title="Permalink" class="permalink" href="index.html#packages-lifecycle-toolchain-applications">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Developers of user-space applications can use the supported GNU Compiler Collection (GCC) C
+      and C++ built-in compilers. Compilers for other languages, cross-compilers and accelerator
+      offloading compilers are not available on SUSE Linux from standard repositories, but developers
+      can install them from Package Hub with community support. 
+    </p><p>
+      The initial major version in SUSE Linux 16.0 and 16.1 is GCC 15. Later SUSE Linux releases will introduce the
+      tick-tock model:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          Each even minor release of SUSE Linux (the tick release) introduces a new major version of GCC as
+          the default compiler. This GCC version is supported during the LTS for the minor version that
+          introduced it and also for the next SUSE Linux minor version. For example, when GCC 17 is introduced
+          in SUSE Linux 16.2, it will be supported until the end of LTS for SUSE Linux 16.3.
+        </p></li><li class="listitem"><p>
+          Each odd minor release of SUSE Linux (the tock release) includes a new non-default
+          major version of GCC. Because this version is not the default compiler, you must explicitly invoke
+          the binaries <code class="literal">gcc-x</code>, <code class="literal">g++-x</code> and
+          <code class="literal">gfortran-x</code> to use it. These non-default versions are supported for 24
+          months. The non-default version provided specifically in SUSE Linux 16.1 is GCC 16, 
+          which can be invoked with the commands <code class="literal">gcc-16</code>, 
+          <code class="literal">g++-16</code> and <code class="literal">gfortran-16</code>.
+        </p></li></ul></div><section class="sect3" id="packages-lifecycle-toolchain-applications-flags" data-id-title="Supported compiler flags"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">17.2.1 </span><span class="title-name">Supported compiler flags</span></span> <a title="Permalink" class="permalink" href="index.html#packages-lifecycle-toolchain-applications-flags">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        Any combination of the following compiler flags is supported:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            <code class="literal">-O0</code>, <code class="literal">-O2</code> and <code class="literal">-O3</code>
+          </p></li><li class="listitem"><p>
+            <code class="literal">-ffast-math</code>
+          </p></li><li class="listitem"><p>
+            <code class="literal">-flto</code>
+          </p></li><li class="listitem"><p>
+            <code class="literal">-fpie</code> and <code class="literal">-fno-pie</code>
+          </p></li><li class="listitem"><p>
+            <code class="literal">-fPIC</code>
+          </p></li><li class="listitem"><p>
+            <code class="literal">-g</code>
+          </p></li></ul></div><p> 
+        The following options are also supported on AMD64/Intel 64:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            <code class="literal">-march=x86-64-v2 </code> (the
+            default one) 
+          </p></li><li class="listitem"><p>
+            <code class="literal">-march=x86-64-v3</code>
+          </p></li><li class="listitem"><p>
+            <code class="literal">-march=x86-64-v4</code>
+          </p></li></ul></div><p>
+        Other compiler flags are not supported by SUSE. However, we can assist in reporting issues
+        to the upstream GCC project.
+      </p></section><section class="sect3" id="packages-lifecycle-toolchain-applications-languages" data-id-title="Supported language versions"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">17.2.2 </span><span class="title-name">Supported language versions</span></span> <a title="Permalink" class="permalink" href="index.html#packages-lifecycle-toolchain-applications-languages">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        For the C language, the most recent supported version is ISO/IEC 9899:2024 (known as C23)
+        with GNU extensions. 
+      </p><p>
+        For C++, when using the default GCC 15, the latest supported language standard is ISO/IEC
+        14882:2017 (known as C++17) with GNU extensions.  When using the non-default GCC 16, the
+        latest supported language standard is ISO/IEC 14882:2020 (often referred to as C++20) with GNU
+        extensions.
+      </p><p>
+For Fortran, we support versions up to Fortran 95 (ISO/IEC 1539:1997) with specific features from
+later standard versions as described in the manual.
+      </p></section></section><section class="sect2" id="packages-lifecycle-toolchain-kernel" data-id-title="The kernel module compiler"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">17.3 </span><span class="title-name">The kernel module compiler</span></span> <a title="Permalink" class="permalink" href="index.html#packages-lifecycle-toolchain-kernel">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      To build a kernel module, you need the same compiler version used to build the
+      kernel. Therefore, SUSE provides the same GCC version—initially GCC 13.N.
+    </p><p> 
+      The compiler for kernel modules is not intended for general use. The kernel module compiler
+      may also be dropped in a future minor release of SUSE Linux.
+    </p></section><section class="sect2" id="packages-lifecycle-toolchain-system-builds" data-id-title="The build compiler"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">17.4 </span><span class="title-name">The build compiler</span></span> <a title="Permalink" class="permalink" href="index.html#packages-lifecycle-toolchain-system-builds">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+There is a default compiler that is used internally to build SUSE Linux 16 packages in the version GCC
+13. The build compiler is provided as an unsupported package in PackageHub.
+    </p><p>
+      Package maintainers can use the newer GCC available in the internal build service, but in this
+      case, they must be aware of possible ABI issues (for example, avoid linking code written in different C++ standards).
+    </p></section><section class="sect2" id="packages-lifecycle-toolchain-runtime" data-id-title="GCC and C++ runtime libraries"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">17.5 </span><span class="title-name">GCC and C++ runtime libraries</span></span> <a title="Permalink" class="permalink" href="index.html#packages-lifecycle-toolchain-runtime">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+GCC runtime libraries (<code class="literal">libgcc</code>, <code class="literal">libstdc++</code>) are updated to the
+versions of a new major version of GCC on a yearly basis in all SUSE Linux minor releases under LTS.
+The runtime libraries are updated during maintenance updates.
+    </p><p>
+      The runtime libraries are fully supported during the general support and LTS of each SUSE Linux
+      minor version. 
+    </p><p>
+      When security incidents may happen, these runtime libraries are the only part of the
+      toolchain that can be used for that matter.
+    </p></section><section class="sect2" id="packages-lifecycle-toolchain-binutils" data-id-title="The GNU Binutils"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">17.6 </span><span class="title-name">The GNU Binutils</span></span> <a title="Permalink" class="permalink" href="index.html#packages-lifecycle-toolchain-binutils">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The GNU Binutils are upgraded to the latest upstream version in all SUSE Linux 16 minor releases
+      under general support of LTS.
+    </p></section><section class="sect2" id="packages-lifecycle-toolchain-gdb" data-id-title="The GNU project debugger"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">17.7 </span><span class="title-name">The GNU project debugger</span></span> <a title="Permalink" class="permalink" href="index.html#packages-lifecycle-toolchain-gdb">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+  GDB is updated to the newest major version on all SUSE Linux 16 minor releases under general support
+  or LTS. However, this means that certain functionality may be removed from the package.
+</p></section><section class="sect2" id="packages-lifecycle-toolchain-llvm" data-id-title="LLVM"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">17.8 </span><span class="title-name">LLVM</span></span> <a title="Permalink" class="permalink" href="index.html#packages-lifecycle-toolchain-llvm">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      LLVM is available for use exclusively with MESA. Any other use of LLVM is <span><span class="emphasis"><strong>not</strong></span></span> supported. Front-ends like Clang are not provided on SUSE Linux. You
+      may get them only from a community-supported repository.
+    </p></section><section class="sect2" id="packages-lifecycle-toolchain-compatibility" data-id-title="Compatibility and deprecation policy"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">17.9 </span><span class="title-name">Compatibility and deprecation policy</span></span> <a title="Permalink" class="permalink" href="index.html#packages-lifecycle-toolchain-compatibility">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    SUSE maintains backward dynamic-linking compatibility for <code class="literal">glibc</code> and the C++
+    compiler runtime library. This means that a binary built on an earlier minor version of SUSE Linux
+    16 runs correctly on a later minor release.
+    </p><p>
+      Features deprecated by upstream are removed either from newer major versions of compilers or
+      from all toolchain components in later SUSE Linux minor versions. In the case of
+      <code class="literal">glibc</code>, the deprecated symbols are then removed from header files and are
+      not available for link editing. Therefore, the code using these symbols will no longer compile or (statically) link.
+    </p></section><section class="sect2" id="packages-lifecycle-toolchain-security" data-id-title="Security considerations"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">17.10 </span><span class="title-name">Security considerations</span></span> <a title="Permalink" class="permalink" href="index.html#packages-lifecycle-toolchain-security">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+  Development tools like the compiler are not hardened to process untrusted input. In contrast,
+  the GCC and C++ runtime libraries are the only parts of the toolchain that are hardened for this purpose.  
+</p></section></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">18 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#package-lifecycle-categories"><span class="title-number">1 </span><span class="title-name">Types of package lifecycles</span></a></span></li><li><span class="section"><a href="index.html#packages-lifecycle-ansible"><span class="title-number">2 </span><span class="title-name">Ansible update strategy</span></a></span></li><li><span class="section"><a href="index.html#packages-lifecycle-cockpit"><span class="title-number">3 </span><span class="title-name">Cockpit update strategy</span></a></span></li><li><span class="section"><a href="index.html#packages-lifecycle-desktop"><span class="title-number">4 </span><span class="title-name">Update strategy of desktop components</span></a></span></li><li><span class="section"><a href="index.html#packages-lifecycle-go"><span class="title-number">5 </span><span class="title-name">Go update strategy</span></a></span></li><li><span class="section"><a href="index.html#packages-lifecycle-java"><span class="title-number">6 </span><span class="title-name">Java update strategy</span></a></span></li><li><span class="section"><a href="index.html#packages-lifecycle-mariadb"><span class="title-number">7 </span><span class="title-name">MariaDB update strategy</span></a></span></li><li><span class="section"><a href="index.html#packages-lifecycle-nodejs"><span class="title-number">8 </span><span class="title-name"><code class="literal">node.js</code> update strategy</span></a></span></li><li><span class="section"><a href="index.html#packages-lifecycle-perl"><span class="title-number">9 </span><span class="title-name">Perl update strategy</span></a></span></li><li><span class="section"><a href="index.html#packages-lifecycle-php"><span class="title-number">10 </span><span class="title-name">PHP update strategy</span></a></span></li><li><span class="section"><a href="index.html#packages-lifecycle-postgresql"><span class="title-number">11 </span><span class="title-name">PostgreSQL</span></a></span></li><li><span class="section"><a href="index.html#packages-lifecycle-python"><span class="title-number">12 </span><span class="title-name">Python update strategy</span></a></span></li><li><span class="section"><a href="index.html#packages-lifecycle-ruby"><span class="title-number">13 </span><span class="title-name">Ruby delivery strategy</span></a></span></li><li><span class="section"><a href="index.html#packages-lifecycle-rust"><span class="title-number">14 </span><span class="title-name">Rust update strategy</span></a></span></li><li><span class="section"><a href="index.html#packages-lifecycle-timezone"><span class="title-number">15 </span><span class="title-name">Time zone update strategy</span></a></span></li><li><span class="section"><a href="index.html#packages-lifecycle-security"><span class="title-number">16 </span><span class="title-name">Update strategy of security components</span></a></span></li><li><span class="section"><a href="index.html#packages-lifecycle-toolchain"><span class="title-number">17 </span><span class="title-name">Update strategy of toolchain components</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">18 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Adding Constraints to High Availability Cluster Resources | SUSE Linux Enterprise High Availability 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2026-06-23"/>
+<meta name="dcterms.modified" content="2026-06-23"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-26"/>
+<meta name="title" content="Adding Constraints to High Availability Cluster Resour…"/>
+<meta name="description" content="How to add resource constraints to specify cluster node assignments, define the start order, and manage dependencies between resources"/>
+<meta name="product-name" content="SUSE Linux Enterprise High Availability"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="Adding Constraints to High Availability Cluster Resources"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="tahlia.richardson@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="&#10;            SUSE Linux Enterprise High Availability 16.1&#10;          "/>
+<meta name="publisher" content="SUSE"/><meta name="category" content="."/><meta name="dc.creator" content="tahlia.richardson@suse.com"/><meta property="og:title" content="Adding HA Cluster Resource Constraints"/>
+<meta property="og:description" content="Add constraints to restrict HA cluster resources"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Adding HA Cluster Resource Constraints"/>
+<meta name="twitter:description" content="Add constraints to restrict HA cluster resources"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Adding HA Cluster Resource Constraints | SUSE Linux Enterprise High Availability 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Adding HA Cluster Resource Constraints",
+    "description": "How to add resource constraints to specify cluster node assignments, define the start order, and manage dependencies between resources",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2026-06-23T00:00+02:00",
+    "dateModified": "2026-06-23T00:00+02:00",
+    "datePublished": "2026-08-26T09:48+02:00",
+
+    "articleSection": [ 
+        "Administration"
+        
+    ],
+        "about": [
+      {
+        "@type": "Thing",
+        "name": "Administration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Clustering"
+      },
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      },
+      {
+        "@type": "Thing",
+        "name": "High Availability"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise High Availability",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER, IBM Z"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Adding Constraints to High Availability Cluster Resources</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Adding Constraints to High Availability Cluster Resources</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="ha-resources-adding-constraints" data-id-title="Adding Constraints to High Availability Cluster Resources"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise High Availability</span></span></span> 16.1</div><div><h1 class="title">Adding Constraints to High Availability Cluster Resources</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>26 Aug 2026</div><div><div class="abstract"><p>
+          Resource constraints let you specify cluster node assignments, define the start order,
+          and manage dependencies between resources. Because cluster resources sometimes depend
+          on other resources or on a particular node configuration, they might need to run in a
+          specific location or start in a specific order. Add resource constraints to specify
+          exactly where and when High Availability cluster resources can run.
+        </p><p><span><em class="emphasis">Requirements:</em></span></p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+              An existing SUSE Linux Enterprise High Availability cluster
+            </p></li><li class="listitem"><p>
+              Existing cluster resources
+            </p></li></ul></div><div id="id-1.1.13.4" class="admonition tip compact"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><p>
+            If you still need to configure cluster resources, see
+            <a class="link" href="https://documentation.suse.com/sle-ha/16.0/html/HA-resources-configuring/" target="_blank">
+            <em class="citetitle">Configuring High Availability Cluster Resources</em></a>.
+          </p></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Adding Constraints to High Availability Cluster Resources" hreflang="en" href="rh-ha-resources-adding-constraints.html" target="_blank">Revision History: Adding Constraints to High Availability Cluster Resources</a></div></div></div></div><section xml:lang="en" class="sect1" id="ha-resources-what-is" data-id-title="What are cluster resources?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">What are cluster resources?</span></span> <a title="Permalink" class="permalink" href="index.html#ha-resources-what-is">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+  In a High Availability cluster, the applications and services that need to be highly available are called
+  <span><em class="emphasis">resources</em></span>. Cluster resources can include Web sites, e-mail servers,
+  databases, file systems, virtual machines or any other applications or services that need to
+  be available to users at all times. You can start, stop, monitor and move resources
+  as needed. You can also specify whether resources should run together on the same node,
+  or start and stop in sequential order. If a node fails, the resources running on it
+  <span><em class="emphasis">fail over</em></span> (move) to another node instead of being lost.
+</p><p>
+  In SUSE Linux Enterprise High Availability, the <span><em class="emphasis">cluster resource manager</em></span> (CRM) is <span><em class="emphasis">Pacemaker</em></span>,
+  which manages and coordinates all cluster services. Pacemaker uses <span><em class="emphasis">resource agents</em></span>
+  (RAs) to start, stop and monitor resources. A resource agent abstracts the resource and presents
+  its status to the cluster. This means that Pacemaker only interacts with the resource agent, not
+  with the actual application or service. SUSE Linux Enterprise High Availability supports many different resource agents that
+  are designed to manage specific types of resources.
+</p></div></div></div></div><section class="sect2" id="ha-resources-what-is-primitive" data-id-title="Primitive resources"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">Primitive resources</span></span> <a title="Permalink" class="permalink" href="index.html#ha-resources-what-is-primitive">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+  Primitive resources represent the applications or services that need to be highly available.
+  Configuring a primitive specifies the resource agent and any other information required for
+  the cluster to manage a resource. To see the supported resource agent classes, run
+  <code class="command">crm ra classes</code>. To see the resource agents available within a class, run
+  <code class="command">crm ra list <em class="replaceable">CLASS</em></code>.
+</p><p>
+      Primitive resources can have the following settings:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.2.4.1"><span class="term">Properties</span></dt><dd><p>
+            Resource properties are the basic details required by the cluster: a unique name for
+            the resource, and the resource agent that manages the application or service.
+          </p></dd><dt id="id-1.2.2.4.2"><span class="term">Parameters</span></dt><dd><p>
+            Parameters are specific to each resource agent and determine the details and behavior
+            of an application or service. To show all the parameters available for a resource agent,
+            run <code class="command">crm ra info <em class="replaceable">RESOURCE_AGENT</em></code>.
+          </p></dd><dt id="id-1.2.2.4.3"><span class="term">Operations</span></dt><dd><p>
+            Operations are actions that the cluster can perform on a resource, such as
+            <code class="literal">start</code>, <code class="literal">stop</code> and <code class="literal">monitor</code>.
+            To show the supported operations for a resource agent, run
+            <code class="command">crm ra info <em class="replaceable">RESOURCE_AGENT</em></code>
+            and scroll to the bottom of the output.
+          </p></dd><dt id="id-1.2.2.4.4"><span class="term">Meta attributes</span></dt><dd><p>
+            Meta attributes change how the cluster treats a resource.
+            To show all the meta attributes available for primitives, run
+            <code class="command">crm_resource --list-options primitive</code>.
+          </p></dd><dt id="id-1.2.2.4.5"><span class="term">Utilization attributes</span></dt><dd><p>
+            If the cluster nodes have utilization attributes configured, you can add these
+            attributes to cluster resources to help with load balancing. For more information,
+            see <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/utilization.html" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/utilization.html</a>.
+            
+          </p></dd></dl></div></section><section class="sect2" id="ha-resources-what-is-group" data-id-title="Resource groups"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Resource groups</span></span> <a title="Permalink" class="permalink" href="index.html#ha-resources-what-is-group">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+  Cluster resources might depend on other resources, such as a Web server that
+  requires an IP address and a file system. You can combine these resources into a
+  <span><em class="emphasis">resource group</em></span>. Groups contain multiple primitives that need
+  to be located together, started sequentially and stopped in the reverse order.
+</p><div class="figure" id="fig-ha-resources-what-is-group"><div class="figure-contents"><div class="mediaobject"><a href="images/ha-resource-group.svg"><img src="images/ha-resource-group.svg" width="80%" alt="This diagram shows a box representing a node. The box contains four individual resources and a smaller box containing three more resources. The smaller box represents a resource group. A zoomed-in view of the resource group shows that the resources are an IP address, an XFS file system and an Apache Web server. The resources are numbered to show the start order in one direction and the reversed stop order in the other direction." title="This diagram shows a box representing a node. The box contains four individual resources and a smaller box containing three more resources. The smaller box represents a resource group. A zoomed-in view of the resource group shows that the resources are an IP address, an XFS file system and an Apache Web server. The resources are numbered to show the start order in one direction and the reversed stop order in the other direction."/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 1: </span><span class="title-name">Resource group </span></span><a title="Permalink" class="permalink" href="index.html#fig-ha-resources-what-is-group">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><p>
+      Groups have the following properties:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.3.5.1"><span class="term">Contents</span></dt><dd><p>
+            Groups can only contain primitive resources, not clones or other groups.
+          </p></dd><dt id="id-1.2.3.5.2"><span class="term">Starting and stopping</span></dt><dd><p>
+           Resources start in the order they appear and stop in the reverse order.
+          </p></dd><dt id="id-1.2.3.5.3"><span class="term">Location</span></dt><dd><p>
+            Resources in the group must all run on the same node.
+          </p></dd><dt id="id-1.2.3.5.4"><span class="term">Dependency</span></dt><dd><p>
+            If one of the resources can't run anywhere, then the resources that appear after
+            it in the group can't run anywhere either.
+          </p></dd><dt id="id-1.2.3.5.5"><span class="term">Meta attributes</span></dt><dd><p>
+            The meta attributes <code class="literal">target-role</code>, <code class="literal">priority</code>,
+            <code class="literal">maintenance</code> and <code class="literal">is-managed</code> can be added
+            directly to the group. All other attributes are inherited from the group's resources.
+          </p></dd><dt id="id-1.2.3.5.6"><span class="term">Resource stickiness</span></dt><dd><p>
+          Stickiness in groups is additive. Every <span><em class="emphasis">active</em></span> resource in the
+          group contributes its stickiness value to the group's total.
+          </p></dd></dl></div></section><section class="sect2" id="ha-resources-what-is-clone" data-id-title="Resource clones"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.3 </span><span class="title-name">Resource clones</span></span> <a title="Permalink" class="permalink" href="index.html#ha-resources-what-is-clone">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+  <span><em class="emphasis">Resource clones</em></span> can run simultaneously on multiple nodes. This is required
+  for cluster file systems like GFS2, for example. You can clone a primitive or a group if the
+  resource agent supports it. Clones can also have additional clone-specific meta attributes to
+  change their behavior.
+</p><p>
+      Clones can be one of the following types:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.4.4.1"><span class="term">Anonymous clones</span></dt><dd><p>
+            Anonymous clones are the simplest type. All instances of the clone behave identically.
+            Therefore, only one instance of an anonymous clone can be active on each node.
+          </p></dd><dt id="id-1.2.4.4.2"><span class="term">Globally unique clones</span></dt><dd><p>
+            Globally unique clones are distinct entities. An instance of the clone running on one
+            node is not necessarily equivalent to another instance on another node.
+          </p></dd><dt id="id-1.2.4.4.3"><span class="term">Promotable clones</span></dt><dd><p>
+            Promotable clones allow the instances to be in one of two operating modes: promoted or
+            unpromoted (also known as primary and secondary, or active and passive). Promotable
+            clones can be either anonymous or globally unique.
+          </p><p>
+            To make a clone promotable, the resource agent must support the
+            <span><em class="emphasis">promote</em></span> and <span><em class="emphasis">demote</em></span> operations. The cluster
+            determines which instance of the clone to promote using one of the following methods
+            (or a combination of both):
+          </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                If a resource agent supports promotable clones, it might automatically set
+                promotion scores based on its own preference for which instance to promote.
+              </p></li><li class="listitem"><p>
+                You can manually set promotion rules or preferences by creating location or
+                colocation constraints.
+              </p></li></ul></div><p>
+            For more information, see <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/collective.html#determining-which-instance-is-promoted" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/collective.html#determining-which-instance-is-promoted</a>
+          </p></dd></dl></div></section><section class="sect2" id="ha-resources-what-is-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.4 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="index.html#ha-resources-what-is-more-info">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          Primitive resources: <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/resources.html" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/resources.html</a>
+        </p></li><li class="listitem"><p>
+          Groups and clones: <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/collective.html" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/collective.html</a>
+        </p></li><li class="listitem"><p>
+          Resource operations: <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/operations.html" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/operations.html</a>
+        </p></li><li class="listitem"><p>
+          Utilization attributes: <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/utilization.html" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/utilization.html</a>
+        </p></li></ul></div></section></section><section xml:lang="en" class="sect1" id="ha-resources-constraints-what-is" data-id-title="What are resource constraints?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">What are resource constraints?</span></span> <a title="Permalink" class="permalink" href="index.html#ha-resources-constraints-what-is">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Resource constraints let you specify cluster node assignments, define the start order,
+        and manage dependencies between resources.
+      </p></div></div></div></div><section class="sect2" id="ha-resources-constraints-what-is-types" data-id-title="Types of constraints"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">Types of constraints</span></span> <a title="Permalink" class="permalink" href="index.html#ha-resources-constraints-what-is-types">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.3.2.2.1"><span class="term">Order</span></dt><dd><p>
+  Order constraints tell the cluster to start resources in a specific order and stop them in the
+  reverse order. You can also start or stop a resource right before or after a different resource
+  performs a certain action, such as being promoted.
+</p></dd><dt id="id-1.3.2.2.2"><span class="term">Location</span></dt><dd><p>
+  Location constraints tell the cluster where resources can or cannot run. You can specify that
+  a resource <span><em class="emphasis">must</em></span> or must <span><em class="emphasis">not</em></span> run on a particular node,
+  or give the resource an optional preference for or against a node.
+</p></dd><dt id="id-1.3.2.2.3"><span class="term">Colocation</span></dt><dd><p>
+  Colocation constraints tell the cluster which resources can or cannot run together on the same
+  node. You can specify that the resources <span><em class="emphasis">must</em></span> or must <span><em class="emphasis">not</em></span>
+  run together, or give a resource an optional preference for or against another resource.
+</p></dd></dl></div><div id="id-1.3.2.3" data-id-title="Restrictions for constraints and primitive resources" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Restrictions for constraints and primitive resources</div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          Don't add colocation constraints to primitives in a resource group.
+          Add a colocation constraint to the group instead.
+        </p></li><li class="listitem"><p>
+          Don't add any constraints to a primitive that has been cloned.
+          Add constraints to the clone instead.
+        </p></li></ul></div></div></section><section class="sect2" id="ha-resources-constraints-what-is-scores" data-id-title="Scores and kinds"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.2 </span><span class="title-name">Scores and kinds</span></span> <a title="Permalink" class="permalink" href="index.html#ha-resources-constraints-what-is-scores">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Location and colocation constraints must have a <span><em class="emphasis">score</em></span> to indicate how
+      important the constraint is. A score of <code class="literal">INFINITY</code> (positive or negative)
+      means that the constraint <span><em class="emphasis">must</em></span> be applied. The score can also be a
+      non-infinite number (positive or negative), which means the constraint is only a preference.
+      In this case, the constraint might not be applied if its score is outweighed by other factors,
+      such as other constraints, resource stickiness, failure thresholds, etc.
+    </p><p>
+      For location constraints, a positive score means the resource should (or must) run on the
+      specified node. A negative score means the resource should <span><em class="emphasis">not</em></span> (or must
+      not) run on the specified node. You can also add multiple location constraints with different
+      scores to prioritize node preferences.
+    </p><p>
+      For colocation constraints, a positive score means the resources should (or must) run together
+      on the same node. A negative score means the resources should <span><em class="emphasis">not</em></span> (or
+      must not) run together on the same node.
+    </p><p>
+      Instead of a score, order constraints must have a <span><em class="emphasis">kind</em></span>, which defines
+      whether the constraint is mandatory or optional.
+    </p></section><section class="sect2" id="ha-resources-constraints-what-is-sets" data-id-title="Resource sets"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.3 </span><span class="title-name">Resource sets</span></span> <a title="Permalink" class="permalink" href="index.html#ha-resources-constraints-what-is-sets">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      <span><em class="emphasis">Resource sets</em></span> let you group multiple resources in a single constraint
+      instead of needing multiple constraints. The effect depends on the type of constraint:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          In a <span><em class="emphasis">location</em></span> constraint, a resource set applies the constraint
+          to multiple resources instead of just one, without creating any dependency between
+          the resources.
+        </p><p>
+          Location constraints use curly brackets to group the resources.
+        </p></li><li class="listitem"><p>
+          In an <span><em class="emphasis">order</em></span> constraint, a resource set gives multiple resources
+          the same position in the order. For example, a simple order constraint says that
+          <code class="literal">res1</code> must start first, then <code class="literal">res2</code>, then
+          <code class="literal">res3</code>. However, if you put <code class="literal">res2</code> and
+          <code class="literal">res3</code> in a resource set, the constraint would say that
+          <code class="literal">res1</code> must start first, and then <code class="literal">res2</code> and
+          <code class="literal">res3</code> can start in any order.
+        </p><p>
+          Order constraints can use round brackets or square brackets to group the resources.
+        </p></li><li class="listitem"><p>
+          In a <span><em class="emphasis">colocation</em></span> constraint, a resource set gives multiple resources
+          the same relationship to the next resource. For example, a simple colocation constraint
+          says that <code class="literal">res1</code> must run on the same node as <code class="literal">res2</code>,
+          which must run on the same node as <code class="literal">res3</code>. However, if you put
+          <code class="literal">res1</code> and <code class="literal">res2</code> in a resource set, the constraint
+          would say that <code class="literal">res1</code> and <code class="literal">res2</code> must run on the same
+          node as <code class="literal">res3</code>, but aren't otherwise dependent on each other.
+        </p><p>
+          Colocation constraints can use round brackets or square brackets to group the resources.
+        </p></li></ul></div><p>
+      The syntax for resource sets can be complex, so before using them in a production environment,
+      we recommend testing them to make sure the resources behave as expected.
+    </p><p>
+      For more information about the syntax of resource sets and the difference between round and
+      square brackets, run <code class="command">crm help Resourcesets</code>.
+    </p></section><section class="sect2" id="ha-resources-constraints-what-is-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.4 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="index.html#ha-resources-constraints-what-is-more-info">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          Constraints: <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/constraints.html" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/constraints.html</a>
+        </p></li><li class="listitem"><p>
+          Constraints for clones: <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/collective.html#clone-constraints" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/collective.html#clone-constraints</a>
+        </p></li><li class="listitem"><p>
+          Scores: <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/local-options.html#scores" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/local-options.html#scores</a>
+        </p></li><li class="listitem"><p>
+          Resource sets: <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/constraints.html#resource-sets" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/constraints.html#resource-sets</a>
+        </p></li></ul></div></section></section><section xml:lang="en" class="sect1" id="ha-resources-adding-order-constraints" data-id-title="Adding order constraints"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Adding order constraints</span></span> <a title="Permalink" class="permalink" href="index.html#ha-resources-adding-order-constraints">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+  Order constraints tell the cluster to start resources in a specific order and stop them in the
+  reverse order. You can also start or stop a resource right before or after a different resource
+  performs a certain action, such as being promoted.
+</p></div></div></div></div><p>
+    Instead of a score, order constraints have a <span><em class="emphasis">kind</em></span>. The kind can be one
+    of the following:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        <code class="literal">Mandatory</code>: Resources <span><em class="emphasis">must</em></span> start in this order.
+      </p></li><li class="listitem"><p>
+        <code class="literal">Optional</code>: The start order is only a preference.
+      </p></li><li class="listitem"><p>
+        <code class="literal">Serialize</code>: A resource must finish starting before the next resource
+        can begin starting. This is useful for resources that put a high load on the node
+        during start-up, for example.
+      </p></li></ul></div><p>
+    You can add order constraints with the CRM Shell (<code class="systemitem">crmsh</code>) or with the Hawk Web interface.
+  </p><div class="tab-structure"><ul class="tabs" onclick="showTabContent(event)"><li class="tab active-tab">CRM Shell</li><li class="tab">Hawk</li></ul><div class="content-container"><div class="tab-content" id="tabContent1"><p>
+          You can perform this procedure on any node in the cluster.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code> privileges.
+            </p></li><li class="step"><p>
+              Add an order constraint. The basic command requires a name, a kind, and at least
+              two resources:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure order <em class="replaceable">ORDER_NAME KIND: RESOURCE1 RESOURCE2</em></code></pre></div><p>
+              The <em class="replaceable">KIND</em> can be <code class="literal">Mandatory</code>,
+              <code class="literal">Optional</code> or <code class="literal">Serialize</code>.
+            </p><div class="variablelist"><div class="title-container"><div class="variablelist-title-wrap"><div class="variablelist-title"><span class="title-number-name"><span class="title-name">Additional options </span></span><a title="Permalink" class="permalink" href="index.html#id-1.4.5.1.2.2.2.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><dl class="variablelist"><dt id="id-1.4.5.1.2.2.2.4.2"><span class="term">Resource sets</span></dt><dd><p>
+                    You can use round brackets or square brackets to group resources in an order
+                    constraint. In this example, <code class="literal">res1</code> must start first, and then
+                    <code class="literal">res2</code> and <code class="literal">res3</code> can start in any order:
+                  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure order res1-first Mandatory: res1 [ res2 res3 ]</code></pre></div><p>
+                    Round brackets are treated as special characters in most shells, so for
+                    <code class="command">crm</code> commands that aren't in interactive mode, you must
+                    escape the brackets with <code class="literal">\</code>:
+                  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure order res1-first Mandatory: res1 \( res2 res3 \)</code></pre></div><p>
+                    For more information about the difference between round and square brackets,
+                    run <code class="command">crm help Resourcesets</code>.
+                  </p></dd><dt id="id-1.4.5.1.2.2.2.4.3"><span class="term">Symmetry</span></dt><dd><p>
+                    In most cases, you should keep the default <code class="literal">symmetrical=true</code>,
+                    which means that resources stop in the reverse of their start order. However,
+                    if necessary, you can change it to <code class="literal">false</code>.
+                  </p></dd><dt id="id-1.4.5.1.2.2.2.4.4"><span class="term">Actions</span></dt><dd><p>
+                    You can require a resource to perform an action (<code class="literal">start</code>,
+                    <code class="literal">stop</code>, <code class="literal">promote</code> or <code class="literal">demote</code>)
+                    before or after another resource starts. In this example, <code class="literal">res1</code>
+                    must start before <code class="literal">clone2</code> can be promoted:
+                  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure order res1-pr-clone2 Mandatory: res1 clone2:promote</code></pre></div></dd></dl></div></li><li class="step"><p>
+              You can view all order constraints with the following command:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure show type:order</code></pre></div></li></ol></div></div></div><div class="tab-content" id="tabContent2" style="display: none;"><p>
+          You can use Hawk on any machine with a Web browser and network access to the nodes.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              In a Web browser, go to
+              <code class="literal">https://<em class="replaceable">HAWKSERVER</em>:7630/</code>
+              and log in.
+            </p></li><li class="step"><p>
+              From the left navigation bar, select <span class="guimenu">Configuration</span> › <span class="guimenu">Add Constraint</span>.
+            </p></li><li class="step"><p>
+              Click <span class="guimenu">Order</span>.
+            </p></li><li class="step"><p>
+              Enter a unique <span class="guimenu">Constraint ID</span>.
+            </p></li><li class="step"><p>
+              Select a <span class="guimenu">Kind</span> from the drop-down list.
+            </p></li><li class="step"><p>
+              In most cases, you should keep the option <span class="guimenu">Symmetrical</span> enabled.
+              This means that resources stop in the reverse of their start order.
+            </p></li><li class="step"><p>
+              From the drop-down list in the <span class="guimenu">Resources</span> section, select a
+              resource.
+            </p><p>
+              A new drop-down list appears. Repeat this step to add more resources.
+            </p><p>
+              The resources will start in the order shown on the screen. To change the order,
+              click the up arrow icon to swap a resource with the one above it.
+            </p><p>
+              To remove a resource from the constraint, click the minus icon.
+            </p></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+              To create a resource set, click the chain icon to link a resource to the
+              one above it. You can link multiple resources into a set or create
+              multiple resource sets.
+            </p><p>
+              To remove a resource from the set, click the scissors icon.
+            </p></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+              If required, select an action (<code class="literal">Start</code>, <code class="literal">Stop</code>,
+              <code class="literal">Promote</code> or <code class="literal">Demote</code>) from the drop-down list
+              next to a resource. The resource must perform this action before or after another
+              resource starts, depending on the order.
+            </p></li><li class="step"><p>
+              Click <span class="guimenu">Create</span> to finish the configuration.
+            </p><p>
+              A message at the top of the screen shows if the action was successful.
+            </p></li></ol></div></div></div></div></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">For more information </span></span><a title="Permalink" class="permalink" href="index.html#id-1.4.6">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        <code class="command">crm configure help order</code>
+      </p></li><li class="listitem"><p>
+        <code class="command">crm help Resourcesets</code>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/constraints.html#specifying-the-order-in-which-resources-should-start-stop" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/constraints.html#specifying-the-order-in-which-resources-should-start-stop</a>
+      </p></li></ul></div></section><section xml:lang="en" class="sect1" id="ha-resources-adding-location-constraints" data-id-title="Adding location constraints"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Adding location constraints</span></span> <a title="Permalink" class="permalink" href="index.html#ha-resources-adding-location-constraints">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+  Location constraints tell the cluster where resources can or cannot run. You can specify that
+  a resource <span><em class="emphasis">must</em></span> or must <span><em class="emphasis">not</em></span> run on a particular node,
+  or give the resource an optional preference for or against a node.
+</p></div></div></div></div><p>
+    Location constraints use a <span><em class="emphasis">score</em></span> to indicate how important the constraint
+    is. A score of <code class="literal">INFINITY</code> (positive or negative) means that the constraint
+    <span><em class="emphasis">must</em></span> be applied. The score can also be a non-infinite number (positive or
+    negative), which means the constraint is only a preference. You can also add multiple location
+    constraints with different scores to prioritize node preferences.
+  </p><p>
+    You can add location constraints with the CRM Shell (<code class="systemitem">crmsh</code>) or with the Hawk Web interface.
+  </p><div class="tab-structure"><ul class="tabs" onclick="showTabContent(event)"><li class="tab active-tab">CRM Shell</li><li class="tab">Hawk</li></ul><div class="content-container"><div class="tab-content" id="tabContent1"><p>
+          You can perform this procedure on any node in the cluster.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code> privileges.
+            </p></li><li class="step"><p>
+              Add a location constraint. The basic command requires a name, at least one resource,
+              a score, and a node:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure location <em class="replaceable">LOCATION_NAME RESOURCE SCORE: NODE</em></code></pre></div><p>
+              The <em class="replaceable">SCORE</em> can be <code class="literal">inf</code>,
+              <code class="literal">-inf</code> or a number (positive or negative).
+            </p><div class="variablelist"><div class="title-container"><div class="variablelist-title-wrap"><div class="variablelist-title"><span class="title-number-name"><span class="title-name">Additional options </span></span><a title="Permalink" class="permalink" href="index.html#id-1.5.4.1.2.2.2.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><dl class="variablelist"><dt id="id-1.5.4.1.2.2.2.4.2"><span class="term">Resource sets</span></dt><dd><p>
+                    You can use curly brackets to include multiple resources in a location
+                    constraint. In this example, <code class="literal">res1</code> and <code class="literal">res2</code>
+                    must both run on node <code class="literal">alice</code>:
+                  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure location res1-2-alice { res1 res2 } inf: alice</code></pre></div></dd><dt id="id-1.5.4.1.2.2.2.4.3"><span class="term">Resource patterns</span></dt><dd><p>
+                    You can use a resource pattern (a regular expression between two slashes)
+                    to refer to multiple resources. If you add new resources with the same name
+                    pattern, they will also be included in the location constraint. In this
+                    example, any resources beginning with <code class="literal">res</code> must run on
+                    node <code class="literal">alice</code>:
+              </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure location all-res-alice /res.*/ inf: alice</code></pre></div></dd><dt id="id-1.5.4.1.2.2.2.4.4"><span class="term">Resource discovery</span></dt><dd><p>
+                    In most cases, you should keep the default
+                    <code class="literal">resource-discovery=always</code>. This means that the cluster
+                    checks whether the resource is already running, to help avoid unwanted
+                    instances of the resource. However, if necessary, you can change it to
+                    <code class="literal">never</code> or <code class="literal">exclusive</code>.
+                  </p></dd><dt id="id-1.5.4.1.2.2.2.4.5"><span class="term">Rules</span></dt><dd><p>
+                    Instead of specifying a single node, you can use a rule to refer to multiple
+                    nodes. If you add more nodes that meet the rule, they will also be included
+                    in the location constraint. In this example, <code class="literal">res1</code> can't
+                    run on any node where the custom node attribute <code class="literal">memory</code>
+                    is less than <code class="literal">4096</code>:
+                  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure location res1-no-small-nodes res1 \
+  rule -inf: memory lt 4096</code></pre></div></dd></dl></div></li><li class="step"><p>
+              Check the status to see which node the resources are now running on:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div></li></ol></div></div></div><div class="tab-content" id="tabContent2" style="display: none;"><p>
+          You can use Hawk on any machine with a Web browser and network access to the nodes.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              In a Web browser, go to
+              <code class="literal">https://<em class="replaceable">HAWKSERVER</em>:7630/</code>
+              and log in.
+            </p></li><li class="step"><p>
+              From the left navigation bar, select <span class="guimenu">Configuration</span> › <span class="guimenu">Add Constraint</span>.
+            </p></li><li class="step"><p>
+              Click <span class="guimenu">Location</span>.
+            </p></li><li class="step"><p>
+              Enter a unique <span class="guimenu">Constraint ID</span>.
+            </p></li><li class="step"><p>
+              Select one or more <span class="guimenu">Resources</span> to apply the constraint to.
+            </p><p>
+              To remove a resource from the constraint, press <span class="keycap">Ctrl</span> and
+              click the resource again.
+            </p></li><li class="step"><p>
+              Enter a numeric <span class="guimenu">Score</span> or select a value from the drop-down list:
+            </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                <code class="literal">Always</code> sets the score to <code class="literal">INFINITY</code>, which
+                means that the resources must run on the specified node.
+              </p></li><li class="listitem"><p>
+                <code class="literal">Never</code> sets the score to <code class="literal">-INFINITY</code>, which
+                means that the resources must <span><em class="emphasis">not</em></span> run on the specified node.
+              </p></li><li class="listitem"><p>
+                <code class="literal">Advisory</code> sets the score to <code class="literal">0</code>, which disables
+                the constraint. This can be useful when you want to set resource discovery but
+                don't want to constrain the resources.
+              </p></li></ul></div></li><li class="step"><p>
+              Select a <span class="guimenu">Node</span> to apply the constraint to.
+            </p></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+              Click the <span class="guimenu">Advanced</span> tab if you need to set further parameters.
+            </p></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+              In most cases, you should keep the option <span class="guimenu">Resource Discovery</span>
+              enabled. This means that the cluster checks whether the resource is already running,
+              to help avoid unwanted instances of the resource. If you do need to change this
+              option, select a new value from the drop-down list.
+            </p></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+              Instead of specifying a single node, you can use a <span class="guimenu">Rule</span> to refer
+              to multiple nodes. If you add more nodes that meet the rule, they will also be
+              included in the location constraint. Configure the rule with the following settings:
+            </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                  Add a <span class="guimenu">Score</span> for the rule.
+                </p></li><li class="listitem"><p>
+                  Optionally, select a <span class="guimenu">Role</span> from the drop-down list.
+                  The rule will only apply when the resource is in this role.
+                </p></li><li class="listitem"><p>
+                  If you intend to add multiple expressions, select a
+                  <span class="guimenu">Boolean Operator</span> from the drop-down list.
+                </p></li><li class="listitem"><p>
+                  Add one or more <span class="guimenu">Expressions</span>. Select an expression type
+                  from the drop-down list, then click the plus icon.
+                </p><p>
+                  The required fields for that expression type appear. This could be a node's
+                  <code class="literal">uname</code>, or a custom node attribute and value. Fill in the fields
+                  and select an operation (such as =, &lt;, &gt;, etc.) to create the expression.
+                </p></li></ul></div></li><li class="step"><p>
+              Click <span class="guimenu">Create</span> to finish the configuration.
+            </p><p>
+              A message at the top of the screen shows if the action was successful.
+            </p></li></ol></div></div></div></div></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">For more information </span></span><a title="Permalink" class="permalink" href="index.html#id-1.5.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        <code class="command">crm configure help location</code>
+      </p></li><li class="listitem"><p>
+        <code class="command">crm help Resourcesets</code>
+      </p></li><li class="listitem"><p>
+        <code class="command">crm help RuleExpressions</code>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/constraints.html#deciding-which-nodes-a-resource-can-run-on" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/constraints.html#deciding-which-nodes-a-resource-can-run-on</a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/rules.html" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/rules.html</a>
+      </p></li></ul></div></section><section xml:lang="en" class="sect1" id="ha-resources-adding-colocation-constraints" data-id-title="Adding colocation constraints"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Adding colocation constraints</span></span> <a title="Permalink" class="permalink" href="index.html#ha-resources-adding-colocation-constraints">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+  Colocation constraints tell the cluster which resources can or cannot run together on the same
+  node. You can specify that the resources <span><em class="emphasis">must</em></span> or must <span><em class="emphasis">not</em></span>
+  run together, or give a resource an optional preference for or against another resource.
+</p></div></div></div></div><p>
+    Colocation constraints use a <span><em class="emphasis">score</em></span> to indicate how important the
+    constraint is. A score of <code class="literal">INFINITY</code> (positive or negative) means that
+    the constraint <span><em class="emphasis">must</em></span> be applied. The score can also be a non-infinite
+    number (positive or negative), which means the constraint is only a preference.
+  </p><div id="id-1.6.3" data-id-title="Resource start order" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Resource start order</div><p>
+      Colocation constraints <span><em class="emphasis">don't</em></span> affect the order in which the resources
+      start. If you want resources to run on the same node <span><em class="emphasis">and</em></span> start in a
+      specific order, create a resource group.
+    </p></div><p>
+    You can add colocation constraints with the CRM Shell (<code class="systemitem">crmsh</code>) or with the Hawk Web interface.
+  </p><div class="tab-structure"><ul class="tabs" onclick="showTabContent(event)"><li class="tab active-tab">CRM Shell</li><li class="tab">Hawk</li></ul><div class="content-container"><div class="tab-content" id="tabContent1"><p>
+          You can perform this procedure on any node in the cluster.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code> privileges.
+            </p></li><li class="step"><p>
+              Add a colocation constraint. The basic command requires a name, a score and at
+              least two resources:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure colocation <em class="replaceable">COLOCATION_NAME SCORE: RESOURCE1 RESOURCE2</em></code></pre></div><p>
+              The <em class="replaceable">SCORE</em> can be <code class="literal">inf</code>,
+              <code class="literal">-inf</code> or a number (positive or negative).
+            </p><p>
+              <em class="replaceable">RESOURCE2</em> is assigned to a node <span><em class="emphasis">first</em></span>,
+              and <em class="replaceable">RESOURCE1</em> is placed relative to
+              <em class="replaceable">RESOURCE2</em>.
+            </p><div class="variablelist"><div class="title-container"><div class="variablelist-title-wrap"><div class="variablelist-title"><span class="title-number-name"><span class="title-name">Additional options </span></span><a title="Permalink" class="permalink" href="index.html#id-1.6.5.1.2.2.2.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><dl class="variablelist"><dt id="id-1.6.5.1.2.2.2.5.2"><span class="term">Resource sets</span></dt><dd><p>
+                    You can use round brackets or square brackets to group resources in a colocation
+                    constraint. In this example, <code class="literal">res1</code> and <code class="literal">res2</code>
+                    must run on the same node as <code class="literal">res3</code>, but aren't otherwise
+                    dependent on each other:
+                  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure colocation res1-2-with-res3 \
+  inf: [ res1 res2 ] res3</code></pre></div><p>
+                    Round brackets are treated as special characters in most shells, so for
+                    <code class="command">crm</code> commands that aren't in interactive mode, you must
+                    escape the brackets with <code class="literal">\</code>:
+                  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure colocation res1-2-with-res3 \
+  inf: \( res1 res2 \) res3</code></pre></div><p>
+                    For more information about the difference between round and square brackets,
+                    run <code class="command">crm help Resourcesets</code>.
+                  </p></dd><dt id="id-1.6.5.1.2.2.2.5.3"><span class="term">Roles</span></dt><dd><p>
+                    You can require a role (<code class="literal">Started</code>, <code class="literal">Stopped</code>,
+                    <code class="literal">Promoted</code> or <code class="literal">Unpromoted</code>) for one or more
+                    resources. The colocation constraint only applies when the resource is in
+                    this role. In this example, <code class="literal">res1</code> must run on the same node
+                    where <code class="literal">clone2</code> is in the <code class="literal">Promoted</code> role:
+                  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure colocation res1-with-pr-clone2 \
+  inf: res1 clone2:Promoted</code></pre></div></dd><dt id="id-1.6.5.1.2.2.2.5.4"><span class="term">Node attributes</span></dt><dd><p>
+                    You can use a node attribute to colocate resources on a group of nodes instead
+                    of one node. In this example, <code class="literal">res1</code> and <code class="literal">res2</code>
+                    don't have to run on the same node, but must run on nodes with the same value
+                    for the <code class="literal">datacenter</code> node attribute:
+                  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure colocation res1-2-same-dc \
+  inf: res1 res2 node-attribute=datacenter</code></pre></div></dd></dl></div></li><li class="step"><p>
+              Check the status to see which node the resources are now running on:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div></li></ol></div></div></div><div class="tab-content" id="tabContent2" style="display: none;"><p>
+          You can use Hawk on any machine with a Web browser and network access to the nodes.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              In a Web browser, go to
+              <code class="literal">https://<em class="replaceable">HAWKSERVER</em>:7630/</code>
+              and log in.
+            </p></li><li class="step"><p>
+              From the left navigation bar, select <span class="guimenu">Configuration</span> › <span class="guimenu">Add Constraint</span>.
+            </p></li><li class="step"><p>
+              Click <span class="guimenu">Colocation</span>.
+            </p></li><li class="step"><p>
+              Enter a unique <span class="guimenu">Constraint ID</span>.
+            </p></li><li class="step"><p>
+              Enter a numeric <span class="guimenu">Score</span> or select a value from the drop-down list:
+            </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                <code class="literal">Always</code> sets the score to <code class="literal">INFINITY</code>, which
+                means that the resources must run on the same node.
+              </p></li><li class="listitem"><p>
+                <code class="literal">Never</code> sets the score to <code class="literal">-INFINITY</code>, which
+                means that the resources must run on different nodes.
+              </p></li></ul></div></li><li class="step"><p>
+              From the drop-down list in the <span class="guimenu">Resources</span> section, select a resource.
+            </p><p>
+              A new drop-down list appears. Repeat this step to add more resources.
+            </p><p>
+              The resource that appears <span><em class="emphasis">last</em></span> in the list is assigned to a
+              node <span><em class="emphasis">first</em></span>, and the other resources are placed relative to that
+              resource. To change the order of the resources, click the up arrow icon to swap a
+              resource with the one above it.
+            </p><p>
+              To remove a resource from the constraint, click the minus icon.
+            </p></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+              To create a resource set, click the chain icon to link a resource to the
+              one above it. You can link multiple resources into a set or create
+              multiple resource sets.
+            </p><p>
+              To remove a resource from the set, click the scissors icon.
+            </p></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+              If required, select a role (<code class="literal">Started</code>, <code class="literal">Stopped</code>,
+              <code class="literal">Promoted</code> or <code class="literal">Promotable</code>) from the drop-down list
+              next to a resource. The colocation constraint only applies when the resource
+              is in this role.
+            </p></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+              You can add a <span class="guimenu">Node Attribute</span> to colocate the resources on a group
+              of nodes instead of one specific node. If the nodes have an attribute assigned, the
+              resources in this constraint will all be placed on nodes with the same value for
+              that attribute.
+            </p></li><li class="step"><p>
+              Click <span class="guimenu">Create</span> to finish the configuration.
+            </p><p>
+              A message at the top of the screen shows if the action was successful.
+            </p></li></ol></div></div></div></div></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">For more information </span></span><a title="Permalink" class="permalink" href="index.html#id-1.6.6">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        <code class="command">crm configure help colocation</code>
+      </p></li><li class="listitem"><p>
+        <code class="command">crm help Resourcesets</code>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/constraints.html#placing-resources-relative-to-other-resources" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/constraints.html#placing-resources-relative-to-other-resources</a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/constraints.html#colocating-sets-of-resources" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/constraints.html#colocating-sets-of-resources</a>
+      </p></li></ul></div></section><section xml:lang="en" class="sect1" id="ha-resources-colocating-without-adding-dependency" data-id-title="Colocating resources without adding dependency"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Colocating resources without adding dependency</span></span> <a title="Permalink" class="permalink" href="index.html#ha-resources-colocating-without-adding-dependency">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        A colocation constraint creates dependency between the resources. If one resource fails,
+        the cluster also restarts the other resource. However, sometimes you might need to place
+        resources together <span><em class="emphasis">without</em></span> any dependency. You can do this with the
+        CRM Shell's <code class="command">weak-bond</code> command. This creates a <code class="literal">Dummy</code>
+        resource, then creates a colocation constraint between the <code class="literal">Dummy</code>
+        resource and the resources you specify.
+    </p></div></div></div></div><p>
+    You can perform this procedure on any node in the cluster.
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code> privileges.
+      </p></li><li class="step"><p>
+        Run the following command, specifying two or more primitive resources:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure assist weak-bond <em class="replaceable">RESOURCE1 RESOURCE2</em></code>
+Create weak bond / independent colocation
+The following elements will be created:
+   * Colocation constraint, ID: place-constraint-1
+   * Dummy resource, ID: place-dummy-1
+Create resources (y/n)?</pre></div></li><li class="step"><p>
+        Enter <code class="literal">y</code> to create the <code class="literal">Dummy</code> resource and
+        colocation constraint.
+      </p></li><li class="step"><p>
+        View the new constraint:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure show place-constraint-1</code></pre></div></li><li class="step"><p>
+        Check which node the resources are running on:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div></li></ol></div></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">For more information </span></span><a title="Permalink" class="permalink" href="index.html#id-1.7.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        <code class="command">crm assist weak-bond --help</code>
+
+      </p></li></ul></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#ha-resources-what-is"><span class="title-number">1 </span><span class="title-name">What are cluster resources?</span></a></span></li><li><span class="section"><a href="index.html#ha-resources-constraints-what-is"><span class="title-number">2 </span><span class="title-name">What are resource constraints?</span></a></span></li><li><span class="section"><a href="index.html#ha-resources-adding-order-constraints"><span class="title-number">3 </span><span class="title-name">Adding order constraints</span></a></span></li><li><span class="section"><a href="index.html#ha-resources-adding-location-constraints"><span class="title-number">4 </span><span class="title-name">Adding location constraints</span></a></span></li><li><span class="section"><a href="index.html#ha-resources-adding-colocation-constraints"><span class="title-number">5 </span><span class="title-name">Adding colocation constraints</span></a></span></li><li><span class="section"><a href="index.html#ha-resources-colocating-without-adding-dependency"><span class="title-number">6 </span><span class="title-name">Colocating resources without adding dependency</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">7 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li><li><span class="glossary"><a href="ha-glossary.html"><span class="title-name">HA glossary</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

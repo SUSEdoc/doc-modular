@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Migrating Spice-based Virtual Machines to VNC | SUSE Linux Enterprise Server 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2025-04-15"/>
+<meta name="dcterms.modified" content="2026-07-02"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-26"/>
+<meta name="title" content="Migrating Spice-based Virtual Machines to VNC | SUSE L…"/>
+<meta name="description" content="Learn how to migrate Spice-based virtual machines to VNC on SUSE Linux Enterprise Server 16.1 using libvirt by updating VM XML configurations after Spice …"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="Migrating Spice-based Virtual Machines to VNC"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="souvik.sarkar@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="souvik.sarkar@suse.com"/><meta property="og:title" content="Migrating Spice Virtual Machines to VNC on SUSE Linux …"/>
+<meta property="og:description" content="Migrate Spice virtual machines to VNC on SUSE Linux Enterpri"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Migrating Spice Virtual Machines to VNC on SUSE Linux …"/>
+<meta name="twitter:description" content="Migrate Spice virtual machines to VNC on SUSE Linux Enterpri"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Migrating Spice Virtual Machines to VNC on SUSE Linux Enterprise Server | SUSE Linux Enterprise Server 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Migrating Spice Virtual Machines to VNC on SUSE Linux Enterprise Server",
+    "description": "Learn how to migrate Spice-based virtual machines to VNC on SUSE Linux Enterprise Server 16.1 using libvirt by updating VM XML configurations after Spice removal",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2025-04-15T00:00+02:00",
+    "dateModified": "2026-07-02T00:00+02:00",
+    "datePublished": "2026-08-26T09:47+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Virtualization"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Migrating Spice-based Virtual Machines to VNC</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Migrating Spice-based Virtual Machines to VNC</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="virtualization" data-id-title="Migrating Spice-based Virtual Machines to VNC"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span></span> 16.1</div><div><h1 class="title">Migrating Spice-based Virtual Machines to VNC</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>26 Aug 2026</div><div><div class="abstract"><p>
+   Migrating Spice-based virtual machines to VNC is a configuration process
+   that replaces the deprecated Spice graphical console protocol with VNC on
+   <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> 16.1 using libvirt and KVM. This migration
+   ensures continued VM console access by replacing the removed Spice
+   protocol with VNC, which is widely supported and actively maintained. By
+   the end of this guide, your existing virtual machine will be
+   reconfigured to use VNC instead of Spice and will start successfully on a
+   <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> 16.1 host.
+  </p></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Migrating Spice-based Virtual Machines to VNC" hreflang="en" href="rh-virtualization.html" target="_blank">Revision History: Migrating Spice-based Virtual Machines to VNC</a></div></div></div></div><section xml:lang="en" class="sect1" id="spice-removal" data-id-title="Deprecation of Spice and Migration to VNC in SUSE Linux Enterprise Server 16"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Deprecation of Spice and Migration to VNC in <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> 16</span></span> <a title="Permalink" class="permalink" href="index.html#spice-removal">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><section class="sect2" id="id-1.2.2" data-id-title="Overview of Spice Deprecation"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">Overview of Spice Deprecation</span></span> <a title="Permalink" class="permalink" href="index.html#id-1.2.2">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div id="id-1.2.2.2" data-id-title="Removal of Spice in SUSE Linux 16" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Removal of Spice in SUSE Linux 16</div><p>
+  Spice support for VMs has been removed beginning with <span class="phrase"><span class="phrase">SLES</span></span> 16.
+  Attempting to start Spice-based VMs on <span class="phrase"><span class="phrase">SLES</span></span> 16 will result in an error.
+  Existing VMs created on <span class="phrase"><span class="phrase">SLES</span></span> 15 SP7 or older that use Spice must be converted to use VNC if run on <span class="phrase"><span class="phrase">SLES</span></span> 16.
+  The <code class="command">virt-xml</code> tool can be used to do this automatically beginning with virt-manager version 5.0.0.
+  </p></div><section class="sect3" id="sec-virt-xml-auto-convert" data-id-title="Automatic conversion with virt-xml"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">1.1.1 </span><span class="title-name">Automatic conversion with virt-xml</span></span> <a title="Permalink" class="permalink" href="index.html#sec-virt-xml-auto-convert">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   To automatically convert a VM using <code class="command">virt-xml</code> (virt-manager 5.0.0 or newer), follow these steps:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+     First, back up your VM XML if you do not like what virt-xml does.
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">virsh dumpxml <em class="replaceable">VM-NAME</em> &gt; <em class="replaceable">VM-NAME</em>.xml</code></pre></div></li><li class="step"><p>
+     Run the conversion command:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">virt-xml <em class="replaceable">VM-NAME</em> --edit --convert-to-vnc qemu-vdagent=on</code></pre></div><p>
+     Where:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.2.3.3.2.4.1"><span class="term"><em class="replaceable">VM-NAME</em></span></dt><dd><p>
+         The name of the VM. See <code class="command">virsh list --all</code> on the host.
+        </p></dd><dt id="id-1.2.2.3.3.2.4.2"><span class="term"><code class="option">--edit</code></span></dt><dd><p>
+         Edit an existing XML block.
+        </p></dd><dt id="id-1.2.2.3.3.2.4.3"><span class="term"><code class="option">--convert-to-vnc</code></span></dt><dd><p>
+         Convert an existing VM to exclusively use a single VNC graphics device.
+        </p></dd><dt id="id-1.2.2.3.3.2.4.4"><span class="term"><code class="option">qemu-vdagent=on</code></span></dt><dd><p>
+         Used with <code class="option">--convert-to-vnc</code> to add a qemu-vdagent device if one is not already configured. This is for copy and paste functionality between host and guest on <span class="phrase"><span class="phrase">SLES</span></span> 16.
+        </p></dd></dl></div><p>
+     See the <code class="command">virt-xml</code> man page for more options and details.
+    </p></li></ol></div></div></section><section class="sect3" id="sec-manual-conversion" data-id-title="Manual conversion"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">1.1.2 </span><span class="title-name">Manual conversion</span></span> <a title="Permalink" class="permalink" href="index.html#sec-manual-conversion">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   If you prefer manual conversion, follow the step-by-step guide below.
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+     Shut down your Spice-based VM.
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">virsh shutdown <em class="replaceable">VM-NAME</em></code></pre></div></li><li class="step"><p>
+     Save the current XML definition for your Spice-based VM.
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">virsh dumpxml <em class="replaceable">VM-NAME</em> &gt; <em class="replaceable">VM-NAME</em>.xml</code></pre></div></li><li class="step"><p>
+     Optionally save a copy of the original Spice-based definition if you mess something up.
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">cp <em class="replaceable">VM-NAME</em>.xml <em class="replaceable">VM-NAME</em>-spice.xml</code></pre></div></li><li class="step"><p>
+     Using your favorite text editor, proceed to edit the XML definition to remove or modify the Spice-based devices as follows.
+    </p></li></ol></div></div></section></section><section class="sect2" id="sec-spice-elements-remove" data-id-title="Spice elements to remove"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Spice elements to remove</span></span> <a title="Permalink" class="permalink" href="index.html#sec-spice-elements-remove">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   The following XML snippets are specific to the Spice protocol and must be removed from the VM's configuration file. These elements enable features like the Spice agent channel and USB redirection over Spice, which are no longer supported.
+  </p><div class="verbatim-wrap"><pre class="programlisting">   &lt;!-- This channel is for the Spice agent and is no longer needed --&gt;
+   &lt;channel type='spicevmc'&gt;
+   &lt;target type='virtio' name='com.redhat.spice.0'/&gt;
+   &lt;address type='virtio-serial' controller='0' bus='0' port='2'/&gt;
+   &lt;/channel&gt;
+
+   &lt;!-- These elements enable USB redirection over Spice and must be removed --&gt;
+   &lt;redirdev bus='usb' type='spicevmc'&gt;
+   &lt;address type='usb' bus='0' port='2'/&gt;
+   &lt;/redirdev&gt;
+
+   &lt;redirdev bus='usb' type='spicevmc'&gt;
+   &lt;address type='usb' bus='0' port='3'/&gt;
+  &lt;/redirdev&gt;</pre></div></section><section class="sect2" id="sec-spice-elements-modify" data-id-title="Spice elements to modify"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.3 </span><span class="title-name">Spice elements to modify</span></span> <a title="Permalink" class="permalink" href="index.html#sec-spice-elements-modify">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><section class="sect3" id="sec-spice-graphics-audio" data-id-title="Graphics and audio"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">1.3.1 </span><span class="title-name">Graphics and audio</span></span> <a title="Permalink" class="permalink" href="index.html#sec-spice-graphics-audio">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>Modify the following elements:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Replace the Spice graphics configuration:</p><div class="verbatim-wrap"><pre class="programlisting">&lt;graphics type='spice' autoport='yes' listen='127.0.0.1'/&gt;</pre></div><p>with the VNC equivalent:</p><div class="verbatim-wrap"><pre class="programlisting">&lt;graphics type='vnc' autoport='yes' listen='127.0.0.1'/&gt;</pre></div></li><li class="listitem"><p>Replace the Spice audio configuration:</p><div class="verbatim-wrap"><pre class="programlisting">&lt;audio id='1' type='spice'/&gt;</pre></div><p>with:</p><div class="verbatim-wrap"><pre class="programlisting">&lt;audio id='1' type='none'/&gt;</pre></div></li></ul></div></section><section class="sect3" id="sec-qxl-to-virtio" data-id-title="QXL video device conversion for Windows VMs"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">1.3.2 </span><span class="title-name">QXL video device conversion for Windows VMs</span></span> <a title="Permalink" class="permalink" href="index.html#sec-qxl-to-virtio">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    The QXL video driver is optimized for the Spice protocol and is commonly used in Windows VMs. For better compatibility with VNC, we recommend replacing it with the more generic <code class="literal">virtio</code> video driver.
+   </p><p>
+    If your VM, especially a Windows guest, uses a QXL video device like this:
+   </p><div class="verbatim-wrap"><pre class="programlisting">    &lt;video&gt;
+    &lt;model type='qxl' ram='65536' vram='65536' vgamem='16384' heads='1' primary='yes'/&gt;
+    &lt;address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x0'/&gt;
+    &lt;/video&gt;</pre></div><p>
+    Replace the entire &lt;video&gt; block with a simpler <code class="literal">virtio</code> model definition:
+   </p><div class="verbatim-wrap"><pre class="programlisting">    &lt;video&gt;
+    &lt;model type="virtio"/&gt;
+    &lt;/video&gt;</pre></div><div id="id-1.2.4.3.7" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+     You could specify more details about the above virtio video device, but libvirt will fill in any missing details.
+    </p></div></section></section><section class="sect2" id="sec-spice-apply-config" data-id-title="Applying the new configuration and starting the VM"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.4 </span><span class="title-name">Applying the new configuration and starting the VM</span></span> <a title="Permalink" class="permalink" href="index.html#sec-spice-apply-config">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+     Redefine the guest VM based on the newly edited XML definition.
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">virsh undefine <em class="replaceable">VM-NAME</em></code></pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">virsh define <em class="replaceable">VM-NAME</em>.xml</code></pre></div></li><li class="step"><p>
+     Start the VNC based guest VM.
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">virsh start <em class="replaceable">VM-NAME</em></code></pre></div></li></ol></div></div></section><section class="sect2" id="sec-spice-copy-paste" data-id-title="Restoring copy and paste functionality on VNC"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.5 </span><span class="title-name">Restoring copy and paste functionality on VNC</span></span> <a title="Permalink" class="permalink" href="index.html#sec-spice-copy-paste">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   With the absence of Spice on <span class="phrase"><span class="phrase">SLES</span></span> 16, the copy and paste functionality between host and guest was lost.
+   The following steps may be done to restore this capability.
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+     Update the <code class="literal">gtk-vnc</code> RPMs on the <span class="phrase"><span class="phrase">SLES</span></span> 16 host to the latest available version. Copying and pasting via VNC requires an updated system. It is not supported by the packages shipped in the initial <span class="phrase"><span class="phrase">SLES</span></span> 16 installation media.
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper update libgtk-vnc-2_0-0 typelib-1_0-GtkVnc-2_0 libgvnc-1_0-0</code></pre></div></li><li class="step"><p>
+     Enable spice-vdagentd in the running <span class="phrase"><span class="phrase">SLES</span></span> guest VM.
+    </p><p>
+     If not installed, run <code class="command">zypper in spice-vdagent</code>.
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">systemctl enable spice-vdagentd</code></pre></div></li><li class="step"><p>
+     Shut down the guest VM.
+    </p></li><li class="step"><p>
+     Add the channel device XML below to the guest VM XML definition. This can be done in
+     virt-manager: select <span class="guimenu">Add Hardware</span> › <span class="guimenu">Channel</span>,
+     then set <span class="guimenu">Device Type</span> to QEMU vdagent. Alternatively, add it manually as
+     shown below.
+    </p><div class="verbatim-wrap"><pre class="programlisting">     &lt;channel type="qemu-vdagent"&gt;
+     &lt;source&gt;
+     &lt;clipboard copypaste="yes"/&gt;
+     &lt;/source&gt;
+     &lt;target type="virtio" name="com.redhat.spice.0"/&gt;
+     &lt;address type="virtio-serial" controller="0" bus="0" port="1"/&gt;
+     &lt;/channel&gt;</pre></div></li><li class="step"><p>
+     Boot the guest VM.
+    </p></li></ol></div></div></section></section><section xml:lang="en" class="sect1" id="glue-alp-containers-podman-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="index.html#glue-alp-containers-podman-more-info">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    For further steps in virtualization, refer to the following sources:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/concept-manage-virtual-machines-libvirt/concept-manage-virtual-machines-libvirt.html" target="_blank">Managing
+        virtual machines with <code class="systemitem">libvirt</code></a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/task-configure-virtual-machine-manager/task-configure-virtual-machine-manager.html" target="_blank">Configuring
+        Virtual Machines with Virtual Machine Manager</a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/vm-assign-pci-device/vm-assign-pci-device.html" target="_blank">Assigning
+        Host Devices to Virtual Machines</a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/virtual-disk-cache-mode-configure/virtual-disk-cache-mode-configure.html" target="_blank">Configuring
+        a Virtual Disk Cache Mode</a>
+      </p></li><li class="listitem"><p>
+        Converting VMware Virtual Machines to KVM with virt-v2v
+      </p></li></ul></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#spice-removal"><span class="title-number">1 </span><span class="title-name">Deprecation of Spice and Migration to VNC in <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> 16</span></a></span></li><li><span class="section"><a href="index.html#glue-alp-containers-podman-more-info"><span class="title-number">2 </span><span class="title-name">For more information</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">3 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

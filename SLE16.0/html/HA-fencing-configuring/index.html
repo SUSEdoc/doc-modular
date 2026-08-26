@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Configuring Node Fencing in a High Availability Cluster | SUSE Linux Enterprise High Availability 16.0</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2025-11-04"/>
+<meta name="dcterms.modified" content="2025-11-04"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-25"/>
+<meta name="title" content="Configuring Node Fencing in a High Availability Cluste…"/>
+<meta name="description" content="How to add physical fencing devices to manage node fencing in a High Availability cluster"/>
+<meta name="product-name" content="SUSE Linux Enterprise High Availability"/>
+<meta name="product-number" content="16.0"/>
+<meta name="book-title" content="Configuring Node Fencing in a High Availability Cluster"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="tahlia.richardson@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="&#10;            SUSE Linux Enterprise High Availability 16.0&#10;          "/>
+<meta name="publisher" content="SUSE"/><meta name="category" content="."/><meta name="dc.creator" content="tahlia.richardson@suse.com"/><meta property="og:title" content="Configuring Node Fencing in a High Availability Cluster"/>
+<meta property="og:description" content="Add physical fencing devices to manage HA node fencing"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Configuring Node Fencing in a High Availability Cluster"/>
+<meta name="twitter:description" content="Add physical fencing devices to manage HA node fencing"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Configuring Node Fencing in a High Availability Cluster | SUSE Linux Enterprise High Availability 16.0",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Configuring Node Fencing in a High Availability Cluster",
+    "description": "How to add physical fencing devices to manage node fencing in a High Availability cluster",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2025-11-04T00:00+02:00",
+    "dateModified": "2025-11-04T00:00+02:00",
+    "datePublished": "2026-08-25T07:08+02:00",
+
+    "articleSection": [ 
+        "Initial Configuration"
+        
+    ],
+        "about": [
+      {
+        "@type": "Thing",
+        "name": "Administration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Clustering"
+      },
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      },
+      {
+        "@type": "Thing",
+        "name": "High Availability"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise High Availability",
+        "softwareVersion": "16.0",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER, IBM Z"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Configuring Node Fencing in a High Availability Cluster</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Configuring Node Fencing in a High Availability Cluster</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="ha-fencing-configuring" data-id-title="Configuring Node Fencing in a High Availability Cluster"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise High Availability</span></span></span> 16.0</div><div><h1 class="title">Configuring Node Fencing in a High Availability Cluster</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>25 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.13.1.1"><span class="term">WHAT?</span></dt><dd><p>
+              Node fencing protects the cluster from data corruption by resetting failed nodes.
+            </p></dd><dt id="id-1.1.13.1.2"><span class="term">WHY?</span></dt><dd><p>
+              To be supported, all SUSE Linux Enterprise High Availability clusters <span><em class="emphasis">must</em></span> have node fencing
+              configured.
+            </p></dd><dt id="id-1.1.13.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                Adding physical fencing devices takes approximately 5-10 minutes, depending on
+                the complexity of the cluster.
+              </p></dd><dt id="id-1.1.13.1.4"><span class="term">GOAL</span></dt><dd><p>
+                Configure a High Availability cluster to use a physical node fencing device. Physical
+                fencing devices can only be added after the cluster is already installed
+                and running, not during the initial cluster setup.
+              </p></dd><dt id="id-1.1.13.1.5"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                    An existing SUSE Linux Enterprise High Availability cluster
+                  </p></li><li class="listitem"><p>
+                    A physical fencing device, such as a power switch or network switch
+                  </p></li></ul></div></dd></dl></div><p>
+          To use SBD as the node fencing mechanism instead of a physical device, see one of the
+          following articles:
+        </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+              <a class="link" href="https://documentation.suse.com/sle-ha/16.0/html/HA-sbd-configuring-diskbased/" target="_blank">
+              <em class="citetitle">Configuring Disk-Based SBD in an Existing High Availability Cluster</em></a>
+            </p></li><li class="listitem"><p>
+              <a class="link" href="https://documentation.suse.com/sle-ha/16.0/html/HA-sbd-configuring-diskless/" target="_blank">
+              <em class="citetitle">Configuring Diskless SBD in an Existing High Availability Cluster</em></a>
+            </p></li></ul></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Configuring Node Fencing in a High Availability Cluster" hreflang="en" href="rh-ha-fencing-configuring.html" target="_blank">Revision History: Configuring Node Fencing in a High Availability Cluster</a></div></div></div></div><section xml:lang="en" class="sect1" id="ha-fencing-what-is" data-id-title="What is node fencing?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">What is node fencing?</span></span> <a title="Permalink" class="permalink" href="index.html#ha-fencing-what-is">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+  In a <span><em class="emphasis">split-brain scenario</em></span>, cluster nodes are divided into two or more
+  groups (or <span><em class="emphasis">partitions</em></span>) that do not know about each other. This might be
+  because of a hardware or software failure, or a failed network connection, for example. A
+  split-brain scenario can be resolved by <span><em class="emphasis">fencing</em></span> (resetting or powering off)
+  one or more of the nodes. Node fencing prevents a failed node from accessing shared resources and
+  prevents cluster resources from running on a node with an uncertain status. This helps protect
+  the cluster from data corruption.
+</p><p>
+  To be supported, all SUSE Linux Enterprise High Availability clusters <span><em class="emphasis">must</em></span> have at least one node fencing
+  device configured. For critical workloads, we recommend using two or three fencing devices.
+  A fencing device can be either a physical device (a power switch) or a software mechanism
+  (SBD in combination with a watchdog).
+</p></div></div></div></div><section class="sect2" id="ha-fencing-what-is-components" data-id-title="Components"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">Components</span></span> <a title="Permalink" class="permalink" href="index.html#ha-fencing-what-is-components">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.2.2.1"><span class="term">pacemaker-fenced</span></dt><dd><p>
+            The <code class="systemitem">pacemaker-fenced</code> daemon runs on every node in the High Availability
+            cluster. It accepts fencing requests from <code class="systemitem">pacemaker-controld</code>.
+            It can also check the status of the fencing device.
+        </p></dd><dt id="id-1.2.2.2.2"><span class="term">Fence agent</span></dt><dd><p>
+  Each type of fencing device can be controlled by a specific <span><em class="emphasis">fence agent</em></span>,
+  a <code class="literal">stonith</code>-class resource agent that acts as an interface between the cluster
+  and the fencing device. Starting or stopping a fencing resource means registering or deregistering
+  the fencing device with the <code class="systemitem">pacemaker-fenced</code> daemon and does not perform
+  any operation on the device itself. Monitoring a fencing resource means logging in to the device
+  to verify that it works.
+</p></dd><dt id="id-1.2.2.2.3"><span class="term">Fencing device</span></dt><dd><p>
+            The fencing device is the actual physical device that resets or powers off a node when
+            requested by the cluster via the fence agent. The device you use depends on your budget
+            and hardware.
+          </p></dd></dl></div></section><section class="sect2" id="ha-fencing-what-is-device-types" data-id-title="Fencing devices"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Fencing devices</span></span> <a title="Permalink" class="permalink" href="index.html#ha-fencing-what-is-device-types">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.3.2.1"><span class="term">Physical devices</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                <span><em class="emphasis">Power Distribution Units (PDU)</em></span> are devices with multiple power
+                outlets that can provide remote load monitoring and power recycling.
+              </p></li><li class="listitem"><p>
+                <span><em class="emphasis">Uninterruptible Power Supplies (UPS)</em></span> provide emergency power to
+                connected equipment in the event of a power failure.
+              </p></li><li class="listitem"><p>
+                <span><em class="emphasis">Blade power control devices</em></span> can be used for fencing if the
+                cluster nodes are running on a set of blades. This device must be capable of
+                managing single-blade computers.
+              </p></li><li class="listitem"><p>
+                <span><em class="emphasis">Lights-out devices</em></span> are network-connected devices that allow
+                remote management and monitoring of servers.
+              </p></li></ul></div></dd><dt id="id-1.2.3.2.2"><span class="term">Software mechanisms</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                <span><em class="emphasis">Disk-based SBD</em></span> fences nodes by exchanging messages via shared
+                block storage. It works together with a watchdog on each node to ensure that
+                misbehaving nodes are really stopped.
+              </p></li><li class="listitem"><p>
+                <span><em class="emphasis">Diskless SBD</em></span> fences nodes by using only the watchdog, without
+                a shared storage device. Unlike other node fencing mechanisms, diskless SBD does
+                not need a fence agent.
+              </p></li><li class="listitem"><p>
+  The <span><em class="emphasis">fence_kdump</em></span> agent checks if a node is performing a kernel dump
+  (<code class="systemitem">kdump</code>). If a <code class="systemitem">kdump</code> is in progress,
+  the cluster acts as if the node was fenced, because the node will reboot after the
+  <code class="systemitem">kdump</code> is complete. If a <code class="systemitem">kdump</code> is not in
+  progress, the next fencing device fences the node. This fence agent must be used together
+  with a physical fencing device. It cannot be used with SBD.
+</p></li></ul></div></dd></dl></div></section><section class="sect2" id="ha-fencing-what-is-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.3 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="index.html#ha-fencing-what-is-more-info">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      For more information, see
+      <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/fencing.html" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/fencing.html</a>.
+    </p><p>
+      For a full list of available fence agents, run the <code class="command">crm ra list stonith</code>
+      command.
+    </p><p>
+      For details about a specific fence agent, run the
+      <code class="command">crm ra info stonith:fence_<em class="replaceable">AGENT</em></code> command.
+    </p></section></section><section xml:lang="en" class="sect1" id="ha-fencing-creating-resources-for-physical-device" data-id-title="Creating fencing resources for a physical device"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Creating fencing resources for a physical device</span></span> <a title="Permalink" class="permalink" href="index.html#ha-fencing-creating-resources-for-physical-device">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+  Each type of fencing device can be controlled by a specific <span><em class="emphasis">fence agent</em></span>,
+  a <code class="literal">stonith</code>-class resource agent that acts as an interface between the cluster
+  and the fencing device. Starting or stopping a fencing resource means registering or deregistering
+  the fencing device with the <code class="systemitem">pacemaker-fenced</code> daemon and does not perform
+  any operation on the device itself. Monitoring a fencing resource means logging in to the device
+  to verify that it works.
+</p></div></div></div></div><p>
+    When a node needs to be fenced, the fencing action is usually performed by a different node
+    in the cluster. Therefore, in this procedure you will create multiple fencing resources, each
+    targeting a specific node. Each fencing resource can run on any node in the cluster except for
+    the node it targets.
+  </p><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Requirements </span></span><a title="Permalink" class="permalink" href="index.html#id-1.3.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        An existing High Availability cluster is already running.
+      </p></li><li class="listitem"><p>
+        All cluster nodes can access a physical fencing device.
+      </p></li></ul></div><p>
+    Perform this procedure on only one node in the cluster:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code> privileges.
+      </p></li><li class="step"><p>
+        Show the list of available fence agents:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm ra list stonith</code></pre></div></li><li class="step"><p>
+        Show the list of required and optional parameters for your device, and make a note of
+        the parameters you need for your specific setup:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm ra info stonith:fence_<em class="replaceable">AGENT</em></code></pre></div></li><li class="step"><p>
+        Start <code class="systemitem">crmsh</code>'s interactive mode:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure</code></pre></div><p>
+        This mode lets you make multiple configuration changes before committing all the changes
+        at once.
+      </p></li><li class="step"><p>
+        Create a fencing resource for every node in the cluster. Specify your device type, the
+        parameters for that device type, and a monitor operation:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt custom">crm(live)configure# </code><code class="command">primitive <em class="replaceable">RESOURCE-NAME</em> stonith:fence_<em class="replaceable">AGENT</em> \
+  params <em class="replaceable">KEY=VALUE</em> <em class="replaceable">KEY=VALUE</em> <em class="replaceable">KEY=VALUE</em> [...] \
+  op monitor interval=<em class="replaceable">INTEGER</em> timeout=<em class="replaceable">INTEGER</em></code></pre></div><div class="complex-example"><div class="example" id="ha-fencing-creating-resources-for-physical-device-primitives" data-id-title="Fencing resources for two nodes with an IBM RSA device"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 1: </span><span class="title-name">Fencing resources for two nodes with an IBM RSA device </span></span><a title="Permalink" class="permalink" href="index.html#ha-fencing-creating-resources-for-physical-device-primitives">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><p>
+          This example shows a basic resource configuration for an IBM RSA lights-out device on
+          two nodes, <code class="systemitem">alice</code> and <code class="systemitem">bob</code>:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt custom">crm(live)configure# </code><code class="command">primitive fence-rsa-alice stonith:fence_rsa \
+  params pcmk_host_list=alice \</code><span class="callout" id="co-ha-fence-node">1</span>
+  <code class="command">ip=192.168.1.101 username=root password=secret \</code><span class="callout" id="co-ha-fence-login">2</span>
+  <code class="command">op monitor interval=30m timeout=120s</code><span class="callout" id="co-ha-fence-monitorr">3</span>
+<code class="prompt custom">crm(live)configure# </code><code class="command">primitive fence-rsa-bob stonith:external/fence_rsa \
+  params pcmk_host_list=bob \
+  ip=192.168.1.102 username=root password=secret \
+  op monitor interval=30m timeout=120s</code></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-ha-fence-node"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Use <code class="literal">pcmk_host_list</code> to specify the node for this resource to target.
+              In this example, the resource <code class="literal">fence-rsa-alice</code> fences the
+              node <code class="systemitem">alice</code>.
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-ha-fence-login"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Provide login details for the fencing device. The required
+              parameters depend on the specific device.
+            </p><p>
+              If you use the <code class="literal">password</code> parameter, the password is obscured in the
+              output of <code class="command">crm configure show</code>, but is stored as plain text in the
+              CIB and the command history. Alternatively, you can use a different parameter, such
+              as <code class="literal">identity_file</code>.
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-ha-fence-monitorr"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Include a monitor operation to check the status of the device. Ideally, fencing
+              devices are not needed very often and are unlikely to fail during a fencing operation.
+              Therefore, a monitoring interval of 30 minutes or more should be sufficient for
+              most devices.
+            </p></td></tr></table></div></div></div></div></li><li class="step"><p>
+        Add location constraints so that each fencing resource <span><em class="emphasis">cannot</em></span> run
+        on the node it targets:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt custom">crm(live)configure# </code><code class="command">location <em class="replaceable">CONSTRAINT-NAME</em> <em class="replaceable">RESOURCE-NAME</em> -inf: <em class="replaceable">NODE-NAME</em></code></pre></div><div class="complex-example"><div class="example" id="ha-fencing-creating-resources-for-physical-device-constraints" data-id-title="Location constraints for IBM RSA resources on two nodes"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 2: </span><span class="title-name">Location constraints for IBM RSA resources on two nodes </span></span><a title="Permalink" class="permalink" href="index.html#ha-fencing-creating-resources-for-physical-device-constraints">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><p>
+          This example shows location constraints for two nodes, <code class="systemitem">alice</code>
+          and <code class="systemitem">bob</code>:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt custom">crm(live)configure# </code><code class="command">location loc-rsa-alice fence-rsa-alice -inf: alice</code>
+<code class="prompt custom">crm(live)configure# </code><code class="command">location loc-rsa-bob fence-rsa-bob -inf: bob</code></pre></div><p>
+          The resource <code class="literal">fence-rsa-alice</code> must <span><em class="emphasis">not</em></span> run on
+          <code class="systemitem">alice</code>, and the resource <code class="literal">fence-rsa-bob</code>
+          must <span><em class="emphasis">not</em></span> run on <code class="systemitem">bob</code>. In a two-node
+          cluster, this means <code class="literal">fence-rsa-alice</code> always runs on
+          <code class="systemitem">bob</code>. In a cluster with more nodes, this means
+          <code class="literal">fence-rsa-alice</code> can run on <span><em class="emphasis">any</em></span> node except
+          <code class="systemitem">alice</code>.
+        </p></div></div></div></li><li class="step"><p>
+        Enable node fencing for the whole cluster:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt custom">crm(live)configure# </code><code class="command">property stonith-enabled=true</code></pre></div></li><li class="step"><p>
+        Add a fencing timeout to define how long to wait for the fencing action to finish:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt custom">crm(live)configure# </code><code class="command">property stonith-timeout=60</code></pre></div><p>
+        The default is <code class="literal">60</code> seconds, but you might need to change it for your
+        specific setup and infrastructure.
+      </p></li><li class="step"><p>
+        Review the updated cluster configuration:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt custom">crm(live)configure# </code><code class="command">show</code></pre></div></li><li class="step"><p>
+        Commit the changes:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt custom">crm(live)configure# </code><code class="command">commit</code></pre></div></li><li class="step"><p>
+        Exit interactive mode:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt custom">crm(live)configure# </code><code class="command">quit</code></pre></div></li><li class="step"><p>
+        Check the status of the cluster to make sure the fencing resources can start:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div></li></ol></div></div><p>
+    If the fencing resources have the status <code class="literal">Stopped</code>, the nodes might
+    have failed to connect to the fencing device. You can check the connection with the
+    command-line tool for your specific fence agent. For more information, run the
+    <code class="command">man fence_<em class="replaceable">AGENT</em></code> command.
+  </p><div class="complex-example"><div class="example" id="ha-fencing-creating-resources-for-physical-device-troubleshooting" data-id-title="Testing a nodes connection to an IBM RSA device"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 3: </span><span class="title-name">Testing a node's connection to an IBM RSA device </span></span><a title="Permalink" class="permalink" href="index.html#ha-fencing-creating-resources-for-physical-device-troubleshooting">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><p>
+      This command uses the example details from the previous procedure to check the status of
+      node <code class="systemitem">bob</code>. Adjust this command for your specific configuration
+      and device.
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">alice&gt; </code><code class="command">sudo fence_rsa -a 192.168.1.102 -l root -p secret -n bob -o status</code></pre></div><p>
+      If the connection is successful, the output shows <code class="literal">Status: ON</code>. If the
+      connection is not successful, the output shows an error message that explains the issue.
+    </p></div></div></div></section><section xml:lang="en" class="sect1" id="ha-fencing-preventing-during-kernel-dump" data-id-title="Preventing node fencing during a kernel dump"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Preventing node fencing during a kernel dump</span></span> <a title="Permalink" class="permalink" href="index.html#ha-fencing-preventing-during-kernel-dump">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Use this procedure if the nodes have <code class="systemitem">kdump</code> configured. If not,
+        you can skip this procedure.
+      </p></div></div></div></div><p>
+  The <span><em class="emphasis">fence_kdump</em></span> agent checks if a node is performing a kernel dump
+  (<code class="systemitem">kdump</code>). If a <code class="systemitem">kdump</code> is in progress,
+  the cluster acts as if the node was fenced, because the node will reboot after the
+  <code class="systemitem">kdump</code> is complete. If a <code class="systemitem">kdump</code> is not in
+  progress, the next fencing device fences the node. This fence agent must be used together
+  with a physical fencing device. It cannot be used with SBD.
+</p><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Requirements </span></span><a title="Permalink" class="permalink" href="index.html#id-1.4.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        The cluster uses a physical node fencing device.
+      </p></li><li class="listitem"><p>
+        Cluster resources for the fencing device are already configured.
+      </p></li><li class="listitem"><p>
+        <code class="systemitem">kdump</code> is installed and configured on all nodes.
+      </p></li></ul></div><p>
+    Perform this procedure on only one node in the cluster:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code> privileges.
+      </p></li><li class="step"><p>
+        Create a <code class="literal">fence_kdump</code> resource that can check all the nodes in the
+        cluster. For example:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure primitive <em class="replaceable">RESOURCE-NAME</em> stonith:fence_kdump \
+  params pcmk_host_list="<em class="replaceable">NODE-LIST</em>" timeout=<em class="replaceable">INTEGER</em></code></pre></div><p>
+        The resource is registered with the <code class="systemitem">pacemaker-fenced</code> daemon on
+        all the specified nodes. You do not need to clone this resource.
+      </p><p>
+        For more information, run the <code class="command">crm ra info stonith:fence_kdump</code> command.
+      </p><div class="complex-example"><div class="example" id="ha-fencing-preventing-during-kernel-dump-primitives" data-id-title="fence_kdump resource for two nodes"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 4: </span><span class="title-name"><code class="literal">fence_kdump</code> resource for two nodes </span></span><a title="Permalink" class="permalink" href="index.html#ha-fencing-preventing-during-kernel-dump-primitives">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><p>
+          This example shows a basic resource configuration for two nodes,
+          <code class="systemitem">alice</code> and <code class="systemitem">bob</code>:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure primitive check-kdump stonith:fence_kdump \
+  params pcmk_host_list="alice,bob"</code><span class="callout" id="co-ha-fence-kdump-nodename">1</span> <code class="command">timeout=60</code><span class="callout" id="co-ha-fence-kdump-timeout">2</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-ha-fence-kdump-nodename"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              A comma-separated list of the cluster nodes. When a node needs to be fenced, this
+              resource listens for a message from <code class="systemitem">fence_kdump_send</code> on
+              that node. If a message is received, the node is considered fenced. If no message
+              is received, the physical fencing device must fence the node.
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-ha-fence-kdump-timeout"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              How long to wait for a message from a node. The default is <code class="literal">60</code> seconds.
+            </p></td></tr></table></div></div></div></div></li><li class="step"><p>
+        Check that the <code class="literal">fence_kdump</code> resource appears on all nodes:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster run "sudo stonith_admin -L"</code></pre></div><p>
+        You should see output similar to this:
+      </p><div class="verbatim-wrap"><pre class="screen">INFO: [alice]
+check-kdump
+fence-rsa-bob
+2 fence devices found
+
+INFO: [bob]
+check-kdump
+fence-rsa-alice
+2 fence devices found</pre></div></li><li class="step"><p>
+        Specify the order of the fencing devices. This tells the cluster to check if a
+        <code class="systemitem">kdump</code> is in progress <span><em class="emphasis">before</em></span> deciding
+        whether to call the physical fencing device. Include all the nodes in one command:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure fencing_topology \
+  <em class="replaceable">NODE-NAME</em>: <em class="replaceable">KDUMP-RESOURCE</em> <em class="replaceable">FENCING-RESOURCE</em> \
+  <em class="replaceable">NODE-NAME</em>: <em class="replaceable">KDUMP-RESOURCE</em> <em class="replaceable">FENCING-RESOURCE</em> \
+  [...]</code></pre></div><p>
+        For more information, run the <code class="command">crm configure help fencing_topology</code> command.
+      </p><div class="complex-example"><div class="example" id="ha-fencing-preventing-during-kernel-dump-topology" data-id-title="Fencing topology for two nodes"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 5: </span><span class="title-name">Fencing topology for two nodes </span></span><a title="Permalink" class="permalink" href="index.html#ha-fencing-preventing-during-kernel-dump-topology">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><p>
+          This example shows the order of the fencing devices for two nodes,
+          <code class="systemitem">alice</code> and <code class="systemitem">bob</code>:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure fencing_topology \
+  alice: check-kdump fence-rsa-alice \
+  bob: check-kdump fence-rsa-bob</code></pre></div><p>
+          Both nodes have <code class="systemitem">kdump</code> and a physical IBM RSA device configured.
+          If <code class="systemitem">alice</code> needs to be fenced, the cluster first calls the
+          resource <code class="literal">check-kdump</code> to check whether <code class="systemitem">alice</code>
+          is performing a <code class="systemitem">kdump</code>. If not, the cluster calls the resource
+          <code class="literal">fence-rsa-alice</code> to fence <code class="systemitem">alice</code>.
+        </p></div></div></div></li><li class="step"><p>
+        You might need to increase the fencing timeout so the fencing action has time to finish:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure property stonith-timeout=<em class="replaceable">INTEGER</em></code></pre></div><p>
+        The appropriate value depends on your specific setup and infrastructure.
+      </p></li><li class="step"><p>
+        Open the firewall port for <code class="literal">kdump</code> messages on all nodes:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster run "sudo firewall-cmd --add-port=7410/udp --permanent"</code>
+<code class="prompt user">&gt; </code><code class="command">sudo crm cluster run "sudo firewall-cmd --reload"</code></pre></div></li><li class="step"><p>
+        Configure <code class="systemitem">fence_kdump_send</code> to send a message to all nodes
+        when the <code class="systemitem">kdump</code> process is finished. In the file
+        <code class="filename">/etc/sysconfig/kdump</code>, edit the <code class="literal">KDUMP_POSTSCRIPT</code> line:
+      </p><div class="verbatim-wrap"><pre class="screen">KDUMP_POSTSCRIPT="/usr/lib/fence_kdump_send -c 5<span class="callout" id="co-fence-kdump-send-count">1</span> -i 10<span class="callout" id="co-fence-kdump-send-interval">2</span> -p 7410<span class="callout" id="co-fence-kdump-send-port">3</span> <em class="replaceable">NODE-LIST</em>"<span class="callout" id="co-fence-kdump-send-nodes">4</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-fence-kdump-send-count"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+            Use <code class="literal">--count</code> (or <code class="literal">-c</code>) to specify how many messages
+            to send. We recommend sending multiple messages in case the first message fails.
+          </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-fence-kdump-send-interval"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+            Use <code class="literal">--interval</code> (or <code class="literal">-i</code>) to specify the interval
+            between messages. The default is <code class="literal">10</code> seconds.
+          </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-fence-kdump-send-port"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+            Use <code class="literal">--port</code> (or <code class="literal">-p</code>) to specify the firewall port
+            for <code class="literal">kdump</code> messages.
+          </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-fence-kdump-send-nodes"><span class="callout">4</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+            Replace <em class="replaceable">NODE-LIST</em> with a space-separated list of all the
+            cluster nodes.
+          </p></td></tr></table></div></li><li class="step"><p>
+        Copy the <code class="systemitem">kdump</code><code class="filename">/etc/sysconfig/kdump</code> file to
+        the rest of the nodes:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster copy /etc/sysconfig/kdump</code></pre></div></li><li class="step"><p>
+        Regenerate the <code class="systemitem">kdump</code> <code class="filename">initrd</code> on all nodes:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster run "sudo mkdumprd"</code></pre></div></li></ol></div></div></section><section xml:lang="en" class="sect1" id="ha-testing-cluster-failures" data-id-title="Testing node fencing"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Testing node fencing</span></span> <a title="Permalink" class="permalink" href="index.html#ha-testing-cluster-failures">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+            The <code class="command">crm cluster crash_test</code> command simulates cluster failures and
+            reports the results. To test node fencing, you can run one or both of the tests
+            <code class="option">--fence-node</code> and <code class="option">--split-brain-iptables</code>.
+          </p></div></div></div></div><p>
+    The command supports the following checks:
+  </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.5.3.1"><span class="term"><code class="option">--fence-node <em class="replaceable">NODE</em></code></span></dt><dd><p>
+          Fences a specific node passed from the command line.
+        </p></dd><dt id="id-1.5.3.2"><span class="term"><code class="option">--kill-sbd</code>/<code class="option">--kill-corosync</code>/
+       <code class="option">--kill-pacemakerd</code></span></dt><dd><p>
+          Kills the daemons for SBD, Corosync, or Pacemaker. After running one of these tests,
+          you can find a report in the directory <code class="filename">/var/lib/crmsh/crash_test/</code>.
+          The report includes a test case description, action logging, and an explanation of
+          possible results.
+        </p></dd><dt id="id-1.5.3.3"><span class="term"><code class="option">--split-brain-iptables</code></span></dt><dd><p>
+          Simulates a split-brain scenario by blocking the Corosync port, and checks whether one
+          node can be fenced as expected. You must install <span class="package">iptables</span> before you
+          can run this test.
+        </p></dd></dl></div><p>
+    For more information, run the <code class="command">crm cluster crash_test --help</code> command.
+  </p><p>
+    This example uses nodes called <code class="systemitem">alice</code> and
+    <code class="systemitem">bob</code>, and tests fencing <code class="systemitem">bob</code>. To watch
+    <code class="systemitem">bob</code> change status during the test, you can log in to Hawk and
+    navigate to <span class="guimenu">Status</span> › <span class="guimenu">Nodes</span>, or
+    run <code class="command">crm status</code> from another node.
+  </p><div class="example" id="id-1.5.6" data-id-title="Manually triggering node fencing"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 6: </span><span class="title-name">Manually triggering node fencing </span></span><a title="Permalink" class="permalink" href="index.html#id-1.5.6">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">admin@alice&gt;</code> <code class="command">sudo crm cluster crash_test --fence-node bob</code>
+
+==============================================
+Testcase:          Fence node bob
+Fence action:      reboot
+Fence timeout:     95
+
+!!! WARNING WARNING WARNING !!!
+THIS CASE MAY LEAD TO NODE BE FENCED.
+TYPE Yes TO CONTINUE, OTHER INPUTS WILL CANCEL THIS CASE [Yes/No](No): <code class="command">Yes</code>
+INFO: Trying to fence node "bob"
+INFO: Waiting 95s for node "bob" reboot...
+INFO: Node "bob" will be fenced by "alice"!
+INFO: Node "bob" was fenced by "alice" at <em class="replaceable">DATE</em> <em class="replaceable">TIME</em></pre></div></div></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#ha-fencing-what-is"><span class="title-number">1 </span><span class="title-name">What is node fencing?</span></a></span></li><li><span class="section"><a href="index.html#ha-fencing-creating-resources-for-physical-device"><span class="title-number">2 </span><span class="title-name">Creating fencing resources for a physical device</span></a></span></li><li><span class="section"><a href="index.html#ha-fencing-preventing-during-kernel-dump"><span class="title-number">3 </span><span class="title-name">Preventing node fencing during a kernel dump</span></a></span></li><li><span class="section"><a href="index.html#ha-testing-cluster-failures"><span class="title-number">4 </span><span class="title-name">Testing node fencing</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">5 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li><li><span class="glossary"><a href="ha-glossary.html"><span class="title-name">HA glossary</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

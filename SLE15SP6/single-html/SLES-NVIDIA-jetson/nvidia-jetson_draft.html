@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Deploying SLES on NVIDIA Jetson platforms | SUSE Linux Enterprise Server 15 SP6</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2025-01-31"/>
+<meta name="dcterms.modified" content="2026-04-01"/>
+<meta name="dcterms.dateSubmitted" content="2026-07-29"/>
+<meta name="title" content="Deploying SLES on NVIDIA Jetson platforms | SUSE Linux…"/>
+<meta name="description" content="How to configure and complement SUSE Linux on NVIDIA Jetson platforms"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server"/>
+<meta name="product-number" content="15 SP6"/>
+<meta name="book-title" content="Deploying SLES on NVIDIA Jetson platforms"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="afaerber@suse.com"/>
+<meta name="tracker-bsc-component" content="Smart Docs"/>
+<meta name="tracker-bsc-product" content="Documentation"/>
+<meta name="publisher" content="SUSE"/><meta name="category" content="."/><meta name="category" content="."/><meta name="dcterms.modified" content="2025-01-31"/><meta name="dc.creator" content="andreas.faerber@suse.com"/><meta property="og:title" content="NVIDIA Jetson on SUSE how-to"/>
+<meta property="og:description" content="Installing SUSE Linux on your NVIDIA Jetson device"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="NVIDIA Jetson on SUSE how-to"/>
+<meta name="twitter:description" content="Installing SUSE Linux on your NVIDIA Jetson device"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "NVIDIA Jetson on SUSE how-to | SUSE Linux Enterprise Server 15 SP6",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "NVIDIA Jetson on SUSE how-to",
+    "description": "How to configure and complement SUSE Linux on NVIDIA Jetson platforms",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2025-01-31T00:00+02:00",
+    "dateModified": "2026-04-01T00:00+02:00",
+    "datePublished": "2026-07-29T14:30+02:00",
+
+    "articleSection": [ 
+        "3rd Party"
+        ,
+      
+        "Systems Management"
+        
+    ],
+        "about": [
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Deployment"
+      },
+      {
+        "@type": "Thing",
+        "name": "Installation"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server",
+        "softwareVersion": "15 SP6",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AArch64"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#nvidia-jetson">Deploying SLES on NVIDIA Jetson platforms</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="nvidia-jetson" data-id-title="Deploying SLES on NVIDIA Jetson platforms"><div class="titlepage"><div><div class="big-version-info"><span class="productname">SUSE Linux Enterprise Server</span> 15 SP6</div><div><h1 class="title">Deploying <span class="phrase">SLES</span> on NVIDIA Jetson platforms</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>29 Jul 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.14.1.1"><span class="term">WHAT?</span></dt><dd><p>
+              How to combine SUSE and third-party software for NVIDIA* Jetson* platforms
+            </p></dd><dt id="id-1.1.14.1.2"><span class="term">WHY?</span></dt><dd><p>
+              SUSE Linux software can install on NVIDIA Jetson systems
+              but does not include drivers for all hardware functionality.
+            </p></dd><dt id="id-1.1.14.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                What's the effort one has to put in?
+              </p></dd><dt id="id-1.1.14.1.4"><span class="term">GOAL</span></dt><dd><p>
+                Fully exploit NVIDIA Jetson hardware capabilities
+                while enjoying SUSE software security and support services
+              </p></dd><dt id="id-1.1.14.1.5"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                    NVIDIA Jetson based system with NVIDIA Orin* chipset
+                  </p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Deploying SLES on NVIDIA Jetson platforms" hreflang="en" href="rh-nvidia-jetson.html" target="_blank">Revision History: Deploying SLES on NVIDIA Jetson platforms</a></div></div></div></div><section xml:lang="en" class="sect1" id="nvidia-jetson-firmware" data-id-title="Preparing firmware for NVIDIA Jetson platforms"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Preparing firmware for NVIDIA Jetson platforms</span></span> <a title="Permalink" class="permalink" href="#nvidia-jetson-firmware">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       UEFI system firmware allows SUSE Linux media and installations to boot.
+      </p></div></div></div></div><section class="sect2" id="nvidia-jetson-firmware-introduction" data-id-title="Introduction"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">Introduction</span></span> <a title="Permalink" class="permalink" href="#nvidia-jetson-firmware-introduction">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      SUSE Linux installation media are formatted as UEFI Removable Media
+      and require Arm* SystemReady compliant boot firmware on the system.
+    </p></section><section class="sect2" id="nvidia-jetson-firmware-requirements" data-id-title="Requirements"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Requirements</span></span> <a title="Permalink" class="permalink" href="#nvidia-jetson-firmware-requirements">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          NVIDIA* Jetson* Xavier*, Orin* or later System-on-Module
+        </p></li><li class="listitem"><p>
+          For NVIDIA Jetson Orin Nano developer kit: 0.01 in jumper
+        </p></li><li class="listitem"><p>
+          Second system (e.g., notebook) with USB connection to your NVIDIA based system
+        </p></li></ul></div></section><section class="sect2" id="nvidia-jetson-firmware-flash" data-id-title="Flashing the firmware"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.3 </span><span class="title-name">Flashing the firmware</span></span> <a title="Permalink" class="permalink" href="#nvidia-jetson-firmware-flash">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Follow NVIDIA or OEM provided instructions for flashing your system.
+      SUSE Linux installation will be easiest if boot firmware and operating system
+      do not share the same storage device, i.e., SPI flash for firmware.
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Power on the NVIDIA system and enter Force Recovery Mode (RCM)
+          according to its vendor instructions.
+        </p><div id="id-1.2.4.3.1.2" data-id-title="Force Recovery Mode on NVIDIA Developer Kits" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Force Recovery Mode on NVIDIA Developer Kits</div><p>
+            Refer to NVIDIA instructions for specific developer kits:
+          </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><a class="link" href="https://developer.nvidia.com/embedded/learn/jetson-agx-orin-devkit-user-guide/howto.html#force-recovery-mode" target="_blank">https://developer.nvidia.com/embedded/learn/jetson-agx-orin-devkit-user-guide/howto.html#force-recovery-mode</a></p></li><li class="listitem"><p><a class="link" href="https://developer.nvidia.com/embedded/learn/jetson-orin-nano-devkit-user-guide/howto.html#force-recovery-mode" target="_blank">https://developer.nvidia.com/embedded/learn/jetson-orin-nano-devkit-user-guide/howto.html#force-recovery-mode</a></p></li></ul></div></div></li><li class="step"><p>
+          Flash the boot firmware via USB from the secondary system:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">./flash.sh <em class="replaceable">target-board-config</em> external</code></pre></div><div id="id-1.2.4.3.2.3" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+            The target board parameter depends on your system and your intended usage.
+          </p></div></li></ol></div></div><div id="id-1.2.4.4" data-id-title="Finding the right config for your system" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Finding the right config for your system</div><p>
+        Only some board config files have human-recognizable aliases.
+      </p><p>
+        You can try resolving the aliases to the product codes for module and board and
+        checking for any additional <code class="literal">-qspi</code> config files:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ls -l jetson-orin*</code>
+lrwxrwxrwx 1 <code class="systemitem">tux</code> <code class="systemitem">users</code> 29  4. Jun 15:37 jetson-orin-nano-devkit.conf -&gt; p3768-0000-p3767-0000-a0.conf
+lrwxrwxrwx 1 <code class="systemitem">tux</code> <code class="systemitem">users</code> 34  4. Jun 15:38 jetson-orin-nano-devkit-nvme.conf -&gt; p3768-0000-p3767-0000-a0-nvme.conf
+<code class="prompt user">&gt; </code><code class="command">ls -1 p3768-0000-p3767-0000-a0*</code>
+p3768-0000-p3767-0000-a0.conf
+p3768-0000-p3767-0000-a0-maxn.conf
+p3768-0000-p3767-0000-a0-nvme.conf
+p3768-0000-p3767-0000-a0<span><span class="emphasis"><strong>-qspi</strong></span></span>.conf</pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ls -l jetson-agx-orin*</code>
+lrwxrwxrwx 1 <code class="systemitem">tux</code> <code class="systemitem">users</code> 40  4. Jun 15:37 jetson-agx-orin-devkit-as-jao-32gb.conf -&gt; p3737-0000-p3701-0000-as-p3701-0004.conf
+lrwxrwxrwx 1 <code class="systemitem">tux</code> <code class="systemitem">users</code> 40  4. Jun 15:38 jetson-agx-orin-devkit-as-nano4gb.conf -&gt; p3737-0000-p3701-0000-as-p3767-0004.conf
+lrwxrwxrwx 1 <code class="systemitem">tux</code> <code class="systemitem">users</code> 40  4. Jun 15:38 jetson-agx-orin-devkit-as-nano8gb.conf -&gt; p3737-0000-p3701-0000-as-p3767-0003.conf
+lrwxrwxrwx 1 <code class="systemitem">tux</code> <code class="systemitem">users</code> 40  4. Jun 15:37 jetson-agx-orin-devkit-as-nx-16gb.conf -&gt; p3737-0000-p3701-0000-as-p3767-0000.conf
+lrwxrwxrwx 1 <code class="systemitem">tux</code> <code class="systemitem">users</code> 40  4. Jun 15:37 jetson-agx-orin-devkit-as-nx-8gb.conf -&gt; p3737-0000-p3701-0000-as-p3767-0001.conf
+lrwxrwxrwx 1 <code class="systemitem">tux</code> <code class="systemitem">users</code> 26  4. Jun 15:38 jetson-agx-orin-devkit.conf -&gt; p3737-0000-p3701-0000.conf
+lrwxrwxrwx 1 <code class="systemitem">tux</code> <code class="systemitem">users</code> 26  4. Jun 15:37 jetson-agx-orin-devkit-industrial.conf -&gt; p3737-0000-p3701-0008.conf
+lrwxrwxrwx 1 <code class="systemitem">tux</code> <code class="systemitem">users</code> 31  4. Jun 15:38 jetson-agx-orin-devkit-industrial-maxn.conf -&gt; p3737-0000-p3701-0008-maxn.conf
+lrwxrwxrwx 1 <code class="systemitem">tux</code> <code class="systemitem">users</code> 31  4. Jun 15:37 jetson-agx-orin-devkit-industrial<span><span class="emphasis"><strong>-qspi</strong></span></span>.conf -&gt; p3737-0000-p3701-0008<span><span class="emphasis"><strong>-qspi</strong></span></span>.conf
+lrwxrwxrwx 1 <code class="systemitem">tux</code> <code class="systemitem">users</code> 31  4. Jun 15:37 jetson-agx-orin-devkit-maxn.conf -&gt; p3737-0000-p3701-0000-maxn.conf
+<code class="prompt user">&gt; </code><code class="command">ls -1 p3737-0000-p3701-0000*</code>
+p3737-0000-p3701-0000-as-p3701-0004.conf
+p3737-0000-p3701-0000-as-p3767-0000.conf
+p3737-0000-p3701-0000-as-p3767-0001.conf
+p3737-0000-p3701-0000-as-p3767-0003.conf
+p3737-0000-p3701-0000-as-p3767-0004.conf
+p3737-0000-p3701-0000.conf
+p3737-0000-p3701-0000.conf.common
+p3737-0000-p3701-0000-maxn.conf
+p3737-0000-p3701-0000<span><span class="emphasis"><strong>-qspi</strong></span></span>.conf</pre></div></div></section><section class="sect2" id="nvidia-jetson-firmware-summary" data-id-title="Summary"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.4 </span><span class="title-name">Summary</span></span> <a title="Permalink" class="permalink" href="#nvidia-jetson-firmware-summary">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      You have updated the boot firmware and possibly changed its storage location.
+      During system boot it should identify on serial console similar to:
+    </p><div class="verbatim-wrap"><pre class="screen">Jetson UEFI firmware (version 36.3.1-gcid-36302503 built on 2024-05-17T04:47:03+00:00)</pre></div></section><section class="sect2" id="nvidia-jetson-firmware-troubleshooting" data-id-title="Troubleshooting"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.5 </span><span class="title-name">Troubleshooting</span></span> <a title="Permalink" class="permalink" href="#nvidia-jetson-firmware-troubleshooting">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Refer to NVIDIA documentation.
+    </p></section></section><section xml:lang="en" class="sect1" id="nvidia-jetson-sidecar-kmp" data-id-title="Installing kernel modules for NVIDIA Jetson platforms"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Installing kernel modules for NVIDIA Jetson platforms</span></span> <a title="Permalink" class="permalink" href="#nvidia-jetson-sidecar-kmp">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       A Kernel Module Package (KMP) provides additional kernel drivers.
+      </p></div></div></div></div><section class="sect2" id="nvidia-jetson-sidecar-kmp-introduction" data-id-title="Introduction"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">Introduction</span></span> <a title="Permalink" class="permalink" href="#nvidia-jetson-sidecar-kmp-introduction">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      SUSE Linux products contain drivers to boot on NVIDIA* Orin*
+      and earlier NVIDIA Jetson* platforms.
+      But as documented in the Release Notes,
+      certain drivers are not included.
+    </p><p>
+      NVIDIA JetPack* SDK 6.0 and its Jetson Linux Driver Pack 36.3 and later releases
+      provide additional kernel driver modules in source form.
+    </p></section><section class="sect2" id="nvidia-jetson-sidecar-kmp-requirements" data-id-title="Requirements"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.2 </span><span class="title-name">Requirements</span></span> <a title="Permalink" class="permalink" href="#nvidia-jetson-sidecar-kmp-requirements">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          NVIDIA Jetson Orin System-on-Module
+        </p></li></ul></div><p>
+      NVIDIA Jetson Xavier* and earlier System-on-Module generations
+      are no longer supported in NVIDIA JetPack SDK 6.0 and later releases.
+    </p></section><section class="sect2" id="nvidia-jetson-sidecar-kmp-install" data-id-title="Installing the drivers"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.3 </span><span class="title-name">Installing the drivers</span></span> <a title="Permalink" class="permalink" href="#nvidia-jetson-sidecar-kmp-install">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Install third-party kernel drivers provided via SUSE SolidDriver Program.
+    </p><div class="procedure"><div class="procedure-contents"><p>
+        Perform the following steps on your NVIDIA based system.
+      </p><ol class="procedure" type="1"><li class="step"><p>
+          Add the repositories for the Kernel Module Package:
+        </p><ul class="stepalternatives">
+          <li class="step"><p>For NVIDIA JetPack 6.2.2 firmware:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper addrepo \
+https://drivers.suse.com/nvidia/Jetson/NVIDIA_JetPack_6.2.2/sle-15-sp6-aarch64/1.0/install/ \
+ssdp_jetpack</code>
+<code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper addrepo \
+https://drivers.suse.com/nvidia/Jetson/NVIDIA_JetPack_6.2.2/sle-15-sp6-aarch64/1.0/update/ \
+ssdp_jetpack_update</code></pre></div></li>
+          <li class="step"><p>For NVIDIA JetPack 6.1 firmware:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper addrepo \
+https://drivers.suse.com/nvidia/Jetson/NVIDIA_JetPack_6.1/sle-15-sp6-aarch64/1.0/install/ \
+ssdp_jetpack</code>
+<code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper addrepo \
+https://drivers.suse.com/nvidia/Jetson/NVIDIA_JetPack_6.1/sle-15-sp6-aarch64/1.0/update/ \
+ssdp_jetpack_update</code></pre></div></li>
+        </ul></li><li class="step"><p>
+          Refresh the repository cache:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper --gpg-auto-import-keys refresh</code></pre></div></li><li class="step"><p>
+          Check whether kernel flavor <code class="literal">default</code> or <code class="literal">64kb</code> is used:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">uname -r</code>
+6.4.0-150600.42-<em class="replaceable">default</em></pre></div></li><li class="step"><p>
+          Install the KMP for that same kernel flavor:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper install -y nvidia-jetson-kmp-<em class="replaceable">default</em></code></pre></div><div id="id-1.3.4.3.5.3" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>Installing <span class="package">nvidia-jetson-kmp-<em class="replaceable">default</em></span>
+            will by default also install <span class="package">nvidia-jetson-extra-kmp-<em class="replaceable">default</em></span>
+            with further drivers beyond the GPU.</p></div></li><li class="step"><p>
+          Reboot the system:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">reboot</code></pre></div></li></ol></div></div></section><section class="sect2" id="nvidia-jetson-sidecar-kmp-summary" data-id-title="Summary"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.4 </span><span class="title-name">Summary</span></span> <a title="Permalink" class="permalink" href="#nvidia-jetson-sidecar-kmp-summary">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      You have installed third-party kernel driver modules on your system and
+      rebooted it for them to get loaded.
+    </p><p>
+      However, these drivers are not supported by the SUSE provided
+      <code class="literal">Mesa</code> graphics libraries or <code class="literal">Xorg</code> modules
+      and instead require to install proprietary third-party libraries.
+    </p></section><section class="sect2" id="nvidia-jetson-sidecar-kmp-troubleshooting" data-id-title="Troubleshooting"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.5 </span><span class="title-name">Troubleshooting</span></span> <a title="Permalink" class="permalink" href="#nvidia-jetson-sidecar-kmp-troubleshooting">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      If the kernel modules are not probed at all,
+      verify that you installed the right flavor.
+    </p><p>
+      If the kernel modules are not probed successfully (in <code class="command">dmesg</code>),
+      verify that your system is based on NVIDIA Orin chipset and that
+      no conflicting NVIDIA drivers for discrete GPUs are installed.
+    </p><p>
+      Linux kernel driver modules like these cannot provide a kernel console.
+      You will still need to use the serial console, same as before.
+    </p></section></section><section xml:lang="en" class="sect1" id="nvidia-jetson-sidecar-libs" data-id-title="Installing NVIDIA libraries for NVIDIA Jetson platforms"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Installing NVIDIA libraries for NVIDIA Jetson platforms</span></span> <a title="Permalink" class="permalink" href="#nvidia-jetson-sidecar-libs">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        NVIDIA* libraries consume the NVIDIA Jetson* graphics drivers.
+      </p></div></div></div></div><section class="sect2" id="nvidia-jetson-sidecar-libs-introduction" data-id-title="Introduction"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.1 </span><span class="title-name">Introduction</span></span> <a title="Permalink" class="permalink" href="#nvidia-jetson-sidecar-libs-introduction">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      To exploit the NVIDIA Orin* GPU and DLA, third-party kernel drivers and
+      libraries are needed.
+    </p><p>
+      The SLES <code class="literal">NVIDIA Compute Module</code>
+      does not offer RPM packages for NVIDIA Jetson's integrated GPU today.
+      As alternative we explain how to install the correct NVIDIA provided downloads
+      for SUSE systems.
+    </p></section><section class="sect2" id="nvidia-jetson-sidecar-libs-requirements" data-id-title="Requirements"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.2 </span><span class="title-name">Requirements</span></span> <a title="Permalink" class="permalink" href="#nvidia-jetson-sidecar-libs-requirements">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          NVIDIA Jetson Orin System-on-Module
+        </p></li><li class="listitem"><p>
+          Linux kernel modules for NVIDIA Orin GPU
+        </p></li></ul></div><p>
+      NVIDIA Jetson Xavier* and earlier System-on-Module generations
+      are no longer supported in NVIDIA JetPack* SDK 6.0 and later releases.
+    </p></section><section class="sect2" id="nvidia-jetson-sidecar-libs-install" data-id-title="Installing the libraries"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.3 </span><span class="title-name">Installing the libraries</span></span> <a title="Permalink" class="permalink" href="#nvidia-jetson-sidecar-libs-install">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Install third-party libraries provided by NVIDIA.
+    </p><div class="procedure"><div class="procedure-contents"><p>
+        Perform the following steps on your NVIDIA based system.
+      </p><ol class="procedure" type="1"><li class="step"><p>
+          Add the NVIDIA hosted package repository for JetPack:
+        </p><ul class="stepalternatives">
+          <li class="step"><p>For NVIDIA JetPack 6.2.2 kernel modules:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper addrepo https://repo.download.nvidia.com/jetson/sle15-sp6/jp6.2.2/ nvidia-jetpack</code></pre></div></li>
+          <li class="step"><p>For NVIDIA JetPack 6.1 kernel modules:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper addrepo https://repo.download.nvidia.com/jetson/sle15-sp6/jp6.1/ nvidia-jetpack</code></pre></div></li>
+        </ul></li><li class="step"><p>
+          Refresh the repository cache:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper --gpg-auto-import-keys refresh</code></pre></div></li><li class="step"><p>
+          Install the third-party packages:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper install -y nvidia-jetpack-all</code></pre></div></li><li class="step"><p>
+          Reboot the system:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">reboot</code></pre></div></li></ol></div></div></section><section class="sect2" id="nvidia-jetson-sidecar-cuda-verify" data-id-title="Verifying driver and library installation"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.4 </span><span class="title-name">Verifying driver and library installation</span></span> <a title="Permalink" class="permalink" href="#nvidia-jetson-sidecar-cuda-verify">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The NVIDIA System Management Interface (SMI) utility uses the
+      just installed NVIDIA Management Library (NVML) to query the kernel
+      drivers for hardware status.
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          If you haven't installed package <span class="package">nvidia-jetpack-all</span> above,
+          you may need to install package <span class="package">nvidia-jetpack-tools</span>:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper install nvidia-jetpack-tools</code></pre></div></li><li class="step"><p>
+          Run <code class="command">nvidia-smi</code> tool:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nvidia-smi</code></pre></div></li></ol></div></div><p>
+      For more information:
+      <a class="link" href="https://developer.nvidia.com/system-management-interface" target="_blank">https://developer.nvidia.com/system-management-interface</a>
+    </p></section><section class="sect2" id="nvidia-jetson-sidecar-libs-summary" data-id-title="Summary"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.5 </span><span class="title-name">Summary</span></span> <a title="Permalink" class="permalink" href="#nvidia-jetson-sidecar-libs-summary">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      You have installed libraries and tools and checked that they work in principle.
+    </p></section><section class="sect2" id="nvidia-jetson-sidecar-libs-troubleshooting" data-id-title="Troubleshooting"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.6 </span><span class="title-name">Troubleshooting</span></span> <a title="Permalink" class="permalink" href="#nvidia-jetson-sidecar-libs-troubleshooting">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      RPM packages for discrete NVIDIA GPUs and these packages for integrated GPUs
+      cannot be installed side-by-side.
+      
+      <span class="phrase">Discrete GPUs are currently not supported on NVIDIA Jetson platforms.</span>
+    </p></section></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section><div class="legal-section"><section class="appendix" translate="no" id="doc-gfdl-license" data-id-title="GNU Free Documentation License"><div class="titlepage"><div><div><h1 class="title">GNU Free Documentation License</h1></div></div></div><p>
+    Copyright (C) 2000, 2001, 2002 Free Software Foundation, Inc. 51 Franklin St, Fifth Floor,
+    Boston, MA 02110-1301 USA. Everyone is permitted to copy and distribute verbatim copies of this
+    license document, but changing it is not allowed.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.6.3"><span class="name">
+    0. PREAMBLE
+  </span><a title="Permalink" class="permalink" href="#id-1.6.3">#</a></h5></div><p>
+    The purpose of this License is to make a manual, textbook, or other functional and useful
+    document "free" in the sense of freedom: to assure everyone the effective freedom to copy and
+    redistribute it, with or without modifying it, either commercially or non-commercially.
+    Secondarily, this License preserves for the author and publisher a way to get credit for their
+    work, while not being considered responsible for modifications made by others.
+  </p><p>
+    This License is a kind of "copyleft", which means that derivative works of the document must
+    themselves be free in the same sense. It complements the GNU General Public License, which is a
+    copyleft license designed for free software.
+  </p><p>
+    We have designed this License to use it for manuals for free software, because free software
+    needs free documentation: a free program should come with manuals providing the same freedoms
+    that the software does. But this License is not limited to software manuals; it can be used for
+    any textual work, regardless of subject matter or whether it is published as a printed book. We
+    recommend this License principally for works whose purpose is instruction or reference.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.6.7"><span class="name">
+    1. APPLICABILITY AND DEFINITIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.6.7">#</a></h5></div><p>
+    This License applies to any manual or other work, in any medium, that contains a notice placed
+    by the copyright holder saying it can be distributed under the terms of this License. Such a
+    notice grants a world-wide, royalty-free license, unlimited in duration, to use that work under
+    the conditions stated herein. The "Document", below, refers to any such manual or work. Any
+    member of the public is a licensee, and is addressed as "you". You accept the license if you
+    copy, modify or distribute the work in a way requiring permission under copyright law.
+  </p><p>
+    A "Modified Version" of the Document means any work containing the Document or a portion of it,
+    either copied verbatim, or with modifications and/or translated into another language.
+  </p><p>
+    A "Secondary Section" is a named appendix or a front-matter section of the Document that deals
+    exclusively with the relationship of the publishers or authors of the Document to the
+    Document's overall subject (or to related matters) and contains nothing that could fall
+    directly within that overall subject. (Thus, if the Document is in part a textbook of
+    mathematics, a Secondary Section may not explain any mathematics.) The relationship could be a
+    matter of historical connection with the subject or with related matters, or of legal,
+    commercial, philosophical, ethical or political position regarding them.
+  </p><p>
+    The "Invariant Sections" are certain Secondary Sections whose titles are designated, as being
+    those of Invariant Sections, in the notice that says that the Document is released under this
+    License. If a section does not fit the above definition of Secondary then it is not allowed to
+    be designated as Invariant. The Document may contain zero Invariant Sections. If the Document
+    does not identify any Invariant Sections then there are none.
+  </p><p>
+    The "Cover Texts" are certain short passages of text that are listed, as Front-Cover Texts or
+    Back-Cover Texts, in the notice that says that the Document is released under this License. A
+    Front-Cover Text may be at most 5 words, and a Back-Cover Text may be at most 25 words.
+  </p><p>
+    A "Transparent" copy of the Document means a machine-readable copy, represented in a format
+    whose specification is available to the general public, that is suitable for revising the
+    document straightforwardly with generic text editors or (for images composed of pixels) generic
+    paint programs or (for drawings) some widely available drawing editor, and that is suitable for
+    input to text formatters or for automatic translation to a variety of formats suitable for
+    input to text formatters. A copy made in an otherwise Transparent file format whose markup, or
+    absence of markup, has been arranged to thwart or discourage subsequent modification by readers
+    is not Transparent. An image format is not Transparent if used for any substantial amount of
+    text. A copy that is not "Transparent" is called "Opaque".
+  </p><p>
+    Examples of suitable formats for Transparent copies include plain ASCII without markup, Texinfo
+    input format, LaTeX input format, SGML or XML using a publicly available DTD, and
+    standard-conforming simple HTML, PostScript or PDF designed for human modification. Examples of
+    transparent image formats include PNG, XCF and JPG. Opaque formats include proprietary formats
+    that can be read and edited only by proprietary word processors, SGML or XML for which the DTD
+    and/or processing tools are not generally available, and the machine-generated HTML, PostScript
+    or PDF produced by some word processors for output purposes only.
+  </p><p>
+    The "Title Page" means, for a printed book, the title page itself, plus such following pages as
+    are needed to hold, legibly, the material this License requires to appear in the title page.
+    For works in formats which do not have any title page as such, "Title Page" means the text near
+    the most prominent appearance of the work's title, preceding the beginning of the body of the
+    text.
+  </p><p>
+    A section "Entitled XYZ" means a named subunit of the Document whose title either is precisely
+    XYZ or contains XYZ in parentheses following text that translates XYZ in another language.
+    (Here XYZ stands for a specific section name mentioned below, such as "Acknowledgements",
+    "Dedications", "Endorsements", or "History".) To "Preserve the Title" of such a section when
+    you modify the Document means that it remains a section "Entitled XYZ" according to this
+    definition.
+  </p><p>
+    The Document may include Warranty Disclaimers next to the notice which states that this License
+    applies to the Document. These Warranty Disclaimers are considered to be included by reference
+    in this License, but only as regards disclaiming warranties: any other implication that these
+    Warranty Disclaimers may have is void and has no effect on the meaning of this License.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.6.18"><span class="name">
+    2. VERBATIM COPYING
+  </span><a title="Permalink" class="permalink" href="#id-1.6.18">#</a></h5></div><p>
+    You may copy and distribute the Document in any medium, either commercially or
+    non-commercially, provided that this License, the copyright notices, and the license notice
+    saying this License applies to the Document are reproduced in all copies, and that you add no
+    other conditions whatsoever to those of this License. You may not use technical measures to
+    obstruct or control the reading or further copying of the copies you make or distribute.
+    However, you may accept compensation in exchange for copies. If you distribute a large enough
+    number of copies you must also follow the conditions in section 3.
+  </p><p>
+    You may also lend copies, under the same conditions stated above, and you may publicly display
+    copies.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.6.21"><span class="name">
+    3. COPYING IN QUANTITY
+  </span><a title="Permalink" class="permalink" href="#id-1.6.21">#</a></h5></div><p>
+    If you publish printed copies (or copies in media that commonly have printed covers) of the
+    Document, numbering more than 100, and the Document's license notice requires Cover Texts, you
+    must enclose the copies in covers that carry, clearly and legibly, all these Cover Texts:
+    Front-Cover Texts on the front cover, and Back-Cover Texts on the back cover. Both covers must
+    also clearly and legibly identify you as the publisher of these copies. The front cover must
+    present the full title with all words of the title equally prominent and visible. You may add
+    other material on the covers in addition. Copying with changes limited to the covers, as long
+    as they preserve the title of the Document and satisfy these conditions, can be treated as
+    verbatim copying in other respects.
+  </p><p>
+    If the required texts for either cover are too voluminous to fit legibly, you should put the
+    first ones listed (as many as fit reasonably) on the actual cover, and continue the rest onto
+    adjacent pages.
+  </p><p>
+    If you publish or distribute Opaque copies of the Document numbering more than 100, you must
+    either include a machine-readable Transparent copy along with each Opaque copy, or state in or
+    with each Opaque copy a computer-network location from which the general network-using public
+    has access to download using public-standard network protocols a complete Transparent copy of
+    the Document, free of added material. If you use the latter option, you must take reasonably
+    prudent steps, when you begin distribution of Opaque copies in quantity, to ensure that this
+    Transparent copy will remain thus accessible at the stated location until at least one year
+    after the last time you distribute an Opaque copy (directly or through your agents or
+    retailers) of that edition to the public.
+  </p><p>
+    It is requested, but not required, that you contact the authors of the Document well before
+    redistributing any large number of copies, to give them a chance to provide you with an updated
+    version of the Document.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.6.26"><span class="name">
+    4. MODIFICATIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.6.26">#</a></h5></div><p>
+    You may copy and distribute a Modified Version of the Document under the conditions of sections
+    2 and 3 above, provided that you release the Modified Version under precisely this License,
+    with the Modified Version filling the role of the Document, thus licensing distribution and
+    modification of the Modified Version to whoever possesses a copy of it. In addition, you must
+    do these things in the Modified Version:
+  </p><div class="orderedlist"><ol class="orderedlist" type="A"><li class="listitem"><p>
+        Use in the Title Page (and on the covers, if any) a title distinct from that of the
+        Document, and from those of previous versions (which should, if there were any, be listed
+        in the History section of the Document). You may use the same title as a previous version
+        if the original publisher of that version gives permission.
+      </p></li><li class="listitem"><p>
+        List on the Title Page, as authors, one or more persons or entities responsible for
+        authorship of the modifications in the Modified Version, together with at least five of the
+        principal authors of the Document (all of its principal authors, if it has fewer than
+        five), unless they release you from this requirement.
+      </p></li><li class="listitem"><p>
+        State on the Title page the name of the publisher of the Modified Version, as the
+        publisher.
+      </p></li><li class="listitem"><p>
+        Preserve all the copyright notices of the Document.
+      </p></li><li class="listitem"><p>
+        Add an appropriate copyright notice for your modifications adjacent to the other copyright
+        notices.
+      </p></li><li class="listitem"><p>
+        Include, immediately after the copyright notices, a license notice giving the public
+        permission to use the Modified Version under the terms of this License, in the form shown
+        in the Addendum below.
+      </p></li><li class="listitem"><p>
+        Preserve in that license notice the full lists of Invariant Sections and required Cover
+        Texts given in the Document's license notice.
+      </p></li><li class="listitem"><p>
+        Include an unaltered copy of this License.
+      </p></li><li class="listitem"><p>
+        Preserve the section Entitled "History", Preserve its Title, and add to it an item stating
+        at least the title, year, new authors, and publisher of the Modified Version as given on
+        the Title Page. If there is no section Entitled "History" in the Document, create one
+        stating the title, year, authors, and publisher of the Document as given on its Title Page,
+        then add an item describing the Modified Version as stated in the previous sentence.
+      </p></li><li class="listitem"><p>
+        Preserve the network location, if any, given in the Document for public access to a
+        Transparent copy of the Document, and likewise the network locations given in the Document
+        for previous versions it was based on. These may be placed in the "History" section. You
+        may omit a network location for a work that was published at least four years before the
+        Document itself, or if the original publisher of the version it refers to gives permission.
+      </p></li><li class="listitem"><p>
+        For any section Entitled "Acknowledgements" or "Dedications", Preserve the Title of the
+        section, and preserve in the section all the substance and tone of each of the contributor
+        acknowledgements and/or dedications given therein.
+      </p></li><li class="listitem"><p>
+        Preserve all the Invariant Sections of the Document, unaltered in their text and in their
+        titles. Section numbers or the equivalent are not considered part of the section titles.
+      </p></li><li class="listitem"><p>
+        Delete any section Entitled "Endorsements". Such a section may not be included in the
+        Modified Version.
+      </p></li><li class="listitem"><p>
+        Do not retitle any existing section to be Entitled "Endorsements" or to conflict in title
+        with any Invariant Section.
+      </p></li><li class="listitem"><p>
+        Preserve any Warranty Disclaimers.
+      </p></li></ol></div><p>
+    If the Modified Version includes new front-matter sections or appendices that qualify as
+    Secondary Sections and contain no material copied from the Document, you may at your option
+    designate some or all of these sections as invariant. To do this, add their titles to the list
+    of Invariant Sections in the Modified Version's license notice. These titles must be distinct
+    from any other section titles.
+  </p><p>
+    You may add a section Entitled "Endorsements", provided it contains nothing but endorsements of
+    your Modified Version by various parties--for example, statements of peer review or that the
+    text has been approved by an organization as the authoritative definition of a standard.
+  </p><p>
+    You may add a passage of up to five words as a Front-Cover Text, and a passage of up to 25
+    words as a Back-Cover Text, to the end of the list of Cover Texts in the Modified Version. Only
+    one passage of Front-Cover Text and one of Back-Cover Text may be added by (or through
+    arrangements made by) any one entity. If the Document already includes a cover text for the
+    same cover, previously added by you or by arrangement made by the same entity you are acting on
+    behalf of, you may not add another; but you may replace the old one, on explicit permission
+    from the previous publisher that added the old one.
+  </p><p>
+    The author(s) and publisher(s) of the Document do not by this License give permission to use
+    their names for publicity for or to assert or imply endorsement of any Modified Version.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.6.33"><span class="name">
+    5. COMBINING DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.6.33">#</a></h5></div><p>
+    You may combine the Document with other documents released under this License, under the terms
+    defined in section 4 above for modified versions, provided that you include in the combination
+    all of the Invariant Sections of all of the original documents, unmodified, and list them all
+    as Invariant Sections of your combined work in its license notice, and that you preserve all
+    their Warranty Disclaimers.
+  </p><p>
+    The combined work need only contain one copy of this License, and multiple identical Invariant
+    Sections may be replaced with a single copy. If there are multiple Invariant Sections with the
+    same name but different contents, make the title of each such section unique by adding at the
+    end of it, in parentheses, the name of the original author or publisher of that section if
+    known, or else a unique number. Make the same adjustment to the section titles in the list of
+    Invariant Sections in the license notice of the combined work.
+  </p><p>
+    In the combination, you must combine any sections Entitled "History" in the various original
+    documents, forming one section Entitled "History"; likewise combine any sections Entitled
+    "Acknowledgements", and any sections Entitled "Dedications". You must delete all sections
+    Entitled "Endorsements".
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.6.37"><span class="name">
+    6. COLLECTIONS OF DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.6.37">#</a></h5></div><p>
+    You may make a collection consisting of the Document and other documents released under this
+    License, and replace the individual copies of this License in the various documents with a
+    single copy that is included in the collection, provided that you follow the rules of this
+    License for verbatim copying of each of the documents in all other respects.
+  </p><p>
+    You may extract a single document from such a collection, and distribute it individually under
+    this License, provided you insert a copy of this License into the extracted document, and
+    follow this License in all other respects regarding verbatim copying of that document.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.6.40"><span class="name">
+    7. AGGREGATION WITH INDEPENDENT WORKS
+  </span><a title="Permalink" class="permalink" href="#id-1.6.40">#</a></h5></div><p>
+    A compilation of the Document or its derivatives with other separate and independent documents
+    or works, in or on a volume of a storage or distribution medium, is called an "aggregate" if
+    the copyright resulting from the compilation is not used to limit the legal rights of the
+    compilation's users beyond what the individual works permit. When the Document is included in
+    an aggregate, this License does not apply to the other works in the aggregate which are not
+    themselves derivative works of the Document.
+  </p><p>
+    If the Cover Text requirement of section 3 is applicable to these copies of the Document, then
+    if the Document is less than one half of the entire aggregate, the Document's Cover Texts may
+    be placed on covers that bracket the Document within the aggregate, or the electronic
+    equivalent of covers if the Document is in electronic form. Otherwise they must appear on
+    printed covers that bracket the whole aggregate.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.6.43"><span class="name">
+    8. TRANSLATION
+  </span><a title="Permalink" class="permalink" href="#id-1.6.43">#</a></h5></div><p>
+    Translation is considered a kind of modification, so you may distribute translations of the
+    Document under the terms of section 4. Replacing Invariant Sections with translations requires
+    special permission from their copyright holders, but you may include translations of some or
+    all Invariant Sections in addition to the original versions of these Invariant Sections. You
+    may include a translation of this License, and all the license notices in the Document, and any
+    Warranty Disclaimers, provided that you also include the original English version of this
+    License and the original versions of those notices and disclaimers. In case of a disagreement
+    between the translation and the original version of this License or a notice or disclaimer, the
+    original version will prevail.
+  </p><p>
+    If a section in the Document is Entitled "Acknowledgements", "Dedications", or "History", the
+    requirement (section 4) to Preserve its Title (section 1) will typically require changing the
+    actual title.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.6.46"><span class="name">
+    9. TERMINATION
+  </span><a title="Permalink" class="permalink" href="#id-1.6.46">#</a></h5></div><p>
+    You may not copy, modify, sublicense, or distribute the Document except as expressly provided
+    for under this License. Any other attempt to copy, modify, sublicense or distribute the
+    Document is void, and will automatically terminate your rights under this License. However,
+    parties who have received copies, or rights, from you under this License will not have their
+    licenses terminated so long as such parties remain in full compliance.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.6.48"><span class="name">
+    10. FUTURE REVISIONS OF THIS LICENSE
+  </span><a title="Permalink" class="permalink" href="#id-1.6.48">#</a></h5></div><p>
+    The Free Software Foundation may publish new, revised versions of the GNU Free Documentation
+    License from time to time. Such new versions will be similar in spirit to the present version,
+    but may differ in detail to address new problems or concerns. See
+    <a class="link" href="https://www.gnu.org/copyleft/" target="_blank">https://www.gnu.org/copyleft/</a>.
+  </p><p>
+    Each version of the License is given a distinguishing version number. If the Document specifies
+    that a particular numbered version of this License "or any later version" applies to it, you
+    have the option of following the terms and conditions either of that specified version or of
+    any later version that has been published (not as a draft) by the Free Software Foundation. If
+    the Document does not specify a version number of this License, you may choose any version ever
+    published (not as a draft) by the Free Software Foundation.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.6.51"><span class="name">
+    ADDENDUM: How to use this License for your documents
+  </span><a title="Permalink" class="permalink" href="#id-1.6.51">#</a></h5></div><div class="verbatim-wrap"><pre class="screen">Copyright (c) YEAR YOUR NAME.
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+A copy of the license is included in the section entitled “GNU
+Free Documentation License”.</pre></div><p>
+    If you have Invariant Sections, Front-Cover Texts and Back-Cover Texts, replace the
+    “with...Texts.” line with this:
+  </p><div class="verbatim-wrap"><pre class="screen">with the Invariant Sections being LIST THEIR TITLES, with the
+Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.</pre></div><p>
+    If you have Invariant Sections without Cover Texts, or some other combination of the three,
+    merge those two alternatives to suit the situation.
+  </p><p>
+    If your document contains nontrivial examples of program code, we recommend releasing these
+    examples in parallel under your choice of free software license, such as the GNU General Public
+    License, to permit their use in free software.
+  </p></section></div></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="#nvidia-jetson-firmware"><span class="title-number">1 </span><span class="title-name">Preparing firmware for NVIDIA Jetson platforms</span></a></span></li><li><span class="section"><a href="#nvidia-jetson-sidecar-kmp"><span class="title-number">2 </span><span class="title-name">Installing kernel modules for NVIDIA Jetson platforms</span></a></span></li><li><span class="section"><a href="#nvidia-jetson-sidecar-libs"><span class="title-number">3 </span><span class="title-name">Installing NVIDIA libraries for NVIDIA Jetson platforms</span></a></span></li><li><span class="section"><a href="#legal-disclaimer"><span class="title-number">4 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="#doc-gfdl-license"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

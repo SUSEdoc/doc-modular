@@ -1,0 +1,864 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Introduction to Ansible Automation for SUSE Linux Enterprise Server for SAP applications 16 | SUSE Linux Enterprise Server for SAP applications 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2026-06-09"/>
+<meta name="dcterms.modified" content="2025-11-04"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-26"/>
+<meta name="title" content="Introduction to Ansible Automation for SUSE Linux Ente…"/>
+<meta name="description" content="Learn about a set of Ansible collections and playbooks designed specifically for SUSE Linux Enterprise Server for SAP applications 16"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server for SAP applications"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="Introduction to Ansible Automation for SUSE Linux Enterprise Server for SAP applications 16"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="eliska.romanova@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server for SAP Applications 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="category" content="."/><meta name="dc.creator" content="amrita.sakthivel@suse.com"/><meta property="og:title" content="Introduction to Ansible Automation for SUSE Linux Ente…"/>
+<meta property="og:description" content="How to use Ansible Automation for SAP environments on SUSE L"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Introduction to Ansible Automation for SUSE Linux Ente…"/>
+<meta name="twitter:description" content="How to use Ansible Automation for SAP environments on SUSE L"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Introduction to Ansible Automation for SUSE Linux Enterprise Server for SAP applications | SUSE Linux Enterprise Server for SAP applications 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Introduction to Ansible Automation for SUSE Linux Enterprise Server for SAP applications",
+    "description": "Learn about a set of Ansible collections and playbooks designed specifically for SUSE Linux Enterprise Server for SAP applications 16",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2026-06-09T00:00+02:00",
+    "dateModified": "2025-11-04T00:00+02:00",
+    "datePublished": "2026-08-26T09:48+02:00",
+
+    "articleSection": [ 
+        "Administration"
+        
+    ],
+        "about": [
+      {
+        "@type": "Thing",
+        "name": "Authentication"
+      },
+      {
+        "@type": "Thing",
+        "name": "Security"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server for SAP applications",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER, IBM Z, AArch64"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#intro-sap-ansible">Introduction to Ansible Automation for SUSE Linux Enterprise Server for SAP applications 16</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="intro-sap-ansible" data-id-title="Introduction to Ansible Automation for SUSE Linux Enterprise Server for SAP applications 16"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span></span> 16.1</div><div><h1 class="title">Introduction to Ansible Automation for SUSE Linux Enterprise Server for SAP applications 16</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>26 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.13.1.1"><span class="term">WHAT?</span></dt><dd><p>
+            Learn about a powerful set of Ansible collections and playbooks that are designed for SAP.
+            This automation codifies best practices, allowing you to build and maintain your SAP landscapes with speed, reliability and consistency.
+            </p></dd><dt id="id-1.1.13.1.2"><span class="term">WHY?</span></dt><dd><p>
+              Ansible Automation is essential for SAP environments for organizations to codify and standardize the complex, time-consuming, and high-risk administrative tasks associated with SAP infrastructure and operations.
+            </p></dd><dt id="id-1.1.13.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                It takes you up to an hour to read through this article.
+              </p></dd><dt id="id-1.1.13.1.4"><span class="term">GOAL</span></dt><dd><p>
+                To transform the management of SAP environments from a complex, error-prone, and time-intensive manual process into a fast, consistent, and fully auditable Infrastructure as Code (IaC) workflow.
+              </p></dd><dt id="id-1.1.13.1.5"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                  <a class="link" href="https://documentation.suse.com/sles/16.0/html/SLES-Ansible/" target="_blank">Understanding of Ansible core and how it works</a></p></li><li class="listitem"><p>
+                 Understanding the architecture of SAP systems
+               </p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Introduction to Ansible Automation for SUSE Linux Enterprise Server for SAP applications 16" hreflang="en" href="rh-intro-sap-automation.html" target="_blank">Revision History: Introduction to Ansible Automation for SUSE Linux Enterprise Server for SAP applications 16</a></div></div></div></div><section xml:lang="en" class="sect1" id="sap-for-ansible-intro" data-id-title="Introduction to Ansible Automation for for SUSE Linux Enterprise Server for SAP applications 16"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Introduction to Ansible Automation for for SUSE Linux Enterprise Server for SAP applications 16 </span></span> <a title="Permalink" class="permalink" href="#sap-for-ansible-intro">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+      Ansible Automation is required for SAP landscapes because manually managing the complex, critical and often vast SAP environments is time-consuming, error-prone and struggles to meet
+      modern demands for agility and high availability. Leveraging Ansible allows organizations to implement Infrastructure-as-Code (IaC) principles for SAP, ensuring speed, consistency, and repeatability in
+      vital tasks like provisioning new systems, patching, configuration management and performing complex operational procedures.
+      </p></div></div></div></div><p>This automation minimizes the risk of human error, enables High Availability, significantly accelerates change management and frees up skilled SAP Basis administrators to focus on strategic, high-value work rather than repetitive and manual operations.
+SUSE provides you with a powerful set of Ansible collections and playbooks designed specifically for SUSE Linux Enterprise Server for SAP applications 16. </p></section><section xml:lang="en" class="sect1" id="about-install-sap-pattern-ansible" data-id-title="About the sles_sap_automation pattern"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">About the <code class="literal">sles_sap_automation</code> pattern</span></span> <a title="Permalink" class="permalink" href="#about-install-sap-pattern-ansible">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+      Using the SUSE package pattern is recommended because it is the simplest and most reliable method for installing all the required SAP automation components.
+      </p></div></div></div></div><p>By using the pattern, you ensure all required Ansible collections and the playbook packages are installed together, preventing dependency problems.
+  For SUSE Linux Enterprise Server for SAP applications 16, install the <code class="literal">sles_sap_automation</code> package pattern: </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper install --type pattern sles_sap_automation</code></pre></div><p>This command installs the following packages:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">ansible-sap-infrastructure</code></p></li><li class="listitem"><p><code class="literal">ansible-sap-install</code></p></li><li class="listitem"><p><code class="literal">ansible-sap-operations</code></p></li><li class="listitem"><p><code class="literal">ansible-sap-playbooks</code></p></li></ul></div><div id="id-1.3.6" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important</div><p>Each package contains an Ansible Collection with a curated list of supported Ansible roles.
+ To call out each role in a collection, you must use its fully qualified collection name (FQCN). This tells Ansible exactly where to find the role and prevents any naming conflicts with other collections.
+For example:</p><div class="verbatim-wrap"><pre class="screen">  ---
+  - name: Ansible Play to install SAP Product
+    hosts: all
+    tasks:
+      - name: Install SAP Product
+        ansible.builtin.include_role:
+          name: suse.sap_install.sap_swpm</pre></div></div></section><section xml:lang="en" class="sect1" id="understand-ansible-collections" data-id-title="Understanding the sles_sap_automation package pattern"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Understanding the <code class="literal">sles_sap_automation package</code> pattern</span></span> <a title="Permalink" class="permalink" href="#understand-ansible-collections">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+    The <code class="literal">sles_sap_automation</code> package pattern installs four packages: <code class="literal">ansible-sap-install</code>, <code class="literal">ansible-sap-infrastructure</code>,
+    <code class="literal">ansible-sap-operations</code> and <code class="literal">ansible-sap-playbooks</code>. Each package contains an Ansible Collection with a curated list of supported Ansible roles.
+      </p></div></div></div></div><section class="sect2" id="sap-install-pack" data-id-title="The sap_install collection"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.1 </span><span class="title-name">The <code class="literal">sap_install</code> collection</span></span> <a title="Permalink" class="permalink" href="#sap-install-pack">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>The <code class="literal">sap_install</code> collection installs, configures and manages SAP software on Linux operating systems.
+</p><p>This collection covers the following tasks:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Ensure the operating system is configured, and all required SAP installation media are staged prior to system setup.</p></li><li class="listitem"><p>Install the SAP HANA database.</p></li><li class="listitem"><p>Install SAP products such as SAP S/4HANA, SAP NetWeaver, etc.</p></li><li class="listitem"><p>Enable SAP HANA system replication.</p></li><li class="listitem"><p>Configure a High Availability cluster for SAP HANA and ASCS/ERS. </p></li></ul></div><p>The key roles in this collection include: </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">sap_general_preconfigure</code>: installs required packages and performs basic OS configuration steps according to applicable SAP notes for installing and running SAP HANA
+ or SAP ABAP Application Platform (formerly known as SAP NetWeaver).</p></li><li class="listitem"><p><code class="literal">sap_hana_preconfigure</code>: installs additional required packages and performs additional OS configuration steps according to applicable SAP notes for installing and running SAP HANA after the role <code class="literal">sap_general_preconfigure</code>.</p></li><li class="listitem"><p><code class="literal">sap_netweaver_preconfigure</code>:  installs additional required packages and performs additional OS configuration steps according to applicable SAP notes for installing and running SAP ABAP Application Platform after the role <code class="literal">sap_general_preconfigure</code>.</p></li><li class="listitem"><p><code class="literal">sap_storage_setup</code>: prepares a host with the storage requirements of a SAP system (prior to software installation).</p></li><li class="listitem"><p><code class="literal">sap_install_media_detect</code>: detects and extracts SAP installation media.</p></li><li class="listitem"><p><code class="literal">sap_hana_install</code>: installs SAP HANA using the SAP HANA database lifecycle manager (HDBLCM).</p></li><li class="listitem"><p><code class="literal">sap_ha_install_hana_hsr</code>: configures and enables SAP HANA system replication between two nodes.</p></li><li class="listitem"><p><code class="literal">sap_swpm</code>: installs various SAP systems installable by SAP Software Provisioning Manager (SWPM).</p></li><li class="listitem"><p><code class="literal">sap_ha_pacemaker_cluster</code>: installs and configures Linux Pacemaker High Availability clusters for SAP HANA and SAP NetWeaver systems on various infrastructure platforms.</p></li></ul></div><p>List of all roles:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code> /usr/share/ansible/collections/ansible_collections/suse/sap_install/roles ls
+  sap_anydb_install_oracle  sap_ha_install_anydb_ibmdb2  sap_ha_pacemaker_cluster  sap_hana_preconfigure     sap_maintain_etc_hosts      sap_storage_setup
+  sap_general_preconfigure  sap_ha_install_hana_hsr      sap_hana_install          sap_install_media_detect  sap_netweaver_preconfigure  sap_swpm</pre></div><p>For more details about the roles and role variables in the <code class="literal">sap_install</code> collection,  refer to the <code class="literal">README.md</code>, for example: </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code> /usr/share/ansible/collections/ansible_collections/suse/sap_install/roles/sap_swpm ls
+   README.md  defaults  meta  tasks  templates</pre></div></section><section class="sect2" id="sap-infra-pack" data-id-title="The sap_infrastructure collection"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.2 </span><span class="title-name">The <code class="literal">sap_infrastructure</code> collection</span></span> <a title="Permalink" class="permalink" href="#sap-infra-pack">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>The <code class="literal">sap_infrastructure</code> collection provides a set of Ansible roles to automate various infrastructure-related tasks for SAP systems.
+    The core focus is on creating and configuring the resources across diverse platforms, including cloud hyperscalers and hypervisors.</p><p>This collection covers the following tasks:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Provision virtual machines on target infrastructure platforms using Ansible. This includes the provisioning of High Availability resources such as routing and load balancing, where applicable.
+     </p></li><li class="listitem"><p>Assign temporary virtual IP addresses (VIPs) for application installation before the cluster takes over management.</p></li></ul></div><p>The key roles in this collection are:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">sap_vm_provision</code>: provisions virtual machines to host SAP software.
+  </p></li><li class="listitem"><p><code class="literal">sap_vm_temp_vip</code>: is a temporary virtual IP (VIP) assigned to OS network interface and will be replaced by the Cluster VIP resource once the cluster is configured.
+      </p></li></ul></div><p>The following infrastructure platforms are supported:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>AWS EC2 virtual server instance</p></li><li class="listitem"><p>Google Cloud Compute Engine virtual machine</p></li><li class="listitem"><p>IBM Cloud, Intel virtual server</p></li><li class="listitem"><p>IBM Cloud, Power virtual server</p></li><li class="listitem"><p>Microsoft Azure virtual machine</p></li><li class="listitem"><p>IBM PowerVM virtual machine</p></li></ul></div><p>List of all roles:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code> /usr/share/ansible/collections/ansible_collections/suse/sap_infrastructure/roles ls
+  sap_vm_provision  sap_vm_temp_vip</pre></div><p>For more details about the roles and role variables in the <code class="literal">sap_infrastructure</code> collection,  refer to the <code class="literal">README.md</code>, for example: </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code> /usr/share/ansible/collections/ansible_collections/suse/sap_infrastructure/roles/sap_vm_provision ls
+  PLATFORM_GUIDANCE.md  README.md  defaults  meta  tasks</pre></div><div id="id-1.4.3.13" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important</div><p>Since this collection leverages native cloud automation tools, ensure you meet your target platform's specific prerequisites as detailed in the
+  <a class="link" href="https://github.com/SUSE/community.sap_infrastructure/blob/main/roles/sap_vm_provision/PLATFORM_GUIDANCE.md" target="_blank">Infrastructure platform guidance</a>.
+  Requirements are not part of the pattern and are not supported.</p></div></section><section class="sect2" id="sap-operations-pack" data-id-title="The sap_operations collection"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.3 </span><span class="title-name">The <code class="literal">sap_operations</code> collection</span></span> <a title="Permalink" class="permalink" href="#sap-operations-pack">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p> The <code class="literal">sap_operations</code> collection executes various day-to-day operation tasks for SAP systems. </p><p>This collection covers the following tasks:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Start, stop and restart of the SAP HANA database server.</p></li><li class="listitem"><p>Start, stop and restart of the SAP NetWeaver application server.</p></li><li class="listitem"><p> Operate the SAP system using <code class="literal">sapcontrol</code> and various functions.
+      </p></li><li class="listitem"><p>Updating SAP profiles.</p></li></ul></div><p>List of all roles:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code> /usr/share/ansible/collections/ansible_collections/suse/sap_operations/roles ls
+  sap_control  sap_profile_update</pre></div><p>For more details about the roles and role variables in the <code class="literal">sap_operations</code> collection,  refer to the <code class="literal">README.md</code>, for example: </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code> /usr/share/ansible/collections/ansible_collections/suse/sap_operations/roles/sap_control ls
+   README.md  defaults  tasks</pre></div></section><section class="sect2" id="sap-playbook-pack" data-id-title="About ansible.playbooks_for_sap"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.4 </span><span class="title-name">About <span class="package">ansible.playbooks_for_sap</span></span></span> <a title="Permalink" class="permalink" href="#sap-playbook-pack">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+ The <span class="package">ansible.playbooks_for_sap</span> contains Ansible playbooks for deployment of various SAP software solution scenarios onto different cloud service providers.
+</p><p>To make the playbook easy to use and scalable, the following key principles are used in the design:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span><span class="emphasis"><strong>Modular configuration</strong></span></span>: The playbooks use modular configuration, which is a variable system that lets you focus only on the specific values for your environment, eliminating the need to sift through hundreds of unused settings. </p></li><li class="listitem"><p><span><span class="emphasis"><strong>Brownfield and Greenfield Support</strong></span></span>: Flexible by design, the playbooks support both greenfield deployments (creating a landscape from scratch) and brownfield operations (running against existing servers).</p></li><li class="listitem"><p><span><span class="emphasis"><strong>Interactive mode</strong></span></span>: For quick setups or for users who prefer not to manage variable files, an interactive mode is available. This mode will prompt you for all the necessary information, guiding you step-by-step.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>(Optional) Automated Media Downloads</strong></span></span>: If the <code class="literal">community.sap_launchpad</code> Ansible Collection is installed, the playbooks can automatically download the required SAP installation media for you, saving significant manual effort.
+    This feature requires a valid <code class="literal">SAP S-User</code>  with the necessary download privileges.</p></li></ul></div><p>The benefits of Ansible playbooks for SAP are:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>The playbooks are designed for simplicity, making them accessible to users across all levels of Ansible experience.</p></li><li class="listitem"><p>Easily reconfigurable and extendable, they let you precisely tailor deployments to your needs. For instance, you can customize them for specific SAP versions, integrate monitoring tools, or adapt them to different network topologies.</p></li><li class="listitem"><p>Each playbook contains a complete deployment scenario, which ensures consistency and simplifies the process.</p></li><li class="listitem"><p>Deploy the same SAP solution across diverse infrastructure including different cloud service providers.</p></li></ul></div><p>For more details about the <span class="package">ansible.playbooks_for_sap</span> collection, refer to the <code class="literal">README.md</code>: </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code> /usr/share/ansible/playbooks/ansible.playbooks_for_sap ls
+  LICENSE  README.md  deploy_scenarios  docs  special_actions</pre></div><p>and</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code> /usr/share/ansible/playbooks/ansible.playbooks_for_sap/docs ls
+  CONTRIBUTING.md  CONTRIBUTORS.md  DEV_EXECUTION_FLOW.md  FAQ.md  GET_STARTED_AZURE_DEVOPS.md  GET_STARTED_MACOS.md  GET_STARTED_WINDOWS.md  README.md  images  sample</pre></div></section></section><section xml:lang="en" class="sect1" id="ansible-support-coverage-new" data-id-title="Ansible support coverage"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Ansible support coverage</span></span> <a title="Permalink" class="permalink" href="#ansible-support-coverage-new">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+The support matrix for Ansible and Python compatibility:</p></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span><span class="emphasis"><strong>Control node:</strong></span></span></p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Python 3.11 - 3.13</p></li><li class="listitem"><p>ansible-core 2.18</p></li><li class="listitem"><p>Ansible 11</p></li></ul></div></li><li class="listitem"><p><span><span class="emphasis"><strong>Managed node:</strong></span></span></p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Python 3.11 - 3.13</p></li></ul></div></li></ul></div><div id="id-1.5.3" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important</div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Python and Ansible versions in the control and managed nodes must be compatible.</p></li><li class="listitem"><p>Third-party software is not supported.</p></li><li class="listitem"><p>Only versions provided in packages that install into System Python are supported. </p></li><li class="listitem"><p>Python Virtual Environment or alternatives like pyenv are not supported. </p></li></ul></div></div></section><section xml:lang="en" class="sect1" id="deploy-sap-ansible-aws" data-id-title="Deploying a High Availability distributed SAP S/4HANA system on AWS"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Deploying a High Availability distributed SAP S/4HANA system on AWS</span></span> <a title="Permalink" class="permalink" href="#deploy-sap-ansible-aws">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>This is a detailed step-by-step procedure to deploy a High Availability and distributed SAP S/4HANA system on Amazon Web Services (AWS).
+   The <code class="literal">ansible-sap-playbooks</code> package is used to automate infrastructure provisioning and SAP software installation, creating a resilient, scalable and enterprise-grade environment.
+  This procedure uses the pay-as-you-go (PAYG) model for the SUSE operating system, where the subscription cost is included in the AWS instance pricing.
+  </p></div></div></div></div><p>This procedure is intended for system administrators, DevOps engineers and SAP Basis consultants who have a working knowledge of AWS, Ansible and SAP principles.
+  </p><p>With this procedure, you can:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Prepare the control node and the AWS cloud environment for automation.</p></li><li class="listitem"><p>Configure Ansible variables for a custom deployment.</p></li><li class="listitem"><p>Execute a single playbook to provision and configure the entire SAP S/4HANA system.</p></li><li class="listitem"><p>Achieve a fully functional and highly available system ready for post-installation activities.</p></li></ul></div><p> The resulting High Availability distributed SAP S/4HANA system comprises of the following components:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Two SAP S/4HANA scale-up servers in a High Availability cluster</p></li><li class="listitem"><p>Two ASCS/ERS servers in a High Availability cluster</p></li><li class="listitem"><p>One primary application server (PAS)</p></li><li class="listitem"><p>One additional application server (AAS)</p></li></ul></div><div class="procedure" id="id-1.6.7" data-id-title="Deployment in the AWS cloud environment"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 1: </span><span class="title-name">Deployment in the AWS cloud environment </span></span><a title="Permalink" class="permalink" href="#id-1.6.7">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><p>Provisioning with Ansible requires a pre-existing environment and a service user with the necessary permissions.</p><ol class="procedure" type="1"><li class="step"><p>Prepare your AWS cloud environment with the following:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>VPC: </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>VPC access control list (ACL)</p></li><li class="listitem"><p>VPC Subnets</p></li><li class="listitem"><p>VPC Security Groups</p></li></ul></div></li><li class="listitem"><p>Route 53 (private DNS)</p></li><li class="listitem"><p>Internet Gateway (SNAT)</p></li><li class="listitem"><p>Elastic File System (EFS) Network File System (NFS)</p></li><li class="listitem"><p>Bastion host (AWS EC2 VS)</p></li><li class="listitem"><p>Key Pair for hosts</p></li></ul></div><p>For more details on infrastructure prerequisites, refer to the <a class="link" href="https://github.com/SUSE/community.sap_infrastructure/blob/main/roles/sap_vm_provision/PLATFORM_GUIDANCE.md#infrastructure-prerequisites-for-ansible-provisioning-method" target="_blank"> infrastructure prerequisites</a>.</p></li><li class="step"><p>Create a new IAM role or policy appropriate access, using one of the following options:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Restricted access, refer to the <a class="link" href="https://github.com/SUSE/community.sap_infrastructure/blob/main/roles/sap_vm_provision/PLATFORM_GUIDANCE.md#recommended-infrastructure-platform-authorizations" target="_blank"> authorization prerequisites</a>.</p></li><li class="listitem"><p>Full access (not recommended):</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">arn:aws:iam::aws:policy/AmazonVPCFullAccess</code></p></li><li class="listitem"><p><code class="literal">arn:aws:iam::aws:policy/AmazonEC2FullAccess</code></p></li><li class="listitem"><p><code class="literal">arn:aws:iam::aws:policy/AmazonRoute53FullAccess</code></p></li></ul></div></li></ul></div><div id="id-1.6.7.4.3" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>A bastion host is required when provisioning to a private cloud from outside, but it can be ignored if your control node has direct access to your cloud account and VPC.
+     This is accomplished by setting the variable <code class="literal">sap_vm_provision_bastion_execution</code> to <code class="literal">false</code>.
+      </p></div></li><li class="step"><p>Prepare the control node.</p><ol type="a" class="substeps"><li class="step"><p>Install the <code class="literal">sles_sap_automation</code> pattern, which contains all recommended packages for automation.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  <code class="command">zypper install --type pattern sles_sap_automation</code></pre></div></li><li class="step"><p>Verify that the pattern and all the packages are installed. </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  <code class="command">zypper info --type pattern sles_sap_automation</code>
+
+    Refreshing service 'SUSE_Linux_Enterprise_Server_for_SAP_Applications_x86_64'.
+    Retrieving repository 'SLE-Product-SLES_SAP-16.0' metadata .........................................................................[done]
+    Building repository 'SLE-Product-SLES_SAP-16.0' cache ..............................................................................[done]
+    Loading repository data...
+    Reading installed packages...
+
+
+    Information for pattern sles_sap_automation:
+    --------------------------------------------
+    Repository      : SLE-Product-SLES_SAP-16.0
+    Name            : sles_sap_automation
+    Version         : 16.0-160000.2.2
+    Arch            : x86_64
+    Vendor          : SUSE LLC &lt;https://www.suse.com/&gt;
+    Installed       : Yes
+    Visible to User : Yes
+    Summary         : automation deployment
+    Description     :
+        ansible playbooks and roles
+    Contents        :
+        S  | Name                         | Type    | Dependency
+        ---+------------------------------+---------+-----------
+        i  | ansible                      | package | Required
+        i  | ansible-linux-system-roles   | package | Required
+        i  | ansible-sap-infrastructure   | package | Required
+        i  | ansible-sap-install          | package | Required
+        i  | ansible-sap-operations       | package | Required
+        i  | ansible-sap-playbooks        | package | Required
+        i+ | patterns-sap-automation      | package | Required
+        i+ | patterns-sap-base_sap_server | package | Required</pre></div></li><li class="step"><p>Install the AWS requirements, refer to the <a class="link" href="https://github.com/SUSE/community.sap_infrastructure/tree/main/roles/sap_vm_provision#amazon-web-services-aws-prerequisites" target="_blank"> prerequisites</a>.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  <code class="command"> ansible-galaxy collection install amazon.aws</code></pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  <code class="command"> zypper install python313-boto3</code></pre></div></li></ol></li><li class="step"><p>Ansible playbooks are installed in <code class="literal">/usr/share/ansible/playbooks</code>.
+ To prevent changes from being overwritten by future package updates, these files should not be modified directly.
+For this procedure:</p><ol type="a" class="substeps"><li class="step"><p>Use the scenario directory <code class="literal">/usr/share/ansible/playbooks/ansible.playbooks_for_sap/deploy_scenarios/sap_s4hana_distributed_ha</code>.</p></li><li class="step"><p>For simplicity, this procedure stores all customizations in the <code class="literal">/playbooks</code> directory. Specifically, we will use <code class="literal"> /playbooks/S01</code> as the dedicated directory for our system.</p></li><li class="step"><p>Define the minimal required variables and leave the predefined in place for a simplified configuration. </p></li></ol></li><li class="step"><p>You can encrypt variables for playbooks in different ways to ensure security compliance.</p><ol type="a" class="substeps"><li class="step"><p>Encrypt all variables in the scenario. </p></li><li class="step"><p>Split variables for reusability and encrypt only what is needed. For example:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Cloud credentials and information encrypted in Ansible vault.</p></li><li class="listitem"><p>Scenario passwords encrypted in Ansible vault.</p></li><li class="listitem"><p>Scenario non-sensitive variables without using Ansible vault.</p></li></ul></div><p>This procedure uses a simplified variant for encrypting whole files.</p></li></ol></li><li class="step"><p>Copy the variable files from the source. Since this procedure provisions new servers in AWS, only two variable files are required:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">ansible_extravars.yml</code> contains scenario-specific variables.</p></li><li class="listitem"><p><code class="literal">ansible_extravars_aws_ec2_vs.yml</code> contains platform-specific variables.</p></li></ul></div><div class="verbatim-wrap"><pre class="screen">cp /usr/share/ansible/playbooks/ansible.playbooks_for_sap/deploy_scenarios/sap_s4hana_distributed_ha/ansible_extravars.yml /playbooks/S01/</pre></div><div class="verbatim-wrap"><pre class="screen">cp /usr/share/ansible/playbooks/ansible.playbooks_for_sap/deploy_scenarios/sap_s4hana_distributed_ha/ansible_extravars_aws_ec2_vs.yml /playbooks/S01/</pre></div></li><li class="step"><p>Update the variable file <code class="literal">ansible_extravars.yml</code>.</p><ol type="a" class="substeps"><li class="step"><p>The following variable defines the provisioning method and platform.</p><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_iac_type: "ansible"</pre></div></li><li class="step"><p>The following variable selects the desired topology from the <code class="literal">sap_vm_provision_aws_ec2_vs_host_specifications_dictionary</code> dictionary.</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Predefined with minimum recommended instances for hosting an SAP system.</p></li><li class="listitem"><p>Customizable as you can edit an existing entry or define a new plan.</p></li></ul></div><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_host_specification_plan: "xsmall_256gb"</pre></div></li><li class="step"><p>The value of the variable <code class="literal">sap_software_product</code> is the key predefined in the <code class="literal"> sap_software_install_dictionary</code> dictionary.
+  This dictionary follows the same rules as the one above. You can edit an existing entry or create a new one.</p><div class="verbatim-wrap"><pre class="screen">sap_software_product: "sap_s4hana_2023_distributed"</pre></div><div class="verbatim-wrap"><pre class="screen">sap_install_media_detect_source_directory: "/software"</pre></div><div id="id-1.6.7.9.2.3.4" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important</div><p>The default execution ignores the list of SAP media files in the <code class="literal">sap_software_install_dictionary</code> dictionary because the optional package <code class="literal">ansible-sap-launchpad</code> is not present.
+  This package is available in Package Hub and it allows you to download SAP Media Software when provided with valid S-User credentials with appropriate download authorization.</p><p>If this package is not installed, the playbook expects you to have all required files present in the path defined in the <code class="literal">sap_install_media_detect_source_directory</code> directory.
+  The variables used by <code class="literal">sap_launchpad</code> role are <code class="literal">sap_id_user</code> and <code class="literal">sap_id_user_password</code>.</p></div><p>The password variables are simplified and use the master password. This procedure does not include plan text passwords, so you must
+ define them when updating the variable files.</p><div class="verbatim-wrap"><pre class="screen">sap_hana_install_use_master_password: "y"  # Use a master password for SAP HANA installation (y/n) (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_hana_install_master_password: ''  # The master password for SAP HANA (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_swpm_master_password: ''  # Master password for the SAP system (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_swpm_ddic_000_password: '' # Password for the DDIC user in client 000 (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_swpm_db_schema_abap_password: ''  # Password for the ABAP schema user (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_swpm_db_sidadm_password: ''  # Password for the sid adm user in the database (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_swpm_db_system_password: ''  # Password for the SYSTEM user in the SAP HANA database (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_swpm_db_systemdb_password: ''  # Password for the SYSTEM user in the SAP HANA system database (String).</pre></div></li><li class="step"><p>The variables for virtual overlay IP addresses need to follow a specific convention for a given platform.</p><div class="verbatim-wrap"><pre class="screen">AWS:                  the VIP must be **outside** of any VPC Subnet ranges (e.g. 192.168.100.102/32)</pre></div><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_ha_vip_hana_primary: "ENTER_STRING_VALUE_HERE"</pre></div><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_ha_vip_nwas_abap_ascs: "ENTER_STRING_VALUE_HERE"</pre></div><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_ha_vip_nwas_abap_ers: "ENTER_STRING_VALUE_HERE"</pre></div></li></ol></li><li class="step"><p>Update the variable file <code class="literal"> ansible_extravars_aws_ec2_vs.yml</code>.</p><ol type="a" class="substeps"><li class="step"><p>The variables for connecting through a bastion host.</p><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_bastion_user: "ENTER_STRING_VALUE_HERE"  # Bastion user name (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_bastion_ssh_port: "ENTER_STRING_VALUE_HERE"  # Bastion user password (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_bastion_public_ip: "ENTER_STRING_VALUE_HERE"  # Public IP of the bastion server (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_ssh_bastion_private_key_file_path: "ENTER_STRING_VALUE_HERE"  # Path to bastion server's SSH private key on the execution node (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_ssh_host_private_key_file_path: "ENTER_STRING_VALUE_HERE"  # Path to target host's SSH private key on the execution node (String).</pre></div></li><li class="step"><p>The variables for connecting to a cloud environment.</p><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_aws_access_key: "ENTER_STRING_VALUE_HERE"  # Access key ID (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_aws_secret_access_key: "ENTER_STRING_VALUE_HERE"  # Secret access key (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_aws_vpc_availability_zone: "ENTER_STRING_VALUE_HERE"  # Availability zone (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_aws_vpc_subnet_id: "ENTER_STRING_VALUE_HERE"</pre></div><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_dns_root_domain: "ENTER_STRING_VALUE_HERE"  # Root domain for DNS entries (e.g., example.com) (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_aws_key_pair_name_ssh_host_public_key: "ENTER_STRING_VALUE_HERE"  # SSH Key name in AWS Console (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_aws_vpc_sg_names: "ENTER_STRING_VALUE_HERE"  # Comma separated list of AWS VPC Service Group names (String).</pre></div></li><li class="step"><p>The variables for selecting which OS image to use for provisioned instances are defined in the <code class="literal">sap_vm_provision_aws_ec2_vs_host_os_image_dictionary </code>
+  dictionary, which defines the search pattern for images. In this procedure, a PAYG image is used.
+ SUSE Linux Enterprise Server 16 images will be updated in the dictionary when cloud images are available.</p><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_aws_ec2_vs_host_os_image: "sles-15-6-sap-ha"</pre></div></li><li class="step"><p>The scenario specific variables for platform required for configuring High Availability.</p><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_nfs_mount_point: "ENTER_STRING_VALUE_HERE" # e.g. fs-0000.efs.eu-west-2.amazonaws.com:/</pre></div><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_nfs_mount_point_separate_sap_transport_dir: "ENTER_STRING_VALUE_HERE" # e.g. fs-0000.efs.eu-west-2.amazonaws.com:/</pre></div><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_nfs_mount_point_type: nfs4  # NFS version (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_nfs_mount_point_opts:
+  nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport,acl  # NFS Mount options (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_ha_pacemaker_cluster_aws_vip_update_rt: "ENTER_STRING_VALUE_HERE"  # AWS Routing Table ID (String).</pre></div></li></ol></li><li class="step"><p>Encrypt files with Ansible vault. Files can be encrypted either using a prompt or with a password file.
+  This is easier in larger environments for reusability.</p><p>Encryption with a prompt:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">ansible-vault encrypt ansible_extravars.yml ansible_extravars_aws_ec2_vs.yml</code></pre></div><p>Encryption with a password file, which requires appropriate permissions and protection for security compliance:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">ansible-vault encrypt --vault-password-file password.key ansible_extravars.yml ansible_extravars_aws_ec2_vs.yml</code></pre></div></li><li class="step"><p>Use the playbook directly from <code class="literal">/usr/share/ansible/playbooks/ansible.playbooks_for_sap/deploy_scenarios/sap_s4hana_distributed_ha</code> without editing it.
+If you need to adjust the playbook, we recommend copying it outside of the package directory.
+Execute the Ansible playbook with the Ansible vault key file.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command"> ansible-playbook /usr/share/ansible/playbooks/ansible.playbooks_for_sap/deploy_scenarios/sap_s4hana_distributed_ha/ansible_playbook.yml \
+	--extra-vars "@./ansible_extravars.yml" \
+	--extra-vars "@./ansible_extravars_aws_ec2_vs.yml" \
+	--vault-password-file password.key</code></pre></div></li></ol></div></div><p><span><span class="emphasis"><strong>Outcome</strong></span></span></p><p>You now have a fully operational, High Availability and distributed SAP S/4HANA landscape on AWS.</p><p>Your new environment includes:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span><span class="emphasis"><strong>A clustered SAP HANA database:</strong></span></span> With automated failover to ensure continuous availability.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>A clustered ASCS/ERS Instance:</strong></span></span> Protecting the central services, which are critical for system operation.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>Multiple application servers:</strong></span></span> To distribute the workload and provide scalability.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>Shared storage:</strong></span></span> For binaries and transport files, accessible across the landscape.</p></li></ul></div><p><span><span class="emphasis"><strong>Next steps</strong></span></span></p><p>You can now proceed with post-installation tasks, such as:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span><span class="emphasis"><strong>System Validation:</strong></span></span> Performing health checks and verifying the High Availability functionality.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>SAP Configuration:</strong></span></span> Applying initial SAP basis configurations, such as SAP Transport Management System (STMS) and profile parameter tuning.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>Backup and Recovery:</strong></span></span> Implementing a robust backup and recovery strategy for the SAP HANA database and application servers.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>Monitoring:</strong></span></span> Integrating the new landscape with your existing monitoring solutions.</p></li></ul></div></section><section xml:lang="en" class="sect1" id="deploy-sap-ansible-gcp" data-id-title="Deploying a sandbox SAP BW/4HANA system on GCP"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Deploying a sandbox SAP BW/4HANA  system on GCP</span></span> <a title="Permalink" class="permalink" href="#deploy-sap-ansible-gcp">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>This is a detailed step-by-step procedure to deploy a non-production sandbox SAP BW/4HANA system on Google Cloud Platform (GCP).
+   The <code class="literal">ansible-sap-playbooks</code> package is used to automate infrastructure provisioning and SAP software installation, resulting in a compact, single-node environment suitable for development, testing or training.
+  This procedures uses the bring-your-own-subscription (BYOS) model for the SUSE operating system.
+  </p></div></div></div></div><p>This procedure is intended for system administrators, DevOps engineers and SAP Basis consultants who have a working knowledge of AWS, Ansible and SAP principles.
+  </p><p>With this procedure, you can:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Prepare the control node and the GCP cloud environment for automation.</p></li><li class="listitem"><p>Configure Ansible variables for the sandbox deployment.</p></li><li class="listitem"><p>Execute a single playbook to provision and configure the entire SAP system.</p></li><li class="listitem"><p>Achieve a functional sandbox system ready for post-installation activities.</p></li></ul></div><p> The resulting SAP S/4HANA system consists of a single server with the following components:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>One SAP HANA database</p></li><li class="listitem"><p>One SAP ABAP SAP Central Services (ASCS)</p></li><li class="listitem"><p>One primary application server (PAS)</p></li></ul></div><div class="procedure" id="id-1.7.7" data-id-title="Deployment on GCP cloud environment"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 2: </span><span class="title-name">Deployment on GCP cloud environment </span></span><a title="Permalink" class="permalink" href="#id-1.7.7">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><p>Provisioning with Ansible requires a pre-existing environment and a service user with the necessary permissions.</p><ol class="procedure" type="1"><li class="step"><p>Prepare your GCP cloud environment with the following:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>VPC: </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>VPC Subnetwork</p></li></ul></div></li><li class="listitem"><p>Compute Firewall</p></li><li class="listitem"><p>Compute Router</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Cloud NAT (SNAT)</p></li></ul></div></li><li class="listitem"><p>DNS Managed Zone (Private DNS)</p></li><li class="listitem"><p>Filestore (NFS) or NFS server</p></li><li class="listitem"><p>Bastion host (GCP CE VM)</p></li></ul></div><p>For more details on infrastructure prerequisites, refer to the <a class="link" href="https://github.com/SUSE/community.sap_infrastructure/blob/main/roles/sap_vm_provision/PLATFORM_GUIDANCE.md#infrastructure-prerequisites-for-ansible-provisioning-method" target="_blank"> infrastructure prerequisites</a>. </p></li><li class="step"><p>Create a new IAM role or policy with appropriate restricted access. For details, refer to the
+   <a class="link" href="https://github.com/SUSE/community.sap_infrastructure/blob/main/roles/sap_vm_provision/PLATFORM_GUIDANCE.md#recommended-infrastructure-platform-authorizations" target="_blank"> authorization prerequisites</a>.</p><div id="id-1.7.7.4.2" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>A bastion host is required when provisioning to a private cloud from outside, but it can be ignored if your control node has direct access to your cloud account and VPC.
+    This is accomplished by setting the variable <code class="literal">sap_vm_provision_bastion_execution</code> to <code class="literal">false</code>. </p></div></li><li class="step"><p>Prepare the control node.</p><ol type="a" class="substeps"><li class="step"><p>Install the <code class="literal">sles_sap_automation</code> pattern, which contains all recommended packages for automation.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  <code class="command">zypper install --type pattern sles_sap_automation</code></pre></div></li><li class="step"><p>Verify that the pattern and all the packages are installed. </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  <code class="command">zypper info --type pattern sles_sap_automation</code>
+
+    Refreshing service 'SUSE_Linux_Enterprise_Server_for_SAP_Applications_x86_64'.
+    Retrieving repository 'SLE-Product-SLES_SAP-16.0' metadata .........................................................................[done]
+    Building repository 'SLE-Product-SLES_SAP-16.0' cache ..............................................................................[done]
+    Loading repository data...
+    Reading installed packages...
+
+
+    Information for pattern sles_sap_automation:
+    --------------------------------------------
+    Repository      : SLE-Product-SLES_SAP-16.0
+    Name            : sles_sap_automation
+    Version         : 16.0-160000.2.2
+    Arch            : x86_64
+    Vendor          : SUSE LLC &lt;https://www.suse.com/&gt;
+    Installed       : Yes
+    Visible to User : Yes
+    Summary         : automation deployment
+    Description     :
+        ansible playbooks and roles
+    Contents        :
+        S  | Name                         | Type    | Dependency
+        ---+------------------------------+---------+-----------
+        i  | ansible                      | package | Required
+        i  | ansible-linux-system-roles   | package | Required
+        i  | ansible-sap-infrastructure   | package | Required
+        i  | ansible-sap-install          | package | Required
+        i  | ansible-sap-operations       | package | Required
+        i  | ansible-sap-playbooks        | package | Required
+        i+ | patterns-sap-automation      | package | Required
+        i+ | patterns-sap-base_sap_server | package | Required</pre></div></li><li class="step"><p>Install the GCP requirements, refer <a class="link" href="https://github.com/SUSE/community.sap_infrastructure/tree/main/roles/sap_vm_provision#amazon-web-services-aws-prerequisites" target="_blank">prerequisites</a>.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  <code class="command"> ansible-galaxy collection install google.cloud</code></pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  <code class="command"> zypper install python313-google-auth</code></pre></div></li></ol></li><li class="step"><p>Ansible playbooks are installed in <code class="literal">/usr/share/ansible/playbooks</code> .
+ To prevent changes from being overwritten by future package updates, these files should not be modified directly.
+For this procedure:</p><ol type="a" class="substeps"><li class="step"><p>Use the scenario directory <code class="literal">/usr/share/ansible/playbooks/ansible.playbooks_for_sap/deploy_scenarios/sap_bw4hana_sandbox</code>. </p></li><li class="step"><p>For simplicity, this procedure stores all customizations in the <code class="literal">/playbooks</code>  directory. Specifically, we will use <code class="literal"> /playbooks/B01</code> as the dedicated directory for our system.</p></li><li class="step"><p>Define the minimal required variables and leave the predefined in place for a simplified configuration. </p></li></ol></li><li class="step"><p>You can encrypt variables for playbooks in different ways to ensure security compliance.</p><ol type="a" class="substeps"><li class="step"><p>Encrypt all variables in the scenario. </p></li><li class="step"><p>Split variables for reusability and encrypt only what is needed. For example:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Cloud credentials and information encrypted in Ansible vault.</p></li><li class="listitem"><p>Scenario passwords encrypted in Ansible vault.</p></li><li class="listitem"><p>Scenario non-sensitive variables without using Ansible vault.</p></li></ul></div><p>In this procedure, we use a simplified variant for encrypting whole files.</p></li></ol></li><li class="step"><p>Copy the variable files from the source. Since we are provisioning new servers in GCP, only two variable files are required:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">ansible_extravars.yml</code> contains scenario-specific variables.</p></li><li class="listitem"><p><code class="literal">ansible_extravars_gcp_ce_vm.yml</code> contains platform-specific variables.</p></li></ul></div><div class="verbatim-wrap"><pre class="screen">cp /usr/share/ansible/playbooks/ansible.playbooks_for_sap/deploy_scenarios/sap_bw4hana_sandbox/ansible_extravars.yml /playbooks/B01/</pre></div><div class="verbatim-wrap"><pre class="screen">cp /usr/share/ansible/playbooks/ansible.playbooks_for_sap/deploy_scenarios/sap_bw4hana_sandbox/ansible_extravars_gcp_ce_vm.yml /playbooks/B01/</pre></div></li><li class="step"><p>Update the variable file <code class="literal">ansible_extravars.yml</code>.</p><ol type="a" class="substeps"><li class="step"><p>The following variable defines the provisioning method.</p><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_iac_type: "ansible"</pre></div></li><li class="step"><p>The following variable selects the desired topology from the <code class="literal">sap_vm_provision_gcp_ce_vm_host_specifications_dictionary</code> dictionary.</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Predefined with minimum recommended instances for hosting an SAP system.</p></li><li class="listitem"><p>Customizable as you can edit an existing entry or define a new plan.</p></li></ul></div><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_host_specification_plan: "xsmall_256gb"</pre></div></li><li class="step"><p>The value of the variable <code class="literal">sap_software_product</code> is the key predefined in the <code class="literal"> sap_software_install_dictionary</code> dictionary.
+  This dictionary follows the same rules as the one above. You can edit an existing entry or create a new one.</p><div class="verbatim-wrap"><pre class="screen">sap_software_product: "sap_bw4hana_2023_sandbox"</pre></div><div class="verbatim-wrap"><pre class="screen">sap_install_media_detect_source_directory: "/software"</pre></div><div id="id-1.7.7.9.2.3.4" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important</div><p>The default execution ignores the list of SAP media files in the <code class="literal">sap_software_install_dictionary</code> dictionary because the optional package <code class="literal">ansible-sap-launchpad</code> is not present.
+  This package is available in Package Hub and it allows you to download SAP Media Software when provided with valid S-User credentials with appropriate download authorization.</p><p>If this package is not installed, the playbook expects you to have all required files present in the path defined in the <code class="literal">sap_install_media_detect_source_directory</code> directory.
+  The variables used by <code class="literal">sap_launchpad</code> role are <code class="literal">sap_id_user</code> and <code class="literal">sap_id_user_password</code>.</p></div></li></ol></li><li class="step"><p>The password variables are simplified and use the master password. This procedure does not include plan text passwords, so you must
+ define them when updating the variable files.</p><div class="verbatim-wrap"><pre class="screen">sap_hana_install_use_master_password: "y"  # Use a master password for SAP HANA installation (y/n) (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_hana_install_master_password: ''  # The master password for SAP HANA (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_swpm_master_password: ''  # Master password for the SAP system (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_swpm_ddic_000_password: '' # Password for the DDIC user in client 000 (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_swpm_db_schema_abap_password: ''  # Password for the ABAP schema user (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_swpm_db_sidadm_password: ''  # Password for the "sid" adm user in the database (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_swpm_db_system_password: ''  # Password for the SYSTEM user in the SAP HANA database (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_swpm_db_systemdb_password: ''  # Password for the SYSTEM user in the SAP HANA system database (String).</pre></div></li><li class="step"><p>Update the variable file <code class="literal"> ansible_extravars_gcp_ce_vm.yml</code>.</p><ol type="a" class="substeps"><li class="step"><p>The variables for connecting through a bastion host.</p><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_bastion_user: "ENTER_STRING_VALUE_HERE"  # Bastion user name (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_bastion_ssh_port: "ENTER_STRING_VALUE_HERE"  # Bastion user password (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_bastion_public_ip: "ENTER_STRING_VALUE_HERE"  # Public IP of the bastion server (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_ssh_bastion_private_key_file_path: "ENTER_STRING_VALUE_HERE"  # Path to bastion server's SSH private key on the execution node (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_ssh_host_private_key_file_path: "ENTER_STRING_VALUE_HERE"  # Path to target host's SSH private key on the execution node (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_ssh_host_public_key_file_path: "ENTER_STRING_VALUE_HERE"  # Path to bastion public host key on execution node (String).</pre></div></li><li class="step"><p>The variables for connecting to a cloud environment.</p><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_gcp_credentials_json: "ENTER_STRING_VALUE_HERE"  # Path to JSON credentials file (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_gcp_project: "ENTER_STRING_VALUE_HERE"  # Project name (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_gcp_region_zone: "ENTER_STRING_VALUE_HERE"  # Region zone (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_gcp_vpc_name: "ENTER_STRING_VALUE_HERE"  # VPC name (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_gcp_vpc_subnet_name: "ENTER_STRING_VALUE_HERE"  # VPC Subnet name (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_dns_root_domain: "ENTER_STRING_VALUE_HERE"  # Root domain for DNS entries (e.g., example.com) (String).</pre></div></li></ol></li><li class="step"><p>The variables for selecting which OS image to use for provisioned instances are defined in the <code class="literal">sap_vm_provision_gcp_ce_vm_host_os_image_dictionary </code>
+  dictionary, which defines the search pattern for images. In this procedure, a BYOS image is used.
+ SUSE Linux Enterprise Server 16 images will be updated in the dictionary when cloud images are available.</p><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_gcp_ce_vm_host_os_image: "sles-15-6-sap-byos"</pre></div><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_os_online_registration_user: "ENTER_STRING_VALUE_HERE"  # User/Email for SUSEConnect registration (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_os_online_registration_passcode:  "ENTER_STRING_VALUE_HERE"  # Registration code for SUSEConnect registration (String).</pre></div></li><li class="step"><p>Encrypt files with Ansible vault. Files can be encrypted either using a prompt or with a password file.
+  This is easier in larger environments for reusability.</p><p>Encryption with a prompt:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">ansible-vault encrypt ansible_extravars.yml ansible_extravars_gcp_ce_vm.yml</code></pre></div><p>Encryption with a password file, which requires appropriate permissions and protection for security compliance:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">ansible-vault encrypt --vault-password-file password.key ansible_extravars.yml ansible_extravars_gcp_ce_vm.yml</code></pre></div></li><li class="step"><p>Use the playbook directly from <code class="literal">/usr/share/ansible/playbooks/ansible.playbooks_for_sap/deploy_scenarios/sap_bw4hana_sandbox</code> without editing it.
+If you need to adjust the playbook, we recommend copying it outside of the package directory.
+Execute the Ansible playbook with the Ansible vault key file.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">ansible-playbook /usr/share/ansible/playbooks/ansible.playbooks_for_sap/deploy_scenarios/sap_bw4hana_sandbox/ansible_playbook.yml \
+	--extra-vars "@./ansible_extravars.yml" \
+	--extra-vars "@./ansible_extravars_gcp_ce_vm.yml" \
+	--vault-password-file password.key </code></pre></div></li></ol></div></div><p><span><span class="emphasis"><strong>Outcome</strong></span></span></p><p>You now have a fully operational, non-production sandbox SAP BW/4HANA system running on a single virtual machine in GCP.</p><p>Your new environment includes:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span><span class="emphasis"><strong>A Single GCP Compute Engine VM:</strong></span></span> Hosting all SAP instances.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>SAP HANA Database:</strong></span></span> The underlying database for your BW/4HANA system.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>SAP ASCS and PAS Instances:</strong></span></span> The central services and primary application server are installed on the same host.</p></li></ul></div><p><span><span class="emphasis"><strong>Next steps</strong></span></span></p><p>You can now proceed with post-installation tasks, such as:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span><span class="emphasis"><strong>System Validation:</strong></span></span> Perform basic health checks to ensure the SAP system is running correctly.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>Development and Prototyping:</strong></span></span> Begin developing and testing new data models and reports in a safe, isolated environment.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>SAP Configuration</strong></span></span> Apply any necessary post-installation configurations or client copies.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>Learning and Exploration:</strong></span></span> Use the system to explore the features of SAP BW/4HANA.
+ </p></li></ul></div></section><section xml:lang="en" class="sect1" id="deploy-sap-ansible-hosts" data-id-title="Deploying a sandbox SAP ECC on SAP HANA system on existing hosts"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Deploying a sandbox SAP ECC on SAP HANA system on existing hosts</span></span> <a title="Permalink" class="permalink" href="#deploy-sap-ansible-hosts">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>This is a detailed step-by-step procedure to deploy a non-production sandbox SAP ECC on an SAP HANA system on existing hosts.
+    The <code class="literal">ansible-sap-playbooks</code> package is used to automate infrastructure provisioning and SAP software installation, resulting in a compact, single-node environment suitable for development, testing or training.
+  </p></div></div></div></div><p>This procedure is intended for system administrators, DevOps engineers and SAP Basis consultants who have a working knowledge of AWS, Ansible and SAP principles.
+  </p><p>With this procedure, you can:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Prepare the control node and existing hosts.</p></li><li class="listitem"><p>Configure Ansible variables for the sandbox deployment.</p></li><li class="listitem"><p>Execute a single playbook to provision and configure the entire SAP system.</p></li><li class="listitem"><p>Achieve a fully functional  system ready for post-installation activities.</p></li></ul></div><p> The resulting SAP ECC system consists of a single server with the following components:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>One SAP HANA database</p></li><li class="listitem"><p>One SAP ABAP SAP Central Services (ASCS)</p></li><li class="listitem"><p>One primary application server (PAS)</p></li></ul></div><div class="procedure" id="id-1.8.7" data-id-title="Deployment on existing hosts"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 3: </span><span class="title-name">Deployment on existing hosts </span></span><a title="Permalink" class="permalink" href="#id-1.8.7">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><p>This procedure assumes you have an existing server or a virtual machine on which you will install the SAP ECC sandbox system.
+ It is a must that you provide this host and ensure it is ready for Ansible automation. It is a requirement to establish a secure and
+ passwordless SSH connection from your Ansible control node to the target host.</p><ol class="procedure" type="1"><li class="step"><p>Create an Ansible inventory file.</p><ol type="a" class="substeps"><li class="step"><p>Ansible needs to know which host(s) to target. Copy the predefined inventory <code class="literal">/usr/share/ansible/playbooks/ansible.playbooks_for_sap/deploy_scenarios/sap_ecc_hana_sandbox/optional/ansible_inventory_noninteractive.yml</code>
+to your working directory <code class="literal">/playbooks/E01/</code>.
+</p></li><li class="step"><p>Update the file with the connection details of your hosts. For example:</p><div class="verbatim-wrap"><pre class="screen">  ---
+
+  hana_primary:
+    hosts:
+      sap-s4hana:
+        ansible_host: 192.168.1.100
+        ansible_port: 22
+        ansible_user: root
+        ansible_ssh_private_key_file: "/playbook/E01/hosts_rsa"</pre></div><div id="id-1.8.7.3.2.2.3" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>This group name is used in the example playbook and renaming it would require customizing the playbook to change all <code class="literal">hosts:</code> entries.</p></div></li></ol></li><li class="step"><p>Configure passwordless SSH authentication.</p><p>For automation, the Ansible control node must be able to connect to the target host as <code class="systemitem">root</code> without a password prompt.
+This is achieved using SSH keys.</p><div id="id-1.8.7.4.3" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>For simplicity, this procedure uses <code class="systemitem">root</code> login, which is acceptable for a temporary sandbox environment.
+For production systems, using a dedicated, non-root user is the recommended security practice.
+</p></div><ol type="a" class="substeps"><li class="step"><p>Generate an SSH key if you do not have one. Press <span class="keycap">Enter</span> to accept the default location and leave the passphrase empty for passwordless access. </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code> ssh-keygen -t rsa</pre></div></li><li class="step"><p>Copy the SSH public key to the target host.
+The easiest way to copy your public key to the target host's <code class="literal">authorized_keys</code> file is using the <code class="literal">ssh-copy-id</code> utility.
+This command prompts you for the <code class="literal">root</code> password of the target host one last time.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code> ssh-copy-id root@192.168.1.100</pre></div></li></ol></li><li class="step"><p>Verify that Ansible can successfully connect to and gather facts from your target host.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  ansible -i ansible_inventory_noninteractive.yml all -m ping</pre></div><p>A successful connection test shows a ping-pong response.</p><div class="verbatim-wrap"><pre class="screen">  192.168.1.100 | SUCCESS =&gt; {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.13"
+    },
+    "changed": false,
+    "ping": "pong"
+}</pre></div></li><li class="step"><p>Prepare the control node.</p><ol type="a" class="substeps"><li class="step"><p>Install the <code class="literal">sles_sap_automation</code> pattern, which contains all recommended packages for automation.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  <code class="command">zypper install --type pattern sles_sap_automation</code></pre></div></li><li class="step"><p>Verify that the pattern and all the packages are installed. </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  <code class="command">zypper info --type pattern sles_sap_automation</code>
+
+        Refreshing service 'SUSE_Linux_Enterprise_Server_for_SAP_Applications_x86_64'.
+        Retrieving repository 'SLE-Product-SLES_SAP-16.0' metadata .........................................................................[done]
+        Building repository 'SLE-Product-SLES_SAP-16.0' cache ..............................................................................[done]
+        Loading repository data...
+        Reading installed packages...
+
+
+        Information for pattern sles_sap_automation:
+        --------------------------------------------
+        Repository      : SLE-Product-SLES_SAP-16.0
+        Name            : sles_sap_automation
+        Version         : 16.0-160000.2.2
+        Arch            : x86_64
+        Vendor          : SUSE LLC &lt;https://www.suse.com/&gt;
+        Installed       : Yes
+        Visible to User : Yes
+        Summary         : automation deployment
+        Description     :
+            ansible playbooks and roles
+        Contents        :
+            S  | Name                         | Type    | Dependency
+            ---+------------------------------+---------+-----------
+            i  | ansible                      | package | Required
+            i  | ansible-linux-system-roles   | package | Required
+            i  | ansible-sap-infrastructure   | package | Required
+            i  | ansible-sap-install          | package | Required
+            i  | ansible-sap-operations       | package | Required
+            i  | ansible-sap-playbooks        | package | Required
+            i+ | patterns-sap-automation      | package | Required
+            i+ | patterns-sap-base_sap_server | package | Required</pre></div></li></ol></li><li class="step"><p>Ansible playbooks are installed in <code class="literal">/usr/share/ansible/playbooks</code> .
+     To prevent changes from being overwritten by future package updates, these files should not be modified directly.
+    For this procedure:</p><ol type="a" class="substeps"><li class="step"><p>Use the scenario directory <code class="literal"> /usr/share/ansible/playbooks/ansible.playbooks_for_sap/deploy_scenarios/sap_ecc_hana_sandbox</code>. </p></li><li class="step"><p>For simplicity, this procedure stores all customizations in the <code class="literal">/playbooks</code>  directory. Specifically, we will use <code class="literal"> /playbooks/E01</code> as the dedicated directory for our system.</p></li><li class="step"><p>Define the minimal required variables and leave the predefined in place for a simplified configuration. </p><div id="id-1.8.7.7.2.3.2" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important</div><p>Ansible playbooks for SAP are designed to skip provisioning when existing hosts are used, but the remaining tasks are all retained.
+    This means that there will be some variables that are part of provisioning, but they can be used even for existing hosts.
+    For example, the <code class="literal">sap_vm_provision_existing_hosts_host_specifications_dictionary</code> dictionary will not provision new infrastructure, but it will be used to configure storage if defined.</p></div></li></ol></li><li class="step"><p>You can encrypt variables for playbooks in different ways to ensure security compliance.</p><ol type="a" class="substeps"><li class="step"><p>Encrypt all variables in the scenario. </p></li><li class="step"><p>Split variables for reusability and encrypt only what is needed. For example:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Cloud credentials and information encrypted in Ansible vault.</p></li><li class="listitem"><p>Scenario passwords encrypted in Ansible vault.</p></li><li class="listitem"><p>Scenario non-sensitive variables without using Ansible vault.</p></li></ul></div><p>In this procedure, we use a simplified variant for encrypting whole files.</p></li></ol></li><li class="step"><p>Copy the variable files from the source. Since we are using existing hosts, only two variable files are required:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">ansible_extravars.yml</code> contains scenario-specific variables.</p></li><li class="listitem"><p><code class="literal">optional/ansible_extravars_existing_hosts.yml</code> contains platform-specific variables.</p></li></ul></div><div class="verbatim-wrap"><pre class="screen">cp /usr/share/ansible/playbooks/ansible.playbooks_for_sap/deploy_scenarios/sap_ecc_hana_sandbox/ansible_extravars.yml /playbooks/E01/</pre></div><div class="verbatim-wrap"><pre class="screen">cp /usr/share/ansible/playbooks/ansible.playbooks_for_sap/deploy_scenarios/sap_ecc_hana_sandbox/optional/ansible_extravars_existing_hosts.yml /playbooks/E01/</pre></div></li><li class="step"><p>Update the variable file <code class="literal">ansible_extravars.yml</code>.</p><ol type="a" class="substeps"><li class="step"><p>s the provisioning method.</p><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_iac_type: "ansible"</pre></div></li><li class="step"><p>The following variable selects the desired topology from the <code class="literal">sap_vm_provision_existing_hosts_host_specifications_dictionary</code> dictionary.</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Predefined with minimum recommended instances for hosting an SAP system.</p></li><li class="listitem"><p>Customizable as you can edit an existing entry or define a new plan.</p></li></ul></div><div class="verbatim-wrap"><pre class="screen">sap_vm_provision_host_specification_plan: "xsmall_256gb"</pre></div></li><li class="step"><p>The value of the variable <code class="literal">sap_software_product</code> is the key predefined in the <code class="literal"> sap_software_install_dictionary</code> dictionary.
+      This dictionary follows the same rules as the one above. You can edit an existing entry or create a new one.</p><div class="verbatim-wrap"><pre class="screen">sap_software_product: "sap_ecc6_ehp8_hana_sandbox"</pre></div><div class="verbatim-wrap"><pre class="screen">sap_install_media_detect_source_directory: "/software"</pre></div><div id="id-1.8.7.10.2.3.4" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important</div><p>The default execution ignores the list of SAP media files in the <code class="literal">sap_software_install_dictionary</code> dictionary because the optional package <code class="literal">ansible-sap-launchpad</code> is not present.
+      This package is available in Package Hub and it allows you to download SAP Media Software when provided with valid S-User credentials with appropriate download authorization.</p><p>If this package is not installed, the playbook expects you to have all required files present in the path defined in the <code class="literal">sap_install_media_detect_source_directory</code> directory.
+      The variables used by <code class="literal">sap_launchpad</code> role are <code class="literal">sap_id_user</code> and <code class="literal">sap_id_user_password</code>.</p></div></li></ol></li><li class="step"><p>The password variables are simplified and use the master password. This procedure does not include plan text passwords,  so you must
+     define them when updating the variable files.</p><div class="verbatim-wrap"><pre class="screen">sap_hana_install_use_master_password: "y"  # Use a master password for SAP HANA installation (y/n) (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_hana_install_master_password: ''  # The master password for SAP HANA (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_swpm_master_password: ''  # Master password for the SAP system (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_swpm_ddic_000_password: '' # Password for the DDIC user in client 000 (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_swpm_db_schema_abap_password: ''  # Password for the ABAP schema user (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_swpm_db_sidadm_password: ''  # Password for the "sid" adm user in the database (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_swpm_db_system_password: ''  # Password for the SYSTEM user in the SAP HANA database (String).</pre></div><div class="verbatim-wrap"><pre class="screen">sap_swpm_db_systemdb_password: ''  # Password for the SYSTEM user in the SAP HANA system database (String).</pre></div></li><li class="step"><p>Update the variable file <code class="literal"> ansible_extravars_existing_hosts.ym</code>.</p><ol type="a" class="substeps"><li class="step"><p>The variables for connecting to existing hosts.</p><div class="verbatim-wrap"><pre class="screen"># Path to target host's SSH private key on the execution node (String).
+# This SSH key has to be added to authorized_keys on managed node.
+sap_vm_provision_ssh_host_private_key_file_path: "ENTER_STRING_VALUE_HERE"</pre></div><div id="id-1.8.7.12.2.1.3" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important</div><p>Ansible playbooks for SAP use the Ansible fact <code class="literal">ansible_domain</code>, which requires a valid <code class="literal">/etc/hosts</code> configuration on your existing hosts with FQDN to obtain the domain name.</p></div></li></ol></li><li class="step"><p>Encrypt files with Ansible vault. Files can be encrypted either using a prompt or with a password file.
+      This is easier in larger environments for reusability.</p><p>Encryption with a prompt:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">ansible-vault encrypt ansible_extravars.yml ansible_extravars_existing_hosts.yml</code></pre></div><p>Encryption with a password file, which requires appropriate permissions and protection for security compliance:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">ansible-vault encrypt --vault-password-file password.key ansible_extravars.yml ansible_extravars_existing_hosts.yml</code></pre></div></li><li class="step"><p>Use the playbook directly from <code class="literal">usr/share/ansible/playbooks/ansible.playbooks_for_sap/deploy_scenarios/sap_ecc_hana_sandbox</code> without editing it.
+    If you need to adjust the playbook, we recommend copying it outside of the package directory.
+    Execute the Ansible playbook with the Ansible vault key file.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command"> ansible-playbook /usr/share/ansible/playbooks/ansible.playbooks_for_sap/deploy_scenarios/sap_ecc_hana_sandbox/ansible_playbook.yml \
+        --extra-vars "@./ansible_extravars.yml" \
+        --extra-vars "@./ansible_extravars_existing_hosts.yml" \
+        --vault-password-file password.key \
+        --inventory ansible_inventory_noninteractive.yml </code></pre></div></li></ol></div></div><p><span><span class="emphasis"><strong>Outcome</strong></span></span></p><p>You now have a fully operational, non-production SAP ECC on an SAP HANA sandbox system installed on your existing host.</p><p>Your new sandbox environment includes:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span><span class="emphasis"><strong>SAP ECC 6.0 EHP8:</strong></span></span> The core application is installed and ready for use.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>SAP HANA database:</strong></span></span> The system is running on an SAP HANA database.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>Single-node architecture</strong></span></span>: The HANA database, ASCS and PAS instances are all running on the provided single host.</p></li></ul></div><p><span><span class="emphasis"><strong>Next steps</strong></span></span></p><p>You can now proceed with post-installation tasks, such as:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span><span class="emphasis"><strong>System Validation:</strong></span></span> Log in to the SAP GUI, run basic transaction codes like <code class="literal">SM50</code> (Process Overview) or <code class="literal">ST22</code> (ABAP Runtime Errors) to ensure the system is operational.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>Initial Configuration:</strong></span></span> Perform any required basis configurations, such as setting up the SAP Transport Management System (STMS) or applying custom profile parameters via RZ10.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>Development and Customization:</strong></span></span> Begin ABAP development, or use transaction code <code class="literal">SPRO</code>  to start system customization.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>Learning and Exploration:</strong></span></span> Use the system to explore standard SAP ECC modules and functionality in a safe, isolated environment.
+     </p></li></ul></div></section><section xml:lang="en" class="sect1" id="deploy-sap-hana-ansible-hosts-ha" data-id-title="Deploying a High Availability SAP HANA cluster on existing hosts"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name">Deploying a High Availability SAP HANA cluster on existing hosts</span></span> <a title="Permalink" class="permalink" href="#deploy-sap-hana-ansible-hosts-ha">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Deploy a highly available (HA) SAP HANA scale-up system on existing hosts by using Ansible for automation. With Ansible, you can achieve a resilient, scalable and enterprise-grade environment suitable for mission-critical workloads with minimal manual intervention. This procedure is intended for system administrators, DevOps engineers and SAP Basis consultants who have a working knowledge of Ansible and SAP principles.
+      </p></div></div></div></div><p>
+    The resulting setup consists of two SAP HANA database scale-up servers. They are configured in an HA cluster with system replication.
+  </p><div class="procedure" id="id-1.9.3" data-id-title="Deployment on existing hosts"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 4: </span><span class="title-name">Deployment on existing hosts </span></span><a title="Permalink" class="permalink" href="#id-1.9.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><p>
+      Before the deployment, ensure you have two hosts provisioned and running <span class="phrase"><span class="phrase">SLES for SAP</span></span> 16.
+    </p><ol class="procedure" type="1"><li class="step"><p>
+        Configure passwordless SSH access from your control node to securely communicate with the existing hosts.
+      </p><ol type="a" class="substeps"><li class="step"><p>
+            Generate an SSH key if you do not have one. Leave the passphrase empty for passwordless access.
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ssh-keygen -t rsa -b 4096 -f ~/.ssh/sap_rsa -N ""</code></pre></div></li><li class="step"><p>
+            Copy the SSH public key to your existing target hosts.
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ssh-copy-id -i ~/.ssh/sap_rsa.pub root@<em class="replaceable">HOST_IP</em></code></pre></div></li><li class="step"><p>
+            Add the target hosts to your <code class="filename">known_hosts</code> file to prevent manual SSH verification prompts.
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ssh-keyscan -H <em class="replaceable">HOST_IP</em> &gt;&gt; ~/.ssh/known_hosts</code></pre></div></li></ol></li><li class="step"><p>
+        Install the <span class="package">sles_sap_automation</span> pattern. The pattern provides Ansible and the required SAP roles and playbooks together to prevent dependency issues.
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper install --type pattern sles_sap_automation</code></pre></div><ol type="a" class="substeps"><li class="step"><p>
+            Verify that the pattern is installed with all its components.
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  <code class="command">zypper info --type pattern sles_sap_automation</code>
+
+Refreshing service 'SUSE_Linux_Enterprise_Server_for_SAP_applications_16.0_x86_64'.
+Retrieving repository 'SLE-Product-SLES_SAP-16.0' metadata ...[done]
+Building repository 'SLE-Product-SLES_SAP-16.0' cache ...[done]
+Loading repository data...
+Reading installed packages...
+
+Information for pattern sles_sap_automation:
+--------------------------------------------
+Repository      : SLE-Product-SLES_SAP-16.0
+Name            : sles_sap_automation
+Version         : 16.0-160000.5.1
+Arch            : x86_64
+Vendor          : SUSE LLC &lt;https://www.suse.com/&gt;
+Buddy Package   : patterns-sap-automation-16.0-160000.5.1.x86_64
+Installed       : Yes
+Visible to User : Yes
+Summary         : Automation deployment for SAP systems
+Description     : 
+    Ansible playbooks and roles
+Contents        : 
+    S  | Name                             | Type    | Dependency
+    ---+----------------------------------+---------+-----------
+    i+ | pattern:sles_sap_automation      | pattern | Required
+    i  | pattern:sles_sap_base_sap_server | pattern | Required
+    i  | ansible                          | package | Required
+    i  | ansible-linux-system-roles       | package | Required
+    i  | ansible-sap-infrastructure       | package | Required
+    i  | ansible-sap-install              | package | Required
+    i  | ansible-sap-operations           | package | Required
+    i  | ansible-sap-playbooks            | package | Required
+    i  | ansible-trento                   | package | Required</pre></div></li></ol></li><li class="step"><p>
+        Create a dedicated workspace for your deployment.
+      </p><div id="id-1.9.3.5.2" data-id-title="Do not modify default playbooks" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Do not modify default playbooks</div><p>
+          Do not modify the default files in <code class="filename">/usr/share/ansible/playbooks/</code>
+          directly. Future package updates will overwrite your changes.
+        </p></div><ol type="a" class="substeps"><li class="step"><p>
+            Create a directory to isolate your configuration files. For example:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">mkdir -p playbooks/H01</code></pre></div></li><li class="step"><p>
+            Copy the following default variable and inventory files from the <code class="filename">sap_hana_ha</code> scenario into your new directory:
+          </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                <code class="filename">ansible_extravars.yml</code> contains scenario-specific variables.
+              </p></li><li class="listitem"><p>
+                <code class="filename">optional/ansible_extravars_existing_hosts.yml</code> contains platform-specific variables.
+              </p></li><li class="listitem"><p>
+                <code class="filename">optional/ansible_inventory_noninteractive.yml</code> contains the inventory definition of existing hosts.
+              </p></li></ul></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">cp /usr/share/ansible/playbooks/ansible.playbooks_for_sap/deploy_scenarios/sap_hana_ha/ansible_extravars.yml playbooks/H01/</code></pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">cp /usr/share/ansible/playbooks/ansible.playbooks_for_sap/deploy_scenarios/sap_hana_ha/optional/ansible_extravars_existing_hosts.yml playbooks/H01/</code></pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">cp /usr/share/ansible/playbooks/ansible.playbooks_for_sap/deploy_scenarios/sap_hana_ha/optional/ansible_inventory_noninteractive.yml playbooks/H01/</code></pre></div></li></ol></li><li class="step"><p>
+        Update the <code class="filename">ansible_extravars.yml</code> variable file.
+      </p><div id="id-1.9.3.6.2" data-id-title="Replace variable placeholders" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Replace variable placeholders</div><p>
+          In the variable files, there is a placeholder <code class="literal">ENTER_STRING_VALUE_HERE</code>.
+          You must replace all instances of this placeholder with the actual values from your
+          environment. The following steps include additional information for only certain
+          variables.
+        </p></div><ol type="a" class="substeps"><li class="step"><p>
+            Set the following variable to the topology defined inside
+            <code class="filename">ansible_extravars_existing_hosts.yml</code> under
+            <code class="varname">sap_vm_provision_existing_hosts_host_specifications_dictionary</code>.
+          </p><div class="verbatim-wrap highlight yaml"><pre class="screen"><code class="language-yaml">sap_vm_provision_host_specification_plan: "xsmall_256gb"</code></pre></div></li><li class="step"><p>
+            Define the SAP product and installation source. Set the <code class="varname">sap_software_product</code> variable to the product defined inside <code class="filename">ansible_extravars.yml</code> under <code class="varname">sap_software_install_dictionary</code>.
+          </p><div class="verbatim-wrap highlight yaml"><pre class="screen"><code class="language-yaml">sap_software_product: "sap_hana_2_sps08_install"
+sap_install_media_detect_source_directory: "/software"</code></pre></div><div id="id-1.9.3.6.3.2.3" data-id-title="Software download options" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Software download options</div><p>
+              <span><span class="emphasis"><strong>Manual download (default)</strong></span></span>
+            </p><p>
+              By default, the playbook expects you to manually download all the required SAP
+              installation files and place them in the directory defined by the
+              <code class="varname">sap_install_media_detect_source_directory</code> variable.
+            </p><p>
+              <span><span class="emphasis"><strong>Automated download</strong></span></span>
+            </p><p>
+              For a more automated setup, you can install the optional <span class="package">ansible-sap-launchpad</span> package from the SUSE Package Hub. If this package is present, the playbook can automatically download the software from the SAP Launchpad. To enable this, you must provide your S-User credentials in the <code class="varname">sap_id_user</code> and <code class="varname">sap_id_user_password</code> variables.
+            </p></div></li><li class="step"><p>
+            Enable and define your master password.
+          </p><div class="verbatim-wrap highlight yaml"><pre class="screen"># Use a master password for SAP HANA installation (y/n) (String).
+sap_hana_install_use_master_password: "y"  
+
+# The master password for SAP HANA (String).
+sap_hana_install_master_password: '<em class="replaceable">YOUR_SECURE_PASSWORD</em>'</pre></div></li><li class="step"><p>
+            Set the variable for virtual overlay IP addresses. The variable needs to follow a specific convention for a given platform. For example:
+          </p><div class="verbatim-wrap highlight yaml"><pre class="screen"><code class="language-yaml">sap_vm_provision_ha_vip_hana_primary: "10.10.10.90"</code></pre></div></li></ol></li><li class="step"><p>
+        Update the <code class="filename">ansible_extravars_existing_hosts.yml</code> variable file.
+      </p><ol type="a" class="substeps"><li class="step"><p>
+            Ansible automatically detects the domain from the <code class="filename">/etc/hosts</code> file,
+            but the following variable can override it:
+          </p><div class="verbatim-wrap highlight yaml"><pre class="screen"><code class="language-yaml">sap_general_preconfigure_domain: "{{ ansible_facts['domain'] }}"</code></pre></div></li><li class="step"><p>
+            Update the following variable with the path to the SSH key that exists on the control node and is updated in <code class="filename">authorized_keys</code> on existing hosts. For example:
+          </p><div class="verbatim-wrap highlight yaml"><pre class="screen"><code class="language-yaml">sap_vm_provision_ssh_host_private_key_file_path: "/root/.ssh/sap_rsa"</code></pre></div></li></ol></li><li class="step"><p>
+        Update the <code class="filename">ansible_inventory_noninteractive.yml</code> inventory file with
+        the connection details of your hosts. For example:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            Primary database host: <code class="literal">hana01</code>
+          </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                IP: 10.10.10.10
+              </p></li><li class="listitem"><p>
+                SSH Key path: <code class="filename">/root/.ssh/sap_rsa</code>
+              </p></li><li class="listitem"><p>
+                Simplified SSH arguments without a Bastion host.
+              </p></li></ul></div></li><li class="listitem"><p>
+            Secondary database host: <code class="literal">hana02</code>
+          </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                IP: 10.10.10.11
+              </p></li><li class="listitem"><p>
+                SSH Key path: <code class="filename">/root/.ssh/sap_rsa</code>
+              </p></li><li class="listitem"><p>
+                Simplified SSH arguments without a Bastion host.
+              </p></li></ul></div></li></ul></div><div class="verbatim-wrap highlight yaml"><pre class="screen"><code class="language-yaml">---
+
+hana_primary:
+  hosts:
+    hana01:
+      ansible_host: "10.10.10.10"
+      ansible_port: 22
+      ansible_user: root
+      ansible_ssh_private_key_file: "/root/.ssh/sap_rsa"
+      ansible_ssh_common_args: &gt;-
+        -o ConnectTimeout=180 -o ControlMaster=auto -o ControlPersist=3600s
+        -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ForwardX11=no
+
+hana_secondary:
+  hosts:
+    hana02:
+      ansible_host: "10.10.10.11"
+      ansible_port: 22
+      ansible_user: root
+      ansible_ssh_private_key_file: "/root/.ssh/sap_rsa"
+      ansible_ssh_common_args: &gt;-
+        -o ConnectTimeout=180 -o ControlMaster=auto -o ControlPersist=3600s
+        -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ForwardX11=no</code></pre></div><div id="id-1.9.3.8.4" data-id-title="Inventory group names" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Inventory group names</div><p>
+          Avoid changing the group names (<code class="varname">hana_primary</code>,
+          <code class="varname">hana_secondary</code>) in the inventory file. These names are used in the
+          deployment playbook. Renaming them would require customizing the playbook to change all
+          host entries.
+        </p></div></li><li class="step"><p>
+        Test the Ansible connection. Verify that Ansible can successfully connect to your target hosts by using the inventory and SSH keys you configured.
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">ansible -i playbooks/H01/ansible_inventory_noninteractive.yml all -m ansible.builtin.ping</code>
+
+hana02 | SUCCESS =&gt; {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.13"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+
+hana01 | SUCCESS =&gt; {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.13"
+    },
+    "changed": false,
+    "ping": "pong"
+}</pre></div></li><li class="step"><p>
+        Encrypt the files with Ansible Vault. Files can be encrypted either with a prompt or a
+        password file. The password file method is easier in larger environments for reusability.
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">echo "<em class="replaceable">YOUR_SECURE_VAULT_PASSWORD</em>" &gt; password.key</code></pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">chmod 600 password.key</code></pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">ansible-vault encrypt --vault-password-file password.key \
+  playbooks/H01/ansible_extravars.yml \
+  playbooks/H01/ansible_extravars_existing_hosts.yml</code>
+
+Encryption successful</pre></div></li><li class="step"><p>
+        Run the main playbook from your working directory (for example,
+        <code class="filename">playbooks/H01/</code>). It starts the automated process of installing the SAP software.
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">ansible-playbook /usr/share/ansible/playbooks/ansible.playbooks_for_sap/deploy_scenarios/sap_hana_ha/ansible_playbook.yml \
+  --extra-vars "@./ansible_extravars.yml" \
+  --extra-vars "@./ansible_extravars_existing_hosts.yml" \
+  --inventory "./ansible_inventory_noninteractive.yml" \
+  --vault-password-file password.key
+</code></pre></div><p>
+        The <code class="literal">--vault-password-file</code> option decrypts your sensitive variables during the run.
+      </p></li></ol></div></div><p>
+    <span><span class="emphasis"><strong>Next steps</strong></span></span>
+  </p><p>
+    You can now proceed with post-installation tasks, such as:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        <span><span class="emphasis"><strong>System validation:</strong></span></span> Performing health checks and verifying
+        functionality.
+      </p></li><li class="listitem"><p>
+        <span><span class="emphasis"><strong>SAP configuration:</strong></span></span> Applying initial SAP HANA database configurations.
+      </p></li><li class="listitem"><p>
+        <span><span class="emphasis"><strong>Backup and recovery:</strong></span></span> Implementing a backup and recovery strategy.
+      </p></li><li class="listitem"><p>
+        <span><span class="emphasis"><strong>Monitoring:</strong></span></span> Integrating the new landscape with your
+        existing monitoring solutions.
+      </p></li></ul></div></section><section xml:lang="en" class="sect1" id="sap-ansible-playbook-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">9 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="#sap-ansible-playbook-more-info">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Refer to the following resources:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+      Introduction to Ansible Core
+      <a class="link" href="https://documentation.suse.com/sles/16.0/html/SLES-Ansible/" target="_blank">https://documentation.suse.com/sles/16.0/html/SLES-Ansible/</a>.
+      </p></li><li class="listitem"><p>
+        Ansible Linux System Roles
+        <a class="link" href="https://documentation.suse.com/sles/16.0/html/SLES-ansible-roles/" target="_blank">https://documentation.suse.com/sles/16.0/html/SLES-ansible-roles/</a>.
+      </p></li><li class="listitem"><p>
+        Documentation of open source Ansible playbooks for the deployment of various SAP software solutions:
+        <a class="link" href="https://github.com/SUSE/community.sap_infrastructure/blob/main/README.md" target="_blank">https://github.com/SUSE/community.sap_infrastructure/blob/main/README.md</a>
+      </p></li></ul></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">10 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section><div class="legal-section"><section class="appendix" translate="no" id="doc-gfdl-license" data-id-title="GNU Free Documentation License"><div class="titlepage"><div><div><h1 class="title">GNU Free Documentation License</h1></div></div></div><p>
+    Copyright (C) 2000, 2001, 2002 Free Software Foundation, Inc. 51 Franklin St, Fifth Floor,
+    Boston, MA 02110-1301 USA. Everyone is permitted to copy and distribute verbatim copies of this
+    license document, but changing it is not allowed.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.3"><span class="name">
+    0. PREAMBLE
+  </span><a title="Permalink" class="permalink" href="#id-1.12.3">#</a></h5></div><p>
+    The purpose of this License is to make a manual, textbook, or other functional and useful
+    document "free" in the sense of freedom: to assure everyone the effective freedom to copy and
+    redistribute it, with or without modifying it, either commercially or non-commercially.
+    Secondarily, this License preserves for the author and publisher a way to get credit for their
+    work, while not being considered responsible for modifications made by others.
+  </p><p>
+    This License is a kind of "copyleft", which means that derivative works of the document must
+    themselves be free in the same sense. It complements the GNU General Public License, which is a
+    copyleft license designed for free software.
+  </p><p>
+    We have designed this License to use it for manuals for free software, because free software
+    needs free documentation: a free program should come with manuals providing the same freedoms
+    that the software does. But this License is not limited to software manuals; it can be used for
+    any textual work, regardless of subject matter or whether it is published as a printed book. We
+    recommend this License principally for works whose purpose is instruction or reference.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.7"><span class="name">
+    1. APPLICABILITY AND DEFINITIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.12.7">#</a></h5></div><p>
+    This License applies to any manual or other work, in any medium, that contains a notice placed
+    by the copyright holder saying it can be distributed under the terms of this License. Such a
+    notice grants a world-wide, royalty-free license, unlimited in duration, to use that work under
+    the conditions stated herein. The "Document", below, refers to any such manual or work. Any
+    member of the public is a licensee, and is addressed as "you". You accept the license if you
+    copy, modify or distribute the work in a way requiring permission under copyright law.
+  </p><p>
+    A "Modified Version" of the Document means any work containing the Document or a portion of it,
+    either copied verbatim, or with modifications and/or translated into another language.
+  </p><p>
+    A "Secondary Section" is a named appendix or a front-matter section of the Document that deals
+    exclusively with the relationship of the publishers or authors of the Document to the
+    Document's overall subject (or to related matters) and contains nothing that could fall
+    directly within that overall subject. (Thus, if the Document is in part a textbook of
+    mathematics, a Secondary Section may not explain any mathematics.) The relationship could be a
+    matter of historical connection with the subject or with related matters, or of legal,
+    commercial, philosophical, ethical or political position regarding them.
+  </p><p>
+    The "Invariant Sections" are certain Secondary Sections whose titles are designated, as being
+    those of Invariant Sections, in the notice that says that the Document is released under this
+    License. If a section does not fit the above definition of Secondary then it is not allowed to
+    be designated as Invariant. The Document may contain zero Invariant Sections. If the Document
+    does not identify any Invariant Sections then there are none.
+  </p><p>
+    The "Cover Texts" are certain short passages of text that are listed, as Front-Cover Texts or
+    Back-Cover Texts, in the notice that says that the Document is released under this License. A
+    Front-Cover Text may be at most 5 words, and a Back-Cover Text may be at most 25 words.
+  </p><p>
+    A "Transparent" copy of the Document means a machine-readable copy, represented in a format
+    whose specification is available to the general public, that is suitable for revising the
+    document straightforwardly with generic text editors or (for images composed of pixels) generic
+    paint programs or (for drawings) some widely available drawing editor, and that is suitable for
+    input to text formatters or for automatic translation to a variety of formats suitable for
+    input to text formatters. A copy made in an otherwise Transparent file format whose markup, or
+    absence of markup, has been arranged to thwart or discourage subsequent modification by readers
+    is not Transparent. An image format is not Transparent if used for any substantial amount of
+    text. A copy that is not "Transparent" is called "Opaque".
+  </p><p>
+    Examples of suitable formats for Transparent copies include plain ASCII without markup, Texinfo
+    input format, LaTeX input format, SGML or XML using a publicly available DTD, and
+    standard-conforming simple HTML, PostScript or PDF designed for human modification. Examples of
+    transparent image formats include PNG, XCF and JPG. Opaque formats include proprietary formats
+    that can be read and edited only by proprietary word processors, SGML or XML for which the DTD
+    and/or processing tools are not generally available, and the machine-generated HTML, PostScript
+    or PDF produced by some word processors for output purposes only.
+  </p><p>
+    The "Title Page" means, for a printed book, the title page itself, plus such following pages as
+    are needed to hold, legibly, the material this License requires to appear in the title page.
+    For works in formats which do not have any title page as such, "Title Page" means the text near
+    the most prominent appearance of the work's title, preceding the beginning of the body of the
+    text.
+  </p><p>
+    A section "Entitled XYZ" means a named subunit of the Document whose title either is precisely
+    XYZ or contains XYZ in parentheses following text that translates XYZ in another language.
+    (Here XYZ stands for a specific section name mentioned below, such as "Acknowledgements",
+    "Dedications", "Endorsements", or "History".) To "Preserve the Title" of such a section when
+    you modify the Document means that it remains a section "Entitled XYZ" according to this
+    definition.
+  </p><p>
+    The Document may include Warranty Disclaimers next to the notice which states that this License
+    applies to the Document. These Warranty Disclaimers are considered to be included by reference
+    in this License, but only as regards disclaiming warranties: any other implication that these
+    Warranty Disclaimers may have is void and has no effect on the meaning of this License.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.18"><span class="name">
+    2. VERBATIM COPYING
+  </span><a title="Permalink" class="permalink" href="#id-1.12.18">#</a></h5></div><p>
+    You may copy and distribute the Document in any medium, either commercially or
+    non-commercially, provided that this License, the copyright notices, and the license notice
+    saying this License applies to the Document are reproduced in all copies, and that you add no
+    other conditions whatsoever to those of this License. You may not use technical measures to
+    obstruct or control the reading or further copying of the copies you make or distribute.
+    However, you may accept compensation in exchange for copies. If you distribute a large enough
+    number of copies you must also follow the conditions in section 3.
+  </p><p>
+    You may also lend copies, under the same conditions stated above, and you may publicly display
+    copies.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.21"><span class="name">
+    3. COPYING IN QUANTITY
+  </span><a title="Permalink" class="permalink" href="#id-1.12.21">#</a></h5></div><p>
+    If you publish printed copies (or copies in media that commonly have printed covers) of the
+    Document, numbering more than 100, and the Document's license notice requires Cover Texts, you
+    must enclose the copies in covers that carry, clearly and legibly, all these Cover Texts:
+    Front-Cover Texts on the front cover, and Back-Cover Texts on the back cover. Both covers must
+    also clearly and legibly identify you as the publisher of these copies. The front cover must
+    present the full title with all words of the title equally prominent and visible. You may add
+    other material on the covers in addition. Copying with changes limited to the covers, as long
+    as they preserve the title of the Document and satisfy these conditions, can be treated as
+    verbatim copying in other respects.
+  </p><p>
+    If the required texts for either cover are too voluminous to fit legibly, you should put the
+    first ones listed (as many as fit reasonably) on the actual cover, and continue the rest onto
+    adjacent pages.
+  </p><p>
+    If you publish or distribute Opaque copies of the Document numbering more than 100, you must
+    either include a machine-readable Transparent copy along with each Opaque copy, or state in or
+    with each Opaque copy a computer-network location from which the general network-using public
+    has access to download using public-standard network protocols a complete Transparent copy of
+    the Document, free of added material. If you use the latter option, you must take reasonably
+    prudent steps, when you begin distribution of Opaque copies in quantity, to ensure that this
+    Transparent copy will remain thus accessible at the stated location until at least one year
+    after the last time you distribute an Opaque copy (directly or through your agents or
+    retailers) of that edition to the public.
+  </p><p>
+    It is requested, but not required, that you contact the authors of the Document well before
+    redistributing any large number of copies, to give them a chance to provide you with an updated
+    version of the Document.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.26"><span class="name">
+    4. MODIFICATIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.12.26">#</a></h5></div><p>
+    You may copy and distribute a Modified Version of the Document under the conditions of sections
+    2 and 3 above, provided that you release the Modified Version under precisely this License,
+    with the Modified Version filling the role of the Document, thus licensing distribution and
+    modification of the Modified Version to whoever possesses a copy of it. In addition, you must
+    do these things in the Modified Version:
+  </p><div class="orderedlist"><ol class="orderedlist" type="A"><li class="listitem"><p>
+        Use in the Title Page (and on the covers, if any) a title distinct from that of the
+        Document, and from those of previous versions (which should, if there were any, be listed
+        in the History section of the Document). You may use the same title as a previous version
+        if the original publisher of that version gives permission.
+      </p></li><li class="listitem"><p>
+        List on the Title Page, as authors, one or more persons or entities responsible for
+        authorship of the modifications in the Modified Version, together with at least five of the
+        principal authors of the Document (all of its principal authors, if it has fewer than
+        five), unless they release you from this requirement.
+      </p></li><li class="listitem"><p>
+        State on the Title page the name of the publisher of the Modified Version, as the
+        publisher.
+      </p></li><li class="listitem"><p>
+        Preserve all the copyright notices of the Document.
+      </p></li><li class="listitem"><p>
+        Add an appropriate copyright notice for your modifications adjacent to the other copyright
+        notices.
+      </p></li><li class="listitem"><p>
+        Include, immediately after the copyright notices, a license notice giving the public
+        permission to use the Modified Version under the terms of this License, in the form shown
+        in the Addendum below.
+      </p></li><li class="listitem"><p>
+        Preserve in that license notice the full lists of Invariant Sections and required Cover
+        Texts given in the Document's license notice.
+      </p></li><li class="listitem"><p>
+        Include an unaltered copy of this License.
+      </p></li><li class="listitem"><p>
+        Preserve the section Entitled "History", Preserve its Title, and add to it an item stating
+        at least the title, year, new authors, and publisher of the Modified Version as given on
+        the Title Page. If there is no section Entitled "History" in the Document, create one
+        stating the title, year, authors, and publisher of the Document as given on its Title Page,
+        then add an item describing the Modified Version as stated in the previous sentence.
+      </p></li><li class="listitem"><p>
+        Preserve the network location, if any, given in the Document for public access to a
+        Transparent copy of the Document, and likewise the network locations given in the Document
+        for previous versions it was based on. These may be placed in the "History" section. You
+        may omit a network location for a work that was published at least four years before the
+        Document itself, or if the original publisher of the version it refers to gives permission.
+      </p></li><li class="listitem"><p>
+        For any section Entitled "Acknowledgements" or "Dedications", Preserve the Title of the
+        section, and preserve in the section all the substance and tone of each of the contributor
+        acknowledgements and/or dedications given therein.
+      </p></li><li class="listitem"><p>
+        Preserve all the Invariant Sections of the Document, unaltered in their text and in their
+        titles. Section numbers or the equivalent are not considered part of the section titles.
+      </p></li><li class="listitem"><p>
+        Delete any section Entitled "Endorsements". Such a section may not be included in the
+        Modified Version.
+      </p></li><li class="listitem"><p>
+        Do not retitle any existing section to be Entitled "Endorsements" or to conflict in title
+        with any Invariant Section.
+      </p></li><li class="listitem"><p>
+        Preserve any Warranty Disclaimers.
+      </p></li></ol></div><p>
+    If the Modified Version includes new front-matter sections or appendices that qualify as
+    Secondary Sections and contain no material copied from the Document, you may at your option
+    designate some or all of these sections as invariant. To do this, add their titles to the list
+    of Invariant Sections in the Modified Version's license notice. These titles must be distinct
+    from any other section titles.
+  </p><p>
+    You may add a section Entitled "Endorsements", provided it contains nothing but endorsements of
+    your Modified Version by various parties--for example, statements of peer review or that the
+    text has been approved by an organization as the authoritative definition of a standard.
+  </p><p>
+    You may add a passage of up to five words as a Front-Cover Text, and a passage of up to 25
+    words as a Back-Cover Text, to the end of the list of Cover Texts in the Modified Version. Only
+    one passage of Front-Cover Text and one of Back-Cover Text may be added by (or through
+    arrangements made by) any one entity. If the Document already includes a cover text for the
+    same cover, previously added by you or by arrangement made by the same entity you are acting on
+    behalf of, you may not add another; but you may replace the old one, on explicit permission
+    from the previous publisher that added the old one.
+  </p><p>
+    The author(s) and publisher(s) of the Document do not by this License give permission to use
+    their names for publicity for or to assert or imply endorsement of any Modified Version.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.33"><span class="name">
+    5. COMBINING DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.12.33">#</a></h5></div><p>
+    You may combine the Document with other documents released under this License, under the terms
+    defined in section 4 above for modified versions, provided that you include in the combination
+    all of the Invariant Sections of all of the original documents, unmodified, and list them all
+    as Invariant Sections of your combined work in its license notice, and that you preserve all
+    their Warranty Disclaimers.
+  </p><p>
+    The combined work need only contain one copy of this License, and multiple identical Invariant
+    Sections may be replaced with a single copy. If there are multiple Invariant Sections with the
+    same name but different contents, make the title of each such section unique by adding at the
+    end of it, in parentheses, the name of the original author or publisher of that section if
+    known, or else a unique number. Make the same adjustment to the section titles in the list of
+    Invariant Sections in the license notice of the combined work.
+  </p><p>
+    In the combination, you must combine any sections Entitled "History" in the various original
+    documents, forming one section Entitled "History"; likewise combine any sections Entitled
+    "Acknowledgements", and any sections Entitled "Dedications". You must delete all sections
+    Entitled "Endorsements".
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.37"><span class="name">
+    6. COLLECTIONS OF DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.12.37">#</a></h5></div><p>
+    You may make a collection consisting of the Document and other documents released under this
+    License, and replace the individual copies of this License in the various documents with a
+    single copy that is included in the collection, provided that you follow the rules of this
+    License for verbatim copying of each of the documents in all other respects.
+  </p><p>
+    You may extract a single document from such a collection, and distribute it individually under
+    this License, provided you insert a copy of this License into the extracted document, and
+    follow this License in all other respects regarding verbatim copying of that document.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.40"><span class="name">
+    7. AGGREGATION WITH INDEPENDENT WORKS
+  </span><a title="Permalink" class="permalink" href="#id-1.12.40">#</a></h5></div><p>
+    A compilation of the Document or its derivatives with other separate and independent documents
+    or works, in or on a volume of a storage or distribution medium, is called an "aggregate" if
+    the copyright resulting from the compilation is not used to limit the legal rights of the
+    compilation's users beyond what the individual works permit. When the Document is included in
+    an aggregate, this License does not apply to the other works in the aggregate which are not
+    themselves derivative works of the Document.
+  </p><p>
+    If the Cover Text requirement of section 3 is applicable to these copies of the Document, then
+    if the Document is less than one half of the entire aggregate, the Document's Cover Texts may
+    be placed on covers that bracket the Document within the aggregate, or the electronic
+    equivalent of covers if the Document is in electronic form. Otherwise they must appear on
+    printed covers that bracket the whole aggregate.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.43"><span class="name">
+    8. TRANSLATION
+  </span><a title="Permalink" class="permalink" href="#id-1.12.43">#</a></h5></div><p>
+    Translation is considered a kind of modification, so you may distribute translations of the
+    Document under the terms of section 4. Replacing Invariant Sections with translations requires
+    special permission from their copyright holders, but you may include translations of some or
+    all Invariant Sections in addition to the original versions of these Invariant Sections. You
+    may include a translation of this License, and all the license notices in the Document, and any
+    Warranty Disclaimers, provided that you also include the original English version of this
+    License and the original versions of those notices and disclaimers. In case of a disagreement
+    between the translation and the original version of this License or a notice or disclaimer, the
+    original version will prevail.
+  </p><p>
+    If a section in the Document is Entitled "Acknowledgements", "Dedications", or "History", the
+    requirement (section 4) to Preserve its Title (section 1) will typically require changing the
+    actual title.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.46"><span class="name">
+    9. TERMINATION
+  </span><a title="Permalink" class="permalink" href="#id-1.12.46">#</a></h5></div><p>
+    You may not copy, modify, sublicense, or distribute the Document except as expressly provided
+    for under this License. Any other attempt to copy, modify, sublicense or distribute the
+    Document is void, and will automatically terminate your rights under this License. However,
+    parties who have received copies, or rights, from you under this License will not have their
+    licenses terminated so long as such parties remain in full compliance.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.48"><span class="name">
+    10. FUTURE REVISIONS OF THIS LICENSE
+  </span><a title="Permalink" class="permalink" href="#id-1.12.48">#</a></h5></div><p>
+    The Free Software Foundation may publish new, revised versions of the GNU Free Documentation
+    License from time to time. Such new versions will be similar in spirit to the present version,
+    but may differ in detail to address new problems or concerns. See
+    <a class="link" href="https://www.gnu.org/copyleft/" target="_blank">https://www.gnu.org/copyleft/</a>.
+  </p><p>
+    Each version of the License is given a distinguishing version number. If the Document specifies
+    that a particular numbered version of this License "or any later version" applies to it, you
+    have the option of following the terms and conditions either of that specified version or of
+    any later version that has been published (not as a draft) by the Free Software Foundation. If
+    the Document does not specify a version number of this License, you may choose any version ever
+    published (not as a draft) by the Free Software Foundation.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.51"><span class="name">
+    ADDENDUM: How to use this License for your documents
+  </span><a title="Permalink" class="permalink" href="#id-1.12.51">#</a></h5></div><div class="verbatim-wrap"><pre class="screen">Copyright (c) YEAR YOUR NAME.
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+A copy of the license is included in the section entitled “GNU
+Free Documentation License”.</pre></div><p>
+    If you have Invariant Sections, Front-Cover Texts and Back-Cover Texts, replace the
+    “with...Texts.” line with this:
+  </p><div class="verbatim-wrap"><pre class="screen">with the Invariant Sections being LIST THEIR TITLES, with the
+Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.</pre></div><p>
+    If you have Invariant Sections without Cover Texts, or some other combination of the three,
+    merge those two alternatives to suit the situation.
+  </p><p>
+    If your document contains nontrivial examples of program code, we recommend releasing these
+    examples in parallel under your choice of free software license, such as the GNU General Public
+    License, to permit their use in free software.
+  </p></section></div></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="#sap-for-ansible-intro"><span class="title-number">1 </span><span class="title-name">Introduction to Ansible Automation for for SUSE Linux Enterprise Server for SAP applications 16 </span></a></span></li><li><span class="section"><a href="#about-install-sap-pattern-ansible"><span class="title-number">2 </span><span class="title-name">About the <code class="literal">sles_sap_automation</code> pattern</span></a></span></li><li><span class="section"><a href="#understand-ansible-collections"><span class="title-number">3 </span><span class="title-name">Understanding the <code class="literal">sles_sap_automation package</code> pattern</span></a></span></li><li><span class="section"><a href="#ansible-support-coverage-new"><span class="title-number">4 </span><span class="title-name">Ansible support coverage</span></a></span></li><li><span class="section"><a href="#deploy-sap-ansible-aws"><span class="title-number">5 </span><span class="title-name">Deploying a High Availability distributed SAP S/4HANA system on AWS</span></a></span></li><li><span class="section"><a href="#deploy-sap-ansible-gcp"><span class="title-number">6 </span><span class="title-name">Deploying a sandbox SAP BW/4HANA  system on GCP</span></a></span></li><li><span class="section"><a href="#deploy-sap-ansible-hosts"><span class="title-number">7 </span><span class="title-name">Deploying a sandbox SAP ECC on SAP HANA system on existing hosts</span></a></span></li><li><span class="section"><a href="#deploy-sap-hana-ansible-hosts-ha"><span class="title-number">8 </span><span class="title-name">Deploying a High Availability SAP HANA cluster on existing hosts</span></a></span></li><li><span class="section"><a href="#sap-ansible-playbook-more-info"><span class="title-number">9 </span><span class="title-name">For more information</span></a></span></li><li><span class="section"><a href="#legal-disclaimer"><span class="title-number">10 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="#doc-gfdl-license"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

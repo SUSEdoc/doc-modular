@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Manually Moving High Availability Cluster Resources | SUSE Linux Enterprise High Availability 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2026-07-14"/>
+<meta name="dcterms.modified" content="2026-07-14"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-26"/>
+<meta name="title" content="Manually Moving High Availability Cluster Resources | …"/>
+<meta name="description" content="How to manually move cluster resources to other nodes to help distribute the workload or troubleshoot issues"/>
+<meta name="product-name" content="SUSE Linux Enterprise High Availability"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="Manually Moving High Availability Cluster Resources"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="tahlia.richardson@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise High Availability 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="tahlia.richardson@suse.com"/><meta property="og:title" content="Manually Moving HA Cluster Resources"/>
+<meta property="og:description" content="Manually move HA cluster resources to other nodes"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Manually Moving HA Cluster Resources"/>
+<meta name="twitter:description" content="Manually move HA cluster resources to other nodes"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Manually Moving HA Cluster Resources | SUSE Linux Enterprise High Availability 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Manually Moving HA Cluster Resources",
+    "description": "How to manually move cluster resources to other nodes to help distribute the workload or troubleshoot issues",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2026-07-14T00:00+02:00",
+    "dateModified": "2026-07-14T00:00+02:00",
+    "datePublished": "2026-08-26T09:47+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Administration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Clustering"
+      },
+      {
+        "@type": "Thing",
+        "name": "High Availability"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise High Availability",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER, IBM Z"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Manually Moving High Availability Cluster Resources</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Manually Moving High Availability Cluster Resources</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="ha-resources-manually-moving" data-id-title="Manually Moving High Availability Cluster Resources"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise High Availability</span></span></span> 16.1</div><div><h1 class="title">Manually Moving High Availability Cluster Resources</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>26 Aug 2026</div><div><div class="abstract"><p>
+          Although the cluster automatically moves resources when necessary, you might want to move
+          resources manually, either to a specific node or just away from the current node. For
+          example, you might move resources to other nodes to distribute the workload more evenly
+          across the cluster, or to help isolate and troubleshoot a hardware or software issue.
+        </p></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Manually Moving High Availability Cluster Resources" hreflang="en" href="rh-ha-resources-manually-moving.html" target="_blank">Revision History: Manually Moving High Availability Cluster Resources</a></div></div></div></div><section xml:lang="en" class="sect1" id="ha-resources-what-is" data-id-title="What are cluster resources?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">What are cluster resources?</span></span> <a title="Permalink" class="permalink" href="index.html#ha-resources-what-is">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+  In a High Availability cluster, the applications and services that need to be highly available are called
+  <span><em class="emphasis">resources</em></span>. Cluster resources can include Web sites, e-mail servers,
+  databases, file systems, virtual machines or any other applications or services that need to
+  be available to users at all times. You can start, stop, monitor and move resources
+  as needed. You can also specify whether resources should run together on the same node,
+  or start and stop in sequential order. If a node fails, the resources running on it
+  <span><em class="emphasis">fail over</em></span> (move) to another node instead of being lost.
+</p><p>
+  In SUSE Linux Enterprise High Availability, the <span><em class="emphasis">cluster resource manager</em></span> (CRM) is <span><em class="emphasis">Pacemaker</em></span>,
+  which manages and coordinates all cluster services. Pacemaker uses <span><em class="emphasis">resource agents</em></span>
+  (RAs) to start, stop and monitor resources. A resource agent abstracts the resource and presents
+  its status to the cluster. This means that Pacemaker only interacts with the resource agent, not
+  with the actual application or service. SUSE Linux Enterprise High Availability supports many different resource agents that
+  are designed to manage specific types of resources.
+</p></div></div></div></div><section class="sect2" id="ha-resources-what-is-primitive" data-id-title="Primitive resources"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">Primitive resources</span></span> <a title="Permalink" class="permalink" href="index.html#ha-resources-what-is-primitive">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+  Primitive resources represent the applications or services that need to be highly available.
+  Configuring a primitive specifies the resource agent and any other information required for
+  the cluster to manage a resource. To see the supported resource agent classes, run
+  <code class="command">crm ra classes</code>. To see the resource agents available within a class, run
+  <code class="command">crm ra list <em class="replaceable">CLASS</em></code>.
+</p><p>
+      Primitive resources can have the following settings:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.2.4.1"><span class="term">Properties</span></dt><dd><p>
+            Resource properties are the basic details required by the cluster: a unique name for
+            the resource, and the resource agent that manages the application or service.
+          </p></dd><dt id="id-1.2.2.4.2"><span class="term">Parameters</span></dt><dd><p>
+            Parameters are specific to each resource agent and determine the details and behavior
+            of an application or service. To show all the parameters available for a resource agent,
+            run <code class="command">crm ra info <em class="replaceable">RESOURCE_AGENT</em></code>.
+          </p></dd><dt id="id-1.2.2.4.3"><span class="term">Operations</span></dt><dd><p>
+            Operations are actions that the cluster can perform on a resource, such as
+            <code class="literal">start</code>, <code class="literal">stop</code> and <code class="literal">monitor</code>.
+            To show the supported operations for a resource agent, run
+            <code class="command">crm ra info <em class="replaceable">RESOURCE_AGENT</em></code>
+            and scroll to the bottom of the output.
+          </p></dd><dt id="id-1.2.2.4.4"><span class="term">Meta attributes</span></dt><dd><p>
+            Meta attributes change how the cluster treats a resource.
+            To show all the meta attributes available for primitives, run
+            <code class="command">crm_resource --list-options primitive</code>.
+          </p></dd><dt id="id-1.2.2.4.5"><span class="term">Utilization attributes</span></dt><dd><p>
+            If the cluster nodes have utilization attributes configured, you can add these
+            attributes to cluster resources to help with load balancing. For more information,
+            see <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/utilization.html" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/utilization.html</a>.
+            
+          </p></dd></dl></div></section><section class="sect2" id="ha-resources-what-is-group" data-id-title="Resource groups"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Resource groups</span></span> <a title="Permalink" class="permalink" href="index.html#ha-resources-what-is-group">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+  Cluster resources might depend on other resources, such as a Web server that
+  requires an IP address and a file system. You can combine these resources into a
+  <span><em class="emphasis">resource group</em></span>. Groups contain multiple primitives that need
+  to be located together, started sequentially and stopped in the reverse order.
+</p><div class="figure" id="fig-ha-resources-what-is-group"><div class="figure-contents"><div class="mediaobject"><a href="images/ha-resource-group.svg"><img src="images/ha-resource-group.svg" width="80%" alt="This diagram shows a box representing a node. The box contains four individual resources and a smaller box containing three more resources. The smaller box represents a resource group. A zoomed-in view of the resource group shows that the resources are an IP address, an XFS file system and an Apache Web server. The resources are numbered to show the start order in one direction and the reversed stop order in the other direction." title="This diagram shows a box representing a node. The box contains four individual resources and a smaller box containing three more resources. The smaller box represents a resource group. A zoomed-in view of the resource group shows that the resources are an IP address, an XFS file system and an Apache Web server. The resources are numbered to show the start order in one direction and the reversed stop order in the other direction."/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 1: </span><span class="title-name">Resource group </span></span><a title="Permalink" class="permalink" href="index.html#fig-ha-resources-what-is-group">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><p>
+      Groups have the following properties:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.3.5.1"><span class="term">Contents</span></dt><dd><p>
+            Groups can only contain primitive resources, not clones or other groups.
+          </p></dd><dt id="id-1.2.3.5.2"><span class="term">Starting and stopping</span></dt><dd><p>
+           Resources start in the order they appear and stop in the reverse order.
+          </p></dd><dt id="id-1.2.3.5.3"><span class="term">Location</span></dt><dd><p>
+            Resources in the group must all run on the same node.
+          </p></dd><dt id="id-1.2.3.5.4"><span class="term">Dependency</span></dt><dd><p>
+            If one of the resources can't run anywhere, then the resources that appear after
+            it in the group can't run anywhere either.
+          </p></dd><dt id="id-1.2.3.5.5"><span class="term">Meta attributes</span></dt><dd><p>
+            The meta attributes <code class="literal">target-role</code>, <code class="literal">priority</code>,
+            <code class="literal">maintenance</code> and <code class="literal">is-managed</code> can be added
+            directly to the group. All other attributes are inherited from the group's resources.
+          </p></dd><dt id="id-1.2.3.5.6"><span class="term">Resource stickiness</span></dt><dd><p>
+          Stickiness in groups is additive. Every <span><em class="emphasis">active</em></span> resource in the
+          group contributes its stickiness value to the group's total.
+          </p></dd></dl></div></section><section class="sect2" id="ha-resources-what-is-clone" data-id-title="Resource clones"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.3 </span><span class="title-name">Resource clones</span></span> <a title="Permalink" class="permalink" href="index.html#ha-resources-what-is-clone">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+  <span><em class="emphasis">Resource clones</em></span> can run simultaneously on multiple nodes. This is required
+  for cluster file systems like GFS2, for example. You can clone a primitive or a group if the
+  resource agent supports it. Clones can also have additional clone-specific meta attributes to
+  change their behavior.
+</p><p>
+      Clones can be one of the following types:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.4.4.1"><span class="term">Anonymous clones</span></dt><dd><p>
+            Anonymous clones are the simplest type. All instances of the clone behave identically.
+            Therefore, only one instance of an anonymous clone can be active on each node.
+          </p></dd><dt id="id-1.2.4.4.2"><span class="term">Globally unique clones</span></dt><dd><p>
+            Globally unique clones are distinct entities. An instance of the clone running on one
+            node is not necessarily equivalent to another instance on another node.
+          </p></dd><dt id="id-1.2.4.4.3"><span class="term">Promotable clones</span></dt><dd><p>
+            Promotable clones allow the instances to be in one of two operating modes: promoted or
+            unpromoted (also known as primary and secondary, or active and passive). Promotable
+            clones can be either anonymous or globally unique.
+          </p><p>
+            To make a clone promotable, the resource agent must support the
+            <span><em class="emphasis">promote</em></span> and <span><em class="emphasis">demote</em></span> operations. The cluster
+            determines which instance of the clone to promote using one of the following methods
+            (or a combination of both):
+          </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                If a resource agent supports promotable clones, it might automatically set
+                promotion scores based on its own preference for which instance to promote.
+              </p></li><li class="listitem"><p>
+                You can manually set promotion rules or preferences by creating location or
+                colocation constraints.
+              </p></li></ul></div><p>
+            For more information, see <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/collective.html#determining-which-instance-is-promoted" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/collective.html#determining-which-instance-is-promoted</a>
+          </p></dd></dl></div></section><section class="sect2" id="ha-resources-what-is-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.4 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="index.html#ha-resources-what-is-more-info">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          Primitive resources: <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/resources.html" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/resources.html</a>
+        </p></li><li class="listitem"><p>
+          Groups and clones: <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/collective.html" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/collective.html</a>
+        </p></li><li class="listitem"><p>
+          Resource operations: <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/operations.html" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/operations.html</a>
+        </p></li><li class="listitem"><p>
+          Utilization attributes: <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/utilization.html" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/utilization.html</a>
+        </p></li></ul></div></section></section><section xml:lang="en" class="sect1" id="ha-resources-relocation-constraints-what-is" data-id-title="What are relocation constraints?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">What are relocation constraints?</span></span> <a title="Permalink" class="permalink" href="index.html#ha-resources-relocation-constraints-what-is">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Cluster resources automatically <span><em class="emphasis">fail over</em></span> (move) to another
+        node during hardware or software failures. However, you can also choose to manually
+        move a resource, either to a specific node or just away from the current node.
+        A <span><em class="emphasis">relocation constraint</em></span> is a location constraint used specifically
+        for moving a resource. The cluster creates the relocation constraint automatically
+        when you move a resource with <code class="systemitem">crmsh</code> or Hawk.
+      </p></div></div></div></div><p>
+    The type of relocation constraint depends on where you move the resource:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        If you move the resource <span><em class="emphasis">to a specific node</em></span>, the cluster creates a
+        relocation constraint with an <code class="literal">INFINITY</code> score for the destination node.
+      </p></li><li class="listitem"><p>
+        If you move the resource <span><em class="emphasis">away from the current node</em></span>, the cluster
+        creates a relocation constraint with a <code class="literal">-INFINITY</code> score for the
+        current node.
+      </p></li></ul></div><p>
+    To allow the resource to move back to the original node, you must remove the relocation
+    constraint. When you remove the constraint, the resource might move back to the original node
+    automatically or it might stay on the destination node, depending on the resource's stickiness.
+  </p><div id="id-1.3.5" data-id-title="Moving a resource vs live migration" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Moving a resource vs live migration</div><p>
+      Usually when the cluster moves a resource, it stops the resource on the current node and
+      starts it on the destination node. This is not the same thing as live migration, where the
+      cluster moves a resource from one node to another without stopping it. Live migration is
+      only supported for certain resources and must be enabled for each individual resource.
+    </p></div></section><section xml:lang="en" class="sect1" id="ha-resources-adding-relocation-constraints" data-id-title="Adding relocation constraints to resources"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Adding relocation constraints to resources</span></span> <a title="Permalink" class="permalink" href="index.html#ha-resources-adding-relocation-constraints">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        A <span><em class="emphasis">relocation constraint</em></span> is a location constraint used specifically for
+        moving a resource. The cluster creates the relocation constraint automatically when you move
+        a resource with <code class="systemitem">crmsh</code> or Hawk.
+      </p></div></div></div></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Requirements </span></span><a title="Permalink" class="permalink" href="index.html#id-1.4.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        The resource doesn't have any other constraints that would prevent it from moving.
+      </p></li></ul></div><div class="tab-structure"><ul class="tabs" onclick="showTabContent(event)"><li class="tab active-tab">CRM Shell</li><li class="tab">Hawk</li></ul><div class="content-container"><div class="tab-content" id="tabContent1"><p>
+          You can perform this procedure on any node in the cluster.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code>
+              privileges.
+            </p></li><li class="step"><p>
+              Check which node the resource is currently running on:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div></li><li class="step"><p>
+              Move the resource to another node:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm resource move <em class="replaceable">RESOURCE</em> <em class="replaceable">NODE</em></code></pre></div><p>
+              Alternatively, you can move the resource away from the current node without
+              specifying a specific node to move to:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm resource move <em class="replaceable">RESOURCE</em> force</code></pre></div></li><li class="step"><p>
+              Check the status again to make sure the resource is now running on the other node:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div></li></ol></div></div></div><div class="tab-content" id="tabContent2" style="display: none;"><p>
+          You can use Hawk on any machine with a Web browser and network access to the nodes.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              In a Web browser, go to
+              <code class="literal">https://<em class="replaceable">HAWKSERVER</em>:7630/</code>
+              and log in.
+            </p></li><li class="step"><p>
+              From the left navigation bar, select <span class="guimenu">Monitoring</span> › <span class="guimenu">Status</span>.
+            </p></li><li class="step"><p>
+              Find the resource you want to move. In the <span class="guimenu">Operations</span> column,
+              click the down arrow button and select <span class="guimenu">Migrate</span>.
+            </p></li><li class="step"><p>
+              From the drop-down list, either keep the default <span class="guimenu">Away from current node</span>
+              or select a specific node to move the resource to.
+            </p></li><li class="step"><p>
+              Click <span class="guimenu">OK</span> to continue.
+            </p><p>
+              The node in the <span class="guimenu">Location</span> column changes, and a link icon appears
+              in the <span class="guimenu">Status</span> column. Hover the cursor over the link icon to see
+              the name of the relocation constraint.
+            </p></li></ol></div></div></div></div></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">For more information </span></span><a title="Permalink" class="permalink" href="index.html#id-1.4.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        <code class="command">crm resource help move</code>
+      </p></li></ul></div></section><section xml:lang="en" class="sect1" id="ha-resources-removing-relocation-constraints" data-id-title="Removing relocation constraints from resources"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Removing relocation constraints from resources</span></span> <a title="Permalink" class="permalink" href="index.html#ha-resources-removing-relocation-constraints">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        A <span><em class="emphasis">relocation constraint</em></span> is a location constraint used specifically for
+        moving a resource. The cluster creates the relocation constraint automatically when you move
+        a resource with <code class="systemitem">crmsh</code> or Hawk. To allow the resource to move back to the previous node,
+        you must remove the relocation constraint. When you remove the constraint, the resource
+        might move back to the original node automatically or it might stay on the current node,
+        depending on the resource's stickiness.
+    </p></div></div></div></div><div class="tab-structure"><ul class="tabs" onclick="showTabContent(event)"><li class="tab active-tab">CRM Shell</li><li class="tab">Hawk</li></ul><div class="content-container"><div class="tab-content" id="tabContent1"><p>
+          You can perform this procedure on any node in the cluster.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code>
+              privileges.
+            </p></li><li class="step"><p>
+              Show the existing location constraints:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure show type:location</code></pre></div><p>
+              Relocation constraints are named either
+              <code class="literal">cli-prefer-<em class="replaceable">RESOURCE</em></code> or
+              <code class="literal">cli-ban-<em class="replaceable">RESOURCE</em>-on-<em class="replaceable">NODE</em></code>.
+            </p></li><li class="step"><p>
+              Remove any relocation constraints from a specific resource:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm resource clear <em class="replaceable">RESOURCE</em></code></pre></div></li><li class="step"><p>
+              Check the status to see which node the resource is now running on:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div></li></ol></div></div></div><div class="tab-content" id="tabContent2" style="display: none;"><p>
+          You can use Hawk on any machine with a Web browser and network access to the nodes.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              In a Web browser, go to
+              <code class="literal">https://<em class="replaceable">HAWKSERVER</em>:7630/</code>
+              and log in.
+            </p></li><li class="step"><p>
+              From the left navigation bar, select <span class="guimenu">Monitoring</span> › <span class="guimenu">Status</span>.
+            </p></li><li class="step"><p>
+              Find the resource you want to remove the relocation constraint from. In the
+              <span class="guimenu">Operations</span> column, click the down arrow button and select
+              <span class="guimenu">Clear</span>.
+            </p></li><li class="step"><p>
+              Click <span class="guimenu">OK</span> to continue.
+            </p><p>
+              The link icon disappears from the <span class="guimenu">Status</span> column.
+            </p></li><li class="step"><p>
+              Check the <span class="guimenu">Location</span> column to see which node the resource is
+              now running on.
+            </p></li></ol></div></div></div></div></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">For more information </span></span><a title="Permalink" class="permalink" href="index.html#id-1.5.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        <code class="command">crm resource help clear</code>
+      </p></li></ul></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#ha-resources-what-is"><span class="title-number">1 </span><span class="title-name">What are cluster resources?</span></a></span></li><li><span class="section"><a href="index.html#ha-resources-relocation-constraints-what-is"><span class="title-number">2 </span><span class="title-name">What are relocation constraints?</span></a></span></li><li><span class="section"><a href="index.html#ha-resources-adding-relocation-constraints"><span class="title-number">3 </span><span class="title-name">Adding relocation constraints to resources</span></a></span></li><li><span class="section"><a href="index.html#ha-resources-removing-relocation-constraints"><span class="title-number">4 </span><span class="title-name">Removing relocation constraints from resources</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">5 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li><li><span class="glossary"><a href="ha-glossary.html"><span class="title-name">HA glossary</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

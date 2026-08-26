@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Deploying SUSE Linux Enterprise Server Using Network PXE Boot | SUSE Linux Enterprise Server 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2025-11-04"/>
+<meta name="dcterms.modified" content="2025-11-04"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-26"/>
+<meta name="title" content="Deploying SUSE Linux Enterprise Server Using Network P…"/>
+<meta name="description" content="How to deploy SUSE Linux Enterprise Server using PXE boot"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="Deploying SUSE Linux Enterprise Server Using Network PXE Boot"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="jsindelarova@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="jsindelarova@suse.com"/><meta property="og:title" content="Deploying SUSE Linux Enterprise Server Using Network P…"/>
+<meta property="og:description" content="Deploy SUSE Linux Enterprise Server using PXE boot"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Deploying SUSE Linux Enterprise Server Using Network P…"/>
+<meta name="twitter:description" content="Deploy SUSE Linux Enterprise Server using PXE boot"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Deploying SUSE Linux Enterprise Server Using Network PXE Boot | SUSE Linux Enterprise Server 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Deploying SUSE Linux Enterprise Server Using Network PXE Boot",
+    "description": "How to deploy SUSE Linux Enterprise Server using PXE boot",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2025-11-04T00:00+02:00",
+    "dateModified": "2025-11-04T00:00+02:00",
+    "datePublished": "2026-08-26T09:47+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Deployment"
+      },
+      {
+        "@type": "Thing",
+        "name": "Installation"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, AArch64"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Deploying SUSE Linux Enterprise Server Using Network PXE Boot</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Deploying <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> Using Network PXE Boot</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="deployment-pxe-boot-sles" data-id-title="Deploying SUSE Linux Enterprise Server Using Network PXE Boot"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span></span> 16.1</div><div><h1 class="title">Deploying <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> Using Network PXE Boot</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>26 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+              <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> provides images that can be deployed remotely using the PXE boot of the
+              target device.
+            </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
+              You want to deploy <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> remotely.
+            </p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                It takes about 15 minutes to read the article.
+              </p></dd><dt id="id-1.1.12.1.4"><span class="term">GOAL</span></dt><dd><p>
+                A properly installed and running instance of <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span>.
+              </p></dd><dt id="id-1.1.12.1.5"><span class="term">REQUIREMENTS</span></dt><dd><p>
+                    A properly configured PXE boot server. For details, refer to: <a class="link" href="https://documentation.suse.com/sles/16.0/html/SLES-PXE-server" target="_blank">PXE
+                    server installation</a>.
+                  </p></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Deploying SUSE Linux Enterprise Server Using Network PXE Boot" hreflang="en" href="rh-deployment-pxe-boot-sles.html" target="_blank">Revision History: Deploying SUSE Linux Enterprise Server Using Network PXE Boot</a></div></div></div></div><section xml:lang="en" class="sect1" id="deployment-pxe-introduction" data-id-title="Introduction to the PXE installation of SUSE Linux Enterprise Server"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Introduction to the PXE installation of <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span></span></span> <a title="Permalink" class="permalink" href="index.html#deployment-pxe-introduction">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> can be installed via a Preboot Execution Environment (PXE). The client hardware needs to support booting via PXE. The network needs to provide a DHCP server and a TFTP server providing the required data to the clients. 
+  </p><p>
+    The deployment procedure can be summarized to the following steps:    
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Make sure the DHCP server is configured properly.
+      </p></li><li class="step"><p>
+        Prepare the TFTP or HTTP server by adding the installation image and configuring the boot
+        settings. For details refer to <a class="link" href="https://documentation.suse.com/sles/16.0/html/SLES-PXE-server/index.html#sles-pxe-server-prepare-installer" target="_blank">preparing installation files</a>.
+      </p></li><li class="step"><p>
+        On the target machine, select PXE boot and boot the machine. For details, refer to <a class="xref" href="index.html#deployment-network-image" title="2.1. Booting the machine">Section 2.1, “Booting the machine”</a>.
+      </p></li></ol></div></div></section><section xml:lang="en" class="sect1" id="deployment-network-image-glue" data-id-title="Deploying SLES remotely"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Deploying <span class="phrase"><span class="phrase">SLES</span></span> remotely</span></span> <a title="Permalink" class="permalink" href="index.html#deployment-network-image-glue">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    The deployment process consists of two phases. The first phase involves booting the machine and
+    loading the kernel and initrd. The second phase is the installation itself using Agama.
+    Details are provided in the following sections.
+  </p><section xml:lang="en" class="sect2" id="deployment-network-image" data-id-title="Booting the machine"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">Booting the machine</span></span> <a title="Permalink" class="permalink" href="index.html#deployment-network-image">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+   The following procedure describes how to boot the client machine to start the remote deployment of <span class="phrase"><span class="phrase">SLES</span></span> using the PXE client.
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Power on the target machine or create a virtual machine. Make sure to use bridged networking.
+      </p></li><li class="step"><p>
+        Enter the boot menu and select booting using PXE or HTTP. Continue to
+        boot the machine.
+      </p></li><li class="step"><p>
+        The machine should start the deployment. Kernel and <code class="literal">initrd</code> are downloaded from the PXE boot server.
+        Boot loader is started.
+      </p></li><li class="step"><p>
+        In the GRUB 2 menu, select the installation target. You can pass kernel boot parameters if needed.
+              </p><div class="figure" id="id-1.3.3.3.4.2"><div class="figure-contents"><div class="mediaobject"><a href="images/sles16_pxe_boot.png"><img src="images/sles16_pxe_boot.png" width="50%" alt="&quot;GRUB boot menu showing online and full installation options during PXE boot process" title="&quot;GRUB boot menu showing online and full installation options during PXE boot process"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 1: </span><span class="title-name">Select installation target in PXE boot menu </span></span><a title="Permalink" class="permalink" href="index.html#id-1.3.3.3.4.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></li><li class="step"><p>
+<code class="literal">initrd</code> configures the network and starts the <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> deployment using Agama.
+      </p></li></ol></div></div></section><section xml:lang="en" class="sect2" id="deployment-pxe-agama" data-id-title="Installing SLES using Agama"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.2 </span><span class="title-name">Installing <span class="phrase"><span class="phrase">SLES</span></span> using Agama</span></span> <a title="Permalink" class="permalink" href="index.html#deployment-pxe-agama">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+The following procedure provides a step-by-step description of how to manually install
+<span class="phrase"><span class="phrase">SLES</span></span> using Agama from the remote server.
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Select <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> 16.1 for installation and accept the license to continue.
+        </p><div class="informalfigure"><div class="mediaobject"><a href="images/agama-installation-sles-select-product.png"><img src="images/agama-installation-sles-select-product.png" width="100%" alt="Select a product" title="Select a product"/></a></div></div></li><li class="step"><p>
+          The overview of the most relevant installation settings is shown. Adjust the settings
+          by selecting the category from the menu on the left or directly proceed with the installation.
+        </p><div class="informalfigure"><div class="mediaobject"><a href="images/agama-installation-sles-overview.png"><img src="images/agama-installation-sles-overview.png" width="100%" alt="Installation settings overview" title="Installation settings overview"/></a></div></div><div id="id-1.3.4.3.2.3" data-id-title="Installer language and keyboard" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Installer language and keyboard</div><p>
+            Click the arrow menu in the top-right corner and select
+            <span class="guimenu">Installer options</span> to change the language and keyboard layout used
+            by the installer. The language can only be changed on local installations. If you are
+            using a Web browser for a remote installation, configure the preferred content language
+            in the browser settings and reload the installer.
+          </p></div></li><li class="step"><p>
+          Register your product. Enter a registration code and, optionally, a valid e-mail address.
+        </p><div class="informalfigure"><div class="mediaobject"><a href="images/agama-installation-sles-registration.png"><img src="images/agama-installation-sles-registration.png" width="100%" alt="Registration" title="Registration"/></a></div></div><div id="id-1.3.4.3.3.3" data-id-title="Optional registration for images signed with the developers key" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Optional registration for images signed with the developer's key</div><p>
+            Images signed with the developer's key may allow you to skip
+            registration before installation. If your product's image supports installation without
+            registration, you may see a pop-up similar to the following:
+          </p><div class="informalfigure"><div class="mediaobject"><a href="images/agama-installation-sles-sap-no-reg-dev-key-sign.png"><img src="images/agama-installation-sles-sap-no-reg-dev-key-sign.png" width="100%" alt="Using images signed by developer's key" title="Using images signed by developer's key"/></a></div></div><p>
+            To install without registration, select <span class="guimenu">Trust</span> on the pop-up.
+          </p></div></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+          Adjust your localization settings such as language, keyboard layout and time zone.
+        </p><div class="informalfigure"><div class="mediaobject"><a href="images/agama-installation-sles-localization.png"><img src="images/agama-installation-sles-localization.png" width="100%" alt="Localization" title="Localization"/></a></div></div></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+          Configure your network settings. To edit an existing network connection, click the three dots.
+        </p><div class="informalfigure"><div class="mediaobject"><a href="images/agama-installation-sles-network.png"><img src="images/agama-installation-sles-network.png" width="100%" alt="Network" title="Network"/></a></div></div></li><li class="step"><p>
+          Select a storage device for installation.
+        </p><p>
+          Currently installations on single discs or LVM are supported. To change the disk
+          or use LVM, click the device name <span class="guimenu">More options</span> button in the
+            <span class="guimenu">Installation devices</span> section.
+        </p><p>
+          To detect an iSCSI disk, select the iSCSI initiator and click
+          <span class="guimenu">Discover iSCSI targets</span>.
+        </p><p>
+          By default, the file systems will be allocated as new partitions on the selected device.
+          You can change this behavior in the drop-down list labeled <span class="guimenu">All content will be
+          deleted</span> in the <span class="guimenu">Installation devices</span> section.
+          The following space policies are available:
+        </p><div class="variablelist"><div class="title-container"><div class="variablelist-title-wrap"><div class="variablelist-title"><span class="title-number-name"><span class="title-name">Space policies </span></span><a title="Permalink" class="permalink" href="index.html#id-1.3.4.3.6.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><dl class="variablelist"><dt id="id-1.3.4.3.6.5.2"><span class="term">Delete current content</span></dt><dd><p>
+                All partitions will be removed, and any data on the disks will be lost.
+              </p></dd><dt id="id-1.3.4.3.6.5.3"><span class="term">Shrink existing partitions</span></dt><dd><p>
+                The data is preserved, but current partitions will be shrunk as needed.
+              </p></dd><dt id="id-1.3.4.3.6.5.4"><span class="term">Use available space</span></dt><dd><p>
+                The data is preserved. Only the space not assigned to any partition will be used.
+              </p></dd><dt id="id-1.3.4.3.6.5.5"><span class="term">Custom</span></dt><dd><p>
+                Select what to do with each partition.
+              </p></dd></dl></div><p>
+          To edit individual partitions, expand the
+          <span class="guimenu">Partitions and file systems</span> section by clicking on the <span class="guimenu">&gt;</span>
+          symbol. Optionally, you can also configure Btrfs snapshots, boot options, and enable full disk encryption (FDE).
+        </p></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+          Add additional software to install, such as the KVM hypervisor or Cockpit system management service.
+        </p><div class="informalfigure"><div class="mediaobject"><a href="images/agama-installation-sles-software.png"><img src="images/agama-installation-sles-software.png" width="100%" alt="Software" title="Software"/></a></div></div></li><li class="step"><p>
+          Configure the authentication settings.
+        </p><div id="id-1.3.4.3.8.2" data-id-title="No password-based SSH or Cockpit access for root" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: No password-based SSH or Cockpit access for <code class="systemitem">root</code></div><p>
+            By default, <code class="systemitem">root</code> cannot log in with a password, either over SSH or in
+            Cockpit. SSH access still works if you provide an SSH public key for <code class="systemitem">root</code>.
+            Therefore, it is strongly recommended to create a system user instead: the first
+            system user can log in with a password, is granted <code class="command">sudo</code> privileges automatically,
+            and can also be used for accessing Cockpit.
+          </p></div><ol type="a" class="substeps"><li class="step"><p>
+              Create a non-root user. Click <span class="guimenu">Define a user now</span>
+              and enter details such as user name and password.
+            </p><div class="informalfigure"><div class="mediaobject"><a href="images/agama-installation-sles-users.png"><img src="images/agama-installation-sles-users.png" width="100%" alt="Users" title="Users"/></a></div></div></li><li class="step"><p>
+              Configure the authentication methods for the <code class="systemitem">root</code> user. You can use a secure
+              password, an SSH public key, or both.
+            </p><div class="informalfigure"><div class="mediaobject"><a href="images/agama-installation-sles-set-root-password.png"><img src="images/agama-installation-sles-set-root-password.png" width="100%" alt="Configure root authentication methods" title="Configure root authentication methods"/></a></div></div></li></ol></li><li class="step"><p>
+          Click <span class="guimenu">Install</span> and confirm to start the installation.
+        </p><div class="informalfigure"><div class="mediaobject"><a href="images/agama-installation-sles-confirm-installation.png"><img src="images/agama-installation-sles-confirm-installation.png" width="100%" alt="Confirm installation" title="Confirm installation"/></a></div></div></li><li class="step"><p>
+          Wait for the system installation to complete. It takes around 30 minutes to complete the
+          installation.
+        </p><div class="informalfigure"><div class="mediaobject"><a href="images/agama-installation-sles-system-installation.png"><img src="images/agama-installation-sles-system-installation.png" width="100%" alt="System installation" title="System installation"/></a></div></div><div id="id-1.3.4.3.10.3" data-id-title="Installation logs" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Installation logs</div><p>
+          You can use the arrow menu in the top-right corner of the window to view the logs and
+          system messages.
+          </p></div></li></ol></div></div></section></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#deployment-pxe-introduction"><span class="title-number">1 </span><span class="title-name">Introduction to the PXE installation of <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span></span></a></span></li><li><span class="section"><a href="index.html#deployment-network-image-glue"><span class="title-number">2 </span><span class="title-name">Deploying <span class="phrase"><span class="phrase">SLES</span></span> remotely</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">3 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

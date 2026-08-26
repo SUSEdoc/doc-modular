@@ -1,0 +1,712 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Kdump Configuration and Troubleshooting Guide | SUSE Linux Enterprise Server 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2026-01-12"/>
+<meta name="dcterms.modified" content="2026-01-12"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-26"/>
+<meta name="title" content="Kdump Configuration and Troubleshooting Guide | SUSE L…"/>
+<meta name="description" content="Learn how to install, configure and troubleshoot Kdump on standard and immutable SUSE Linux systems to capture memory snapshots during a kernel crash"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="Kdump Configuration and Troubleshooting Guide"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="amrita.sakthivel@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="amrita.sathivel@suse.com"/><meta property="og:title" content="SUSE Linux Kdump Setup and Troubleshooting Guide"/>
+<meta property="og:description" content="Configure and troubleshoot Kdump on SUSE Linux"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SUSE Linux Kdump Setup and Troubleshooting Guide"/>
+<meta name="twitter:description" content="Configure and troubleshoot Kdump on SUSE Linux"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "SUSE Linux Kdump Setup and Troubleshooting Guide | SUSE Linux Enterprise Server 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "SUSE Linux Kdump Setup and Troubleshooting Guide",
+    "description": "Learn how to install, configure and troubleshoot Kdump on standard and immutable SUSE Linux systems to capture memory snapshots during a kernel crash",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2026-01-12T00:00+02:00",
+    "dateModified": "2026-01-12T00:00+02:00",
+    "datePublished": "2026-08-26T09:48+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Administration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Security"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER, IBM Z, AArch64"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#ansible">Kdump Configuration and Troubleshooting Guide</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="ansible" data-id-title="Kdump Configuration and Troubleshooting Guide"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span></span> 16.1</div><div><h1 class="title">Kdump Configuration and Troubleshooting Guide</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>26 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+                Kdump is a Linux kernel crash dumping mechanism that captures
+                a snapshot of system memory (a vmcore file) when the Linux kernel
+                encounters a fatal error (kernel panic).
+              </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
+                Use Kdump to collect diagnostic data for kernel crash analysis and root-cause
+                investigation. Correctly setting up Kdump and obtaining the memory dump may
+                help SUSE support or kernel developers to debug a potential kernel crash.
+</p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
+The average reading time of this article is approximately 40 minutes.
+              </p></dd><dt id="id-1.1.12.1.4"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+<span><em class="emphasis">Linux fundamentals:</em></span> Understanding basic Linux commands, file permissions, directory structures
+and use of the command line.
+                  </p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Kdump Configuration and Troubleshooting Guide" hreflang="en" href="rh-ansible.html" target="_blank">Revision History: Kdump Configuration and Troubleshooting Guide</a></div></div></div></div><section xml:lang="en" class="sect1" id="about-kdump" data-id-title="What is Kdump and how does it work?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">What is Kdump and how does it work?</span></span> <a title="Permalink" class="permalink" href="#about-kdump">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+Kdump is a kernel crash dumping mechanism that captures the system’s memory state into a vmcore file when
+a system crash occurs. A vmcore file is a snapshot of your computer's system memory (RAM) taken at the exact moment the Linux kernel crashed.
+      </p></div></div></div></div><section class="sect2" id="important-kdump" data-id-title="Why is Kdump critical for system crash debugging?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">Why is Kdump critical for system crash debugging?</span></span> <a title="Permalink" class="permalink" href="#important-kdump">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>The primary importance of Kdump lies in its ability to capture a snapshot of a system's memory at the exact moment of a critical failure.</p><p> When a Linux kernel experiences a fatal error, syslog or journald usually fail along with it, often leaving no record of what went wrong. Kdump bypasses this limitation by using Kexec to boot a secondary capture kernel in a reserved slice of RAM.
+ The unstable crashed system is replaced with a freshly started and stable capture kernel.</p><p> Without this tool, administrators are often left with nothing but a blank screen or a frozen console, making it nearly impossible to diagnose the root cause of intermittent or silent system crashes.</p></section><section class="sect2" id="dual-kernel-kdump" data-id-title="Understanding the dual-kernel model"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Understanding the dual-kernel model</span></span> <a title="Permalink" class="permalink" href="#dual-kernel-kdump">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>Kdump uses a second isolated kernel referred to as the capture or crash kernel to handle a system crash safely. When the main system kernel fails, you cannot trust it to write its own crash logs to disk— because the kernel memory might be corrupted and the kernel itself is no longer reliable. The dual-kernel approach solves this by jumping into a completely different environment.</p><p>The model relies on two distinct kernels residing in memory simultaneously:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span><span class="emphasis"><strong>The production (primary) kernel</strong></span></span> is the kernel you use every day. It runs your applications and services.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>The capture (crash) kernel</strong></span></span> is a second copy of the kernel loaded in a small reserved area of RAM. It only starts when the primary kernel panics. Alongside the crash kernel, a special-purpose <code class="filename">initramfs</code> image is loaded to the reserved RAM.
+It is built by the Kdump tool and includes all the drivers, settings, and programs to store the vmcore file.
+    </p></li></ul></div></section><section class="sect2" id="kexec-kdump" data-id-title="What is Kexec and how does it boot the crash kernel?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.3 </span><span class="title-name">What is Kexec and how does it boot the crash kernel? </span></span> <a title="Permalink" class="permalink" href="#kexec-kdump">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>Kexec is a system call that functions as a software-defined boot loader, allowing a running kernel to bypass the hardware BIOS/UEFI stage and directly hand over control to a new kernel.
+      By loading the secondary kernel's image and parameters into memory while the system is still active, Kexec performs a warm boot that preserves the state of RAM and significantly reduces downtime.
+      This mechanism is the backbone of the Kdump dual-kernel model, as it provides a reliable way to jump from a crashing production environment into a clean recovery environment for data capture.</p><p>The most important component of Kexec is the <code class="command">kexec</code> command. You can load a kernel with Kexec in two ways:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Load the kernel to the address space of a production kernel for a regular reboot:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  kexec -l <em class="replaceable">KERNEL_IMAGE</em></pre></div><p>You can later boot to this kernel with the command <code class="command">kexec -e</code>.
+Instead of using Kexec, you can directly use a program called <code class="filename">kexec-bootloader</code>. It finds the default kernel,
+initrd and command-line options from the boot loader configuration and passes everything to Kexec to load the default kernel properly.
+</p></li><li class="listitem"><p>Load the kernel to a reserved area of memory:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  kexec -p <em class="replaceable">KERNEL_IMAGE</em></pre></div><p>This kernel is booted automatically when the system crashes.This is what Kdump uses to load the capture kernel. </p></li></ul></div></section><section class="sect2" id="vmcore-file-kdump" data-id-title="What data is captured in a Linux vmcore file?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.4 </span><span class="title-name">What data is captured in a Linux vmcore file?</span></span> <a title="Permalink" class="permalink" href="#vmcore-file-kdump">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+A vmcore file is a snapshot of your system's physical memory (RAM) taken at the exact moment the Linux kernel crashed.
+When kdump is set up on a system, the kdump service loads the capture kernel and <code class="filename">initramfs</code> on system boot, using the <code class="literal">kexec</code> program, into a pre-reserved area of RAM— the crash kernel area.
+If at some point the system crashes, the capture kernel is started. Its memory is restricted to the pre-reserved crash kernel area, so none of the memory used by the crashed production kernel is overwritten.
+The job of the capture kernel and <code class="filename">initramfs</code> is to save the contents of the production kernel's memory into a vmcore file.
+       </p><p>The vmcore file is a snapshot of the RAM and includes:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span><span class="emphasis"><strong>The Kernel state:</strong></span></span> All active kernel data structures, global variables and the call stack, showing what the CPU was executing at the time of the crash.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>Process information:</strong></span></span> A list of every process that was running, including their individual stacks and registers.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>Memory pages:</strong></span></span> Depending on your settings, it can contain the actual data held in RAM by applications.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>VMCOREINFO:</strong></span></span> special section that tells analysis tools how the kernel's memory was laid out so they can make sense of the raw data.</p></li></ul></div></section></section><section xml:lang="en" class="sect1" id="configure-kdump" data-id-title="Installing and configuring Kdump"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Installing and configuring Kdump</span></span> <a title="Permalink" class="permalink" href="#configure-kdump">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>This section describes how to install and configure Kdump.</p></div></div></div></div><p>To install Kdump on the immutable system, run the following command and reboot:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  <code class="command">transactional-update pkg install kdump</code></pre></div><p>To install Kdump<span class="phrase"> on the mutable system</span>, run the following command:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  <code class="command">zypper install kdump</code></pre></div><p>This command downloads the following packages:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="command">kdump</code></p></li><li class="listitem"><p><code class="command">kexec-tools</code></p></li><li class="listitem"><p><code class="command">makedumpfile</code></p></li></ul></div><p>To store the vmcore file remotely, you can install any of the following recommended packages:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Install the <span class="package">cifs-utils</span> package to store on Samba stores. </p></li><li class="listitem"><p>Install the <span class="package">lftp</span> package to store on FTP / SFTP servers. </p></li><li class="listitem"><p>Install the <span class="package">nfs-client</span> package to store on NFS servers.</p></li><li class="listitem"><p>Install the <span class="package">openssh-clients</span> package to store over SSH.</p></li></ul></div><div id="id-1.3.10" data-id-title="Managing Kdump and GRUB configuration conflicts" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Managing Kdump and GRUB configuration conflicts</div><p>The <code class="literal">kdump-commandline</code> service automatically manages your crash memory allocation. It will overwrite any manual <code class="literal">crashkernel=</code> entries in <code class="literal">GRUB_CMDLINE_LINUX_DEFAULT</code> inside <code class="filename">/etc/default/grub</code> unless the automation is explicitly disabled.
+  To prevent this behavior, modify the <code class="literal">KDUMP_UPDATE_BOOTLOADER</code> variable to <code class="literal">false</code>.</p><p><span><span class="emphasis"><strong>How do you stop Kdump from overwriting GRUB configurations?</strong></span></span></p><p>To keep your manual <code class="literal">crashkernel=</code> settings from being erased, update your configuration with these rules:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Set <code class="literal">KDUMP_UPDATE_BOOTLOADER="false"</code> to disable automatic updates.</p></li><li class="listitem"><p>Keep all <code class="literal">crashkernel=</code> parameters out of the <code class="literal">GRUB_CMDLINE_LINUX</code> line.</p></li><li class="listitem"><p>Manual configurations belong exclusively in <code class="literal">GRUB_CMDLINE_LINUX_DEFAULT</code>.</p></li></ul></div><p><span><span class="emphasis"><strong>Why should you avoid adding crash kernel settings to <code class="literal">GRUB_CMDLINE_LINUX</code>?</strong></span></span></p><p>Adding <code class="literal">crashkernel=</code> to <code class="literal">GRUB_CMDLINE_LINUX</code> causes system conflicts.</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          Settings in <code class="literal">GRUB_CMDLINE_LINUX</code> apply globally to all boot targets.
+      </p></li><li class="listitem"><p>
+          This includes the rescue system, which does not run Kdump.
+      </p></li><li class="listitem"><p>
+          The <code class="literal">kdump-commandline</code> service never alters this specific line.
+      </p></li><li class="listitem"><p>
+          Leaving values here creates direct conflicts with automated service settings.
+      </p></li></ul></div></div><section class="sect2" id="kdump-non-transact" data-id-title="Configuring Kdump for non-immutable systems"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">Configuring Kdump for non-immutable systems</span></span> <a title="Permalink" class="permalink" href="#kdump-non-transact">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>To use Kdump, a specific amount of system memory (RAM)—often referred to as crash kernel memory- must be permanently reserved at boot time for the capture kernel and initramfs.
+    The amount of memory to reserve is specified using the <code class="literal">crashkernel= kernel</code> command-line parameter. Kdump includes <code class="literal">kdumptool calibrate</code> and <code class="literal">kdumptool commandline</code> to calculate exactly how much memory needs to be reserved.</p><p>When the <code class="command"> systemctl enable --now kdump</code> command triggers the main <code class="literal">kdump.service</code>, it automatically calls a helper service named <code class="literal">kdump-commandline.service</code> before attempting to load the kernel.
+    This helper service verifies if the current kernel command line contains the expected <code class="literal">crashkernel= </code> options.
+   The options are:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Fixed memory allocation (e.g. ,<code class="literal">256M</code>) reserves a strict hardcoded amount of RAM.</p></li><li class="listitem"><p>Range-based allocation (e.g. <code class="literal">2G-8G:192M</code> ) dynamically scales the reserved memory based on the total RAM installed in the system.</p></li><li class="listitem"><p>Automatic allocation ( <code class="literal">auto</code>) where the kernel automatically calculates the required memory based on system architecture.</p></li><li class="listitem"><p>High/low split (e.g. <code class="literal">512M,high crashkernel=128M,low</code>) allocates memory across different addressable zones specifically to accommodate hardware drivers on large enterprise systems.</p></li></ul></div><p>If the options are missing, the helper service automatically modifies the boot loader configuration to contain the crash kernel options to be applied on the next boot.</p><p>Before attempting to load, the <code class="literal">kdump.service</code>: </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Starts the <code class="literal">kdump-commandline.service</code> </p></li><li class="listitem"><p>Updates the boot loader</p></li><li class="listitem"><p>Builds the capture initramfs </p></li></ul></div><p>To verify that the service successfully checked and updated your kernel boot options, inspect the system logs:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  journalctl -u kdump-commandline.service</pre></div><p>Expected output:</p><div class="verbatim-wrap"><pre class="screen">  Started Check and update kdump options on the kernel command line.
+  Kdump expects these crashkernel= values on the kernel command line:
+  crashkernel=72M,low crashkernel=443M,high
+  (based on the output of 'kdumptool calibrate')
+  No crashkernel= found in /proc/cmdline. Kdump can't be started.
+  Updated the command line options in the bootloader.
+  Changes will take effect on next boot.</pre></div><p>The boot loader has been updated. Reboot the machine to apply the changes and start Kdump.</p><p><span><span class="emphasis"><strong>Other configurations:</strong></span></span></p><p>The <code class="filename">/etc/sysconfig/kdump</code> file is the primary configuration file for managing the Kdump service.
+  It includes essential options such as:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p> <code class="literal">KDUMP_CRASHKERNEL</code> for defining the reserved crash memory size</p></li><li class="listitem"><p> <code class="literal">KDUMP_VERBOSE</code> for increasing debugging log levels</p></li><li class="listitem"><p> <code class="literal">KDUMP_SAVEDIR</code> for specifying the core dump (vmcore) storage location </p></li></ul></div><div class="example" id="id-1.3.11.16" data-id-title="Contents of a /etc/sysconfig/kdump file"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 1: </span><span class="title-name">Contents of a <code class="filename">/etc/sysconfig/kdump</code> file  </span></span><a title="Permalink" class="permalink" href="#id-1.3.11.16">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">cat /etc/sysconfig/kdump
+  ## Path:        System/Kernel/Kdump
+  ## Description: Crash Dump Configuration
+
+  ## Type:        string
+  ## Default:     "auto"
+  ## ServiceRestart:      kdump
+  #
+  # KDUMP_CRASHKERNEL is used by "kdumptool commandline" to determine
+  # the value of the kernel "crashkernel=" command-line options.
+  #
+  # Possible values are "auto" or one or more "crashkernel=..." values.
+  #
+  # KDUMP_CRASHKERNEL="auto" makes "kdumptool commandline" use the default
+  # values as proposed by "kdumptool calibrate".
+  #
+  # If the default values are not adequate you may provide a manual setting,
+  # e.g., KDUMP_CRASHKERNEL="crashkernel=72M,low crashkernel=300M,high"
+  #
+  # See also: kdump(5).
+  #
+  KDUMP_CRASHKERNEL="auto"
+
+
+  ## Type:        boolean
+  ## Default:     "true"
+  ## ServiceRestart:      kdump
+  #
+  # When KDUMP_UPDATE_BOOTLOADER is set to "true" "kdumptool commandline -c -U"
+  # called from the kdump-commandline.service  will check if the expected kernel
+  # command-line options are present and update the bootloader using *pbl*(8) if
+  # not.
+  #
+  # Also the kdump options are removed from the command line when kdump is
+  # uninstalled.
+  #
+  # When set to false "kdumptool commandline -c -U" will only check the options
+  # and report possible warnings but bootloader will not be updated.
+  #
+  KDUMP_UPDATE_BOOTLOADER="true"
+
+  ## Type:        string
+  ## Default:     ""
+  ## ServiceRestart:      kdump
+  #
+  # Kernel Version string for the -kdump kernel. Use an empty string to
+  # auto-detect a suitable kernel.
+  #
+  # See also: kdump(5).
+  #
+  KDUMP_KERNELVER=""
+
+  ## Type:        integer
+  ## Default:     32
+  ## ServiceRestart:      kdump
+  #
+  # Number of CPUs to be used in the kdump environment. You may want to
+  # increase the number if computing power is the bottleneck in your setup.
+  #
+  # If the value is zero, use all available CPUs.
+  #
+  # Decreasing the number of CPUs lowers the memory required by kdump.
+  # Increasing it raises memory usage and may cause failures if crashkernel
+  # memory is insufficient.
+  #
+  # See also: kdump(5).
+  #
+  KDUMP_CPUS=32
+
+  ## Type:        string
+  ## Default:     ""
+  ## ServiceRestart:      kdump
+  #
+  # The kdump commandline is the command line that needs to be passed off to
+  # the kdump kernel. If a command line is not specified, the default will be
+  # taken from /proc/cmdline and adjusted.
+  #
+  # WARNING: There are a few options that always should be passed to the kdump
+  # kernel. See kdump(5) for details. Don't use that variable, consider using
+  # KDUMP_COMMANDLINE_APPEND instead.
+  #
+  KDUMP_COMMANDLINE=""
+
+  ## Type:        string
+  ## Default:     ""
+  ## ServiceRestart:     kdump
+  #
+  # Set this variable if you only want to _append_ values to the default
+  # command line string. The string also gets appended if KDUMP_COMMANDLINE
+  # is set.
+  #
+  # For network based dumps, you may have to add a "net_delay" parameter
+  # here. Consult the man page for details.
+[...]</pre></div></div></div><p>For more information, refer to <code class="literal">man kdump(5)</code> and <code class="literal">man kdump(7)</code>.</p><p>Any modifications made to this configuration file require a manual restart of the Kdump service to take effect. However, if any changes are made specifically to the <code class="literal">KDUMP_CRASHKERNEL</code>  memory allocation size, a full system reboot is required because these settings alter the system's core boot parameters.</p></section><section class="sect2" id="kdump-transact" data-id-title="Configuring Kdump for immutable systems"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.2 </span><span class="title-name">Configuring Kdump for immutable systems </span></span> <a title="Permalink" class="permalink" href="#kdump-transact">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>On an immutable file system, the standard <code class="literal">kdump-commandline.service</code> is unable to directly modify the boot loader configuration.
+    To configure Kdump in these specialized environments, use the <code class="literal">transactional-update setup-kdump</code> command instead.
+    Executing this command handles the entire configuration process by automatically installing Kdump, disabling <code class="literal">KDUMP_UPDATE_BOOTLOADER</code>, and running the necessary calibration and command-line tools to update the boot loader within a new system snapshot.
+  A reboot is required to boot into the new snapshot and activate the updated Kdump configuration.
+  </p><p>If the automatically calculated memory allocation estimated by the calibration tool proves to be insufficient for your system requirements, you can manually override the settings.
+  To specify custom memory sizes directly on an immutable system, you can append the <code class="literal">crashkernel</code> parameter to the command by running:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  transactional-update setup-kdump [--crashkernel=low,high]</pre></div><p><span><span class="emphasis"><strong>Other configurations:</strong></span></span></p><p>Modifying the <code class="filename">/etc/sysconfig/kdump </code> configuration file on an immutable system requires the execution of the <code class="command">transactional-update</code> command and reboot for the changes to take effect.
+    However, if your modifications alter the crashkernel memory allocation size, you must perform an additional step to ensure the changes are safely written to the read-only environment; you need to execute the <code class="command">transactional-update run kdumptool commandline -u</code> command. This applies the new memory settings directly to the boot loader configuration so they can take physical effect during the next system boot.</p><p>The <code class="filename">/etc/sysconfig/kdump</code> file is the primary configuration file for managing the Kdump service.
+      It includes essential options such as:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p> <code class="literal">KDUMP_CRASHKERNEL</code> for defining reserved crash memory size</p></li><li class="listitem"><p> <code class="literal">KDUMP_VERBOSE</code> for increasing debugging log levels</p></li><li class="listitem"><p> <code class="literal">KDUMP_SAVEDIR</code> for specifying the core dump (vmcore) storage location </p></li></ul></div><div class="example" id="id-1.3.12.9" data-id-title="Contents of a /etc/sysconfig/kdump file"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 2: </span><span class="title-name">Contents of a <code class="filename">/etc/sysconfig/kdump</code> file  </span></span><a title="Permalink" class="permalink" href="#id-1.3.12.9">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">cat /etc/sysconfig/kdump
+      ## Path:        System/Kernel/Kdump
+      ## Description: Crash Dump Configuration
+
+      ## Type:        string
+      ## Default:     "auto"
+      ## ServiceRestart:      kdump
+      #
+      # KDUMP_CRASHKERNEL is used by "kdumptool commandline" to determine
+      # the value of the kernel "crashkernel=" command-line options.
+      #
+      # Possible values are "auto" or one or more "crashkernel=..." values.
+      #
+      # KDUMP_CRASHKERNEL="auto" makes "kdumptool commandline" use the default
+      # values as proposed by "kdumptool calibrate".
+      #
+      # If the default values are not adequate you may provide a manual setting,
+      # e.g., KDUMP_CRASHKERNEL="crashkernel=72M,low crashkernel=300M,high"
+      #
+      # See also: kdump(5).
+      #
+      KDUMP_CRASHKERNEL="auto"
+
+
+      ## Type:        boolean
+      ## Default:     "true"
+      ## ServiceRestart:      kdump
+      #
+      # When KDUMP_UPDATE_BOOTLOADER is set to "true" "kdumptool commandline -c -U"
+      # called from the kdump-commandline.service  will check if the expected kernel
+      # command-line options are present and update the bootloader using *pbl*(8) if
+      # not.
+      #
+      # Also the kdump options are removed from the command line when kdump is
+      # uninstalled.
+      #
+      # When set to false "kdumptool commandline -c -U" will only check the options
+      # and report possible warnings but bootloader will not be updated.
+      #
+      KDUMP_UPDATE_BOOTLOADER="true"
+
+      ## Type:        string
+      ## Default:     ""
+      ## ServiceRestart:      kdump
+      #
+      # Kernel Version string for the -kdump kernel. Use an empty string to
+      # auto-detect a suitable kernel.
+      #
+      # See also: kdump(5).
+      #
+      KDUMP_KERNELVER=""
+
+      ## Type:        integer
+      ## Default:     32
+      ## ServiceRestart:      kdump
+      #
+      # Number of CPUs to be used in the kdump environment. You may want to
+      # increase the number if computing power is the bottleneck in your setup.
+      #
+      # If the value is zero, use all available CPUs.
+      #
+      # Decreasing the number of CPUs lowers the memory required by kdump.
+      # Increasing it raises memory usage and may cause failures if crashkernel
+      # memory is insufficient.
+      #
+      # See also: kdump(5).
+      #
+      KDUMP_CPUS=32
+
+      ## Type:        string
+      ## Default:     ""
+      ## ServiceRestart:      kdump
+      #
+      # The kdump commandline is the command line that needs to be passed off to
+      # the kdump kernel. If a command line is not specified, the default will be
+      # taken from /proc/cmdline and adjusted.
+      #
+      # WARNING: There are a few options that always should be passed to the kdump
+      # kernel. See kdump(5) for details. Don't use that variable, consider using
+      # KDUMP_COMMANDLINE_APPEND instead.
+      #
+      KDUMP_COMMANDLINE=""
+
+      ## Type:        string
+      ## Default:     ""
+      ## ServiceRestart:     kdump
+      #
+      # Set this variable if you only want to _append_ values to the default
+      # command line string. The string also gets appended if KDUMP_COMMANDLINE
+      # is set.
+      #
+      # For network based dumps, you may have to add a "net_delay" parameter
+      # here. Consult the man page for details.
+    [...]</pre></div></div></div></section><section class="sect2" id="testing-kdump" data-id-title="Testing Kdump"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.3 </span><span class="title-name">Testing Kdump</span></span> <a title="Permalink" class="permalink" href="#testing-kdump">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>It is advisable to test Kdump after configuring it by simulating a kernel crash.
+Otherwise, you may only find out that it does not work when an actual kernel crash occurs, leaving you with no possibility to debug the crash.
+Ensure no critical workloads are running and no unsaved data is present on the system. Additionally, ensure to
+sync and unmount file systems:</p><p>Force an immediate emergency sync of all cached memory data to your hard drives to prevent data loss:</p><div class="verbatim-wrap"><pre class="screen">echo s &gt; /proc/sysrq-trigger</pre></div><p>Force an immediate emergency remount of all file systems to read-only mode to prevent data corruption:</p><div class="verbatim-wrap"><pre class="screen">echo u &gt; /proc/sysrq-trigger</pre></div><p>Then you can simulate a kernel crash:</p><div class="verbatim-wrap"><pre class="screen">echo c &gt; /proc/sysrq-trigger</pre></div><p>Check if there is a new directory created under your <code class="literal">KDUMP_SAVEDIR</code>, which is <code class="filename">/var/crash</code> by default. This contains the dmesg and
+vmcore of the crashed kernel.
+  </p></section></section><section xml:lang="en" class="sect1" id="troubleshoot-kdump" data-id-title="How to troubleshoot common Kdump issues"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">How to troubleshoot common Kdump issues</span></span> <a title="Permalink" class="permalink" href="#troubleshoot-kdump">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+Troubleshooting Kdump is a critical process to ensure that your system can successfully capture a vmcore file during a kernel crash, which is often the only way to diagnose system crashes.
+When troubleshooting Kdump, the process usually fails at one of three stages: during boot (memory reservation), during the crash when the dump does not start, or during the save process when the file is not written.
+</p></div></div></div></div><section class="sect2" id="troubleshooting-kdump" data-id-title="Crash kernel memory reserved is insufficient"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.1 </span><span class="title-name">Crash kernel memory reserved is insufficient</span></span> <a title="Permalink" class="permalink" href="#troubleshooting-kdump">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>One of the most common reasons Kdump fails is that the amount of crash kernel
+      memory reserved is insufficient. Different system configurations may require
+      more memory than estimated by <code class="command">kdumptool calibrate</code> and set up automatically in
+      the boot loader config by the <code class="literal">kdump-commandline.service</code>.</p><p>During Kdump, if you see error messages mentioning low memory and invoking the
+Out of Memory (OOM) killer, this is the likely cause. If you don't see such messages, trying with increased crash kernel reservation is a good
+first step.</p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>Find the size of the current automatically configured crash kernel reservation
+  by checking the kernel command line:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  cat /proc/cmdline</pre></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">crashkernel=X M</code></p></li><li class="listitem"><p><code class="literal">crashkernel=Y M,low</code></p></li><li class="listitem"><p><code class="literal">crashkernel=Z M,high</code></p></li></ul></div><p>
+  Add up the values of <em class="replaceable">X</em>, <em class="replaceable">Y</em>,
+  and <em class="replaceable">Z</em> to determine the total size of the current
+  reservation in MiB (<em class="replaceable">current</em>).
+</p></li><li class="step"><p>Manually set the new reservation by editing the <code class="filename">/etc/sysconfig/kdump</code>
+  file. Locate and change the value of the <code class="varname">KDUMP_CRASHKERNEL</code>
+  variable to double the current size:</p><div class="verbatim-wrap"><pre class="screen">KDUMP_CRASHKERNEL="crashkernel=&lt;2 * current&gt;M"</pre></div></li><li class="step"><p>
+      Reboot the system to apply the new memory parameters:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  reboot</pre></div></li><li class="step"><p>
+      Repeat this process a few times until Kdump successfully executes without errors.
+  </p><div id="id-1.4.2.4.4.2" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+          Fine-tuning crash kernel memory involves finding the smallest RAM reservation
+          that successfully captures a crash dump without triggering OOM errors in the
+          capture kernel. Fine-tune your final setting using the range between your
+          last working and non-working values to avoid wasting system memory.
+      </p></div></li></ol></div></div><section class="sect3" id="related-termination-signals-systemd" data-id-title="Other troubleshooting issues"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">3.1.1 </span><span class="title-name">Other troubleshooting issues</span></span> <a title="Permalink" class="permalink" href="#related-termination-signals-systemd">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.4.2.5.2.1"><span class="term">Issues with switching to a text virtual terminal</span></dt><dd><p>Check the Kdump boot messages for errors. If the screen is blank, the system is likely failing to switch to the text virtual terminal. To fix this, configure a serial console to capture the output; you cannot troubleshoot the issue without these messages.</p><p>Once you get some output, you can increase Kdump verbosity. Setting
+  <code class="literal">KDUMP_VERBOSE</code> to 11 turns on debugging output during all stages of the Kdump
+   process and results in the following behavior:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Removes the quiet option from the capture kernel command line.</p></li><li class="listitem"><p>Runs the <code class="literal">kdump-save</code> script with -x.</p></li><li class="listitem"><p>Runs <code class="literal">makedumpfile </code> with debugging.</p></li></ul></div></dd><dt id="id-1.4.2.5.2.2"><span class="term"> <code class="literal">makedumpfile</code> or network config errors </span></dt><dd><p> During the capture kernel boot, if you see problems with
+     <code class="literal">makedumpfile</code>, network config, etc., set <code class="literal">KDUMP_CONTINUE_ON_ERROR=false</code>
+      or <code class="literal">KDUMP_IMMEDIATE_REBOOT=false</code>. This opens up an interactive shell when
+      an error occurs or when <code class="literal">makedumpfile</code> finishes, enabling you to manually debug problems
+      from within the capture system.
+    </p></dd><dt id="id-1.4.2.5.2.3"><span class="term">Dracut errors</span></dt><dd><p>If you see dracut errors during the boot of the capture system, add
+        dracut debugging options to <code class="literal"> KDUMP_COMMANDLINE_APPEND</code>.
+      </p></dd><dt id="id-1.4.2.5.2.4"><span class="term"> <code class="literal">kdump initramfs</code> does not generate correctly</span></dt><dd><p>If <code class="literal">kdump initramfs</code> does not generate correctly, turn on debugging when generating it;
+<code class="command">mkdumprd -fd</code>. You can also unpack and inspect the generated initramfs image with the <code class="command">lsinitrd --unpack /var/lib/kdump/initrd
+</code> command. </p></dd></dl></div></section></section></section><section xml:lang="en" class="sect1" id="more-info-kdump" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="#more-info-kdump">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    For information on Kdump, refer to the following resources:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        Man pages:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>man 7 kdump</p></li><li class="listitem"><p>man 5 kdump</p></li></ul></div></li><li class="listitem"><p>
+        Official Linux kernel documentation:
+        <a class="link" href="https://docs.kernel.org/admin-guide/kdump/kdump.html" target="_blank">https://docs.kernel.org/admin-guide/kdump/kdump.html</a>
+      </p></li><li class="listitem"><p>
+       Man page for Kexec:
+       <a class="link" href="https://man7.org/linux/man-pages/man8/kexec.8.html" target="_blank">https://man7.org/linux/man-pages/man8/kexec.8.html</a>
+      </p></li></ul></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section><div class="legal-section"><section class="appendix" translate="no" id="doc-gfdl-license" data-id-title="GNU Free Documentation License"><div class="titlepage"><div><div><h1 class="title">GNU Free Documentation License</h1></div></div></div><p>
+    Copyright (C) 2000, 2001, 2002 Free Software Foundation, Inc. 51 Franklin St, Fifth Floor,
+    Boston, MA 02110-1301 USA. Everyone is permitted to copy and distribute verbatim copies of this
+    license document, but changing it is not allowed.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.7.3"><span class="name">
+    0. PREAMBLE
+  </span><a title="Permalink" class="permalink" href="#id-1.7.3">#</a></h5></div><p>
+    The purpose of this License is to make a manual, textbook, or other functional and useful
+    document "free" in the sense of freedom: to assure everyone the effective freedom to copy and
+    redistribute it, with or without modifying it, either commercially or non-commercially.
+    Secondarily, this License preserves for the author and publisher a way to get credit for their
+    work, while not being considered responsible for modifications made by others.
+  </p><p>
+    This License is a kind of "copyleft", which means that derivative works of the document must
+    themselves be free in the same sense. It complements the GNU General Public License, which is a
+    copyleft license designed for free software.
+  </p><p>
+    We have designed this License to use it for manuals for free software, because free software
+    needs free documentation: a free program should come with manuals providing the same freedoms
+    that the software does. But this License is not limited to software manuals; it can be used for
+    any textual work, regardless of subject matter or whether it is published as a printed book. We
+    recommend this License principally for works whose purpose is instruction or reference.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.7.7"><span class="name">
+    1. APPLICABILITY AND DEFINITIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.7.7">#</a></h5></div><p>
+    This License applies to any manual or other work, in any medium, that contains a notice placed
+    by the copyright holder saying it can be distributed under the terms of this License. Such a
+    notice grants a world-wide, royalty-free license, unlimited in duration, to use that work under
+    the conditions stated herein. The "Document", below, refers to any such manual or work. Any
+    member of the public is a licensee, and is addressed as "you". You accept the license if you
+    copy, modify or distribute the work in a way requiring permission under copyright law.
+  </p><p>
+    A "Modified Version" of the Document means any work containing the Document or a portion of it,
+    either copied verbatim, or with modifications and/or translated into another language.
+  </p><p>
+    A "Secondary Section" is a named appendix or a front-matter section of the Document that deals
+    exclusively with the relationship of the publishers or authors of the Document to the
+    Document's overall subject (or to related matters) and contains nothing that could fall
+    directly within that overall subject. (Thus, if the Document is in part a textbook of
+    mathematics, a Secondary Section may not explain any mathematics.) The relationship could be a
+    matter of historical connection with the subject or with related matters, or of legal,
+    commercial, philosophical, ethical or political position regarding them.
+  </p><p>
+    The "Invariant Sections" are certain Secondary Sections whose titles are designated, as being
+    those of Invariant Sections, in the notice that says that the Document is released under this
+    License. If a section does not fit the above definition of Secondary then it is not allowed to
+    be designated as Invariant. The Document may contain zero Invariant Sections. If the Document
+    does not identify any Invariant Sections then there are none.
+  </p><p>
+    The "Cover Texts" are certain short passages of text that are listed, as Front-Cover Texts or
+    Back-Cover Texts, in the notice that says that the Document is released under this License. A
+    Front-Cover Text may be at most 5 words, and a Back-Cover Text may be at most 25 words.
+  </p><p>
+    A "Transparent" copy of the Document means a machine-readable copy, represented in a format
+    whose specification is available to the general public, that is suitable for revising the
+    document straightforwardly with generic text editors or (for images composed of pixels) generic
+    paint programs or (for drawings) some widely available drawing editor, and that is suitable for
+    input to text formatters or for automatic translation to a variety of formats suitable for
+    input to text formatters. A copy made in an otherwise Transparent file format whose markup, or
+    absence of markup, has been arranged to thwart or discourage subsequent modification by readers
+    is not Transparent. An image format is not Transparent if used for any substantial amount of
+    text. A copy that is not "Transparent" is called "Opaque".
+  </p><p>
+    Examples of suitable formats for Transparent copies include plain ASCII without markup, Texinfo
+    input format, LaTeX input format, SGML or XML using a publicly available DTD, and
+    standard-conforming simple HTML, PostScript or PDF designed for human modification. Examples of
+    transparent image formats include PNG, XCF and JPG. Opaque formats include proprietary formats
+    that can be read and edited only by proprietary word processors, SGML or XML for which the DTD
+    and/or processing tools are not generally available, and the machine-generated HTML, PostScript
+    or PDF produced by some word processors for output purposes only.
+  </p><p>
+    The "Title Page" means, for a printed book, the title page itself, plus such following pages as
+    are needed to hold, legibly, the material this License requires to appear in the title page.
+    For works in formats which do not have any title page as such, "Title Page" means the text near
+    the most prominent appearance of the work's title, preceding the beginning of the body of the
+    text.
+  </p><p>
+    A section "Entitled XYZ" means a named subunit of the Document whose title either is precisely
+    XYZ or contains XYZ in parentheses following text that translates XYZ in another language.
+    (Here XYZ stands for a specific section name mentioned below, such as "Acknowledgements",
+    "Dedications", "Endorsements", or "History".) To "Preserve the Title" of such a section when
+    you modify the Document means that it remains a section "Entitled XYZ" according to this
+    definition.
+  </p><p>
+    The Document may include Warranty Disclaimers next to the notice which states that this License
+    applies to the Document. These Warranty Disclaimers are considered to be included by reference
+    in this License, but only as regards disclaiming warranties: any other implication that these
+    Warranty Disclaimers may have is void and has no effect on the meaning of this License.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.7.18"><span class="name">
+    2. VERBATIM COPYING
+  </span><a title="Permalink" class="permalink" href="#id-1.7.18">#</a></h5></div><p>
+    You may copy and distribute the Document in any medium, either commercially or
+    non-commercially, provided that this License, the copyright notices, and the license notice
+    saying this License applies to the Document are reproduced in all copies, and that you add no
+    other conditions whatsoever to those of this License. You may not use technical measures to
+    obstruct or control the reading or further copying of the copies you make or distribute.
+    However, you may accept compensation in exchange for copies. If you distribute a large enough
+    number of copies you must also follow the conditions in section 3.
+  </p><p>
+    You may also lend copies, under the same conditions stated above, and you may publicly display
+    copies.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.7.21"><span class="name">
+    3. COPYING IN QUANTITY
+  </span><a title="Permalink" class="permalink" href="#id-1.7.21">#</a></h5></div><p>
+    If you publish printed copies (or copies in media that commonly have printed covers) of the
+    Document, numbering more than 100, and the Document's license notice requires Cover Texts, you
+    must enclose the copies in covers that carry, clearly and legibly, all these Cover Texts:
+    Front-Cover Texts on the front cover, and Back-Cover Texts on the back cover. Both covers must
+    also clearly and legibly identify you as the publisher of these copies. The front cover must
+    present the full title with all words of the title equally prominent and visible. You may add
+    other material on the covers in addition. Copying with changes limited to the covers, as long
+    as they preserve the title of the Document and satisfy these conditions, can be treated as
+    verbatim copying in other respects.
+  </p><p>
+    If the required texts for either cover are too voluminous to fit legibly, you should put the
+    first ones listed (as many as fit reasonably) on the actual cover, and continue the rest onto
+    adjacent pages.
+  </p><p>
+    If you publish or distribute Opaque copies of the Document numbering more than 100, you must
+    either include a machine-readable Transparent copy along with each Opaque copy, or state in or
+    with each Opaque copy a computer-network location from which the general network-using public
+    has access to download using public-standard network protocols a complete Transparent copy of
+    the Document, free of added material. If you use the latter option, you must take reasonably
+    prudent steps, when you begin distribution of Opaque copies in quantity, to ensure that this
+    Transparent copy will remain thus accessible at the stated location until at least one year
+    after the last time you distribute an Opaque copy (directly or through your agents or
+    retailers) of that edition to the public.
+  </p><p>
+    It is requested, but not required, that you contact the authors of the Document well before
+    redistributing any large number of copies, to give them a chance to provide you with an updated
+    version of the Document.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.7.26"><span class="name">
+    4. MODIFICATIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.7.26">#</a></h5></div><p>
+    You may copy and distribute a Modified Version of the Document under the conditions of sections
+    2 and 3 above, provided that you release the Modified Version under precisely this License,
+    with the Modified Version filling the role of the Document, thus licensing distribution and
+    modification of the Modified Version to whoever possesses a copy of it. In addition, you must
+    do these things in the Modified Version:
+  </p><div class="orderedlist"><ol class="orderedlist" type="A"><li class="listitem"><p>
+        Use in the Title Page (and on the covers, if any) a title distinct from that of the
+        Document, and from those of previous versions (which should, if there were any, be listed
+        in the History section of the Document). You may use the same title as a previous version
+        if the original publisher of that version gives permission.
+      </p></li><li class="listitem"><p>
+        List on the Title Page, as authors, one or more persons or entities responsible for
+        authorship of the modifications in the Modified Version, together with at least five of the
+        principal authors of the Document (all of its principal authors, if it has fewer than
+        five), unless they release you from this requirement.
+      </p></li><li class="listitem"><p>
+        State on the Title page the name of the publisher of the Modified Version, as the
+        publisher.
+      </p></li><li class="listitem"><p>
+        Preserve all the copyright notices of the Document.
+      </p></li><li class="listitem"><p>
+        Add an appropriate copyright notice for your modifications adjacent to the other copyright
+        notices.
+      </p></li><li class="listitem"><p>
+        Include, immediately after the copyright notices, a license notice giving the public
+        permission to use the Modified Version under the terms of this License, in the form shown
+        in the Addendum below.
+      </p></li><li class="listitem"><p>
+        Preserve in that license notice the full lists of Invariant Sections and required Cover
+        Texts given in the Document's license notice.
+      </p></li><li class="listitem"><p>
+        Include an unaltered copy of this License.
+      </p></li><li class="listitem"><p>
+        Preserve the section Entitled "History", Preserve its Title, and add to it an item stating
+        at least the title, year, new authors, and publisher of the Modified Version as given on
+        the Title Page. If there is no section Entitled "History" in the Document, create one
+        stating the title, year, authors, and publisher of the Document as given on its Title Page,
+        then add an item describing the Modified Version as stated in the previous sentence.
+      </p></li><li class="listitem"><p>
+        Preserve the network location, if any, given in the Document for public access to a
+        Transparent copy of the Document, and likewise the network locations given in the Document
+        for previous versions it was based on. These may be placed in the "History" section. You
+        may omit a network location for a work that was published at least four years before the
+        Document itself, or if the original publisher of the version it refers to gives permission.
+      </p></li><li class="listitem"><p>
+        For any section Entitled "Acknowledgements" or "Dedications", Preserve the Title of the
+        section, and preserve in the section all the substance and tone of each of the contributor
+        acknowledgements and/or dedications given therein.
+      </p></li><li class="listitem"><p>
+        Preserve all the Invariant Sections of the Document, unaltered in their text and in their
+        titles. Section numbers or the equivalent are not considered part of the section titles.
+      </p></li><li class="listitem"><p>
+        Delete any section Entitled "Endorsements". Such a section may not be included in the
+        Modified Version.
+      </p></li><li class="listitem"><p>
+        Do not retitle any existing section to be Entitled "Endorsements" or to conflict in title
+        with any Invariant Section.
+      </p></li><li class="listitem"><p>
+        Preserve any Warranty Disclaimers.
+      </p></li></ol></div><p>
+    If the Modified Version includes new front-matter sections or appendices that qualify as
+    Secondary Sections and contain no material copied from the Document, you may at your option
+    designate some or all of these sections as invariant. To do this, add their titles to the list
+    of Invariant Sections in the Modified Version's license notice. These titles must be distinct
+    from any other section titles.
+  </p><p>
+    You may add a section Entitled "Endorsements", provided it contains nothing but endorsements of
+    your Modified Version by various parties--for example, statements of peer review or that the
+    text has been approved by an organization as the authoritative definition of a standard.
+  </p><p>
+    You may add a passage of up to five words as a Front-Cover Text, and a passage of up to 25
+    words as a Back-Cover Text, to the end of the list of Cover Texts in the Modified Version. Only
+    one passage of Front-Cover Text and one of Back-Cover Text may be added by (or through
+    arrangements made by) any one entity. If the Document already includes a cover text for the
+    same cover, previously added by you or by arrangement made by the same entity you are acting on
+    behalf of, you may not add another; but you may replace the old one, on explicit permission
+    from the previous publisher that added the old one.
+  </p><p>
+    The author(s) and publisher(s) of the Document do not by this License give permission to use
+    their names for publicity for or to assert or imply endorsement of any Modified Version.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.7.33"><span class="name">
+    5. COMBINING DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.7.33">#</a></h5></div><p>
+    You may combine the Document with other documents released under this License, under the terms
+    defined in section 4 above for modified versions, provided that you include in the combination
+    all of the Invariant Sections of all of the original documents, unmodified, and list them all
+    as Invariant Sections of your combined work in its license notice, and that you preserve all
+    their Warranty Disclaimers.
+  </p><p>
+    The combined work need only contain one copy of this License, and multiple identical Invariant
+    Sections may be replaced with a single copy. If there are multiple Invariant Sections with the
+    same name but different contents, make the title of each such section unique by adding at the
+    end of it, in parentheses, the name of the original author or publisher of that section if
+    known, or else a unique number. Make the same adjustment to the section titles in the list of
+    Invariant Sections in the license notice of the combined work.
+  </p><p>
+    In the combination, you must combine any sections Entitled "History" in the various original
+    documents, forming one section Entitled "History"; likewise combine any sections Entitled
+    "Acknowledgements", and any sections Entitled "Dedications". You must delete all sections
+    Entitled "Endorsements".
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.7.37"><span class="name">
+    6. COLLECTIONS OF DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.7.37">#</a></h5></div><p>
+    You may make a collection consisting of the Document and other documents released under this
+    License, and replace the individual copies of this License in the various documents with a
+    single copy that is included in the collection, provided that you follow the rules of this
+    License for verbatim copying of each of the documents in all other respects.
+  </p><p>
+    You may extract a single document from such a collection, and distribute it individually under
+    this License, provided you insert a copy of this License into the extracted document, and
+    follow this License in all other respects regarding verbatim copying of that document.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.7.40"><span class="name">
+    7. AGGREGATION WITH INDEPENDENT WORKS
+  </span><a title="Permalink" class="permalink" href="#id-1.7.40">#</a></h5></div><p>
+    A compilation of the Document or its derivatives with other separate and independent documents
+    or works, in or on a volume of a storage or distribution medium, is called an "aggregate" if
+    the copyright resulting from the compilation is not used to limit the legal rights of the
+    compilation's users beyond what the individual works permit. When the Document is included in
+    an aggregate, this License does not apply to the other works in the aggregate which are not
+    themselves derivative works of the Document.
+  </p><p>
+    If the Cover Text requirement of section 3 is applicable to these copies of the Document, then
+    if the Document is less than one half of the entire aggregate, the Document's Cover Texts may
+    be placed on covers that bracket the Document within the aggregate, or the electronic
+    equivalent of covers if the Document is in electronic form. Otherwise they must appear on
+    printed covers that bracket the whole aggregate.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.7.43"><span class="name">
+    8. TRANSLATION
+  </span><a title="Permalink" class="permalink" href="#id-1.7.43">#</a></h5></div><p>
+    Translation is considered a kind of modification, so you may distribute translations of the
+    Document under the terms of section 4. Replacing Invariant Sections with translations requires
+    special permission from their copyright holders, but you may include translations of some or
+    all Invariant Sections in addition to the original versions of these Invariant Sections. You
+    may include a translation of this License, and all the license notices in the Document, and any
+    Warranty Disclaimers, provided that you also include the original English version of this
+    License and the original versions of those notices and disclaimers. In case of a disagreement
+    between the translation and the original version of this License or a notice or disclaimer, the
+    original version will prevail.
+  </p><p>
+    If a section in the Document is Entitled "Acknowledgements", "Dedications", or "History", the
+    requirement (section 4) to Preserve its Title (section 1) will typically require changing the
+    actual title.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.7.46"><span class="name">
+    9. TERMINATION
+  </span><a title="Permalink" class="permalink" href="#id-1.7.46">#</a></h5></div><p>
+    You may not copy, modify, sublicense, or distribute the Document except as expressly provided
+    for under this License. Any other attempt to copy, modify, sublicense or distribute the
+    Document is void, and will automatically terminate your rights under this License. However,
+    parties who have received copies, or rights, from you under this License will not have their
+    licenses terminated so long as such parties remain in full compliance.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.7.48"><span class="name">
+    10. FUTURE REVISIONS OF THIS LICENSE
+  </span><a title="Permalink" class="permalink" href="#id-1.7.48">#</a></h5></div><p>
+    The Free Software Foundation may publish new, revised versions of the GNU Free Documentation
+    License from time to time. Such new versions will be similar in spirit to the present version,
+    but may differ in detail to address new problems or concerns. See
+    <a class="link" href="https://www.gnu.org/copyleft/" target="_blank">https://www.gnu.org/copyleft/</a>.
+  </p><p>
+    Each version of the License is given a distinguishing version number. If the Document specifies
+    that a particular numbered version of this License "or any later version" applies to it, you
+    have the option of following the terms and conditions either of that specified version or of
+    any later version that has been published (not as a draft) by the Free Software Foundation. If
+    the Document does not specify a version number of this License, you may choose any version ever
+    published (not as a draft) by the Free Software Foundation.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.7.51"><span class="name">
+    ADDENDUM: How to use this License for your documents
+  </span><a title="Permalink" class="permalink" href="#id-1.7.51">#</a></h5></div><div class="verbatim-wrap"><pre class="screen">Copyright (c) YEAR YOUR NAME.
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+A copy of the license is included in the section entitled “GNU
+Free Documentation License”.</pre></div><p>
+    If you have Invariant Sections, Front-Cover Texts and Back-Cover Texts, replace the
+    “with...Texts.” line with this:
+  </p><div class="verbatim-wrap"><pre class="screen">with the Invariant Sections being LIST THEIR TITLES, with the
+Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.</pre></div><p>
+    If you have Invariant Sections without Cover Texts, or some other combination of the three,
+    merge those two alternatives to suit the situation.
+  </p><p>
+    If your document contains nontrivial examples of program code, we recommend releasing these
+    examples in parallel under your choice of free software license, such as the GNU General Public
+    License, to permit their use in free software.
+  </p></section></div></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="#about-kdump"><span class="title-number">1 </span><span class="title-name">What is Kdump and how does it work?</span></a></span></li><li><span class="section"><a href="#configure-kdump"><span class="title-number">2 </span><span class="title-name">Installing and configuring Kdump</span></a></span></li><li><span class="section"><a href="#troubleshoot-kdump"><span class="title-number">3 </span><span class="title-name">How to troubleshoot common Kdump issues</span></a></span></li><li><span class="section"><a href="#more-info-kdump"><span class="title-number">4 </span><span class="title-name">For more information</span></a></span></li><li><span class="section"><a href="#legal-disclaimer"><span class="title-number">5 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="#doc-gfdl-license"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

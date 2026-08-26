@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Managing systemd Services | SUSE Linux Enterprise Server 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2025-11-04"/>
+<meta name="dcterms.modified" content="2025-12-16"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-26"/>
+<meta name="title" content="Managing systemd Services | SUSE Linux Enterprise Serv…"/>
+<meta name="description" content="Use systemd to start,stop, enable and disable services, send termination signals, use the systemctl command and manage systemd targets."/>
+<meta name="product-name" content="SUSE Linux Enterprise Server"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="Managing systemd Services"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="amrita.sakthivel@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="amrita.sakthivel@suse.com"/><meta property="og:title" content="Managing systemd services"/>
+<meta property="og:description" content="Use systemd to start,stop, enable and disable services."/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Managing systemd services"/>
+<meta name="twitter:description" content="Use systemd to start,stop, enable and disable services."/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Managing systemd services | SUSE Linux Enterprise Server 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Smart Docs"
+    },
+    "inLanguage": "en",
+    "headline": "Managing systemd services",
+    "description": "Use systemd to start,stop, enable and disable services, send termination signals, use the systemctl command and manage systemd targets.",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2025-11-04T00:00+02:00",
+    "dateModified": "2025-12-16T00:00+02:00",
+    "datePublished": "2026-08-26T09:49+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Administration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER, IBM, AArch64"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Managing systemd Services</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Managing <code class="systemitem">systemd</code> Services</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="systemd-services" data-id-title="Managing systemd Services"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span></span> 16.1</div><div><h1 class="title">Managing <code class="systemitem">systemd</code> Services</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>26 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+                <code class="systemitem">systemd</code> is used to manage system settings and services.
+                <code class="systemitem">systemd</code> organizes tasks into components called <span><em class="emphasis">units</em></span> and groups of units into <span><em class="emphasis">targets</em></span>.
+
+              </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
+                Learn how to manage your system services by using <code class="systemitem">systemd</code> to start,stop, enable and disable a service,
+                send termination signals, use the <code class="command">systemctl</code> command and manage <code class="systemitem">systemd</code> targets.
+                The article also includes troubleshooting and best practices.
+              </p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                20 minutes of reading time.
+              </p></dd><dt id="id-1.1.12.1.4"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                      Basic understanding of Linux commands
+                    </p></li><li class="listitem"><p>
+                   Basic understanding of Linux processes, daemons and control groups
+                  </p></li><li class="listitem"><p>
+                    <a class="link" href="https://documentation.suse.com/sles/16.0/html/SLES-systemd-basics/index.html#systemctl-commands" target="_blank">Understanding unit files</a>
+      </p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Managing systemd Services" hreflang="en" href="rh-systemd-services.html" target="_blank">Revision History: Managing systemd Services</a></div></div></div></div><section xml:lang="en" class="sect1" id="about-systemd" data-id-title="What is systemd?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">What is <code class="systemitem">systemd</code>?</span></span> <a title="Permalink" class="permalink" href="index.html#about-systemd">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      <code class="systemitem">systemd</code> is a system and service manager for Linux operating systems. It is the default initialization system for major Linux distributions.
+      <code class="systemitem">systemd</code> is not directly initiated by the user, but installed through the <code class="filename">/sbin/init </code> and started during the early boot.
+      <code class="systemitem">systemd</code> acts as the init system that brings up and maintains user space services when run as the first process on boot (PID 1).
+      PID 1 is known as <span><em class="emphasis">init</em></span> and is the first Linux user-mode process created.
+      It runs until the system shutdown.
+      </p><p><code class="systemitem">systemd</code> owns PID 1, and is started directly by the kernel. All other processes are started directly
+       by <code class="systemitem">systemd</code> or one of its child processes. <code class="systemitem">systemd</code> mounts the host's file system and manages temporary files.
+       It is backward compatible with the SysV init scripts. SysV is an initialization system that predates <code class="systemitem">systemd</code>.</p><p>In <code class="systemitem">systemd</code>, a unit is a resource that the system knows how to operate on and manage. This is
+            the primary object that the <code class="systemitem">systemd</code> tools use. These resources are defined with configuration files called unit files.</p><p><code class="command">systemctl</code> is the central management tool for controlling the init system. It is used to
+        examine and control the state of the <code class="systemitem">systemd</code> system and service manager.</p><p>Targets in <code class="systemitem">systemd</code> are groups of related units that act as synchronization points during a system boot.
+          Target unit files have a <code class="literal">.target</code> file extension. Target units group together various <code class="systemitem">systemd</code>
+          units through a chain of dependencies.
+        </p><p>For troubleshooting, you can use <code class="command">journalctl</code>, which is
+         used to query and display log messages from the <code class="systemitem">systemd</code> journal.</p><p>For more information on <code class="systemitem">systemd</code>, you can refer to <a class="link" href="https://systemd.io" target="_blank">https://systemd.io</a> and <code class="command">man 1 systemd</code>.</p></section><section xml:lang="en" class="sect1" id="systemd-convert-sysv" data-id-title="Converting SysV init to systemd"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Converting SysV init to <code class="systemitem">systemd</code> </span></span> <a title="Permalink" class="permalink" href="index.html#systemd-convert-sysv">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+SysV init is the traditional initialization system used by older Linux distributions.
+It is often referred to as init. Converting a legacy SysV init script to a <code class="systemitem">systemd</code> service unit involves replacing a procedural shell script with a declarative configuration file.
+In the SysV model, services are managed via scripts in <code class="filename">/etc/init.d/</code> using case statements to handle start, stop and restart actions.
+In <code class="systemitem">systemd</code>, unit files are used and located at <code class="filename">/etc/systemd/system/</code> to define the service's behavior through key-value pairs.
+</p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>Open your existing script in <code class="filename">/etc/init.d/</code>and look for the LSB (Linux Standard Base) header.
+ This block contains the configuration you need for your new unit file.</p></li><li class="step"><p>Create a new <code class="literal">.service</code> file at <code class="filename">/etc/systemd/system/</code> and use the gathered metadata.
+ </p></li><li class="step"><p>Load and test the new service. Before finalizing, tell <code class="systemitem">systemd</code> to scan for the new file and then attempt to start it.
+</p></li><li class="step"><p>Create the <code class="literal">.service</code> unit file using the metadata you gathered.</p></li><li class="step"><p>Enable the new service at boot:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  <code class="command">systemctl enable <em class="replaceable">NEW_SERVICE</em></code></pre></div><p>You can now safely remove or move the old script from <code class="filename">/etc/init.d/</code> to prevent confusion.</p></li></ol></div></div><p>In the following example, <code class="literal">boot.local</code> and <code class="literal">after.local</code> are used. </p><div class="complex-example"><div class="example" id="id-1.3.5" data-id-title="Converting boot.local and after.local to systemd"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 1: </span><span class="title-name">Converting <code class="literal">boot.local</code> and <code class="literal">after.local</code> to <code class="systemitem">systemd</code> </span></span><a title="Permalink" class="permalink" href="index.html#id-1.3.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><p>The SysV init script files like <code class="filename">/etc/init.d/boot.local</code> and <code class="filename">/etc/init.d/after.local</code>
+   were used for running custom commands or scripts at the end of the boot process.</p><p>In a <code class="systemitem">systemd</code> environment, to run your own startup script,we recommended creating a custom <code class="systemitem">systemd</code> service unit file.
+The <code class="literal">boot.local</code> script typically runs very early in the boot process, while <code class="literal">after.local</code> runs later, after most system services are up.
+</p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p><span><span class="emphasis"><strong>Create the scripts:</strong></span></span> Create script files with the commands and make them executable.
+For example:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>For <code class="literal">boot.local</code> actions, create <code class="filename">/usr/local/bin/my.early-boot.sh</code> </p></li><li class="listitem"><p>For <code class="literal">after.local</code> actions, create <code class="filename">/usr/local/bin/my.late-boot.sh</code> </p></li></ul></div></li><li class="step"><p><span><span class="emphasis"><strong>Create the <code class="systemitem">systemd</code> unit files:</strong></span></span> Create the <code class="literal">.service</code> unit files in the <code class="filename">/etc/systemd/system/</code> directory.
+ For example:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>For <code class="literal">boot.local</code>, this service should run before basic system initialization.
+ Create a service file, <code class="filename">/etc/systemd/system/my-early-boot.service</code>:</p><div class="verbatim-wrap"><pre class="screen">[Unit]
+  Description=My early startup script
+  DefaultDependencies=no
+  After=basic.target
+  Before=basic.target sysinit.target shutdown.target
+
+  [Service]
+  Type=oneshot
+  ExecStart=/usr/local/bin/my-early-boot.sh
+  RemainAfterExit=yes
+
+  [Install]
+  WantedBy=basic.target</pre></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p> <code class="literal">Type=oneshot</code> is suitable for scripts that run once and then exit.</p></li><li class="listitem"><p> <code class="literal">DefaultDependencies=no</code> and <code class="literal"> After/Before</code> ensures it runs at an equivalent time to <code class="literal">boot.local</code>.
+ </p></li></ul></div></li><li class="listitem"><p>For <code class="literal">after.local</code>, this service should run later, typically when the multi-user environment is ready.
+If it depends on the network being up, add <code class="literal">After=network-online.target</code>. Create <code class="filename">/etc/systemd/system/my-late-boot.service:</code>:</p><div class="verbatim-wrap"><pre class="screen">[Unit]
+  Description=My late startup script
+  # Add After=network-online.target if your script needs network access
+  After=multi-user.target
+
+  [Service]
+  Type=oneshot
+  ExecStart=/usr/local/bin/my-late-boot.sh
+  RemainAfterExit=yes
+
+  [Install]
+  WantedBy=multi-user.target</pre></div></li></ul></div></li><li class="step"><p><span><span class="emphasis"><strong>Reload the <code class="systemitem">systemd</code> manager:</strong></span></span> After creating the files, reload the <code class="systemitem">systemd</code> manager configuration and enable your new services to run at boot:
+ </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl daemon-reload</pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl enable my-early-boot.service</pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl enable my-late-boot.service</pre></div></li><li class="step"><p><span><span class="emphasis"><strong>Enable the services:</strong></span></span> Enable your new services to run at boot:
+   </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl enable my-early-boot.service</pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl enable my-late-boot.service</pre></div></li><li class="step"><p><span><span class="emphasis"><strong>Verification:</strong></span></span> To verify that your new services are working as expected:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl status my-early-boot.service</pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl status my-late-boot.service</pre></div><p>The expected output is that both should show <code class="literal">Active: inactive (dead)</code> with a successful exit code, because they are <code class="literal">Type=oneshot</code> and execute only once.
+</p></li></ol></div></div></div></div></div><p><code class="systemitem">systemd</code> is now the default and only initialization system for <span class="phrase">
+  <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> 16</span> .</p></section><section xml:lang="en" class="sect1" id="starting-systemd-services" data-id-title="Starting and stopping systemd services"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Starting and stopping <code class="systemitem">systemd</code> services </span></span> <a title="Permalink" class="permalink" href="index.html#starting-systemd-services">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        You can start and stop <code class="systemitem">systemd</code> services by using units which are resources.
+        The target units are service units, which have a <code class="literal">.service</code> suffix. For service management tasks, you do
+        not have to add the <code class="literal">.service </code>because <code class="systemitem">systemd</code> knows that you want to execute a service.
+    </p></div></div></div></div><p>
+To start and stop <code class="systemitem">systemd</code> services, use the following commands:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     To start a <code class="systemitem">systemd</code> service:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl start <em class="replaceable">SERVICE</em></pre></div></li><li class="listitem"><p>
+   To check the status of a <code class="systemitem">systemd</code> service:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl status  <em class="replaceable">SERVICE</em></pre></div></li><li class="listitem"><p>
+  To stop a currently running <code class="systemitem">systemd</code> service:            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl stop <em class="replaceable">SERVICE</em></pre></div></li></ul></div><p>You can also use the following <code class="command">systemctl</code> commands:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Stops the service and then starts it. If the service is not running, it is started.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl restart <em class="replaceable">SERVICE</em></pre></div></li><li class="listitem"><p>Reloads the <code class="systemitem">systemd</code> service's configuration file without interrupting operations.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code> systemctl reload <em class="replaceable">SERVICE</em></pre></div></li><li class="listitem"><p>Reloads the service if it supports reloading, otherwise it restarts the service. If the service is not
+                running, it is started.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl reload-or-restart <em class="replaceable">SERVICE</em></pre></div></li></ul></div></section><section xml:lang="en" class="sect1" id="enabling-systemd-services" data-id-title="Enabling and disabling systemd services"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Enabling and disabling <code class="systemitem">systemd</code> services </span></span> <a title="Permalink" class="permalink" href="index.html#enabling-systemd-services">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+     You can enable and disable <code class="systemitem">systemd</code> services by using <code class="literal">units</code> which are resources.
+
+    </p></div></div></div></div><p>
+To enable and disable <code class="systemitem">systemd</code> services, follow:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+To enable a service at boot:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl enable <em class="replaceable">SERVICE</em></pre></div><p>A symbolic link is created usually in <code class="filename">/lib/systemd/system</code> or
+        <code class="filename">etc/systemd/system</code> pointing into the location on disk where <code class="systemitem">systemd</code>looks for autostart files.
+        This is either in <code class="filename">/lib/systemd/system</code> or <code class="filename">/etc/systemd/system</code>,
+      which is usually <code class="filename">/etc/systemd/system/EXAMPLE_TARGET.target</code>. </p><p>For example:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl enable firewalld.service
+      Created symlink /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service \u2192 /usr/lib/systemd/system/firewalld.service.
+      Created symlink /etc/systemd/system/multi-user.target.wants/firewalld.service \u2192 /usr/lib/systemd/system/firewalld.service.</pre></div></li><li class="step"><p>
+      To disable a service from starting automatically:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl disable <em class="replaceable">SERVICE</em></pre></div><p>This removes the symbolic link that indicates that the service should be started automatically.</p><p>For example:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl disable firewalld.service
+      Removed /etc/systemd/system/multi-user.target.wants/firewalld.service.
+      Removed /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service.</pre></div></li><li class="step"><p>
+          To check the status of a service:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl status <em class="replaceable">SERVICE</em></pre></div><p>For example:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl status firewalld.service
+      \u25cf firewalld.service - firewalld - dynamic firewall daemon
+      Loaded: loaded (/usr/lib/systemd/system/firewalld.service; enabled; vendor p&gt;
+      Active: active (running) since Wed 2024-01-31 01:36:36 EST; 1h 5min ago
+      Docs: man:firewalld(1)
+      Main PID: 965 (firewalld)
+      Tasks: 2
+      CGroup: /system.slice/firewalld.service
+      \u2514\u2500965 /usr/bin/python3 -Es /usr/sbin/firewalld --nofork --nopid</pre></div></li></ol></div></div><p>Enabling or disabling a service does not start it in the current session. You can use
+         <code class="command">start</code> or <code class="command">stop</code> to start or stop the service and enable or disable it at boot.</p></section><section xml:lang="en" class="sect1" id="terminal-signals-systemd" data-id-title="Sending termination signals to systemd services"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Sending termination signals to <code class="systemitem">systemd</code> services</span></span> <a title="Permalink" class="permalink" href="index.html#terminal-signals-systemd">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Each service in <code class="systemitem">systemd</code> is categorized into a control group which makes it easy to identify
+      all parent and child processes of a service. This enables you to send a signal to each of these processes.
+      You can send a signal to a <code class="systemitem">systemd</code> service or to the individual processes that belong to a service.
+    </p><div id="id-1.6.3" data-id-title="Do not cancel the D-Bus service in a running system" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning: Do not cancel the D-Bus service in a running system</div><p>The D-Bus service is the message bus for communication between <code class="systemitem">systemd</code> clients and the <code class="systemitem">systemd</code> manager that is running as PID 1.
+       D-Bus is a stand-alone daemon and an integral part of the init infrastructure.</p><p>
+      Terminating or restarting the D-Bus service is neither recommended nor supported. This breaks the <code class="systemitem">systemd</code> client
+      and server communication and makes most of the <code class="systemitem">systemd</code> functions unusable.</p></div><p>The <code class="command">systemd-cgls</code> command displays all processes that belong to a <code class="systemitem">systemd</code> service.
+              It recursively shows the contents of the specific Linux control group hierarchy in a tree.
+              </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Lists all control groups and their processes:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>systemd-cgls</pre></div></li><li class="listitem"><p>Displays all processes that belong to a particular service, for example:
+                  the <code class="literal">libvirtd.service</code> service:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>systemd-cgls -u libvirtd.service</pre></div></li><li class="listitem"><p>Sends a termination signal to the service:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl kill <em class="replaceable">SERVICE</em></pre></div></li><li class="listitem"><p>By default, the <code class="command">kill</code> command sends the signal to
+                      <code class="option">all</code> processes of the specified control group.
+                      You can restrict it to the <code class="option">control</code> or the
+                      <code class="option">main</code> process.
+                      The latter is, for example, useful to force a service to reload its
+                      configuration by sending <code class="systemitem">SIGHUP</code>:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl kill -s SIGHUP --kill-who=main <em class="replaceable">SERVICE</em></pre></div></li><li class="listitem"><p>Sends a different signal to a service with the <code class="option">-s</code>
+                        option, such as <code class="systemitem">SIGKILL</code> (9):</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl kill -s 9 <em class="replaceable">SERVICE</em></pre></div></li></ul></div></section><section xml:lang="en" class="sect1" id="systemd-managing-targets" data-id-title="Managing systemd targets with the systemctl command"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Managing <code class="systemitem">systemd</code> targets with the <code class="command">systemctl</code> command</span></span> <a title="Permalink" class="permalink" href="index.html#systemd-managing-targets">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       <code class="systemitem">systemd</code> targets are special unit files that describe a system or synchronization state.
+       They are used to group units together in order or bring the system to a certain state, just like other init systems use runlevels.
+You can use the <code class="command">systemctl</code> command to manage <code class="systemitem">systemd</code> targets.
+      </p></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.7.2.1"><span class="term">Getting and setting the default target</span></dt><dd><p>
+<code class="systemitem">systemd</code> has a default target that is used when booting the system. To find the default target for your system:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl get-default
+  multi-user.target</pre></div><p>You can also change the default target:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl set-default graphical.target</pre></div></dd><dt id="id-1.7.2.2"><span class="term">Listing the available targets</span></dt><dd><p>
+To get the available targets on your system:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl list-unit-files --type=target
+           STATE                     VENDOR PRESET
+        basic.target                  static   -
+        blockdev@.target              static   -
+        bluetooth.target              static   -
+        boot-complete.target          static   -
+        cryptsetup-pre.target         static   -
+        cryptsetup.target             static   -
+        ctrl-alt-del.target           alias    -
+        cvs.target                    static   -
+        default.target                alias    -
+        emergency.target              static   -
+        exit.target                   disabled disabled
+        final.target                  static   -
+        first-boot-complete.target    static   -
+        getty-pre.target              static   -
+        getty.target                  static   -
+        .....</pre></div><p>Multiple targets can be active at the same time. An active target is when <code class="systemitem">systemd</code> attempts to
+          start all the units in a specific target. To see a list of the active targets:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl list-units --type=target
+        UNIT              LOAD   ACTIE SUB    DESCRIPTION                     &gt;
+  basic.target            loaded active active Basic System
+  bluetooth.target        loaded active active Bluetooth Support
+  cryptsetup.target       loaded active active Local Encrypted Volumes
+  getty.target            loaded active active Login Prompts
+  graphical.target        loaded active active Graphical Interface
+  local-fs-pre.target     loaded active active Preparation for Local File Syste&gt;
+  local-fs.target         loaded active active Local File Systems
+  multi-user.target       loaded active active Multi-User System
+  network-online.target   loaded active active Network is Online
+  network-pre.target      loaded active active Preparation for Network
+  network.target          loaded active active Network
+  nss-lookup.target       loaded active active Host and Network Name Lookups
+  nss-user-lookup.target  loaded active active User and Group Name Lookups
+  paths.target            loaded active active Path Units
+  remote-fs.target        loaded active active Remote File Systems
+  slices.target           loaded active active Slice Units
+  snapd.mounts-pre.target loaded active active Mounting snaps
+  .....</pre></div></dd><dt id="id-1.7.2.3"><span class="term">Isolating targets</span></dt><dd><p>
+You can start all the units associated with a target and stop all units that are not part of the dependency tree.
+For example, if you are using a graphical environment with an active <code class="literal">graphical.target</code> target, you can stop
+the graphical system and enable a multiuser command-line system by isolating the <code class="literal">multi-user.target</code> target.
+Since the <code class="literal">graphical.target</code> target depends on the <code class="literal">multi-user.target</code> target, all the graphical
+units are stopped.</p><p>To take a look at the dependencies of the target you are isolating:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl list-dependencies multi-user.target</pre></div><p>Output:</p><div class="verbatim-wrap"><pre class="screen">multi-user.target
+  ○ ├─after-local.service
+  ● ├─apparmor.service
+  ○ ├─appstream-sync-cache.service
+  ● ├─auditd.service
+  ● ├─avahi-daemon.service
+  ● ├─btrfsmaintenance-refresh.path
+  ● ├─chronyd.service
+  ● ├─cron.service
+  ● ├─cups.path
+  ● ├─dbus.service
+  ● ├─fail2ban.service
+  ● ├─firewalld.service
+  ● ├─irqbalance.service
+  ● ├─kbdsettings.service
+  ● ├─libvirtd.service
+  ● ├─mcelog.service
+  ● ├─ModemManager.service
+  ● ├─NetworkManager.service
+  ● ├─nscd.service
+  ● ├─plymouth-quit-wait.service
+  ○ ├─plymouth-quit.service
+  ● ├─postfix.service</pre></div><p>You can isolate the specific target:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> sudo systemctl isolate multi-user.target</pre></div></dd></dl></div></section><section xml:lang="en" class="sect1" id="systemd-manage-troubleshoot" data-id-title="Troubleshooting systemd management"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Troubleshooting <code class="systemitem">systemd</code> management</span></span> <a title="Permalink" class="permalink" href="index.html#systemd-manage-troubleshoot">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+     If you are experiencing problems with <code class="systemitem">systemd</code>, try the following troubleshooting tips to identify and resolve issues:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.8.3.1"><span class="term">Check the runtime status of a service</span></dt><dd><p>To find out the current runtime status of a service:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl status <em class="replaceable">SERVICE</em></pre></div></dd><dt id="id-1.8.3.2"><span class="term">Display all processes that belong to a particular service, for example:
+                  the <code class="literal">libvirtd.service</code> service:</span></dt><dd><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>systemd-cgls -u libvirtd.service</pre></div></dd><dt id="id-1.8.3.3"><span class="term">Check the logs for your service with the <code class="command">
+                    journalctl -u <em class="replaceable">SERVICE</em></code> command</span></dt><dd><p>
+                      If you experience any issue with a <code class="systemitem">systemd</code> service, check the service's log.
+                      For example:
+                    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  journalctl -u my-custom-service.service</pre></div><p>The command displays logs for the specified service, including any error messages, warnings or other relevant information.
+              You can use these logs to identify and fix issues with the service.</p></dd></dl></div></section><section xml:lang="en" class="sect1" id="systemd-manage-best-practices" data-id-title="Best practices for systemd management"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name">Best practices for <code class="systemitem">systemd</code> management</span></span> <a title="Permalink" class="permalink" href="index.html#systemd-manage-best-practices">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+            To manage <code class="systemitem">systemd</code> services, try certain best practices that are equipped to handle different situations:
+            </p></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.9.2.1"><span class="term"><span><em class="emphasis">Check the runtime status of a service</em></span></span></dt><dd><p>To find out the current runtime status of a service:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl status <em class="replaceable">SERVICE</em></pre></div></dd><dt id="id-1.9.2.2"><span class="term"><span><em class="emphasis">Use absolute path in your <code class="systemitem">systemd</code> unit file</em></span></span></dt><dd><p>
+               Use an absolute path for executable files and required files, such as configuration files or scripts in your
+               <code class="systemitem">systemd</code> unit file. <code class="systemitem">systemd</code> does not rely on the user's environment variables like <code class="literal">$PATH</code> to locate files.
+              Use the <span><em class="emphasis">ExecSearchPath</em></span> directive in the <code class="literal">[SERVICE]</code> section.
+              </p><div class="verbatim-wrap"><pre class="screen">[Service]
+                ExecSearchPath=<em class="replaceable">ABSOLUTE_PATH</em></pre></div></dd><dt id="id-1.9.2.3"><span class="term"><span><em class="emphasis">Use the ExecReload directive</em></span></span></dt><dd><p>
+              Use the <span><em class="emphasis">ExecReload</em></span> directive in the <code class="literal">[SERVICE]</code> section when you want to define a specific command
+              that should be executed when you reload a service with the <code class="command">systemctl reload</code> command.
+              This is useful for services that can dynamically reload their configuration without a restart.
+              </p><div class="verbatim-wrap"><pre class="screen">[Service]
+ExecStart=<em class="replaceable">PATH_TO_EXECUTABLE</em>
+ExecReload=<span><em class="emphasis">PATH_TO_RELOAD_SCRIPT</em></span></pre></div></dd><dt id="id-1.9.2.4"><span class="term"><span><em class="emphasis">Use the RestartSec directive </em></span></span></dt><dd><p>
+               Use the <span><em class="emphasis">RestartSec</em></span> directive in the <code class="literal">[SERVICE]</code> section when you want to
+               define a delay (in seconds) before the service is restarted after a failure. This is useful for services that require
+               a specified time to release resources or prevent rapid restart loops that can cause high system load.
+               </p><div class="verbatim-wrap"><pre class="screen">[Service]
+ExecStart=<em class="replaceable">PATH_TO_EXECUTABLE</em>
+Restart=on-failure
+RestartSec=5</pre></div></dd><dt id="id-1.9.2.5"><span class="term"><span><em class="emphasis">Disable emergency mode on a remote machine</em></span></span></dt><dd><p>
+               You can disable emergency mode on a remote machine, for example, a virtual machine hosted on Google Cloud.
+               If this mode is enabled, the machine is blocked from connecting to the network.
+               For example:
+               </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl mask emergency.service</pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl mask emergency.target</pre></div></dd></dl></div></section><section xml:lang="en" class="sect1" id="systemctl-commands" data-id-title="systemctl commands overview"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">9 </span><span class="title-name"><code class="command">systemctl</code> commands overview</span></span> <a title="Permalink" class="permalink" href="index.html#systemctl-commands">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        The <code class="command">systemctl</code> command is used to examine and control
+        the state of <code class="systemitem">systemd</code> and service manager.
+      </p></div></div></div></div><p>
+    You can use the following common <code class="command">systemctl</code> commands and
+    refer to the <span><em class="emphasis">man systemctl</em></span> page.
+  </p><section class="sect2" id="systemctl-commands-view-information" data-id-title="Viewing systemd information"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.1 </span><span class="title-name">Viewing <code class="systemitem">systemd</code> information</span></span> <a title="Permalink" class="permalink" href="index.html#systemctl-commands-view-information">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      To view information about <code class="systemitem">systemd</code> components, you can use the following
+      commands:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.10.3.3.1"><span class="term">systemctl list-units</span></dt><dd><p>
+            Lists the <code class="systemitem">systemd</code> units. You can use the optional arguments:
+            <code class="command">--state=running</code> to show the active units and
+            <code class="command">--type=service</code> to show the exited and active
+            units.
+          </p></dd><dt id="id-1.10.3.3.2"><span class="term">systemctl list-unit-files</span></dt><dd><p>
+            Lists the <code class="systemitem">systemd</code> units and the status, such as static,
+            generated, disabled, alias, masked, and enabled.
+          </p></dd><dt id="id-1.10.3.3.3"><span class="term">systemctl list-dependencies</span></dt><dd><p>
+            Lists the dependency tree.
+          </p></dd><dt id="id-1.10.3.3.4"><span class="term">systemctl list-dependencies <em class="replaceable">UNIT_FILE</em></span></dt><dd><p>
+            Lists the dependencies of a unit file.
+          </p></dd></dl></div></section><section class="sect2" id="systemctl-commands-managing-services" data-id-title="Managing systemd services"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.2 </span><span class="title-name">Managing <code class="systemitem">systemd</code> services</span></span> <a title="Permalink" class="permalink" href="index.html#systemctl-commands-managing-services">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The <code class="command">systemctl</code> command enables you to perform the
+      following tasks with services.
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.10.4.3.1"><span class="term">systemctl status <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Checks the status of the specific service.
+          </p></dd><dt id="id-1.10.4.3.2"><span class="term">systemctl show <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Displays the service information.
+          </p></dd><dt id="id-1.10.4.3.3"><span class="term">systemctl start <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Instead of manually starting the service, use the
+            <code class="command">start</code> command. When a change is made to the
+            configuration file, the related service must be started again.
+          </p></dd><dt id="id-1.10.4.3.4"><span class="term">systemctl stop <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Stops a specific running service.
+          </p></dd><dt id="id-1.10.4.3.5"><span class="term">systemctl restart <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Instead of manually restarting the service, use the
+            <code class="command">restart</code> command. When a change is made to the
+            configuration file, the related service must be restarted again.
+          </p></dd><dt id="id-1.10.4.3.6"><span class="term">systemctl enable <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Enables the service on boot.
+          </p></dd><dt id="id-1.10.4.3.7"><span class="term">systemctl disable <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Disables the service on boot.
+          </p></dd><dt id="id-1.10.4.3.8"><span class="term">systemctl reload-or-restart <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Reload the service if it supports reloading, otherwise it restarts
+            the service. If the service is not running, it is restarted.
+          </p></dd><dt id="id-1.10.4.3.9"><span class="term">systemctl mask <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            When a service is masked, this means the unit file is symlinked to
+            <code class="filename">/dev/null</code>. A symlink for a masked service is
+            created from <code class="filename">/etc/systemd/system</code> to point to
+            <code class="filename">/dev/null</code>. This makes it impossible to load
+            the service even if another enabled service requires it. It must be
+            stopped manually, or it continues to run in the background. You can
+            use <code class="command">--runtime</code> option to only mask temporarily
+            until the next reboot of the system.
+          </p><div class="verbatim-wrap"><pre class="screen">Created symlink /etc/systemd/system/FOSSLinux.service → /dev/null.</pre></div></dd><dt id="id-1.10.4.3.10"><span class="term">systemctl unmask <em class="replaceable">SERVICE</em></span></dt><dd><p>
+            Unmasks the service. It is effective when the system is started or
+            restarted manually.
+          </p></dd></dl></div></section><section class="sect2" id="systemctl-commands-managing-states" data-id-title="Managing system states"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">9.3 </span><span class="title-name">Managing system states</span></span> <a title="Permalink" class="permalink" href="index.html#systemctl-commands-managing-states">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The <code class="command">systemctl</code> command enables you to perform power
+      management processes on your system, like restarting, shutting down and
+      so on, as described below.
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.10.5.3.1"><span class="term">systemctl reboot</span></dt><dd><p>
+            Reboots the system <code class="literal">reboot.target</code>.
+          </p></dd><dt id="id-1.10.5.3.2"><span class="term">systemctl poweroff</span></dt><dd><p>
+            Powers off the system <code class="literal">poweroff.target</code>.
+          </p></dd><dt id="id-1.10.5.3.3"><span class="term">systemctl emergency</span></dt><dd><p>
+            Goes into the emergency mode <code class="literal">emergency.target</code>.
+          </p></dd><dt id="id-1.10.5.3.4"><span class="term">systemctl default</span></dt><dd><p>
+            Goes back to default target <code class="literal">multi-user.target</code>.
+          </p></dd></dl></div></section></section><section xml:lang="en" class="sect1" id="systemd-general-more-info" data-id-title="More information"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">10 </span><span class="title-name">More information</span></span> <a title="Permalink" class="permalink" href="index.html#systemd-general-more-info">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+Man 1 systemd
+      </p></li><li class="listitem"><p>
+Man 1 journalctl
+      </p></li><li class="listitem"><p>
+           Man 1 systemd-cgls
+          </p></li><li class="listitem"><p>
+           Man 1 systemctl
+          </p></li><li class="listitem"><p>
+    Man 5 systemd.service
+          </p></li><li class="listitem"><p>
+    Man 5 systemd.kill
+          </p></li><li class="listitem"><p>
+    Man 7 systemd.boot
+          </p></li><li class="listitem"><p>
+           Introduction to <code class="systemitem">systemd</code> basics <a class="link" href="https://documentation.suse.com/smart/systems-management/html/systemd-basics/index.html" target="_blank"> </a>
+          </p></li><li class="listitem"><p>
+           System and Service Manager  <a class="link" href="https://systemd.io/" target="_blank"> </a>
+          </p></li></ul></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">11 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#about-systemd"><span class="title-number">1 </span><span class="title-name">What is <code class="systemitem">systemd</code>?</span></a></span></li><li><span class="section"><a href="index.html#systemd-convert-sysv"><span class="title-number">2 </span><span class="title-name">Converting SysV init to <code class="systemitem">systemd</code> </span></a></span></li><li><span class="section"><a href="index.html#starting-systemd-services"><span class="title-number">3 </span><span class="title-name">Starting and stopping <code class="systemitem">systemd</code> services </span></a></span></li><li><span class="section"><a href="index.html#enabling-systemd-services"><span class="title-number">4 </span><span class="title-name">Enabling and disabling <code class="systemitem">systemd</code> services </span></a></span></li><li><span class="section"><a href="index.html#terminal-signals-systemd"><span class="title-number">5 </span><span class="title-name">Sending termination signals to <code class="systemitem">systemd</code> services</span></a></span></li><li><span class="section"><a href="index.html#systemd-managing-targets"><span class="title-number">6 </span><span class="title-name">Managing <code class="systemitem">systemd</code> targets with the <code class="command">systemctl</code> command</span></a></span></li><li><span class="section"><a href="index.html#systemd-manage-troubleshoot"><span class="title-number">7 </span><span class="title-name">Troubleshooting <code class="systemitem">systemd</code> management</span></a></span></li><li><span class="section"><a href="index.html#systemd-manage-best-practices"><span class="title-number">8 </span><span class="title-name">Best practices for <code class="systemitem">systemd</code> management</span></a></span></li><li><span class="section"><a href="index.html#systemctl-commands"><span class="title-number">9 </span><span class="title-name"><code class="command">systemctl</code> commands overview</span></a></span></li><li><span class="section"><a href="index.html#systemd-general-more-info"><span class="title-number">10 </span><span class="title-name">More information</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">11 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

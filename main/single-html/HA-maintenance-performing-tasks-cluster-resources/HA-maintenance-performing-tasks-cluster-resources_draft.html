@@ -1,0 +1,1053 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Performing Maintenance Tasks on Cluster Resources | SUSE Linux Enterprise High Availability 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2026-07-06"/>
+<meta name="dcterms.modified" content="2026-07-06"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-26"/>
+<meta name="title" content="Performing Maintenance Tasks on Cluster Resources | SU…"/>
+<meta name="description" content="How to minimize risk and downtime while manually making changes to one or more cluster resources"/>
+<meta name="product-name" content="SUSE Linux Enterprise High Availability"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="Performing Maintenance Tasks on Cluster Resources"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="tahlia.richardson@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise High Availability 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="category" content="."/><meta name="dc.creator" content="tahlia.richardson@suse.com"/><meta property="og:title" content="Performing Maintenance Tasks on Cluster Resources"/>
+<meta property="og:description" content="Minimize risk while manually managing applications"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Performing Maintenance Tasks on Cluster Resources"/>
+<meta name="twitter:description" content="Minimize risk while manually managing applications"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Performing Maintenance Tasks on Cluster Resources | SUSE Linux Enterprise High Availability 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Performing Maintenance Tasks on Cluster Resources",
+    "description": "How to minimize risk and downtime while manually making changes to one or more cluster resources",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2026-07-06T00:00+02:00",
+    "dateModified": "2026-07-06T00:00+02:00",
+    "datePublished": "2026-08-26T09:48+02:00",
+
+    "articleSection": [ 
+        "Administration"
+        
+    ],
+        "about": [
+      {
+        "@type": "Thing",
+        "name": "Administration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Clustering"
+      },
+      {
+        "@type": "Thing",
+        "name": "High Availability"
+      },
+      {
+        "@type": "Thing",
+        "name": "Maintenance"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise High Availability",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER, IBM Z"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#ha-maintenance-performing-tasks-cluster-resources">Performing Maintenance Tasks on Cluster Resources</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="ha-maintenance-performing-tasks-cluster-resources" data-id-title="Performing Maintenance Tasks on Cluster Resources"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise High Availability</span></span></span> 16.1</div><div><h1 class="title">Performing Maintenance Tasks on Cluster Resources</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>26 Aug 2026</div><div><div class="abstract"><p>
+          High Availability clusters require extra preparation steps before you can perform maintenance tasks,
+          or you risk side effects such as resource failure, unsynchronized CIBs, or data loss.
+          Use this workflow when you need to manually manage applications or services without
+          interference from the cluster. This involves putting one or more resources into
+          maintenance mode so you can temporarily manage them manually.
+        </p><div id="id-1.1.13.2" class="admonition tip compact"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><p>
+            If this isn't the workflow you need, see <a class="xref" href="#ha-maintenance-other-workflows" title="5. Other maintenance workflows">Section 5, “Other maintenance workflows”</a>
+            to choose the right one.
+          </p></div><div id="id-1.1.13.3" data-id-title="Maintenance window" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Maintenance window</div><p>
+            Preparing resources for maintenance only takes a moment, but the length of the
+            maintenance window depends on the tasks you need to perform. The resources that are
+            in maintenance mode won't be highly available during the maintenance window.
+          </p></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Performing Maintenance Tasks on Cluster Resources" hreflang="en" href="rh-ha-maintenance-performing-tasks-cluster-resources.html" target="_blank">Revision History: Performing Maintenance Tasks on Cluster Resources</a></div></div></div></div><section xml:lang="en" class="sect1" id="ha-maintenance-for-clusters" data-id-title="What are HA administrative modes?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">What are HA administrative modes?</span></span> <a title="Permalink" class="permalink" href="#ha-maintenance-for-clusters">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        While under High Availability cluster management, resources must <span><em class="emphasis">not</em></span> be started or
+        stopped from outside the cluster (for example, with <code class="command">systemctl</code>). This
+        means that if you need to manually touch a resource, you must release it from cluster
+        management first. Resources are also vulnerable if something goes wrong when you make
+        changes to the cluster nodes or infrastructure. You must protect the cluster and its
+        resources before performing maintenance tasks or you risk unwanted side effects such as
+        resource failure, unsynchronized CIBs, or even data loss.
+      </p></div></div></div></div><section class="sect2" id="ha-maintenance-workflow-basic-steps" data-id-title="Basic steps"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">Basic steps</span></span> <a title="Permalink" class="permalink" href="#ha-maintenance-workflow-basic-steps">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      These are the basic steps for performing any maintenance tasks in a High Availability cluster:
+   </p><div class="procedure" id="pro-ha-maintenance-workflow-steps"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Determine the workflow you need, depending on your maintenance tasks.
+        </p></li><li class="step"><p>
+          Apply one or more administrative modes, depending on the workflow.
+        </p></li><li class="step"><p>
+          Perform your maintenance tasks on the cluster, node or individual resource.
+        </p></li><li class="step"><p>
+          Put the cluster, node or resource back into <span class="quote">“<span class="quote">normal</span>”</span> operation.
+        </p></li></ol></div></div></section><section class="sect2" id="ha-maintenance-workflow-modes" data-id-title="Administrative modes"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Administrative modes</span></span> <a title="Permalink" class="permalink" href="#ha-maintenance-workflow-modes">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      SUSE Linux Enterprise High Availability has the following modes for protecting the cluster during maintenance tasks. Depending
+      on your task, you might need to use one of these modes or a combination of multiple modes.
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.3.3.1"><span class="term">Stopping the cluster services</span></dt><dd><p>
+            Stopping the cluster services means stopping Pacemaker and Corosync. In this mode, the
+            cluster is <span><em class="emphasis">no longer running</em></span>, either entirely or just on one node.
+            Use this mode when you need to manage infrastructure, such as storage or networking, or
+            when you need to change the configuration of the cluster services.
+          </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                <span><span class="emphasis"><strong>For the whole cluster:</strong></span></span> Stopping the cluster
+                services on all nodes at once allows you to shut down a cluster while avoiding
+                the mass migration of resources that would happen if you shut down each node one
+                by one. When this mode is used on its own, all the resources stop. However, this
+                doesn't guarantee a graceful shutdown. If stopping a resource fails or
+                times out, the resource's node is fenced. Alternatively, you can avoid resource
+                downtime by using this mode in combination with maintenance mode.
+              </p></li><li class="listitem"><p>
+                <span><span class="emphasis"><strong>For one node:</strong></span></span> Stopping the cluster services on
+                just one node allows the rest of the cluster to continue running while you perform
+                maintenance tasks on the offline node. The node's resources either move to another
+                node, or stop if constraints prevent them from moving. However, if stopping a
+                resource fails or times out, the node is fenced. To avoid attempting to stop
+                resources and the cluster services at the same time, we recommend using this mode
+                in combination with standby mode.
+              </p></li></ul></div></dd><dt id="id-1.2.3.3.2"><span class="term">Maintenance mode</span></dt><dd><p>
+            In maintenance mode, the cluster stops managing the resources and won't start, stop or
+            monitor them. This allows you to manually manage applications or services without
+            interference from the cluster. However, resources aren't highly available while in this
+            mode, so they won't fail over to another node if the current node shuts down or reboots.
+          </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                <span><span class="emphasis"><strong>For the whole cluster:</strong></span></span> Cluster maintenance mode
+                puts <span><em class="emphasis">all</em></span> the resources into maintenance mode at once.
+                If you stop or restart the cluster services while in this mode, most resources can
+                continue to run even while the cluster is offline. This allows you to make cluster
+                configuration changes with minimal resource downtime. However, any resources that
+                depend on Corosync, such as DLM, must be stopped.
+              </p></li><li class="listitem"><p>
+                <span><span class="emphasis"><strong>For one node:</strong></span></span> Node maintenance mode puts all the
+                resources that are running on a specific node into maintenance mode at once.
+                <span><em class="emphasis">Don't</em></span> stop or restart the cluster services while in this mode.
+                Without proper caution, this can lead to undesirable effects, such as concurrency
+                violations, where resources mistakenly run on multiple nodes instead of only one node.
+              </p></li><li class="listitem"><p>
+                <span><span class="emphasis"><strong>For one resource:</strong></span></span> Resource maintenance mode puts
+                a single resource into maintenance mode. You can also put groups and clones into
+                resource maintenance mode.
+              </p></li></ul></div></dd><dt id="id-1.2.3.3.3"><span class="term">Standby mode</span></dt><dd><p>
+            When a <span><span class="emphasis"><strong>node</strong></span></span> is in standby mode, it can't run
+            resources. Any resources that were running on it either move to another node, or
+            stop if constraints prevent them from moving. Standby mode gives the resources more
+            time to move or stop successfully because they aren't limited by the shutdown timeout
+            of the cluster services. Therefore, this mode is useful for gracefully evacuating a
+            node before stopping the cluster services or rebooting the node.
+          </p></dd><dt id="id-1.2.3.3.4"><span class="term">Unmanaged mode</span></dt><dd><p>
+            When a <span><span class="emphasis"><strong>resource</strong></span></span> is in unmanaged mode, the cluster
+            won't start or stop it. However, unlike maintenance mode, the cluster still
+            <span><em class="emphasis">monitors</em></span> the resource and reports any failures. This can be useful
+            for troubleshooting. In most other cases, maintenance mode is more appropriate.
+          </p></dd></dl></div></section><section class="sect2" id="ha-maintenance-workflow-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.3 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="#ha-maintenance-workflow-more-info">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      For more information, see
+      <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Administration/html/administrative.html" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Administration/html/administrative.html</a>.
+    </p></section></section><section xml:lang="en" class="sect1" id="ha-maintenance-enabling-maintenance-mode" data-id-title="Enabling maintenance mode"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Enabling maintenance mode</span></span> <a title="Permalink" class="permalink" href="#ha-maintenance-enabling-maintenance-mode">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Maintenance mode allows you to manually manage applications or services without interference
+    from the cluster. You can put a resource, a node, or even the whole cluster into maintenance
+    mode, depending on the scope of your planned changes.
+  </p><p>
+    When choosing the type of maintenance mode to use, keep in mind that your changes must be
+    invisible to the cluster until you disable maintenance mode. Therefore, you must carefully
+    evaluate any dependencies between the resources. For example, a resource could be in an
+    ordering or colocation constraint with other resources, either on the same node or on
+    different nodes.
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        If your changes might affect resources on multiple nodes, use cluster maintenance mode:
+      </p><p>
+        <a class="xref" href="#ha-maintenance-putting-cluster-into-maintenance-mode" title="2.1. Putting the cluster into maintenance mode">Section 2.1, “Putting the cluster into maintenance mode”</a>
+      </p></li><li class="listitem"><p>
+        If your changes might affect multiple resources on one node, use node maintenance mode:
+      </p><p>
+        <a class="xref" href="#ha-maintenance-putting-node-into-maintenance-mode" title="2.2. Putting a node into maintenance mode">Section 2.2, “Putting a node into maintenance mode”</a>
+      </p></li><li class="listitem"><p>
+        If your changes only affect one resource, use resource maintenance mode:
+      </p><p>
+        <a class="xref" href="#ha-maintenance-putting-resource-into-maintenance-mode" title="2.3. Putting a resource into maintenance mode">Section 2.3, “Putting a resource into maintenance mode”</a>
+      </p><div id="id-1.3.4.3.3" class="admonition tip compact"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><p>
+          You can put a group or a clone in resource maintenance mode if it has no dependencies
+          with other resources outside the group or clone set.
+        </p></div></li></ul></div><section xml:lang="en" class="sect2" id="ha-maintenance-putting-cluster-into-maintenance-mode" data-id-title="Putting the cluster into maintenance mode"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">Putting the cluster into maintenance mode</span></span> <a title="Permalink" class="permalink" href="#ha-maintenance-putting-cluster-into-maintenance-mode">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Cluster maintenance mode puts <span><em class="emphasis">all</em></span> the resources into maintenance mode
+        at once. The cluster stops managing the resources and won't start, stop or monitor them.
+      </p></div></div></div></div><div id="id-1.3.5.2" data-id-title="No cluster protection while in maintenance mode" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning: No cluster protection while in maintenance mode</div><p>
+    Resources aren't highly available while in maintenance mode, so they won't fail over
+    to another node if the current node shuts down or reboots.
+  </p></div><div class="tab-structure"><ul class="tabs" onclick="showTabContent(event)"><li class="tab active-tab">CRM Shell</li><li class="tab">Hawk</li></ul><div class="content-container"><div class="tab-content" id="tabContent1"><p>
+          You can perform this procedure on any node in the cluster.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code>
+              privileges.
+            </p></li><li class="step"><p>
+              Put the cluster into maintenance mode:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance on</code></pre></div></li><li class="step"><p>
+              Check the status of the cluster:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div><p>
+              The resources should all show the status <code class="literal">maintenance</code>.
+            </p></li></ol></div></div></div><div class="tab-content" id="tabContent2" style="display: none;"><p>
+          You can use Hawk on any machine with a Web browser and network access to the nodes.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              In a Web browser, go to
+              <code class="literal">https://<em class="replaceable">HAWKSERVER</em>:7630/</code> and log in.
+            </p></li><li class="step"><p>
+              In the left navigation bar, select <span class="guimenu">Configuration</span> › <span class="guimenu">Cluster Configuration</span>.
+            </p></li><li class="step"><p>
+              From the first empty drop-down list, select the <span class="guimenu">maintenance-mode</span>
+              attribute.
+            </p></li><li class="step"><p>
+              From the new <span class="guimenu">maintenance-mode</span> drop-down list, select
+              <span class="guimenu">Yes</span>.
+            </p></li><li class="step"><p>
+              Click <span class="guimenu">Apply</span>.
+            </p></li><li class="step"><p>
+              In the left navigation bar, select <span class="guimenu">Monitoring</span> › <span class="guimenu">Status</span>.
+            </p><p>
+              The resources should all have a wrench icon in the <span class="guimenu">Status</span> column.
+            </p></li></ol></div></div></div></div></div></section><section xml:lang="en" class="sect2" id="ha-maintenance-putting-node-into-maintenance-mode" data-id-title="Putting a node into maintenance mode"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.2 </span><span class="title-name">Putting a node into maintenance mode</span></span> <a title="Permalink" class="permalink" href="#ha-maintenance-putting-node-into-maintenance-mode">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Node maintenance mode puts all the resources that are running on a specific node into
+        maintenance mode at once. The cluster stops managing the resources and won't start,
+        stop or monitor them.
+      </p></div></div></div></div><div id="id-1.3.6.2" data-id-title="No cluster protection while in maintenance mode" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning: No cluster protection while in maintenance mode</div><p>
+    Resources aren't highly available while in maintenance mode, so they won't fail over
+    to another node if the current node shuts down or reboots.
+  </p></div><div class="tab-structure"><ul class="tabs" onclick="showTabContent(event)"><li class="tab active-tab">CRM Shell</li><li class="tab">Hawk</li></ul><div class="content-container"><div class="tab-content" id="tabContent1"><p>
+          Perform this procedure on the node you want to put into maintenance mode.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              Log in to the node either as the <code class="systemitem">root</code> user or as a user with
+              <code class="command">sudo</code> privileges.
+            </p></li><li class="step"><p>
+              Put the node into maintenance mode:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm node maintenance</code></pre></div></li><li class="step"><p>
+              Check the status of the cluster:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div><p>
+              The node and its resources should show the status <code class="literal">maintenance</code>.
+            </p></li></ol></div></div></div><div class="tab-content" id="tabContent2" style="display: none;"><p>
+          You can use Hawk on any machine with a Web browser and network access to the nodes.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              In a Web browser, go to
+              <code class="literal">https://<em class="replaceable">HAWKSERVER</em>:7630/</code> and log in.
+            </p></li><li class="step"><p>
+              In the left navigation bar, select <span class="guimenu">Monitoring</span> › <span class="guimenu">Status</span>.
+            </p></li><li class="step"><p>
+              Switch to the <span class="guimenu">Nodes</span> tab and find the node you want to put into
+              maintenance mode.
+            </p></li><li class="step"><p>
+              In the <span class="guimenu">Maintenance</span> column, click the toggle to turn on maintenance mode.
+            </p></li><li class="step"><p>
+              Click <span class="guimenu">OK</span> to confirm.
+            </p><p>
+              The toggle changes from green to red.
+            </p></li></ol></div></div></div></div></div></section><section xml:lang="en" class="sect2" id="ha-maintenance-putting-resource-into-maintenance-mode" data-id-title="Putting a resource into maintenance mode"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.3 </span><span class="title-name">Putting a resource into maintenance mode</span></span> <a title="Permalink" class="permalink" href="#ha-maintenance-putting-resource-into-maintenance-mode">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Resource maintenance mode puts a single resource into maintenance mode. The cluster stops
+        managing the resource and won't start, stop or monitor it. You can also put groups and
+        clones into resource maintenance mode.
+      </p></div></div></div></div><div id="id-1.3.7.2" data-id-title="No cluster protection while in maintenance mode" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning: No cluster protection while in maintenance mode</div><p>
+    Resources aren't highly available while in maintenance mode, so they won't fail over
+    to another node if the current node shuts down or reboots.
+  </p></div><div class="tab-structure"><ul class="tabs" onclick="showTabContent(event)"><li class="tab active-tab">CRM Shell</li><li class="tab">Hawk</li></ul><div class="content-container"><div class="tab-content" id="tabContent1"><p>
+          You can perform this procedure on any node in the cluster.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code>
+              privileges.
+            </p></li><li class="step"><p>
+              Put the resource into maintenance mode:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm resource maintenance <em class="replaceable">RESOURCE</em> on</code></pre></div></li><li class="step"><p>
+              Check the status of the cluster:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div><p>
+              The resource should show the status <code class="literal">maintenance</code>.
+            </p></li></ol></div></div></div><div class="tab-content" id="tabContent2" style="display: none;"><p>
+          You can use Hawk on any machine with a Web browser and network access to the nodes.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              In a Web browser, go to
+              <code class="literal">https://<em class="replaceable">HAWKSERVER</em>:7630/</code> and log in.
+            </p></li><li class="step"><p>
+              In the left navigation bar, select <span class="guimenu">Monitoring</span> › <span class="guimenu">Status</span>.
+            </p></li><li class="step"><p>
+              Find the resource you want to put into maintenance mode. In its
+              <span class="guimenu">Operations</span> column, click the down arrow icon and select
+              <span class="guimenu">Maintenance</span>.
+            </p></li><li class="step"><p>
+              Click <span class="guimenu">OK</span> to confirm.
+            </p><p>
+              The resource should now have a wrench icon in the <span class="guimenu">Status</span> column.
+            </p></li></ol></div></div></div></div></div></section></section><section xml:lang="en" class="sect1" id="ha-maintenance-performing-the-tasks" data-id-title="Performing the maintenance tasks"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Performing the maintenance tasks</span></span> <a title="Permalink" class="permalink" href="#ha-maintenance-performing-the-tasks">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Perform your maintenance tasks on the application or service that the resource represents.
+    This could be updating a virtual machine, reconfiguring a file system, or manually restarting
+    an application, for example.
+  </p><div id="id-1.4.3" data-id-title="Dont shut down or reboot cluster nodes" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning: Don't shut down or reboot cluster nodes</div><p>
+      In this workflow, <span><em class="emphasis">don't</em></span> shut down or reboot any cluster nodes.
+      The resources aren't highly available while in maintenance mode, so they won't fail over
+      to another node.
+    </p></div></section><section xml:lang="en" class="sect1" id="ha-maintenance-disabling-maintenance-mode" data-id-title="Disabling maintenance mode"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Disabling maintenance mode</span></span> <a title="Permalink" class="permalink" href="#ha-maintenance-disabling-maintenance-mode">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Disable maintenance mode to put the resources back into normal operation and make them highly
+    available again. Make sure you choose the correct procedure to disable the same type of
+    maintenance mode you enabled earlier:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        <a class="xref" href="#ha-maintenance-taking-cluster-out-of-maintenance-mode" title="4.1. Taking the cluster out of maintenance mode">Section 4.1, “Taking the cluster out of maintenance mode”</a>
+      </p></li><li class="listitem"><p>
+        <a class="xref" href="#ha-maintenance-taking-node-out-of-maintenance-mode" title="4.2. Taking a node out of maintenance mode">Section 4.2, “Taking a node out of maintenance mode”</a>
+      </p></li><li class="listitem"><p>
+        <a class="xref" href="#ha-maintenance-taking-resource-out-of-maintenance-mode" title="4.3. Taking a resource out of maintenance mode">Section 4.3, “Taking a resource out of maintenance mode”</a>
+      </p></li></ul></div><section xml:lang="en" class="sect2" id="ha-maintenance-taking-cluster-out-of-maintenance-mode" data-id-title="Taking the cluster out of maintenance mode"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.1 </span><span class="title-name">Taking the cluster out of maintenance mode</span></span> <a title="Permalink" class="permalink" href="#ha-maintenance-taking-cluster-out-of-maintenance-mode">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Taking the cluster out of maintenance mode puts the resources back under cluster management
+        and protection.
+      </p></div></div></div></div><div class="tab-structure"><ul class="tabs" onclick="showTabContent(event)"><li class="tab active-tab">CRM Shell</li><li class="tab">Hawk</li></ul><div class="content-container"><div class="tab-content" id="tabContent1"><p>
+          You can perform this procedure on any node in the cluster.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code>
+              privileges.
+            </p></li><li class="step"><p>
+              Check the status of the cluster:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div><p>
+              If the nodes have the status <code class="literal">UNCLEAN (Offline)</code>, wait until they
+              change to <code class="literal">Online</code>.
+            </p></li><li class="step"><p>
+              If the nodes are <code class="literal">Online</code>, put the cluster back into normal
+              operation:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance off</code></pre></div></li><li class="step"><p>
+              Check the status of the cluster again. The resources should no longer show the
+              status <code class="literal">maintenance</code>.
+            </p></li></ol></div></div></div><div class="tab-content" id="tabContent2" style="display: none;"><p>
+          You can use Hawk on any machine with a Web browser and network access to the nodes.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              In a Web browser, go to
+              <code class="literal">https://<em class="replaceable">HAWKSERVER</em>:7630/</code> and log in.
+            </p></li><li class="step"><p>
+              In the left navigation bar, select <span class="guimenu">Configuration</span> › <span class="guimenu">Cluster Configuration</span>.
+            </p></li><li class="step"><p>
+              From the <code class="literal">maintenance-mode</code> drop-down list, select
+              <span class="guimenu">No</span>.
+            </p></li><li class="step"><p>
+              Click <span class="guimenu">Apply</span>.
+            </p><p>
+              A message at the top of the screen shows if the action was successful.
+            </p></li><li class="step"><p>
+              In the left navigation bar, select <span class="guimenu">Monitoring</span> › <span class="guimenu">Status</span>.
+            </p><p>
+              The resources should have green or red <span class="guimenu">Status</span> icons instead of
+              wrench icons.
+            </p></li></ol></div></div></div></div></div></section><section xml:lang="en" class="sect2" id="ha-maintenance-taking-node-out-of-maintenance-mode" data-id-title="Taking a node out of maintenance mode"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.2 </span><span class="title-name">Taking a node out of maintenance mode</span></span> <a title="Permalink" class="permalink" href="#ha-maintenance-taking-node-out-of-maintenance-mode">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Taking a node out of maintenance mode puts the resources back under cluster management
+        and protection.
+      </p></div></div></div></div><div class="tab-structure"><ul class="tabs" onclick="showTabContent(event)"><li class="tab active-tab">CRM Shell</li><li class="tab">Hawk</li></ul><div class="content-container"><div class="tab-content" id="tabContent1"><p>
+          Perform this procedure on the node you want to take out of maintenance mode.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              Log in to the node either as the <code class="systemitem">root</code> user or as a user with
+              <code class="command">sudo</code> privileges.
+            </p></li><li class="step"><p>
+              Put the node back into normal operation:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm node ready</code></pre></div></li><li class="step"><p>
+              Check the status of the cluster:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div><p>
+              The node and its resources should no longer show the status
+              <code class="literal">maintenance</code>.
+            </p></li></ol></div></div></div><div class="tab-content" id="tabContent2" style="display: none;"><p>
+          You can use Hawk on any machine with a Web browser and network access to the nodes.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              In a Web browser, go to
+              <code class="literal">https://<em class="replaceable">HAWKSERVER</em>:7630/</code> and log in.
+            </p></li><li class="step"><p>
+              In the left navigation bar, select <span class="guimenu">Monitoring</span> › <span class="guimenu">Status</span>.
+            </p></li><li class="step"><p>
+              Switch to the <span class="guimenu">Nodes</span> tab and find the node you want to take out of
+              maintenance mode.
+            </p></li><li class="step"><p>
+              In the <span class="guimenu">Maintenance</span> column, click the toggle to turn off
+              maintenance mode.
+            </p></li><li class="step"><p>
+              Click <span class="guimenu">OK</span> to confirm.
+            </p><p>
+              The toggle changes from red to green.
+            </p></li></ol></div></div></div></div></div></section><section xml:lang="en" class="sect2" id="ha-maintenance-taking-resource-out-of-maintenance-mode" data-id-title="Taking a resource out of maintenance mode"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.3 </span><span class="title-name">Taking a resource out of maintenance mode</span></span> <a title="Permalink" class="permalink" href="#ha-maintenance-taking-resource-out-of-maintenance-mode">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Taking a resource out of maintenance mode puts it back under cluster management and
+        protection.
+      </p></div></div></div></div><div class="tab-structure"><ul class="tabs" onclick="showTabContent(event)"><li class="tab active-tab">CRM Shell</li><li class="tab">Hawk</li></ul><div class="content-container"><div class="tab-content" id="tabContent1"><p>
+          You can perform this procedure on any node in the cluster.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code>
+              privileges.
+            </p></li><li class="step"><p>
+              Put the resource back into normal operation:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm resource maintenance <em class="replaceable">RESOURCE</em> off</code></pre></div></li><li class="step"><p>
+              Check the status of the cluster:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div><p>
+              The resource should no longer show the status <code class="literal">maintenance</code>.
+            </p></li></ol></div></div></div><div class="tab-content" id="tabContent2" style="display: none;"><p>
+          You can use Hawk on any machine with a Web browser and network access to the nodes.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              In a Web browser, go to
+              <code class="literal">https://<em class="replaceable">HAWKSERVER</em>:7630/</code> and log in.
+            </p></li><li class="step"><p>
+              In the left navigation bar, select <span class="guimenu">Monitoring</span> › <span class="guimenu">Status</span>.
+            </p></li><li class="step"><p>
+              Find the resource you want to take out of maintenance mode.
+              In its <span class="guimenu">Operations</span> column, click the
+              <span class="guimenu">Disable Maintenance Mode</span> toggle icon.
+            </p></li><li class="step"><p>
+              Click <span class="guimenu">OK</span> to confirm.
+            </p><p>
+              The resource should now have a green or red <span class="guimenu">Status</span> icon instead
+              of a wrench icon.
+            </p></li></ol></div></div></div></div></div></section></section><section xml:lang="en" class="sect1" id="ha-maintenance-other-workflows" data-id-title="Other maintenance workflows"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Other maintenance workflows</span></span> <a title="Permalink" class="permalink" href="#ha-maintenance-other-workflows">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    If you need a different workflow, or to perform a specific task, check this list of other
+    articles:
+  </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.6.3.1"><span class="term">General workflows</span></dt><dd><p>
+          These articles describe general workflows for different scenarios:
+        </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.6.3.1.2.2.1"><span class="term">
+              
+              <a class="link" href="https://documentation.suse.com/sle-ha/16.1/html/HA-maintenance-performing-tasks-cluster-infra/" target="_blank">
+              <em class="citetitle">Performing maintenance tasks on cluster infrastructure</em></a>
+            </span></dt><dd><p>
+                Make changes to the configuration of the cluster services, or to infrastructure
+                used by the cluster services, such as storage or networking. This involves
+                putting the whole cluster into maintenance mode and stopping the cluster services
+                on all nodes at once, but <span><em class="emphasis">not</em></span> rebooting any nodes.
+              </p></dd><dt id="id-1.6.3.1.2.2.2"><span class="term">
+              
+              <a class="link" href="https://documentation.suse.com/sle-ha/16.1/html/HA-maintenance-performing-tasks-cluster-nodes/" target="_blank">
+              <em class="citetitle">Performing maintenance tasks on cluster nodes</em></a>
+            </span></dt><dd><p>
+                Make changes to the cluster nodes, such as hardware, software or firmware updates.
+                This involves putting a node into standby mode and stopping the cluster services
+                on just that node, then rebooting if required.
+              </p></dd><dt id="id-1.6.3.1.2.2.3"><span class="term">
+              <span class="phrase">(This article)</span>
+              <a class="link" href="https://documentation.suse.com/sle-ha/16.1/html/HA-maintenance-performing-tasks-cluster-resources/" target="_blank">
+              <em class="citetitle">Performing maintenance tasks on cluster resources</em></a>
+            </span></dt><dd><p>
+                Manually manage applications or services without interference from the cluster.
+                This involves putting one or more resources into maintenance mode so you can
+                temporarily manage them manually.
+              </p></dd></dl></div></dd><dt id="id-1.6.3.2"><span class="term">Specific tasks</span></dt><dd><p>
+          These articles describe specific maintenance or administration tasks:
+        </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.6.3.2.2.2.1"><span class="term"><a class="link" href="https://documentation.suse.com/sle-ha/16.1/html/HA-sbd-changing-configuration/" target="_blank">
+            <em class="citetitle">Changing the Configuration of SBD</em></a></span></dt><dd><p>
+                This article describes different ways to update the configuration of SBD for node
+                fencing. Most of these tasks require stopping the cluster services, and might also
+                require cluster maintenance mode.
+              </p></dd></dl></div></dd></dl></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section><div class="legal-section"><section class="appendix" translate="no" id="doc-gfdl-license" data-id-title="GNU Free Documentation License"><div class="titlepage"><div><div><h1 class="title">GNU Free Documentation License</h1></div></div></div><p>
+    Copyright (C) 2000, 2001, 2002 Free Software Foundation, Inc. 51 Franklin St, Fifth Floor,
+    Boston, MA 02110-1301 USA. Everyone is permitted to copy and distribute verbatim copies of this
+    license document, but changing it is not allowed.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.8.3"><span class="name">
+    0. PREAMBLE
+  </span><a title="Permalink" class="permalink" href="#id-1.8.3">#</a></h5></div><p>
+    The purpose of this License is to make a manual, textbook, or other functional and useful
+    document "free" in the sense of freedom: to assure everyone the effective freedom to copy and
+    redistribute it, with or without modifying it, either commercially or non-commercially.
+    Secondarily, this License preserves for the author and publisher a way to get credit for their
+    work, while not being considered responsible for modifications made by others.
+  </p><p>
+    This License is a kind of "copyleft", which means that derivative works of the document must
+    themselves be free in the same sense. It complements the GNU General Public License, which is a
+    copyleft license designed for free software.
+  </p><p>
+    We have designed this License to use it for manuals for free software, because free software
+    needs free documentation: a free program should come with manuals providing the same freedoms
+    that the software does. But this License is not limited to software manuals; it can be used for
+    any textual work, regardless of subject matter or whether it is published as a printed book. We
+    recommend this License principally for works whose purpose is instruction or reference.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.8.7"><span class="name">
+    1. APPLICABILITY AND DEFINITIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.8.7">#</a></h5></div><p>
+    This License applies to any manual or other work, in any medium, that contains a notice placed
+    by the copyright holder saying it can be distributed under the terms of this License. Such a
+    notice grants a world-wide, royalty-free license, unlimited in duration, to use that work under
+    the conditions stated herein. The "Document", below, refers to any such manual or work. Any
+    member of the public is a licensee, and is addressed as "you". You accept the license if you
+    copy, modify or distribute the work in a way requiring permission under copyright law.
+  </p><p>
+    A "Modified Version" of the Document means any work containing the Document or a portion of it,
+    either copied verbatim, or with modifications and/or translated into another language.
+  </p><p>
+    A "Secondary Section" is a named appendix or a front-matter section of the Document that deals
+    exclusively with the relationship of the publishers or authors of the Document to the
+    Document's overall subject (or to related matters) and contains nothing that could fall
+    directly within that overall subject. (Thus, if the Document is in part a textbook of
+    mathematics, a Secondary Section may not explain any mathematics.) The relationship could be a
+    matter of historical connection with the subject or with related matters, or of legal,
+    commercial, philosophical, ethical or political position regarding them.
+  </p><p>
+    The "Invariant Sections" are certain Secondary Sections whose titles are designated, as being
+    those of Invariant Sections, in the notice that says that the Document is released under this
+    License. If a section does not fit the above definition of Secondary then it is not allowed to
+    be designated as Invariant. The Document may contain zero Invariant Sections. If the Document
+    does not identify any Invariant Sections then there are none.
+  </p><p>
+    The "Cover Texts" are certain short passages of text that are listed, as Front-Cover Texts or
+    Back-Cover Texts, in the notice that says that the Document is released under this License. A
+    Front-Cover Text may be at most 5 words, and a Back-Cover Text may be at most 25 words.
+  </p><p>
+    A "Transparent" copy of the Document means a machine-readable copy, represented in a format
+    whose specification is available to the general public, that is suitable for revising the
+    document straightforwardly with generic text editors or (for images composed of pixels) generic
+    paint programs or (for drawings) some widely available drawing editor, and that is suitable for
+    input to text formatters or for automatic translation to a variety of formats suitable for
+    input to text formatters. A copy made in an otherwise Transparent file format whose markup, or
+    absence of markup, has been arranged to thwart or discourage subsequent modification by readers
+    is not Transparent. An image format is not Transparent if used for any substantial amount of
+    text. A copy that is not "Transparent" is called "Opaque".
+  </p><p>
+    Examples of suitable formats for Transparent copies include plain ASCII without markup, Texinfo
+    input format, LaTeX input format, SGML or XML using a publicly available DTD, and
+    standard-conforming simple HTML, PostScript or PDF designed for human modification. Examples of
+    transparent image formats include PNG, XCF and JPG. Opaque formats include proprietary formats
+    that can be read and edited only by proprietary word processors, SGML or XML for which the DTD
+    and/or processing tools are not generally available, and the machine-generated HTML, PostScript
+    or PDF produced by some word processors for output purposes only.
+  </p><p>
+    The "Title Page" means, for a printed book, the title page itself, plus such following pages as
+    are needed to hold, legibly, the material this License requires to appear in the title page.
+    For works in formats which do not have any title page as such, "Title Page" means the text near
+    the most prominent appearance of the work's title, preceding the beginning of the body of the
+    text.
+  </p><p>
+    A section "Entitled XYZ" means a named subunit of the Document whose title either is precisely
+    XYZ or contains XYZ in parentheses following text that translates XYZ in another language.
+    (Here XYZ stands for a specific section name mentioned below, such as "Acknowledgements",
+    "Dedications", "Endorsements", or "History".) To "Preserve the Title" of such a section when
+    you modify the Document means that it remains a section "Entitled XYZ" according to this
+    definition.
+  </p><p>
+    The Document may include Warranty Disclaimers next to the notice which states that this License
+    applies to the Document. These Warranty Disclaimers are considered to be included by reference
+    in this License, but only as regards disclaiming warranties: any other implication that these
+    Warranty Disclaimers may have is void and has no effect on the meaning of this License.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.8.18"><span class="name">
+    2. VERBATIM COPYING
+  </span><a title="Permalink" class="permalink" href="#id-1.8.18">#</a></h5></div><p>
+    You may copy and distribute the Document in any medium, either commercially or
+    non-commercially, provided that this License, the copyright notices, and the license notice
+    saying this License applies to the Document are reproduced in all copies, and that you add no
+    other conditions whatsoever to those of this License. You may not use technical measures to
+    obstruct or control the reading or further copying of the copies you make or distribute.
+    However, you may accept compensation in exchange for copies. If you distribute a large enough
+    number of copies you must also follow the conditions in section 3.
+  </p><p>
+    You may also lend copies, under the same conditions stated above, and you may publicly display
+    copies.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.8.21"><span class="name">
+    3. COPYING IN QUANTITY
+  </span><a title="Permalink" class="permalink" href="#id-1.8.21">#</a></h5></div><p>
+    If you publish printed copies (or copies in media that commonly have printed covers) of the
+    Document, numbering more than 100, and the Document's license notice requires Cover Texts, you
+    must enclose the copies in covers that carry, clearly and legibly, all these Cover Texts:
+    Front-Cover Texts on the front cover, and Back-Cover Texts on the back cover. Both covers must
+    also clearly and legibly identify you as the publisher of these copies. The front cover must
+    present the full title with all words of the title equally prominent and visible. You may add
+    other material on the covers in addition. Copying with changes limited to the covers, as long
+    as they preserve the title of the Document and satisfy these conditions, can be treated as
+    verbatim copying in other respects.
+  </p><p>
+    If the required texts for either cover are too voluminous to fit legibly, you should put the
+    first ones listed (as many as fit reasonably) on the actual cover, and continue the rest onto
+    adjacent pages.
+  </p><p>
+    If you publish or distribute Opaque copies of the Document numbering more than 100, you must
+    either include a machine-readable Transparent copy along with each Opaque copy, or state in or
+    with each Opaque copy a computer-network location from which the general network-using public
+    has access to download using public-standard network protocols a complete Transparent copy of
+    the Document, free of added material. If you use the latter option, you must take reasonably
+    prudent steps, when you begin distribution of Opaque copies in quantity, to ensure that this
+    Transparent copy will remain thus accessible at the stated location until at least one year
+    after the last time you distribute an Opaque copy (directly or through your agents or
+    retailers) of that edition to the public.
+  </p><p>
+    It is requested, but not required, that you contact the authors of the Document well before
+    redistributing any large number of copies, to give them a chance to provide you with an updated
+    version of the Document.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.8.26"><span class="name">
+    4. MODIFICATIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.8.26">#</a></h5></div><p>
+    You may copy and distribute a Modified Version of the Document under the conditions of sections
+    2 and 3 above, provided that you release the Modified Version under precisely this License,
+    with the Modified Version filling the role of the Document, thus licensing distribution and
+    modification of the Modified Version to whoever possesses a copy of it. In addition, you must
+    do these things in the Modified Version:
+  </p><div class="orderedlist"><ol class="orderedlist" type="A"><li class="listitem"><p>
+        Use in the Title Page (and on the covers, if any) a title distinct from that of the
+        Document, and from those of previous versions (which should, if there were any, be listed
+        in the History section of the Document). You may use the same title as a previous version
+        if the original publisher of that version gives permission.
+      </p></li><li class="listitem"><p>
+        List on the Title Page, as authors, one or more persons or entities responsible for
+        authorship of the modifications in the Modified Version, together with at least five of the
+        principal authors of the Document (all of its principal authors, if it has fewer than
+        five), unless they release you from this requirement.
+      </p></li><li class="listitem"><p>
+        State on the Title page the name of the publisher of the Modified Version, as the
+        publisher.
+      </p></li><li class="listitem"><p>
+        Preserve all the copyright notices of the Document.
+      </p></li><li class="listitem"><p>
+        Add an appropriate copyright notice for your modifications adjacent to the other copyright
+        notices.
+      </p></li><li class="listitem"><p>
+        Include, immediately after the copyright notices, a license notice giving the public
+        permission to use the Modified Version under the terms of this License, in the form shown
+        in the Addendum below.
+      </p></li><li class="listitem"><p>
+        Preserve in that license notice the full lists of Invariant Sections and required Cover
+        Texts given in the Document's license notice.
+      </p></li><li class="listitem"><p>
+        Include an unaltered copy of this License.
+      </p></li><li class="listitem"><p>
+        Preserve the section Entitled "History", Preserve its Title, and add to it an item stating
+        at least the title, year, new authors, and publisher of the Modified Version as given on
+        the Title Page. If there is no section Entitled "History" in the Document, create one
+        stating the title, year, authors, and publisher of the Document as given on its Title Page,
+        then add an item describing the Modified Version as stated in the previous sentence.
+      </p></li><li class="listitem"><p>
+        Preserve the network location, if any, given in the Document for public access to a
+        Transparent copy of the Document, and likewise the network locations given in the Document
+        for previous versions it was based on. These may be placed in the "History" section. You
+        may omit a network location for a work that was published at least four years before the
+        Document itself, or if the original publisher of the version it refers to gives permission.
+      </p></li><li class="listitem"><p>
+        For any section Entitled "Acknowledgements" or "Dedications", Preserve the Title of the
+        section, and preserve in the section all the substance and tone of each of the contributor
+        acknowledgements and/or dedications given therein.
+      </p></li><li class="listitem"><p>
+        Preserve all the Invariant Sections of the Document, unaltered in their text and in their
+        titles. Section numbers or the equivalent are not considered part of the section titles.
+      </p></li><li class="listitem"><p>
+        Delete any section Entitled "Endorsements". Such a section may not be included in the
+        Modified Version.
+      </p></li><li class="listitem"><p>
+        Do not retitle any existing section to be Entitled "Endorsements" or to conflict in title
+        with any Invariant Section.
+      </p></li><li class="listitem"><p>
+        Preserve any Warranty Disclaimers.
+      </p></li></ol></div><p>
+    If the Modified Version includes new front-matter sections or appendices that qualify as
+    Secondary Sections and contain no material copied from the Document, you may at your option
+    designate some or all of these sections as invariant. To do this, add their titles to the list
+    of Invariant Sections in the Modified Version's license notice. These titles must be distinct
+    from any other section titles.
+  </p><p>
+    You may add a section Entitled "Endorsements", provided it contains nothing but endorsements of
+    your Modified Version by various parties--for example, statements of peer review or that the
+    text has been approved by an organization as the authoritative definition of a standard.
+  </p><p>
+    You may add a passage of up to five words as a Front-Cover Text, and a passage of up to 25
+    words as a Back-Cover Text, to the end of the list of Cover Texts in the Modified Version. Only
+    one passage of Front-Cover Text and one of Back-Cover Text may be added by (or through
+    arrangements made by) any one entity. If the Document already includes a cover text for the
+    same cover, previously added by you or by arrangement made by the same entity you are acting on
+    behalf of, you may not add another; but you may replace the old one, on explicit permission
+    from the previous publisher that added the old one.
+  </p><p>
+    The author(s) and publisher(s) of the Document do not by this License give permission to use
+    their names for publicity for or to assert or imply endorsement of any Modified Version.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.8.33"><span class="name">
+    5. COMBINING DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.8.33">#</a></h5></div><p>
+    You may combine the Document with other documents released under this License, under the terms
+    defined in section 4 above for modified versions, provided that you include in the combination
+    all of the Invariant Sections of all of the original documents, unmodified, and list them all
+    as Invariant Sections of your combined work in its license notice, and that you preserve all
+    their Warranty Disclaimers.
+  </p><p>
+    The combined work need only contain one copy of this License, and multiple identical Invariant
+    Sections may be replaced with a single copy. If there are multiple Invariant Sections with the
+    same name but different contents, make the title of each such section unique by adding at the
+    end of it, in parentheses, the name of the original author or publisher of that section if
+    known, or else a unique number. Make the same adjustment to the section titles in the list of
+    Invariant Sections in the license notice of the combined work.
+  </p><p>
+    In the combination, you must combine any sections Entitled "History" in the various original
+    documents, forming one section Entitled "History"; likewise combine any sections Entitled
+    "Acknowledgements", and any sections Entitled "Dedications". You must delete all sections
+    Entitled "Endorsements".
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.8.37"><span class="name">
+    6. COLLECTIONS OF DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.8.37">#</a></h5></div><p>
+    You may make a collection consisting of the Document and other documents released under this
+    License, and replace the individual copies of this License in the various documents with a
+    single copy that is included in the collection, provided that you follow the rules of this
+    License for verbatim copying of each of the documents in all other respects.
+  </p><p>
+    You may extract a single document from such a collection, and distribute it individually under
+    this License, provided you insert a copy of this License into the extracted document, and
+    follow this License in all other respects regarding verbatim copying of that document.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.8.40"><span class="name">
+    7. AGGREGATION WITH INDEPENDENT WORKS
+  </span><a title="Permalink" class="permalink" href="#id-1.8.40">#</a></h5></div><p>
+    A compilation of the Document or its derivatives with other separate and independent documents
+    or works, in or on a volume of a storage or distribution medium, is called an "aggregate" if
+    the copyright resulting from the compilation is not used to limit the legal rights of the
+    compilation's users beyond what the individual works permit. When the Document is included in
+    an aggregate, this License does not apply to the other works in the aggregate which are not
+    themselves derivative works of the Document.
+  </p><p>
+    If the Cover Text requirement of section 3 is applicable to these copies of the Document, then
+    if the Document is less than one half of the entire aggregate, the Document's Cover Texts may
+    be placed on covers that bracket the Document within the aggregate, or the electronic
+    equivalent of covers if the Document is in electronic form. Otherwise they must appear on
+    printed covers that bracket the whole aggregate.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.8.43"><span class="name">
+    8. TRANSLATION
+  </span><a title="Permalink" class="permalink" href="#id-1.8.43">#</a></h5></div><p>
+    Translation is considered a kind of modification, so you may distribute translations of the
+    Document under the terms of section 4. Replacing Invariant Sections with translations requires
+    special permission from their copyright holders, but you may include translations of some or
+    all Invariant Sections in addition to the original versions of these Invariant Sections. You
+    may include a translation of this License, and all the license notices in the Document, and any
+    Warranty Disclaimers, provided that you also include the original English version of this
+    License and the original versions of those notices and disclaimers. In case of a disagreement
+    between the translation and the original version of this License or a notice or disclaimer, the
+    original version will prevail.
+  </p><p>
+    If a section in the Document is Entitled "Acknowledgements", "Dedications", or "History", the
+    requirement (section 4) to Preserve its Title (section 1) will typically require changing the
+    actual title.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.8.46"><span class="name">
+    9. TERMINATION
+  </span><a title="Permalink" class="permalink" href="#id-1.8.46">#</a></h5></div><p>
+    You may not copy, modify, sublicense, or distribute the Document except as expressly provided
+    for under this License. Any other attempt to copy, modify, sublicense or distribute the
+    Document is void, and will automatically terminate your rights under this License. However,
+    parties who have received copies, or rights, from you under this License will not have their
+    licenses terminated so long as such parties remain in full compliance.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.8.48"><span class="name">
+    10. FUTURE REVISIONS OF THIS LICENSE
+  </span><a title="Permalink" class="permalink" href="#id-1.8.48">#</a></h5></div><p>
+    The Free Software Foundation may publish new, revised versions of the GNU Free Documentation
+    License from time to time. Such new versions will be similar in spirit to the present version,
+    but may differ in detail to address new problems or concerns. See
+    <a class="link" href="https://www.gnu.org/copyleft/" target="_blank">https://www.gnu.org/copyleft/</a>.
+  </p><p>
+    Each version of the License is given a distinguishing version number. If the Document specifies
+    that a particular numbered version of this License "or any later version" applies to it, you
+    have the option of following the terms and conditions either of that specified version or of
+    any later version that has been published (not as a draft) by the Free Software Foundation. If
+    the Document does not specify a version number of this License, you may choose any version ever
+    published (not as a draft) by the Free Software Foundation.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.8.51"><span class="name">
+    ADDENDUM: How to use this License for your documents
+  </span><a title="Permalink" class="permalink" href="#id-1.8.51">#</a></h5></div><div class="verbatim-wrap"><pre class="screen">Copyright (c) YEAR YOUR NAME.
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+A copy of the license is included in the section entitled “GNU
+Free Documentation License”.</pre></div><p>
+    If you have Invariant Sections, Front-Cover Texts and Back-Cover Texts, replace the
+    “with...Texts.” line with this:
+  </p><div class="verbatim-wrap"><pre class="screen">with the Invariant Sections being LIST THEIR TITLES, with the
+Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.</pre></div><p>
+    If you have Invariant Sections without Cover Texts, or some other combination of the three,
+    merge those two alternatives to suit the situation.
+  </p><p>
+    If your document contains nontrivial examples of program code, we recommend releasing these
+    examples in parallel under your choice of free software license, such as the GNU General Public
+    License, to permit their use in free software.
+  </p></section></div><section xml:lang="en" class="glossary"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number"> </span><span class="title-name">HA glossary</span></span> <a title="Permalink" class="permalink" href="#ha-glossary">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="line"/><dl><dt id="id-1.9.2"><span><span class="glossterm">active/active, active/passive</span> <a title="Permalink" class="permalink" href="#id-1.9.2">#</a></span></dt><dd class="glossdef"><p>
+      How resources run on the nodes. Active/passive means that resources only run on the active
+      node, but can move to the passive node if the active node fails. Active/active means that all
+      nodes are active at once, and resources can run on (and move to) any node in the cluster.
+    </p></dd><dt id="gloss-arbitrator"><span><span class="glossterm">arbitrator</span> <a title="Permalink" class="permalink" href="#gloss-arbitrator">#</a></span></dt><dd class="glossdef"><p>
+      An <span><em class="emphasis">arbitrator</em></span> is a machine running outside the cluster to provide an
+      additional instance for cluster calculations. For example, <a class="xref" href="#gloss-qnetd" title="QNetd">QNetd</a>
+      provides a vote to help <a class="xref" href="#gloss-qdevice" title="QDevice">QDevice</a> participate in
+      <a class="xref" href="#gloss-quorum" title="quorum">quorum</a> decisions.
+    </p></dd><dt id="id-1.9.4"><span><span class="glossterm">CIB (cluster information base)</span> <a title="Permalink" class="permalink" href="#id-1.9.4">#</a></span></dt><dd class="glossdef"><p>
+      An XML representation of the whole cluster configuration and status (cluster options,
+      nodes, resources, constraints, etc.). The CIB manager
+      (<code class="systemitem">pacemaker-based</code>) keeps the CIB synchronized across the cluster
+      nodes and handles requests to modify it.
+    </p></dd><dt id="gloss-clone"><span><span class="glossterm">clone</span> <a title="Permalink" class="permalink" href="#gloss-clone">#</a></span></dt><dd class="glossdef"><p>
+      In the context of a cluster <a class="xref" href="#gloss-resource" title="resource">resource</a>, a clone is a resource that can
+      be active on multiple nodes. Any resource can be cloned if its resource agent supports it.
+    </p></dd><dt id="id-1.9.6"><span><span class="glossterm">cluster</span> <a title="Permalink" class="permalink" href="#id-1.9.6">#</a></span></dt><dd class="glossdef"><p>
+      A <span><em class="emphasis">high-availability</em></span> cluster is a group of servers (physical or virtual)
+      designed primarily to secure the highest possible availability of data, applications and services.
+      Not to be confused with a <span><em class="emphasis">high-performance</em></span> cluster, which shares the
+      application load to achieve faster results.
+    </p></dd><dt id="id-1.9.7"><span><span class="glossterm">Cluster LVM (Cluster logical volume manager)</span> <a title="Permalink" class="permalink" href="#id-1.9.7">#</a></span></dt><dd class="glossdef"><p>
+      The term <span><em class="emphasis">Cluster LVM</em></span> indicates that LVM is being used in a cluster environment.
+      This requires configuration adjustments to protect the LVM metadata on shared storage.
+    </p></dd><dt id="gloss-offline-up"><span><span class="glossterm">cluster offline upgrade</span> <a title="Permalink" class="permalink" href="#gloss-offline-up">#</a></span></dt><dd class="glossdef"><p>
+      If a new product version includes major changes that are backward incompatible, the cluster
+      requires a cluster offline upgrade. You must stop the cluster services on all nodes and
+      upgrade the whole cluster before bringing the nodes back online.
+    </p><p>
+      For minor version upgrades, see <a class="xref" href="#gloss-rolling-up" title="cluster rolling upgrade">cluster rolling upgrade</a>.
+    </p></dd><dt id="gloss-clus-part"><span><span class="glossterm">cluster partition</span> <a title="Permalink" class="permalink" href="#gloss-clus-part">#</a></span></dt><dd class="glossdef"><p>
+      A cluster partition occurs when communication fails between one or more nodes and the rest of
+      the cluster. The nodes are split into partitions but are still active. They can only
+      communicate with nodes in the same partition and are unaware of the separated nodes. This
+      is known as a <a class="xref" href="#gloss-splitbrain" title="split brain">split brain</a> scenario.
+    </p></dd><dt id="gloss-rolling-up"><span><span class="glossterm">cluster rolling upgrade</span> <a title="Permalink" class="permalink" href="#gloss-rolling-up">#</a></span></dt><dd class="glossdef"><p>
+      In a cluster rolling upgrade, one cluster node at a time is upgraded while the rest of the
+      cluster is still running. Stop the cluster services on a node, upgrade it, then bring it
+      back online to join the cluster. Continue one by one until all cluster nodes are upgraded.
+    </p><p>
+      For major version upgrades, see <a class="xref" href="#gloss-offline-up" title="cluster offline upgrade">cluster offline upgrade</a>.
+    </p></dd><dt id="id-1.9.11"><span><span class="glossterm">cluster services</span> <a title="Permalink" class="permalink" href="#id-1.9.11">#</a></span></dt><dd class="glossdef"><p>
+      The services that run the cluster. Typically this refers to Pacemaker and Corosync, but
+      might also include SBD and QDevice if those services are used.
+    </p></dd><dt id="id-1.9.12"><span><span class="glossterm">cluster stack</span> <a title="Permalink" class="permalink" href="#id-1.9.12">#</a></span></dt><dd class="glossdef"><p>
+      The ensemble of software technologies and components that make up a cluster.
+    </p></dd><dt id="gloss-col-con"><span><span class="glossterm">colocation constraint</span> <a title="Permalink" class="permalink" href="#gloss-col-con">#</a></span></dt><dd class="glossdef"><p>
+      A type of <a class="xref" href="#gloss-resource-con" title="resource constraint">resource constraint</a> that specifies which resources can or cannot
+      run together on a node.
+    </p></dd><dt id="id-1.9.14"><span><span class="glossterm">concurrency violation</span> <a title="Permalink" class="permalink" href="#id-1.9.14">#</a></span></dt><dd class="glossdef"><p>
+      A resource that should be running on only one node in the cluster is running on several nodes.
+    </p></dd><dt id="gloss-corosync"><span><span class="glossterm">Corosync</span> <a title="Permalink" class="permalink" href="#gloss-corosync">#</a></span></dt><dd class="glossdef"><p>
+      Corosync provides reliable messaging, membership and quorum information about the cluster.
+      This is handled by the Corosync Cluster Engine, a group communication system.
+    </p></dd><dt id="gloss-crm"><span><span class="glossterm">CRM (cluster resource manager)</span> <a title="Permalink" class="permalink" href="#gloss-crm">#</a></span></dt><dd class="glossdef"><p>
+      The management entity responsible for coordinating all non-local interactions in a High Availability cluster.
+      SUSE Linux Enterprise High Availability uses <a class="xref" href="#gloss-pacemaker" title="Pacemaker">Pacemaker</a> as the CRM. It interacts with several components:
+      local executors on its own node and on the other nodes, non-local CRMs, administrative
+      commands, the fencing functionality, and the membership layer.
+    </p></dd><dt id="id-1.9.17"><span><span class="glossterm"><code class="systemitem">crmsh</code> (CRM Shell)</span> <a title="Permalink" class="permalink" href="#id-1.9.17">#</a></span></dt><dd class="glossdef"><p>
+      The command-line utility <span><em class="emphasis"><code class="systemitem">crmsh</code></em></span> manages the cluster, nodes and resources.
+    </p></dd><dt id="id-1.9.18"><span><span class="glossterm">Csync2</span> <a title="Permalink" class="permalink" href="#id-1.9.18">#</a></span></dt><dd class="glossdef"><p>
+      A synchronization tool for replicating configuration files across all nodes in the cluster.
+    </p></dd><dt id="gloss-dc"><span><span class="glossterm">DC (designated coordinator)</span> <a title="Permalink" class="permalink" href="#gloss-dc">#</a></span></dt><dd class="glossdef"><p>
+      The <code class="systemitem">pacemaker-controld</code> daemon is the cluster controller, which
+      coordinates all actions. This daemon has an instance on each cluster node, but only one
+      instance is elected to act as the DC. The DC is elected when the cluster services start,
+      or if the current DC fails or leaves the cluster. The DC decides whether a cluster-wide
+      change must be performed, such as fencing a node or moving resources.
+    </p></dd><dt id="id-1.9.20"><span><span class="glossterm">disaster</span> <a title="Permalink" class="permalink" href="#id-1.9.20">#</a></span></dt><dd class="glossdef"><p>
+      An unexpected interruption of critical infrastructure caused by nature, humans, hardware
+      failure, or software bugs.
+    </p></dd><dt id="gloss-dis-rec"><span><span class="glossterm">disaster recovery</span> <a title="Permalink" class="permalink" href="#gloss-dis-rec">#</a></span></dt><dd class="glossdef"><p>
+      The process by which a function is restored to the normal, steady state after a disaster.
+    </p></dd><dt id="id-1.9.22"><span><span class="glossterm">Disaster Recovery Plan</span> <a title="Permalink" class="permalink" href="#id-1.9.22">#</a></span></dt><dd class="glossdef"><p>
+      A strategy to recover from a disaster with the minimum impact on IT infrastructure.
+    </p></dd><dt id="id-1.9.23"><span><span class="glossterm">DLM (Distributed Lock Manager)</span> <a title="Permalink" class="permalink" href="#id-1.9.23">#</a></span></dt><dd class="glossdef"><p>
+      DLM coordinates accesses to shared resources in a cluster, for example, managing file
+      locking in clustered file systems to increase performance and availability.
+    </p></dd><dt id="gloss-drbd"><span><span class="glossterm">DRBD</span> <a title="Permalink" class="permalink" href="#gloss-drbd">#</a></span></dt><dd class="glossdef"><p>
+      <span class="trademark">DRBD</span>® is a block device designed for building
+      High Availability clusters. It replicates data on a primary device to secondary devices in a way that
+      ensures all copies of the data remain identical.
+    </p></dd><dt id="id-1.9.25"><span><span class="glossterm">existing cluster</span> <a title="Permalink" class="permalink" href="#id-1.9.25">#</a></span></dt><dd class="glossdef"><p>
+      The term <span><em class="emphasis">existing cluster</em></span> is used to refer to any cluster that consists
+      of at least one node. An existing cluster has a basic <a class="xref" href="#gloss-corosync" title="Corosync">Corosync</a>
+      configuration that defines the communication channels, but does not necessarily have resource
+      configuration yet.
+    </p></dd><dt id="glo-failover"><span><span class="glossterm">failover</span> <a title="Permalink" class="permalink" href="#glo-failover">#</a></span></dt><dd class="glossdef"><p>
+      Occurs when a resource or node fails on one machine and the affected resources move to
+      another node.
+    </p></dd><dt id="id-1.9.27"><span><span class="glossterm">failover domain</span> <a title="Permalink" class="permalink" href="#id-1.9.27">#</a></span></dt><dd class="glossdef"><p>
+      A named subset of cluster nodes that are eligible to run a resource if a node fails.
+    </p></dd><dt id="gloss-fencing"><span><span class="glossterm">fencing</span> <a title="Permalink" class="permalink" href="#gloss-fencing">#</a></span></dt><dd class="glossdef"><p>
+      Prevents access to a shared resource by isolated or failing cluster members. There are two
+      classes of fencing: <span><em class="emphasis">resource-level</em></span> fencing and <span><em class="emphasis">node-level</em></span>
+      fencing. Resource-level fencing ensures exclusive access to a resource. Node-level fencing
+      prevents a failed node from accessing shared resources and prevents resources from running on
+      a node with an uncertain status. This is usually done by resetting or powering off the node.
+    </p></dd><dt id="id-1.9.29"><span><span class="glossterm">GFS2</span> <a title="Permalink" class="permalink" href="#id-1.9.29">#</a></span></dt><dd class="glossdef"><p>
+      Global File System 2 (GFS2) is a shared disk file system for Linux computer clusters.
+      GFS2 allows all nodes to have direct concurrent access to the same shared block storage.
+      GFS2 has no disconnected operating mode, and no client or server roles. All nodes in a GFS2
+      cluster function as peers. GFS2 supports up to 32 cluster nodes. Using GFS2 in a cluster
+      requires hardware to allow access to the shared storage, and a lock manager to control access
+      to the storage.
+    </p></dd><dt id="id-1.9.30"><span><span class="glossterm">group</span> <a title="Permalink" class="permalink" href="#id-1.9.30">#</a></span></dt><dd class="glossdef"><p>
+      Resource groups contain multiple resources that need to be located together, started
+      sequentially and stopped in the reverse order.
+    </p></dd><dt id="id-1.9.31"><span><span class="glossterm">Hawk (HA Web Konsole)</span> <a title="Permalink" class="permalink" href="#id-1.9.31">#</a></span></dt><dd class="glossdef"><p>
+      A user-friendly Web-based interface for monitoring and administering a High Availability cluster from
+      Linux or non-Linux machines. Hawk can be accessed from any machine that can connect to the
+      cluster nodes, using a graphical Web browser.
+    </p></dd><dt id="gloss-heuristics"><span><span class="glossterm">heuristics</span> <a title="Permalink" class="permalink" href="#gloss-heuristics">#</a></span></dt><dd class="glossdef"><p>
+      <a class="xref" href="#gloss-qdevice" title="QDevice">QDevice</a> supports using a set of commands (<span><em class="emphasis">heuristics</em></span>)
+      that run locally on start-up of cluster services, cluster membership change, successful
+      connection to the <a class="xref" href="#gloss-qnetd" title="QNetd">QNetd</a> server, or optionally at regular times. The
+      result is used in calculations to determine which partition should have <a class="xref" href="#gloss-quorum" title="quorum">quorum</a>.
+    </p></dd><dt id="id-1.9.33"><span><span class="glossterm">knet (kronosnet)</span> <a title="Permalink" class="permalink" href="#id-1.9.33">#</a></span></dt><dd class="glossdef"><p>
+      A network abstraction layer supporting redundancy, security, fault tolerance, and fast
+      fail-over of network links. In SUSE Linux Enterprise High Availability 16, <span><em class="emphasis">knet</em></span> is the default transport
+      protocol for the <a class="xref" href="#gloss-corosync" title="Corosync">Corosync</a> communication channels.
+    </p></dd><dt id="id-1.9.34"><span><span class="glossterm">local cluster</span> <a title="Permalink" class="permalink" href="#id-1.9.34">#</a></span></dt><dd class="glossdef"><p>
+      A single cluster in one location (for example, all nodes are located in one data center).
+      Network latency is minimal. Storage is typically accessed synchronously by all nodes.
+    </p></dd><dt id="id-1.9.35"><span><span class="glossterm">local executor</span> <a title="Permalink" class="permalink" href="#id-1.9.35">#</a></span></dt><dd class="glossdef"><p>
+      The local executor is located between <a class="xref" href="#gloss-pacemaker" title="Pacemaker">Pacemaker</a> and the resources
+      on each node. Through the <code class="systemitem">pacemaker-execd</code> daemon,
+      Pacemaker can start, stop and monitor resources.
+    </p></dd><dt id="id-1.9.36"><span><span class="glossterm">location</span> <a title="Permalink" class="permalink" href="#id-1.9.36">#</a></span></dt><dd class="glossdef"><p>
+      In the context of a whole cluster, <span><em class="emphasis">location</em></span> can refer to the physical
+      location of nodes (for example, all nodes might be located in the same data center). In the
+      context of a <a class="xref" href="#gloss-loc-con" title="location constraint">location constraint</a>, <span><em class="emphasis">location</em></span> refers to the
+      nodes on which a resource can or cannot run.
+    </p></dd><dt id="gloss-loc-con"><span><span class="glossterm">location constraint</span> <a title="Permalink" class="permalink" href="#gloss-loc-con">#</a></span></dt><dd class="glossdef"><p>
+      A type of <a class="xref" href="#gloss-resource-con" title="resource constraint">resource constraint</a> that defines the nodes on which a resource can
+      or cannot run.
+    </p></dd><dt id="gloss-meta-att"><span><span class="glossterm">meta attribute</span> <a title="Permalink" class="permalink" href="#gloss-meta-att">#</a></span></dt><dd class="glossdef"><p>
+      Parameters that tell the <a class="xref" href="#gloss-crm" title="CRM (cluster resource manager)">CRM (cluster resource manager)</a> how to treat a specific
+      <a class="xref" href="#gloss-resource" title="resource">resource</a>. For example, you might define a resource's priority
+      or target role.
+    </p></dd><dt id="id-1.9.39"><span><span class="glossterm">metro cluster</span> <a title="Permalink" class="permalink" href="#id-1.9.39">#</a></span></dt><dd class="glossdef"><p>
+      A single cluster that can stretch over multiple buildings or data centers, with all sites
+      connected by Fibre Channel. Network latency is usually low. Storage is frequently replicated
+      using mirroring or synchronous replication.
+    </p></dd><dt id="id-1.9.40"><span><span class="glossterm">network device bonding</span> <a title="Permalink" class="permalink" href="#id-1.9.40">#</a></span></dt><dd class="glossdef"><p>
+      Network device bonding combines two or more network interfaces into a single bonded device to
+      increase bandwidth and/or provide redundancy. When using <a class="xref" href="#gloss-corosync" title="Corosync">Corosync</a>, the
+      bonded device is not managed by the cluster software. Therefore, the bonded device must be
+      configured on every cluster node that might need to access it.
+    </p></dd><dt id="id-1.9.41"><span><span class="glossterm">node</span> <a title="Permalink" class="permalink" href="#id-1.9.41">#</a></span></dt><dd class="glossdef"><p>
+      Any server (physical or virtual) that is a member of a cluster.
+    </p></dd><dt id="gloss-ord-con"><span><span class="glossterm">order constraint</span> <a title="Permalink" class="permalink" href="#gloss-ord-con">#</a></span></dt><dd class="glossdef"><p>
+      A type of <a class="xref" href="#gloss-resource-con" title="resource constraint">resource constraint</a> that defines the sequence of actions.
+    </p></dd><dt id="gloss-pacemaker"><span><span class="glossterm">Pacemaker</span> <a title="Permalink" class="permalink" href="#gloss-pacemaker">#</a></span></dt><dd class="glossdef"><p>
+      Pacemaker is the <a class="xref" href="#gloss-crm" title="CRM (cluster resource manager)">CRM (cluster resource manager)</a> in SUSE Linux Enterprise High Availability, or the <span class="quote">“<span class="quote">brain</span>”</span>
+      that reacts to events occurring in the cluster. Events might be nodes that join or
+     leave the cluster, failure of resources, or scheduled activities such as maintenance,
+     for example. The <code class="systemitem">pacemakerd</code> daemon launches and monitors
+     all other related daemons.
+    </p></dd><dt id="id-1.9.44"><span><span class="glossterm">parameters (instance attributes)</span> <a title="Permalink" class="permalink" href="#id-1.9.44">#</a></span></dt><dd class="glossdef"><p>
+      Parameters determine which instance of a service the <a class="xref" href="#gloss-resource" title="resource">resource</a> controls.
+    </p></dd><dt id="id-1.9.46"><span><span class="glossterm">primitive</span> <a title="Permalink" class="permalink" href="#id-1.9.46">#</a></span></dt><dd class="glossdef"><p>
+      A primitive resource is the most basic type of cluster resource.
+    </p></dd><dt id="gloss-prom-clone"><span><span class="glossterm">promotable clone</span> <a title="Permalink" class="permalink" href="#gloss-prom-clone">#</a></span></dt><dd class="glossdef"><p>
+      Promotable clones are a special type of <a class="xref" href="#gloss-clone" title="clone">clone</a> resource that can be
+      promoted. Active instances of these resources are divided into two states: promoted and
+      unpromoted (also known as <span class="quote">“<span class="quote">active and passive</span>”</span> or <span class="quote">“<span class="quote">primary and
+      secondary</span>”</span>).
+    </p></dd><dt id="gloss-qdevice"><span><span class="glossterm">QDevice</span> <a title="Permalink" class="permalink" href="#gloss-qdevice">#</a></span></dt><dd class="glossdef"><p>
+      QDevice and <a class="xref" href="#gloss-qnetd" title="QNetd">QNetd</a> participate in <a class="xref" href="#gloss-quorum" title="quorum">quorum</a>
+      decisions. The <code class="systemitem">corosync-qdevice</code> daemon runs on each cluster node and
+      communicates with QNetd to provide a configurable number of votes, allowing a cluster to
+      sustain more node failures than the standard quorum rules allow.
+    </p></dd><dt id="gloss-qnetd"><span><span class="glossterm">QNetd</span> <a title="Permalink" class="permalink" href="#gloss-qnetd">#</a></span></dt><dd class="glossdef"><p>
+      QNetd is an <a class="xref" href="#gloss-arbitrator" title="arbitrator">arbitrator</a> that runs outside the cluster.
+      The <code class="systemitem">corosync-qnetd</code> daemon provides a vote to the
+      <code class="systemitem">corosync-qdevice</code> daemon on each node to help it participate
+      in quorum decisions.
+    </p></dd><dt id="gloss-quorum"><span><span class="glossterm">quorum</span> <a title="Permalink" class="permalink" href="#gloss-quorum">#</a></span></dt><dd class="glossdef"><p>
+      A <a class="xref" href="#gloss-clus-part" title="cluster partition">cluster partition</a> is defined to have quorum (be <span><em class="emphasis">quorate</em></span>)
+      if it has the majority of nodes (or <span class="quote">“<span class="quote">votes</span>”</span>). Quorum distinguishes exactly one
+      partition. This is part of the algorithm to prevent several disconnected partitions or nodes
+      (<span class="quote">“<span class="quote">split brain</span>”</span>) from proceeding and causing data and service corruption.
+      Quorum is a prerequisite for fencing, which then ensures that quorum is unique.
+    </p></dd><dt id="id-1.9.51"><span><span class="glossterm">RA (resource agent)</span> <a title="Permalink" class="permalink" href="#id-1.9.51">#</a></span></dt><dd class="glossdef"><p>
+      A script acting as a proxy to manage a <a class="xref" href="#gloss-resource" title="resource">resource</a> (for example, to
+      start, stop or monitor a resource). SUSE Linux Enterprise High Availability supports different kinds of resource agents.
+    </p></dd><dt id="id-1.9.52"><span><span class="glossterm">ReaR (Relax and Recover)</span> <a title="Permalink" class="permalink" href="#id-1.9.52">#</a></span></dt><dd class="glossdef"><p>
+      An administrator tool set for creating <a class="xref" href="#gloss-dis-rec" title="disaster recovery">disaster recovery</a> images.
+    </p></dd><dt id="gloss-resource"><span><span class="glossterm">resource</span> <a title="Permalink" class="permalink" href="#gloss-resource">#</a></span></dt><dd class="glossdef"><p>
+      Any type of service or application that is known to <a class="xref" href="#gloss-pacemaker" title="Pacemaker">Pacemaker</a>, for
+      example, an IP address, a file system, or a database. The term <span><em class="emphasis">resource</em></span>
+      is also used for <a class="xref" href="#gloss-drbd" title="DRBD">DRBD</a>, where it names a set of block devices that use
+      a common connection for replication.
+    </p></dd><dt id="gloss-resource-con"><span><span class="glossterm">resource constraint</span> <a title="Permalink" class="permalink" href="#gloss-resource-con">#</a></span></dt><dd class="glossdef"><p>
+      Resource constraints specify which cluster nodes a resource can run on, what order the
+      resources should start in, and which other resources a specific resource is dependent on.
+    </p><p>
+      See also <a class="xref" href="#gloss-col-con" title="colocation constraint">colocation constraint</a>, <a class="xref" href="#gloss-loc-con" title="location constraint">location constraint</a> and
+      <a class="xref" href="#gloss-ord-con" title="order constraint">order constraint</a>.
+    </p></dd><dt id="id-1.9.55"><span><span class="glossterm">resource set</span> <a title="Permalink" class="permalink" href="#id-1.9.55">#</a></span></dt><dd class="glossdef"><p>
+      As an alternative format for defining location, colocation or order constraints, you can use
+      <span><em class="emphasis">resource sets</em></span>, where primitives are grouped together in one set. When
+      creating a constraint, you can specify multiple resources for the constraint to apply to.
+    </p></dd><dt id="id-1.9.56"><span><span class="glossterm">resource template</span> <a title="Permalink" class="permalink" href="#id-1.9.56">#</a></span></dt><dd class="glossdef"><p>
+      To help create many resources with similar configurations, you can define a resource template.
+      After being defined, it can be referenced in primitives or in certain types of constraints.
+      If a template is referenced in a primitive, the primitive inherits all operations, instance
+      attributes (parameters), meta attributes and utilization attributes defined in the template.
+    </p></dd><dt id="gloss-sbd"><span><span class="glossterm">SBD (STONITH Block Device)</span> <a title="Permalink" class="permalink" href="#gloss-sbd">#</a></span></dt><dd class="glossdef"><p>
+      SBD provides a node <a class="xref" href="#gloss-fencing" title="fencing">fencing</a> mechanism through the exchange of
+      messages via shared block storage. Alternatively, it can be used in diskless mode. In either
+      case, it needs a hardware or software <a class="xref" href="#gloss-watchdog" title="watchdog">watchdog</a> on each node to ensure
+      that misbehaving nodes are really stopped.
+    </p></dd><dt id="id-1.9.45"><span><span class="glossterm">scheduler</span> <a title="Permalink" class="permalink" href="#id-1.9.45">#</a></span></dt><dd class="glossdef"><p>
+      The scheduler is implemented as <code class="systemitem">pacemaker-schedulerd</code>.
+      When a cluster transition is needed, <code class="systemitem">pacemaker-schedulerd</code>
+      calculates the expected next state of the cluster and determines what actions need to be
+      scheduled to achieve the next state.
+    </p></dd><dt id="gloss-splitbrain"><span><span class="glossterm">split brain</span> <a title="Permalink" class="permalink" href="#gloss-splitbrain">#</a></span></dt><dd class="glossdef"><p>
+      A scenario in which the cluster nodes are divided into two or more groups that do not know
+      about each other (either through a software or hardware failure). <a class="xref" href="#gloss-stonith" title="STONITH">STONITH</a>
+      prevents a split-brain scenario from badly affecting the entire cluster. Also known as a
+      <span><em class="emphasis">partitioned cluster</em></span> scenario.
+    </p><p>
+      The term <span><em class="emphasis">split brain</em></span> is also used in <a class="xref" href="#gloss-drbd" title="DRBD">DRBD</a> but
+      means that the nodes contain different data.
+    </p></dd><dt id="id-1.9.59"><span><span class="glossterm">SPOF (single point of failure)</span> <a title="Permalink" class="permalink" href="#id-1.9.59">#</a></span></dt><dd class="glossdef"><p>
+      Any component of a cluster that, if it fails, triggers the failure of the entire cluster.
+    </p></dd><dt id="id-1.9.60"><span><span class="glossterm">stickiness</span> <a title="Permalink" class="permalink" href="#id-1.9.60">#</a></span></dt><dd class="glossdef"><p>
+      Resource stickiness is a <a class="xref" href="#gloss-meta-att" title="meta attribute">meta attribute</a> that determines how much a resource
+      prefers to stay on its current node.
+    </p></dd><dt id="gloss-stonith"><span><span class="glossterm">STONITH</span> <a title="Permalink" class="permalink" href="#gloss-stonith">#</a></span></dt><dd class="glossdef"><p>
+      Another term for the
+      <a class="xref" href="#gloss-fencing" title="fencing">fencing</a> mechanism that shuts down a misbehaving node to prevent it
+      from causing trouble in a cluster. In a <a class="xref" href="#gloss-pacemaker" title="Pacemaker">Pacemaker</a> cluster, node
+      fencing is managed by the fencing subsystem <code class="systemitem">pacemaker-fenced</code>.
+    </p></dd><dt id="id-1.9.62"><span><span class="glossterm">switchover</span> <a title="Permalink" class="permalink" href="#id-1.9.62">#</a></span></dt><dd class="glossdef"><p>
+      The planned moving of resources to other nodes in a cluster. See also <a class="xref" href="#glo-failover" title="failover">failover</a>.
+    </p></dd><dt id="id-1.9.63"><span><span class="glossterm">utilization</span> <a title="Permalink" class="permalink" href="#id-1.9.63">#</a></span></dt><dd class="glossdef"><p>
+      Tells the CRM what capacity a certain <a class="xref" href="#gloss-resource" title="resource">resource</a> requires from a node.
+    </p></dd><dt id="gloss-watchdog"><span><span class="glossterm">watchdog</span> <a title="Permalink" class="permalink" href="#gloss-watchdog">#</a></span></dt><dd class="glossdef"><p>
+      <a class="xref" href="#gloss-sbd" title="SBD (STONITH Block Device)">SBD (STONITH Block Device)</a> needs a watchdog on each node to ensure that misbehaving nodes are
+      really stopped. SBD <span class="quote">“<span class="quote">feeds</span>”</span> the watchdog by regularly writing a service pulse
+      to it. If SBD stops feeding the watchdog, the hardware enforces a system restart. This
+      protects against failures of the SBD process itself, such as becoming stuck on an I/O error.
+    </p></dd></dl></section></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="#ha-maintenance-for-clusters"><span class="title-number">1 </span><span class="title-name">What are HA administrative modes?</span></a></span></li><li><span class="section"><a href="#ha-maintenance-enabling-maintenance-mode"><span class="title-number">2 </span><span class="title-name">Enabling maintenance mode</span></a></span></li><li><span class="section"><a href="#ha-maintenance-performing-the-tasks"><span class="title-number">3 </span><span class="title-name">Performing the maintenance tasks</span></a></span></li><li><span class="section"><a href="#ha-maintenance-disabling-maintenance-mode"><span class="title-number">4 </span><span class="title-name">Disabling maintenance mode</span></a></span></li><li><span class="section"><a href="#ha-maintenance-other-workflows"><span class="title-number">5 </span><span class="title-name">Other maintenance workflows</span></a></span></li><li><span class="section"><a href="#legal-disclaimer"><span class="title-number">6 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="#doc-gfdl-license"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li><li><span class="glossary"><a href="#ha-glossary"><span class="title-name">HA glossary</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

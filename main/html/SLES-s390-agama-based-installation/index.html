@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>IBM Z: Installing SUSE Linux Enterprise Server Manually Using Agama | SUSE Linux Enterprise Server 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2025-11-04"/>
+<meta name="dcterms.modified" content="2026-08-05"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-26"/>
+<meta name="title" content="IBM Z: Installing SUSE Linux Enterprise Server Manuall…"/>
+<meta name="description" content="How to install SUSE Linux Enterprise Server manually on IBM Z using Agama"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="IBM Z: Installing SUSE Linux Enterprise Server Manually Using Agama"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="cwickert@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="christoph.wickert@suse.com"/><meta property="og:title" content="Installing SUSE Linux Enterprise Server Manually Using…"/>
+<meta property="og:description" content="Install SUSE Linux Enterprise Server manually using Agama"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Installing SUSE Linux Enterprise Server Manually Using…"/>
+<meta name="twitter:description" content="Install SUSE Linux Enterprise Server manually using Agama"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Installing SUSE Linux Enterprise Server Manually Using Agama | SUSE Linux Enterprise Server 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Installing SUSE Linux Enterprise Server Manually Using Agama",
+    "description": "How to install SUSE Linux Enterprise Server manually on IBM Z using Agama",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2025-11-04T00:00+02:00",
+    "dateModified": "2026-08-05T00:00+02:00",
+    "datePublished": "2026-08-26T09:49+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Installation"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "ppc64le, AMD64/Intel 64, IBM Z"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">IBM Z: Installing SUSE Linux Enterprise Server Manually Using Agama</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title"><span class="phrase">IBM Z</span>: Installing <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> Manually Using Agama</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="agama-based-installation" data-id-title="IBM Z: Installing SUSE Linux Enterprise Server Manually Using Agama"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span></span> 16.1</div><div><h1 class="title"><span class="phrase">IBM Z</span>: Installing <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> Manually Using Agama</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>26 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+                This article describes how to install <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> using Agama. The information
+                presented here applies to installation of the products on both bare metal and
+                virtual machines.
+              </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
+                Read this article to understand the process of installing <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> using
+                Agama.
+              </p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                You may need 15 minutes to read this article.
+              </p></dd><dt id="id-1.1.12.1.4"><span class="term">GOAL</span></dt><dd><p>
+                Learn how to manually install <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> using Agama.
+              </p></dd><dt id="id-1.1.12.1.5"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                    A bare metal server or a virtual machine. For server installations without any
+                    desktop environment, SUSE recommends a minimum of 1 CPU, 2 GB
+                    memory and 32 GB storage (which includes storage for Btrfs snapshots in
+                    the root partition, swap space, and storage for software packages).
+                  </p></li><li class="listitem"><p>
+                    An active registration code for the product you want to install. You can
+                    generate a registration code for the product and activate its subscription for
+                    your organization at the SUSE Customer Center.
+                  </p><div id="id-1.1.12.1.5.2.1.2.2" data-id-title="Optional registration" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Optional registration</div><p>
+                      Certain images that are signed with the developer's key may allow you to skip
+                      registration before or while installation. Besides, certain images may
+                      contain all installable packages for your operating system that you can use
+                      as an offline package repository. In such cases, you may not need an active
+                      registration code before installation. However, if you use software packages
+                      from the official online repositories, SUSE recommends registering your
+                      product with the SUSE Customer Center.
+                    </p></div></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: IBM Z: Installing SUSE Linux Enterprise Server Manually Using Agama" hreflang="en" href="rh-sle-agama-installation-x86-64.html" target="_blank">Revision History: IBM Z: Installing SUSE Linux Enterprise Server Manually Using Agama</a></div></div></div></div><section xml:lang="en" class="sect1" id="agama-introduction" data-id-title="Introduction to Agama"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Introduction to Agama</span></span> <a title="Permalink" class="permalink" href="index.html#agama-introduction">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        This section provides a short overview of Agama, which is the default installer for
+        <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> 16.1 and later versions.
+      </p></div></div></div></div><section class="sect2" id="concept-example-what-is" data-id-title="What is Agama?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">What is Agama?</span></span> <a title="Permalink" class="permalink" href="index.html#concept-example-what-is">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Agama is a flexible and powerful open source installer developed by SUSE. You can use it
+      to perform manual or automated installation of supported <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> versions on a variety
+      of machine architectures. The Agama‐based installation method provides an intuitive
+      interface for <span><em class="emphasis">ready‐to‐use</em></span> images for different use cases and
+      workloads. In combination with Cockpit and Ansible, it substitutes YaST in
+      <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span>.
+    </p></section></section><section xml:lang="en" class="sect1" id="agama-manual-installation" data-id-title="Installing SUSE Linux Enterprise Server using Agama"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Installing <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> using Agama</span></span> <a title="Permalink" class="permalink" href="index.html#agama-manual-installation">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        This section describes how to install <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> using the Agama‐based ISO image
+        file.
+      </p></div></div></div></div><section class="sect2" id="agama-manual-installation-introduction" data-id-title="Introduction"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">Introduction</span></span> <a title="Permalink" class="permalink" href="index.html#agama-manual-installation-introduction">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The following sections describe the Agama‐based manual installation procedure for
+      <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span>. The information applies to installation on both bare metal and virtual
+      machines.
+    </p></section><section class="sect2" id="agama-manual-installation-requirements" data-id-title="Requirements"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.2 </span><span class="title-name">Requirements</span></span> <a title="Permalink" class="permalink" href="index.html#agama-manual-installation-requirements">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          An Agama‐based ISO image file for supported versions of <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span>. You can
+          download it from the SUSE Customer Center and verify its checksum to ensure its integrity.
+        </p><div id="id-1.3.3.2.1.2" data-id-title="Available images for products" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Available images for products</div><p>
+            The Agama‐based installation image is available for <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span>
+            16.1 and later versions.
+          </p></div></li></ul></div></section><section class="sect2" id="agama-manual-installation-procedure" data-id-title="Manually installing SUSE Linux Enterprise Server for s390x using Agama"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.3 </span><span class="title-name">Manually installing <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> for <span class="phrase">s390x</span> using Agama</span></span> <a title="Permalink" class="permalink" href="index.html#agama-manual-installation-procedure">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      To manually install <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> using Agama, perform the following steps:
+    </p><div class="procedure" id="id-1.3.4.3" data-id-title="Manual installation of SUSE Linux Enterprise using Agama"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 1: </span><span class="title-name">Manual installation of SUSE Linux Enterprise using Agama </span></span><a title="Permalink" class="permalink" href="index.html#id-1.3.4.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step" id="st-z-agama-iso"><p>
+          Download <code class="filename">SLES-Online-16.1-<span class="phrase">s390x</span>-*-OpenBeta.install.iso.install.iso</code> and mount it:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">mkdir</code> -p <code class="filename">/srv/ftp/agama</code>
+<code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">mount</code> -o loop <code class="filename">SLES-Online-16.1-<span class="phrase">s390x</span>-*-OpenBeta.install.iso.install.iso</code> <code class="filename">/srv/ftp/agama</code></pre></div></li><li class="step" id="st-z-install-iso"><p><span class="step-optional">(Optional)</span> 
+          For installation in an air-gapped environment or without registration,
+          download <code class="filename">SLES-16.1-Full-<span class="phrase">s390x</span>-*-OpenBeta.install.iso.install.iso</code> and mount it.
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">mkdir</code> -p <code class="filename">/srv/ftp/agama-offline</code>
+<code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">mount</code> -o loop <code class="filename">SLES-16.1-Full-<span class="phrase">s390x</span>-*-OpenBeta.install.iso.install.iso</code> <code class="filename">/srv/ftp/agama-offline</code></pre></div></li><li class="step"><p>
+          Use the following parmfile to start the installation:
+        </p><div class="example" id="id-1.3.4.3.4.2" data-id-title="Example parmfile"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 1: </span><span class="title-name">Example parmfile </span></span><a title="Permalink" class="permalink" href="index.html#id-1.3.4.3.4.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">cio_ignore=all,!condev,<em class="replaceable">!0.0.0160</em><span class="callout" id="co-parmfile-cio-ignore">1</span>
+rd.zdev=<em class="replaceable">dasd,0.0.0160</em><span class="callout" id="co-parmfile-activate-dasd">2</span>
+rd.zdev=<em class="replaceable">qeth,0.0.0800:0.0.0801:0.0.0802,layer2=1,portno=0</em><span class="callout" id="co-parmfile-activate-qeth">3</span>
+ip=<em class="replaceable">192.168.3.100</em><span class="callout" id="co-parmfile-ip">4</span>::192.168.3.254:24<span class="callout" id="co-parmfile-gw">5</span>::enc800:none
+ip=192.168.3.100::192.168.3.254:24:SLE16-Beta2:enc800:none
+hostname=<em class="replaceable">jupiter</em><span class="callout" id="co-parmfile-hostname">6</span> nameserver=<em class="replaceable">192.168.1.116</em><span class="callout" id="co-parmfile-dns">7</span>
+root=live:<em class="replaceable">ftp://192.168.3.105</em>/agama/LiveOS/squashfs.img<span class="callout" id="co-parmfile-agama-source">8</span>
+live.password=<em class="replaceable">linux</em><span class="callout" id="co-parmfile-pw">9</span></pre></div></div></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-parmfile-cio-ignore"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Only expose the devices that the machine should be aware of
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-parmfile-activate-dasd"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Activation of a DASD device
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-parmfile-activate-qeth"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Activation of a qeth device
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-parmfile-ip"><span class="callout">4</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              IP configuration. The different parameters are separated by colons
+              (<code class="literal">:</code>). You can omit unneeded parameters by leaving them out, meaning
+              you get two or more subsequent colons. For a complete configuration reference, refer
+              to <code class="command">man 7 dracut.cmdline</code>.
+            </p><p>
+              If no IP configuration is specified, it will be assigned with DHCP and the IP address
+              will displayed on the console after boot.
+            </p><div id="id-1.3.4.3.4.3.4.3" data-id-title="Multiple network interfaces" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Multiple network interfaces</div><p>
+                If your system has more than one network interface, IP configurations may be swapped
+                after the installation, leaving the system unreachable.
+              </p><p>
+                To prevent this from happening, either bind each IP configuration to a particular
+                interface by interface name or MAC address. If you use a MAC address, make sure to
+                format it as <code class="literal">00-11-22-33-44-55</code> instead of
+                <code class="literal">00:11:22:33:44:55</code>
+              </p></div><div id="id-1.3.4.3.4.3.4.4" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
+                As the console is hard to read on <code class="command">x3270</code>, configuring the network
+                in the parmfile is recommended.
+              </p></div></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-parmfile-gw"><span class="callout">5</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              IP address of the gateway for the system
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-parmfile-hostname"><span class="callout">6</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Host name of the system. You can also set the host name in the
+              <code class="literal">ip</code> parameter, however it is transient whereas
+              <code class="literal">hostname</code> gets written to <code class="filename">/etc/hostname</code>.
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-parmfile-dns"><span class="callout">7</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              IP address of the DNS server for the system
+            </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-parmfile-agama-source"><span class="callout">8</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              URI of the installer ISO mounted in <a class="xref" href="index.html#st-z-agama-iso" title="Step 1">Step 1</a>. For
+              installation in an LPAR, use the ISO file directly as in:
+            </p><div class="verbatim-wrap"><pre class="screen">root=live:<em class="replaceable">ftp://192.168.3.105/agama/SLES-Online-16.1-<span class="phrase">s390x</span>-*-OpenBeta.install.iso.install.iso</em></pre></div></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-parmfile-pw"><span class="callout">9</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+              Password for the system administrator <code class="systemitem">root</code>. If you do not set a password, a
+              random password will be generated and displayed on the console after boot. As the
+              console is hard to read on <code class="command">x3270</code>, setting a <code class="systemitem">root</code> password in
+              the parmfile is recommended.
+            </p></td></tr></table></div><p>
+          Adjust your parmfile accordingly:
+        </p><ul class="stepalternatives">
+          <li class="step"><p>
+              For installation in an air-gapped environment or without registration, add the
+              <code class="option">inst.install_url</code> to the parmfile to install from SLES-16.1-Full-<span class="phrase">s390x</span>-*-OpenBeta.install.iso.install.iso
+              mounted in <a class="xref" href="index.html#st-z-install-iso" title="Step 2">Step 2</a>:
+            </p><div class="verbatim-wrap"><pre class="screen">inst.install_url=ftp://<em class="replaceable">192.168.3.105</em>/agama-offline/install</pre></div></li>
+          <li class="step"><p>
+              If you are using a VLAN, add the <code class="option">vlan</code> parameter. Make sure to
+              specify the virtual device instead of the underlying physical device.
+            </p><div class="verbatim-wrap"><pre class="screen">ip=<em class="replaceable">192.168.3.100</em>::192.168.3.254:24::<em class="replaceable">enc800.2174</em>:none
+hostname=<em class="replaceable">jupiter</em> nameserver=<em class="replaceable">192.168.1.116</em> vlan=<em class="replaceable">enc800.2174:enc800</em></pre></div></li>
+        </ul><div id="id-1.3.4.3.4.6" data-id-title="ifcfg vs ip syntax" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: <code class="literal">ifcfg</code> vs <code class="literal">ip</code> syntax</div><p>
+            Earlier versions of SUSE Linux Enterprise used <code class="command">linuxrc</code> using the interface
+            configuration (<code class="literal">ifcfg</code>) files, whereas SUSE Linux Enterprise 16 uses
+            <code class="command">dracut</code> with <code class="literal">ip</code> syntax for NetworkManager. While Agama
+            supports translating some options, it is recommended to use the new and more powerful
+            syntax.
+          </p><div class="table" id="id-1.3.4.3.4.6.3" data-id-title="ifcfg vs ip"><div class="title-container"><div class="table-title-wrap"><div class="table-title"><span class="title-number-name"><span class="title-number">Table 1: </span><span class="title-name"><code class="literal">ifcfg</code> vs <code class="literal">ip</code> </span></span><a title="Permalink" class="permalink" href="index.html#id-1.3.4.3.4.6.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="table-contents"><table style="border-collapse: collapse; border-top: 1px solid ; border-bottom: 1px solid ; border-left: 1px solid ; border-right: 1px solid ; "><colgroup><col/><col/></colgroup><thead><tr><th style="border-right: 1px solid ; border-bottom: 1px solid ; ">
+                    <p>
+                      <code class="literal">ifcfg</code>
+                    </p>
+                  </th><th style="border-bottom: 1px solid ; ">
+                    <p>
+                      <code class="literal">dracut</code>
+                    </p>
+                  </th></tr></thead><tbody><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">
+                    <p>
+                      ifcfg=*=dhcp
+                    </p>
+                    </td><td style="border-bottom: 1px solid ; ">
+                    <p>
+                      ip=dhcp
+                    </p>
+                  </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">
+                    <p>
+                      ifcfg=eth0=dhcp
+                    </p>
+                  </td><td style="border-bottom: 1px solid ; ">
+                    <p>
+                      ip=eth0:dhcp
+                    </p>
+                  </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">
+                    <p>
+                      ifcfg=eth0.10=192.168.0.100/24,192.168.0.1
+                    </p>
+                  </td><td style="border-bottom: 1px solid ; ">
+                    <p>
+                      vlan=eth0.10:eth0 ip=192.168.0.100::192.168.0.1:24::eth0.10
+                    </p>
+                  </td></tr><tr><td style="border-right: 1px solid ; ">
+                    <p>
+                      ifcfg="eth0=192.168.0.33/24 10.0.0.100/24,192.168.0.1,192.168.0.1 10.0.0.1,example.com"
+                    </p>
+                  </td><td>
+                     <p>
+                      ip=192.168.0.33::192.168.0.1:24::eth0 nameserver=192.168.0.1 nameserver=10.0.0.1 ip=10.0.0.100:::24::eth0
+                    </p>
+                  </td></tr></tbody></table></div></div><p>
+            For a complete list of <code class="command">dracut</code> options, refer to <code class="command">man 7 dracut.cmdline</code>.
+          </p></div><div id="id-1.3.4.3.4.7" data-id-title="DASD alias devices" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: DASD alias devices</div><p>
+            DASD alias devices are special in that they appear not operational until at least one
+            associated DASD base device has been enabled. As a result, the Agama installer cannot
+            determine their actual type (ECKD or FBA DASD).
+          </p><p>
+            As a workaround, specify <code class="literal">dasd-eckd</code> as device type. This should
+            provide <code class="command">chzdev</code> with enough information to create
+            <code class="command">udev</code> rules for enabling these devices even in the absence of a
+            working device. When the the base device is enabled later and the alias devices become
+            operational, they will be automatically set online.
+          </p></div></li><li class="step"><p>
+          Open a web browser pointing to the given IP address from the parmfile. Enter the
+          <code class="systemitem">root</code> password and proceed with the installation.
+        </p></li><li class="step"><p>
+          Select <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> 16.1 for installation and accept the license to continue.
+        </p><div class="informalfigure"><div class="mediaobject"><a href="images/agama-installation-sles-select-product.png"><img src="images/agama-installation-sles-select-product.png" width="100%" alt="Select a product" title="Select a product"/></a></div></div></li><li class="step"><p>
+          The overview with the most relevant installation settings is shown. Adjust the settings
+          by selecting the category from the menu on the left or directly proceed with the installation.
+        </p><div class="informalfigure"><div class="mediaobject"><a href="images/agama-installation-sles-overview.png"><img src="images/agama-installation-sles-overview.png" width="100%" alt="Installation settings overview" title="Installation settings overview"/></a></div></div><div id="id-1.3.4.3.7.3" data-id-title="Installer language and keyboard" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Installer language and keyboard</div><p>
+            Click the arrow menu in the top right corner and select
+            <span class="guimenu">Installer options</span> to change the language and keyboard layout used
+            by the installer. The language can only be changed on local installations. If you are
+            using a web browser for a remote installation, configure the preferred content language
+            in the browser settings and reload the installer.
+          </p></div></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+          Set a hostname for your system. If you do not set a hostname but have it assigned with
+          DHCP, the transient hostname <code class="literal">agama</code> will be used for the installation.
+        </p><div class="informalfigure"><div class="mediaobject"><a href="images/agama-installation-hostname.png"><img src="images/agama-installation-hostname.png" width="100%" alt="Registration" title="Registration"/></a></div></div><div id="id-1.3.4.3.8.3" data-id-title="Hostname for registration" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Hostname for registration</div><p>
+            The hostname is used for the registration with the SUSE Customer Center. If you do not set a hostname,
+            your system will be registered with the transient hostname <code class="literal">agama</code>.
+            Even if the system is assigned a new hostname later, it will not automatically get
+            updated in the SUSE Customer Center. Therefore setting hostname is recommended.
+          </p><p>
+            To update the hostname in the SUSE Customer Center after the registration, first change the system's
+            hostname, then deregister it with SUSEConnect and register it again under the new
+            hostname.
+          </p></div></li><li class="step"><p>
+          Register your product. Enter a registration code and optionally a valid email address.
+        </p><div class="informalfigure"><div class="mediaobject"><a href="images/agama-installation-sles-registration.png"><img src="images/agama-installation-sles-registration.png" width="100%" alt="Registration" title="Registration"/></a></div></div><div id="id-1.3.4.3.9.3" data-id-title="Optional registration for images signed with the developers key" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Optional registration for images signed with the developer's key</div><p>
+            Images signed with the developer's key may allow you to skip
+            registration before installation. If your product's image supports installation without
+            registration, you may see a pop-up similar to the following:
+          </p><div class="informalfigure"><div class="mediaobject"><a href="images/agama-installation-sles-sap-no-reg-dev-key-sign.png"><img src="images/agama-installation-sles-sap-no-reg-dev-key-sign.png" width="100%" alt="Using images signed by developer's key" title="Using images signed by developer's key"/></a></div></div><p>
+            To install without registration, select <span class="guimenu">Trust</span> on the pop-up.
+          </p></div></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+          Adjust your localization settings such as language, keyboard layout and time zone.
+        </p><div class="informalfigure"><div class="mediaobject"><a href="images/agama-installation-sles-localization.png"><img src="images/agama-installation-sles-localization.png" width="100%" alt="Localization" title="Localization"/></a></div></div></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+          Configure your network settings. To edit an existing network connection, click the three dots.
+        </p><div class="informalfigure"><div class="mediaobject"><a href="images/agama-installation-sles-network.png"><img src="images/agama-installation-sles-network.png" width="100%" alt="Network" title="Network"/></a></div></div></li><li class="step"><p>
+          Select a storage device for installation.
+        </p><div class="informalfigure"><div class="mediaobject"><a href="images/agama-installation-sles-storage-s390x.png"><img src="images/agama-installation-sles-storage-s390x.png" width="100%" alt="Storage" title="Storage"/></a></div></div><p>
+          Currently installations on single discs or LVM are supported. To change the disk
+          or use LVM, click the device name <span class="guimenu"><span class="phrase">More devices</span></span> button in the
+            <span class="guimenu">Installation devices</span> section.
+        </p><p>
+          To use DASD, iSCSI or zFCP devices, you need configure them first. Click
+          <span class="guimenu">Other options</span> and select the desired technology. The DASD
+          and zFCP options are only available if the corresponding devices are attached.
+        </p><p>
+          To activate a DASD disk, select it from the list and click
+          <span class="guimenu">Perform am action</span> › <span class="guimenu">Activate</span>.
+          Once the disk is activated, you can select it for installation in the previous screen.
+        </p><p>
+          To activate a zFCP disk, select it from the list and activate it by clicking on the
+          three-dot menu.
+          
+          If the activation status is not displayed correctly, press <span class="keycap">F5</span> to refresh
+          the installer interface.
+        </p><p>
+          To detect an iSCSI disk, select the iSCSI initiator and click
+          <span class="guimenu">Discover iSCSI tagets</span>.
+        </p><p>
+          By default, the file systems will be allocated as new partitions on the selected device.
+          You can change this behavior in the drop-down list labeled <span class="guimenu">All content will be
+          deleted</span> drop-down list in the <span class="guimenu">Installatin devices</span> section.
+          The following space policies are available:
+        </p><div class="variablelist"><div class="title-container"><div class="variablelist-title-wrap"><div class="variablelist-title"><span class="title-number-name"><span class="title-name">Space policies </span></span><a title="Permalink" class="permalink" href="index.html#id-1.3.4.3.12.9">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><dl class="variablelist"><dt id="id-1.3.4.3.12.9.2"><span class="term">Delete current content</span></dt><dd><p>
+                All partitions will be removed and any data on the disks will be lost.
+              </p></dd><dt id="id-1.3.4.3.12.9.3"><span class="term">Shrink existing partitions</span></dt><dd><p>
+                The data is kept, but current partitions will be shrinked as needed.
+              </p></dd><dt id="id-1.3.4.3.12.9.4"><span class="term">Use available space</span></dt><dd><p>
+                The data is kept. Only the space not assigned to any partition will be used.
+              </p></dd><dt id="id-1.3.4.3.12.9.5"><span class="term">Custom</span></dt><dd><p>
+                Select what to do with each partition.
+              </p></dd></dl></div><p>
+          To edit individual partitions, expand the
+          <span class="guimenu">Partitions and file systems</span> section by clicking on the <span class="guimenu">&gt;</span>
+          Optionally, you can configure Btrfs snapshots, boot options and enable full disk encryption (FDE).
+        </p></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+          Add additional software to install such as the KVM hypervisor or Cockpit system management service.
+        </p><div class="informalfigure"><div class="mediaobject"><a href="images/agama-installation-sles-software.png"><img src="images/agama-installation-sles-software.png" width="100%" alt="Software" title="Software"/></a></div></div><div id="id-1.3.4.3.13.3" data-id-title="Trust the GPG key for the Package Hub repository" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Trust the GPG key for the Package Hub repository</div><p>
+          If you select the Package Hub add-on and see a popup, trust the GPG key for that repository.
+         </p></div></li><li class="step"><p>
+          Configure the authentication settings.
+        </p><div id="id-1.3.4.3.14.2" data-id-title="No SSH root access" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: No SSH <code class="systemitem">root</code> access</div><p>
+            SSH access for <code class="systemitem">root</code> is disabled by default. Therefor it is strongly recommended
+            to create a system user. The first system user is granted <code class="command">sudo</code> privileges
+            automatically and can also be used for accessing Cockpit.
+          </p></div><ol type="a" class="substeps"><li class="step"><p>
+              Create a non-root user. Click <span class="guimenu">Define a user now</span>
+              and enter details such as user name and password.
+            </p><div class="informalfigure"><div class="mediaobject"><a href="images/agama-installation-sles-users.png"><img src="images/agama-installation-sles-users.png" width="100%" alt="Users" title="Users"/></a></div></div></li><li class="step"><p>
+              Configure the authentication methods for the <code class="systemitem">root</code>. You can use a secure
+              password, a SSH public key, or both.
+            </p><div class="informalfigure"><div class="mediaobject"><a href="images/agama-installation-sles-set-root-password.png"><img src="images/agama-installation-sles-set-root-password.png" width="100%" alt="Configure root authentication methods" title="Configure root authentication methods"/></a></div></div></li></ol></li><li class="step"><p>
+          Click <span class="guimenu">Install</span> and confirm to start the installation.
+        </p><div class="informalfigure"><div class="mediaobject"><a href="images/agama-installation-sles-confirm-installation.png"><img src="images/agama-installation-sles-confirm-installation.png" width="100%" alt="Confirm installation" title="Confirm installation"/></a></div></div></li><li class="step"><p>
+          Wait for the system installation to complete. The time of the installation depends on the
+          system's performance, the installation size and your network connection speed.
+        </p><div class="informalfigure"><div class="mediaobject"><a href="images/agama-installation-sles-system-installation.png"><img src="images/agama-installation-sles-system-installation.png" width="100%" alt="System installation" title="System installation"/></a></div></div><div id="id-1.3.4.3.16.3" data-id-title="Installation logs" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Installation logs</div><p>
+          You can use the arrow menu in the top right corner of the window to view the logs and
+          system messages.
+          </p></div></li><li class="step"><p>
+          Once the installation is complete, select <span class="guimenu">Reboot</span>.
+        </p><div class="informalfigure"><div class="mediaobject"><a href="images/agama-installation-sles-complete-installation.png"><img src="images/agama-installation-sles-complete-installation.png" width="100%" alt="Complete installation" title="Complete installation"/></a></div></div></li></ol></div></div></section><section class="sect2" id="sle-agama-manual-installation-x86-64-summary" data-id-title="Summary"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.4 </span><span class="title-name">Summary</span></span> <a title="Permalink" class="permalink" href="index.html#sle-agama-manual-installation-x86-64-summary">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      After successful configuration checks, product registration, installation and reboot, verify
+      that you can log in and use your system.
+    </p><div class="procedure" id="id-1.3.5.3" data-id-title="Verifying the system after installation"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 2: </span><span class="title-name">Verifying the system after installation </span></span><a title="Permalink" class="permalink" href="index.html#id-1.3.5.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Log in to the system as root.
+        </p><div class="informalfigure"><div class="mediaobject"><a href="images/agama-installation-sles-x86-64-root-login.png"><img src="images/agama-installation-sles-x86-64-root-login.png" width="100%" alt="Server login as root" title="Server login as root"/></a></div></div></li><li class="step"><p>
+          To verify that your system is working as expected, run a few basic commands.
+        </p><div class="informalfigure"><div class="mediaobject"><a href="images/agama-installation-sles-x86-64-run-commands.png"><img src="images/agama-installation-sles-x86-64-run-commands.png" width="100%" alt="Run basic commands" title="Run basic commands"/></a></div></div></li></ol></div></div></section></section><section xml:lang="en" class="sect1" id="agama-installation-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="index.html#agama-installation-more-info">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    For information on related topics, refer to the following resources:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        Documentation of the Agama open-source project:
+        <a class="link" href="https://agama-project.github.io/docs/user" target="_blank">https://agama-project.github.io/docs/user</a>
+      </p></li><li class="listitem"><p>
+        IBM documentation for SUSE distributions
+        https://www.ibm.com/docs/en/linux-on-systems?topic=distributions-suse-linux-enterprise-server
+      </p></li></ul></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#agama-introduction"><span class="title-number">1 </span><span class="title-name">Introduction to Agama</span></a></span></li><li><span class="section"><a href="index.html#agama-manual-installation"><span class="title-number">2 </span><span class="title-name">Installing <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> using Agama</span></a></span></li><li><span class="section"><a href="index.html#agama-installation-more-info"><span class="title-number">3 </span><span class="title-name">For more information</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">4 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

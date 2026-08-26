@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>I/O Virtualization for Virtual Machines | SUSE Linux Enterprise Server 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2025-11-27"/>
+<meta name="dcterms.modified" content="2025-11-27"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-26"/>
+<meta name="title" content="I/O Virtualization for Virtual Machines | SUSE Linux E…"/>
+<meta name="description" content="I/O virtualization enables virtual machine guests to efficiently access physical hardware using paravirtualization, VFIO and SR-IOV techniques"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="I/O Virtualization for Virtual Machines"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="souvik.sarkar@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="souvik.sarkar@suse.com"/><meta property="og:title" content="I/O Virtualization Concepts: VFIO, SR-IOV and PV"/>
+<meta property="og:description" content="Learn about the basic concepts of virtualization IO."/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="I/O Virtualization Concepts: VFIO, SR-IOV and PV"/>
+<meta name="twitter:description" content="Learn about the basic concepts of virtualization IO."/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "I/O Virtualization Concepts: VFIO, SR-IOV and PV | SUSE Linux Enterprise Server 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "I/O Virtualization Concepts: VFIO, SR-IOV and PV",
+    "description": "I/O virtualization enables virtual machine guests to efficiently access physical hardware using paravirtualization, VFIO and SR-IOV techniques",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2025-11-27T00:00+02:00",
+    "dateModified": "2025-11-27T00:00+02:00",
+    "datePublished": "2026-08-26T09:48+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Virtualization"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">I/O Virtualization for Virtual Machines</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">I/O Virtualization for Virtual Machines</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="virtualization" data-id-title="I/O Virtualization for Virtual Machines"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span></span> 16.1</div><div><h1 class="title">I/O Virtualization for Virtual Machines</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>26 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+	      I/O virtualization is a hypervisor-based mechanism that allows a VM Guest to interact
+	      with physical hardware devices such as network interfaces and storage controllers,
+	      balancing resource efficiency with performance across emulation, direct assignment
+	      and hardware-assisted methods.
+              </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
+           Use I/O virtualization to reduce latency and CPU overhead for
+           performance-sensitive workloads by avoiding full device emulation.
+              </p></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: I/O Virtualization for Virtual Machines" hreflang="en" href="rh-virtualization.html" target="_blank">Revision History: I/O Virtualization for Virtual Machines</a></div></div></div></div><section xml:lang="en" class="sect1" id="virtualization-io" data-id-title="I/O virtualization"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">I/O virtualization</span></span> <a title="Permalink" class="permalink" href="index.html#virtualization-io">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+  VM Guests not only share CPU and memory resources of the host system, but
+  also the I/O subsystem. Because software I/O virtualization techniques
+  deliver less performance than bare metal, hardware solutions that deliver
+  almost <span class="quote">“<span class="quote">native</span>”</span> performance have been developed recently.
+  <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> supports the following I/O virtualization techniques:
+ </p><div class="variablelist"><dl class="variablelist"><dt id="vt-io-fullv"><span class="term">Full virtualization</span></dt><dd><p>
+     Fully Virtualized (FV) drivers emulate widely supported real devices,
+     which can be used with an existing driver in the VM Guest. The guest is
+     also called <span><em class="emphasis">Hardware Virtual Machine</em></span> (HVM).
+     Since the physical device on the VM Host Server may differ from the emulated
+     one, the hypervisor needs to process all I/O operations before handing
+     them over to the physical device. Therefore all I/O operations need to
+     traverse two software layers, a process that not only significantly
+     impacts I/O performance, but also consumes CPU time.
+    </p></dd><dt id="vt-io-parav"><span class="term">Paravirtualization</span></dt><dd><p>
+     Paravirtualization (PV) allows direct communication between the hypervisor
+     and the VM Guest. With less overhead involved, performance is much better
+     than with full virtualization. However, paravirtualization requires either
+     the guest operating system to be modified to support the
+	    paravirtualization API, or availability of paravirtualized drivers. <span class="phrase"> For a list of guest operating systems supporting paravirtualization, refer to
+     the section <span><em class="emphasis">Availability of paravirtualized drivers</em></span> in the article <a class="link" href="https://documentation.suse.com/sles/16.0/html/SLES-virtualization-support/" target="_blank">Virtualization
+	    Limits and Support</a>.</span>
+    </p></dd><dt id="vt-io-pvhvm"><span class="term">PVHVM</span></dt><dd><p>
+     This type of virtualization enhances HVM (see
+     <a class="xref" href="index.html#vt-io-fullv">Full virtualization</a>) with paravirtualized (PV) drivers, and PV
+     interrupt and timer handling.
+    </p></dd><dt id="vt-io-vfio"><span class="term">VFIO</span></dt><dd><p>
+     VFIO stands for <span><em class="emphasis">Virtual Function I/O</em></span> and is a new
+     user-level driver framework for Linux. It replaces the traditional KVM
+     PCI pass-through device assignment. The VFIO driver exposes direct device access
+     to user space in a secure memory Input/Output Memory Management Unit (IOMMU)
+     protected environment.
+     With VFIO, a VM Guest can directly access hardware devices on the
+     VM Host Server (pass-through), avoiding performance issues caused by emulation
+     in performance critical paths. This method does not allow to share
+     devices—each device can only be assigned to a single VM Guest. VFIO
+     needs to be supported by the VM Host Server CPU, chipset and the BIOS/EFI.
+    </p><p>
+     Compared to the legacy KVM PCI device assignment, VFIO has the following
+     advantages:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+       Resource access is compatible with UEFI Secure Boot.
+      </p></li><li class="listitem"><p>
+       Device is isolated and its memory access protected.
+      </p></li><li class="listitem"><p>
+       Offers a user space device driver with more flexible device ownership
+       model.
+      </p></li><li class="listitem"><p>
+       Is independent of KVM technology, and not bound to x86 architecture
+       only.
+      </p></li></ul></div><p>
+     In <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> the USB and PCI pass-through methods of device assignment
+     are considered deprecated and are superseded by the VFIO model.
+   </p></dd><dt id="vt-io-sriov"><span class="term">SR-IOV</span></dt><dd><p>
+     The latest I/O virtualization technique, Single Root I/O Virtualization
+     SR-IOV combines the benefits of the aforementioned
+     techniques—performance and the ability to share a device with
+     several VM Guests. SR-IOV requires special I/O devices, that are capable
+     of replicating resources so they appear as multiple separate devices. Each
+     such <span class="quote">“<span class="quote">pseudo</span>”</span> device can be directly used by a single guest.
+     However, for network cards for example the number of concurrent queues
+     that can be used is limited, potentially reducing performance for the
+     VM Guest compared to paravirtualized drivers. On the VM Host Server, SR-IOV
+     must be supported by the I/O device, the CPU and chipset, the BIOS/EFI and
+     the hypervisor—.
+    </p></dd></dl></div><div id="ann-vt-io-require" data-id-title="Requirements for VFIO and SR-IOV" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Requirements for VFIO and SR-IOV</div><p>
+   To be able to use the VFIO and SR-IOV features, the VM Host Server needs to
+   fulfill the following requirements:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     IOMMU needs to be enabled in the BIOS/EFI.
+    </p></li><li class="listitem"><p>
+     For Intel CPUs, the kernel parameter <code class="literal">intel_iommu=on</code>
+     needs to be provided on the kernel command line. For more information, see
+     <a class="link" href="https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/kernel-parameters.txt#L1951" target="_blank">https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/kernel-parameters.txt#L1951</a>.
+    </p></li><li class="listitem"><p>
+     The VFIO infrastructure needs to be available. This can be achieved by
+     loading the kernel module
+    <code class="systemitem">vfio_pci</code>.
+    </p></li></ul></div></div></section><section xml:lang="en" class="sect1" id="glue-alp-containers-podman-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="index.html#glue-alp-containers-podman-more-info">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    For further steps in virtualization, refer to the following sources:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/concept-manage-virtual-machines-libvirt/concept-manage-virtual-machines-libvirt.html" target="_blank">Managing
+        virtual machines with <code class="systemitem">libvirt</code></a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/task-configure-virtual-machine-manager/task-configure-virtual-machine-manager.html" target="_blank">Configuring
+        Virtual Machines with Virtual Machine Manager</a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/vm-assign-pci-device/vm-assign-pci-device.html" target="_blank">Assigning
+        Host Devices to Virtual Machines</a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/virtual-disk-cache-mode-configure/virtual-disk-cache-mode-configure.html" target="_blank">Configuring
+        a Virtual Disk Cache Mode</a>
+      </p></li><li class="listitem"><p>
+        Converting VMware Virtual Machines to KVM with virt-v2v
+      </p></li></ul></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#virtualization-io"><span class="title-number">1 </span><span class="title-name">I/O virtualization</span></a></span></li><li><span class="section"><a href="index.html#glue-alp-containers-podman-more-info"><span class="title-number">2 </span><span class="title-name">For more information</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">3 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Mastering System Logs: From systemd-journald to journalctl | SUSE Linux Enterprise Server for SAP applications 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2025-11-26"/>
+<meta name="dcterms.modified" content="2025-11-26"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-26"/>
+<meta name="title" content="Mastering System Logs: From systemd-journald to journa…"/>
+<meta name="description" content="Learn how to view and manage SLES for SAP logs using journalctl"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server for SAP applications"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="Mastering System Logs: From systemd-journald to journalctl"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="shalaka.harne@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="category" content="."/><meta name="dc.creator" content="shalaka.harne@suse.com"/><meta property="og:title" content="Mastering System Logs: From systemd-journald to journa…"/>
+<meta property="og:description" content="View and filter logs with journalctl"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Mastering System Logs: From systemd-journald to journa…"/>
+<meta name="twitter:description" content="View and filter logs with journalctl"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Mastering System Logs: From systemd-journald to journalctl | SUSE Linux Enterprise Server for SAP applications 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Mastering System Logs: From systemd-journald to journalctl",
+    "description": "Learn how to view and manage SLES for SAP logs using journalctl",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2025-11-26T00:00+02:00",
+    "dateModified": "2025-11-26T00:00+02:00",
+    "datePublished": "2026-08-26T09:47+02:00",
+
+    "articleSection": [ 
+        "Systems Management"
+        
+    ],
+        "about": [
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Storage"
+      },
+      {
+        "@type": "Thing",
+        "name": "Maintenance"
+      },
+      {
+        "@type": "Thing",
+        "name": "Administration"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server for SAP applications",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER, IBM Z, AArch64"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Mastering System Logs: From systemd-journald to journalctl</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Mastering System Logs: From <code class="command">systemd-journald</code> to <code class="command">journalctl</code></div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="sles-journald" data-id-title="Mastering System Logs: From systemd-journald to journalctl"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span></span> 16.1</div><div><h1 class="title">Mastering System Logs: From <code class="command">systemd-journald</code> to <code class="command">journalctl</code></h1></div><div class="date"><span class="imprint-label">Publication Date: </span>26 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.13.1.1"><span class="term">WHAT?</span></dt><dd><p>
+View and analyze logs from <code class="command">systemd-journald</code> using the <code class="command">journalctl</code> command-line tool.
+</p></dd><dt id="id-1.1.13.1.2"><span class="term">WHY?</span></dt><dd><p>
+This article provides a complete overview of tasks that can be performed using the <code class="command">journalctl</code> command-line tool.
+</p></dd><dt id="id-1.1.13.1.3"><span class="term">EFFORT</span></dt><dd><p>
+The average reading time of this article is approximately 30 minutes.
+</p></dd><dt id="id-1.1.13.1.4"><span class="term">GOAL</span></dt><dd><p>
+You will be able to view your system logs using <code class="command">journalctl</code>.
+</p></dd><dt id="id-1.1.13.1.5"><span class="term">REQUIREMENTS</span></dt><dd><p>
+You must have <code class="command">sudo</code> privileges.
+</p></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Mastering System Logs: From systemd-journald to journalctl" hreflang="en" href="rh-sles-journald.html" target="_blank">Revision History: Mastering System Logs: From systemd-journald to journalctl</a></div></div></div></div><section xml:lang="en" class="sect1" id="concept-about-journald" data-id-title="The systemd-journald service"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">The <code class="command">systemd-journald</code> service</span></span> <a title="Permalink" class="permalink" href="index.html#concept-about-journald">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        <code class="command">journald</code> is a <code class="systemitem">systemd</code> service responsible for collecting, indexing, and storing log data. The collected events include  kernel messages, initrd (initial RAM disk) messages,
+        service startup/shutdown, application events, and authentication and session data.
+      </p></div></div></div></div><p>
+    On <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span>, the <code class="literal">systemd-journald</code> service is enabled and started by
+    default. The service logs the data into the journal described in <a class="xref" href="index.html#journal-what-it-is" title="2. About the journal">Section 2, “About the journal”</a>.
+    </p><section xml:lang="en" class="sect2" id="journal-configure-journald" data-id-title="Configuring systemd-journald"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">Configuring <code class="command">systemd-journald</code></span></span> <a title="Permalink" class="permalink" href="index.html#journal-configure-journald">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        You can configure the basic behavior of <code class="command">systemd-journald</code> service by modifying <code class="filename">/etc/systemd/journald.conf</code>.</p></div></div></div></div><p>
+    To configure <code class="command">systemd-journald</code>, proceed as follows:
+  </p><div class="procedure" id="id-1.2.3.3" data-id-title="Configuring systemd-journald"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 1: </span><span class="title-name">Configuring <code class="command">systemd-journald</code> </span></span><a title="Permalink" class="permalink" href="index.html#id-1.2.3.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>Open the <code class="command">systemd-journald</code> configuration file:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  vi /etc/systemd/journald.conf</pre></div><div class="verbatim-wrap"><pre class="screen">[Journal]
+
+# Store journals on disk so logs survive reboot
+Storage=persistent
+
+# Disk space limits
+SystemMaxUse=2G
+SystemKeepFree=10%
+
+# Per-file max size
+SystemMaxFileSize=200M
+
+# RAM (runtime) journal limits
+RuntimeMaxUse=500M
+RuntimeKeepFree=10%
+
+# Log retention
+MaxRetentionSec=4weeks
+
+# Compression for old logs
+Compress=yes
+
+# Optional: also forward to rsyslog/syslog
+ForwardToSyslog=yes</pre></div></li><li class="step"><p>Modify the configurations:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        To modify the storage type, modify <code class="command">Storage=auto</code>.</p><p>The available options are: </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span class="guimenu">volatile</span>: RAM only (clears on reboot).</p></li><li class="listitem"><p><span class="guimenu">persistent</span>: stored in <code class="filename">/var/log/journal</code>.</p></li><li class="listitem"><p><span class="guimenu">auto</span>: persistent if directory exists, otherwise volatile.</p></li><li class="listitem"><p><span class="guimenu">none</span>: no logs written to disk or memory.</p></li></ul></div><p>If the journal log data is saved to a persistent location, it uses up to 10% of the file system the <code class="filename">/var/log/journal</code> resides on. For example, if <code class="filename">/var/log/journal</code> is located on a 30 GB /var partition, the journal may use up to 3 GB of the disk space. To change this limit, change (and uncomment) the <code class="command">SystemMaxUse</code> option:</p><div class="verbatim-wrap"><pre class="screen">SystemMaxUse=50M
+<code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl restart systemd-journald</pre></div></li><li class="listitem"><p>To limit the log rate to prevent flooding logs:</p><div class="verbatim-wrap"><pre class="screen">RateLimitIntervalSec=30s
+RateLimitBurst=1000</pre></div></li><li class="listitem"><p>
+        To send the journal to a terminal device to inform you about system messages on a preferred terminal screen, for example <code class="filename">/dev/tty12</code>:
+       </p><div class="verbatim-wrap"><pre class="screen">ForwardToConsole=yes
+TTYPath=/dev/tty12</pre></div></li><li class="listitem"><p>To forward logs to syslog, modify <code class="command">ForwardToSyslog=yes</code>. <code class="literal">journald</code> is backward compatible with traditional syslog implementations such as rsyslog.</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Install rsyslog:</p><div class="verbatim-wrap"><pre class="screen">rpm -q rsyslog</pre></div></li><li class="listitem"><p>Enable rsyslog:</p><div class="verbatim-wrap"><pre class="screen">systemctl is-enabled rsyslog</pre></div></li><li class="listitem"><p>Enable forwarding to rsyslog in <code class="filename">/etc/systemd/journald.conf</code>:</p><div class="verbatim-wrap"><pre class="screen">ForwardToSyslog=yes</pre></div></li></ul></div><p>For more information on file descriptions, see <code class="command">man 5 journald.conf</code>.</p></li></ul></div></li><li class="step"><p>Save and restart <code class="command">systemd-journald</code>.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl restart systemd-journald</pre></div></li></ol></div></div></section></section><section xml:lang="en" class="sect1" id="journal-what-it-is" data-id-title="About the journal"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">About the journal</span></span> <a title="Permalink" class="permalink" href="index.html#journal-what-it-is">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+      The journal is a centralized, unified storage system for log data from all sources. It stores events in a structured manner, which helps with error identification and crash recovery.
+      </p></div></div></div></div><section class="sect2" id="journal-what-it-is-location" data-id-title="Where can I find the journal?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">Where can I find the journal?</span></span> <a title="Permalink" class="permalink" href="index.html#journal-what-it-is-location">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      By default, <code class="literal">journald</code> stores the collected data in the volatile memory in
+      <code class="filename">/run/log/journal</code>, so after reboot the data is lost.
+    </p><p>
+      If <code class="literal">systemd-journald</code> is configured to store the logs in a persistent
+      manner, you can find the journal in <code class="filename">/var/log/journal</code>. See if the
+      directory is there:
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Check if the directory exist:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">ls /var/log</code>
+...        
+journal                             
+...</pre></div></li><li class="step"><p>If the <code class="filename">/var/log/journal</code> directory does not exist, create
+        it:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">mkdir /var/log/journal</code></pre></div></li><li class="step"><p>
+          Set the correct ownership and access permissions:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>   systemd-tmpfiles --create --prefix=/var/log/journal</pre></div></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+          To flush the data from RAM to the directory:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>   <code class="command">journalctl --flush</code></pre></div></li></ol></div></div><p>For details about
+      the service configuration, refer to <a class="xref" href="index.html#journal-configure-journald" title="1.1. Configuring systemd-journald">Section 1.1, “Configuring <code class="command">systemd-journald</code>”</a>.
+    </p></section><section class="sect2" id="journal-what-it-is-structure" data-id-title="The journal log structure"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.2 </span><span class="title-name">The journal log structure</span></span> <a title="Permalink" class="permalink" href="index.html#journal-what-it-is-structure">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The logs are stored in binary format across several files. To view the structure of a log
+      entry, proceed as follows:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  <code class="command">journalctl -n 1 -o verbose</code>
+    
+    Fri 2025-12-05 10:52:53.284321 CET [s=5b7ae2e926794210bf832d014f5f560a;i=d49752&gt;
+    _UID=1000
+    _AUDIT_SESSION=3
+    _AUDIT_LOGINUID=1000
+    _SYSTEMD_OWNER_UID=1000
+    _SYSTEMD_UNIT=user@1000.service
+    _SYSTEMD_SLICE=user-1000.slice
+    _MACHINE_ID=d3489468c8534c5d81a2860cf9a2a20e
+    _RUNTIME_SCOPE=system
+    _SELINUX_CONTEXT=unconfined
+    PRIORITY=6
+    _TRANSPORT=syslog
+    _BOOT_ID=d095069bd59b4bc4bf67c8c71999243b
+   SYSLOG_IDENTIFIER=sudo
+    SYSLOG_TIMESTAMP=Dec  5 10:52:53 
+    _PID=25806
+    _COMM=sudo
+    _EXE=/usr/bin/sudo
+    _CMDLINE=sudo journalctl -n 1 -o verbose
+
+    ...</pre></div><p>The log entry is a data structure containing the log message and metadata fields:</p><div class="variablelist"><dl class="variablelist"><dt id="id-1.3.3.5.1"><span class="term">Timestamp</span></dt><dd><p>
+The exact time the event occurred
+          </p></dd><dt id="id-1.3.3.5.2"><span class="term">Source fields</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">_PID</code>: process ID of the sender</p></li><li class="listitem"><p><code class="literal">_UID/_GID</code>: User/Group ID of the sender</p></li><li class="listitem"><p><code class="literal">_EXE</code>: path to the executable</p></li><li class="listitem"><p><code class="literal">_COMM</code>: name of the executable</p></li></ul></div></dd><dt id="id-1.3.3.5.3"><span class="term">System fields</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">_SYSTEMD_UNIT</code>: The systemd unit (service) that generated the
+  log (for example, <code class="literal">sshd.service</code>)</p></li><li class="listitem"><p><code class="literal">_BOOT_ID</code>: A unique identifier for the specific system boot session</p></li></ul></div></dd><dt id="id-1.3.3.5.4"><span class="term">Kernel fields</span></dt><dd><p><code class="literal">_TRANSPORT</code>: How the message was logged (e.g., kernel, syslog, stdout)</p></dd><dt id="id-1.3.3.5.5"><span class="term">Priority level</span></dt><dd><p>A numeric value indicating the severity of the message (0=emerg, 7=debug)</p></dd></dl></div></section></section><section xml:lang="en" class="sect1" id="journald-about-journactl" data-id-title="The journalctl command"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">The <code class="command">journalctl</code> command</span></span> <a title="Permalink" class="permalink" href="index.html#journald-about-journactl">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+<code class="command">journalctl</code> is a command-line utility used to query and display logs collected by
+the <code class="command">systemd-journald</code>.
+    </p></div></div></div></div><p>
+    Because the logging system stores data in a binary format (for performance and security) rather
+    than plain text, you cannot use standard tools like <code class="command">cat</code> or
+    <code class="command">less</code> to open the files directly. So, the <code class="command">journalctl</code>
+    command decodes the data and displays it according to the provided parameters.
+  </p><section xml:lang="en" class="sect2" id="journald-journalctl-usage" data-id-title="Using journalctl"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.1 </span><span class="title-name">Using <code class="command">journalctl</code></span></span> <a title="Permalink" class="permalink" href="index.html#journald-journalctl-usage">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+This section describes the generic usage of the <code class="command">journalctl</code> command.
+    </p></div></div></div></div><p>
+   Running <code class="command">journalctl</code> without any options displays all logged messages, usually starting from the oldest, and pipes the output through a pager (like <code class="command">less</code>) for easy navigation.
+  </p><p>
+   The general syntax of the <code class="command">journalctl</code> command is as follows:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">journalctl [OPTIONS...] [MATCHES...]</code></pre></div><div id="id-1.4.3.5" data-id-title="Messages related to a specific executable" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Messages related to a specific executable</div><p>
+    To show all journal messages related to a specific executable, specify the
+    full path to the executable:
+   </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl /usr/lib/systemd/systemd</pre></div></div><p>Listed below are the common  useful options to enhance the default <code class="command">journalctl</code> behavior:</p><div class="variablelist"><dl class="variablelist"><dt id="id-1.4.3.8.1"><span class="term">-f</span></dt><dd><p>
+      Shows only the most recent journal messages, and prints new log entries
+      as they are added to the journal.
+     </p></dd><dt id="id-1.4.3.8.2"><span class="term"/></dt><dd><p>
+      Prints the messages and jumps to the end of the journal, so that the
+      latest entries are visible within the pager.
+     </p></dd><dt id="id-1.4.3.8.3"><span class="term">-r</span></dt><dd><p>
+      Prints the messages of the journal in reverse order, so that the latest
+      entries are listed first.
+     </p></dd><dt id="id-1.4.3.8.4"><span class="term">-k</span></dt><dd><p>
+      Shows only kernel messages. This is equivalent to the field match
+      <code class="literal">_TRANSPORT=kernel</code>.
+     </p></dd><dt id="id-1.4.3.8.5"><span class="term">-u</span></dt><dd><p>
+      Shows only messages for the specified <code class="systemitem">systemd</code> unit. This is equivalent
+      to the field match
+      <code class="literal">_SYSTEMD_UNIT=<em class="replaceable">UNIT</em></code>.
+     </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl -u apache2</pre></div></dd></dl></div><p>
+    For a complete list of options refer to man page, man 1 <code class="command">journalctl</code>.
+  </p></section></section><section xml:lang="en" class="sect1" id="journal-filter-journals" data-id-title="Filtering the journal output"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Filtering the journal output</span></span> <a title="Permalink" class="permalink" href="index.html#journal-filter-journals">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+   This section describes how to refine searches in logs, for example, by boot number,
+   by a specific time interval, or to view specific data fields. By default, the journal lists 
+   the oldest entries first. The output can be filtered using specific switches and fields.
+  </p></div></div></div></div><p>
+    You can filter journals based on boot number, time interval, and fields. For details, refer to the following sections.
+  </p><section class="sect2" id="journal-filter-journals-boots" data-id-title="Filter logs based on a specific system boot"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.1 </span><span class="title-name">Filter logs based on a specific system boot</span></span> <a title="Permalink" class="permalink" href="index.html#journal-filter-journals-boots">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      To list logs for all the available boots, run the command as follows:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl --list-boots</pre></div><p>The first column lists the boot offset: <code class="literal">0</code> for the current boot, <code class="literal">-1</code> for the previous one,
+    <code class="literal">-2</code> for the one before that, etc. The second column contains the boot ID followed by the limiting time stamps of the specific
+    boot.</p><p>
+      To show all messages from the current boot:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl -b</pre></div><p>To view journal messages from the previous boot, add an offset
+    parameter. The following example command shows the previous boot messages:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl -b -1</pre></div><p>To view boot messages based on the boot ID, <code class="literal">156019a44a774a0bb0148a92df4af81b</code>:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl _BOOT_ID=156019a44a774a0bb0148a92df4af81b</pre></div></section><section class="sect2" id="journal-filter-journals-time" data-id-title="Filtering logs based on time interval"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.2 </span><span class="title-name">Filtering logs based on time interval</span></span> <a title="Permalink" class="permalink" href="index.html#journal-filter-journals-time">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>You can filter the output of <code class="command">journalctl</code> by specifying the starting and/or ending date. The date specification should be of the format <code class="literal">YYYY-MM-DD H:MM:SS</code>. If the time part is omitted, midnight is assumed. If seconds are omitted, <code class="literal">:00</code> is assumed. If the date part is omitted, the current day is assumed. Instead of a numeric expression, you can specify the keywords <code class="literal">yesterday</code>,
+    <code class="literal">today</code> or <code class="literal">tomorrow</code>. They refer to midnight of the day
+    before the current day, of the current day, or of the day after the current day. If you specify
+    <code class="literal">now</code>, it refers to the current time. You can also specify relative times
+    prefixed with <code class="literal">-</code> or <code class="literal">+</code>, referring to times before or after
+    the current time.</p><p>To view only new messages since now, and update the output continuously:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl --since "now" -f</pre></div><p>To view all messages since last midnight until <code class="literal">3:20am</code>:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl --since "today" --until "3:20"</pre></div></section><section class="sect2" id="journal-filter-journals-fields" data-id-title="Filtering logs based on fields"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.3 </span><span class="title-name">Filtering logs based on fields</span></span> <a title="Permalink" class="permalink" href="index.html#journal-filter-journals-fields">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>You can filter the output of the journal by specific fields. The syntax of a field to be matched is <code class="literal">FIELD_NAME=MATCHED_VALUE</code>, such
+    as <code class="literal">_SYSTEMD_UNIT=httpd.service</code>. You can specify multiple matches in a single query to filter the output messages even more. See
+    <code class="command">man 7 systemd.journal-fields</code> for a list of default fields.</p><p>To view messages produced by a specific process ID: <code class="literal">PID_1039</code>:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl _PID=1039</pre></div><p>To view messages belonging to a specific user ID: <code class="literal">UID_1000</code>:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  journalctl _UID=1000</pre></div><p>To view messages from the kernel ring buffer (the same as <code class="command">dmesg</code> displays):</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl _TRANSPORT=kernel</pre></div><p>To view messages from the service's standard or error output:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl _TRANSPORT=stdout</pre></div><p>To view messages produced by a specified service only:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl _SYSTEMD_UNIT=avahi-daemon.service</pre></div><p>If two different fields are specified, only entries that match both expressions at the same time are shown:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl _SYSTEMD_UNIT=avahi-daemon.service _PID=1488</pre></div><p>If two matches refer to the same field, all entries matching either expression are shown:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl _SYSTEMD_UNIT=avahi-daemon.service _SYSTEMD_UNIT=dbus.service</pre></div><p>You can use the <code class="literal">+</code> separator to combine two expressions in a logical <code class="literal">OR</code>. The following example shows all messages from the Avahi service process with the process ID 1480 together with all messages from the D-Bus service:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl _SYSTEMD_UNIT=avahi-daemon.service _PID=1480 + _SYSTEMD_UNIT=dbus.service</pre></div></section></section><section xml:lang="en" class="sect1" id="cockpit-troubleshooting-selinux" data-id-title="Troubleshooting systemd errors"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Troubleshooting <code class="systemitem">systemd</code> errors</span></span> <a title="Permalink" class="permalink" href="index.html#cockpit-troubleshooting-selinux">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+   This section introduces ways to interpret and fix the log messages retrieved through <code class="command">journalctl</code>.
+  </p></div></div></div></div><section class="sect2" id="id-1.6.2" data-id-title="View systemd errors"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.1 </span><span class="title-name">View <code class="systemitem">systemd</code> errors</span></span> <a title="Permalink" class="permalink" href="index.html#id-1.6.2">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>View the list of failed <code class="systemitem">systemd</code> units:</p><div class="verbatim-wrap"><pre class="screen">systemctl --failed</pre></div><p>The list of all failed services appears.</p></li><li class="step"><p>Identify the severity and content of the error.</p><div class="verbatim-wrap"><pre class="screen">journalctl -p 0..7 -b</pre></div><p>The list of errors with priority levels <code class="literal">0 to 7</code> appears. The errors are marked with priority level:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span class="guimenu">0-2</span>: <code class="command">emerg, alert, crit</code>: Critical issues, system collapse imminent.</p></li><li class="listitem"><p><span class="guimenu">3</span>: <code class="command">err (Error)</code>: A service or application failed to complete a requested operation.</p></li><li class="listitem"><p><span class="guimenu">4</span>: <code class="command">warning </code>: Something undesirable happened but is not an immediate failure.</p></li><li class="listitem"><p><span class="guimenu">5-7</span>: <code class="command">notice, info, debug</code>: Normal operational information and developer diagnostics.</p></li></ul></div></li><li class="step"><p>View the error log for the failing service using the following command:</p><div class="verbatim-wrap"><pre class="screen">journalctl -u &lt;failing_service_name&gt;</pre></div><p>The lines preceding the termination message include information about the error.</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span class="guimenu">Exit Status</span>: If a service stops, look for a message like <code class="literal">Process xxx exited</code> with status 1/FAILURE. A status of 0 indicates success. Any nonzero status indicates an error. </p></li><li class="listitem"><p><span class="guimenu">Configuration Errors</span>: Messages containing phrases like <code class="literal">No such file or directory</code>, <code class="literal">Permission denied</code> or <code class="literal">Address already in use</code> usually point to a problem in the service's configuration file.</p></li><li class="listitem"><p><span class="guimenu">Out-of-Memory (OOM)</span>: The service was terminated because
+   it exceeded memory limits.</p></li></ul></div></li><li class="step"><p>Use detailed views of logs to get detailed information about the error.</p><div class="verbatim-wrap"><pre class="screen">journalctl -xe</pre></div><p>For example, to view all messages from the Apache service during the current boot with detailed explanations, run the following command:</p><div class="verbatim-wrap"><pre class="screen">journalctl -u httpd.service -b -xe</pre></div></li></ol></div></div></section><section class="sect2" id="id-1.6.3" data-id-title="Troubleshoot systemd error"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.2 </span><span class="title-name">Troubleshoot <code class="systemitem">systemd</code> error</span></span> <a title="Permalink" class="permalink" href="index.html#id-1.6.3">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="procedure"><div class="procedure-contents"><p>
+   This section introduces an example to illustrate how to find and fix
+   the error reported by <code class="systemitem">systemd</code> during <code class="command">apache2</code> start-up.</p><ol class="procedure" type="1"><li class="step"><p>Start the apache2 service:</p><div class="verbatim-wrap"><pre class="screen">systemctl start apache2
+Job for apache2.service failed. See 'systemctl status apache2' and 'journalctl -xn' for details.</pre></div></li><li class="step"><p>View the service status:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl status apache2
+apache2.service - The Apache Webserver
+   Loaded: loaded (/usr/lib/systemd/system/apache2.service; disabled)
+   Active: failed (Result: exit-code) since Tue 2025-09-03 11:08:13 EDT; 7min ago
+  Process: 11026 ExecStop=/usr/sbin/start_apache2 -D SYSTEMD -DFOREGROUND \
+           -k graceful-stop (code=exited, status=1/FAILURE)</pre></div><p>The ID of the process causing the failure is 11026.</p></li><li class="step"><p>View the verbose version of messages related to process ID 11026:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl -o verbose _PID=11026
+[...]
+MESSAGE=AH00526: Syntax error on line 6 of /etc/apache2/default-server.conf:
+[...]
+MESSAGE=Invalid command 'DocumenttRoot', perhaps misspelled or defined by a module
+[...]</pre></div></li><li class="step"><p>Fix the typo inside <code class="filename">/etc/apache2/default-server.conf</code>, start the apache2 service, and print its status:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> systemctl start apache2 &amp;&amp; systemctl status apache2
+apache2.service - The Apache Webserver
+   Loaded: loaded (/usr/lib/systemd/system/apache2.service; disabled)
+   Active: active (running) since Tue 2025-09-03 11:26:24 EDT; 4ms ago
+  Process: 11026 ExecStop=/usr/sbin/start_apache2 -D SYSTEMD -DFOREGROUND
+           -k graceful-stop (code=exited, status=1/FAILURE)
+ Main PID: 11263 (httpd2-prefork)
+   Status: "Processing requests..."
+   CGroup: /system.slice/apache2.service
+           ├─11263 /usr/sbin/httpd2-prefork -f /etc/apache2/httpd.conf -D [...]
+           ├─11280 /usr/sbin/httpd2-prefork -f /etc/apache2/httpd.conf -D [...]
+           ├─11281 /usr/sbin/httpd2-prefork -f /etc/apache2/httpd.conf -D [...]
+           ├─11282 /usr/sbin/httpd2-prefork -f /etc/apache2/httpd.conf -D [...]
+           ├─11283 /usr/sbin/httpd2-prefork -f /etc/apache2/httpd.conf -D [...]
+           └─11285 /usr/sbin/httpd2-prefork -f /etc/apache2/httpd.conf -D [...]</pre></div></li></ol></div></div></section></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#concept-about-journald"><span class="title-number">1 </span><span class="title-name">The <code class="command">systemd-journald</code> service</span></a></span></li><li><span class="section"><a href="index.html#journal-what-it-is"><span class="title-number">2 </span><span class="title-name">About the journal</span></a></span></li><li><span class="section"><a href="index.html#journald-about-journactl"><span class="title-number">3 </span><span class="title-name">The <code class="command">journalctl</code> command</span></a></span></li><li><span class="section"><a href="index.html#journal-filter-journals"><span class="title-number">4 </span><span class="title-name">Filtering the journal output</span></a></span></li><li><span class="section"><a href="index.html#cockpit-troubleshooting-selinux"><span class="title-number">5 </span><span class="title-name">Troubleshooting <code class="systemitem">systemd</code> errors</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">6 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

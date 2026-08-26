@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Managing Core Dumps with systemd-coredump | SUSE Linux Enterprise Server for SAP applications 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2026-03-27"/>
+<meta name="dcterms.modified" content="2026-03-27"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-26"/>
+<meta name="title" content="Managing Core Dumps with systemd-coredump | SUSE Linux…"/>
+<meta name="description" content="Learn how to configure systemd-coredump, collect and analyze core dumps, and manage crash data and storage"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server for SAP applications"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="Managing Core Dumps with systemd-coredump"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="shalaka.harne@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="shalaka.harne@suse.com"/><meta property="og:title" content="Managing Core Dumps with systemd-coredump"/>
+<meta property="og:description" content="Configure systemd-coredump and analyze crash data"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Managing Core Dumps with systemd-coredump"/>
+<meta name="twitter:description" content="Configure systemd-coredump and analyze crash data"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Managing Core Dumps with systemd-coredump | SUSE Linux Enterprise Server for SAP applications 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Managing Core Dumps with systemd-coredump",
+    "description": "Learn how to configure systemd-coredump, collect and analyze core dumps, and manage crash data and storage",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2026-03-27T00:00+02:00",
+    "dateModified": "2026-03-27T00:00+02:00",
+    "datePublished": "2026-08-26T09:48+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Administration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server for SAP applications",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER, IBM Z, AArch64"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Managing Core Dumps with systemd-coredump</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Managing Core Dumps with <code class="command">systemd-coredump</code></div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="systemd-services" data-id-title="Managing Core Dumps with systemd-coredump"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span></span> 16.1</div><div><h1 class="title">Managing Core Dumps with <code class="command">systemd-coredump</code></h1></div><div class="date"><span class="imprint-label">Publication Date: </span>26 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+                From collecting and displaying core dumps, over providing stack traces for quick analysis to managing storage and retention, systemd-coredump enables you to investigate application crashes in a convenient way.
+              </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
+                This article provides a complete overview of the tasks that can be performed with systemd-coredump, such as collecting and displaying core dumps, providing backtraces for quick analysis, and managing the storage of crash data.</p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
+               The average reading time of this article is approximately 40 minutes.
+              </p></dd><dt id="id-1.1.12.1.4"><span class="term">GOAL</span></dt><dd><p>
+You will be able to analyze and manage application crashes using systemd-coredump.
+</p></dd><dt id="id-1.1.12.1.5"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                      Basic understanding of Linux commands
+                    </p></li><li class="listitem"><p>
+                   Basic understanding of Linux processes
+                  </p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Managing Core Dumps with systemd-coredump" hreflang="en" href="rh-systemd-services.html" target="_blank">Revision History: Managing Core Dumps with systemd-coredump</a></div></div></div></div><section xml:lang="en" class="sect1" id="systemd-coredump" data-id-title="Using systemd-coredump to debug application crashes"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Using <code class="literal">systemd-coredump</code> to debug application crashes</span></span> <a title="Permalink" class="permalink" href="index.html#systemd-coredump">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+            systemd-coredump collects and displays core dumps to analyze application crashes. A core dump is an image of the process memory at the time of termination.
+            </p></div></div></div></div><section class="sect2" id="id-1.2.2" data-id-title="Using systemd-coredump"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">Using <code class="literal">systemd-coredump</code></span></span> <a title="Permalink" class="permalink" href="index.html#id-1.2.2">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>By default, when a process crashes, <code class="literal">systemd-coredump</code> performs the following actions:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Stores the core dump in <code class="filename">/var/lib/systemd/coredump/</code>.</p></li><li class="listitem"><p>Logs the event to the systemd journal.</p></li><li class="listitem"><p>Includes a backtrace where possible.</p></li></ul></div><p>You can examine the dump file using <code class="command">coredumpctl</code> or external tools such as <code class="command">gdb</code> or <code class="command">crash</code>. </p><div id="id-1.2.2.5" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>Core dumps stored in <code class="filename">/var/lib/systemd/coredump/</code> are by default automatically deleted after three days. This is configured through the <code class="literal">d /var/lib/systemd/coredump</code> 
+ line in <code class="filename">/usr/lib/tmpfiles.d/systemd.conf</code>. </p><p>It is recommended not to edit <code class="filename">/usr/lib/tmpfiles.d/systemd.conf</code> directly, as the changes will be overwritten during the next system update. Hence, perform the following:</p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>Copy the file to <code class="filename">/etc/tmpfiles.d/systemd.conf</code>. As files in <code class="filename">/etc/</code> take precedence over those in <code class="filename">/usr/lib/</code>, your custom configuration is applied.</p></li><li class="step"><p>Open the file and find the line: <code class="literal">d /var/lib/systemd/coredump</code></p></li><li class="step"><p>Edit the age parameter; for example, change <code class="literal">3d</code> to <code class="literal">7d</code> to retain data for a week, or use the <code class="literal">W</code> notation for longer periods.</p></li></ol></div></div></div></section></section><section xml:lang="en" class="sect1" id="systemd-coredump-configuration" data-id-title="Configuration of systemd-coredump"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Configuration of <code class="literal">systemd-coredump</code></span></span> <a title="Permalink" class="permalink" href="index.html#systemd-coredump-configuration">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p><code class="literal">systemd-coredump</code> provides a centralized, automated framework for capturing and managing process crashes by intercepting kernel signals to store compressed memory images and metadata, which are then easily analyzed through the <code class="literal">coredumpctl</code> utility.</p></div></div></div></div><p><code class="literal">systemd-coredump</code> is enabled by default. The primary configuration file is located at <code class="filename">/etc/systemd/coredump.conf</code>.</p><div class="verbatim-wrap"><pre class="screen">[Coredump]
+#Storage=external
+#Compress=yes
+#ProcessSizeMax=2G
+#ExternalSizeMax=2G
+#JournalSizeMax=767M
+#MaxUse=
+#KeepFree=</pre></div><p>The following parameters in <code class="filename">[Coredump]</code> define how dumps are handled:</p><div class="variablelist"><dl class="variablelist"><dt id="id-1.3.5.1"><span class="term"><code class="literal">Storage</code></span></dt><dd><p>Defines where to store dumps such as <code class="literal">none</code>, <code class="literal">external</code>, <code class="literal">journal</code>. The default is <code class="literal">external</code>.</p><p>For example:</p><div class="verbatim-wrap"><pre class="screen">[Coredump]
+# Directs dumps to be stored inside the system journal
+Storage=journal
+
+# Compress the data to save space within the journal
+Compress=yes
+
+# Limits the size of a single core dump stored in the journal to 500MB
+# If a process dump is larger than 500M, it will be dropped/ignored
+JournalSizeMax=500M
+
+# Processes larger than 1GB will not be handled at all
+ProcessSizeMax=1G</pre></div></dd><dt id="id-1.3.5.2"><span class="term"><code class="literal">Compress</code></span></dt><dd><p>Enables/disables compression for the stored core dump. By default, this is enabled.</p></dd><dt id="id-1.3.5.3"><span class="term"><code class="literal">ProcessSizeMax</code></span></dt><dd><p>The maximum size of a core dump to be processed. The default size is <code class="literal">2G</code>.</p></dd><dt id="id-1.3.5.4"><span class="term"><code class="literal">ExternalSizeMax</code></span></dt><dd><p>The maximum size for a dump stored on disk. The default size is <code class="literal">2G</code>, and this also supports a value of infinity.</p></dd><dt id="id-1.3.5.5"><span class="term"><code class="literal">JournalSizeMax</code></span></dt><dd><p>The maximum size of core dumps that can be stored directly within the system journal (when Storage=journal is used). If a core dump exceeds this value, it will be ignored or handled according to other storage settings.</p></dd><dt id="id-1.3.5.6"><span class="term"><code class="literal">MaxUse</code></span></dt><dd><p>The maximum amount of disk space the core dump storage (typically <code class="filename">/var/lib/systemd/coredump/</code>) is allowed to occupy. This value supports absolute sizes in bytes (e.g., <code class="literal">2G</code>) or a percentage of the total filesystem size (e.g., <code class="literal">10%</code>). Once this limit is reached, older core dumps are automatically deleted to make room for new ones.</p><p>The size units are <code class="literal">B</code>, <code class="literal">K</code>, <code class="literal">M</code>, <code class="literal">G</code>, <code class="literal">T</code>, <code class="literal">P</code>, and <code class="literal">E</code>.</p></dd><dt id="id-1.3.5.7"><span class="term"><code class="literal">KeepFree</code></span></dt><dd><p>The minimum amount of free disk space to maintain on the filesystem where core dumps are stored. This value can be specified in bytes (using suffixes such as K, M, G) or as a percentage of the total filesystem size (e.g., <code class="literal">15%</code>). <code class="literal">systemd-coredump</code> will stop saving new dumps if the available disk space would fall below this threshold.</p><p>The size units are <code class="literal">B</code>, <code class="literal">K</code>, <code class="literal">M</code>, <code class="literal">G</code>, <code class="literal">T</code>, <code class="literal">P</code>, and <code class="literal">E</code>.</p></dd></dl></div><div id="id-1.3.6" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>A new instance of <code class="literal">systemd-coredump</code> is invoked for every crash. Configuration changes are applied immediately to the next crash; you do not need to restart any services.</p></div><section class="sect2" id="id-1.3.7" data-id-title="Managing core dump storage"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">Managing core dump storage</span></span> <a title="Permalink" class="permalink" href="index.html#id-1.3.7">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>To minimize the storage of sensitive information or prevent disk exhaustion in <code class="filename">/var/lib/systemd/coredump</code>, you can modify the <code class="filename">Storage=</code> option in <code class="filename">/etc/systemd/coredump.conf</code>.</p><div id="id-1.3.7.3" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>If the <code class="filename">Storage=</code> field is omitted, set to an empty value, or set to an invalid string, systemd defaults to <code class="literal">external</code>.</p></div><p>The available storage options are:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><code class="literal">Storage=none</code> the event is logged to the journal, but the memory image (the core dump itself) is discarded and files are not created in <code class="filename">/var/lib/systemd/coredump</code>.</p></li><li class="listitem"><p><code class="literal">Storage=journal</code> The core dump is compressed and stored directly within the systemd journal metadata and files are not created in <code class="filename">/var/lib/systemd/coredump</code>. The storage is managed by <code class="filename">/etc/systemd/journald.conf</code> limits.</p></li><li class="listitem"><p><code class="literal">Storage=external</code> The event is logged to the journal, and the memory image is saved as a separate file. The files are created in <code class="filename">/var/lib/systemd/coredump</code>.</p></li></ul></div><p>As core dumps may not be preserved after a system restart (for example, if stored in volatile journal memory or a temporary directory), run the command below to save a core dump to a permanent file for later analysis:</p><div class="verbatim-wrap"><pre class="screen">coredumpctl -o my_app.dump dump &gt;PID&lt;</pre></div><p>For more information, see <code class="code">man systemd-coredump, man coredumpctl, man core, and man coredump.conf</code> for complete command and option listing.</p></section></section><section xml:lang="en" class="sect1" id="create-analyze-systemd-coredump" data-id-title="Creating and analyzing a core dump"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Creating and analyzing a core dump</span></span> <a title="Permalink" class="permalink" href="index.html#create-analyze-systemd-coredump">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       In this section you force an application to quit without a proper shutdown. Thus the application creates a core dump that you can use to learn how to investigate core dumps.
+        </p></div></div></div></div><p>The following procedure uses Vim to trigger a segmentation fault (segfault) for testing purposes.</p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>Ensure the <code class="literal">debuginfo-pool</code> and <code class="literal">debuginfo-update</code> repositories are active for your registration and enabled.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  <code class="command">zypper mr -e <em class="replaceable">REPOSITORY</em></code></pre></div></li><li class="step"><p>Install the debug information for vim.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  zypper install vim-debuginfo</pre></div></li><li class="step"><p>To trigger a crash, open a file with Vim, then from another terminal, send a SIGSEGV signal to the process:</p><div class="verbatim-wrap"><pre class="screen">ps ax | grep vim
+# kill -s SIGSEGV &lt;PID&gt;</pre></div><p>vim shows error messages, if any.</p><div class="verbatim-wrap"><pre class="screen">Vim: Caught deadly signal SEGV
+Vim: Finished.
+Segmentation fault (core dumped)</pre></div></li><li class="step"><p>Verify if the crash was captured:</p><div class="verbatim-wrap"><pre class="screen">coredumpctl
+TIME                        PID  UID  GID SIG PRESENT EXE
+Wed 2019-11-12 11:56:47 PST 2345 1000 100 11  *       /bin/vim</pre></div><p>An asterisk <code class="literal">*</code> in the PRESENT column indicates the dump file is available on disk.</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>To view the stack trace and metadata of the latest crash:</p><div class="verbatim-wrap"><pre class="screen">coredumpctl info
+PID: 2345 (vim)
+UID: 0 (root)
+GID: 0 (root)
+Signal: 11 (SEGV)
+Timestamp: Wed 2019-11-12 11:58:05 PST
+Command Line: vim testfile
+Executable: /bin/vim
+Control Group: /user.slice/user-1000.slice/session-1.scope
+    Unit: session-1.scope
+    Slice: user-1000.slice
+    Session: 1
+    Owner UID: 1000 (tux)
+    Boot ID: b5c251b86ab34674a2222cef102c0c88
+    Machine ID: b43c44a64696799b985cafd95dc1b698
+    Hostname: linux-uoch
+    Coredump: /var/lib/systemd/coredump/core.vim.0.b5c251b86ab34674a2222cef102
+    Message: Process 2345 (vim) of user 0 dumped core.
+
+         Stack trace of thread 2345:
+         #0  0x00007f21dd87e2a7 kill (libc.so.6)
+         #1  0x000000000050cb35 may_core_dump (vim)
+         #2  0x00007f21ddbfec70 __restore_rt (libpthread.so.0)
+         #3  0x00007f21dd92ea33 __select (libc.so.6)
+         #4  0x000000000050b4e3 RealWaitForChar (vim)
+         #5  0x000000000050b86b mch_inchar (vim)
+[...]</pre></div><p>You can filter core dumps by PID, COMM (command), or EXE (full path to the executable).</p></li><li class="listitem"><p>To filter all core dumps for Vim:</p><div class="verbatim-wrap"><pre class="screen">coredumpctl info /bin/vim</pre></div></li><li class="listitem"><p>To filter single core dump by PID <code class="literal">2345</code>:</p><div class="verbatim-wrap"><pre class="screen">coredumpctl info 2345</pre></div></li><li class="listitem"><p>To load a specific crash for PID <code class="literal">2345</code> directly into the debugger:</p><div class="verbatim-wrap"><pre class="screen">coredumpctl gdb 2345</pre></div></li></ul></div></li></ol></div></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#systemd-coredump"><span class="title-number">1 </span><span class="title-name">Using <code class="literal">systemd-coredump</code> to debug application crashes</span></a></span></li><li><span class="section"><a href="index.html#systemd-coredump-configuration"><span class="title-number">2 </span><span class="title-name">Configuration of <code class="literal">systemd-coredump</code></span></a></span></li><li><span class="section"><a href="index.html#create-analyze-systemd-coredump"><span class="title-number">3 </span><span class="title-name">Creating and analyzing a core dump</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">4 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Kernel Live Patching on SUSE Linux Enterprise Server for SAP applications | SUSE Linux Enterprise Server for SAP applications 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2025-11-04"/>
+<meta name="dcterms.modified" content="2026-02-12"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-26"/>
+<meta name="title" content="Kernel Live Patching on SUSE Linux Enterprise Server f…"/>
+<meta name="description" content="How to perform kernel live patching on SUSE Linux Enterprise Server for SAP applications"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server for SAP applications"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="Kernel Live Patching on SUSE Linux Enterprise Server for SAP applications"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="eliska.romanova@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="dmitri.popov@suse.com"/><meta property="og:title" content="Kernel Live Patching on SUSE Linux Enterprise Server f…"/>
+<meta property="og:description" content="Perform kernel live patching on SLES for SAP"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Kernel Live Patching on SUSE Linux Enterprise Server f…"/>
+<meta name="twitter:description" content="Perform kernel live patching on SLES for SAP"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Kernel Live Patching on SUSE Linux Enterprise Server for SAP applications | SUSE Linux Enterprise Server for SAP applications 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Kernel Live Patching on SUSE Linux Enterprise Server for SAP applications",
+    "description": "How to perform kernel live patching on SUSE Linux Enterprise Server for SAP applications",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2025-11-04T00:00+02:00",
+    "dateModified": "2026-02-12T00:00+02:00",
+    "datePublished": "2026-08-26T09:48+02:00",
+
+    "articleSection": [ 
+        "Update&amp;Upgrade"
+        
+    ],
+        "about": [
+      {
+        "@type": "Thing",
+        "name": "Upgrade &amp; Update"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server for SAP applications",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, AArch64, IBM Z, POWER"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Kernel Live Patching on SUSE Linux Enterprise Server for SAP applications</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Kernel Live Patching on <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span></div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="klp" data-id-title="Kernel Live Patching on SUSE Linux Enterprise Server for SAP applications"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span></span> 16.1</div><div><h1 class="title">Kernel Live Patching on <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span></h1></div><div class="date"><span class="imprint-label">Publication Date: </span>26 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.13.1.1"><span class="term">WHAT?</span></dt><dd><p>
+                Understanding and using Kernel Live Patching on <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span>.
+              </p></dd><dt id="id-1.1.13.1.2"><span class="term">WHY?</span></dt><dd><p>
+                Because you want to keep mission-critical systems secure,
+                without downtime.
+              </p></dd><dt id="id-1.1.13.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                20 minutes reading time.
+              </p></dd><dt id="id-1.1.13.1.4"><span class="term">GOAL</span></dt><dd><p>
+                Understand how Kernel Live Patching works.
+              </p></dd><dt id="id-1.1.13.1.5"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                    Working knowledge of Linux.
+                  </p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Kernel Live Patching on SUSE Linux Enterprise Server for SAP applications" hreflang="en" href="rh-klp.html" target="_blank">Revision History: Kernel Live Patching on SUSE Linux Enterprise Server for SAP applications</a></div></div></div></div><section xml:lang="en" class="sect1" id="klp-intro" data-id-title="Introduction to Kernel Live Patching"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Introduction to Kernel Live Patching</span></span> <a title="Permalink" class="permalink" href="index.html#klp-intro">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Kernel Live Patching (KLP) makes it possible to apply the latest security updates to
+    Linux kernels without rebooting. This maximizes system uptime and
+    availability, which is particularly important for mission-critical systems.
+    As such, KLP offers several benefits.
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        Keeping a large number of servers automatically up-to-date is essential
+        for organizations obtaining or maintaining certain compliance
+        certifications. KLP can help achieve compliance, while reducing the
+        need for maintenance windows.
+      </p></li><li class="listitem"><p>
+        Companies that work with service-level agreement contracts must
+        guarantee a certain level of the system accessibility and uptime.
+        Live patching makes it possible to patch systems without incurring
+        downtime.
+      </p></li><li class="listitem"><p>
+        Since KLP is part of the standard system update mechanism, there is
+        no need for specialized training or introduction of additional
+        maintenance routines.
+      </p></li></ul></div><section class="sect2" id="sec-klp-scope" data-id-title="Kernel Live Patching scope"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">Kernel Live Patching scope</span></span> <a title="Permalink" class="permalink" href="index.html#sec-klp-scope">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The scope of <span class="phrase"><span class="phrase">SLES for SAP</span></span> Live Patching includes fixes for SUSE Common
+      Vulnerability Scoring System (CVSS) level 7+ vulnerabilities and bug fixes related to system
+      stability or data corruption. However, it may not be technically feasible
+      to create live patches for all fixes that fall under the specified
+      categories. SUSE therefore reserves the right to skip fixes in
+      situations where creating a kernel live patch is not possible for
+      technical reasons. Currently, over 95% of qualifying fixes are released
+      as live patches. SUSE CVSS is based on the CVSS v3.0
+      system. For more information on CVSS, see <a class="link" href="https://www.first.org/cvss/" target="_blank">Common
+      Vulnerability Scoring System SIG</a>.
+    </p></section><section class="sect2" id="sec-klp-limitations" data-id-title="Kernel Live Patching limitations"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Kernel Live Patching limitations</span></span> <a title="Permalink" class="permalink" href="index.html#sec-klp-limitations">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      KLP involves replacing functions and gracefully handling replacement
+      of interdependent function sets. This is done by redirecting calls to old
+      code to updated code in a different memory location. Changes in data
+      structures make the situation more complicated, as the data remain in
+      place and cannot be extended or reinterpreted. While there are techniques
+      that allow indirect alteration of data structures, certain fixes cannot
+      be converted to live patches. In this situation, a system restart is the
+      only way to apply the fixes.
+    </p></section></section><section xml:lang="en" class="sect1" id="klp-patches" data-id-title="Understanding kernel live patches"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Understanding kernel live patches</span></span> <a title="Permalink" class="permalink" href="index.html#klp-patches">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Kernel live patches are installed as part of regular system updates. Kernel
+    live patches are delivered as packages with modified code that are separate
+    from the main kernel package. The live patches are cumulative, so the latest
+    patch contains all fixes from the previous ones for the kernel package. Each
+    kernel live package is tied to the exact kernel revision for which it is
+    issued. The live patch package version number increases with every addition
+    of fixes. To determine the kernel patching status, use the
+    <code class="command">klp -v patches</code> command.
+  </p><p>
+      Live patches contain only critical fixes, and they do not replace regular
+      kernel updates that require a reboot. Consider live patches as temporary
+      measures that protect the kernel until a proper kernel update and a
+      reboot are performed.
+  </p><p>
+      The diagram below illustrates the overall relationship between live
+      patches and kernel updates. The list of CVEs and defect reports addressed
+      by the currently active live patch can be viewed using the <code class="command">klp
+      -v patches</code> command.
+    </p><div class="figure" id="id-1.3.5"><div class="figure-contents"><div class="mediaobject"><a href="images/klp.png"><img src="images/klp.png" width="100%" alt="Relationship between live patches and kernel updates" title="Relationship between live patches and kernel updates"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 1: </span><span class="title-name">Relationship between live patches and kernel updates </span></span><a title="Permalink" class="permalink" href="index.html#id-1.3.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><p>
+      It is possible to have multiple versions of the kernel package installed
+      along with their live patches. These packages do not conflict. You can
+      install updated kernel packages along with live patches for the running
+      kernel. In this case, you may be prompted to reboot the system. Users
+      with <span class="phrase"><span class="phrase">SLES for SAP</span></span> Live Patching subscriptions are eligible for technical
+      support as long as there are live patch updates for the running kernel.
+    </p><p>
+      With KLP activated, every kernel update comes with a live patch
+      package. This live patch does not contain any fixes and serves as a seed
+      for future live patches for the corresponding kernel. These empty seed
+      patches are called <code class="literal">initial patches</code>.
+    </p><p>
+      Keep in mind that while there may be multiple kernel packages installed on
+      the system, only one of them is running at any given time. Similarly,
+      there may be multiple live patch packages installed, but only one live
+      patch is loaded into the kernel.
+     </p><p>
+      The active live patch is included in the <code class="literal">initrd</code>. This
+      means that in case of an unexpected reboot, the system comes up with the
+      live patch fixes applied, so there is no need to perform patching again.
+     </p></section><section xml:lang="en" class="sect1" id="klp-activate-cli" data-id-title="Activating Kernel Live Patching from the command line"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Activating Kernel Live Patching from the command line</span></span> <a title="Permalink" class="permalink" href="index.html#klp-activate-cli">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Kernel Live Patching is included in the standard <span class="phrase"><span class="phrase">SLES for SAP</span></span> subscription. To use it, you need to
+    install the following pattern:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">zypper install -t pattern kernel_livepatching</code></pre></div><p>
+    At this point, the system has already been live-patched.
+  </p><p>
+    Here is how the process works behind the scenes: when the package
+    installation system detects that there is an installed kernel that can be
+    live-patched, and that there is a live patch for it in the software
+    channel, the system selects the live patch for installation. The kernel
+    then receives the live patch fixes <span><em class="emphasis">as part of the package
+    installation</em></span>. The kernel gets live-patched even before the
+    product installation is complete.
+  </p></section><section xml:lang="en" class="sect1" id="klp-troubleshoot" data-id-title="Troubleshooting Kernel Live Patching issues"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Troubleshooting Kernel Live Patching issues</span></span> <a title="Permalink" class="permalink" href="index.html#klp-troubleshoot">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><section class="sect2" id="sec-klp-lifecycle" data-id-title="Checking expiration date of the live patch"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.1 </span><span class="title-name">Checking expiration date of the live patch</span></span> <a title="Permalink" class="permalink" href="index.html#sec-klp-lifecycle">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Make sure that the
+      <span class="package">lifecycle-data-sle-module-live-patching</span> is installed,
+      then run the <code class="command">zypper lifecycle</code> command. You should see
+      expiration dates for live patches in the <code class="literal">Package end of support
+      if different from product</code> section of the output.
+    </p><p>
+      Every live patch receives updates for 13 months from the release of the
+      underlying kernel package. The
+      <a class="link" href="https://www.suse.com/products/live-patching/current-patches/" target="_blank">Maintained
+      kernels, patch updates and lifecycle</a> page allows you to check
+      expiration dates based on the running kernel version without installing
+      the product extension.
+    </p></section><section class="sect2" id="sec-klp-man-patch-check" data-id-title="Checking what kernel live patch packages are installed"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.2 </span><span class="title-name">Checking what kernel live patch packages are installed</span></span> <a title="Permalink" class="permalink" href="index.html#sec-klp-man-patch-check">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The kernel is live-patched if a <span class="package">kernel-livepatch-*</span>
+      package has been installed for the running kernel. You can use the command
+      <code class="command">zypper se --details kernel-livepatch-*</code> to check what
+      kernel live patch packages are installed on your system.
+     </p></section><section class="sect2" id="sec-klp-man-patch-prevent-reboot" data-id-title="Preventing reboot"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.3 </span><span class="title-name">Preventing reboot</span></span> <a title="Permalink" class="permalink" href="index.html#sec-klp-man-patch-prevent-reboot">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      When the <span class="package">kernel-default</span> package is installed, the
+      update manager prompts you to reboot the system. To prevent this message
+      from appearing, you can filter out kernel updates from the patching
+      operation. This can be done by adding package locks with Zypper.
+     </p></section><section class="sect2" id="sec-klp-man-patch-check-status" data-id-title="Check patching status"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.4 </span><span class="title-name">Check patching status</span></span> <a title="Permalink" class="permalink" href="index.html#sec-klp-man-patch-check-status">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      You can check patching status using the <code class="command">klp status</code>
+      command. To examine installed patches, run the <code class="command">klp -v
+      patches</code> command.
+     </p></section><section class="sect2" id="sec-klp-man-patch-downgrade" data-id-title="Downgrading a kernel patch"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.5 </span><span class="title-name">Downgrading a kernel patch</span></span> <a title="Permalink" class="permalink" href="index.html#sec-klp-man-patch-downgrade">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      If you find the latest live patch problematic, you can downgrade the
+      currently installed live patch back to its previous version. Keep in mind
+      that a system with kernel warnings or kernel error traces in the system
+      log may not be suitable for the patch downgrade procedure. If you are
+      unsure whether the system meets the requirements for a patch downgrade,
+      contact SUSE Technical Support for help.
+    </p><p>
+      To downgrade the latest kernel live patch, use the <code class="command">klp
+      downgrade</code> command. This command automatically detects the
+      version of the latest live patch and installs the preceding one.
+    </p></section></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#klp-intro"><span class="title-number">1 </span><span class="title-name">Introduction to Kernel Live Patching</span></a></span></li><li><span class="section"><a href="index.html#klp-patches"><span class="title-number">2 </span><span class="title-name">Understanding kernel live patches</span></a></span></li><li><span class="section"><a href="index.html#klp-activate-cli"><span class="title-number">3 </span><span class="title-name">Activating Kernel Live Patching from the command line</span></a></span></li><li><span class="section"><a href="index.html#klp-troubleshoot"><span class="title-number">4 </span><span class="title-name">Troubleshooting Kernel Live Patching issues</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">5 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

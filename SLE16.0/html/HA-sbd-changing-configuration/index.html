@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Changing the Configuration of SBD | SUSE Linux Enterprise High Availability 16.0</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2025-11-04"/>
+<meta name="dcterms.modified" content="2025-11-04"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-25"/>
+<meta name="title" content="Changing the Configuration of SBD | SUSE Linux Enterpr…"/>
+<meta name="description" content="How to change a High Availability cluster's SBD configuration when the SBD service is already running"/>
+<meta name="product-name" content="SUSE Linux Enterprise High Availability"/>
+<meta name="product-number" content="16.0"/>
+<meta name="book-title" content="Changing the Configuration of SBD"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="tahlia.richardson@suse.com@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="&#10;            SUSE Linux Enterprise High Availability 16.0&#10;          "/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="tahlia.richardson@suse.com"/><meta property="og:title" content="Changing the Configuration of SBD"/>
+<meta property="og:description" content="Change the configuration of a running SBD setup"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Changing the Configuration of SBD"/>
+<meta name="twitter:description" content="Change the configuration of a running SBD setup"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Changing the Configuration of SBD | SUSE Linux Enterprise High Availability 16.0",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Changing the Configuration of SBD",
+    "description": "How to change a High Availability cluster's SBD configuration when the SBD service is already running",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2025-11-04T00:00+02:00",
+    "dateModified": "2025-11-04T00:00+02:00",
+    "datePublished": "2026-08-25T07:07+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Administration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Clustering"
+      },
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      },
+      {
+        "@type": "Thing",
+        "name": "High Availability"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise High Availability",
+        "softwareVersion": "16.0",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER, IBM Z"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Changing the Configuration of SBD</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Changing the Configuration of SBD</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="ha-sbd-changing-configuration" data-id-title="Changing the Configuration of SBD"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise High Availability</span></span></span> 16.0</div><div><h1 class="title">Changing the Configuration of SBD</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>25 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+              SBD provides a node fencing mechanism without using an external power-off device.
+              Node fencing protects the cluster from data corruption by resetting failed nodes.
+            </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
+              You might need to change the cluster's SBD configuration for various reasons,
+              such as increasing resilience, using custom settings instead of the defaults,
+              or switching to a different fencing mechanism.
+            </p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                Each task in this article only takes a few minutes and does not require any
+                downtime for cluster resources.
+              </p></dd><dt id="id-1.1.12.1.4"><span class="term">GOAL</span></dt><dd><p>
+                Change a High Availability cluster's SBD configuration when the SBD service is already running.
+              </p></dd><dt id="id-1.1.12.1.5"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                    An existing SUSE Linux Enterprise High Availability cluster
+                  </p></li><li class="listitem"><p>
+                    SBD already configured and running
+                  </p></li><li class="listitem"><p>
+                    A hardware watchdog device on all cluster nodes
+                  </p></li><li class="listitem"><p>
+                    Shared storage accessible from all nodes (if using disk-based SBD)
+                  </p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Changing the Configuration of SBD" hreflang="en" href="rh-ha-sbd-changing-configuration.html" target="_blank">Revision History: Changing the Configuration of SBD</a></div></div></div></div><section xml:lang="en" class="sect1" id="ha-sbd-what-is" data-id-title="What is SBD?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">What is SBD?</span></span> <a title="Permalink" class="permalink" href="index.html#ha-sbd-what-is">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        SBD (STONITH Block Device or Storage-Based Death) provides a node fencing mechanism without using
+        an external power-off device. The software component (the SBD daemon) works together with
+        a watchdog device to ensure that misbehaving nodes are fenced. SBD can be used in
+        disk-based mode with shared block storage, or in diskless mode using only the watchdog.
+      </p><p>
+        Disk-based SBD uses shared block storage to exchange fencing messages between the nodes.
+        It can be used with one to three devices. One device is appropriate for simple cluster setups,
+        but two or three devices are recommended for more complex setups or critical workloads.
+      </p><p>
+        Diskless SBD fences nodes by using only the watchdog, without a shared storage device.
+        A node is fenced if it loses quorum, if any monitored daemon is lost and cannot be
+        recovered, or if Pacemaker determines that the node requires fencing.
+      </p></div></div></div></div><section class="sect2" id="ha-sbd-what-is-components" data-id-title="Components"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">Components</span></span> <a title="Permalink" class="permalink" href="index.html#ha-sbd-what-is-components">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.2.2.1"><span class="term">SBD daemon</span></dt><dd><p>
+            The SBD daemon starts on each node before the rest of the cluster stack and stops
+            in the reverse order. This ensures that cluster resources are never active without
+            SBD supervision.
+          </p></dd><dt id="id-1.2.2.2.2"><span class="term">SBD device (disk-based SBD)</span></dt><dd><p>
+            A small logical unit (or a small partition on a logical unit) is formatted for use with
+            SBD. A message layout is created on the device with slots for up to 255 nodes.
+          </p></dd><dt id="id-1.2.2.2.3"><span class="term">Messages (disk-based SBD)</span></dt><dd><p>
+            The message layout on the SBD device is used to send fencing messages to nodes.
+            The SBD daemon on each node monitors the message slot and immediately complies with
+            any requests. To avoid becoming disconnected from fencing messages, the SBD daemon
+            also fences the node if it loses its connection to the SBD device.
+          </p></dd><dt id="id-1.2.2.2.4"><span class="term">Watchdog</span></dt><dd><p>
+  SBD needs a watchdog on each node to ensure that misbehaving nodes are really stopped.
+  SBD <span class="quote">“<span class="quote">feeds</span>”</span> the watchdog by regularly writing a service pulse to it. If SBD
+  stops feeding the watchdog, the hardware enforces a system restart. This protects against
+  failures of the SBD process itself, such as becoming stuck on an I/O error.
+</p></dd></dl></div></section><section class="sect2" id="ha-sbd-limitations-recommendations" data-id-title="Limitations and recommendations"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Limitations and recommendations</span></span> <a title="Permalink" class="permalink" href="index.html#ha-sbd-limitations-recommendations">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.3.2.1"><span class="term">Disk-based SBD</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                The shared storage can be Fibre Channel (FC), Fibre Channel over Ethernet (FCoE),
+                or iSCSI.
+              </p></li><li class="listitem"><p>
+                The shared storage must <span><em class="emphasis">not</em></span> use host-based RAID, LVM,
+                Cluster MD, or DRBD.
+              </p></li><li class="listitem"><p>
+                Using storage-based RAID and multipathing is recommended for increased reliability.
+              </p></li><li class="listitem"><p>
+                If a shared storage device has different <code class="filename">/dev/sdX</code> names on
+                different nodes, SBD communication will fail. To avoid this, always use stable
+                device names, such as <code class="filename">/dev/disk/by-id/<em class="replaceable">DEVICE_ID</em></code>.
+              </p></li><li class="listitem"><p>
+                An SBD device can be shared between different clusters, up to a limit of 255 nodes.
+              </p></li><li class="listitem"><p>
+                When using more than one SBD device, all devices must have the same configuration.
+              </p></li></ul></div></dd><dt id="id-1.2.3.2.2"><span class="term">Diskless SBD</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                Diskless SBD cannot handle a split-brain scenario for a two-node cluster. This
+                configuration should only be used for clusters with more than two nodes, or in
+                combination with QDevice to help handle split-brain scenarios.
+              </p></li></ul></div></dd></dl></div></section><section class="sect2" id="ha-sbd-what-is-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.3 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="index.html#ha-sbd-what-is-more-info">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      For more information, see the man page <code class="literal">sbd</code> or run the
+      <code class="command">crm sbd help</code> command.
+    </p></section></section><section xml:lang="en" class="sect1" id="ha-sbd-changing-timeout-settings" data-id-title="Changing the SBD timeout settings"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Changing the SBD timeout settings</span></span> <a title="Permalink" class="permalink" href="index.html#ha-sbd-changing-timeout-settings">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        SBD relies on multiple different timeout settings to manage node fencing. When you
+        configure SBD using the CRM Shell, these timeouts are automatically calculated and
+        adjusted. The automatic values are sufficient for most use cases, but if you need to
+        change them, you can use the <code class="command">crm sbd configure</code> command.
+    </p></div></div></div></div><div id="id-1.3.2" data-id-title="Cluster restart required" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Cluster restart required</div><p>
+    In this procedure, the setup script checks whether it is safe to restart the cluster services
+    automatically. If any non-<code class="literal">stonith</code> resources are running, the script warns
+    you to restart the cluster services manually. This allows you to put the cluster into
+    maintenance mode first to avoid resource downtime. However, be aware that the resources won't
+    have cluster protection while in maintenance mode.
+  </p></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Requirements </span></span><a title="Permalink" class="permalink" href="index.html#id-1.3.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        SBD is already configured and running.
+      </p></li></ul></div><p>
+    Perform this procedure on only one node in the cluster:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code> privileges.
+      </p></li><li class="step"><p>
+        Check the current timeout settings:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm sbd configure show</code></pre></div></li><li class="step"><p>
+        Change one or both of the following timeout values as needed:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm sbd configure \</code>
+  <code class="command">watchdog-timeout=<em class="replaceable">INTEGER_IN_SECONDS</em> \</code><span class="callout" id="co-sbd-watchdog-timeout">1</span>
+  <code class="command">msgwait-timeout=<em class="replaceable">INTEGER_IN_SECONDS</em> \</code><span class="callout" id="co-sbd-msgwait-timeout">2</span></pre></div><p>
+        If you change one timeout, the other timeout is automatically adjusted so that the
+        <code class="literal">msgwait-timeout</code> is twice the <code class="literal">watchdog-timeout</code>. You
+        only need to change both timeouts manually if you want the <code class="literal">msgwait-timeout</code>
+        to be <span><em class="emphasis">more</em></span> than double the <code class="literal">watchdog-timeout</code>.
+        If you try to make the <code class="literal">msgwait-timeout</code> <span><em class="emphasis">less</em></span> than
+        double the <code class="literal">watchdog-timeout</code>, the command fails with a warning.
+      </p><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-sbd-watchdog-timeout"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+            The <code class="literal">watchdog-timeout</code> defines how long the watchdog waits for a
+            response from SBD before fencing the node. Diskless SBD reads this timeout from
+            <code class="filename">/etc/sysconfig/sbd</code>, but disk-based SBD reads it from the device
+            metadata, which takes precedence over the settings in <code class="filename">/etc/sysconfig/sbd</code>.
+          </p><p>
+            For disk-based SBD on a multipath setup, this timeout must be longer than the
+            <code class="literal">max_polling_interval</code> in <code class="filename">/etc/multipath.conf</code>,
+            to allow enough time to detect a path failure and switch to the next path.
+         </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-sbd-msgwait-timeout"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+            <span><em class="emphasis">Only used for disk-based SBD.</em></span>
+            After the <code class="literal">msgwait-timeout</code> is reached, SBD assumes that a message
+            written to the node's slot on the SBD device was delivered successfully. The timeout
+            must be long enough for the node to detect that it needs to self-fence.
+          </p><p>
+            When you increase this timeout, the script also automatically adjusts the
+            <code class="literal">SBD_DELAY_START</code> setting. This helps to avoid a situation where
+            a node reboots too quickly and rejoins the cluster before the fencing action is
+            considered complete, which can cause a split-brain scenario.
+          </p></td></tr></table></div><div id="id-1.3.5.3.5" class="admonition tip compact"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><p>
+          You should not need to change the <code class="literal">allocate-timeout</code> or the
+          <code class="literal">loop-timeout</code>.
+        </p></div><p>
+        The script automatically adjusts any other related timeouts in the cluster and displays
+        the new values. The script also checks whether it is safe to restart the cluster services
+        automatically. If any non-<code class="literal">stonith</code> resources are running, the script
+        warns you to restart the cluster services manually.
+      </p></li><li class="step"><p>
+    If you need to restart the cluster services manually, follow these steps to avoid
+    resource downtime:
+  </p><ol type="a" class="substeps"><li class="step"><p>
+        Put the cluster into maintenance mode:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance on</code></pre></div><p>
+        In this state, the cluster stops monitoring all resources. This allows the services
+        managed by the resources to keep running while the cluster restarts. However, be aware
+        that the resources won't have cluster protection while in maintenance mode.
+      </p></li><li class="step"><p>
+        Restart the cluster services on all nodes:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster restart --all</code></pre></div></li><li class="step"><p>
+        Check the status of the cluster:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div><p>
+        The nodes will have the status <code class="literal">UNCLEAN (offline)</code>, but will soon
+        change to <code class="literal">Online</code>.
+      </p></li><li class="step"><p>
+        When the nodes are back online, put the cluster back into normal operation:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance off</code></pre></div></li></ol></li><li class="step"><p>
+        When you change a timeout with <code class="command">crm sbd configure</code>, the global
+        fencing timeouts are also adjusted automatically. The automatic values are
+        sufficient for most use cases, but if you need to change them, you can use the
+        <code class="command">crm configure property</code> command:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure property stonith-timeout=<em class="replaceable">INTEGER_IN_SECONDS</em></code><span class="callout" id="co-stonith-timeout">1</span>
+<code class="prompt user">&gt; </code><code class="command">sudo crm configure property stonith-watchdog-timeout=<em class="replaceable">INTEGER_IN_SECONDS</em></code><span class="callout" id="co-stonith-watchdog-timeout">2</span></pre></div><p>
+        This command does <span><em class="emphasis">not</em></span> automatically adjust any other timeouts,
+        and these settings might be overwritten if you change the SBD configuration again.
+      </p><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-stonith-timeout"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+            The <code class="literal">stonith-timeout</code> defines how long to wait for the fencing
+            action to complete.
+          </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-stonith-watchdog-timeout"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+            <span><em class="emphasis">Only used for diskless SBD.</em></span>
+            The <code class="literal">stonith-watchdog-timeout</code> defines how long to wait for the
+            watchdog to fence the node.
+          </p></td></tr></table></div></li><li class="step"><p>
+        Confirm that the timeout settings changed:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm sbd configure show</code></pre></div></li></ol></div></div><p>
+    If you need to manually calculate any timeouts, you can use these basic formulas for most
+    use cases:
+  </p><div class="variablelist" id="ha-sbd-calculating-timeouts"><dl class="variablelist"><dt id="id-1.3.7.1"><span class="term">Disk-based SBD</span></dt><dd><p>
+          <code class="literal">msgwait-timeout &gt;= (watchdog-timeout * 2)</code>
+        </p><p>
+          <code class="literal">stonith-timeout &gt;= msgwait-timeout + 20%</code>
+        </p></dd><dt id="id-1.3.7.2"><span class="term">Diskless SBD</span></dt><dd><p>
+          <code class="literal">stonith-watchdog-timeout &gt;= (watchdog-timeout * 2)</code>
+        </p><p>
+          <code class="literal">stonith-timeout &gt;= stonith-watchdog-timeout + 20%</code>
+        </p></dd></dl></div><p>
+    For more information, run the <code class="command">crm help TimeoutFormulas</code> command.
+  </p></section><section xml:lang="en" class="sect1" id="ha-sbd-changing-watchdog-device" data-id-title="Changing the SBD watchdog device"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Changing the SBD watchdog device</span></span> <a title="Permalink" class="permalink" href="index.html#ha-sbd-changing-watchdog-device">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Use this procedure to change the watchdog device that SBD uses. This can be useful if
+        your system has multiple hardware watchdogs available or if you need to switch from the
+        software watchdog to a hardware watchdog.
+      </p></div></div></div></div><div id="id-1.4.2" data-id-title="Cluster restart required" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Cluster restart required</div><p>
+    In this procedure, the setup script checks whether it is safe to restart the cluster services
+    automatically. If any non-<code class="literal">stonith</code> resources are running, the script warns
+    you to restart the cluster services manually. This allows you to put the cluster into
+    maintenance mode first to avoid resource downtime. However, be aware that the resources won't
+    have cluster protection while in maintenance mode.
+  </p></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Requirements </span></span><a title="Permalink" class="permalink" href="index.html#id-1.4.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        SBD is already configured and running.
+      </p></li><li class="listitem"><p>
+        All nodes have the new watchdog device available.
+      </p></li></ul></div><p>
+    Perform this procedure on only one node in the cluster:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code> privileges.
+      </p></li><li class="step"><p>
+        Check the available watchdog devices:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo sbd query-watchdog</code></pre></div><p>
+        The output shows which watchdog is being used by SBD and which other watchdogs are available.
+      </p></li><li class="step"><p>
+        Change the SBD watchdog device, specifying either the device name (for example,
+        <code class="filename">/dev/watchdog1</code>) or the driver name (for example,
+        <code class="systemitem">iTCO_wdt</code>):
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm sbd configure watchdog-device=<em class="replaceable">WATCHDOG</em></code></pre></div><p>
+        The script updates the SBD configuration file with the new watchdog device and
+        checks whether it is safe to restart the cluster services automatically. If any
+        non-<code class="literal">stonith</code> resources are running, the script warns you to restart
+        the cluster services manually.
+      </p></li><li class="step"><p>
+    If you need to restart the cluster services manually, follow these steps to avoid
+    resource downtime:
+  </p><ol type="a" class="substeps"><li class="step"><p>
+        Put the cluster into maintenance mode:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance on</code></pre></div><p>
+        In this state, the cluster stops monitoring all resources. This allows the services
+        managed by the resources to keep running while the cluster restarts. However, be aware
+        that the resources won't have cluster protection while in maintenance mode.
+      </p></li><li class="step"><p>
+        Restart the cluster services on all nodes:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster restart --all</code></pre></div></li><li class="step"><p>
+        Check the status of the cluster:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div><p>
+        The nodes will have the status <code class="literal">UNCLEAN (offline)</code>, but will soon
+        change to <code class="literal">Online</code>.
+      </p></li><li class="step"><p>
+        When the nodes are back online, put the cluster back into normal operation:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance off</code></pre></div></li></ol></li><li class="step"><p>
+        Check the watchdog devices again:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo sbd query-watchdog</code></pre></div><p>
+        The output should now show the new watchdog device being used by SBD.
+      </p></li><li class="step"><p>
+        Check that the correct watchdog is configured on all nodes:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm sbd status</code></pre></div><p>
+        In the section <code class="literal">Watchdog info</code>, the watchdog device and driver should be
+        the same on every node.
+      </p></li></ol></div></div></section><section xml:lang="en" class="sect1" id="ha-sbd-changing-diskless-to-diskbased" data-id-title="Changing diskless SBD to disk-based SBD"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Changing diskless SBD to disk-based SBD</span></span> <a title="Permalink" class="permalink" href="index.html#ha-sbd-changing-diskless-to-diskbased">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Use this procedure to change diskless SBD to disk-based SBD.
+      </p></div></div></div></div><div id="id-1.5.2" data-id-title="Cluster restart required" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Cluster restart required</div><p>
+      In this procedure, the setup script automatically puts the cluster into maintenance mode
+      and restarts the cluster services. In maintenance mode, the cluster stops monitoring all
+      resources. This allows the services managed by the resources to keep running even during
+      the cluster restart. However, be aware that the resources won't have cluster protection
+      while in maintenance mode.
+    </p></div><div id="id-1.5.3" data-id-title="Overwriting existing data" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning: Overwriting existing data</div><p>
+      Make sure any device you want to use for SBD does not hold any important data. Configuring
+      a device for use with SBD overwrites the existing data.
+    </p></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Requirements </span></span><a title="Permalink" class="permalink" href="index.html#id-1.5.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        Diskless SBD is configured and running.
+      </p></li><li class="listitem"><p>
+        All nodes can access shared storage.
+      </p></li><li class="listitem"><p>
+        The path to the shared storage device is consistent across all nodes. Use stable device
+        names such as <code class="filename">/dev/disk/by-id/<em class="replaceable">DEVICE_ID</em></code>.
+      </p></li></ul></div><p>
+    Perform this procedure on only one node in the cluster:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code> privileges.
+      </p></li><li class="step"><p>
+        Check the status of SBD:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm sbd status</code>
+# Type of SBD:
+Diskless SBD configured</pre></div></li><li class="step"><p>
+        Configure disk-based SBD. Use <code class="option">--force</code> (or <code class="option">-F</code>) to allow
+        you to reconfigure SBD even when it is already running, and <code class="option">--sbd-device</code>
+        (or <code class="option">-s</code>) to specify the shared storage device:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm --force cluster init sbd --sbd-device /dev/disk/by-id/<em class="replaceable">DEVICE_ID</em></code></pre></div><div id="id-1.5.6.3.3" class="admonition tip compact"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><p>
+          You can use <code class="option">--sbd-device</code> (or <code class="option">-s</code>) multiple times to
+          configure up to three SBD devices.
+        </p></div><p>
+        The script initializes SBD on the shared storage device, creates a
+        <code class="literal">fence_sbd</code> cluster resource, and updates the SBD configuration
+        file and timeout settings. The script also puts the cluster into maintenance mode,
+        restarts the cluster services, then puts the cluster back into normal operation.
+      </p></li><li class="step"><p>
+        Check the status of the cluster:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div><p>
+        The nodes should be <code class="literal">Online</code> and the resources <code class="literal">Started</code>.
+      </p></li><li class="step"><p>
+        Check the status of SBD:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm sbd status</code>
+# Type of SBD:
+Disk-based SBD configured</pre></div></li></ol></div></div></section><section xml:lang="en" class="sect1" id="ha-sbd-changing-diskbased-to-diskless" data-id-title="Changing disk-based SBD to diskless SBD"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Changing disk-based SBD to diskless SBD</span></span> <a title="Permalink" class="permalink" href="index.html#ha-sbd-changing-diskbased-to-diskless">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Use this procedure to change disk-based SBD to diskless SBD.
+      </p><p>
+        Diskless SBD cannot handle a split-brain scenario for a two-node cluster. This
+        configuration should only be used for clusters with more than two nodes, or in
+        combination with QDevice to help handle split-brain scenarios.
+      </p></div></div></div></div><div id="id-1.6.2" data-id-title="Cluster restart required" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Cluster restart required</div><p>
+      In this procedure, the setup script automatically puts the cluster into maintenance mode
+      and restarts the cluster services. In maintenance mode, the cluster stops monitoring all
+      resources. This allows the services managed by the resources to keep running even during
+      the cluster restart. However, be aware that the resources won't have cluster protection
+      while in maintenance mode.
+    </p></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Requirements </span></span><a title="Permalink" class="permalink" href="index.html#id-1.6.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        Disk-based SBD is configured and running.
+      </p></li></ul></div><p>
+    Perform this procedure on only one node in the cluster:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code> privileges.
+      </p></li><li class="step"><p>
+        Check the status of SBD:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm sbd status</code>
+# Type of SBD:
+Disk-based SBD configured</pre></div></li><li class="step"><p>
+        Configure diskless SBD. Use <code class="option">--force</code> (or <code class="option">-F</code>) to allow
+        you to reconfigure SBD even when it is already running, and <code class="option">--enable-sbd</code>
+        (or <code class="option">-S</code>) to specify that no device is needed:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm --force cluster init sbd --enable-sbd</code></pre></div><p>
+        The script stops and removes the <code class="literal">fence_sbd</code> cluster resource, then
+        updates the SBD configuration file and timeout settings. The script also puts the
+        cluster into maintenance mode, restarts the cluster services, then puts the cluster
+        back into normal operation.
+      </p></li><li class="step"><p>
+        Check the status of the cluster:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div><p>
+        The nodes should be <code class="literal">Online</code> and the resources <code class="literal">Started</code>.
+      </p></li><li class="step"><p>
+        Check the status of SBD:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm sbd status</code>
+# Type of SBD:
+Diskless SBD configured</pre></div></li></ol></div></div></section><section xml:lang="en" class="sect1" id="ha-sbd-adding-another-device" data-id-title="Adding another SBD device"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Adding another SBD device</span></span> <a title="Permalink" class="permalink" href="index.html#ha-sbd-adding-another-device">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Use this procedure to add more SBD devices to a cluster that already has disk-based
+        SBD configured. The cluster can have up to three SBD devices.
+      </p></div></div></div></div><div id="id-1.7.2" data-id-title="Cluster restart required" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Cluster restart required</div><p>
+    In this procedure, the setup script checks whether it is safe to restart the cluster services
+    automatically. If any non-<code class="literal">stonith</code> resources are running, the script warns
+    you to restart the cluster services manually. This allows you to put the cluster into
+    maintenance mode first to avoid resource downtime. However, be aware that the resources won't
+    have cluster protection while in maintenance mode.
+  </p></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Requirements </span></span><a title="Permalink" class="permalink" href="index.html#id-1.7.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        Disk-based SBD is already configured and running with at least one device.
+      </p></li><li class="listitem"><p>
+        An additional shared storage device is accessible from all cluster nodes.
+      </p></li></ul></div><p>
+    Perform this procedure on only one node in the cluster:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code> privileges.
+      </p></li><li class="step"><p>
+        Check which device or devices are already configured for use with SBD:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm sbd configure show sysconfig</code></pre></div><p>
+        The output shows one or more device IDs in the <code class="literal">SBD_DEVICE</code> line.
+      </p></li><li class="step"><p>
+        Add a new device to the existing SBD configuration:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm sbd device add /dev/disk/by-id/<em class="replaceable">DEVICE_ID</em></code></pre></div><p>
+        The script initializes SBD on the new device, updates the SBD configuration file,
+        and checks whether it is safe to restart the cluster services automatically. If any
+        non-<code class="literal">stonith</code> resources are running, the script warns you to restart
+        the cluster services manually.
+      </p></li><li class="step"><p>
+    If you need to restart the cluster services manually, follow these steps to avoid
+    resource downtime:
+  </p><ol type="a" class="substeps"><li class="step"><p>
+        Put the cluster into maintenance mode:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance on</code></pre></div><p>
+        In this state, the cluster stops monitoring all resources. This allows the services
+        managed by the resources to keep running while the cluster restarts. However, be aware
+        that the resources won't have cluster protection while in maintenance mode.
+      </p></li><li class="step"><p>
+        Restart the cluster services on all nodes:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster restart --all</code></pre></div></li><li class="step"><p>
+        Check the status of the cluster:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div><p>
+        The nodes will have the status <code class="literal">UNCLEAN (offline)</code>, but will soon
+        change to <code class="literal">Online</code>.
+      </p></li><li class="step"><p>
+        When the nodes are back online, put the cluster back into normal operation:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance off</code></pre></div></li></ol></li><li class="step"><p>
+        Check the SBD configuration again:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm sbd configure show sysconfig</code></pre></div><p>
+        The output should now show more devices.
+      </p></li><li class="step"><p>
+        Check the status of SBD to make sure all the nodes can see the new device:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm sbd status</code></pre></div></li></ol></div></div></section><section xml:lang="en" class="sect1" id="ha-sbd-replacing-existing-device-with-new-device" data-id-title="Replacing an existing SBD device with a new device"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Replacing an existing SBD device with a new device</span></span> <a title="Permalink" class="permalink" href="index.html#ha-sbd-replacing-existing-device-with-new-device">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        If you need to replace an SBD device, you can use <code class="command">crm sbd device add</code>
+        to add the new device and <code class="command">crm sbd device remove</code> to remove the old device.
+        If the cluster has two SBD devices, you can run these commands in any order. However, if
+        the cluster has one or three SBD devices, you must run these commands in a specific order:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            One device: <code class="command">crm sbd device remove</code> cannot remove the only device,
+            so you must add the new device before you can remove the old device.
+          </p></li><li class="listitem"><p>
+            Three devices: <code class="command">crm sbd device add</code> cannot add a fourth device,
+            so you must remove the old device before you can add the new device.
+          </p></li></ul></div></div></div></div></div><div id="id-1.8.2" data-id-title="Cluster restart required" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Cluster restart required</div><p>
+      In this procedure, the cluster services must be restarted twice: once after adding the new
+      device <span><em class="emphasis">and</em></span> once after removing the old device. We recommend putting the
+      cluster into maintenance mode first to avoid resource downtime. However, be aware that the
+      resources won't have cluster protection while in maintenance mode.
+    </p></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Requirements </span></span><a title="Permalink" class="permalink" href="index.html#id-1.8.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        Disk-based SBD is already configured and running with at least one device.
+      </p></li><li class="listitem"><p>
+        An additional shared storage device is accessible from all cluster nodes.
+      </p></li></ul></div><p>
+    Perform this procedure on only one node in the cluster:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code> privileges.
+      </p></li><li class="step"><p>
+        Put the cluster into maintenance mode:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance on</code></pre></div><p>
+        In this state, the cluster stops monitoring all resources. This allows the services
+        managed by the resources to keep running while the cluster restarts. However, be aware
+        that the resources won't have cluster protection while in maintenance mode.
+      </p></li><li class="step" id="ha-sbd-replacing-check-sbd-devices"><p>
+        Check how many devices are already configured for use with SBD:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm sbd configure show sysconfig</code></pre></div><p>
+        The output shows one or more device IDs in the <code class="literal">SBD_DEVICE</code> line.
+        The number of devices determines the order of the next steps.
+      </p></li><li class="step"><p>
+        Add or remove a device, depending on the number of devices shown in
+        <a class="xref" href="index.html#ha-sbd-replacing-check-sbd-devices" title="Step 3">Step 3</a>:
+      </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.8.5.4.2.1"><span class="term">One device:</span></dt><dd><p>
+              Add the new device to the existing SBD configuration:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm sbd device add /dev/disk/by-id/<em class="replaceable">DEVICE_ID</em></code></pre></div><p>
+              The script restarts the cluster services automatically.
+            </p></dd><dt id="id-1.8.5.4.2.2"><span class="term">Two or three devices:</span></dt><dd><p>
+              Remove the old device from the SBD configuration:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm sbd device remove /dev/disk/by-id/<em class="replaceable">DEVICE_ID</em></code></pre></div><p>
+              The script warns you to restart the cluster services manually.
+            </p></dd></dl></div></li><li class="step"><p>
+        If you need to restart the cluster services manually, run the following command:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster restart --all</code></pre></div><p>
+        Check the status of the cluster:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div><p>
+        The nodes will have the status <code class="literal">UNCLEAN (offline)</code>, but will soon
+        change to <code class="literal">Online</code>.
+      </p></li><li class="step"><p>
+        Add or remove a device, depending on the number of devices shown in
+        <a class="xref" href="index.html#ha-sbd-replacing-check-sbd-devices" title="Step 3">Step 3</a>:
+      </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.8.5.6.2.1"><span class="term">One device:</span></dt><dd><p>
+              Remove the old device from the SBD configuration:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm sbd device remove /dev/disk/by-id/<em class="replaceable">DEVICE_ID</em></code></pre></div><p>
+              The script warns you to restart the cluster services manually.
+            </p></dd><dt id="id-1.8.5.6.2.2"><span class="term">Two or three devices:</span></dt><dd><p>
+              Add the new device to the existing SBD configuration:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm sbd device add /dev/disk/by-id/<em class="replaceable">DEVICE_ID</em></code></pre></div><p>
+              The script restarts the cluster services automatically.
+            </p></dd></dl></div></li><li class="step"><p>
+        If you need to restart the cluster services manually, run the following command:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster restart --all</code></pre></div><p>
+        Check the status of the cluster:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div><p>
+        The nodes will have the status <code class="literal">UNCLEAN (offline)</code>, but will soon
+        change to <code class="literal">Online</code>.
+      </p></li><li class="step"><p>
+        When the nodes are back online, put the cluster back into normal operation:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance off</code></pre></div></li><li class="step"><p>
+        Check the SBD configuration again:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm sbd configure show sysconfig</code></pre></div><p>
+        The output should now show the new device in the <code class="literal">SBD_DEVICE</code> line.
+      </p></li><li class="step"><p>
+        Check the status of SBD to make sure the correct device is listed:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm sbd status</code></pre></div></li></ol></div></div></section><section xml:lang="en" class="sect1" id="ha-sbd-removing-device" data-id-title="Removing an SBD device"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name">Removing an SBD device</span></span> <a title="Permalink" class="permalink" href="index.html#ha-sbd-removing-device">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Use this procedure to remove an SBD device from a cluster with multiple SBD devices
+        configured. You cannot use this method if there is only one SBD device configured.
+      </p></div></div></div></div><div id="id-1.9.2" data-id-title="Cluster restart required" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Cluster restart required</div><p>
+    In this procedure, the setup script checks whether it is safe to restart the cluster services
+    automatically. If any non-<code class="literal">stonith</code> resources are running, the script warns
+    you to restart the cluster services manually. This allows you to put the cluster into
+    maintenance mode first to avoid resource downtime. However, be aware that the resources won't
+    have cluster protection while in maintenance mode.
+  </p></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Requirements </span></span><a title="Permalink" class="permalink" href="index.html#id-1.9.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        Disk-based SBD is configured with more than one device.
+      </p></li></ul></div><p>
+    Perform this procedure on only one node in the cluster:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code> privileges.
+      </p></li><li class="step"><p>
+        Check which devices are already configured for use with SBD:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm sbd configure show sysconfig</code></pre></div><p>
+        The output shows multiple device IDs in the <code class="literal">SBD_DEVICE</code> line.
+      </p></li><li class="step"><p>
+        Remove a device from the SBD configuration:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm sbd device remove /dev/disk/by-id/<em class="replaceable">DEVICE_ID</em></code></pre></div><p>
+        The script removes the device, updates the SBD configuration file, and checks whether it
+        is safe to restart the cluster services automatically. If any non-<code class="literal">stonith</code>
+        resources are running, the script warns you to restart the cluster services manually.
+      </p></li><li class="step"><p>
+    If you need to restart the cluster services manually, follow these steps to avoid
+    resource downtime:
+  </p><ol type="a" class="substeps"><li class="step"><p>
+        Put the cluster into maintenance mode:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance on</code></pre></div><p>
+        In this state, the cluster stops monitoring all resources. This allows the services
+        managed by the resources to keep running while the cluster restarts. However, be aware
+        that the resources won't have cluster protection while in maintenance mode.
+      </p></li><li class="step"><p>
+        Restart the cluster services on all nodes:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster restart --all</code></pre></div></li><li class="step"><p>
+        Check the status of the cluster:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div><p>
+        The nodes will have the status <code class="literal">UNCLEAN (offline)</code>, but will soon
+        change to <code class="literal">Online</code>.
+      </p></li><li class="step"><p>
+        When the nodes are back online, put the cluster back into normal operation:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance off</code></pre></div></li></ol></li><li class="step"><p>
+        Check the SBD configuration again:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm sbd configure show sysconfig</code></pre></div><p>
+        The output should now show fewer devices.
+      </p></li><li class="step"><p>
+        Check the status of SBD to make sure the device was removed from all the nodes:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm sbd status</code></pre></div></li></ol></div></div></section><section xml:lang="en" class="sect1" id="ha-sbd-removing-all-configuration" data-id-title="Removing all SBD configuration"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">9 </span><span class="title-name">Removing all SBD configuration</span></span> <a title="Permalink" class="permalink" href="index.html#ha-sbd-removing-all-configuration">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Use this procedure to remove all SBD-related configuration from the cluster. You might
+        need to do this if you want to switch from SBD to a physical fencing device. Keep in
+        mind that to be supported, all SUSE Linux Enterprise High Availability clusters <span><em class="emphasis">must</em></span> have either
+        SBD or a physical fencing device configured.
+      </p></div></div></div></div><div id="id-1.10.2" data-id-title="Cluster restart required" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Cluster restart required</div><p>
+    In this procedure, the setup script checks whether it is safe to restart the cluster services
+    automatically. If any non-<code class="literal">stonith</code> resources are running, the script warns
+    you to restart the cluster services manually. This allows you to put the cluster into
+    maintenance mode first to avoid resource downtime. However, be aware that the resources won't
+    have cluster protection while in maintenance mode.
+  </p></div><p>
+    Perform this procedure on only one node in the cluster:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code> privileges.
+      </p></li><li class="step"><p>
+        Remove the SBD configuration from the cluster:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm sbd purge</code></pre></div><p>
+        The script stops the SBD service on all nodes, moves the SBD configuration file
+        to a backup file, and adjusts any SBD-related cluster properties. The script also
+        checks whether it is safe to restart the cluster services automatically. If any
+        non-<code class="literal">stonith</code> resources are running, the script warns you to restart
+        the cluster services manually.
+      </p></li><li class="step"><p>
+    If you need to restart the cluster services manually, follow these steps to avoid
+    resource downtime:
+  </p><ol type="a" class="substeps"><li class="step"><p>
+        Put the cluster into maintenance mode:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance on</code></pre></div><p>
+        In this state, the cluster stops monitoring all resources. This allows the services
+        managed by the resources to keep running while the cluster restarts. However, be aware
+        that the resources won't have cluster protection while in maintenance mode.
+      </p></li><li class="step"><p>
+        Restart the cluster services on all nodes:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster restart --all</code></pre></div></li><li class="step"><p>
+        Check the status of the cluster:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div><p>
+        The nodes will have the status <code class="literal">UNCLEAN (offline)</code>, but will soon
+        change to <code class="literal">Online</code>.
+      </p></li><li class="step"><p>
+        When the nodes are back online, put the cluster back into normal operation:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance off</code></pre></div></li></ol></li><li class="step"><p>
+        Confirm that the SBD configuration is gone:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm sbd status</code>
+ERROR: SBD configuration file /etc/sysconfig/sbd not found</pre></div></li><li class="step"><p>
+        Check the cluster configuration:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure show</code></pre></div><p>
+        The output should show <code class="literal">stonith-enabled=false</code> and no other SBD-related
+        properties.
+      </p></li></ol></div></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">10 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#ha-sbd-what-is"><span class="title-number">1 </span><span class="title-name">What is SBD?</span></a></span></li><li><span class="section"><a href="index.html#ha-sbd-changing-timeout-settings"><span class="title-number">2 </span><span class="title-name">Changing the SBD timeout settings</span></a></span></li><li><span class="section"><a href="index.html#ha-sbd-changing-watchdog-device"><span class="title-number">3 </span><span class="title-name">Changing the SBD watchdog device</span></a></span></li><li><span class="section"><a href="index.html#ha-sbd-changing-diskless-to-diskbased"><span class="title-number">4 </span><span class="title-name">Changing diskless SBD to disk-based SBD</span></a></span></li><li><span class="section"><a href="index.html#ha-sbd-changing-diskbased-to-diskless"><span class="title-number">5 </span><span class="title-name">Changing disk-based SBD to diskless SBD</span></a></span></li><li><span class="section"><a href="index.html#ha-sbd-adding-another-device"><span class="title-number">6 </span><span class="title-name">Adding another SBD device</span></a></span></li><li><span class="section"><a href="index.html#ha-sbd-replacing-existing-device-with-new-device"><span class="title-number">7 </span><span class="title-name">Replacing an existing SBD device with a new device</span></a></span></li><li><span class="section"><a href="index.html#ha-sbd-removing-device"><span class="title-number">8 </span><span class="title-name">Removing an SBD device</span></a></span></li><li><span class="section"><a href="index.html#ha-sbd-removing-all-configuration"><span class="title-number">9 </span><span class="title-name">Removing all SBD configuration</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">10 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li><li><span class="glossary"><a href="ha-glossary.html"><span class="title-name">HA glossary</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

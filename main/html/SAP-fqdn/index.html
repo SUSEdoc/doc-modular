@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Understanding and Configuring FQDNs | SUSE Linux Enterprise Server for SAP applications 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2026-01-12"/>
+<meta name="dcterms.modified" content="2026-01-12"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-26"/>
+<meta name="title" content="Understanding and Configuring FQDNs | SUSE Linux Enter…"/>
+<meta name="description" content="Use an FQDN as a unique and absolute digital address to ensure Internet traffic, e-mails and security certificates reach a specific server without any ris…"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server for SAP applications"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="Understanding and Configuring FQDNs"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="amrita.sakthivel@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="amrita.sathivel@suse.com"/><meta property="og:title" content="Configure FQDN on SUSE Linux Enterprise Server for SAP…"/>
+<meta property="og:description" content="Set up an FQDN for unique server identification&#10;       "/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Configure FQDN on SUSE Linux Enterprise Server for SAP…"/>
+<meta name="twitter:description" content="Set up an FQDN for unique server identification"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Configure FQDN on SUSE Linux Enterprise Server for SAP applications 16 | SUSE Linux Enterprise Server for SAP applications 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Smart Docs"
+    },
+    "inLanguage": "en",
+    "headline": "Configure FQDN on SUSE Linux Enterprise Server for SAP applications 16",
+    "description": "Use an FQDN as a unique and absolute digital address to ensure Internet traffic, e-mails and security certificates reach a specific server without any risk of ambiguity or misdirection.",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2026-01-12T00:00+02:00",
+    "dateModified": "2026-01-12T00:00+02:00",
+    "datePublished": "2026-08-26T09:47+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Administration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Security"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server for SAP applications",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER, IBM Z, AArch64"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Understanding and Configuring FQDNs</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Understanding and Configuring FQDNs</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="fqdn" data-id-title="Understanding and Configuring FQDNs"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span></span> 16.1</div><div><h1 class="title">Understanding and Configuring FQDNs</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>26 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+              A Fully Qualified Domain Name (FQDN) is a network identifier that specifies a host’s exact location within the Domain Name System (DNS) hierarchy.
+              </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
+                Use an FQDN to ensure unambiguous network addressing, enable SSL/TLS certificate validation and guarantee accurate mail delivery across global networks.
+              </p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                It takes 40 minutes of reading time and a basic knowledge of Linux fundamentals, including command-line use and file permissions.
+              </p></dd><dt id="id-1.1.12.1.4"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+              Linux fundamentals: Proficiency with the command line, file permissions and directory structures.
+                  </p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Understanding and Configuring FQDNs" hreflang="en" href="rh-ansible.html" target="_blank">Revision History: Understanding and Configuring FQDNs</a></div></div></div></div><section xml:lang="en" class="sect1" id="about-fqdn" data-id-title="About the FQDN"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">About the FQDN</span></span> <a title="Permalink" class="permalink" href="index.html#about-fqdn">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+FQDN is a domain name that specifies its exact location in the tree hierarchy of the DNS (Domain Name System).
+It is absolute, which means it provides every label from the specific host up to the DNS root zone.
+</p></div></div></div></div><p>An FQDN consists of two main parts; the host name and the domain name. It is structured from the most specific label on the left, to the most general, which is on the right.</p><p>For example, <code class="literal">mail.google.com</code>:</p><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.4.1"><span class="term">Host name</span></dt><dd><p>
+        <code class="literal">mail</code> identifies a specific server or service; in this case, it is the server handling e-mail.</p></dd><dt id="id-1.2.4.2"><span class="term">Subdomain</span></dt><dd><p>
+        <code class="literal">google</code> is the specific organization or network.</p></dd><dt id="id-1.2.4.3"><span class="term">Top-level domain</span></dt><dd><p>
+        <code class="literal">com</code> is the general category (commercial).</p></dd><dt id="id-1.2.4.4"><span class="term">Trailing dot</span></dt><dd><p>
+        <code class="literal">.</code> is the root zone. While we usually leave it off when typing in a browser, a true FQDN technically ends with a dot. This signals that the name is absolute and not relative to another domain.</p></dd></dl></div><p>A host name and an FQDN are distinctly different because they serve different functions in a networked environment.
+A host name is a simple human readable label assigned to a device on a local network. It is relative because it only identifies the machine within its immediate subnetwork.
+An FQDN is the absolute and unambiguous address of that host on the Internet. It combines the host name with the full domain hierarchy.
+</p><section class="sect2" id="imp-fqdn" data-id-title="Importance of FQDNs"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">Importance of FQDNs</span></span> <a title="Permalink" class="permalink" href="index.html#imp-fqdn">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>FQDNs serve a number of important functions:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>By mapping a distinct host name to its full parent domain hierarchy, FQDNs eliminate the ambiguity inherent in local naming conventions, ensuring that every asset can be precisely located and accessed across the global Internet.</p></li><li class="listitem"><p>In an e-mail address, the portion following the <code class="literal">@</code> symbol represents the FQDN (or a domain that resolves to one) of the destination mail server.</p></li><li class="listitem"><p>In Web hosting, FQDNs serve as the definitive addresses that map user requests to specific Web servers, enabling browsers to locate and retrieve precise Web pages within the global DNS structure.</p></li><li class="listitem"><p>DNS serves as the Internet's directory by translating human-readable names into machine-accessible IP addresses to facilitate cross-network communication. FQDNs are the essential components of this process, providing the absolute, unambiguous paths required for DNS queries and responses to accurately resolve host names to their specific numerical destinations.</p></li></ul></div></section><section class="sect2" id="certs-fqdn" data-id-title="About FQDNs and SSL/TLS certificates"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">About FQDNs and SSL/TLS certificates</span></span> <a title="Permalink" class="permalink" href="index.html#certs-fqdn">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>An FQDN is a fundamental requirement for obtaining SSL/TLS certificates, which safeguard online communications by encrypting data transmitted between servers and clients.
+      By providing a specific FQDN to a Certificate Authority (CA), you ensure the resulting certificate is mathematically bound to your exact domain, authenticating your site's identity and preventing unauthorized third parties from intercepting or spoofing your traffic.</p><p>Without a valid FQDN, browsers cannot validate the site’s security credentials, making it impossible to establish the trusted, encrypted tunnel necessary for modern Web safety and data privacy.</p></section></section><section xml:lang="en" class="sect1" id="configure-fqdn" data-id-title="How to configure FQDN"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">How to configure FQDN</span></span> <a title="Permalink" class="permalink" href="index.html#configure-fqdn">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+ A system's FQDN is the absolute name returned by the <code class="literal">resolver(3)</code> library when queried for the local hostname.
+ It represents the complete hierarchy of the host, typically formatted as the host name appended with the DNS domain name; for example: test.example.com.
+</p></div></div></div></div><div id="id-1.3.2" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important</div><p>
+We do not recommend setting FQDN as the host name in the <code class="filename">/etc/hostname</code> file , as it does not conform to RFC 1178 and may cause some applications to behave unexpectedly. For more information, see:
+<a class="link" href="https://www.ietf.org/rfc/rfc1178.txt" target="_blank">https://www.ietf.org/rfc/rfc1178.txt</a>. </p><p>The recommended approach is to allow the resolver to discover a host's FQDN at runtime, based on DNS information or entries in the <code class="filename">/etc/hosts</code> file.
+Note that <code class="systemitem">systemd</code> uses the content of the <code class="filename">/etc/hostname</code> file as is.</p></div><p>To configure an FQDN, you can use the command-line or directly edit the specific files.</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>To configure an FQDN on a SUSE Linux Enterprise Server 16 system, run:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  <code class="command"> hostnamectl hostname <em class="replaceable">HOST_NAME</em></code></pre></div><p>For example:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  <code class="command"> hostnamectl hostname name.example.com </code></pre></div></li><li class="listitem"><p>Edit the files:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Edit <code class="filename">/etc/hostname</code> file to set the host name. For example:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  <code class="command">vi /etc/hostname</code>
+  name.example.com</pre></div></li><li class="listitem"><p>Update <code class="filename">/etc/hosts</code> to include the FQDN and IP address.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  <code class="command">vi /etc/hosts</code></pre></div><div class="verbatim-wrap"><pre class="screen">[...]
+# IP-Address  Full-Qualified-Hostname  Short-Hostname
+
+127.0.0.1       localhost
+127.0.0.2       name.example.com        name
+
+[...]</pre></div></li></ul></div></li><li class="listitem"><p>You can verify the changes with:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  <code class="command">hostname -f</code></pre></div></li><li class="listitem"><p>Restart networking.</p></li></ul></div></section><section xml:lang="en" class="sect1" id="fqdn-troubleshooting" data-id-title="Troubleshooting FQDN"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Troubleshooting FQDN</span></span> <a title="Permalink" class="permalink" href="index.html#fqdn-troubleshooting">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+  To ensure seamless connectivity and maintain SEO integrity, troubleshooting a malfunctioning FQDN requires a systematic approach to identifying resolution failures.
+  </p><p> Common troubleshooting steps include:</p><div class="variablelist"><dl class="variablelist"><dt id="id-1.4.4.1"><span class="term"><span><em class="emphasis">Check the DNS records</em></span></span></dt><dd><p>If your FQDN is not resolving, verify your DNS records. A record maps your domain to an IP address. Ensure it points to the correct server.
+      Check the CNAME record, which is used for aliasing one domain to another. Ensure it is not misconfigured or pointing to an inactive domain.</p></dd><dt id="id-1.4.4.2"><span class="term"><span><em class="emphasis">Check subdomain configuration</em></span></span></dt><dd><p> When managing subdomains such as example.yourdomain.com, it is vital to ensure that each possesses its own accurately configured DNS records to prevent broken links and service interruptions.
+    Neglecting these individual entries often results in inaccessible pages and a degraded user experience. However, implementing a wildcard DNS record (*.yourdomain.com) can serve as an efficient catch-all solution.
+    This approach automatically routes traffic for any undefined subdomains to a central server, simplifying management as your network of hosted services expands.
+  </p></dd><dt id="id-1.4.4.3"><span class="term"><span><em class="emphasis">Secure FQDN with HTTPS</em></span></span></dt><dd><p> Implementing SSL certificates to enable HTTPS is a critical necessity for any domain, as it secures sensitive user data through robust encryption. Beyond the essential security benefits, maintaining a valid certificate serves as a key SEO ranking factor within the Google search algorithm.</p></dd></dl></div></section><section xml:lang="en" class="sect1" id="more-info-fqdn" data-id-title="More information"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">More information</span></span> <a title="Permalink" class="permalink" href="index.html#more-info-fqdn">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+To learn more about host names and FQDN, refer: </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     man 1 hostname
+    </p></li><li class="listitem"><p>
+      <a class="link" href="https://www.ietf.org/rfc/rfc1178.txt" target="_blank"> RFC on guidelines on what to do and what not to do when naming
+        your system
+      </a>
+    </p></li></ul></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#about-fqdn"><span class="title-number">1 </span><span class="title-name">About the FQDN</span></a></span></li><li><span class="section"><a href="index.html#configure-fqdn"><span class="title-number">2 </span><span class="title-name">How to configure FQDN</span></a></span></li><li><span class="section"><a href="index.html#fqdn-troubleshooting"><span class="title-number">3 </span><span class="title-name">Troubleshooting FQDN</span></a></span></li><li><span class="section"><a href="index.html#more-info-fqdn"><span class="title-number">4 </span><span class="title-name">More information</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">5 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

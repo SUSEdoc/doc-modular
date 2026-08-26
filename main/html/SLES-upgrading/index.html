@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Upgrading SLES 15 to SLES 16.1 | SUSE Linux Enterprise Server 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2025-11-04"/>
+<meta name="dcterms.modified" content="2025-11-17"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-26"/>
+<meta name="title" content="Upgrading SLES 15 to SLES 16.1 | SUSE Linux Enterprise…"/>
+<meta name="description" content="How to upgrade SUSE Linux Enterprise Server 15 to SUSE Linux Enterprise Server 16.1"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="Upgrading SLES 15 to SLES 16.1"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="cwickert@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="&#10;            SUSE Linux Enterprise Server 16.1&#10;          "/>
+<meta name="publisher" content="SUSE"/><meta name="category" content="."/><meta name="dc.creator" content="cwickert@suse.com"/><meta property="og:title" content="Upgrading SLES 15 to SLES 16.1"/>
+<meta property="og:description" content="Upgrade SLES 15 to SLES 16.1"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Upgrading SLES 15 to SLES 16.1"/>
+<meta name="twitter:description" content="Upgrade SLES 15 to SLES 16.1"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Upgrading SLES 15 to SLES 16.1 | SUSE Linux Enterprise Server 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Upgrading SLES 15 to SLES 16.1",
+    "description": "How to upgrade SUSE Linux Enterprise Server 15 to SUSE Linux Enterprise Server 16.1",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2025-11-04T00:00+02:00",
+    "dateModified": "2025-11-17T00:00+02:00",
+    "datePublished": "2026-08-26T09:47+02:00",
+
+    "articleSection": [ 
+        "Update &amp; Upgrade"
+        
+    ],
+        "about": [
+      {
+        "@type": "Thing",
+        "name": "Upgrade &amp; Update"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Upgrading SLES 15 to SLES 16.1</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Upgrading <span class="phrase"><span class="phrase">SLES</span></span> 15 to <span class="phrase"><span class="phrase">SLES</span></span> 16.1</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="sle16-upgrade" data-id-title="Upgrading SLES 15 to SLES 16.1"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span></span> 16.1</div><div><h1 class="title">Upgrading <span class="phrase"><span class="phrase">SLES</span></span> 15 to <span class="phrase"><span class="phrase">SLES</span></span> 16.1</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>26 Aug 2026</div><div><div class="abstract"><p>
+          The distribution migration system (DMS) allows for upgrading an existing <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span>
+          (<span class="phrase"><span class="phrase">SLES</span></span>) system to a later version. No new installation is required and
+          existing data is kept intact. The upgrade leverages a specialized live migration image to
+          completely isolate the upgrade environment, significantly reducing the risk of system
+          inconsistencies or unrecoverable failures during major version upgrades.
+        </p><p>
+          <span><em class="emphasis">Prerequisites:</em></span>
+        </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+              A system that offers a supported upgraded path to
+              <span class="phrase"><span class="phrase">SLES</span></span> 16.1 (see <a class="xref" href="index.html#sle16-upgrade-paths" title="2. Supported upgrade paths">Section 2, “Supported upgrade paths”</a>).
+            </p></li><li class="listitem"><p>
+              The system must be registered in order to access the package repositories.
+            </p></li></ul></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Upgrading SLES 15 to SLES 16.1" hreflang="en" href="rh-sle16-upgrade.html" target="_blank">Revision History: Upgrading SLES 15 to SLES 16.1</a></div></div></div></div><section xml:lang="en" class="sect1" id="sle16-upgrade-lifecycle" data-id-title="Lifecycle"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Lifecycle</span></span> <a title="Permalink" class="permalink" href="index.html#sle16-upgrade-lifecycle">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        This section explains the <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> lifecycle and when you have to upgrade. Whether it
+        is better to upgrade or perform a fresh installation depends on your specific scenario.
+      </p></div></div></div></div><section class="sect2" id="sle16-product-lifecycle" data-id-title="Product lifecycle"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">Product lifecycle</span></span> <a title="Permalink" class="permalink" href="index.html#sle16-product-lifecycle">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> 16 uses minor versions like 16.0 and 16.1 to add new features or functionality
+      that remain backward-compatible. Minor releases are scheduled annually and always in
+      November. Each minor version has 24 months of general support, giving you 12 months overlap
+      with the next minor version. The last minor version, 16.6, will have 48 months of general
+      support to complete a 10-year lifecycle in November 2035.
+      <span class="phrase">Additional Long Term Support (LTS) is available for 3 years for all minor
+      versions.</span>
+      
+    </p><p>
+      For more information, refer to the product lifecycle support policies page at <a class="link" href="https://www.suse.com/support/policy-products/" target="_blank">https://www.suse.com/support/policy-products/</a>. For exact lifecycle dates, refer
+      to <a class="link" href="https://www.suse.com/lifecycle" target="_blank">https://www.suse.com/lifecycle</a>.
+    </p></section><section class="sect2" id="sle16-upgrade-vs-installation" data-id-title="Upgrading versus fresh installation"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Upgrading versus fresh installation</span></span> <a title="Permalink" class="permalink" href="index.html#sle16-upgrade-vs-installation">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Upgrades between two major versions of <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> are supported by SUSE.
+      Whether it is better to upgrade or perform a fresh installation depends on your specific
+      scenario. While upgrades involve less work, fresh installations ensure you benefit from all
+      the new features of a release, such as disk layout changes, specific file system features, and
+      other improvements. To get the most out of your system, SUSE therefore recommends fresh
+      installations in most scenarios.
+    </p><p>
+      In both cases—an upgrade and a fresh installation—customers
+      need to check if system settings and default values still fit their
+      requirements.
+    </p></section></section><section xml:lang="en" class="sect1" id="sle16-upgrade-paths" data-id-title="Supported upgrade paths"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Supported upgrade paths</span></span> <a title="Permalink" class="permalink" href="index.html#sle16-upgrade-paths">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       This section lists the upgrade paths for <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> 16.1.
+      </p></div></div></div></div><p>
+    <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> 16.1 allows upgrades from the following products:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        <span class="phrase"><span class="phrase">SLES</span></span> 15 SP5, SP6, and SP7
+      </p></li><li class="listitem"><p>
+        <span class="phrase"><span class="phrase">SLES</span></span> 16.0
+      </p></li><li class="listitem"><p>
+        SLE RT 15 SP7
+      </p></li><li class="listitem"><p>
+        SUSE Linux Micro 6.2
+      </p></li><li class="listitem"><p>
+        openSUSE Leap 16.1
+      </p></li></ul></div><p>
+    Other products and versions are not supported. Refer to the documentation of your product to
+    upgrade it to a supported version first.
+  </p></section><section xml:lang="en" class="sect1" id="sle16-upgrade-distribution-migration-system" data-id-title="The distribution migration system"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">The distribution migration system</span></span> <a title="Permalink" class="permalink" href="index.html#sle16-upgrade-distribution-migration-system">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        The distribution migration system provides an upgrade path for an installed <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span>
+        system from one major version to another, for example, from <span class="phrase"><span class="phrase">SLES</span></span> 15 SP7
+        to <span class="phrase"><span class="phrase">SLES</span></span> 16.1. No new installation is required. Existing data, such
+        as home and data directories and system configuration, is kept intact.
+      </p><p>
+        The distribution migration system uses a specialized upgrade live image to completely
+        isolate the upgrade environment. This significantly reduces the risk of system
+        inconsistencies or unrecoverable failures during major version upgrades.
+      </p></div></div></div></div><section class="sect2" id="concept-sle16-upgrade-distribution-migration-systemt" data-id-title="Concept"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.1 </span><span class="title-name">Concept</span></span> <a title="Permalink" class="permalink" href="index.html#concept-sle16-upgrade-distribution-migration-systemt">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      While previous versions of <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> were upgraded from the Unified Installer, <span class="phrase"><span class="phrase">SLES</span></span>
+      16 uses the distribution migration system. This upgrade is done via the network using the
+      <code class="command">zypper migration</code> workflow, which sends a request to the repository server,
+      asking for an upgrade path. Supported repository servers are the SUSE Customer Center (SCC) and the
+      Repository Mirroring Tool (RMT). The request response contains the list of repositories required to
+      upgrade the system. This requires the system to be registered before the upgrade.
+    </p><p>
+      The repository server providing the updates must have the necessary channels available and
+      those channels must be up to date. This requirement is automatically met when a system is
+      registered to the SUSE Customer Center (SCC) or for "Pay as you go" instances in the public cloud
+      that are automatically registered to the SUSE-operated update infrastructure of the cloud
+      service provider. However, administrative work may be required when the system to be upgraded
+      is connected to an RMT server.
+    </p><p>
+      Upgrading to a new major version requires the system to be offline. This downtime is necessary
+      to avoid system inconsistencies that could put the system into a state that does not allow
+      recovery. Therefore, an upgrade live image is used for the upgrade.
+    </p><p>
+      The distribution migration system provides the live image and a start-up utility,
+      <code class="command">run_migration</code>, which reboots the running system into the upgrade live image.
+      Once booted into the upgrade live image, the following chain of services will be executed:
+    </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>
+          Detect the system to be upgraded
+        </p></li><li class="listitem"><p>
+          Mount the necessary file systems
+        </p></li><li class="listitem"><p>
+          Set up the network to match the network configuration of the system to be upgraded
+        </p></li><li class="listitem"><p>
+          Prepare SSH access to the upgrade live image
+        </p></li><li class="listitem"><p>
+          Prepare the package manager for the upgrade task
+        </p></li><li class="listitem"><p>
+          Upgrade the system using <code class="command">zypper</code>
+        </p></li><li class="listitem"><p>
+          Update the boot loader configuration
+        </p></li><li class="listitem"><p>
+          Unmount all mounted file systems
+        </p></li><li class="listitem"><p>
+          Reboot
+        </p></li></ol></div><p>
+      If an error occurs prior to the start of the upgrade, the system will be reverted to its
+      original state.
+    </p></section><section class="sect2" id="id-1.4.3" data-id-title="Upgrade Pre-Checks"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.2 </span><span class="title-name">Upgrade Pre-Checks</span></span> <a title="Permalink" class="permalink" href="index.html#id-1.4.3">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The <span class="package">suse-migration-pre-checks</span> package contains the script
+      <code class="literal">suse-migration-pre-checks</code> that checks for possible incompatibilities for
+      performing a migration. For example:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          Encrypted file systems
+        </p></li><li class="listitem"><p>
+          Invalid repository types
+        </p></li><li class="listitem"><p>
+          Multiple installed kernels with the <code class="option">multiversion.kernels</code> option
+        </p></li><li class="listitem"><p>
+          Unsupported upgrade paths (see <a class="xref" href="index.html#sle16-upgrade-paths" title="2. Supported upgrade paths">Section 2, “Supported upgrade paths”</a>)
+        </p></li></ul></div><p>
+      This script is run during the installation of the <span class="package">SLES16-Migration</span> package
+      on the system to be upgraded. The pre-checks can also be run anytime using the following
+      command:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">suse-migration-pre-checks</code></pre></div><p>
+      The script must be run as root.
+    </p><p>
+      Running the script with the <code class="literal">--fix</code> option will automatically remediate the
+      following issues:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          Set <code class="literal">multiversion.kernels</code> to the correct value and remove all old
+          (not currently running) kernels.
+        </p></li></ul></div></section></section><section xml:lang="en" class="sect1" id="sle16-upgrade-prepare" data-id-title="Preparing the upgrade"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Preparing the upgrade</span></span> <a title="Permalink" class="permalink" href="index.html#sle16-upgrade-prepare">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Before starting the upgrade procedure, make sure your system is properly prepared. Among
+        other things, preparation involves backing up data and checking the release notes.
+      </p></div></div></div></div><p>
+      Perform the following steps before starting the upgrade:
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Make sure the latest system updates are installed by
+          running <code class="command">zypper patch</code>.
+        </p></li><li class="step"><p>
+          Read the release notes. Find the list of all changes, new features and known issues in the
+          <a class="link" href="https://www.suse.com/releasenotes/" target="_blank">release notes</a>.
+        </p><p>
+          Consult the release notes to check whether the following applies:
+        </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+              Your hardware needs special considerations
+            </p></li><li class="listitem"><p>
+            Any currently used software packages have changed significantly
+            </p></li><li class="listitem"><p>
+              Your installation requires special precautions
+            </p></li></ul></div></li><li class="step"><p>
+          Back up your data by copying the existing configuration files to a separate 
+          medium (such as a tape device or removable hard disk). This primarily applies to files stored in
+          <code class="filename">/etc</code> and some directories and files in <code class="filename">/var</code> and
+          <code class="filename">/opt</code>.
+        </p></li><li class="step"><p>
+          Check the available disk space. If you suspect you are running short of disk space, free
+          up disk space or resize partitions.
+          
+        </p></li><li class="step"><p>
+          If your machine serves as a VM Host Server for KVM, properly shut down all running
+          VM Guests prior to the upgrade.
+        </p></li><li class="step"><p>
+          Configure SSH key-based login. During the upgrade, it is not possible to login with a
+          password. It is recommended to that at least one of the users on the system has a private
+          key in <code class="filename">~/.ssh/authorized_keys</code>. To add the key, run:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ssh-copy-id <em class="replaceable">INSTANCE_USER@INSTANCE_IP</em></code></pre></div></li><li class="step"><p>
+          Root login by SSH will be disabled by default in SLE 16. You might want to enable it
+          back before starting the migration. To do so, create
+          <code class="filename">/etc/ssh/sshd_config.d/50-permit-root-login.conf</code> with the following
+          content:
+        </p><div class="verbatim-wrap"><pre class="screen">PermitRootLogin yes</pre></div><p>
+          Once the migration is complete, you can install
+          <span class="package">openssh-server-config-rootlogin</span> package and remove the previously added
+          file.
+        </p></li></ol></div></div></section><section xml:lang="en" class="sect1" id="reference-sle16-upgrade-distribution-migration-system" data-id-title="Customizing the upgrade process"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Customizing the upgrade process</span></span> <a title="Permalink" class="permalink" href="index.html#reference-sle16-upgrade-distribution-migration-system">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        The upgrade live image is preconfigured to run without any further setup. This section
+        describes the custom configuration options.
+      </p></div></div></div></div><p>
+    To configure the distribution migration system, create
+    <code class="filename">/etc/sle-migration-service.yml</code> on the system to be upgraded:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">ssh</code> <em class="replaceable">USER@HOST</em> '<code class="command">touch</code> <code class="filename">/etc/sle-migration-service.yml'</code></pre></div><section class="sect2" id="id-1.6.4" data-id-title="Specify the upgrade target"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.1 </span><span class="title-name">Specify the upgrade target</span></span> <a title="Permalink" class="permalink" href="index.html#id-1.6.4">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The default upgrade target is <span class="phrase">SLES</span> 16.0. This default target can be changed through the
+      <code class="literal">migration_product</code> setting. The target must be specified with the triplet
+      <code class="literal">name/version/arch</code> found in <code class="filename">/etc/products.d/baseproduct</code>
+      of the target product, for example:
+    </p><div class="verbatim-wrap"><pre class="screen">migration_product: SLES/16.1/x86_64</pre></div><p>
+      To change the upgrade target to 16.1, run the following command:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">ssh</code> <em class="replaceable">USER@HOST</em> '<code class="command">echo</code> "migration_product: SLES/16.1/x86_64" &gt;&gt; <code class="filename">/etc/sle-migration-service.yml'</code></pre></div></section><section class="sect2" id="reference-sle16-upgrade-distribution-migration-system-configuration" data-id-title="Optional configuration of the upgrade process"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.2 </span><span class="title-name">Optional configuration of the upgrade process</span></span> <a title="Permalink" class="permalink" href="index.html#reference-sle16-upgrade-distribution-migration-system-configuration">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The following configuration options are completely optional. Change only what is necessary and
+      only if you know what you are doing.
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.6.5.3.1"><span class="term">Preserve system data</span></dt><dd><p>
+            Preserve custom data files, such as udev rules, from the system
+            being migrated and ensure they are applied in the upgraded system.
+          </p><p>
+            The <code class="literal">preserve</code> section has three subsections that govern file
+            preservation and system actions:
+          </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                <code class="literal">static</code>: Files in this subsection are copied into the DMS
+              directly, with no further processing.
+              </p></li><li class="listitem"><p>
+                <code class="literal">rules</code>: If this subsection contains files, they are preserved, and
+                the DMS reloads udev to make these rules effective.
+              </p></li><li class="listitem"><p>
+                <code class="literal">sysctl</code>: Preserving these files triggers sysctl --system to apply
+                the configuration changes.
+              </p><div class="verbatim-wrap"><pre class="screen">preserve:
+    rules:
+      - /etc/udev/rules.d/a.rules
+      - /etc/udev/rules.d/b.rules
+    static:
+      - /etc/sysconfig/proxy
+      - /path/to/be/preserved/*.suffix</pre></div><div id="id-1.6.5.3.1.2.3.3.3" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+                  udev rules that require custom drivers will not have the desired effect
+                  as the upgrade life image does not include these drivers and therefore
+                  execution of those rules will fail. Rules with such properties should
+                  not be listed.
+                </p></div><div id="id-1.6.5.3.1.2.3.3.4" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+                  The DMS provides a set of default preservable files that vary based on
+                  the target version and architecture. User-defined values will supplement
+                  this default list.
+                </p></div></li></ul></div></dd><dt id="id-1.6.5.3.2"><span class="term">Enable debug mode</span></dt><dd><p>
+            If enabled, it prevents the upgrade system from rewinding the setup
+            steps and rebooting due to a failed upgrade, allowing the issue to
+            be debugged.
+          </p><div class="verbatim-wrap"><pre class="screen">debug: true|false</pre></div></dd><dt id="id-1.6.5.3.3"><span class="term">Configure the reboot method</span></dt><dd><p>
+          By default, the migration system uses <code class="literal">kexec</code> to boot back into the host
+          system once migration is complete.  If this is in any way problematic,
+          a regular <code class="literal">reboot</code> can be requested by setting <code class="literal">soft_reboot: false</code>.
+        </p><div class="verbatim-wrap"><pre class="screen">soft_reboot: true|false</pre></div></dd><dt id="id-1.6.5.3.4"><span class="term">Enable the verbosity of the zypper migration</span></dt><dd><p>
+            If enabled, it will run the zypper migration plugin with increased verbosity.
+          </p><div class="verbatim-wrap"><pre class="screen">verbose_migration: true|false</pre></div></dd><dt id="id-1.6.5.3.5"><span class="term">Enable the fix option for pre_checks</span></dt><dd><p>
+          If enabled (default), the run_pre_checks systemd process will use the <code class="literal">--fix</code>
+          option to automatically remediate applicable issues before the migration
+          is started.
+        </p><div class="verbatim-wrap"><pre class="screen">pre_checks_fix: true|false</pre></div></dd><dt id="id-1.6.5.3.6"><span class="term">Configure the initramfs creation method</span></dt><dd><p>
+          The live system may not contain all the tools required to create an initramfs that meets
+          the needs of the system being upgraded. Building a host-independent initramfs will create
+          an initramfs that includes the tools and modules available on the system being upgraded.
+          If needed, a host-independent initramfs can be created by setting
+          <code class="literal">build_host_independent_initrd: True</code>.
+        </p><div class="verbatim-wrap"><pre class="screen">build_host_independent_initrd: true|false</pre></div></dd><dt id="id-1.6.5.3.7"><span class="term">Configure the dependency solver test case generation</span></dt><dd><p>
+            It is possible that during the migration packages get installed that were not
+            on the system previously and are pulled in because of dependencies. This
+            setting will set up the migration so that a solver test case is generated.
+            The information from the test case can then be used to understand why a
+            given package was installed.
+          </p><div class="verbatim-wrap"><pre class="screen">debug_solver: true|false</pre></div></dd></dl></div></section></section><section xml:lang="en" class="sect1" id="sle16-upgrade-perform" data-id-title="Performing the upgrade"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Performing the upgrade</span></span> <a title="Permalink" class="permalink" href="index.html#sle16-upgrade-perform">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        This section describes the actual upgrade procedure with the distribution migration system.
+      </p></div></div></div></div><section class="sect2" id="task-sle16-upgrade-requirements" data-id-title="Requirements"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.1 </span><span class="title-name">Requirements</span></span> <a title="Permalink" class="permalink" href="index.html#task-sle16-upgrade-requirements">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          The system must be registered with the SUSE Customer Center or an RMT server.
+          "Pay as you go" instances in the public cloud are automatically registered
+          to the SUSE-operated update infrastructure.
+        </p></li><li class="listitem"><p>
+          The upgrade path must be supported. Refer to <a class="xref" href="index.html#sle16-upgrade-paths" title="2. Supported upgrade paths">Section 2, “Supported upgrade paths”</a> for
+          details.
+        </p></li><li class="listitem"><p>
+          The upgrade target is set to 16.1 instead of the default 16.0. Refer to
+          <a class="xref" href="index.html#reference-sle16-upgrade-distribution-migration-system" title="5. Customizing the upgrade process">Section 5, “Customizing the upgrade process”</a> for details.
+        </p></li><li class="listitem"><p>
+         The server that provides the migration target must have the appropriate repositories
+         synced, and they must be up to date. This requirement is automatically met by the SUSE Customer Center, and
+         the SUSE-operated update infrastructure in the public cloud. If you are using an RMT
+         server, make sure to mirror all relevant channels.
+        </p></li><li class="listitem"><p>
+          The operating system needs to reside on a single partition.
+          Support for multiple partitions, such as LVM, is limited to configurations where the
+          separated partitions do not contain OS-critical data or processes. For example, a separate
+          <code class="filename">/home</code> partition will function whereas a separate
+          <code class="filename">/var</code> will not.
+        </p></li></ul></div></section><section class="sect2" id="task-sle16-upgrade-executing" data-id-title="Upgrading SUSE Linux Enterprise Server 15 to 16.1"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.2 </span><span class="title-name">Upgrading <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> 15 to 16.1</span></span> <a title="Permalink" class="permalink" href="index.html#task-sle16-upgrade-executing">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The distribution migration system can be invoked using two different methods:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          Reboot after installing the <span class="package">suse-migration-sle16-activation</span> package.
+        </p></li><li class="listitem"><p>
+          Run the <code class="command">run_migration</code> command included with the
+          <span class="package">SLES16-Migration</span> package.
+        </p></li></ul></div><p>
+      Depending on your architecture, perform the following steps to trigger the upgrade:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.7.3.5.1"><span class="term">Use <code class="command">reboot</code> on AMD64/Intel 64, AArch64, and ppc64le:</span></dt><dd><p>
+            After installing the <span class="package">suse-migration-sle16-activation</span> package, start
+            the migration process by rebooting the system:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper</code> in suse-migration-sle16-activation
+<code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">reboot</code></pre></div><p>
+              The <span class="package">suse-migration-sle16-activation</span> package installs
+              <span class="package">SLES16-Migration</span> as a dependency and modifies the bootloader
+              configuration to boot into the upgrade image.
+            </p></dd><dt id="id-1.7.3.5.2"><span class="term">Use <code class="command">run_migration</code> on s390x: </span></dt><dd><p>
+            Modifying the boot loader configuration is not supported on s390x, so you start
+            the migration directly with <code class="command">run_migration</code>.
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper</code> in SLES16-Migration
+<code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">run_migration</code></pre></div><p>
+            The <code class="command">run_migration</code> utility uses <code class="command">Kexec</code> and does
+            not work in Xen-based environments. If <code class="command">Kexec</code> causes a kernel
+            panic, refer to the TID at <a class="link" href="https://www.suse.com/support/kb/doc/?id=000019733" target="_blank">https://www.suse.com/support/kb/doc/?id=000019733</a> and set the
+            <code class="option">soft_reboot</code> customization option (see <a class="xref" href="index.html#reference-sle16-upgrade-distribution-migration-system" title="5. Customizing the upgrade process">Section 5, “Customizing the upgrade process”</a>).
+          </p></dd></dl></div></section></section><section xml:lang="en" class="sect1" id="task-sle16-upgrade-prepare" data-id-title="Finishing the upgrade"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Finishing the upgrade</span></span> <a title="Permalink" class="permalink" href="index.html#task-sle16-upgrade-prepare">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        After the upgrade, you need to perform some additional tasks. The following section guides
+        you through these steps.
+      </p></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Rebuild your <code class="command">rpm</code> database. During or after the upgrade, you may see a
+          warning similar to this one:
+        </p><div class="verbatim-wrap"><pre class="screen">warning: Found NDB Packages.db database while attempting bdb backend: using ndb backend.</pre></div><p>
+          This warning is purely informational and can be ignored. To convert the
+          <code class="command">rpm</code> database, run:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">rpm --rebuilddb</code></pre></div></li><li class="step"><p>
+          Use <code class="command">zypper packages</code> to check for orphaned and unneeded packages.
+        </p><ol type="a" class="substeps"><li class="step"><p>
+              Orphaned packages are no longer available in any of the configured package
+              repositories. They can no longer get updated and become unsupported.
+            </p><p>
+              For a list of orphaned packages, run:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">zypper packages --orphaned</code></pre></div></li><li class="step"><p>
+              Unneeded packages are dependencies of packages that have been installed either
+              explicitly by the user or implicitly as part of a pattern or product, and that have been
+              removed in the meantime. They are usually no longer needed and should be removed, too.
+            </p><p>
+              For a list of unneeded packages, run:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">zypper packages --unneeded</code></pre></div><div id="id-1.8.2.2.2.2.4" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
+                To avoid unneeded packages, use <code class="command">zypper rm</code> with the
+                <code class="option">--clean-deps</code> option.
+             </p></div></li><li class="step"><p>
+              You can combine both lists into one:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">zypper packages --orphaned --unneeded</code></pre></div></li><li class="step"><p>
+              Use these lists to determine which packages are still needed and which can be safely
+              removed.
+            </p><div id="id-1.8.2.2.2.4.2" data-id-title="Do not remove packages you need" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning: Do not remove packages you need</div><p>
+                If packages are renamed or removed from a pattern or product,
+                <code class="command">zypper</code> may no longer consider them explicitly installed and mark
+                them as unneeded, even though they are still crucial for your installation.
+              </p><p>
+                Carefully review the list of packages you are removing.
+              </p></div><p>
+              To remove all orphaned and unneeded packages with a single command, run:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper rm $(zypper --no-refresh packages --orphaned --unneeded | gawk '{print $5}' | tail -n +5)</code></pre></div><p>
+              Exclude a single package or pattern from being uninstalled:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper rm $(zypper --no-refresh packages --orphaned --unneeded | gawk '{print $5}' | tail -n +5 | grep -v <em class="replaceable">PACKAGE_TO_EXCLUDE</em>)</code></pre></div><p>
+              Exclude multiple packages defined in a text file, separated by a newline:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper rm $(zypper --no-refresh packages --orphaned --unneeded | gawk '{print $5}' | tail -n +5 | grep -v -f <em class="replaceable">/PACKAGES/TO/KEEP.txt</em>)</code></pre></div></li></ol></li><li class="step"><p>
+          Check for any <code class="filename">*.rpmnew</code> and <code class="filename">*.rpmsave</code> files. When
+          an upgrade includes changes to a default configuration file that has been altered after
+          package installation, instead of overwriting the file, one of these file types is
+          created. While <code class="filename">*.rpmnew</code> contains the new default configuration and
+          leaves your altered file untouched, <code class="filename">*.rpmsave</code> is a copy of your
+          altered configuration that has been replaced by the new default file.
+        </p><p>
+          If you find any of these files, examine their content and merge desirable changes. You do
+          not need to search the whole file system, only the <code class="filename">/etc</code> directory.
+          Use the following command:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">find /etc/ -name "*.rpmnew" -o -name "*.rpmsave"</code></pre></div></li></ol></div></div></section><section xml:lang="en" class="sect1" id="sle16-upgrade-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="index.html#sle16-upgrade-more-info">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    For more information about the Distribution Migration System, refer to
+    <a class="link" href="https://documentation.suse.com/suse-distribution-migration-system/15/html/distribution-migration-system/" target="_blank">https://documentation.suse.com/suse-distribution-migration-system/15/html/distribution-migration-system/</a>.
+  </p></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">9 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#sle16-upgrade-lifecycle"><span class="title-number">1 </span><span class="title-name">Lifecycle</span></a></span></li><li><span class="section"><a href="index.html#sle16-upgrade-paths"><span class="title-number">2 </span><span class="title-name">Supported upgrade paths</span></a></span></li><li><span class="section"><a href="index.html#sle16-upgrade-distribution-migration-system"><span class="title-number">3 </span><span class="title-name">The distribution migration system</span></a></span></li><li><span class="section"><a href="index.html#sle16-upgrade-prepare"><span class="title-number">4 </span><span class="title-name">Preparing the upgrade</span></a></span></li><li><span class="section"><a href="index.html#reference-sle16-upgrade-distribution-migration-system"><span class="title-number">5 </span><span class="title-name">Customizing the upgrade process</span></a></span></li><li><span class="section"><a href="index.html#sle16-upgrade-perform"><span class="title-number">6 </span><span class="title-name">Performing the upgrade</span></a></span></li><li><span class="section"><a href="index.html#task-sle16-upgrade-prepare"><span class="title-number">7 </span><span class="title-name">Finishing the upgrade</span></a></span></li><li><span class="section"><a href="index.html#sle16-upgrade-more-info"><span class="title-number">8 </span><span class="title-name">For more information</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">9 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

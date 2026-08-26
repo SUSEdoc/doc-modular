@@ -1,0 +1,819 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Configuring and Managing iSCSI Storage | SUSE Linux Enterprise Server 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2026-07-17"/>
+<meta name="dcterms.modified" content="2026-07-17"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-26"/>
+<meta name="title" content="Configuring and Managing iSCSI Storage | SUSE Linux En…"/>
+<meta name="description" content="Learn how iSCSI transmits SCSI commands over IP networks to provide systems with block-level access to remote storage configured as local drives"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="Configuring and Managing iSCSI Storage"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="amrita.sakthivel@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="amrita.sathivel@suse.com"/><meta property="og:title" content="Configuring and Managing iSCSI Storage"/>
+<meta property="og:description" content="Configure iSCSI target and initiator storage on Linux"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Configuring and Managing iSCSI Storage"/>
+<meta name="twitter:description" content="Configure iSCSI target and initiator storage on Linux"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Configuring and Managing iSCSI Storage | SUSE Linux Enterprise Server 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Smart Docs"
+    },
+    "inLanguage": "en",
+    "headline": "Configuring and Managing iSCSI Storage",
+    "description": "Learn how iSCSI transmits SCSI commands over IP networks to provide systems with block-level access to remote storage configured as local drives",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2026-07-17T00:00+02:00",
+    "dateModified": "2026-07-17T00:00+02:00",
+    "datePublished": "2026-08-26T09:48+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Administration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Security"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER, IBM Z, AArch64"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#iscsi">Configuring and Managing iSCSI Storage</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="iscsi" data-id-title="Configuring and Managing iSCSI Storage"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span></span> 16.1</div><div><h1 class="title">Configuring and Managing iSCSI Storage</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>26 Aug 2026</div><div><div class="abstract"><p>iSCSI (Internet Small Computer Systems Interface) is a storage networking protocol 
+          that transmits SCSI commands over IP networks, allowing Linux systems to access 
+          remote block storage as if it were a local physical hard drive. 
+          iSCSI runs over existing Ethernet infrastructure and does not require costly dedicated storage hardware.
+          This makes it a cost-effective solution to consolidate storage. It also delivers 
+          high-performance, low-latency block-level access, ideal for virtualized environments 
+          and enterprise databases. On SUSE Linux, iSCSI uses the kernel-level LIO target 
+          (<code class="command">targetcli</code>) on the storage server and the Open-iSCSI initiator 
+          (<code class="command">iscsiadm</code>) on the client.</p><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.2.1"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+<span><em class="emphasis">Linux fundamentals:</em></span> Understanding basic Linux commands, file permissions, 
+                    directory structures and use of the command line.
+                  </p></li><li class="listitem"><p>
+<span><em class="emphasis">Networking fundamentals:</em></span> Understanding how IP addresses and subnets work, 
+                    as iSCSI relies on your local network to find the storage. It also helps to 
+                    know that iSCSI uses TCP Port 3260 to communicate.
+                  </p></li><li class="listitem"><p>
+<span><em class="emphasis">Storage fundamentals:</em></span> Understanding  the difference between file-level 
+                    storage (like a folder on Google Drive) and block-level storage (like a raw, 
+                    unformatted hard drive), as iSCSI is strictly block-level.
+                  </p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Configuring and Managing iSCSI Storage" hreflang="en" href="rh-iscsi.html" target="_blank">Revision History: Configuring and Managing iSCSI Storage</a></div></div></div></div><section xml:lang="en" class="sect1" id="about-iscsi" data-id-title="What is iSCSI and how does it work?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">What is iSCSI and how does it work?</span></span> <a title="Permalink" class="permalink" href="#about-iscsi">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+ iSCSI is a networking protocol that enables the transmission of SCSI commands over 
+ standard IP networks. It enables a host system (the initiator) to access remote 
+ block-level storage on a server (the target) using standard Ethernet cables and switches. 
+ The client operating system formats and manages the assigned remote disk space—known 
+as a Logical Unit Number (LUN)—using native file systems like Btrfs, XFS or ext4. 
+      </p></div></div></div></div><p>
+   By wrapping storage-level data blocks into standard TCP/IP packets, it bridges 
+   the gap between local storage performance and network flexibility, using existing 
+   Ethernet infrastructure like switches and cables rather than expensive, specialized hardware. 
+   In an iSCSI setup, the initiator connects to a target to claim a portion of disk space known 
+   as a LUN (Logical Unit Number), which the client can then format and manage with its own 
+   native file system.
+   Note that LU (Logical Unit) is the data container or virtual disk and LUN (Logical Unit Number) 
+   is the numerical address of the container.
+   Linux iSCSI provides iSCSI initiator and iSCSI LIO (Linux-IO) target software for connecting 
+   Linux servers to central storage systems.
+  </p><section class="sect2" id="what-is" data-id-title="iSCSI core architecture and components"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">iSCSI core architecture and components</span></span> <a title="Permalink" class="permalink" href="#what-is">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>The iSCSI architecture relies on two primary entities: the initiator (the client 
+      requesting storage) and the target (the server serving storage). Storage capacity 
+      is presented as LUNs.</p><p>In a physical iSCSI environment, the initiator is the server’s software that 
+      requests data, the LIO target is the physical storage appliance that hosts the 
+      data and the LUN (Logical Unit Number) represents the specific physical disk 
+      capacity assigned to the server.</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span><span class="emphasis"><strong>The iSCSI initiator:</strong></span></span> The initiator is the physical server that needs to consume the storage. It initiates the conversation with the target.</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span><span class="emphasis"><strong>HBA (host bus adapter):</strong></span></span> While you can use a standard network card, a physical iSCSI HBA is a dedicated expansion card installed in the server's PCIe slot. It contains its own processor to handle storage traffic and prevents the server’s main CPU from becoming overwhelmed.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>Physical ports:</strong></span></span> These are the dedicated connection points on the server used exclusively for storage traffic to ensure low latency and high throughput.</p></li></ul></div></li><li class="listitem"><p><span><span class="emphasis"><strong>The iSCSI LIO target:</strong></span></span> The target is the physical hardware device that houses the data. LIO (Linux-IO) is the standard, open-source storage enterprise-grade target for the Linux kernel.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>The LUN:</strong></span></span> While a LUN is a logical identifier, it directly corresponds to the physical disk resources allocated to a server.</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span><span class="emphasis"><strong>Physical disk groups:</strong></span></span> A LUN is often a physical collection of disks bound together in a RAID configuration.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>The drive to the OS:</strong></span></span> From the server's perspective, the LUN is treated as a physical local hard drive. You can format, partition and install files on it just like a drive plugged directly into the motherboard.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>Physical capacity:</strong></span></span> The size of the LUN is limited by the number of physical disks installed in the target array.</p></li></ul></div></li></ul></div></section><section class="sect2" id="features-iscsi" data-id-title="Key technical characteristics of remote iSCSI storage"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Key technical characteristics of remote iSCSI storage</span></span> <a title="Permalink" class="permalink" href="#features-iscsi">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>The following are some of the common characteristics of iSCSI:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span><span class="emphasis"><strong>Block-level access:</strong></span></span> Unlike a network share where you see files, with iSCSI, your system sees raw sectors. This allows you to format the remote drive with any file system such as NTFS, ReFS, or ext4.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>Distance and flexibility:</strong></span></span> The storage can be in a server rack across the room or in a data center across the city. Because iSCSI uses block-level storage, the system treats this network-attached storage exactly like a local hard drive.
+        When traversing these distances, security is maintained by enforcing CHAP for secure authentication between the system and the storage target, alongside IPsec to encrypt the data packets in transit.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>Low latency requirement:</strong></span></span> Because the OS thinks the drive is local, it expects fast responses. This is why remote iSCSI usually requires a high-speed network ( preferably 10Gbps or higher).</p></li></ul></div></section><section class="sect2" id="usecase-iscsi" data-id-title="What are the main use cases for iSCSI storage?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.3 </span><span class="title-name">What are the main use cases for iSCSI storage?</span></span> <a title="Permalink" class="permalink" href="#usecase-iscsi">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>The common use cases for iSCSI include:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span><span class="emphasis"><strong>Virtualization:</strong></span></span> Servers running VMware or Hyper-V store virtual machines on remote iSCSI targets so that if one physical server dies, another can immediately take over the disk over the network.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>Database hosting:</strong></span></span> High-performance databases like SQL Server or Oracle require block-level access to manage data placement and logging. Since iSCSI presents itself as a local physical disk rather than a shared folder, it satisfies the strict technical requirements of database software while keeping the data on a secure and centralized server.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>Consolidated backup and disaster recovery:</strong></span></span> iSCSI allows organizations to centralize backups from various machines onto one large and manageable storage array. It also supports diskless booting, where a server with no internal hard drive can load its entire operating system directly from a remote iSCSI target, making hardware replacement much faster.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>External storage array integration:</strong></span></span> SLES 16 connects to high-performance external storage systems, like NetApp, to centralize data management over iSCSI. Instead of using internal drives, administrators provision network-based virtual disks (LUNs) that SUSE Linux Enterprise Server 16 handles via the <code class="literal">open-iscsi</code> framework. The OS leverages kernel multi-queueing for low-latency throughput and uses <code class="literal">multipath-tools</code> to combine multiple network paths for redundancy. This setup eliminates single points of failure, allowing the remote storage to behave like a local disk that can be formatted with Btrfs or XFS and scaled dynamically without downtime.</p></li></ul></div><div class="figure" id="iscsi-workflow"><div class="figure-contents"><div class="mediaobject"><a href="images/iscsi-workflow.svg"><img src="images/iscsi-workflow.svg" width="50%" alt="iSCSI Target and Initiator Architecture Topology" title="iSCSI Target and Initiator Architecture Topology"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 1: </span><span class="title-name">iCSI topology </span></span><a title="Permalink" class="permalink" href="#iscsi-workflow">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></section></section><section xml:lang="en" class="sect1" id="targetcli-iscsiadm-iscsi" data-id-title="Understanding targetcli and iscsiadm command-line utilities"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Understanding <code class="command">targetcli</code> and <code class="command">iscsiadm</code> command-line utilities </span></span> <a title="Permalink" class="permalink" href="#targetcli-iscsiadm-iscsi">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        The iSCSI framework relies on two primary command-line utilities: 
+        <code class="command">targetcli</code> and <code class="command">iscsiadm</code>. Together, they 
+        provide the functionality required to configure iSCSI targets, discover 
+        available storage resources, establish connections between initiators and 
+        targets, and manage iSCSI storage over IP networks.</p></div></div></div></div><p>
+While they both facilitate the transmission of SCSI commands over IP networks, they 
+    operate on opposite ends of the connection. <code class="command">targetcli</code> 
+    is the administration interface for the Linux-IO (LIO) target subsystem, 
+    used on the target (server) to define, export and manage physical or 
+    virtual storage resources. In contrast, <code class="command">iscsiadm</code> is 
+    the primary utility of the Open-iSCSI project, used on the initiator 
+    (client) to discover, log into, and manage remote iSCSI targets over an IP network.
+</p><section class="sect2" id="about-targetcli" data-id-title="Using the targetcli utility to export storage"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">Using the <code class="command">targetcli</code> utility to export storage</span></span> <a title="Permalink" class="permalink" href="#about-targetcli">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p> The <code class="command">targetcli</code> tool is the primary command-line administration tool used to configure and manage the LIO (Linux-IO) target subsystem, which is the standard open-source storage target for the Linux kernel.
+ It operates as an interactive shell with a hierarchical file-system-like structure and allows system administrators to export local storage resources—such as physical disks, files, or LVM (Logical Volumes) to remote clients via various fabrics, most notably iSCSI.
+ It provides a unified interface to define back stores, creates IQNs (iSCSI Qualified Names), and establishes ACLs (Access Control Lists).</p><p> Similar to a conventional shell, you can traverse the <code class="command">targetcli</code> functional hierarchy using the <code class="command">cd</code> command and
+  list contents with the <code class="command">ls</code> command. While each directory has its own set of commands, these commands that are available in
+  all directories. You can use the <code class="command">help</code> command in any directory to view a
+  list of available commands or information about any command in particular.</p><p>
+    The <code class="systemitem">targetcli</code> tool is part of the
+    <span class="package">targetcli-fb</span> package. This package is available in the
+    official <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> software repository, and it can be installed using
+    the following command:
+   </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> zypper install targetcli-fb</pre></div><p>
+  To switch to the <code class="literal">targetcli</code> shell, run <code class="command">targetcli</code> as
+  root:
+ </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> targetcli</pre></div><p>
+  You can then run the <code class="command">ls</code> command to see the default
+  configuration.
+ </p><div class="verbatim-wrap"><pre class="screen">/&gt; ls
+o- / ............................ [...]
+ o- backstores ................. [...]
+ | o- block ..... [Storage Objects: 0]
+ | o- fileio .... [Storage Objects: 0]
+ | o- pscsi ..... [Storage Objects: 0]
+ | o- ramdisk ... [Storage Objects: 0]
+ | o- rbd ....... [Storage Objects: 0]
+ o- iscsi ............... [Targets: 0]
+ o- loopback ............ [Targets: 0]
+ o- vhost ............... [Targets: 0]
+ o- xen-pvscsi .......... [Targets: 0]
+/&gt;</pre></div><p>
+  targetcli supports the following back-ends:
+ </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+    <code class="literal">fileio</code>, local image file
+   </p></li><li class="listitem"><p>
+    <code class="literal">block</code>, block storage on a dedicated disk or partition
+   </p></li><li class="listitem"><p>
+    <code class="literal">pscsi</code>, SCSI pass-through devices
+   </p></li><li class="listitem"><p>
+    <code class="literal">ramdisk</code>, memory-based back-end
+   </p></li><li class="listitem"><p>
+    <code class="literal">rbd</code>, Ceph RADOS block devices
+   </p></li></ul></div><div class="complex-example"><div class="example" id="id-1.3.3.12" data-id-title="Set up a local image file as a software target"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 1: </span><span class="title-name">Set up a local image file as a software target </span></span><a title="Permalink" class="permalink" href="#id-1.3.3.12">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">/backstores/fileio create test-disc <em class="replaceable">/alt</em>/test.img 1G</pre></div><p>
+   This creates a 1 GB <code class="filename">test.img</code> image in the
+   specified location (in this case <code class="filename">/alt</code>). Run
+   <code class="command">ls</code>, and you should see the following result:
+  </p><div class="verbatim-wrap"><pre class="screen">/&gt; ls
+o- / ........................................................... [...]
+  o- backstores ................................................ [...]
+  | o- block .................................... [Storage Objects: 0]
+  | o- fileio ................................... [Storage Objects: 1]
+  | | o- test-disc ... [/alt/test.img (1.0GiB) write-back deactivated]
+  | |   o- alua ......     .......................... [ALUA Groups: 1]
+  | |     o- default_tg_pt_gp      .... [ALUA state: Active/optimized]
+  | o- pscsi .................................... [Storage Objects: 0]
+  | o- ramdisk .................................. [Storage Objects: 0]
+  | o- rbd ...................................... [Storage Objects: 0]
+  o- iscsi .............................................. [Targets: 0]
+  o- loopback ........................................... [Targets: 0]
+  o- vhost .............................................. [Targets: 0]
+  o- xen-pvscsi ......................................... [Targets: 0]
+/&gt;</pre></div></div></div></div></section><section class="sect2" id="about-iscsiadm" data-id-title="Using the iscsiadm utility to manage initiator connections"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.2 </span><span class="title-name">Using the <code class="command">iscsiadm</code> utility to manage initiator connections</span></span> <a title="Permalink" class="permalink" href="#about-iscsiadm">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>The <code class="command">iscsiadm</code> tool is used in Linux environments to manage and administer the Open-iSCSI implementation, acting as the primary interface for configuring and managing iSCSI connections.
+    It allows administrators to discover targets on a network, log in or out of specific storage portals, and manage a local database of persistent iSCSI nodes.
+    By communicating with the <code class="literal">iscsid</code> daemon, it facilitates the mapping of remote block storage devices over an IP network, making remote disks appear as local SCSI devices, such as <code class="filename">/dev/sdb</code>, to the operating system.</p><p>
+      While iscsiadm operations logically require a running iscsid daemon to execute, you do not need to start it manually because systemd socket activation <code class="literal">iscsid.socket</code> automatically spawns the iscsid service on demand.
+      When running the discovery the first time, the internal
+      database of the iSCSI initiator is created in the directory
+      <code class="filename">/var/lib/iscsi/</code>.
+     </p><p>
+      If your discovery is password-protected, provide the authentication
+      information to iscsid. Because the internal database does not exist when
+      doing the first discovery, it cannot be used now. Instead, the
+      configuration file <code class="filename">/etc/iscsid.conf</code> must be edited to
+      provide the information. To add your password information for the
+      discovery, add the following lines to the end of
+      <code class="filename">/etc/iscsid.conf</code>:
+     </p><div class="verbatim-wrap"><pre class="screen">discovery.sendtargets.auth.authmethod = CHAP
+discovery.sendtargets.auth.username = <em class="replaceable">USERNAME</em>
+discovery.sendtargets.auth.password = <em class="replaceable">PASSWORD</em></pre></div><p>
+      The discovery stores all received values in an internal persistent
+      database. In addition, it displays all detected targets. Run this discovery
+      with the following command:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> iscsiadm <code class="option">-m discovery --type=st --portal=<em class="replaceable">TARGET_IP</em></code>
+10.44.171.99:3260,1 iqn.2006-02.com.example.iserv:systems</pre></div><p>For each target defined on the iSCSI target, one line appears.</p><p>
+  The special <code class="option">--login</code> option of <code class="command">iscsiadm</code>
+  creates all needed devices:
+ </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> iscsiadm -m node -n iqn.2006-02.com.example.iserv:systems --login</pre></div><p>
+The newly generated devices show up in the output of <code class="command">lsscsi</code> and can now be mounted.</p><p>
+  All information discovered by the iSCSI initiator is stored in two
+  database files that reside in <code class="filename">/etc/iscsi</code>. There is one
+  database for the discovery of targets and one for the discovered nodes.
+  When accessing a database, you first must select whether you want to get your
+  data from the discovery or from the node database. Do this with the
+  <code class="option">-m discovery</code> and <code class="option">-m node</code> parameters of
+  <code class="command">iscsiadm</code>. Using <code class="command">iscsiadm</code> with one of
+  these parameters gives an overview of the stored records:
+ </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> iscsiadm -m discovery 10.44.171.99:3260,1 iqn.2006-02.com.example.iserv:systems</pre></div><p>
+  The target name in this example is
+  <code class="literal">iqn.2006-02.com.example.iserv:systems</code>. This name is
+  needed for all actions that relate to this special data set. To examine the
+  content of the data record with the ID
+  <code class="literal">iqn.2006-02.com.example.iserv:systems</code>, use the following
+  command:
+ </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> iscsiadm -m node --targetname iqn.2006-02.com.example.iserv:systems
+node.name = iqn.2006-02.com.example.iserv:systems
+node.transport_name = tcp
+node.tpgt = 1
+node.active_conn = 1
+node.startup = manual
+node.session.initial_cmdsn = 0
+node.session.reopen_max = 32
+node.session.auth.authmethod = CHAP
+node.session.auth.username = joe
+node.session.auth.password = ********
+node.session.auth.username_in = <em class="replaceable">EMPTY</em>
+node.session.auth.password_in = <em class="replaceable">EMPTY</em>
+node.session.timeo.replacement_timeout = 0
+node.session.err_timeo.abort_timeout = 10
+node.session.err_timeo.reset_timeout = 30
+node.session.iscsi.InitialR2T = No
+node.session.iscsi.ImmediateData = Yes
+....</pre></div><p>
+ To edit the value of one of these variables, use the command
+  <code class="command">iscsiadm</code> with the <code class="option">update</code> operation. For
+  example, if you want iscsid to log in to the iSCSI target when it
+  initializes, set the variable <code class="option">node.startup</code> to the value
+  <code class="option">automatic</code>:
+ </p><div class="verbatim-wrap"><pre class="screen">sudo iscsiadm -m node -n iqn.2006-02.com.example.iserv:systems \
+-p ip:port --op=update --name=node.startup --value=automatic</pre></div><p>
+  Remove obsolete data sets with the <code class="command">delete</code> command, for example:
+ </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> iscsiadm -m node -n iqn.2006-02.com.example.iserv:systems \
+-p ip:port --op=delete</pre></div><div id="id-1.3.4.20" data-id-title="No confirmation" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: No confirmation</div><p>
+   Use this option with caution because it deletes the record without any
+   additional confirmation prompt.
+  </p></div><p>
+  To get a list of all discovered targets, run the <code class="command">sudo iscsiadm -m
+  node</code> command.
+ </p></section></section><section xml:lang="en" class="sect1" id="install-configure-iscsi-target" data-id-title="How to install and configure an iSCSI LIO target server?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">How to install and configure an iSCSI LIO target server?</span></span> <a title="Permalink" class="permalink" href="#install-configure-iscsi-target">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        The iSCSI LIO target is an open source, kernel-level software framework in
+        Linux that transforms a standard server into a high-performance storage controller
+        by exporting local storage over a network. It acts as the server side of an iSCSI SAN
+        (Storage Area Network), managing the communication between physical backstores and
+        remote clients to provide seamless, block-level data access.
+        An iSCSI SAN is a specialized high-speed network that provides block-level network
+        access to storage.
+      </p></div></div></div></div><p>
+Prepare the storage. Ensure you have an unpartitioned block device ready. You can allocate either a dedicated disk partition or the whole disk, for example, <code class="filename"> /dev/vdb</code>.
+To install and configure the iSCSI LIO target server, follow the steps in the procedure:
+ </p><div class="procedure" id="id-1.4.3" data-id-title="Configuring an iSCSI LIO target server"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 1: </span><span class="title-name">Configuring an iSCSI LIO target server </span></span><a title="Permalink" class="permalink" href="#id-1.4.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>Configure the target using <code class="command">targetcli</code>:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  targetcli</pre></div></li><li class="step"><p>Create a backstore:</p><div class="verbatim-wrap"><pre class="screen">&gt; /backstores/block create test_storage dev=/dev/vdb</pre></div></li><li class="step"><p>Create an IQN (iSCSI Qualified Name):</p><div class="verbatim-wrap"><pre class="screen">&gt; iscsi/ create iqn.2026-04.com.example:sles.target</pre></div></li><li class="step"><p>Create a LUN (Logical Unit Number):</p><div class="verbatim-wrap"><pre class="screen">&gt; iscsi/iqn.2026-04.com.example:sles.target/tpg1/luns create /backstores/block/test_storage</pre></div></li><li class="step"><p>Navigate to the <span><span class="emphasis"><strong>TPG1</strong></span></span> subdirectory and enable the automated demo mode attributes:</p><div class="verbatim-wrap"><pre class="screen">&gt; cd /iscsi/iqn.2026-04.com.example:sles.target/tpg1/
+  /iscsi/iqn...e:sles.target/tpg1&amp; set attribute generate_node_acls=1 demo_mode_write_protect=0</pre></div></li><li class="step"><p>To display a complete, hierarchical tree view of the current Linux kernel LIO target configuration:</p><div class="verbatim-wrap"><pre class="screen">&gt; ls
+  o- / .........................................................................[...]
+  o- backstores ................................................................[...]
+  | o- block .....................................................Storage Objects: 1]
+  | | o- test_storage ......................[/dev/vdb (20.0GiB) write-thru activated]
+  | |   o- alua .................................................... [ALUA Groups: 1]
+  | |     o- default_tg_pt_gp ........................ [ALUA state: Active/optimized]
+  | o- fileio .................................................. [Storage Objects: 0]
+  | o- pscsi ................................................... [Storage Objects: 0]
+  | o- ramdisk ................................................. [Storage Objects: 0]
+  o- iscsi ............................................................. [Targets: 1]
+  | o- iqn.2026-04.com.example:sles.target ................................ [TPGs: 1]
+  |   o- tpg1 ................................................ [no-gen-acls, no-auth]
+  |     o- acls ........................................................... [ACLs: 1]
+  |     | o- iqn.2026-04.com.example:sles.initiator ................ [Mapped LUNs: 1]
+  |     |   o- mapped_lun0 ............................[lun0 block/test_storage (rw)]
+  |     o- luns ........................................................... [LUNs: 1]
+  |     | o- lun0 .................[block/test_storage (/dev/vdb) (default_tg_pt_gp)]
+  |     o- portals ..................................................... [Portals: 1]
+  |       o- [::0]:3260 ........................................................ [OK]
+  o- loopback .......................................................... [Targets: 0]
+  o- vhost ............................................................. [Targets: 0]
+  o- xen-pvscsi ........................................................ [Targets: 0]</pre></div></li><li class="step"><p>Save:</p><div class="verbatim-wrap"><pre class="screen">&gt; saveconfig</pre></div></li><li class="step"><p>Exit:</p><div class="verbatim-wrap"><pre class="screen">&gt; exit</pre></div></li></ol></div></div></section><section xml:lang="en" class="sect1" id="install-configure-iscsi-initiator" data-id-title="How to install and configure an iSCSI initiator?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">How to install and configure an iSCSI initiator?</span></span> <a title="Permalink" class="permalink" href="#install-configure-iscsi-initiator">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+An iSCSI initiator is the client component in a SAN that initiates communication by 
+sending SCSI commands over an IP network to a remote storage target. Once connected, it 
+makes the remote network storage appear to the local operating system as a physically attached, 
+raw block device.
+      </p></div></div></div></div><div class="procedure" id="id-1.5.2" data-id-title="Installing and configuring an iSCSI initiator"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 2: </span><span class="title-name">Installing and configuring an iSCSI initiator </span></span><a title="Permalink" class="permalink" href="#id-1.5.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>Install the iSCSI initiator if needed:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>   zypper install install open-iscsi</pre></div></li><li class="step"><p>The following steps are optional, as the initiator name is set by default.</p><ol type="a" class="substeps"><li class="step"><p>Configure the initiator name. The name must match the ACL created on the target.
+     Open the configuration file:</p><div class="verbatim-wrap"><pre class="screen">vi /etc/iscsi/initiatorname.iscsi</pre></div></li><li class="step"><p>Edit the line to match:</p><div class="verbatim-wrap"><pre class="screen">InitiatorName=iqn.2026-04.com.example:sles.initiator</pre></div></li><li class="step"><p>Restart the service:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl restart iscsid</pre></div></li></ol></li></ol></div></div></section><section xml:lang="en" class="sect1" id="workflow-iscsi" data-id-title="Establishing and validating an iSCSI session between the iSCSI LIO target server and initiator"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Establishing and validating an iSCSI session between the iSCSI LIO target server and initiator</span></span> <a title="Permalink" class="permalink" href="#workflow-iscsi">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+   The following procedures assume that both the iSCSI LIO target server and initiator
+   are installed and configured.
+        In the examples throughout this section, the iSCSI LIO target server uses the IP address
+        <code class="literal">192.168.122.200</code> and the iSCSI initiator uses <code class="literal">192.168.122.181</code>.</p></div></div></div></div><div class="procedure" id="id-1.6.2" data-id-title="On the iSCSI LIO target server"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 3: </span><span class="title-name">On the iSCSI LIO target server </span></span><a title="Permalink" class="permalink" href="#id-1.6.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>Before attempting a connection, ensure the target is actively listening on the network:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code> ss -nltp | grep 3260
+LISTEN 0      256                *:3260            *:*</pre></div><p>You must see <code class="literal">0.0.0.0:3260</code> or your specific target IP.</p></li><li class="step"><p>Enter the <code class="literal">targetcli</code> shell.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  targetcli
+  targetcli shell version 3.0.1
+  Copyright 2011-2013 by Datera, Inc and others.
+  For help on commands, type 'help'.</pre></div></li><li class="step"><p>Verify the initiator's IQN is listed under the ACLs for your specific TPG (Target Portal Group):</p><div class="verbatim-wrap"><pre class="screen">  /&gt; ls /iscsi
+  o- iscsi ........................................................[Targets: 1]
+    o- iqn.2026-04.com.example:sles.target ...........................[TPGs: 1]
+      o- tpg1 ...........................................[no-gen-acls, no-auth]
+        o- acls ......................................................[ACLs: 1]
+        | o- iqn.2026-04.com.example:sles.initiator ...........[Mapped LUNs: 1]
+        |   o- mapped_lun0 ......................[lun0 block/test_storage (rw)]
+        o- luns ......................................................[LUNs: 1]
+        | o- lun0 ...........[block/test_storage (/dev/vdb) (default_tg_pt_gp)]
+        o- portals ................................................[Portals: 1]
+          o- [::0]:3260 ...................................................[OK]</pre></div></li></ol></div></div><div class="procedure" id="id-1.6.3" data-id-title="On the iSCSI initiator"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 4: </span><span class="title-name">On the iSCSI initiator </span></span><a title="Permalink" class="permalink" href="#id-1.6.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>The initiator must connect with the target to pull the available records into its local database:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  iscsiadm -m discovery -t sendtargets -p 192.168.122.200
+192.168.122.200:3260,1 iqn.2026-04.com.example:sles.target</pre></div></li><li class="step"><p>Check that a file named after the target IQN now exists in <code class="filename"> /var/lib/iscsi/nodes/</code>:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  sudo iscsiadm -m node | grep iqn.2026-04.com.example:sles.target</pre></div></li><li class="step"><p>Establish an active data session: </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  iscsiadm -m node -T iqn.2026-04.com.example:sles.target -p 192.168.122.200 --login
+Login to [iface: default, target: iqn.2026-04.com.example:sles.target, portal: 192.168.122.200,3260] successful.</pre></div></li><li class="step"><p>Map the remote storage as a local device:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  iscsiadm -m session -P 1
+  Target: iqn.2026-04.com.example:sles.target (non-flash)
+          Current Portal: 192.168.122.200:3260,1
+          Persistent Portal: 192.168.122.200:3260,1
+                  **********
+                  Interface:
+                  **********
+                  Iface Name: default
+                  Iface Transport: tcp
+                  Iface Initiatorname: iqn.2026-04.com.example:sles.initiator
+                  Iface IPaddress: 192.168.122.181
+                  Iface HWaddress: default
+                  Iface Netdev: default
+                  SID: 1
+                  iSCSI Connection State: LOGGED IN
+                  iSCSI Session State: LOGGED_IN
+                  Internal iscsid Session State: NO CHANGE</pre></div></li><li class="step"><p>Verify the storage on the initiator:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  iscsiadm -m session -P3 | fgrep disk
+Attached scsi disk sda          State: running</pre></div></li><li class="step"><p>Verify the SCSI properties:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  lsscsi
+  [0:0:0:0]    cd/dvd  QEMU     QEMU DVD-ROM     2.5+  /dev/sr0
+<span><span class="emphasis"><strong> [6:0:0:0]    disk    LIO-ORG  test_storage     4.0   /dev/sda</strong></span></span></pre></div></li></ol></div></div></section><section xml:lang="en" class="sect1" id="troubleshoot-iscsi" data-id-title="Troubleshooting common iSCSI connection and storage issues"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Troubleshooting common iSCSI connection and storage issues</span></span> <a title="Permalink" class="permalink" href="#troubleshoot-iscsi">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+Effectively troubleshooting an iSCSI environment begins with recognizing that most 
+disruptions stem from a handful of common known issues, ranging from basic network 
+reachability and firewall blockages on port 3260 to more nuanced configuration errors 
+like IQN mismatches, incorrect CHAP authentication credentials, and MTU inconsistencies 
+that trigger intermittent packet loss.
+      </p></div></div></div></div><p>
+This chapter describes known issues and solutions for iSCSI target servers and initiator clients.
+ </p><section class="sect2" id="troubleshoot-portal-error" data-id-title="How do you fix portal errors when configuring iSCSI LIO target LUNs?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.1 </span><span class="title-name">How do you fix portal errors when configuring iSCSI LIO target LUNs?</span></span> <a title="Permalink" class="permalink" href="#troubleshoot-portal-error">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    When adding or editing an iSCSI LIO target group, you get an error:
+   </p><div class="verbatim-wrap"><pre class="screen">Problem setting network portal <em class="replaceable">IP_ADDRESS</em>:3260</pre></div><p>
+    The <code class="command">journalctl</code> command displays the following error:
+   </p><div class="verbatim-wrap"><pre class="screen">find: `/sys/kernel/config/target/iscsi': No such file or directory</pre></div><p>
+    This problem occurs if the iSCSI LIO Target Server software is not
+    currently running. To resolve this issue, manually start iSCSI
+    LIO at the command line with <code class="command">systemctl start targetcli</code>,
+    then try again.
+   </p><p>
+    You can also enter the following to check if <code class="command">configfs</code>,
+    <code class="command">iscsi_target_mod</code>, and <code class="command">target_core_mod</code>
+    are loaded. A sample response is shown.
+   </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> lsmod | grep iscsi
+iscsi_target_mod    491520  7
+  target_core_mod   598016  15 target_core_file,target_core_iblock,iscsi_target_mod,target_core_pscsi,
+  target_core_user
+  configfs          69632  3 iscsi_target_mod,target_core_mod
+  scsi_common       16384  10 scsi_mod,target_core_iblock,iscsi_target_mod,sd_mod,target_core_mod,
+  target_core_pscsi,libata,sg,target_core_user,sr_mod</pre></div></section><section class="sect2" id="sec-targets-not-visible" data-id-title="Why are iSCSI LIO targets not visible from remote initiator systems?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.2 </span><span class="title-name">Why are iSCSI LIO targets not visible from remote initiator systems?</span></span> <a title="Permalink" class="permalink" href="#sec-targets-not-visible">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>If you use a firewall on the target server, you must open the iSCSI port
+    that you are using to allow other systems to see the iSCSI LIO targets.
+   TCP port 3260 is the port number for the iSCSI protocol, as defined by IANA (Internet Assigned Numbers Authority).
+  </p></section><section class="sect2" id="sec-dropped-packets" data-id-title="Why are data packets dropped for iSCSI traffic?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.3 </span><span class="title-name">Why are data packets dropped for iSCSI traffic?</span></span> <a title="Permalink" class="permalink" href="#sec-dropped-packets">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p> A firewall might drop packets if it gets too busy. The default for the SUSE
+      Firewall is to drop packets after three minutes. If you find that iSCSI
+      traffic packets are being dropped, consider configuring the SUSE Firewall
+      to queue packets instead of dropping them when it gets too busy.
+    </p></section><section class="sect2" id="sec-lvm-over-iscsi" data-id-title="How do you configure iSCSI volumes for reliable LVM startup at boot?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.4 </span><span class="title-name">How do you configure iSCSI volumes for reliable LVM startup at boot?</span></span> <a title="Permalink" class="permalink" href="#sec-lvm-over-iscsi">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>Use the troubleshooting tips in this section when using LVM on iSCSI
+        targets. When configuring the iSCSI initiator, ensure that the iSCSI service and target 
+      nodes are set to start automatically at boot. This ensures that iSCSI sessions are established 
+      during startup, allowing <code class="literal">udev</code> to initialize the block devices so that 
+      LVM can detect and activate the volume groups.</p></section><section class="sect2" id="sec-auto-establish-sessions" data-id-title="How do you ensure udev creates iSCSI block devices automatically during system boot?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.5 </span><span class="title-name">How do you ensure udev creates iSCSI block devices automatically during system boot?</span></span> <a title="Permalink" class="permalink" href="#sec-auto-establish-sessions">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>Remember that <code class="filename">udev</code> provides the default setup for
+                devices. Ensure that all of the applications that create devices are
+                started at boot time so that <code class="command">udev</code> can recognize and
+                assign devices for them at system start-up. If the application or service
+                is not started until later, <code class="command">udev</code> does not create the
+                device automatically as it would at boot time.</p></section><section class="sect2" id="sec-manual-startup-override" data-id-title="Why do iSCSI targets mount when node.startup is set to manual?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.6 </span><span class="title-name">Why do iSCSI targets mount when <code class="literal">node.startup</code> is set to manual?</span></span> <a title="Permalink" class="permalink" href="#sec-manual-startup-override">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p> When Open-iSCSI starts, it can mount the targets even when
+                    <code class="literal">node.startup</code> is set to manual in
+                    <code class="filename">/etc/iscsi/iscsid.conf</code> if the node database was edited manually.
+                </p><p>Avoid manually viewing or modifying the node database files. Instead, use 
+      the <code class="command">iscsiadm</code> command to query the target configuration:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  iscsiadm -m node -T <em class="replaceable">TARGET_NAME</em> | grep node.startup</pre></div></section></section><section xml:lang="en" class="sect1" id="iscsi-terminology" data-id-title="Key iSCSI terminology reference"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Key iSCSI terminology reference</span></span> <a title="Permalink" class="permalink" href="#iscsi-terminology">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        This is a list of essential terminology for the iSCSI LIO target server and the initiator client.
+      </p></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.8.2.1"><span class="term">ACL (access control list)</span></dt><dd><p>
+  A security list on the target that specifies which initiator IQNs are allowed to connect. </p></dd><dt id="id-1.8.2.2"><span class="term">backstore</span></dt><dd><p>
+       A physical storage object in LIO that provides the actual storage underlying an
+       iSCSI endpoint:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span><span class="emphasis"><strong>iblocks:</strong></span></span> A raw block device like <code class="filename">/dev/sdb</code> .</p></li><li class="listitem"><p><span><span class="emphasis"><strong>fileio:</strong></span></span> A file on a regular filesystem used as a virtual disk.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>pscsi:</strong></span></span> Direct pass-through to a physical SCSI device.</p></li></ul></div></dd><dt id="id-1.8.2.3"><span class="term">CDB (command descriptor block)</span></dt><dd><p>
+ A CDB is the fundamental data structure used by the SCSI protocol to tell a storage device what to do. Since iSCSI is SCSI over IP, the iSCSI initiator wraps these CDBs inside TCP/IP packets to send them to the LIO target.
+CDBs are commonly 6, 10, or 12 bytes long, though they can be 16 bytes or of variable length.
+      </p></dd><dt id="id-1.8.2.4"><span class="term">CHAP (challenge handshake authentication protocol)</span></dt><dd><p>
+       A point-to-point protocol (PPP) authentication method used to confirm the
+       identity of one computer to another. After the Link Control Protocol
+       (LCP) connects the two computers, and the CHAP method is negotiated, the
+       authenticator sends a random Challenge to the peer. The peer issues a
+       cryptographically hashed Response that depends upon the Challenge and a
+       secret key. The authenticator verifies the hashed Response against its
+       own calculation of the expected hash value, and either acknowledges the
+       authentication or terminates the connection. CHAP is defined in the RFC
+       1994.
+      </p></dd><dt id="id-1.8.2.5"><span class="term">CID (connection identifier)</span></dt><dd><p>
+       A 16‐bit number generated by the initiator that uniquely identifies a
+       connection between two iSCSI devices. This number is presented during the
+       login phase.
+      </p></dd><dt id="id-1.8.2.6"><span class="term">discovery</span></dt><dd><p>
+  The process where the initiator queries a target portal to see what IQNs are available to it.  </p></dd><dt id="id-1.8.2.7"><span class="term">endpoint</span></dt><dd><p>
+       The combination of an iSCSI Target Name with an iSCSI TPG (IQN + Tag).
+      </p></dd><dt id="id-1.8.2.8"><span class="term">EUI (extended unique identifier)</span></dt><dd><p>
+       A 64‐bit number that uniquely identifies every device in the world. The
+       format consists of 24 bits that are unique to a given company, and 40
+       bits assigned by the company to each device it builds.
+      </p></dd><dt id="id-1.8.2.9"><span class="term">initiator</span></dt><dd><p>
+          The endpoint that originates SCSI commands in a SCSI or iSCSI session.
+          Typically a controlling device such as a computer.
+       </p></dd><dt id="id-1.8.2.10"><span class="term">IPS (Internet protocol storage)</span></dt><dd><p>
+        The class of protocols or devices that use the IP protocol to move data
+        in a storage network. FCIP (Fibre Channel over Internet Protocol), iFCP
+        (Internet Fibre Channel Protocol), and iSCSI (Internet SCSI) are all
+        examples of IPS protocols.
+       </p></dd><dt id="id-1.8.2.11"><span class="term">IQN (iSCSI qualified name)</span></dt><dd><p>
+        A name format for iSCSI that uniquely identifies every device in the
+        world (for example:
+        <code class="filename">iqn.5886.com.acme.tapedrive.sn‐a12345678</code>).
+       </p></dd><dt id="id-1.8.2.12"><span class="term">ISID (initiator session identifier)</span></dt><dd><p>
+          A 48‐bit number generated by the initiator that uniquely identifies a
+          session between the initiator and the target. This value is created
+          during the login process, and is sent to the target with a Login PDU.
+         </p></dd><dt id="id-1.8.2.13"><span class="term">Initiatorname</span></dt><dd><p>
+            The unique IQN assigned to the client. This must be registered in the target's ACL for a connection to be successful.
+           </p></dd><dt id="id-1.8.2.14"><span class="term">login</span></dt><dd><p>
+          The process of authenticating and establishing a session between the initiator and the target.
+         </p></dd><dt id="id-1.8.2.15"><span class="term">MPIO (multipath I/O)</span></dt><dd><p>
+          A method by which data can take multiple redundant paths between a server
+          and storage.
+         </p></dd><dt id="id-1.8.2.16"><span class="term">network portal</span></dt><dd><p>
+          The combination of an iSCSI endpoint with an IP address plus a TCP
+          (Transmission Control Protocol) port. TCP port 3260 is the port number
+          for the iSCSI protocol, as defined by IANA (Internet Assigned Numbers
+          Authority).
+         </p></dd><dt id="id-1.8.2.17"><span class="term">node</span></dt><dd><p>
+          In the context of initiator software like <code class="literal">iscsiadm</code>, a node represents a specific target that has been discovered and recorded in the local database. </p></dd><dt id="id-1.8.2.18"><span class="term">session</span></dt><dd><p>
+          The active TCP connection or group of connections between an initiator and a target.
+         </p></dd><dt id="id-1.8.2.19"><span class="term">target</span></dt><dd><p>
+          The receiving end of an iSCSI session, typically a device such as a disk
+          drive, tape drive or scanner.
+         </p></dd><dt id="id-1.8.2.20"><span class="term">targetcli</span></dt><dd><p>
+          The shell-like interface used to configure LIO on Linux.
+         </p></dd><dt id="id-1.8.2.21"><span class="term">target port</span></dt><dd><p>
+         The combination of an iSCSI endpoint with one or more LUNs.
+        </p></dd><dt id="id-1.8.2.22"><span class="term">target port group (TPG)</span></dt><dd><p>
+         A list of IP addresses and TCP port numbers that determines which
+         interfaces a specific iSCSI target will listen to.
+        </p></dd><dt id="id-1.8.2.23"><span class="term">target session identifier (TSID)</span></dt><dd><p>
+         A 16‐bit number, generated by the target, that uniquely identifies a
+         session between the initiator and the target. This value is created
+         during the login process, and is sent to the initiator with a Login
+         Response PDU (protocol data units).
+        </p></dd></dl></div></section><section xml:lang="en" class="sect1" id="more-info-iscsi" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="#more-info-iscsi">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          The Open-iSCSI project home page at <a class="link" href="https://github.com/open-iscsi/open-iscsi" target="_blank">https://github.com/open-iscsi/open-iscsi</a>.
+        </p></li><li class="listitem"><p>
+      The man pages for <code class="command">iscsiadm</code>, <code class="command">iscsid</code>, and the configuration file
+   <code class="filename">/etc/iscsid.conf</code>.
+        </p></li><li class="listitem"><p>
+      The man page for <code class="command">targetcli</code>.
+        </p></li></ul></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">9 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section><div class="legal-section"><section class="appendix" translate="no" id="doc-gfdl-license" data-id-title="GNU Free Documentation License"><div class="titlepage"><div><div><h1 class="title">GNU Free Documentation License</h1></div></div></div><p>
+    Copyright (C) 2000, 2001, 2002 Free Software Foundation, Inc. 51 Franklin St, Fifth Floor,
+    Boston, MA 02110-1301 USA. Everyone is permitted to copy and distribute verbatim copies of this
+    license document, but changing it is not allowed.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.3"><span class="name">
+    0. PREAMBLE
+  </span><a title="Permalink" class="permalink" href="#id-1.11.3">#</a></h5></div><p>
+    The purpose of this License is to make a manual, textbook, or other functional and useful
+    document "free" in the sense of freedom: to assure everyone the effective freedom to copy and
+    redistribute it, with or without modifying it, either commercially or non-commercially.
+    Secondarily, this License preserves for the author and publisher a way to get credit for their
+    work, while not being considered responsible for modifications made by others.
+  </p><p>
+    This License is a kind of "copyleft", which means that derivative works of the document must
+    themselves be free in the same sense. It complements the GNU General Public License, which is a
+    copyleft license designed for free software.
+  </p><p>
+    We have designed this License to use it for manuals for free software, because free software
+    needs free documentation: a free program should come with manuals providing the same freedoms
+    that the software does. But this License is not limited to software manuals; it can be used for
+    any textual work, regardless of subject matter or whether it is published as a printed book. We
+    recommend this License principally for works whose purpose is instruction or reference.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.7"><span class="name">
+    1. APPLICABILITY AND DEFINITIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.11.7">#</a></h5></div><p>
+    This License applies to any manual or other work, in any medium, that contains a notice placed
+    by the copyright holder saying it can be distributed under the terms of this License. Such a
+    notice grants a world-wide, royalty-free license, unlimited in duration, to use that work under
+    the conditions stated herein. The "Document", below, refers to any such manual or work. Any
+    member of the public is a licensee, and is addressed as "you". You accept the license if you
+    copy, modify or distribute the work in a way requiring permission under copyright law.
+  </p><p>
+    A "Modified Version" of the Document means any work containing the Document or a portion of it,
+    either copied verbatim, or with modifications and/or translated into another language.
+  </p><p>
+    A "Secondary Section" is a named appendix or a front-matter section of the Document that deals
+    exclusively with the relationship of the publishers or authors of the Document to the
+    Document's overall subject (or to related matters) and contains nothing that could fall
+    directly within that overall subject. (Thus, if the Document is in part a textbook of
+    mathematics, a Secondary Section may not explain any mathematics.) The relationship could be a
+    matter of historical connection with the subject or with related matters, or of legal,
+    commercial, philosophical, ethical or political position regarding them.
+  </p><p>
+    The "Invariant Sections" are certain Secondary Sections whose titles are designated, as being
+    those of Invariant Sections, in the notice that says that the Document is released under this
+    License. If a section does not fit the above definition of Secondary then it is not allowed to
+    be designated as Invariant. The Document may contain zero Invariant Sections. If the Document
+    does not identify any Invariant Sections then there are none.
+  </p><p>
+    The "Cover Texts" are certain short passages of text that are listed, as Front-Cover Texts or
+    Back-Cover Texts, in the notice that says that the Document is released under this License. A
+    Front-Cover Text may be at most 5 words, and a Back-Cover Text may be at most 25 words.
+  </p><p>
+    A "Transparent" copy of the Document means a machine-readable copy, represented in a format
+    whose specification is available to the general public, that is suitable for revising the
+    document straightforwardly with generic text editors or (for images composed of pixels) generic
+    paint programs or (for drawings) some widely available drawing editor, and that is suitable for
+    input to text formatters or for automatic translation to a variety of formats suitable for
+    input to text formatters. A copy made in an otherwise Transparent file format whose markup, or
+    absence of markup, has been arranged to thwart or discourage subsequent modification by readers
+    is not Transparent. An image format is not Transparent if used for any substantial amount of
+    text. A copy that is not "Transparent" is called "Opaque".
+  </p><p>
+    Examples of suitable formats for Transparent copies include plain ASCII without markup, Texinfo
+    input format, LaTeX input format, SGML or XML using a publicly available DTD, and
+    standard-conforming simple HTML, PostScript or PDF designed for human modification. Examples of
+    transparent image formats include PNG, XCF and JPG. Opaque formats include proprietary formats
+    that can be read and edited only by proprietary word processors, SGML or XML for which the DTD
+    and/or processing tools are not generally available, and the machine-generated HTML, PostScript
+    or PDF produced by some word processors for output purposes only.
+  </p><p>
+    The "Title Page" means, for a printed book, the title page itself, plus such following pages as
+    are needed to hold, legibly, the material this License requires to appear in the title page.
+    For works in formats which do not have any title page as such, "Title Page" means the text near
+    the most prominent appearance of the work's title, preceding the beginning of the body of the
+    text.
+  </p><p>
+    A section "Entitled XYZ" means a named subunit of the Document whose title either is precisely
+    XYZ or contains XYZ in parentheses following text that translates XYZ in another language.
+    (Here XYZ stands for a specific section name mentioned below, such as "Acknowledgements",
+    "Dedications", "Endorsements", or "History".) To "Preserve the Title" of such a section when
+    you modify the Document means that it remains a section "Entitled XYZ" according to this
+    definition.
+  </p><p>
+    The Document may include Warranty Disclaimers next to the notice which states that this License
+    applies to the Document. These Warranty Disclaimers are considered to be included by reference
+    in this License, but only as regards disclaiming warranties: any other implication that these
+    Warranty Disclaimers may have is void and has no effect on the meaning of this License.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.18"><span class="name">
+    2. VERBATIM COPYING
+  </span><a title="Permalink" class="permalink" href="#id-1.11.18">#</a></h5></div><p>
+    You may copy and distribute the Document in any medium, either commercially or
+    non-commercially, provided that this License, the copyright notices, and the license notice
+    saying this License applies to the Document are reproduced in all copies, and that you add no
+    other conditions whatsoever to those of this License. You may not use technical measures to
+    obstruct or control the reading or further copying of the copies you make or distribute.
+    However, you may accept compensation in exchange for copies. If you distribute a large enough
+    number of copies you must also follow the conditions in section 3.
+  </p><p>
+    You may also lend copies, under the same conditions stated above, and you may publicly display
+    copies.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.21"><span class="name">
+    3. COPYING IN QUANTITY
+  </span><a title="Permalink" class="permalink" href="#id-1.11.21">#</a></h5></div><p>
+    If you publish printed copies (or copies in media that commonly have printed covers) of the
+    Document, numbering more than 100, and the Document's license notice requires Cover Texts, you
+    must enclose the copies in covers that carry, clearly and legibly, all these Cover Texts:
+    Front-Cover Texts on the front cover, and Back-Cover Texts on the back cover. Both covers must
+    also clearly and legibly identify you as the publisher of these copies. The front cover must
+    present the full title with all words of the title equally prominent and visible. You may add
+    other material on the covers in addition. Copying with changes limited to the covers, as long
+    as they preserve the title of the Document and satisfy these conditions, can be treated as
+    verbatim copying in other respects.
+  </p><p>
+    If the required texts for either cover are too voluminous to fit legibly, you should put the
+    first ones listed (as many as fit reasonably) on the actual cover, and continue the rest onto
+    adjacent pages.
+  </p><p>
+    If you publish or distribute Opaque copies of the Document numbering more than 100, you must
+    either include a machine-readable Transparent copy along with each Opaque copy, or state in or
+    with each Opaque copy a computer-network location from which the general network-using public
+    has access to download using public-standard network protocols a complete Transparent copy of
+    the Document, free of added material. If you use the latter option, you must take reasonably
+    prudent steps, when you begin distribution of Opaque copies in quantity, to ensure that this
+    Transparent copy will remain thus accessible at the stated location until at least one year
+    after the last time you distribute an Opaque copy (directly or through your agents or
+    retailers) of that edition to the public.
+  </p><p>
+    It is requested, but not required, that you contact the authors of the Document well before
+    redistributing any large number of copies, to give them a chance to provide you with an updated
+    version of the Document.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.26"><span class="name">
+    4. MODIFICATIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.11.26">#</a></h5></div><p>
+    You may copy and distribute a Modified Version of the Document under the conditions of sections
+    2 and 3 above, provided that you release the Modified Version under precisely this License,
+    with the Modified Version filling the role of the Document, thus licensing distribution and
+    modification of the Modified Version to whoever possesses a copy of it. In addition, you must
+    do these things in the Modified Version:
+  </p><div class="orderedlist"><ol class="orderedlist" type="A"><li class="listitem"><p>
+        Use in the Title Page (and on the covers, if any) a title distinct from that of the
+        Document, and from those of previous versions (which should, if there were any, be listed
+        in the History section of the Document). You may use the same title as a previous version
+        if the original publisher of that version gives permission.
+      </p></li><li class="listitem"><p>
+        List on the Title Page, as authors, one or more persons or entities responsible for
+        authorship of the modifications in the Modified Version, together with at least five of the
+        principal authors of the Document (all of its principal authors, if it has fewer than
+        five), unless they release you from this requirement.
+      </p></li><li class="listitem"><p>
+        State on the Title page the name of the publisher of the Modified Version, as the
+        publisher.
+      </p></li><li class="listitem"><p>
+        Preserve all the copyright notices of the Document.
+      </p></li><li class="listitem"><p>
+        Add an appropriate copyright notice for your modifications adjacent to the other copyright
+        notices.
+      </p></li><li class="listitem"><p>
+        Include, immediately after the copyright notices, a license notice giving the public
+        permission to use the Modified Version under the terms of this License, in the form shown
+        in the Addendum below.
+      </p></li><li class="listitem"><p>
+        Preserve in that license notice the full lists of Invariant Sections and required Cover
+        Texts given in the Document's license notice.
+      </p></li><li class="listitem"><p>
+        Include an unaltered copy of this License.
+      </p></li><li class="listitem"><p>
+        Preserve the section Entitled "History", Preserve its Title, and add to it an item stating
+        at least the title, year, new authors, and publisher of the Modified Version as given on
+        the Title Page. If there is no section Entitled "History" in the Document, create one
+        stating the title, year, authors, and publisher of the Document as given on its Title Page,
+        then add an item describing the Modified Version as stated in the previous sentence.
+      </p></li><li class="listitem"><p>
+        Preserve the network location, if any, given in the Document for public access to a
+        Transparent copy of the Document, and likewise the network locations given in the Document
+        for previous versions it was based on. These may be placed in the "History" section. You
+        may omit a network location for a work that was published at least four years before the
+        Document itself, or if the original publisher of the version it refers to gives permission.
+      </p></li><li class="listitem"><p>
+        For any section Entitled "Acknowledgements" or "Dedications", Preserve the Title of the
+        section, and preserve in the section all the substance and tone of each of the contributor
+        acknowledgements and/or dedications given therein.
+      </p></li><li class="listitem"><p>
+        Preserve all the Invariant Sections of the Document, unaltered in their text and in their
+        titles. Section numbers or the equivalent are not considered part of the section titles.
+      </p></li><li class="listitem"><p>
+        Delete any section Entitled "Endorsements". Such a section may not be included in the
+        Modified Version.
+      </p></li><li class="listitem"><p>
+        Do not retitle any existing section to be Entitled "Endorsements" or to conflict in title
+        with any Invariant Section.
+      </p></li><li class="listitem"><p>
+        Preserve any Warranty Disclaimers.
+      </p></li></ol></div><p>
+    If the Modified Version includes new front-matter sections or appendices that qualify as
+    Secondary Sections and contain no material copied from the Document, you may at your option
+    designate some or all of these sections as invariant. To do this, add their titles to the list
+    of Invariant Sections in the Modified Version's license notice. These titles must be distinct
+    from any other section titles.
+  </p><p>
+    You may add a section Entitled "Endorsements", provided it contains nothing but endorsements of
+    your Modified Version by various parties--for example, statements of peer review or that the
+    text has been approved by an organization as the authoritative definition of a standard.
+  </p><p>
+    You may add a passage of up to five words as a Front-Cover Text, and a passage of up to 25
+    words as a Back-Cover Text, to the end of the list of Cover Texts in the Modified Version. Only
+    one passage of Front-Cover Text and one of Back-Cover Text may be added by (or through
+    arrangements made by) any one entity. If the Document already includes a cover text for the
+    same cover, previously added by you or by arrangement made by the same entity you are acting on
+    behalf of, you may not add another; but you may replace the old one, on explicit permission
+    from the previous publisher that added the old one.
+  </p><p>
+    The author(s) and publisher(s) of the Document do not by this License give permission to use
+    their names for publicity for or to assert or imply endorsement of any Modified Version.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.33"><span class="name">
+    5. COMBINING DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.11.33">#</a></h5></div><p>
+    You may combine the Document with other documents released under this License, under the terms
+    defined in section 4 above for modified versions, provided that you include in the combination
+    all of the Invariant Sections of all of the original documents, unmodified, and list them all
+    as Invariant Sections of your combined work in its license notice, and that you preserve all
+    their Warranty Disclaimers.
+  </p><p>
+    The combined work need only contain one copy of this License, and multiple identical Invariant
+    Sections may be replaced with a single copy. If there are multiple Invariant Sections with the
+    same name but different contents, make the title of each such section unique by adding at the
+    end of it, in parentheses, the name of the original author or publisher of that section if
+    known, or else a unique number. Make the same adjustment to the section titles in the list of
+    Invariant Sections in the license notice of the combined work.
+  </p><p>
+    In the combination, you must combine any sections Entitled "History" in the various original
+    documents, forming one section Entitled "History"; likewise combine any sections Entitled
+    "Acknowledgements", and any sections Entitled "Dedications". You must delete all sections
+    Entitled "Endorsements".
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.37"><span class="name">
+    6. COLLECTIONS OF DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.11.37">#</a></h5></div><p>
+    You may make a collection consisting of the Document and other documents released under this
+    License, and replace the individual copies of this License in the various documents with a
+    single copy that is included in the collection, provided that you follow the rules of this
+    License for verbatim copying of each of the documents in all other respects.
+  </p><p>
+    You may extract a single document from such a collection, and distribute it individually under
+    this License, provided you insert a copy of this License into the extracted document, and
+    follow this License in all other respects regarding verbatim copying of that document.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.40"><span class="name">
+    7. AGGREGATION WITH INDEPENDENT WORKS
+  </span><a title="Permalink" class="permalink" href="#id-1.11.40">#</a></h5></div><p>
+    A compilation of the Document or its derivatives with other separate and independent documents
+    or works, in or on a volume of a storage or distribution medium, is called an "aggregate" if
+    the copyright resulting from the compilation is not used to limit the legal rights of the
+    compilation's users beyond what the individual works permit. When the Document is included in
+    an aggregate, this License does not apply to the other works in the aggregate which are not
+    themselves derivative works of the Document.
+  </p><p>
+    If the Cover Text requirement of section 3 is applicable to these copies of the Document, then
+    if the Document is less than one half of the entire aggregate, the Document's Cover Texts may
+    be placed on covers that bracket the Document within the aggregate, or the electronic
+    equivalent of covers if the Document is in electronic form. Otherwise they must appear on
+    printed covers that bracket the whole aggregate.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.43"><span class="name">
+    8. TRANSLATION
+  </span><a title="Permalink" class="permalink" href="#id-1.11.43">#</a></h5></div><p>
+    Translation is considered a kind of modification, so you may distribute translations of the
+    Document under the terms of section 4. Replacing Invariant Sections with translations requires
+    special permission from their copyright holders, but you may include translations of some or
+    all Invariant Sections in addition to the original versions of these Invariant Sections. You
+    may include a translation of this License, and all the license notices in the Document, and any
+    Warranty Disclaimers, provided that you also include the original English version of this
+    License and the original versions of those notices and disclaimers. In case of a disagreement
+    between the translation and the original version of this License or a notice or disclaimer, the
+    original version will prevail.
+  </p><p>
+    If a section in the Document is Entitled "Acknowledgements", "Dedications", or "History", the
+    requirement (section 4) to Preserve its Title (section 1) will typically require changing the
+    actual title.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.46"><span class="name">
+    9. TERMINATION
+  </span><a title="Permalink" class="permalink" href="#id-1.11.46">#</a></h5></div><p>
+    You may not copy, modify, sublicense, or distribute the Document except as expressly provided
+    for under this License. Any other attempt to copy, modify, sublicense or distribute the
+    Document is void, and will automatically terminate your rights under this License. However,
+    parties who have received copies, or rights, from you under this License will not have their
+    licenses terminated so long as such parties remain in full compliance.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.48"><span class="name">
+    10. FUTURE REVISIONS OF THIS LICENSE
+  </span><a title="Permalink" class="permalink" href="#id-1.11.48">#</a></h5></div><p>
+    The Free Software Foundation may publish new, revised versions of the GNU Free Documentation
+    License from time to time. Such new versions will be similar in spirit to the present version,
+    but may differ in detail to address new problems or concerns. See
+    <a class="link" href="https://www.gnu.org/copyleft/" target="_blank">https://www.gnu.org/copyleft/</a>.
+  </p><p>
+    Each version of the License is given a distinguishing version number. If the Document specifies
+    that a particular numbered version of this License "or any later version" applies to it, you
+    have the option of following the terms and conditions either of that specified version or of
+    any later version that has been published (not as a draft) by the Free Software Foundation. If
+    the Document does not specify a version number of this License, you may choose any version ever
+    published (not as a draft) by the Free Software Foundation.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.51"><span class="name">
+    ADDENDUM: How to use this License for your documents
+  </span><a title="Permalink" class="permalink" href="#id-1.11.51">#</a></h5></div><div class="verbatim-wrap"><pre class="screen">Copyright (c) YEAR YOUR NAME.
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+A copy of the license is included in the section entitled “GNU
+Free Documentation License”.</pre></div><p>
+    If you have Invariant Sections, Front-Cover Texts and Back-Cover Texts, replace the
+    “with...Texts.” line with this:
+  </p><div class="verbatim-wrap"><pre class="screen">with the Invariant Sections being LIST THEIR TITLES, with the
+Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.</pre></div><p>
+    If you have Invariant Sections without Cover Texts, or some other combination of the three,
+    merge those two alternatives to suit the situation.
+  </p><p>
+    If your document contains nontrivial examples of program code, we recommend releasing these
+    examples in parallel under your choice of free software license, such as the GNU General Public
+    License, to permit their use in free software.
+  </p></section></div></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="#about-iscsi"><span class="title-number">1 </span><span class="title-name">What is iSCSI and how does it work?</span></a></span></li><li><span class="section"><a href="#targetcli-iscsiadm-iscsi"><span class="title-number">2 </span><span class="title-name">Understanding <code class="command">targetcli</code> and <code class="command">iscsiadm</code> command-line utilities </span></a></span></li><li><span class="section"><a href="#install-configure-iscsi-target"><span class="title-number">3 </span><span class="title-name">How to install and configure an iSCSI LIO target server?</span></a></span></li><li><span class="section"><a href="#install-configure-iscsi-initiator"><span class="title-number">4 </span><span class="title-name">How to install and configure an iSCSI initiator?</span></a></span></li><li><span class="section"><a href="#workflow-iscsi"><span class="title-number">5 </span><span class="title-name">Establishing and validating an iSCSI session between the iSCSI LIO target server and initiator</span></a></span></li><li><span class="section"><a href="#troubleshoot-iscsi"><span class="title-number">6 </span><span class="title-name">Troubleshooting common iSCSI connection and storage issues</span></a></span></li><li><span class="section"><a href="#iscsi-terminology"><span class="title-number">7 </span><span class="title-name">Key iSCSI terminology reference</span></a></span></li><li><span class="section"><a href="#more-info-iscsi"><span class="title-number">8 </span><span class="title-name">For more information</span></a></span></li><li><span class="section"><a href="#legal-disclaimer"><span class="title-number">9 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="#doc-gfdl-license"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

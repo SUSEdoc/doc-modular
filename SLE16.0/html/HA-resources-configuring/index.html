@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Configuring High Availability Cluster Resources | SUSE Linux Enterprise High Availability 16.0</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2026-06-23"/>
+<meta name="dcterms.modified" content="2026-06-23"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-25"/>
+<meta name="title" content="Configuring High Availability Cluster Resources | SUSE…"/>
+<meta name="description" content="How to configure High Availability cluster resources to manage your critical applications and services"/>
+<meta name="product-name" content="SUSE Linux Enterprise High Availability"/>
+<meta name="product-number" content="16.0"/>
+<meta name="book-title" content="Configuring High Availability Cluster Resources"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="tahlia.richardson@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="&#10;            SUSE Linux Enterprise High Availability 16.0&#10;          "/>
+<meta name="publisher" content="SUSE"/><meta name="category" content="."/><meta name="dc.creator" content="tahlia.richardson@suse.com"/><meta property="og:title" content="Configuring HA Cluster Resources"/>
+<meta property="og:description" content="Configure HA resources to manage your applications"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Configuring HA Cluster Resources"/>
+<meta name="twitter:description" content="Configure HA resources to manage your applications"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Configuring HA Cluster Resources | SUSE Linux Enterprise High Availability 16.0",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Configuring HA Cluster Resources",
+    "description": "How to configure High Availability cluster resources to manage your critical applications and services",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2026-06-23T00:00+02:00",
+    "dateModified": "2026-06-23T00:00+02:00",
+    "datePublished": "2026-08-25T07:08+02:00",
+
+    "articleSection": [ 
+        "Administration"
+        
+    ],
+        "about": [
+      {
+        "@type": "Thing",
+        "name": "Administration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Clustering"
+      },
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      },
+      {
+        "@type": "Thing",
+        "name": "High Availability"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise High Availability",
+        "softwareVersion": "16.0",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER, IBM Z"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Configuring High Availability Cluster Resources</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Configuring High Availability Cluster Resources</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="ha-resources-configuring" data-id-title="Configuring High Availability Cluster Resources"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise High Availability</span></span></span> 16.0</div><div><h1 class="title">Configuring High Availability Cluster Resources</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>25 Aug 2026</div><div><div class="abstract"><p>
+          Configure High Availability cluster resources to manage your critical applications and services.
+          Cluster resources can include Web sites, e-mail servers, databases, file systems,
+          virtual machines or any other applications or services that need to be available to
+          users at all times. If one node fails, the resources that were running on it move to
+          another node with little or no downtime. This helps to protect data integrity and reduce
+          unplanned downtime for critical workloads.
+        </p><p><span><em class="emphasis">Requirements:</em></span></p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+              An existing SUSE Linux Enterprise High Availability cluster
+            </p></li><li class="listitem"><p>
+              Existing applications or services to add to the cluster
+            </p></li></ul></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Configuring High Availability Cluster Resources" hreflang="en" href="rh-ha-resources-configuring.html" target="_blank">Revision History: Configuring High Availability Cluster Resources</a></div></div></div></div><section xml:lang="en" class="sect1" id="ha-resources-what-is" data-id-title="What are cluster resources?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">What are cluster resources?</span></span> <a title="Permalink" class="permalink" href="index.html#ha-resources-what-is">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+  In a High Availability cluster, the applications and services that need to be highly available are called
+  <span><em class="emphasis">resources</em></span>. Cluster resources can include Web sites, e-mail servers,
+  databases, file systems, virtual machines or any other applications or services that need to
+  be available to users at all times. You can start, stop, monitor and move resources
+  as needed. You can also specify whether resources should run together on the same node,
+  or start and stop in sequential order. If a node fails, the resources running on it
+  <span><em class="emphasis">fail over</em></span> (move) to another node instead of being lost.
+</p><p>
+  In SUSE Linux Enterprise High Availability, the <span><em class="emphasis">cluster resource manager</em></span> (CRM) is <span><em class="emphasis">Pacemaker</em></span>,
+  which manages and coordinates all cluster services. Pacemaker uses <span><em class="emphasis">resource agents</em></span>
+  (RAs) to start, stop and monitor resources. A resource agent abstracts the resource and presents
+  its status to the cluster. This means that Pacemaker only interacts with the resource agent, not
+  with the actual application or service. SUSE Linux Enterprise High Availability supports many different resource agents that
+  are designed to manage specific types of resources.
+</p></div></div></div></div><section class="sect2" id="ha-resources-what-is-primitive" data-id-title="Primitive resources"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">Primitive resources</span></span> <a title="Permalink" class="permalink" href="index.html#ha-resources-what-is-primitive">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+  Primitive resources represent the applications or services that need to be highly available.
+  Configuring a primitive specifies the resource agent and any other information required for
+  the cluster to manage a resource. To see the supported resource agent classes, run
+  <code class="command">crm ra classes</code>. To see the resource agents available within a class, run
+  <code class="command">crm ra list <em class="replaceable">CLASS</em></code>.
+</p><p>
+      Primitive resources can have the following settings:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.2.4.1"><span class="term">Properties</span></dt><dd><p>
+            Resource properties are the basic details required by the cluster: a unique name for
+            the resource, and the resource agent that manages the application or service.
+          </p></dd><dt id="id-1.2.2.4.2"><span class="term">Parameters</span></dt><dd><p>
+            Parameters are specific to each resource agent and determine the details and behavior
+            of an application or service. To show all the parameters available for a resource agent,
+            run <code class="command">crm ra info <em class="replaceable">RESOURCE_AGENT</em></code>.
+          </p></dd><dt id="id-1.2.2.4.3"><span class="term">Operations</span></dt><dd><p>
+            Operations are actions that the cluster can perform on a resource, such as
+            <code class="literal">start</code>, <code class="literal">stop</code> and <code class="literal">monitor</code>.
+            To show the supported operations for a resource agent, run
+            <code class="command">crm ra info <em class="replaceable">RESOURCE_AGENT</em></code>
+            and scroll to the bottom of the output.
+          </p></dd><dt id="id-1.2.2.4.4"><span class="term">Meta attributes</span></dt><dd><p>
+            Meta attributes change how the cluster treats a resource.
+            To show all the meta attributes available for primitives, run
+            <code class="command">crm_resource --list-options primitive</code>.
+          </p></dd><dt id="id-1.2.2.4.5"><span class="term">Utilization attributes</span></dt><dd><p>
+            If the cluster nodes have utilization attributes configured, you can add these
+            attributes to cluster resources to help with load balancing. For more information,
+            see <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/utilization.html" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/utilization.html</a>.
+            
+          </p></dd></dl></div></section><section class="sect2" id="ha-resources-what-is-group" data-id-title="Resource groups"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Resource groups</span></span> <a title="Permalink" class="permalink" href="index.html#ha-resources-what-is-group">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+  Cluster resources might depend on other resources, such as a Web server that
+  requires an IP address and a file system. You can combine these resources into a
+  <span><em class="emphasis">resource group</em></span>. Groups contain multiple primitives that need
+  to be located together, started sequentially and stopped in the reverse order.
+</p><div class="figure" id="fig-ha-resources-what-is-group"><div class="figure-contents"><div class="mediaobject"><a href="images/ha-resource-group.svg"><img src="images/ha-resource-group.svg" width="80%" alt="This diagram shows a box representing a node. The box contains four individual resources and a smaller box containing three more resources. The smaller box represents a resource group. A zoomed-in view of the resource group shows that the resources are an IP address, an XFS file system and an Apache Web server. The resources are numbered to show the start order in one direction and the reversed stop order in the other direction." title="This diagram shows a box representing a node. The box contains four individual resources and a smaller box containing three more resources. The smaller box represents a resource group. A zoomed-in view of the resource group shows that the resources are an IP address, an XFS file system and an Apache Web server. The resources are numbered to show the start order in one direction and the reversed stop order in the other direction."/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 1: </span><span class="title-name">Resource group </span></span><a title="Permalink" class="permalink" href="index.html#fig-ha-resources-what-is-group">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><p>
+      Groups have the following properties:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.3.5.1"><span class="term">Contents</span></dt><dd><p>
+            Groups can only contain primitive resources, not clones or other groups.
+          </p></dd><dt id="id-1.2.3.5.2"><span class="term">Starting and stopping</span></dt><dd><p>
+           Resources start in the order they appear and stop in the reverse order.
+          </p></dd><dt id="id-1.2.3.5.3"><span class="term">Location</span></dt><dd><p>
+            Resources in the group must all run on the same node.
+          </p></dd><dt id="id-1.2.3.5.4"><span class="term">Dependency</span></dt><dd><p>
+            If one of the resources can't run anywhere, then the resources that appear after
+            it in the group can't run anywhere either.
+          </p></dd><dt id="id-1.2.3.5.5"><span class="term">Meta attributes</span></dt><dd><p>
+            The meta attributes <code class="literal">target-role</code>, <code class="literal">priority</code>,
+            <code class="literal">maintenance</code> and <code class="literal">is-managed</code> can be added
+            directly to the group. All other attributes are inherited from the group's resources.
+          </p></dd><dt id="id-1.2.3.5.6"><span class="term">Resource stickiness</span></dt><dd><p>
+          Stickiness in groups is additive. Every <span><em class="emphasis">active</em></span> resource in the
+          group contributes its stickiness value to the group's total.
+          </p></dd></dl></div></section><section class="sect2" id="ha-resources-what-is-clone" data-id-title="Resource clones"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.3 </span><span class="title-name">Resource clones</span></span> <a title="Permalink" class="permalink" href="index.html#ha-resources-what-is-clone">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+  <span><em class="emphasis">Resource clones</em></span> can run simultaneously on multiple nodes. This is required
+  for cluster file systems like GFS2, for example. You can clone a primitive or a group if the
+  resource agent supports it. Clones can also have additional clone-specific meta attributes to
+  change their behavior.
+</p><p>
+      Clones can be one of the following types:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.4.4.1"><span class="term">Anonymous clones</span></dt><dd><p>
+            Anonymous clones are the simplest type. All instances of the clone behave identically.
+            Therefore, only one instance of an anonymous clone can be active on each node.
+          </p></dd><dt id="id-1.2.4.4.2"><span class="term">Globally unique clones</span></dt><dd><p>
+            Globally unique clones are distinct entities. An instance of the clone running on one
+            node is not necessarily equivalent to another instance on another node.
+          </p></dd><dt id="id-1.2.4.4.3"><span class="term">Promotable clones</span></dt><dd><p>
+            Promotable clones allow the instances to be in one of two operating modes: promoted or
+            unpromoted (also known as primary and secondary, or active and passive). Promotable
+            clones can be either anonymous or globally unique.
+          </p><p>
+            To make a clone promotable, the resource agent must support the
+            <span><em class="emphasis">promote</em></span> and <span><em class="emphasis">demote</em></span> operations. The cluster
+            determines which instance of the clone to promote using one of the following methods
+            (or a combination of both):
+          </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                If a resource agent supports promotable clones, it might automatically set
+                promotion scores based on its own preference for which instance to promote.
+              </p></li><li class="listitem"><p>
+                You can manually set promotion rules or preferences by creating location or
+                colocation constraints.
+              </p></li></ul></div><p>
+            For more information, see <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/collective.html#determining-which-instance-is-promoted" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/collective.html#determining-which-instance-is-promoted</a>
+          </p></dd></dl></div></section><section class="sect2" id="ha-resources-what-is-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.4 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="index.html#ha-resources-what-is-more-info">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          Primitive resources: <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/resources.html" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/resources.html</a>
+        </p></li><li class="listitem"><p>
+          Groups and clones: <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/collective.html" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/collective.html</a>
+        </p></li><li class="listitem"><p>
+          Resource operations: <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/operations.html" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/operations.html</a>
+        </p></li><li class="listitem"><p>
+          Utilization attributes: <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/utilization.html" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/utilization.html</a>
+        </p></li></ul></div></section></section><section xml:lang="en" class="sect1" id="ha-resources-configuring-primitives" data-id-title="Configuring primitive resources"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Configuring primitive resources</span></span> <a title="Permalink" class="permalink" href="index.html#ha-resources-configuring-primitives">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+  Primitive resources represent the applications or services that need to be highly available.
+  Configuring a primitive specifies the resource agent and any other information required for
+  the cluster to manage a resource. To see the supported resource agent classes, run
+  <code class="command">crm ra classes</code>. To see the resource agents available within a class, run
+  <code class="command">crm ra list <em class="replaceable">CLASS</em></code>.
+</p></div></div></div></div><p>
+    You can create primitive resources with the CRM Shell (<code class="systemitem">crmsh</code>) or with the Hawk Web interface.
+  </p><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Requirements </span></span><a title="Permalink" class="permalink" href="index.html#id-1.3.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        The application or service is already set up. For example, you must install and configure
+        an Apache server before you can configure a cluster resource to manage it.
+      </p></li><li class="listitem"><p>
+        If an application or service has specific environment requirements, make sure the required
+        settings are identical on all cluster nodes. Alternatively, you can add resource constraints
+        to make sure the resource can only run on nodes that meet the requirements.
+      </p></li></ul></div><div class="tab-structure"><ul class="tabs" onclick="showTabContent(event)"><li class="tab active-tab">CRM Shell</li><li class="tab">Hawk</li></ul><div class="content-container"><div class="tab-content" id="tabContent1"><p>
+          You can perform this procedure on any node in the cluster.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code> privileges.
+            </p></li><li class="step"><p>
+              Show the required and optional parameters for a resource agent:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm ra info <em class="replaceable">RESOURCE_AGENT</em></code></pre></div></li><li class="step"><p>
+            Configure a primitive resource. The basic command requires at least a name,
+            a resource agent, and any parameters required by the resource agent:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure primitive <em class="replaceable">RESOURCE_NAME RESOURCE_AGENT</em> \
+  params <em class="replaceable">ATTRIBUTE=VALUE</em></code></pre></div><p>
+              This example shows a basic cluster resource for managing an IP address:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure primitive myIP IPaddr2 params ip=192.168.1.10
+</code></pre></div><div class="variablelist"><div class="title-container"><div class="variablelist-title-wrap"><div class="variablelist-title"><span class="title-number-name"><span class="title-name">Additional options </span></span><a title="Permalink" class="permalink" href="index.html#id-1.3.4.1.2.2.3.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><dl class="variablelist"><dt id="id-1.3.4.1.2.2.3.5.2"><span class="term">Operations</span></dt><dd><p>
+                    To show the supported operations for a resource agent, run
+                    <code class="command">crm ra info <em class="replaceable">RESOURCE_AGENT</em></code>
+                    and scroll to the bottom of the output. You can configure the operations as
+                    advised or change them as required. For example, to clone a resource, the
+                    primitive must have two monitor operations (one for each role):
+                  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure primitive db1 mysql \
+  op monitor timeout=30 interval=10 role=Promoted \
+  op monitor timeout=30 interval=20 role=Unpromoted</code></pre></div><div id="id-1.3.4.1.2.2.3.5.2.2.3" class="admonition important compact"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><p>
+                      Before configuring a primitive in a production environment, we recommend
+                      testing it to make sure the <code class="literal">start</code> and <code class="literal">stop</code>
+                      timeouts are long enough under load. Timeouts that are too short can lead to
+                      resource failure and potentially node fencing.
+                    </p></div></dd><dt id="id-1.3.4.1.2.2.3.5.3"><span class="term">Meta attributes</span></dt><dd><p>
+                    Meta attributes change how the cluster treats a resource.
+                    To show all the meta attributes available for primitives, run
+                    <code class="command">crm_resource --list-options primitive</code>. For example,
+                    <code class="literal">allow-migrate</code> enables live migration for a VM resource:
+                  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure primitive VM1 VirtualDomain \
+  params config="/mnt/shared/VM1.xml" \
+  meta allow-migrate=true</code></pre></div></dd><dt id="id-1.3.4.1.2.2.3.5.4"><span class="term">Utilization attributes</span></dt><dd><p>
+                    If the cluster nodes have utilization attributes configured, you can add these
+                    attributes to cluster resources to help with load balancing. For example, if
+                    the nodes have the attribute <code class="literal">memory</code>, you can add the same
+                    attribute to a resource so that it can only run on nodes with enough capacity:
+                  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure primitive web1 apache \
+  utilization memory=1024</code></pre></div></dd></dl></div></li><li class="step"><p>
+              Check the status of the resource:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div></li></ol></div></div></div><div class="tab-content" id="tabContent2" style="display: none;"><p>
+          You can use Hawk on any machine with a Web browser and network access to the nodes.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              In a Web browser, go to
+              <code class="literal">https://<em class="replaceable">HAWKSERVER</em>:7630/</code>
+              and log in.
+            </p></li><li class="step"><p>
+              From the left navigation bar, select <span class="guimenu">Configuration</span> › <span class="guimenu">Add Resource</span>.
+            </p></li><li class="step"><p>
+              Click <span class="guimenu">Primitive</span>.
+            </p></li><li class="step"><p>
+              Enter a unique <span class="guimenu">Resource ID</span>.
+            </p></li><li class="step"><p>
+              Select the resource agent <span class="guimenu">Class</span>: <code class="literal">ocf</code>,
+              <code class="literal">stonith</code> or <code class="literal">systemd</code>.
+            </p></li><li class="step"><p>
+              If you selected the <code class="literal">ocf</code> class, select the resource agent
+              <span class="guimenu">Provider</span>.
+            </p></li><li class="step"><p>
+              From the <span class="guimenu">Type</span> list, select a resource agent.
+            </p><p>
+              Hawk displays a description of the selected resource agent.
+            </p><div id="id-1.3.4.2.2.2.7.3" class="admonition tip compact"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><p>
+                For each of the next steps, after you select an item you can hover the cursor
+                over it to see a description.
+              </p></div></li><li class="step"><p>
+              Hawk automatically adds the required <span class="guimenu">Parameters</span> for the selected
+              resource agent. Fill in the appropriate values for these fields to create a valid
+              resource configuration.
+            </p><p>
+              If needed, select more parameters from the empty drop-down list.
+            </p></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+              Hawk automatically adds the recommended <span class="guimenu">Operations</span> for
+              the selected resource agent (usually <code class="literal">start</code>, <code class="literal">stop</code>
+              and <code class="literal">monitor</code>). Either keep the suggested operations, or click the
+              <span class="guimenu">Edit</span> icon to edit them as required.
+            </p><p>
+              If needed, select more operations from the empty drop-down list.
+            </p><div id="id-1.3.4.2.2.2.9.3" class="admonition important compact"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><p>
+                Before configuring a primitive in a production environment, we recommend testing
+                it to make sure the <code class="literal">start</code> and <code class="literal">stop</code> timeouts
+                are long enough under load. Timeouts that are too short can lead to resource
+                failure and potentially node fencing.
+              </p></div></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+              Hawk automatically adds the recommended <span class="guimenu">Meta Attributes</span>
+              for a resource (for example, <code class="literal">target-role</code> is set to
+              <code class="literal">Stopped</code> by default so the resource doesn't start immediately).
+              Either keep the suggested meta attributes, or edit them as required.
+            </p><p>
+              If needed, select more meta attributes from the empty drop-down list.
+            </p><div id="id-1.3.4.2.2.2.10.3" class="admonition important compact"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><p>
+                Currently, Hawk can't add <span class="guimenu">Utilization</span> attributes to
+                primitive resources.
+              
+              </p></div></li><li class="step"><p>
+              Click <span class="guimenu">Create</span> to finish the configuration.
+            </p><p>
+              A message at the top of the screen shows if the action was successful.
+            </p></li></ol></div></div></div></div></div><div id="id-1.3.5" data-id-title="Dont manually touch cluster-controlled resources" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Don't manually touch cluster-controlled resources</div><p>
+      After you configure a resource, the cluster controls all start or stop actions for that
+      resource. The application or service that the resource represents must <span><em class="emphasis">not</em></span>
+      be started or stopped from outside the cluster.
+    </p><p>
+      If you need to perform testing or maintenance tasks after a resource is already running
+      under cluster control, put the resource into maintenance mode first.
+    </p></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">For more information </span></span><a title="Permalink" class="permalink" href="index.html#id-1.3.6">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        <code class="command">crm configure help primitive</code>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/resources.html#resource-properties" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/resources.html#resource-properties</a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/resources.html#resource-options" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/resources.html#resource-options</a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/operations.html" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/operations.html</a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/utilization.html" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/utilization.html</a>
+      </p></li></ul></div></section><section xml:lang="en" class="sect1" id="ha-resources-configuring-groups" data-id-title="Configuring resource groups"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Configuring resource groups</span></span> <a title="Permalink" class="permalink" href="index.html#ha-resources-configuring-groups">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+  Cluster resources might depend on other resources, such as a Web server that
+  requires an IP address and a file system. You can combine these resources into a
+  <span><em class="emphasis">resource group</em></span>. Groups contain multiple primitives that need
+  to be located together, started sequentially and stopped in the reverse order.
+</p></div></div></div></div><p>
+    You can configure resource groups with the CRM Shell (<code class="systemitem">crmsh</code>) or with the Hawk Web interface.
+  </p><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Requirements </span></span><a title="Permalink" class="permalink" href="index.html#id-1.4.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        The primitive resources already exist.
+      </p></li><li class="listitem"><p>
+        The primitive resources aren't already cloned or included in another group.
+      </p></li></ul></div><div class="tab-structure"><ul class="tabs" onclick="showTabContent(event)"><li class="tab active-tab">CRM Shell</li><li class="tab">Hawk</li></ul><div class="content-container"><div class="tab-content" id="tabContent1"><p>
+          You can perform this procedure on any node in the cluster.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code> privileges.
+            </p></li><li class="step"><p>
+              Configure a group. Add the resources in the order you want them to start:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure group <em class="replaceable">GROUP_NAME RESOURCE1 RESOURCE2</em></code></pre></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Additional options </span></span><a title="Permalink" class="permalink" href="index.html#id-1.4.4.1.2.2.2.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+                  Groups inherit most meta attributes from their primitive resources, but you can
+                  also add the <code class="literal">target-role</code>, <code class="literal">priority</code>,
+                  <code class="literal">maintenance</code> and <code class="literal">is-managed</code> meta attributes
+                  directly to the group. For example:
+                </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure group res-group res1 res2 res3 \
+  meta target-role=Started priority=100
+</code></pre></div></li></ul></div></li><li class="step"><p>
+              Check the status of the group:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div></li></ol></div></div></div><div class="tab-content" id="tabContent2" style="display: none;"><p>
+          You can use Hawk on any machine with a Web browser and network access to the nodes.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              In a Web browser, go to
+              <code class="literal">https://<em class="replaceable">HAWKSERVER</em>:7630/</code>
+              and log in.
+            </p></li><li class="step"><p>
+              From the left navigation bar, select <span class="guimenu">Configuration</span> › <span class="guimenu">Add Resource</span>.
+            </p></li><li class="step"><p>
+              Click <span class="guimenu">Group</span>.
+            </p></li><li class="step"><p>
+              Enter a unique <span class="guimenu">Group ID</span>.
+            </p></li><li class="step"><p>
+              From the list of <span class="guimenu">Children</span>, select the resources to add to the
+              group. You can drag and drop the resources into a different order using the icons on
+              the right. The resources start in the specified order and stop in the reverse order.
+            </p></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+              Add <span class="guimenu">Meta Attributes</span> by selecting them from the drop-down list.
+            </p><p>
+              You can hover the cursor over each meta attribute to see a description.
+            </p></li><li class="step"><p>
+              Click <span class="guimenu">Create</span> to finish the configuration.
+            </p><p>
+              A message at the top of the screen shows if the action was successful.
+            </p></li></ol></div></div></div></div></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">For more information </span></span><a title="Permalink" class="permalink" href="index.html#id-1.4.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        <code class="command">crm configure help group</code>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/collective.html#groups-a-syntactic-shortcut" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/collective.html#groups-a-syntactic-shortcut</a>
+      </p></li></ul></div></section><section xml:lang="en" class="sect1" id="ha-resources-configuring-clones" data-id-title="Configuring resource clones"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Configuring resource clones</span></span> <a title="Permalink" class="permalink" href="index.html#ha-resources-configuring-clones">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+  <span><em class="emphasis">Resource clones</em></span> can run simultaneously on multiple nodes. This is required
+  for cluster file systems like GFS2, for example. You can clone a primitive or a group if the
+  resource agent supports it. Clones can also have additional clone-specific meta attributes to
+  change their behavior.
+</p></div></div></div></div><p>
+    You can configure resource clones with the CRM Shell (<code class="systemitem">crmsh</code>) or with the Hawk Web interface.
+  </p><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Requirements </span></span><a title="Permalink" class="permalink" href="index.html#id-1.5.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        The primitive or group already exists.
+      </p></li><li class="listitem"><p>
+        <span><em class="emphasis">For promotable clones</em></span>: the primitive has two monitor operations:
+        one for when the resource is in the unpromoted role, and one with a different interval
+        for when the resource is in the promoted role.
+      </p></li><li class="listitem"><p>
+        <span><em class="emphasis">For promotable clones</em></span>: the resource agent supports the promote
+        and demote operations.
+      </p></li></ul></div><div class="tab-structure"><ul class="tabs" onclick="showTabContent(event)"><li class="tab active-tab">CRM Shell</li><li class="tab">Hawk</li></ul><div class="content-container"><div class="tab-content" id="tabContent1"><p>
+          You can perform this procedure on any node in the cluster.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code> privileges.
+            </p></li><li class="step"><p>
+              Configure a clone. The basic command requires a name and one primitive or group:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure clone <em class="replaceable">CLONE_NAME RESOURCE</em></code></pre></div><div class="variablelist"><div class="title-container"><div class="variablelist-title-wrap"><div class="variablelist-title"><span class="title-number-name"><span class="title-name">Additional options </span></span><a title="Permalink" class="permalink" href="index.html#id-1.5.4.1.2.2.2.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><dl class="variablelist"><dt id="id-1.5.4.1.2.2.2.3.2"><span class="term">Meta attributes</span></dt><dd><p>
+                    Clones can have additional clone-specific meta attributes, such as
+                    <code class="literal">clone-max</code> or <code class="literal">globally-unique</code>.
+                    For more information about the meta attributes for clones, see
+                    <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/collective.html#clone-options" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/collective.html#clone-options</a>
+                  </p></dd><dt id="id-1.5.4.1.2.2.2.3.3"><span class="term">Promotable clones</span></dt><dd><p>
+                    To configure a promotable clone, add the meta attribute
+                    <code class="literal">promotable=true</code>:
+                  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure clone clone1 res1 meta promotable=true</code></pre></div><p>
+                    Promotable clones can also have additional meta attributes:
+                    <code class="literal">promoted-max</code> and <code class="literal">promoted-node-max</code>.
+                  </p></dd></dl></div></li><li class="step"><p>
+              Check the cluster status to make sure the clone set is running on all nodes:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div></li></ol></div></div></div><div class="tab-content" id="tabContent2" style="display: none;"><p>
+          You can use Hawk on any machine with a Web browser and network access to the nodes.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              In a Web browser, go to
+              <code class="literal">https://<em class="replaceable">HAWKSERVER</em>:7630/</code>
+              and log in.
+            </p></li><li class="step"><p>
+              From the left navigation bar, select <span class="guimenu">Configuration</span> › <span class="guimenu">Add Resource</span>.
+            </p></li><li class="step"><p>
+              Click <span class="guimenu">Clone</span> for a standard clone.
+            </p><div id="id-1.5.4.2.2.2.3.2" class="admonition important compact"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><p>
+                Currently, Hawk can only create standard clones, not promotable clones.
+              </p></div></li><li class="step"><p>
+              Enter a unique <span class="guimenu">Clone ID</span>.
+            </p></li><li class="step"><p>
+              From the <span class="guimenu">Child Resource</span> drop-down list, select the primitive or
+              group to clone.
+            </p></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+              Add <span class="guimenu">Meta Attributes</span> by selecting them from the drop-down list.
+            </p><p>
+              Clones can have additional meta attributes that define how the clone behaves.
+              
+            </p><p>
+              You can hover the cursor over each meta attribute to see a description.
+            </p></li><li class="step"><p>
+              Click <span class="guimenu">Create</span> to finish the configuration.
+            </p><p>
+              A message at the top of the screen shows if the action was successful.
+            </p></li></ol></div></div></div></div></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">For more information </span></span><a title="Permalink" class="permalink" href="index.html#id-1.5.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        <code class="command">crm configure help clone</code>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/collective.html#clones-resources-that-can-have-multiple-active-instances" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/collective.html#clones-resources-that-can-have-multiple-active-instances</a>
+      </p></li></ul></div></section><section xml:lang="en" class="sect1" id="ha-resources-adding-tags" data-id-title="Adding resource tags"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Adding resource tags</span></span> <a title="Permalink" class="permalink" href="index.html#ha-resources-adding-tags">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        You can use tags to refer to multiple resources at once without creating any constraints
+        between the resources. This can be useful for grouping conceptually related resources and
+        allows you to stop or start them all with a single command. A tag can include primitives,
+        groups and clones, and can also be used in resource constraints.
+      </p></div></div></div></div><p>
+    You can create tags with the CRM Shell (<code class="systemitem">crmsh</code>) or with the Hawk Web interface.
+  </p><div class="tab-structure"><ul class="tabs" onclick="showTabContent(event)"><li class="tab active-tab">CRM Shell</li><li class="tab">Hawk</li></ul><div class="content-container"><div class="tab-content" id="tabContent1"><p>
+          You can perform this procedure on any node in the cluster.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code>
+              privileges.
+            </p></li><li class="step"><p>
+              Create a tag and specify the resources to refer to with that tag:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure tag <em class="replaceable">TAG_NAME</em>: <em class="replaceable">RESOURCE1</em> <em class="replaceable">RESOURCE2</em></code></pre></div><p>
+              For example, if you have multiple resources related to a database, you could create
+              a tag called <code class="literal">databases</code> and add all resources related to the
+              database to this tag:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure tag databases: db1 db2 db3</code></pre></div></li><li class="step"><p>
+              To view all tags and their resources, use the following command:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure show type:tag</code></pre></div></li></ol></div></div><p>
+          This allows you to start or stop the resources with a single command:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm resource start <em class="replaceable">TAG_NAME</em></code></pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm resource stop <em class="replaceable">TAG_NAME</em></code></pre></div></div><div class="tab-content" id="tabContent2" style="display: none;"><p>
+          You can use Hawk on any machine with a Web browser and network access to the nodes.
+        </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+              In a Web browser, go to
+              <code class="literal">https://<em class="replaceable">HAWKSERVER</em>:7630/</code>
+              and log in.
+            </p></li><li class="step"><p>
+              From the left navigation bar, select <span class="guimenu">Configuration</span> › <span class="guimenu">Add Resource</span>.
+            </p></li><li class="step"><p>
+              Click <span class="guimenu">Tag</span>.
+            </p></li><li class="step"><p>
+              Enter a unique <span class="guimenu">Tag ID</span>.
+            </p></li><li class="step"><p>
+              From the <span class="guimenu">Objects</span> list, select the resources you want to
+              refer to with the tag.
+            </p></li><li class="step"><p>
+              Click <span class="guimenu">Create</span>.
+            </p><p>
+              A message at the top of the screen shows if the action was successful.
+            </p></li><li class="step"><p>
+              To view all tags and their resources, select <span class="guimenu">Configuration</span> › <span class="guimenu">Edit Configuration</span> from the left navigation bar, then
+              select the <span class="guimenu">Tags</span> tab.
+            </p></li></ol></div></div><p>
+          This allows you to start or stop the resources with a single operation.
+          From the left navigation bar, select <span class="guimenu">Monitoring</span> › <span class="guimenu">Status</span>. On this page, all tags have their own tab.
+          From the <span class="guimenu">Operations</span> drop-down list, you can <span class="guimenu">Start</span>
+          or <span class="guimenu">Stop</span> all the resources at once.
+        </p></div></div></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">For more information </span></span><a title="Permalink" class="permalink" href="index.html#id-1.6.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        <code class="command">crm configure help tag</code>
+      </p></li></ul></div></section><section xml:lang="en" class="sect1" id="ha-resources-next-steps" data-id-title="Next steps"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Next steps</span></span> <a title="Permalink" class="permalink" href="index.html#ha-resources-next-steps">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    To manage the resources after creating them, see the following articles:
+  </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.7.3.1"><span class="term">
+        <a class="link" href="https://documentation.suse.com/sle-ha/16.0/html/HA-resources-adding-constraints/" target="_blank">
+        <em class="citetitle">Adding Constraints to High Availability Cluster Resources</em></a>
+      </span></dt><dd><p>
+          This article explains how to add resource constraints to specify where, and in what
+          order, cluster resources should run.
+        </p></dd><dt id="id-1.7.3.2"><span class="term">
+        <a class="link" href="https://documentation.suse.com/sle-ha/16.0/html/HA-resources-managing/" target="_blank">
+        <em class="citetitle">Managing High Availability Cluster Resources</em></a>
+      </span></dt><dd><p>
+          This article explains how to manage cluster resources, including tasks such as
+          starting, stopping, editing and deleting.
+        </p></dd><dt id="id-1.7.3.3"><span class="term">
+        <a class="link" href="https://documentation.suse.com/sle-ha/16.0/html/HA-resources-manually-moving/" target="_blank">
+        <em class="citetitle">Manually Moving High Availability Cluster Resources</em></a>
+      </span></dt><dd><p>
+          This article explains how to manually move a resource, either to a specific node or
+          just away from the current node.
+        </p></dd><dt id="id-1.7.3.4"><span class="term">
+        <a class="link" href="https://documentation.suse.com/sle-ha/16.0/html/HA-maintenance-performing-tasks-cluster-resources/" target="_blank">
+        <em class="citetitle">Performing Maintenance Tasks on Cluster Resources</em></a>
+      </span></dt><dd><p>
+          This article explains how to safely perform manual maintenance tasks on cluster resources.
+        </p></dd></dl></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#ha-resources-what-is"><span class="title-number">1 </span><span class="title-name">What are cluster resources?</span></a></span></li><li><span class="section"><a href="index.html#ha-resources-configuring-primitives"><span class="title-number">2 </span><span class="title-name">Configuring primitive resources</span></a></span></li><li><span class="section"><a href="index.html#ha-resources-configuring-groups"><span class="title-number">3 </span><span class="title-name">Configuring resource groups</span></a></span></li><li><span class="section"><a href="index.html#ha-resources-configuring-clones"><span class="title-number">4 </span><span class="title-name">Configuring resource clones</span></a></span></li><li><span class="section"><a href="index.html#ha-resources-adding-tags"><span class="title-number">5 </span><span class="title-name">Adding resource tags</span></a></span></li><li><span class="section"><a href="index.html#ha-resources-next-steps"><span class="title-number">6 </span><span class="title-name">Next steps</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">7 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li><li><span class="glossary"><a href="ha-glossary.html"><span class="title-name">HA glossary</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

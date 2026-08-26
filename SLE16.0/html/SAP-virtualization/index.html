@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Virtualization on SUSE Linux with Benefits and Setup | SUSE Linux Enterprise Server for SAP applications 16.0</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2025-11-04"/>
+<meta name="dcterms.modified" content="2026-06-18"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-25"/>
+<meta name="title" content="Virtualization on SUSE Linux with Benefits and Setup |…"/>
+<meta name="description" content="Using virtualization, you can run multiple virtual machines on a single bare-metal host to save resources"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server for SAP applications"/>
+<meta name="product-number" content="16.0"/>
+<meta name="book-title" content="Virtualization on SUSE Linux with Benefits and Setup"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="souvik.sarkar@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.0"/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="souvik.sarkar@suse.com"/><meta property="og:title" content="Introduction to virtualization"/>
+<meta property="og:description" content="Learn about the basic concepts of virtualization"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Introduction to virtualization"/>
+<meta name="twitter:description" content="Learn about the basic concepts of virtualization"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Introduction to virtualization | SUSE Linux Enterprise Server for SAP applications 16.0",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Introduction to virtualization",
+    "description": "Using virtualization, you can run multiple virtual machines on a single bare-metal host to save resources",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2025-11-04T00:00+02:00",
+    "dateModified": "2026-06-18T00:00+02:00",
+    "datePublished": "2026-08-25T07:08+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Virtualization"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server for SAP applications",
+        "softwareVersion": "16.0",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Virtualization on SUSE Linux with Benefits and Setup</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Virtualization on SUSE Linux with Benefits and Setup</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="virtualization" data-id-title="Virtualization on SUSE Linux with Benefits and Setup"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span></span> 16.0</div><div><h1 class="title">Virtualization on SUSE Linux with Benefits and Setup</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>25 Aug 2026</div><div><div class="abstract"><p>
+         Virtualization is a technology that allows a single physical server
+         (host) to run multiple virtual machines (guests), each with its own
+         operating system. Use it to reduce hardware costs, save power and
+         space, and improve infrastructure flexibility and productivity. By
+         the end of this article, you will understand the benefits of
+         virtualization and the basic setup of a virtual machine host and
+         guest environment.
+        </p></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Virtualization on SUSE Linux with Benefits and Setup" hreflang="en" href="rh-virtualization.html" target="_blank">Revision History: Virtualization on SUSE Linux with Benefits and Setup</a></div></div></div></div><section xml:lang="en" class="sect1" id="virtualization-introduction" data-id-title="Introduction to virtualization"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Introduction to virtualization</span></span> <a title="Permalink" class="permalink" href="index.html#virtualization-introduction">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Virtualization is a technology that provides a way for a machine (VM Host Server) to run another
+        operating system (VM Guest) on top of the host operating system.
+      </p></div></div></div></div><section class="sect2" id="how-it-works-virtualization" data-id-title="How does virtualization work?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">How does virtualization work?</span></span> <a title="Permalink" class="permalink" href="index.html#how-it-works-virtualization">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The primary component of VM Host Server that enables virtualization is a
+      <span><em class="emphasis">hypervisor</em></span>. A hypervisor is a layer of software that runs directly on
+      VM Host Server's hardware. It controls platform resources, sharing them among multiple VM Guests
+      and their operating systems by presenting virtualized hardware interfaces to each VM Guest.      
+    </p><div class="figure" id="virtualization-schema"><div class="figure-contents"><div class="mediaobject"><a href="images/virtualization-schema.png"><img src="images/virtualization-schema.png" alt="A general schema of virtualization" title="A general schema of virtualization"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 1: </span><span class="title-name">A general schema of virtualization </span></span><a title="Permalink" class="permalink" href="index.html#virtualization-schema">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></section><section class="sect2" id="benefits-virtualization" data-id-title="Benefits of virtualization"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Benefits of virtualization</span></span> <a title="Permalink" class="permalink" href="index.html#benefits-virtualization">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Virtualization brings a lot of advantages while providing the same service as a hardware
+      server.
+    </p><p>
+      Virtualization reduces the cost of your infrastructure. Servers are mainly used to provide a
+      service to a customer. A virtualized operating system can provide the same service but with
+      the following advantages:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          Less hardware: you can run several operating systems on one host, therefore all hardware
+          maintenance is reduced.
+        </p></li><li class="listitem"><p>
+          Less power/cooling: less hardware means you do not need to invest more in electric power,
+          backup power, and cooling if you need more service.
+        </p></li><li class="listitem"><p>
+          Save space: your data center space is saved because you do not need more hardware servers
+          (fewer servers than services running).
+        </p></li><li class="listitem"><p>
+          Less management: using a VM Guest simplifies the administration of your infrastructure.
+        </p></li><li class="listitem"><p>
+          Agility and productivity: virtualization provides <span><em class="emphasis">migration</em></span>
+          capabilities, <span><em class="emphasis">live migration</em></span> and <span><em class="emphasis">snapshots</em></span>.
+          These features reduce downtime and bring an easy way to move your service from one place
+          to another without any service interruption.
+        </p></li></ul></div></section></section><section xml:lang="en" class="sect1" id="virt-components-installation-patterns" data-id-title="Installation of virtualization components"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Installation of virtualization components</span></span> <a title="Permalink" class="permalink" href="index.html#virt-components-installation-patterns">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+  To run a virtualization server (VM Host Server) that can host multiple guest systems
+  (VM Guests), you need to install required virtualization components on the
+  server. These components vary depending on which virtualization technology you
+  want to use.
+</p></div></div></div></div><p>
+    You can install the virtualization tools required to run a VM Host Server either when installing the
+    system (see the <a class="link" href="https://documentation.suse.com/sles-sap/16.0/html/SAP-x86-64-agama-based-installation/index.html#agama-manual-installation" target="_blank">manual
+    installation</a>), or from an alerady installed system by installing a virtualization pattern. The later
+    option is described bellow:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> zypper install -t pattern <em class="replaceable">PATTERN_NAME</em></pre></div><p>
+  Replace the <em class="replaceable">PATTERN_NAME</em> with one of the following values:
+</p><div class="variablelist"><dl class="variablelist"><dt id="id-1.3.5.1"><span class="term"><code class="literal">kvm_server</code></span></dt><dd><p>
+          Installs a basic VM Host Server with the KVM and QEMU environments.
+        </p></dd><dt id="id-1.3.5.2"><span class="term"><code class="literal">kvm_tools</code></span></dt><dd><p>
+          Installs <code class="systemitem">libvirt</code> tools for managing and monitoring VM Guests in
+          the KVM environment.
+        </p></dd></dl></div></section><section xml:lang="en" class="sect1" id="virtualization-modes" data-id-title="Virtualization modes"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Virtualization modes</span></span> <a title="Permalink" class="permalink" href="index.html#virtualization-modes">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Virtualization is a technology that provides a way for a machine (VM Host Server) to run another
+        operating system (VM Guest) on top of the host operating system. There are two basic modes
+        of hosting VM Guests on virtual machines—<span><em class="emphasis">full virtualization</em></span>
+        mode and <span><em class="emphasis">paravirtual</em></span> mode.
+      </p></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="virtualization-mode-full"><span class="term">Full virtualization (FV)</span></dt><dd><p>
+          FV lets virtual machines run unmodified operating systems. It uses either Binary
+          Translation or hardware-assisted virtualization technology, such as AMD* Virtualization
+          or Intel* Virtualization Technology, to improve performance on processors that support
+          it. In FV mode, VM Guest is also called the <span><em class="emphasis">Hardware Virtual
+          Machine</em></span> (HVM).
+        </p><div id="id-1.4.2.1.2.2" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
+            Certain guest operating systems hosted in full virtualization mode can be configured to
+            use drivers from the SUSE Virtual Machine Drivers Pack (VMDP) instead of drivers
+            included in the operating system. Running virtual machine drivers improves performance
+            on guest operating systems, such as Windows Server.
+          </p></div></dd><dt id="id-1.4.2.2"><span class="term">Paravirtualization (PV)</span></dt><dd><p>
+          PV normally requires that guest operating systems are modified for the virtualization
+          environment. VM Guests running in paravirtual mode have better performance than those
+          running under full virtualization. Operating systems currently modified to run in
+          paravirtual mode are called <span><em class="emphasis">paravirtualized</em></span> operating systems and
+          include <span class="phrase"><span class="phrase">SLES for SAP</span></span>.
+        </p></dd><dt id="id-1.4.2.3"><span class="term">PV on HVM (PVHVM)</span></dt><dd><p>
+          PVHVM enhances HVM (see <a class="xref" href="index.html#virtualization-mode-full">Full virtualization (FV)</a>) with paravirtualized
+          drivers, and handling of paravirtualized interrupts and timers.
+        </p></dd></dl></div></section><section xml:lang="en" class="sect1" id="kvm-virtualization-basics" data-id-title="Introduction to KVM virtualization"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Introduction to KVM virtualization</span></span> <a title="Permalink" class="permalink" href="index.html#kvm-virtualization-basics">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+    KVM (Kernel Virtual Machine) is a full virtualization solution that transforms the Linux kernel into a hypervisor for running multiple isolated virtual environments.
+   </p></div></div></div></div><section class="sect2" id="sec-kvm-intro" data-id-title="Basic components"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.1 </span><span class="title-name">Basic components</span></span> <a title="Permalink" class="permalink" href="index.html#sec-kvm-intro">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   KVM is a full virtualization solution for hardware architectures that
+   support hardware virtualization.
+  </p><p>
+   VM Guests (virtual machines), virtual storage and virtual networks can
+   be managed with QEMU tools directly or with the <code class="systemitem">libvirt</code>-based stack.
+   The QEMU tools include <code class="command">qemu-system-<em class="replaceable">ARCH</em></code>, the QEMU
+   monitor, <code class="command">qemu-img</code>, and <code class="command">qemu-nbd</code>. A
+   <code class="systemitem">libvirt</code>-based stack includes <code class="systemitem">libvirt</code> itself, along with
+   <code class="systemitem">libvirt</code>-based applications such as <code class="command">virsh</code>,
+   <code class="command">virt-manager</code>, <code class="command">virt-install</code>, and
+   <code class="command">virt-viewer</code>.
+  </p></section><section class="sect2" id="sec-kvm-intro-arch" data-id-title="KVM virtualization architecture"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.2 </span><span class="title-name">KVM virtualization architecture</span></span> <a title="Permalink" class="permalink" href="index.html#sec-kvm-intro-arch">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   This full virtualization solution consists of two main components:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     A set of kernel modules (<code class="systemitem">kvm.ko</code>,
+     <code class="systemitem">kvm-intel.ko</code>, and
+     <code class="systemitem">kvm-amd.ko</code>) that provides the core
+     virtualization infrastructure and processor-specific drivers.
+    </p></li><li class="listitem"><p>
+     A user space program
+     (<code class="command">qemu-system-<em class="replaceable">ARCH</em></code>) that
+     provides emulation for virtual devices and control mechanisms to
+     manage VM Guests (virtual machines).
+    </p></li></ul></div><p>
+   The term KVM more properly refers to the kernel level virtualization
+   functionality, but is in practice more commonly used to refer to the user
+   space component.
+  </p><div class="figure" id="fig-kvm-basics-arch"><div class="figure-contents"><div class="mediaobject"><a href="images/kvm_qemu.png"><img src="images/kvm_qemu.png" width="100%" alt="Layered diagram of the KVM stack: hardware virtualization support at the base, the Linux kernel with the KVM kernel modules above it, and QEMU with the guest kernel and guest user space processes on top, alongside regular host user space processes." title="Layered diagram of the KVM stack: hardware virtualization support at the base, the Linux kernel with the KVM kernel modules above it, and QEMU with the guest kernel and guest user space processes on top, alongside regular host user space processes."/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 2: </span><span class="title-name">KVM virtualization architecture </span></span><a title="Permalink" class="permalink" href="index.html#fig-kvm-basics-arch">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></section></section><section xml:lang="en" class="sect1" id="vt-installation" data-id-title="Installation of virtualization components"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Installation of virtualization components</span></span> <a title="Permalink" class="permalink" href="index.html#vt-installation">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+    To run a virtualization server (VM Host Server) that can host one or more guest systems (VM Guests), you need to install required virtualization components on the server.
+   </p></div></div></div></div><section class="sect2" id="install-virtualization-components" data-id-title="Installing virtualization components"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.1 </span><span class="title-name">Installing virtualization components</span></span> <a title="Permalink" class="permalink" href="index.html#install-virtualization-components">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   The virtualization components you need vary depending on which
+   virtualization technology you want to use. You can install the
+   virtualization tools required to run a VM Host Server in one of the following
+   ways:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     By selecting a specific system role during <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> installation
+     on the VM Host Server
+    </p></li><li class="listitem"><p>
+     By installing specific installation patterns on an already installed
+     and running <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span>.
+    </p></li></ul></div><section class="sect3" id="install-virtualization-components-system-role" data-id-title="Specifying a system role"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.1.1 </span><span class="title-name">Specifying a system role</span></span> <a title="Permalink" class="permalink" href="index.html#install-virtualization-components-system-role">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    You can install all the tools required for virtualization during the
+    installation of <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> on the VM Host Server. During the installation,
+    you are presented with the <span class="guimenu">System Role</span> screen.
+   </p><div class="figure" id="fig-vt-installation-system-role"><div class="figure-contents"><div class="mediaobject"><a href="images/virt-system-roles.png"><img src="images/virt-system-roles.png" width="75%" alt="The System Role screen listing the available roles, with KVM Virtualization Host selected." title="The System Role screen listing the available roles, with KVM Virtualization Host selected."/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 3: </span><span class="title-name">System Role screen </span></span><a title="Permalink" class="permalink" href="index.html#fig-vt-installation-system-role">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><p>
+    Here you can select the <span class="guimenu">KVM Virtualization Host</span> role.
+    The appropriate software selection and setup is automatically performed
+    during <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> installation.
+   </p><div id="id-1.6.2.4.5" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
+     Both virtualization system roles create a dedicated
+     <code class="filename">/var/lib/libvirt</code> partition, and enable the
+     <code class="systemitem">firewalld</code> and Kdump services.
+    </p></div></section><section class="sect3" id="install-virtualization-components-pattern" data-id-title="Installing specific installation patterns"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.1.2 </span><span class="title-name">Installing specific installation patterns</span></span> <a title="Permalink" class="permalink" href="index.html#install-virtualization-components-pattern">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Related software packages from <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> software repositories are
+    organized into <span><em class="emphasis">installation patterns</em></span>. You can use
+    these patterns to install specific virtualization components on an
+    already running <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span>. Use <code class="command">zypper</code> to install
+    them:
+   </p><div class="verbatim-wrap"><pre class="screen"><code class="command">zypper install -t pattern <em class="replaceable">PATTERN_NAME</em></code></pre></div><p>
+    To install the KVM environment, consider the following patterns:
+   </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.6.2.5.5.1"><span class="term"><code class="literal">kvm_server</code></span></dt><dd><p>
+       Installs basic VM Host Server with the KVM and QEMU environments.
+      </p></dd><dt id="id-1.6.2.5.5.2"><span class="term"><code class="literal">kvm_tools</code></span></dt><dd><p>
+       Installs <code class="systemitem">libvirt</code> tools for managing and monitoring VM Guests
+       in KVM environment.
+      </p></dd></dl></div></section></section><section class="sect2" id="sec-vt-installation-nested-vms" data-id-title="Enable nested virtualization in KVM"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.2 </span><span class="title-name">Enable nested virtualization in KVM</span></span> <a title="Permalink" class="permalink" href="index.html#sec-vt-installation-nested-vms">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div id="id-1.6.3.2" data-id-title="Technology preview" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Technology preview</div><p>
+    Nested virtualization in KVM is still a technology preview. It is
+    provided for testing purposes and is not supported.
+   </p></div><p>
+   Nested guests are KVM guests run in a KVM guest. This section
+   describes nested guests using the following virtualization layers:
+  </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.6.3.4.1"><span class="term">L0</span></dt><dd><p>
+      A bare metal host running KVM.
+     </p></dd><dt id="id-1.6.3.4.2"><span class="term">L1</span></dt><dd><p>
+      A virtual machine running on L0. Because it can run another KVM,
+      it is called a <span><em class="emphasis">guest hypervisor</em></span>.
+     </p></dd><dt id="id-1.6.3.4.3"><span class="term">L2</span></dt><dd><p>
+      A virtual machine running on L1. It is called a <span><em class="emphasis">nested
+      guest</em></span>.
+     </p></dd></dl></div><p>
+   Nested virtualization has many advantages. You can benefit from it in the
+   following scenarios:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     Manage your own virtual machines directly with your hypervisor of
+     choice in cloud environments.
+    </p></li><li class="listitem"><p>
+     Enable the live migration of hypervisors and their guest virtual
+     machines as a single entity.
+    </p><div id="id-1.6.3.6.2.2" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+      Live migration of a nested VM Guest is not supported.
+     </p></div></li><li class="listitem"><p>
+     Use it for software development and testing.
+    </p></li></ul></div><p>
+   To enable nesting temporarily, remove the module and reload it with the
+   <code class="option">nested</code> KVM module parameter:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     For Intel CPUs, run:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">modprobe -r kvm_intel &amp;&amp; modprobe kvm_intel nested=1</code></pre></div></li><li class="listitem"><p>
+     For AMD CPUs, run:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">modprobe -r kvm_amd &amp;&amp; modprobe kvm_amd nested=1</code></pre></div></li></ul></div><p>
+   To enable nesting permanently, enable the <code class="option">nested</code> KVM
+   module parameter in the <code class="filename">/etc/modprobe.d/kvm_*.conf</code>
+   file, depending on your CPU:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     For Intel CPUs, edit
+     <code class="filename">/etc/modprobe.d/kvm_intel.conf</code> and add the
+     following line:
+    </p><div class="verbatim-wrap"><pre class="screen">options kvm_intel nested=1</pre></div></li><li class="listitem"><p>
+     For AMD CPUs, edit <code class="filename">/etc/modprobe.d/kvm_amd.conf</code>
+     and add the following line:
+    </p><div class="verbatim-wrap"><pre class="screen">options kvm_amd nested=1</pre></div></li></ul></div><p>
+   When your L0 host is capable of nesting, you can start an L1 guest in one
+   of the following ways:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+     Use the <code class="option">-cpu host</code> QEMU command-line option.
+    </p></li><li class="listitem"><p>
+     Add the <code class="literal">vmx</code> (for Intel CPUs) or the
+     <code class="literal">svm</code> (for AMD CPUs) CPU feature to the
+     <code class="option">-cpu</code> QEMU command-line option, which enables
+     virtualization for the virtual CPU.
+    </p></li></ul></div><section class="sect3" id="sec-vt-installation-nested-vms-esxi" data-id-title="VMware ESX as a guest hypervisor"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">5.2.1 </span><span class="title-name">VMware ESX as a guest hypervisor</span></span> <a title="Permalink" class="permalink" href="index.html#sec-vt-installation-nested-vms-esxi">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    If you use VMware ESX as a guest hypervisor on top of a KVM bare metal
+    hypervisor, you may experience unstable network communication. This
+    problem occurs especially between nested KVM guests and the KVM
+    bare metal hypervisor or external network. The following default CPU
+    configuration of the nested KVM guest is causing the problem:
+   </p><div class="verbatim-wrap"><pre class="screen">&lt;cpu mode='host-model' check='partial'/&gt;</pre></div><p>
+    To fix it, modify the CPU configuration as follows:
+   </p><div class="verbatim-wrap"><pre class="screen">[...]
+&lt;cpu mode='host-passthrough' check='none'&gt;
+ &lt;cache mode='passthrough'/&gt;
+&lt;/cpu&gt;
+[...]</pre></div></section></section></section><section xml:lang="en" class="sect1" id="manage-vm-on-commandline-tools" data-id-title="Command-line tools"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Command-line tools</span></span> <a title="Permalink" class="permalink" href="index.html#manage-vm-on-commandline-tools">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p><code class="systemitem">libvirt</code> includes several command-line utilities to manage virtual machines. A few of the command-line utilities are listed below:</p></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.7.2.1"><span class="term"><code class="literal">virsh</code> (Package: libvirt-client)</span></dt><dd><p>A command-line tool to manage VM Guests with similar functionality as the Virtual Machine Manager. Allows you to change a VM Guest's status (start, stop, pause, etc.), to set up new guests and devices, or to edit existing configurations. virsh is also useful to script VM Guest management operations.</p></dd><dt id="id-1.7.2.2"><span class="term"><code class="literal">virt-install</code> (Package: virt-install)</span></dt><dd><p>A command-line tool for creating new VM Guests using the libvirt library. It supports graphical installations via VNC or SPICE protocols. Given suitable command-line arguments, virt-install can run completely unattended. This allows for easy automation of guest installs. virt-install is the default installation tool used by the Virtual Machine Manager.</p></dd><dt id="id-1.7.2.3"><span class="term"><code class="literal">remote-viewer</code> (Package: virt-viewer)</span></dt><dd><p>A simple viewer of a remote desktop. It supports SPICE and VNC protocols.</p></dd><dt id="id-1.7.2.4"><span class="term"><code class="literal">virt-clone</code> (Package: virt-install)</span></dt><dd><p>A tool for cloning existing virtual machine images using the libvirt hypervisor management library.</p></dd><dt id="id-1.7.2.5"><span class="term"><code class="literal">virt-host-validate</code> (Package: libvirt-client)</span></dt><dd><p>A tool that validates whether the host is configured in a suitable way to run libvirt hypervisor drivers.</p></dd></dl></div></section><section xml:lang="en" class="sect1" id="virt-v2v-vmware-migration" data-id-title="Converting VMware virtual machines to KVM with virt-v2v"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Converting VMware virtual machines to KVM with <code class="command">virt-v2v</code></span></span> <a title="Permalink" class="permalink" href="index.html#virt-v2v-vmware-migration">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        <code class="command">virt-v2v</code> converts virtual machines from VMware and other hypervisors to run on KVM. This guide covers the prerequisites, preparation, and conversion process, with a focus on converting Windows Server 2022 guests.
+      </p></div></div></div></div><section class="sect2" id="sec-virt-v2v-overview" data-id-title="Overview"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.1 </span><span class="title-name">Overview</span></span> <a title="Permalink" class="permalink" href="index.html#sec-virt-v2v-overview">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      <code class="command">virt-v2v</code> is a command-line tool for converting third-party virtual machines into a format that runs on QEMU/KVM. It is part of the <code class="command">virt-v2v</code> package and uses libguestfs under the hood.
+    </p><p>
+      SUSE Virtualization uses <code class="command">virt-v2v</code> via the Forklift migration tool to convert VMware virtual machines. The same tool can be used directly on the command line for individual conversions.
+    </p><div id="id-1.8.2.4" data-id-title="Supported source formats" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Supported source formats</div><p>
+        <code class="command">virt-v2v</code> supports conversion from VMware (VMX/VMDK), Xen, libvirt, and physical machines. This section covers VMware to KVM conversion.
+      </p></div></section><section class="sect2" id="sec-virt-v2v-prerequisites" data-id-title="Prerequisites"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.2 </span><span class="title-name">Prerequisites</span></span> <a title="Permalink" class="permalink" href="index.html#sec-virt-v2v-prerequisites">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Before converting a virtual machine, ensure the following requirements are met on the KVM host:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          <code class="literal">virt-v2v</code> package installed:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper install virt-v2v</code></pre></div></li><li class="listitem"><p>
+          <code class="literal">guestfs-winsupport</code> package installed (required for Windows guests):
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper install guestfs-winsupport</code></pre></div></li><li class="listitem"><p>
+          SUSE Linux Enterprise Virtual Machine Driver Pack ISO image. Download the latest SLE VMDP ISO from the SUSE Customer Center or the SUSE download portal.
+        </p></li><li class="listitem"><p>
+          Source VMware VM files (VMX and VMDK) accessible on the KVM host, either locally or via NFS.
+        </p></li><li class="listitem"><p>
+          Sufficient disk space on the target host to store the converted VM disk images.
+        </p></li></ul></div></section><section class="sect2" id="sec-virt-v2v-preparation" data-id-title="Preparing the VMDP drivers"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.3 </span><span class="title-name">Preparing the VMDP drivers</span></span> <a title="Permalink" class="permalink" href="index.html#sec-virt-v2v-preparation">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      For Windows guests, <code class="command">virt-v2v</code> requires virtio drivers and Windows tools to be available on the host. The SLE VMDP ISO provides a helper script that sets up the correct directory structure.
+    </p><section class="sect3" id="pro-virt-v2v-prepare-vmdp" data-id-title="Setting up VMDP drivers"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">7.3.1 </span><span class="title-name">Setting up VMDP drivers</span></span> <a title="Permalink" class="permalink" href="index.html#pro-virt-v2v-prepare-vmdp">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        Mount the SLE VMDP ISO and run the <code class="command">virt-v2v-vmdp.sh</code> script from the <code class="filename">v2v_scripts</code> directory:
+      </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+         Mount the SLE VMDP ISO:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">mount -o loop /path/to/vmdp-<em class="replaceable">VERSION</em>.iso /mnt</code></pre></div></li><li class="step"><p>
+         Run the setup script:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">/mnt/v2v_scripts/virt-v2v-vmdp.sh /mnt/vmdp-<em class="replaceable">VERSION</em></code></pre></div></li><li class="step"><p>
+         Unmount the ISO:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">umount /mnt</code></pre></div></li></ol></div></div><p>
+        The script performs the following actions:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            Installs virtio drivers to <code class="filename">/usr/share/virtio-win/</code> in the directory layout expected by <code class="command">virt-v2v</code>.
+          </p></li><li class="listitem"><p>
+            Places <code class="filename">pvxsvc.exe</code> and other required Windows tools in <code class="filename">/usr/share/virt-tools/</code>.
+          </p></li><li class="listitem"><p>
+            Creates placeholder files for the QEMU Guest Agent MSI and Balloon Server to suppress non-critical warnings.
+          </p></li></ul></div><div id="id-1.8.4.3.6" data-id-title="Do not manually copy driver files" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Do not manually copy driver files</div><p>
+          Do not manually extract and copy VMDP files to <code class="filename">/usr/share/virt-tools/</code> or <code class="filename">/usr/share/virtio-win/</code>. The directory structure expected by <code class="command">virt-v2v</code> on <span class="phrase"><span class="phrase">SLES for SAP</span></span> <span class="phrase"><span class="phrase">16.0</span></span> differs from earlier versions. Always use the <code class="command">virt-v2v-vmdp.sh</code> script to ensure the correct layout.
+        </p></div></section></section><section class="sect2" id="sec-virt-v2v-conversion" data-id-title="Converting a VMware VM"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.4 </span><span class="title-name">Converting a VMware VM</span></span> <a title="Permalink" class="permalink" href="index.html#sec-virt-v2v-conversion">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Use the <code class="command">virt-v2v</code> command to convert the VMware VM. The following example converts a Windows Server 2022 VM:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">virt-v2v -i vmx /path/to/windows2022.vmx \
+  -o local -of qcow2 -os /path/to/output/dir \
+  --network vmware-network-name:target-bridge-name</code></pre></div><p>
+      Key command options:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.8.5.5.1"><span class="term"><code class="option">-i vmx</code></span></dt><dd><p>
+            Input mode: read VMware VMX configuration file.
+          </p></dd><dt id="id-1.8.5.5.2"><span class="term"><code class="option">-o local</code></span></dt><dd><p>
+            Output mode: write disk image and XML configuration to the local filesystem. Use <code class="option">-o libvirt</code> to define the VM directly in libvirt (requires pre-configured storage pools).
+          </p></dd><dt id="id-1.8.5.5.3"><span class="term"><code class="option">-of qcow2</code></span></dt><dd><p>
+            Output disk format. <code class="literal">qcow2</code> is recommended for space efficiency.
+          </p></dd><dt id="id-1.8.5.5.4"><span class="term"><code class="option">-os</code> <em class="replaceable">output-storage</em></span></dt><dd><p>
+            Output storage path. For <code class="option">-o local</code>, this is a directory path. For <code class="option">-o libvirt</code>, this is a libvirt storage pool name.
+          </p></dd><dt id="id-1.8.5.5.5"><span class="term"><code class="option">--network</code> <em class="replaceable">source:target</em></span></dt><dd><p>
+            Map a VMware network name to a target bridge or libvirt network name. If omitted, the network device mapping may require manual adjustment in the generated XML.
+          </p></dd></dl></div><section class="sect3" id="sec-virt-v2v-conversion-libvirt" data-id-title="Using libvirt output mode"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">7.4.1 </span><span class="title-name">Using libvirt output mode</span></span> <a title="Permalink" class="permalink" href="index.html#sec-virt-v2v-conversion-libvirt">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        To define the converted VM directly in libvirt, use <code class="option">-o libvirt</code>:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">virt-v2v -i vmx /path/to/windows2022.vmx \
+  -o libvirt -of qcow2 -os default \
+  --network vm-network:default</code></pre></div><p>
+        The <code class="option">-os</code> parameter specifies a libvirt storage pool name. Ensure the pool exists and has sufficient free space before running the conversion.
+      </p></section></section><section class="sect2" id="sec-virt-v2v-post-conversion" data-id-title="Post-conversion steps"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.5 </span><span class="title-name">Post-conversion steps</span></span> <a title="Permalink" class="permalink" href="index.html#sec-virt-v2v-post-conversion">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      After a successful conversion, follow these steps to complete the migration:
+    </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>
+          Start the converted VM. On first boot, the VM will install virtio drivers. The VM may reboot one or two times during this process.
+        </p></li><li class="listitem"><p>
+          After the VM stabilizes, power it off and change the video adapter to virtio (viogpudo) for optimal graphics performance. This can be done via <code class="command">virsh edit</code> or the Virtual Machine Manager GUI.
+        </p></li><li class="listitem"><p>
+          Start the VM again. It will complete the driver installation and boot normally.
+        </p></li><li class="listitem"><p>
+          Verify that virtio drivers are active for disk, network, and graphics in the Windows Device Manager.
+        </p></li></ol></div><div id="id-1.8.6.4" data-id-title="UEFI boot requirement" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: UEFI boot requirement</div><p>
+        Windows Server 2022 and other modern Windows guests may require UEFI boot firmware on the target. <code class="command">virt-v2v</code> detects this automatically and sets the appropriate firmware type. If the VM fails to boot, verify the firmware setting in the VM configuration.
+      </p></div></section><section class="sect2" id="sec-virt-v2v-warnings" data-id-title="Expected warnings during conversion"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.6 </span><span class="title-name">Expected warnings during conversion</span></span> <a title="Permalink" class="permalink" href="index.html#sec-virt-v2v-warnings">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The following warnings are informational and can be safely ignored:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.8.7.3.1"><span class="term">QEMU Guest Agent MSI not found</span></dt><dd><p>
+            <code class="literal">virt-v2v: warning: QEMU Guest Agent MSI not found on tools ISO/directory.</code>
+          </p><p>
+            SLE VMDP does not provide a standalone QEMU Guest Agent MSI package. The guest agent is included in the VMDP <code class="filename">setup.exe</code> and is installed automatically during first boot of the converted VM.
+          </p></dd><dt id="id-1.8.7.3.2"><span class="term">Balloon Server not found</span></dt><dd><p>
+            <code class="literal">virt-v2v: warning: Balloon Server (blnsvr.exe) not found on tools ISO/directory.</code>
+          </p><p>
+            SLE VMDP uses <code class="filename">pvxsvc.exe</code> instead of <code class="filename">blnsvr.exe</code> to provide balloon functionality. The service is installed during the first boot of the converted VM.
+          </p></dd><dt id="id-1.8.7.3.3"><span class="term">Random seed could not be set</span></dt><dd><p>
+            <code class="literal">virt-v2v: warning: random seed could not be set for this type of guest</code>
+          </p><p>
+            This warning indicates that <code class="command">virt-v2v</code> was unable to set a random seed for the guest. This does not affect the conversion result.
+          </p></dd></dl></div></section><section class="sect2" id="sec-virt-v2v-troubleshooting" data-id-title="Troubleshooting"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.7 </span><span class="title-name">Troubleshooting</span></span> <a title="Permalink" class="permalink" href="index.html#sec-virt-v2v-troubleshooting">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><section class="sect3" id="sec-virt-v2v-trouble-hivex" data-id-title="Hivex.Error during inspection"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">7.7.1 </span><span class="title-name"><code class="literal">Hivex.Error</code> during inspection</span></span> <a title="Permalink" class="permalink" href="index.html#sec-virt-v2v-trouble-hivex">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        If <code class="command">virt-v2v</code> fails with:
+      </p><div class="verbatim-wrap"><pre class="screen">virt-v2v: error: libguestfs error: inspect_os: internal error:
+inspect_os: unhandled exception thrown: Hivex.Error</pre></div><p>
+        This error occurs when libguestfs cannot parse the Windows registry hive files. Possible causes and resolutions:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            Ensure you are running the latest version of <code class="literal">virt-v2v</code> and <code class="literal">guestfs-winsupport</code>.
+          </p></li><li class="listitem"><p>
+            Set the environment variable <code class="envar">LIBGUESTFS_BACKEND=direct</code> before running the conversion:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">export LIBGUESTFS_BACKEND=direct</code></pre></div></li><li class="listitem"><p>
+            Verify that the source VMDK disk is not corrupted by running a disk check on the VMware VM before conversion.
+          </p></li></ul></div></section><section class="sect3" id="sec-virt-v2v-trouble-drivers-missing" data-id-title="Virtio drivers not found"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">7.7.2 </span><span class="title-name">Virtio drivers not found</span></span> <a title="Permalink" class="permalink" href="index.html#sec-virt-v2v-trouble-drivers-missing">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        If you see the warning:
+      </p><div class="verbatim-wrap"><pre class="screen">virt-v2v: warning: there are no virtio drivers available for this
+version of Windows (10.0 x86_64 Server win2k22).  virt-v2v looks
+for drivers in /usr/share/virtio-win</pre></div><p>
+        This means <code class="command">virt-v2v</code> could not find the virtio drivers for the detected Windows version. The guest will be configured with slower emulated devices instead of virtio.
+      </p><p>
+        Resolution: run the <code class="command">virt-v2v-vmdp.sh</code> script from the SLE VMDP ISO. The script installs drivers in the correct directory layout. On SLES 16, the expected driver path for Windows Server 2022 is <code class="filename">/usr/share/virtio-win/drivers/amd64/2k22/</code>.
+      </p><div id="id-1.8.8.3.6" data-id-title="Do not manually create symlinks as a workaround" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Do not manually create symlinks as a workaround</div><p>
+          While creating a symbolic link from <code class="filename">2k22</code> to another driver directory (e.g., <code class="filename">win11</code>) may suppress the warning, it is not a supported configuration. Always use the <code class="command">virt-v2v-vmdp.sh</code> script with an up-to-date SLE VMDP ISO.
+        </p></div></section><section class="sect3" id="sec-virt-v2v-trouble-boot-fail" data-id-title="VM fails to boot after conversion (Windows Server 2019/2022/2025)"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">7.7.3 </span><span class="title-name">VM fails to boot after conversion (Windows Server 2019/2022/2025)</span></span> <a title="Permalink" class="permalink" href="index.html#sec-virt-v2v-trouble-boot-fail">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        After converting Windows Server 2019, 2022, or 2025, the VM may fail to boot with an <span class="quote">“<span class="quote">Inaccessible Boot Device</span>”</span> error or a page fault blue screen.
+      </p><p>
+        This issue is caused by the virtio block driver installation path. On these Windows versions, the VMDP setup installs the updated virtio block driver to the driver store directory (<code class="filename">\windows\system32\driverstore\filerepository</code>) using DIRID 13, while removing the driver from <code class="filename">\windows\system32\drivers</code> (DIRID 12). Windows fails to locate the block driver on next boot.
+      </p><p>
+        Resolution: ensure you are using a recent SLE VMDP ISO version (2.5 or later) that includes the fix. The updated VMDP <code class="filename">setup.exe</code> copies the driver to both locations, allowing the VM to boot correctly.
+      </p><p>
+        If the VM fails to boot with an older VMDP version, you can manually copy the virtio block driver from the driver store to <code class="filename">\windows\system32\drivers</code> to restore boot capability.
+      </p></section><section class="sect3" id="sec-virt-v2v-trouble-network" data-id-title="Network mapping issues"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">7.7.4 </span><span class="title-name">Network mapping issues</span></span> <a title="Permalink" class="permalink" href="index.html#sec-virt-v2v-trouble-network">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        If the <code class="option">--network</code> mapping fails, the converted VM may not have a correctly configured network interface. To resolve:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            Verify the source network name matches the network name defined in the VMware VMX file.
+          </p></li><li class="listitem"><p>
+            Ensure the target bridge or libvirt network exists on the host before conversion.
+          </p></li><li class="listitem"><p>
+            If using <code class="option">-o libvirt</code>, create a libvirt network with a matching name using <code class="command">virsh net-create</code>.
+          </p></li></ul></div></section><section class="sect3" id="sec-virt-v2v-trouble-debug" data-id-title="Debugging virt-v2v"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">7.7.5 </span><span class="title-name">Debugging <code class="command">virt-v2v</code></span></span> <a title="Permalink" class="permalink" href="index.html#sec-virt-v2v-trouble-debug">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        To enable verbose output for debugging, run <code class="command">virt-v2v</code> with the <code class="option">-v</code> option:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">virt-v2v -v -i vmx /path/to/vm.vmx -o local -of qcow2 -os /output/dir</code></pre></div><p>
+        For additional libguestfs debugging, set:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">export LIBGUESTFS_DEBUG=1</code></pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">export LIBGUESTFS_TRACE=1</code></pre></div></section></section><section class="sect2" id="sec-vmdp-iso-contents" data-id-title="VMDP ISO contents and other uses"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.8 </span><span class="title-name">VMDP ISO contents and other uses</span></span> <a title="Permalink" class="permalink" href="index.html#sec-vmdp-iso-contents">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><section class="sect3" id="sec-vmdp-iso-install-drivers" data-id-title="Installing drivers at VM creation"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">7.8.1 </span><span class="title-name">Installing drivers at VM creation</span></span> <a title="Permalink" class="permalink" href="index.html#sec-vmdp-iso-install-drivers">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        The VMDP ISO can be loaded as a virtual CD in a KVM VM to provide VirtIO Block or SCSI drivers during Windows installation.
+        On the <span class="guimenu">Where do you want to install Windows</span> screen, select <span class="guimenu">Load driver</span> and follow the prompts to select the appropriate driver.
+      </p></section><section class="sect3" id="sec-vmdp-iso-full-content" data-id-title="Full VMDP contents for Xen and KVM"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">7.8.2 </span><span class="title-name">Full VMDP contents for Xen and KVM</span></span> <a title="Permalink" class="permalink" href="index.html#sec-vmdp-iso-full-content">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        The ISO also contains the full VMDP <code class="filename">setup.exe</code> along with expanded contents for installation flexibility.
+        These can be used for both Xen and KVM hosted Windows VMs.
+      </p></section></section><section class="sect2" id="sec-virt-v2v-example-w2k22" data-id-title="Complete example: Windows Server 2022"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.9 </span><span class="title-name">Complete example: Windows Server 2022</span></span> <a title="Permalink" class="permalink" href="index.html#sec-virt-v2v-example-w2k22">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The following example demonstrates a full conversion of a Windows Server 2022 VM from VMware to KVM:
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+       Mount the SLE VMDP ISO:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">mount -o loop /data/isos/vmdp/vmdp-VERSION.iso /mnt</code></pre></div></li><li class="step"><p>
+       Run the setup script:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">/mnt/v2v_scripts/virt-v2v-vmdp.sh /mnt/vmdp-VERSION</code></pre></div></li><li class="step"><p>
+       Unmount the ISO:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">umount /mnt</code></pre></div></li><li class="step"><p>
+       Work around the <code class="literal">Hivex.Error</code> issue by using the direct back end:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">export LIBGUESTFS_BACKEND=direct</code></pre></div></li><li class="step"><p>
+       Convert the VM and define it directly in libvirt:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">virt-v2v -i vmx /srv/vmware/windows2022/windows2022.vmx \
+  -o libvirt -of qcow2 -os default \
+  --network "VM Network":default</code></pre></div></li></ol></div></div><p>
+      After conversion completes:
+    </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>
+          Start the VM: <code class="command">virsh start windows2022</code>
+        </p></li><li class="listitem"><p>
+          Allow the VM to reboot (virtio driver installation)
+        </p></li><li class="listitem"><p>
+          Once stable, power off and switch video to virtio
+        </p></li><li class="listitem"><p>
+          Restart and verify all virtio drivers are active
+        </p></li></ol></div></section></section><section xml:lang="en" class="sect1" id="glue-alp-containers-podman-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="index.html#glue-alp-containers-podman-more-info">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    For further steps in virtualization, refer to the following sources:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/concept-manage-virtual-machines-libvirt/concept-manage-virtual-machines-libvirt.html" target="_blank">Managing
+        virtual machines with <code class="systemitem">libvirt</code></a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/task-configure-virtual-machine-manager/task-configure-virtual-machine-manager.html" target="_blank">Configuring
+        Virtual Machines with Virtual Machine Manager</a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/vm-assign-pci-device/vm-assign-pci-device.html" target="_blank">Assigning
+        Host Devices to Virtual Machines</a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/virtual-disk-cache-mode-configure/virtual-disk-cache-mode-configure.html" target="_blank">Configuring
+        a Virtual Disk Cache Mode</a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="index.html#virt-v2v-vmware-migration" title="7. Converting VMware virtual machines to KVM with virt-v2v">Converting VMware Virtual Machines to KVM with virt-v2v</a>
+      </p></li></ul></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">9 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#virtualization-introduction"><span class="title-number">1 </span><span class="title-name">Introduction to virtualization</span></a></span></li><li><span class="section"><a href="index.html#virt-components-installation-patterns"><span class="title-number">2 </span><span class="title-name">Installation of virtualization components</span></a></span></li><li><span class="section"><a href="index.html#virtualization-modes"><span class="title-number">3 </span><span class="title-name">Virtualization modes</span></a></span></li><li><span class="section"><a href="index.html#kvm-virtualization-basics"><span class="title-number">4 </span><span class="title-name">Introduction to KVM virtualization</span></a></span></li><li><span class="section"><a href="index.html#vt-installation"><span class="title-number">5 </span><span class="title-name">Installation of virtualization components</span></a></span></li><li><span class="section"><a href="index.html#manage-vm-on-commandline-tools"><span class="title-number">6 </span><span class="title-name">Command-line tools</span></a></span></li><li><span class="section"><a href="index.html#virt-v2v-vmware-migration"><span class="title-number">7 </span><span class="title-name">Converting VMware virtual machines to KVM with <code class="command">virt-v2v</code></span></a></span></li><li><span class="section"><a href="index.html#glue-alp-containers-podman-more-info"><span class="title-number">8 </span><span class="title-name">For more information</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">9 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li><li><span class="glossary"><a href="vt-acronyms.html"><span class="title-name">Acronyms</span></a></span></li><li><span class="glossary"><a href="vt-glossary.html"><span class="title-name">Glossary</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

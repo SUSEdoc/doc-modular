@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Installing a Basic Three-Node High Availability Cluster | SUSE Linux Enterprise High Availability 16.0</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2025-11-04"/>
+<meta name="dcterms.modified" content="2025-11-04"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-25"/>
+<meta name="title" content="Installing a Basic Three-Node High Availability Cluste…"/>
+<meta name="description" content="How to set up a basic three-node High Availability cluster for testing purposes"/>
+<meta name="product-name" content="SUSE Linux Enterprise High Availability"/>
+<meta name="product-number" content="16.0"/>
+<meta name="book-title" content="Installing a Basic Three-Node High Availability Cluster"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="tahlia.richardson@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="&#10;            SUSE Linux Enterprise High Availability 16.0&#10;          "/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="tahlia.richardson@suse.com"/><meta property="og:title" content="Installing a Basic Three-Node High Availability Cluster"/>
+<meta property="og:description" content="Set up a basic three-node HA cluster"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Installing a Basic Three-Node High Availability Cluster"/>
+<meta name="twitter:description" content="Set up a basic three-node HA cluster"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Installing a Basic Three-Node High Availability Cluster | SUSE Linux Enterprise High Availability 16.0",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Installing a Basic Three-Node High Availability Cluster",
+    "description": "How to set up a basic three-node High Availability cluster for testing purposes",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2025-11-04T00:00+02:00",
+    "dateModified": "2025-11-04T00:00+02:00",
+    "datePublished": "2026-08-25T07:08+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Clustering"
+      },
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Deployment"
+      },
+      {
+        "@type": "Thing",
+        "name": "High Availability"
+      },
+      {
+        "@type": "Thing",
+        "name": "Installation"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise High Availability",
+        "softwareVersion": "16.0",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER, IBM Z"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Installing a Basic Three-Node High Availability Cluster</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Installing a Basic Three-Node High Availability Cluster</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="three-node-cluster-diskless-sbd" data-id-title="Installing a Basic Three-Node High Availability Cluster"><div class="titlepage"><div><div class="big-version-info"><span class="productname">SUSE Linux Enterprise High Availability</span> 16.0</div><div><h1 class="title">Installing a Basic Three-Node High Availability Cluster</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>25 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+              How to set up a basic three-node High Availability cluster with diskless SBD and a software watchdog.
+            </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
+              This cluster can be used for testing purposes or as a minimal cluster configuration
+              that can be extended later.
+            </p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                Setting up a basic High Availability cluster takes approximately 15 minutes, depending on the
+                speed of your network connection.
+              </p></dd><dt id="id-1.1.12.1.4"><span class="term">GOAL</span></dt><dd><p>
+                Get started with SUSE Linux Enterprise High Availability quickly and easily.
+              </p></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Installing a Basic Three-Node High Availability Cluster" hreflang="en" href="rh-HA-three-node-cluster-diskless-sbd.html" target="_blank">Revision History: Installing a Basic Three-Node High Availability Cluster</a></div></div></div></div><section xml:lang="en" class="sect1" id="ha-installing-cluster-usage-scenario" data-id-title="Usage scenario"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Usage scenario</span></span> <a title="Permalink" class="permalink" href="index.html#ha-installing-cluster-usage-scenario">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    This guide describes the setup of a minimal High Availability cluster with the
+    following properties:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        Three cluster nodes with passwordless SSH access to each other. Three nodes are required for
+        this setup so that diskless SBD can handle split-brain scenarios without the help of QDevice.
+      </p></li><li class="listitem"><p>
+        A floating, virtual IP address that allows clients to connect to the graphical management
+        tool Hawk, no matter which node the service is running on.
+      </p></li><li class="listitem"><p>
+        Diskless SBD (STONITH Block Device) and a software watchdog used as the node fencing mechanism
+        to avoid split-brain scenarios.
+      </p></li><li class="listitem"><p>
+        Failover of resources from one node to another if the active host breaks down
+        (<span><em class="emphasis">active/passive</em></span> setup).
+      </p></li></ul></div><p>
+    This is a simple cluster setup with minimal external requirements. You can use this cluster
+    for testing purposes or as a basic cluster configuration that you can extend for a production
+    environment later.
+  </p></section><section xml:lang="en" class="sect1" id="ha-installing-cluster-overview" data-id-title="Installation overview"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Installation overview</span></span> <a title="Permalink" class="permalink" href="index.html#ha-installing-cluster-overview">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    To install the High Availability cluster described in <a class="xref" href="index.html#ha-installing-cluster-usage-scenario" title="1. Usage scenario">Section 1, “Usage scenario”</a>,
+    you must perform the following tasks:
+  </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>
+        Review <a class="xref" href="index.html#ha-requirements" title="3. System requirements">Section 3, “System requirements”</a> to make sure you have everything you need.
+      </p></li><li class="listitem"><p>
+        Install SUSE Linux Enterprise High Availability on the cluster nodes with <a class="xref" href="index.html#ha-enabling-extension" title="4. Enabling the High Availability extension">Section 4, “Enabling the High Availability extension”</a>.
+      </p></li><li class="listitem"><p>
+        Initialize the cluster on the first node with <a class="xref" href="index.html#ha-setting-up-first-node" title="5. Setting up the first node">Section 5, “Setting up the first node”</a>.
+      </p></li><li class="listitem"><p>
+        Add more nodes to the cluster with <a class="xref" href="index.html#ha-adding-nodes" title="6. Adding the second and third nodes">Section 6, “Adding the second and third nodes”</a>.
+      </p></li><li class="listitem"><p>
+        Log in to the Hawk Web interface to monitor the cluster with
+        <a class="xref" href="index.html#ha-hawk-logging-in" title="7. Logging in to Hawk">Section 7, “Logging in to Hawk”</a>.
+      </p></li><li class="listitem"><p>
+        Perform basic tests to make sure the cluster works as expected with
+        <a class="xref" href="index.html#ha-testing-the-cluster-basic" title="8. Testing the cluster">Section 8, “Testing the cluster”</a>.
+      </p></li><li class="listitem"><p>
+        Review <a class="xref" href="index.html#ha-installing-cluster-next-steps" title="9. Next steps">Section 9, “Next steps”</a> for advice on expanding the
+        cluster for a production environment.
+      </p></li></ol></div></section><section xml:lang="en" class="sect1" id="ha-requirements" data-id-title="System requirements"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">System requirements</span></span> <a title="Permalink" class="permalink" href="index.html#ha-requirements">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       This section describes the system requirements for a minimal setup of SUSE Linux Enterprise High Availability.
+      </p></div></div></div></div><section class="sect2" id="ha-requirements-hardware" data-id-title="Hardware requirements"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.1 </span><span class="title-name">Hardware requirements</span></span> <a title="Permalink" class="permalink" href="index.html#ha-requirements-hardware">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.4.2.2.1"><span class="term">Servers</span></dt><dd><p>
+            Three servers to act as cluster nodes.
+          </p><p>
+            The servers can be bare metal or virtual machines. They do not require identical
+            hardware (memory, disk space, etc.), but they must have the same architecture.
+            Cross-platform clusters are not supported.
+          </p><p>
+            See the <em class="citetitle">System Requirements</em> section at
+            <a class="link" href="https://www.suse.com/download/sle-ha/" target="_blank">https://www.suse.com/download/sle-ha/</a> for more details
+            about server hardware.
+          </p></dd><dt id="id-1.4.2.2.2"><span class="term">Network Interface Cards (NICs)</span></dt><dd><p>
+            At least two NICs per cluster node. This allows you to configure two or more
+            communication channels for the cluster, using one of the following methods:
+          </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                Combine the NICs into a network bond (preferred). In this case, you must set up
+                the bonded device on each node before you initialize the cluster.
+              </p></li><li class="listitem"><p>
+                Create a second communication channel in Corosync. This can be configured by
+                the cluster setup script. In this case, the two NICs must be on different subnets.
+              </p></li></ul></div></dd><dt id="id-1.4.2.2.3"><span class="term">Node fencing</span></dt><dd><p>
+  To be supported, all SUSE Linux Enterprise High Availability clusters <span><em class="emphasis">must</em></span> have at least one node fencing
+  device configured. For critical workloads, we recommend using two or three fencing devices.
+  A fencing device can be either a physical device (a power switch) or a software mechanism
+  (SBD in combination with a watchdog).
+</p><p>
+            The minimal setup described in this guide uses a software watchdog and diskless SBD,
+            so no additional hardware is required. Before using this cluster in a production
+            environment, replace the software watchdog with a hardware watchdog.
+          </p></dd></dl></div></section><section class="sect2" id="ha-requirements-software" data-id-title="Software requirements"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.2 </span><span class="title-name">Software requirements</span></span> <a title="Permalink" class="permalink" href="index.html#ha-requirements-software">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.4.3.2.1"><span class="term">Operating system</span></dt><dd><p>
+            All nodes must have SUSE Linux Enterprise Server
+            installed and registered.
+          </p></dd><dt id="id-1.4.3.2.2"><span class="term">High Availability extension</span></dt><dd><p>
+            The SUSE Linux Enterprise High Availability extension requires an additional registration code.
+          </p><p>
+            This extension can be enabled during the SLES installation, or you can enable it later
+            on a running system. This guide explains how to enable and register the extension on a
+            running system.
+          </p></dd></dl></div></section><section class="sect2" id="ha-requirements-network" data-id-title="Network requirements"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.3 </span><span class="title-name">Network requirements</span></span> <a title="Permalink" class="permalink" href="index.html#ha-requirements-network">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.4.4.2.1"><span class="term">Time synchronization</span></dt><dd><p>
+            All systems must synchronize to an NTP server outside the cluster. SUSE Linux Enterprise Server uses <code class="systemitem">chrony</code>
+            for NTP. When you initialize the cluster, you are warned if <code class="systemitem">chrony</code> is not running.
+          </p><p>
+            Even if the nodes are synchronized, log files and cluster reports can still become
+            difficult to analyze if the nodes have different time zones configured.
+          </p></dd><dt id="id-1.4.4.2.2"><span class="term">Host name and IP address</span></dt><dd><p>
+            All cluster nodes must be able to find each other by name. Use the following methods for reliable name resolution:
+          </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                Use static IP addresses.
+              </p></li><li class="listitem"><p>
+                List all nodes in the <code class="filename">/etc/hosts</code> file with their IP address,
+                FQDN and short host name.
+              </p></li></ul></div><p>
+            Only the primary IP address on each NIC is supported.
+          </p></dd><dt id="id-1.4.4.2.3"><span class="term">SSH</span></dt><dd><p>
+            All cluster nodes must be able to access each other via SSH. Certain cluster operations also require
+            passwordless SSH authentication. When you initialize the cluster, the setup script
+            checks for existing SSH keys and generates them if they do not exist.
+          </p><div id="id-1.4.4.2.3.2.2" data-id-title="root SSH access in SUSE Linux Enterprise 16" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: <code class="systemitem">root</code> SSH access in SUSE Linux Enterprise 16</div><p>
+              In SUSE Linux Enterprise 16, <code class="systemitem">root</code> SSH login with a password is disabled by default.
+            </p><p>
+              On each node, either
+              create a user with <code class="command">sudo</code> privileges or set up passwordless SSH
+              authentication for the <code class="systemitem">root</code> user before you initialize the cluster.
+            </p><p>
+              If you initialize the cluster with a <code class="command">sudo</code> user, certain <code class="systemitem">crmsh</code>
+              commands also require passwordless <code class="command">sudo</code> permission.
+            </p></div></dd></dl></div></section></section><section xml:lang="en" class="sect1" id="ha-enabling-extension" data-id-title="Enabling the High Availability extension"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Enabling the High Availability extension</span></span> <a title="Permalink" class="permalink" href="index.html#ha-enabling-extension">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        This procedure explains how to install SUSE Linux Enterprise High Availability on an existing SUSE Linux Enterprise Server. You can skip this
+        procedure if you already installed the High Availability extension and packages during the SLES
+        installation with Agama.
+      </p></div></div></div></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Requirements </span></span><a title="Permalink" class="permalink" href="index.html#id-1.5.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        SUSE Linux Enterprise Server is installed and registered with the SUSE Customer Center.
+      </p></li><li class="listitem"><p>
+        You have an additional registration code for SUSE Linux Enterprise High Availability.
+      </p></li></ul></div><p>
+    Perform this procedure on all the machines you intend to use as cluster nodes:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code> privileges.
+      </p></li><li class="step"><p>
+        Check whether the High Availability extension is already enabled:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo SUSEConnect --list-extensions</code></pre></div></li><li class="step"><p>
+        Check whether the High Availability packages are already installed:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">zypper search ha_sles</code></pre></div></li><li class="step"><p>
+        Enable the SUSE Linux Enterprise High Availability extension:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo SUSEConnect -p sle-ha/<span class="phrase"><span class="phrase">16.0</span></span>/x86_64 -r <em class="replaceable">HA_REGCODE</em></code></pre></div></li><li class="step"><p>
+        Install the High Availability packages:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo zypper install -t pattern ha_sles</code></pre></div></li></ol></div></div></section><section xml:lang="en" class="sect1" id="ha-setting-up-first-node" data-id-title="Setting up the first node"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Setting up the first node</span></span> <a title="Permalink" class="permalink" href="index.html#ha-setting-up-first-node">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    SUSE Linux Enterprise High Availability includes setup scripts to simplify the installation of a cluster. To set up the
+    cluster on the first node, use the <code class="command">crm cluster init</code> script.
+  </p><section xml:lang="en" class="sect2" id="ha-crmsh-overview-init-script" data-id-title="Overview of the crm cluster init script"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.1 </span><span class="title-name">Overview of the <code class="command">crm cluster init</code> script</span></span> <a title="Permalink" class="permalink" href="index.html#ha-crmsh-overview-init-script">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       The <code class="command">crm cluster init</code> command starts a script that defines the basic
+       parameters needed for cluster communication, resulting in a running one-node cluster.
+      </p></div></div></div></div><p>
+    The script checks and configures the following components:
+  </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.6.3.3.1"><span class="term">NTP</span></dt><dd><p>
+          Checks if <code class="systemitem">chrony</code> is configured to start at boot time. If not, a message appears.
+        </p></dd><dt id="id-1.6.3.3.2"><span class="term">SSH</span></dt><dd><p>
+          Detects or generates SSH keys for passwordless login between cluster nodes.
+        </p></dd><dt id="id-1.6.3.3.3"><span class="term">Firewall</span></dt><dd><p>
+          Opens the ports in the firewall that are needed for cluster communication.
+        </p></dd><dt id="id-1.6.3.3.4"><span class="term">Csync2</span></dt><dd><p>
+          Configures Csync2 to replicate configuration files across all nodes in a cluster.
+        </p></dd><dt id="id-1.6.3.3.5"><span class="term">Corosync</span></dt><dd><p>
+          Configures the cluster communication system.
+        </p></dd><dt id="id-1.6.3.3.6"><span class="term">SBD/watchdog</span></dt><dd><p>
+          Checks if a watchdog exists and asks whether to configure SBD as the node fencing mechanism.
+        </p></dd><dt id="id-1.6.3.3.7"><span class="term">Hawk cluster administration</span></dt><dd><p>
+          Enables the Hawk service and displays the URL for the Hawk Web interface.
+        </p></dd><dt id="id-1.6.3.3.8"><span class="term">Virtual floating IP</span></dt><dd><p>
+          Asks whether to configure a virtual IP address for the Hawk Web interface.
+        </p></dd><dt id="id-1.6.3.3.9"><span class="term">QDevice/QNetd</span></dt><dd><p>
+          Asks whether to configure QDevice and QNetd to participate in quorum decisions.
+          This is recommended for clusters with an even number of nodes,
+          and especially for two-node clusters.
+        </p></dd></dl></div><div id="id-1.6.3.4" data-id-title="Pacemaker default settings" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Pacemaker default settings</div><p>
+      The options set by the <code class="command">crm cluster init</code> script might not be the same
+      as the Pacemaker default settings. You can check which settings the script changed in
+      <code class="filename">/var/log/crmsh/crmsh.log</code>. Any options set during the bootstrap
+      process can be modified later with <code class="systemitem">crmsh</code>.
+    </p></div><div id="id-1.6.3.5" data-id-title="Cluster configuration for different platforms" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Cluster configuration for different platforms</div><p>
+      The <code class="command">crm cluster init</code> script detects the system environment (for example,
+      Microsoft Azure) and adjusts certain cluster settings based on the profile for that environment.
+      For more information, see the file <code class="filename">/etc/crm/profiles.yml</code>.
+    </p></div></section><section xml:lang="en" class="sect2" id="ha-initializing-cluster" data-id-title="Initializing the cluster on the first node"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.2 </span><span class="title-name">Initializing the cluster on the first node</span></span> <a title="Permalink" class="permalink" href="index.html#ha-initializing-cluster">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Configure the cluster on the first node with the <code class="command">crm cluster init</code>
+        script. The script prompts you for basic information about the cluster and configures
+        the required settings and services. For more information, run the
+        <code class="command">crm cluster init --help</code> command.
+      </p></div></div></div></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Requirements </span></span><a title="Permalink" class="permalink" href="index.html#id-1.6.4.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        SUSE Linux Enterprise High Availability is installed and up to date.
+      </p></li><li class="listitem"><p>
+        All nodes have at least two network interfaces or a network bond, with static IP addresses
+        listed in the <code class="filename">/etc/hosts</code> file along with each node's FQDN and short
+        host name.
+      </p></li></ul></div><p>
+    Perform this procedure on only one node:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Log in to the first node either as the <code class="systemitem">root</code> user or as a user with
+        <code class="command">sudo</code> privileges.
+      </p></li><li class="step"><p>
+        Start the <code class="command">crm cluster init</code> script:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster init</code></pre></div><p>
+        The script checks whether <code class="systemitem">chrony</code> is running, opens the required firewall ports, configures
+        Csync2, and checks for SSH keys. If no SSH keys are available, the script generates them.
+      </p></li><li class="step"><p>
+        Configure Corosync for cluster communication:
+      </p><ol type="a" class="substeps"><li class="step"><p>
+            Enter an IP address for the first communication channel (<code class="literal">ring0</code>).
+            By default, the script proposes the address of the first available network interface.
+            This could be either an individual interface or a bonded device. Accept this address
+            or enter a different one.
+          </p></li><li class="step"><p>
+            If the script detects multiple network interfaces, it asks whether you want to configure
+            a second communication channel (<code class="literal">ring1</code>). If you configured the first
+            channel with a bonded device, you can decline with <code class="literal">n</code>. If you need to
+            configure a second channel, confirm with <code class="literal">y</code> and enter the IP address
+            of another network interface. The two interfaces must be on different subnets.
+          </p></li></ol><p>
+        The script configures the default firewall ports for Corosync communication.
+      </p></li><li class="step"><p>
+        Choose whether to set up SBD as the node fencing mechanism:
+      </p><ol type="a" class="substeps"><li class="step"><p>
+            Confirm with <code class="literal">y</code> that you want to use SBD.</p></li><li class="step"><p>
+            When prompted for a path to a block device, enter <code class="literal">none</code> to
+            configure diskless SBD.</p></li></ol><p>
+        The script configures SBD, including the relevant timeout settings. Unlike disk-based SBD, diskless SBD does not require a
+        <code class="literal">fence_sbd</code> cluster resource.
+      </p><p>
+        If no hardware watchdog is available, the script configures the software watchdog
+        <code class="systemitem">softdog</code>.
+      </p></li><li class="step"><p>
+        Configure a virtual IP address for cluster administration with the Hawk Web interface:
+      </p><ol type="a" class="substeps"><li class="step"><p>
+            Confirm with <code class="literal">y</code> that you want to configure a virtual IP address.
+          </p></li><li class="step"><p>
+            Enter an unused IP address to use as the administration IP for Hawk.
+          </p></li></ol><p>
+        Instead of logging in to Hawk on an individual cluster node, you can connect to the
+        virtual IP address.
+      </p></li><li class="step"><p>
+        Choose whether to configure QDevice and QNetd:
+      </p><p>
+        For the minimal setup described in this document, decline with <code class="literal">n</code>.
+      </p></li></ol></div></div><p>
+    The script starts the cluster services to bring the cluster online and enable Hawk. The URL to
+    use for Hawk is displayed on the screen. You can also check the status of the cluster with the
+    <code class="command">crm status</code> command.
+  </p><div id="id-1.6.4.6" data-id-title="Secure password for hacluster" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Secure password for <code class="systemitem">hacluster</code></div><p>
+      The <code class="command">crm cluster init</code> script creates a default cluster user and password.
+      Replace the default password with a secure one as soon as possible:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo passwd hacluster</code></pre></div></div></section></section><section xml:lang="en" class="sect1" id="ha-adding-nodes" data-id-title="Adding the second and third nodes"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Adding the second and third nodes</span></span> <a title="Permalink" class="permalink" href="index.html#ha-adding-nodes">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Add more nodes to the cluster with the <code class="command">crm cluster join</code> script.
+        The script only needs access to an existing cluster node and completes the basic
+        setup on the current machine automatically. For more information, run the
+        <code class="command">crm cluster join --help</code> command.
+      </p></div></div></div></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Requirements </span></span><a title="Permalink" class="permalink" href="index.html#id-1.7.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        SUSE Linux Enterprise High Availability is installed and up to date.
+      </p></li><li class="listitem"><p>
+        An existing cluster is already running on at least one node.
+      </p></li><li class="listitem"><p>
+        All nodes have at least two network interfaces or a network bond, with static IP addresses
+        listed in the <code class="filename">/etc/hosts</code> file along with each node's FQDN and short
+        host name.
+      </p></li><li class="listitem"><p>
+        <span><em class="emphasis">If you log in as a <code class="command">sudo</code> user:</em></span> The same user must
+        exist on all nodes. This user
+        must have passwordless <code class="command">sudo</code> permission.
+      </p></li><li class="listitem"><p>
+        <span><em class="emphasis">If you log in as the <code class="systemitem">root</code> user:</em></span> Passwordless SSH authentication
+        must be configured on all nodes.
+      </p></li></ul></div><p>
+    Perform this procedure on each additional node:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+     Log in to this node as the same user you set up the first node with.
+    </p></li><li class="step"><p>
+     Start the <code class="command">crm cluster join</code> script:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          If you set up the first node as <code class="systemitem">root</code>, you can start the script with no additional
+          parameters:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">crm cluster join</code></pre></div></li><li class="listitem"><p>
+          If you set up the first node as a <code class="command">sudo</code> user, you must specify that user with
+     the <code class="option">-c</code> option:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster join -c <em class="replaceable">USER@NODE1</em></code></pre></div></li></ul></div><p>
+      The script checks if <code class="systemitem">chrony</code> is running, opens the required firewall ports, and
+      configures Csync2.
+    </p></li><li class="step"><p>
+      If you did not already specify the first node with <code class="option">-c</code>, you are prompted for
+      its IP address or host name.
+    </p></li><li class="step"><p>
+      If you did not already configure passwordless SSH authentication between the nodes, you are
+      prompted for the 
+      <span class="phrase">passwords of each of the existing nodes.</span>
+    </p></li><li class="step"><p>
+       Configure Corosync for cluster communication:
+     </p><ol type="a" class="substeps"><li class="step"><p>
+           The script proposes an IP address for <code class="literal">ring0</code>. This IP address
+           must be on the same subnet as the IP address used for <code class="literal">ring0</code> on
+           the first node. If it is not, enter the correct IP address.
+         </p></li><li class="step"><p>
+           If the cluster has two Corosync communication channels configured, the script prompts
+           you for an IP address for <code class="literal">ring1</code>. This IP address must be on the same
+           subnet as the IP address used for <code class="literal">ring1</code> on the first node.
+         </p></li></ol></li></ol></div></div><p>
+    The script copies the cluster configuration from the first node, adjusts the timeout settings to
+    consider the new node, and brings the new node online.
+    </p><p>
+    You can check the status of the cluster with the <code class="command">crm status</code> command.
+  </p><div id="id-1.7.7" data-id-title="Secure password for hacluster" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Secure password for <code class="systemitem">hacluster</code></div><p>
+      The <code class="command">crm cluster join</code> script creates a default cluster user and password.
+      On each node, replace the default password with a secure one as soon as possible:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo passwd hacluster</code></pre></div></div></section><section xml:lang="en" class="sect1" id="ha-hawk-logging-in" data-id-title="Logging in to Hawk"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Logging in to Hawk</span></span> <a title="Permalink" class="permalink" href="index.html#ha-hawk-logging-in">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+         Hawk allows you to monitor and administer a High Availability cluster using a graphical Web browser.
+         You can also configure a virtual IP address that allows clients to connect to Hawk
+         no matter which node it is running on.
+      </p></div></div></div></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Requirements </span></span><a title="Permalink" class="permalink" href="index.html#id-1.8.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        The client machine must be able to connect to the cluster nodes.
+      </p></li><li class="listitem"><p>
+        The client machine must have a graphical Web browser with JavaScript and cookies enabled.
+      </p></li></ul></div><p>
+    You can perform this procedure on any machine that can connect to the cluster nodes:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Start a Web browser and enter the following URL:
+      </p><div class="verbatim-wrap"><pre class="screen">https://<em class="replaceable">HAWKSERVER</em>:7630/</pre></div><p>
+        Replace <em class="replaceable">HAWKSERVER</em> with the IP address or host name of
+        a cluster node, or the Hawk virtual IP address if one is configured.
+      </p><div id="id-1.8.4.1.4" data-id-title="Certificate warning" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Certificate warning</div><p>
+          If a certificate warning appears when you access the URL for the first time, a self-signed
+          certificate is in use. To verify the certificate, ask your cluster operator for the
+          certificate details. To proceed anyway, you can add an exception in the browser to bypass
+          the warning.
+        </p></div></li><li class="step"><p>
+        On the Hawk login screen, enter the <span class="guimenu">Username</span> and <span class="guimenu">Password</span>
+        of the <code class="systemitem">hacluster</code> user.
+      </p></li><li class="step"><p>
+        Click <span class="guimenu">Log In</span>. The Hawk Web interface shows the <span class="guimenu">Status</span>
+        screen by default.
+      </p></li></ol></div></div><div class="figure" id="fig-ha-hawk-status"><div class="figure-contents"><div class="mediaobject"><a href="images/ha-hawk-status.png"><img src="images/ha-hawk-status.png" width="100%" alt="The Status screen shows one configured resource: the virtual IP address admin-ip, running on a node called alice." title="The Status screen shows one configured resource: the virtual IP address admin-ip, running on a node called alice."/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 1: </span><span class="title-name">The Hawk Status screen </span></span><a title="Permalink" class="permalink" href="index.html#fig-ha-hawk-status">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></section><section xml:lang="en" class="sect1" id="ha-testing-the-cluster-basic" data-id-title="Testing the cluster"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name">Testing the cluster</span></span> <a title="Permalink" class="permalink" href="index.html#ha-testing-the-cluster-basic">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    The following tests can help you identify basic issues with the cluster setup. However,
+    realistic tests involve specific use cases and scenarios. Before using the cluster in a
+    production environment, test it thoroughly according to your use cases.
+  </p><section xml:lang="en" class="sect2" id="ha-testing-resource-failover" data-id-title="Testing resource failover"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">8.1 </span><span class="title-name">Testing resource failover</span></span> <a title="Permalink" class="permalink" href="index.html#ha-testing-resource-failover">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Check whether the cluster moves resources to another node if the current node is
+        set to <code class="literal">standby</code>. This procedure uses example nodes called
+        <code class="systemitem">alice</code> and <code class="systemitem">bob</code>,
+        and a virtual IP resource called <code class="literal">admin-ip</code> with the example
+        IP address <code class="literal">192.168.1.10</code>.
+      </p></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Open two terminals.
+      </p></li><li class="step"><p>
+        In the first terminal, ping the virtual IP address:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ping 192.168.1.10</code></pre></div></li><li class="step"><p>
+        In the second terminal, log in to one of the cluster nodes.
+      </p></li><li class="step"><p>
+        Check which node the virtual IP address is running on:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code>
+[..]
+Node List:
+  * Online: [ alice bob ]
+
+Full List of Resources:
+  * admin-ip  (ocf:heartbeat:IPaddr2):    Started alice</pre></div></li><li class="step"><p>
+        Put <code class="systemitem">alice</code> into standby mode:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm node standby alice</code></pre></div></li><li class="step"><p>
+        Check the cluster status again. The resource <code class="literal">admin-ip</code> should have
+        migrated to <code class="systemitem">bob</code>:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code>
+[...]
+Node List:
+  * Node alice: standby
+  * Online: [ bob ]
+
+Full List of Resources:
+  * admin-ip  (ocf:heartbeat:IPaddr2):    Started bob</pre></div></li><li class="step"><p>
+        In the first terminal, you should see an uninterrupted flow of pings to the virtual IP
+        address during the migration. This shows that the cluster setup and the floating IP address
+        work correctly.
+      </p></li><li class="step"><p>
+        Cancel the <code class="command">ping</code> command with
+        <span class="keycap">Ctrl</span><span class="key-connector">–</span><span class="keycap">C</span>.
+      </p></li><li class="step"><p>
+        In the second terminal, bring <code class="systemitem">alice</code> back online:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm node online alice</code></pre></div></li></ol></div></div></section><section xml:lang="en" class="sect2" id="ha-testing-cluster-failures" data-id-title="Testing cluster failures"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">8.2 </span><span class="title-name">Testing cluster failures</span></span> <a title="Permalink" class="permalink" href="index.html#ha-testing-cluster-failures">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        The <code class="command">crm cluster crash_test</code> command simulates cluster failures and
+        reports the results.
+      </p></div></div></div></div><p>
+    The command supports the following checks:
+  </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.9.4.3.1"><span class="term"><code class="option">--fence-node <em class="replaceable">NODE</em></code></span></dt><dd><p>
+          Fences a specific node passed from the command line.
+        </p></dd><dt id="id-1.9.4.3.2"><span class="term"><code class="option">--kill-sbd</code>/<code class="option">--kill-corosync</code>/
+       <code class="option">--kill-pacemakerd</code></span></dt><dd><p>
+          Kills the daemons for SBD, Corosync, or Pacemaker. After running one of these tests,
+          you can find a report in the directory <code class="filename">/var/lib/crmsh/crash_test/</code>.
+          The report includes a test case description, action logging, and an explanation of
+          possible results.
+        </p></dd><dt id="id-1.9.4.3.3"><span class="term"><code class="option">--split-brain-iptables</code></span></dt><dd><p>
+          Simulates a split-brain scenario by blocking the Corosync port, and checks whether one
+          node can be fenced as expected. You must install <span class="package">iptables</span> before you
+          can run this test.
+        </p></dd></dl></div><p>
+    For more information, run the <code class="command">crm cluster crash_test --help</code> command.
+  </p><p>
+    This example uses nodes called <code class="systemitem">alice</code> and
+    <code class="systemitem">bob</code>, and tests fencing <code class="systemitem">bob</code>. To watch
+    <code class="systemitem">bob</code> change status during the test, you can log in to Hawk and
+    navigate to <span class="guimenu">Status</span> › <span class="guimenu">Nodes</span>, or
+    run <code class="command">crm status</code> from another node.
+  </p><div class="example" id="id-1.9.4.6" data-id-title="Manually triggering node fencing"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 1: </span><span class="title-name">Manually triggering node fencing </span></span><a title="Permalink" class="permalink" href="index.html#id-1.9.4.6">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">admin@alice&gt;</code> <code class="command">sudo crm cluster crash_test --fence-node bob</code>
+
+==============================================
+Testcase:          Fence node bob
+Fence action:      reboot
+Fence timeout:     95
+
+!!! WARNING WARNING WARNING !!!
+THIS CASE MAY LEAD TO NODE BE FENCED.
+TYPE Yes TO CONTINUE, OTHER INPUTS WILL CANCEL THIS CASE [Yes/No](No): <code class="command">Yes</code>
+INFO: Trying to fence node "bob"
+INFO: Waiting 95s for node "bob" reboot...
+INFO: Node "bob" will be fenced by "alice"!
+INFO: Node "bob" was fenced by "alice" at <em class="replaceable">DATE</em> <em class="replaceable">TIME</em></pre></div></div></div></section></section><section xml:lang="en" class="sect1" id="ha-installing-cluster-next-steps" data-id-title="Next steps"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">9 </span><span class="title-name">Next steps</span></span> <a title="Permalink" class="permalink" href="index.html#ha-installing-cluster-next-steps">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    This guide describes a basic High Availability cluster that can be used for testing purposes. To expand this
+    cluster for use in production environments, more steps are recommended:
+  </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.10.3.1"><span class="term">Adding more nodes</span></dt><dd><p>
+          Add more nodes to the cluster using the <code class="command">crm cluster join</code> script.
+        </p></dd><dt id="id-1.10.3.2"><span class="term">Enabling a hardware watchdog</span></dt><dd><p>
+          Before using the cluster in a production environment, replace
+          <code class="systemitem">softdog</code> with a hardware watchdog.
+        </p></dd><dt id="id-1.10.3.3"><span class="term">Adding more fencing devices</span></dt><dd><p>
+          For critical workloads, we highly recommend having two or three fencing devices, using
+          either physical devices or disk-based SBD.
+        </p></dd><dt id="id-1.10.3.4"><span class="term">Configuring QDevice</span></dt><dd><p>
+          QDevice and QNetd participate in quorum decisions. With assistance from the arbitrator
+          QNetd, QDevice provides a configurable number of votes. This allows clusters to sustain
+          more node failures than the standard quorum rules allow. We recommend deploying QDevice
+          and QNetd in clusters with an even number of nodes, and especially in two-node clusters.
+        </p></dd></dl></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">10 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#ha-installing-cluster-usage-scenario"><span class="title-number">1 </span><span class="title-name">Usage scenario</span></a></span></li><li><span class="section"><a href="index.html#ha-installing-cluster-overview"><span class="title-number">2 </span><span class="title-name">Installation overview</span></a></span></li><li><span class="section"><a href="index.html#ha-requirements"><span class="title-number">3 </span><span class="title-name">System requirements</span></a></span></li><li><span class="section"><a href="index.html#ha-enabling-extension"><span class="title-number">4 </span><span class="title-name">Enabling the High Availability extension</span></a></span></li><li><span class="section"><a href="index.html#ha-setting-up-first-node"><span class="title-number">5 </span><span class="title-name">Setting up the first node</span></a></span></li><li><span class="section"><a href="index.html#ha-adding-nodes"><span class="title-number">6 </span><span class="title-name">Adding the second and third nodes</span></a></span></li><li><span class="section"><a href="index.html#ha-hawk-logging-in"><span class="title-number">7 </span><span class="title-name">Logging in to Hawk</span></a></span></li><li><span class="section"><a href="index.html#ha-testing-the-cluster-basic"><span class="title-number">8 </span><span class="title-name">Testing the cluster</span></a></span></li><li><span class="section"><a href="index.html#ha-installing-cluster-next-steps"><span class="title-number">9 </span><span class="title-name">Next steps</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">10 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li><li><span class="glossary"><a href="ha-glossary.html"><span class="title-name">HA glossary</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

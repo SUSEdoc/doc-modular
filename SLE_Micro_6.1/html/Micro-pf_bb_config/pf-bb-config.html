@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>The Physical Function Baseband Device Configuration Using pf_bb_config | SUSE Linux Micro 6.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2024-11-05"/>
+<meta name="dcterms.modified" content="2024-11-05"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-25"/>
+<meta name="title" content="The Physical Function Baseband Device Configuration Us…"/>
+<meta name="description" content="Configuration of physical functions for broadband devices using pf_bb_config"/>
+<meta name="product-name" content="SUSE Linux Micro"/>
+<meta name="product-number" content="6.1"/>
+<meta name="book-title" content="The Physical Function Baseband Device Configuration Using pf_bb_config"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="jsindelarova@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Micro 6.1"/>
+<meta name="publisher" content="SUSE"/><meta name="dcterms.modified" content="2024-11-16"/><meta name="dc.creator" content="jsindelarova@suse.com"/><meta property="og:title" content="pf_bb_config—the tool to configure broadband devices"/>
+<meta property="og:description" content="Configure broadband device functions with pf_bb_config"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="pf_bb_config—the tool to configure broadband devices"/>
+<meta name="twitter:description" content="Configure broadband device functions with pf_bb_confi"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "pf_bb_config—the tool to configure broadband devices | SUSE Linux Micro 6.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "pf_bb_config—the tool to configure broadband devices",
+    "description": "Configuration of physical functions for broadband devices using pf_bb_config",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2024-11-05T00:00+02:00",
+    "dateModified": "2024-11-05T00:00+02:00",
+    "datePublished": "2026-08-25T07:09+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Micro",
+        "softwareVersion": "6.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">The Physical Function Baseband Device Configuration Using pf_bb_config</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">The Physical Function Baseband Device Configuration Using <code class="literal">pf_bb_config</code></div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="pf-bb-config" data-id-title="The Physical Function Baseband Device Configuration Using pf_bb_config"><div class="titlepage"><div><div class="big-version-info"><span class="productname">SUSE Linux Micro</span> 6.1</div><div><h1 class="title">The Physical Function Baseband Device Configuration Using <code class="literal">pf_bb_config</code></h1></div><div class="date"><span class="imprint-label">Publication Date: </span>25 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.13.1.1"><span class="term">WHAT?</span></dt><dd><p>
+              The <code class="literal">pf_bb_config</code> tool utilizes given configuration files
+              to customize and control the physical functions of various baseband devices.
+            </p></dd><dt id="id-1.1.13.1.2"><span class="term">WHY?</span></dt><dd><p>
+              This article focuses on installation and usage of the <code class="literal">pf_bb_config</code> tool.
+            </p></dd><dt id="id-1.1.13.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                It takes approximately 10 minutes to read the article.
+              </p></dd><dt id="id-1.1.13.1.4"><span class="term">GOAL</span></dt><dd><p>
+                You will know how to configure broadband devices and how to enable direct access to
+                hardware for virtual machines.
+              </p></dd><dt id="id-1.1.13.1.5"><span class="term">REQUIREMENTS</span></dt><dd><p>
+                    A registered running instance of <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span>
+                  </p></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: The Physical Function Baseband Device Configuration Using pf_bb_config" hreflang="en" href="rh-pf-bb-config.html" target="_blank">Revision History: The Physical Function Baseband Device Configuration Using pf_bb_config</a></div></div></div></div><section xml:lang="en" class="sect1" id="pf-bb-config-about" data-id-title="What is pf_bb_config?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">What is <code class="literal">pf_bb_config</code>?</span></span> <a title="Permalink" class="permalink" href="index.html#pf-bb-config-about">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    <code class="literal">pf_bb_config</code> is a tool that enables you to configure broadband devices on
+    your host system. The tool accesses the configuration space and sets parameters using
+    memory-mapped I/O (MMIO) read and write operations.
+  </p><p>
+    The particular broadband device configuration parameters are parsed from a passed configuration
+    file specific to that device. 
+  </p></section><section xml:lang="en" class="sect1" id="pf-bb-config-installation" data-id-title="Installing the pf_bb_config tool"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Installing the <code class="literal">pf_bb_config</code> tool </span></span> <a title="Permalink" class="permalink" href="index.html#pf-bb-config-installation">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+The physical function broadband devices configuration tool is not delivered as part of the
+pre-built images. To use it, you need to install it first:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+Refresh repositories:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper ref</code></pre></div></li><li class="step"><p>
+Install the <code class="literal">pf-bb-config</code> package:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">transactional-update pkg install pf-bb-config</code></pre></div></li><li class="step"><p>
+        In certain cases, you may need to use the Data Plane Development Kit. 
+        To install it, run:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">transactional-update --continue pkg install dpdk</code></pre></div></li><li class="step"><p>
+        Reboot the system:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">reboot</code></pre></div></li></ol></div></div></section><section xml:lang="en" class="sect1" id="pf-bb-config-usage" data-id-title="Usage of pf_bb_config"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Usage of <code class="literal">pf_bb_config</code></span></span> <a title="Permalink" class="permalink" href="index.html#pf-bb-config-usage">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    To run the <code class="literal">pf_bb_config</code> tool, use the following command:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">pf_bb_config <em class="replaceable">DEVICE_NAME</em> <em class="replaceable">[-h] [-c PATH_TO_CONFIG_FILE] [-p PCI_ID] [-v VFIO_TOKEN] [-f FFT_LUT_FILE]</em></code></pre></div><p>
+    Where the arguments and options have the following meaning:
+  </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.4.5.1"><span class="term">DEVICE_NAME</span></dt><dd><p>
+The device name is mandatory.
+        </p></dd><dt id="id-1.4.5.2"><span class="term">-h</span></dt><dd><p>
+          To print out help.
+        </p></dd><dt id="id-1.4.5.3"><span class="term">-c PATH_TO_CONFIG_FILE</span></dt><dd><p>
+          Passes the configuration file to use for the particular BB device. Configuration examples
+          are installed to <code class="filename">/opt/pf-bb-config/</code>. For details regarding these
+          examples, refer to <a class="xref" href="index.html#pf-bb-config-examples" title="3.2. Configuration examples description">Section 3.2, “Configuration examples description”</a>.
+        </p></dd><dt id="id-1.4.5.4"><span class="term">-p PCI_ID</span></dt><dd><p>
+          Specify the PCI ID of the device to be configured.
+        </p></dd><dt id="id-1.4.5.5"><span class="term">-v VFIO_TOKEN</span></dt><dd><p>
+Provide a VFIO token that can be obtained using the <code class="command">uuid</code> command:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">uuid=$(cat /proc/sys/kernel/random/uuid)</code></pre></div><p>
+          Then, to display it:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">echo $uuid</code></pre></div></dd><dt id="id-1.4.5.6"><span class="term">-f FFT_LUT_FILE</span></dt><dd><p>
+          Using the option, you can provide an alternative FFT LUT file. If not 
+          specified, the default one is used.
+        </p></dd></dl></div><section xml:lang="en" class="sect2" id="pf-bb-config-vfio" data-id-title="Using the vfio-pci module"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.1 </span><span class="title-name">Using the <code class="literal">vfio-pci</code> module</span></span> <a title="Permalink" class="permalink" href="index.html#pf-bb-config-vfio">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    To enable your device's direct access to hardware resources, you need 
+    to use the vfio-pci driver. Before proceeding further, ensure that the following 
+    conditions are met: 
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        The vfio-pci module is built in.
+      </p></li><li class="listitem"><p>
+        Intel™ VT-d is enabled in kernel and UEFI and implemented in IOMMU.
+      </p></li><li class="listitem"><p>
+        IOMMU is enabled on runtime. To check that, run the command:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">dmesg | grep "DMAR: IOMMU"</code></pre></div></li><li class="listitem"><p>
+        DPDK is installed.
+      </p></li></ul></div><p>
+    If the above conditions are met, you can enable the vfio-pci driver as described below.
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        The vfio-pci module is loaded automatically during boot. You just need to pass parameters
+        to the module. You can do that in three ways:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            pass the following parameters on the kernel CLI:
+          </p><div class="verbatim-wrap"><pre class="screen">vfio_pci.enable_sriov=1 vfio_pci.disable_idle_d3=1</pre></div></li><li class="listitem"><p>
+            set the required parameters after the system is fully booted:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">echo 1 | sudo tee /sys/module/vfio_pci/parameters/enable_sriov</code>
+
+<code class="prompt root"># </code><code class="command">echo 1 | sudo tee /sys/module/vfio_pci/parameters/disable_idle_d3</code></pre></div></li><li class="listitem"><p>
+            or you can use <code class="command">modprobe</code> to load the module with these parameters:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">modprobe vfio-pci enable_sriov=1 disable_idle_d3=1</code></pre></div></li></ul></div></li><li class="step"><p>
+        Bind the PF with the vfio-pci module:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <em class="replaceable">PATH_TO_DPDK</em>/usertools/dpdk-devbind.py --bind=vfio-pci $<em class="replaceable">PCI_DRIVER_ADDRESS</em></pre></div></li><li class="step"><p>
+        Configure the device using the <code class="literal">pf_bb_config</code> tool:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">./pf_bb_config ACC100 -v 00112233-4455-6677-8899-aabbccddeeff -c acc100/acc100_config_2vf_4g5g.cfg
+</code></pre></div></li><li class="step"><p>
+        For example, create two VFs on the device:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">echo 2 | sudo tee /sys/bus/pci/devices/0000:$<em class="replaceable">PF_PCI_DEVICE_ADDRESS</em>/sriov_numvfs</code></pre></div></li></ol></div></div></section><section xml:lang="en" class="sect2" id="pf-bb-config-examples" data-id-title="Configuration examples description"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.2 </span><span class="title-name">Configuration examples description</span></span> <a title="Permalink" class="permalink" href="index.html#pf-bb-config-examples">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    You can find the broadband devices confiration examples in
+    <code class="filename">/opt/pf-bb-config</code>. Each device has a specific set of configuration files,
+    however, all configuration files follow the same format. 
+  </p><div class="verbatim-wrap"><pre class="screen">[section name]
+key = value
+; This is a comment.</pre></div><p>
+    The following section
+    provides details regarding ACC100/ACC200 accelerator.
+  </p><section class="sect3" id="pf-bb-config-examples-acc100" data-id-title="The ACC100/ACC200 configuration"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">3.2.1 </span><span class="title-name">The ACC100/ACC200 configuration</span></span> <a title="Permalink" class="permalink" href="index.html#pf-bb-config-examples-acc100">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      In the examples  <code class="filename">/opt/pf-bb-config/acc*</code>, you can adjust the following attributes:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.4.7.5.3.1"><span class="term"><code class="literal">pf_mode_en</code></span></dt><dd><p>
+            If set to 1, all queues on the device are assigned to physical functions
+            (PF) and none are assigned to virtual functions (VF). PF and VF are 
+            mutually exclusive.
+          </p></dd><dt id="id-1.4.7.5.3.2"><span class="term"><code class="literal">num_qgroups</code></span></dt><dd><p>
+            There are eight queue groups available that you can allocate to <span><em class="emphasis">all</em></span> operations.
+          </p></dd><dt id="id-1.4.7.5.3.3"><span class="term"><code class="literal">num_vf_bundles</code></span></dt><dd><p>
+            Choose a value between 1 and 16. The available DDR is then split.
+          </p></dd><dt id="id-1.4.7.5.3.4"><span class="term"><code class="literal">num_aqs_per_groups</code></span></dt><dd><p>
+            Defines the maximum count of atomic queues in a single queue group.
+          </p></dd></dl></div></section></section></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#pf-bb-config-about"><span class="title-number">1 </span><span class="title-name">What is <code class="literal">pf_bb_config</code>?</span></a></span></li><li><span class="section"><a href="index.html#pf-bb-config-installation"><span class="title-number">2 </span><span class="title-name">Installing the <code class="literal">pf_bb_config</code> tool </span></a></span></li><li><span class="section"><a href="index.html#pf-bb-config-usage"><span class="title-number">3 </span><span class="title-name">Usage of <code class="literal">pf_bb_config</code></span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">4 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

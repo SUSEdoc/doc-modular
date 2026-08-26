@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Gathering System Information for Support | SUSE Linux Enterprise Server for SAP applications 16.0</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2025-11-04"/>
+<meta name="dcterms.modified" content="2025-11-18"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-25"/>
+<meta name="title" content="Gathering System Information for Support | SUSE Linux …"/>
+<meta name="description" content="How to use the supportconfig tool to pass information to the SUSE support"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server for SAP applications"/>
+<meta name="product-number" content="16.0"/>
+<meta name="book-title" content="Gathering System Information for Support"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="amrita.sakthivel@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.0"/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="amrita.sakthivel@suse.com"/><meta property="og:title" content="Gathering System Information for Support"/>
+<meta property="og:description" content="Use supportconfig to pass information to SUSE support"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Gathering System Information for Support"/>
+<meta name="twitter:description" content="Use supportconfig to pass information to SUSE support"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Gathering System Information for Support | SUSE Linux Enterprise Server for SAP applications 16.0",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Gathering System Information for Support",
+    "description": "How to use the supportconfig tool to pass information to the SUSE support",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2025-11-04T00:00+02:00",
+    "dateModified": "2025-11-18T00:00+02:00",
+    "datePublished": "2026-08-25T07:08+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Administration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Maintenance"
+      },
+      {
+        "@type": "Thing",
+        "name": "Troubleshooting"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server for SAP applications",
+        "softwareVersion": "16.0",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER, IBM Z, AArch64"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Gathering System Information for Support</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Gathering System Information for Support</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="gather-systeminfo-for-support" data-id-title="Gathering System Information for Support"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span></span> 16.0</div><div><h1 class="title">Gathering System Information for Support</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>25 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+              The article gives instructions on how to gather information that can be passed to the SUSE support.
+            </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
+              You want to know how to properly gather information about your system if there is a problem with the system.
+            </p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                It takes up to 15 minutes of reading time.
+              </p></dd><dt id="id-1.1.12.1.4"><span class="term">GOAL</span></dt><dd><p>
+                You will learn how to create an archive of information about your system that can provide details about problems in your system to the SUSE support.
+              </p></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Gathering System Information for Support" hreflang="en" href="rh-supportconfig.html" target="_blank">Revision History: Gathering System Information for Support</a></div></div></div></div><section xml:lang="en" class="sect1" id="collect-system-support" data-id-title="Why collect system information and logs?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Why collect system information and logs? </span></span> <a title="Permalink" class="permalink" href="index.html#collect-system-support">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       The <code class="command">supportconfig</code> command-line tool collects and organizes detailed system information
+       and logs in a way that helps to reduce service request resolution times. </p></div></div></div></div><p>Private system information can be disclosed during the process of collecting information from the tool. If this is a concern, you can
+  remove the private data from the log files. There are other options to exclude more sensitive data.
+  <code class="literal">supportconfig</code> data is used only for diagnostic purposes and is confidential.
+For more information on data privacy, refer to <a class="link" href="http://www.suse.com/company/policies/privacy/" target="_blank">http://www.suse.com/company/policies/privacy/</a>.
+ </p></section><section xml:lang="en" class="sect1" id="supportconfig-overview" data-id-title="The supportconfig tool"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">The <code class="command">supportconfig</code> tool</span></span> <a title="Permalink" class="permalink" href="index.html#supportconfig-overview">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>The tool creates a tar ball in the <code class="filename">/var/log</code> directory. Attach the log file tar ball to your
+    service request or if you cannot, email it to the engineer.
+    For more detailed information on working with SUSE Technical Support, see <a class="link" href="https://www.suse.com/support/handbook/" target="_blank">https://www.suse.com/support/handbook/</a>.</p><p>
+    If problems occur, use the <code class="command">supportconfig</code> command-line tool to collect and organize system information
+    and logs. This helps reduce the time needed to resolve service requests. The collected data includes details such as the current kernel version,
+    hardware, installed packages, partition setup and more, and is automatically attached to your service request.
+  </p><p>
+    The command-line tool is provided by the package <code class="systemitem">supportutils</code>, which is installed by default.
+    If the package is not installed, install it with:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> zypper install supportutils</pre></div><p>
+    The <code class="command">supportconfig</code> tool can integrate plug-ins that run
+    automatically each time the command is executed. Which plug-ins are available on your system, depends on the installed packages. The plug-ins
+    are stored in the <code class="filename">/usr/lib/supportconfig/plugins/</code>
+    directory.
+  </p><p>
+    The <code class="command">supportconfig</code> tool creates a TAR archive with
+    detailed system information that you can hand over to Global Technical
+    Support.
+  </p></section><section xml:lang="en" class="sect1" id="supportconfig-collecting-information" data-id-title="Collecting system information with supportconfig"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Collecting system information with <code class="command">supportconfig</code></span></span> <a title="Permalink" class="permalink" href="index.html#supportconfig-collecting-information">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    To create a TAR archive with detailed system information that you can hand
+    over to Global Technical Support, follow the procedure:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Run <code class="command">supportconfig</code> as <code class="systemitem">root</code>. Usually, it is
+        enough to run this tool without any options. For common options, refer
+        to <a class="xref" href="index.html#supportconfig-options" title="3.1. Common supportconfig options">Section 3.1, “Common <code class="command">supportconfig</code> options”</a>.
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>supportconfig
+
+
+           Support Utilities - Supportconfig
+                          Script Version: 3.1.11-46.2 
+                          Library Version: 3.1.11-29.6
+                          Script Date: 2022 10 18
+[...]
+Gathering system information
+  Data Directory:    /var/log/scc_d251_180201_1525 <span class="callout" id="co-admsupport-script-datadir">1</span>
+
+  Basic Server Health Check...                 Done <span class="callout" id="co-admsupport-script-done">2</span>
+  RPM Database...                              Done <a class="xref" href="index.html#co-admsupport-script-done"><span class="callout">2</span></a>
+  Basic Environment...                         Done <a class="xref" href="index.html#co-admsupport-script-done"><span class="callout">2</span></a>
+  System Modules...                            Done <a class="xref" href="index.html#co-admsupport-script-done"><span class="callout">2</span></a>
+[...]
+  File System List...                          Skipped <span class="callout" id="co-admsupport-script-skipped">3</span>
+[...]
+  Command History...                           Excluded <span class="callout" id="co-admsupport-script-excluded">4</span>
+[...]
+  Supportconfig Plugins:                       1 <span class="callout" id="co-admsupport-script-plugin">5</span>
+    Plugin: pstree...                          Done
+[...]
+Creating Tar Ball
+
+==[ DONE ]===================================================================
+  Log file tar ball: /var/log/scc_d251_180201_1525.txz <span class="callout" id="co-admsupport-script-archive">6</span>
+  Log file size:     732K
+  Log file md5sum:   bf23e0e15e9382c49f92cbce46000d8b
+=============================================================================/</pre></div><p>
+        The command output is described below this procedure.
+      </p></li><li class="step"><p>
+        Wait for the tool to complete the operation.
+      </p></li><li class="step"><p>
+        The default archive location is <code class="filename">/var/log</code>, with the
+        file name format being
+        <code class="filename">scc_<em class="replaceable">HOST</em>_<em class="replaceable">DATE</em>_<em class="replaceable">TIME</em>.txz</code>.
+        For the archive content description, refer to
+        <a class="xref" href="index.html#supportconfig-archive-content" title="4. Overview of the archive content">Section 4, “Overview of the archive content”</a>.
+      </p></li></ol></div></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-admsupport-script-datadir"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+        The temporary data directory to store the results. This directory is
+        archived as a tar file, see
+        <a class="xref" href="index.html#co-admsupport-script-archive"><span class="callout">6</span></a>.
+      </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-admsupport-script-done"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+        The feature was enabled (either by default or selected manually) and
+        executed successfully. The result is stored in a file (see
+        <a class="xref" href="index.html#tab-admsupport-features-and-filenames" title="Comparison of features and file names in the TAR archive">Table 1, “Comparison of features and file names in the TAR archive”</a>).
+      </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-admsupport-script-skipped"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+        The feature was skipped because certain files of one or more RPM packages
+        were changed.
+      </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-admsupport-script-excluded"><span class="callout">4</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+        The feature was excluded because it was deselected via the
+        <code class="option">-x</code> option.
+      </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-admsupport-script-plugin"><span class="callout">5</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+        The script found one plug-in and executes the plug-in
+        <code class="command">pstree</code>. The plug-in was found in the directory
+        <code class="filename">/usr/lib/supportconfig/plugins/</code>.
+        See the man page for details.
+      </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-admsupport-script-archive"><span class="callout">6</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+        The tar file name of the archive, compressed with <code class="command">xz</code>
+        by default.
+      </p></td></tr></table></div><section xml:lang="en" class="sect2" id="supportconfig-options" data-id-title="Common supportconfig options"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.1 </span><span class="title-name">Common <code class="command">supportconfig</code> options</span></span> <a title="Permalink" class="permalink" href="index.html#supportconfig-options">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    Usually, it is sufficient to run <code class="command">supportconfig</code> without
+    any options. However, you may need to use the following options:
+  </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.4.5.3.1"><span class="term"><code class="option">-E <em class="replaceable">MAIL</em></code></span></dt><dd><p>
+          To provide the contact e-mail.
+        </p></dd><dt id="id-1.4.5.3.2"><span class="term"><code class="option">-N <em class="replaceable">NAME</em></code></span></dt><dd><p>
+          To provide your name.
+        </p></dd><dt id="id-1.4.5.3.3"><span class="term"><code class="option">-O <em class="replaceable">COMPANY</em></code></span></dt><dd><p>
+          To provide your company name.
+        </p></dd><dt id="id-1.4.5.3.4"><span class="term"><code class="option">-P <em class="replaceable">PHONE</em></code></span></dt><dd><p>
+          To provide your phone number.
+        </p></dd><dt id="id-1.4.5.3.5"><span class="term"><code class="option">-i <em class="replaceable">KEYWORDS</em></code></span></dt><dd><p>
+          To specify keywords that limit the features to check.
+          <em class="replaceable">KEYWORDS</em> is a comma-separated list of
+          case-sensitive keywords.
+        </p><p>
+          This option is particularly useful if you have already localized a
+          problem that relates to a specific area or feature set only. For
+          example, you have detected problems with LVM and want to test a
+          recent change that you introduced to the LVM configuration. In this
+          case, it makes sense to gather the minimum <code class="command">supportconfig</code> information
+          around LVM only:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">supportconfig -i LVM</code></pre></div></dd><dt id="id-1.4.5.3.6"><span class="term"><code class="option">-F</code></span></dt><dd><p>
+          To list all keywords that you can use to limit the features to check.
+        </p></dd><dt id="id-1.4.5.3.7"><span class="term">-m</span></dt><dd><p>
+          To reduce the amount of the information being gathered.
+        </p></dd><dt id="id-1.4.5.3.8"><span class="term">-l</span></dt><dd><p>
+          To collect already rotated log files. This is especially useful in
+          high-logging environments or after a kernel crash when syslog rotates
+          the log files after a reboot.
+        </p></dd></dl></div><p>Use <code class="command">supportconfig -help</code>command to get a list of all the options.</p></section></section><section xml:lang="en" class="sect1" id="supportconfig-archive-content" data-id-title="Overview of the archive content"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Overview of the archive content</span></span> <a title="Permalink" class="permalink" href="index.html#supportconfig-archive-content">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    The TAR archive contains all the results from the features. Depending on
+    what you have selected (all or only a small set), the archive can contain
+    more or fewer files. The set of features can be limited using the
+    <code class="option">-i</code> option (see <a class="xref" href="index.html#supportconfig-options" title="3.1. Common supportconfig options">Section 3.1, “Common <code class="command">supportconfig</code> options”</a>).
+  </p><p>
+   To list the contents of an <code class="literal">xz</code> compressed tar file:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">tar</code> -tJf /var/log/<em class="replaceable">NAME_OF_TAR_FILE.txz</em>
+  scc_localhost.localdomain_250618_1154/basic-environment.txt
+  scc_localhost.localdomain_250618_1154/basic-health-check.txt
+  scc_localhost.localdomain_250618_1154/boot.txt
+  scc_localhost.localdomain_250618_1154/bpf.txt
+  scc_localhost.localdomain_250618_1154/cimom.txt
+  scc_localhost.localdomain_250618_1154/crash.txt
+  scc_localhost.localdomain_250618_1154/dbus.txt
+  scc_localhost.localdomain_250618_1154/dhcp.txt
+  scc_localhost.localdomain_250618_1154/dns.txt
+  scc_localhost.localdomain_250618_1154/docker.txt
+  scc_localhost.localdomain_250618_1154/email.txt
+  scc_localhost.localdomain_250618_1154/env.txt
+  scc_localhost.localdomain_250618_1154/etc.txt
+  scc_localhost.localdomain_250618_1154/fs-autofs.txt
+  scc_localhost.localdomain_250618_1154/fs-btrfs.txt
+  scc_localhost.localdomain_250618_1154/fs-diskio.txt
+  scc_localhost.localdomain_250618_1154/fs-gfs2.txt
+  scc_localhost.localdomain_250618_1154/fs-iscsi.txt
+  scc_localhost.localdomain_250618_1154/fs-softraid.txt
+  scc_localhost.localdomain_250618_1154/ha.txt
+
+  [...]</pre></div><p>
+    The following file names are always available inside the TAR archive:
+  </p><div class="variablelist"><div class="title-container"><div class="variablelist-title-wrap"><div class="variablelist-title"><span class="title-number-name"><span class="title-name">Minimum files in archive </span></span><a title="Permalink" class="permalink" href="index.html#id-1.5.6">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><dl class="variablelist"><dt id="id-1.5.6.2"><span class="term"><code class="filename">basic-environment.txt</code></span></dt><dd><p>
+          Contains the date when this script was executed and system
+          information like version of the distribution, hypervisor information,
+          and more.
+        </p></dd><dt id="id-1.5.6.3"><span class="term"><code class="filename">basic-health-check.txt</code></span></dt><dd><p>
+          Contains basic health checks, such as uptime, virtual memory
+          statistics, free memory and hard disk, checks for zombie processes,
+          and more.
+        </p></dd><dt id="id-1.5.6.4"><span class="term"><code class="filename">hardware.txt</code></span></dt><dd><p>
+          Contains basic hardware checks like information about the CPU
+          architecture, a list of all connected devices, interrupts, I/O ports,
+          kernel boot messages, and more.
+        </p></dd><dt id="id-1.5.6.5"><span class="term"><code class="filename">messages.txt</code></span></dt><dd><p>
+          Contains log messages from the system journal.
+        </p></dd><dt id="id-1.5.6.6"><span class="term"><code class="filename">rpm.txt</code></span></dt><dd><p>
+          Contains a list of all installed RPM packages, their names and
+          versions and where they come from.
+        </p></dd><dt id="id-1.5.6.7"><span class="term"><code class="filename">summary.xml</code></span></dt><dd><p>
+          Contains information in XML format, such as distribution, version and
+          product-specific fragments.
+        </p></dd><dt id="id-1.5.6.8"><span class="term"><code class="filename">supportconfig.txt</code></span></dt><dd><p>
+          Contains information about the <code class="command">supportconfig</code>
+          script itself.
+        </p></dd><dt id="id-1.5.6.9"><span class="term"><code class="filename">y2log.txt</code></span></dt><dd><p>
+          Contains YaST-specific information like specific packages,
+          configuration files and log files.
+        </p></dd></dl></div><p>
+    The following table lists some of the available features and their file names.
+  </p><div class="table" id="tab-admsupport-features-and-filenames" data-id-title="Comparison of features and file names in the TAR archive"><div class="title-container"><div class="table-title-wrap"><div class="table-title"><span class="title-number-name"><span class="title-number">Table 1: </span><span class="title-name">Comparison of features and file names in the TAR archive </span></span><a title="Permalink" class="permalink" href="index.html#tab-admsupport-features-and-filenames">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="table-contents"><table style="border-collapse: collapse; border-top: 1px solid ; border-bottom: 1px solid ; border-left: 1px solid ; border-right: 1px solid ; "><colgroup><col/><col/></colgroup><thead><tr><th style="border-right: 1px solid ; border-bottom: 1px solid ; ">Feature</th><th style="border-bottom: 1px solid ; ">File name</th></tr></thead><tbody><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">AUDIT</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">security-audit.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">AUTOFS</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">fs-autofs.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">BOOT</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">boot.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">BTRFS</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">fs-btrfs.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">DAEMONS</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">systemd.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">CIMOM</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">cimom.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">CRASH</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">crash.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">DHCP</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">dhcp.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">DISK</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">fs-diskio.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">DNS</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">dns.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">DOCKER</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">docker.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">ENV</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">env.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">ETC</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">etc.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">ISCSI</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">fs-iscsi.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">LDAP</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">ldap.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">LIVEPATCH</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">kernel-livepatch.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">LVM</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">lvm.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">MEM</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">memory.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">MOD</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">modules.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">MPIO</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">mpio.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">NET</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">network-*.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">NFS</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">nfs.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">NTP</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">ntp.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">OCFS2</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">ocfs2.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">PAM</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">pam.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">PODMAN</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">podman-root.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">PRINT</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">print.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">PROC</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">proc.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">SAR</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">sar.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">SLERT</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">slert.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">SLP</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">slp.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">SMT</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">smt.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">SMART</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">fs-smartmon.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">SMB</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">samba.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">SRAID</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">fs-softraid.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">SSH</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">ssh.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">SSSD</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">sssd.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">SYSCONFIG</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">sysconfig.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">SYSFS</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">sysfs.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">TRANSACTIONAL</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">transactional-update.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">TUNED</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">tuned.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">UDEV</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">udev.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><em class="parameter">UP</em>
+          </td><td style="border-bottom: 1px solid ; "><code class="filename">updates.txt</code>
+          </td></tr><tr><td style="border-right: 1px solid ; "><em class="parameter">WEB</em>
+          </td><td><code class="filename">web.txt</code>
+          </td></tr></tbody></table></div></div></section><section xml:lang="en" class="sect1" id="supportconfig-submitting-archive" data-id-title="Submitting information to Global Technical Support"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Submitting information to Global Technical Support</span></span> <a title="Permalink" class="permalink" href="index.html#supportconfig-submitting-archive">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    After you have created the archive using the
+    <code class="command">supportconfig</code> tool, you can submit the archive to
+    SUSE.
+  </p><section class="sect2" id="supportconfig-submitting-archive-sr" data-id-title="Creating a service request number"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.1 </span><span class="title-name">Creating a service request number</span></span> <a title="Permalink" class="permalink" href="index.html#supportconfig-submitting-archive-sr">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Before handing over the <code class="command">supportconfig</code> data to Global
+      Technical Support, you need to generate a service request number first.
+      You will need it to upload the archive to support.
+    </p><p>
+      To create a service request, go to
+      <a class="link" href="https://scc.suse.com/support/requests" target="_blank">https://scc.suse.com/support/requests</a> and follow the
+      instructions on the screen. Write down the service request number.
+    </p><div id="id-1.6.3.4" data-id-title="Privacy statement" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Privacy statement</div><p>
+        SUSE treats system reports as confidential data. For details about
+        our privacy commitment, see
+        <a class="link" href="https://www.suse.com/company/policies/privacy/" target="_blank">https://www.suse.com/company/policies/privacy/</a>.
+      </p></div></section><section class="sect2" id="supportconfig-submitting-archive-targets" data-id-title="Uploading targets"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.2 </span><span class="title-name">Uploading targets</span></span> <a title="Permalink" class="permalink" href="index.html#supportconfig-submitting-archive-targets">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      After having created a service request number, you can upload your
+      <code class="command">supportconfig</code> archives to Global Technical Support. In
+      the examples below, <span><em class="emphasis">12345678901</em></span> serves as a
+      placeholder for your service request number. Replace the placeholder with
+      the service request number you created in
+      <a class="xref" href="index.html#supportconfig-submitting-archive-sr" title="5.1. Creating a service request number">Section 5.1, “Creating a service request number”</a>.
+    </p><p>
+      The following procedures assume that you have already created a
+      <code class="command">supportconfig</code> archive but have not uploaded it yet.
+    </p><div class="procedure" id="pro-admsupport-submit-cli" data-id-title="Submitting information to support on servers with Internet connectivity"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 1: </span><span class="title-name">Submitting information to support on servers with Internet connectivity </span></span><a title="Permalink" class="permalink" href="index.html#pro-admsupport-submit-cli">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Run the <code class="command">supportconfig</code> tool as follows:
+        </p><ol type="a" class="substeps"><li class="step"><p>
+              To use the default upload target
+              <code class="uri">https://support-ftp.us.suse.com/incoming/upload.php?file=<em class="replaceable">TARBALL</em></code>,
+              run:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> supportconfig -ur <em class="replaceable">12345678901</em></pre></div></li><li class="step"><p>
+              For the FTPS upload target
+              <code class="uri">ftps://support-ftp.us.suse.com</code>, use the
+              following command:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> supportconfig -ar <em class="replaceable">12345678901</em></pre></div><p>
+              To use a different upload target, for example, for the EMEA area,
+              use the <code class="option">-U</code> followed by the particular URL,
+              either
+              <code class="uri">https://support-ftp.emea.suse.com/incoming/upload.php?file=<em class="replaceable">TARBALL</em></code>
+              or
+              <code class="uri">ftps://support-ftp.emea.suse.com/incoming/</code>:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> supportconfig -r <em class="replaceable">12345678901</em> -U <em class="replaceable">https://support-ftp.emea.suse.com/incoming</em></pre></div></li></ol></li><li class="step"><p>
+          After the TAR archive arrives in the incoming directory of our FTP
+          server, it becomes automatically attached to your service request.
+        </p></li></ol></div></div><p>
+      If the servers do not provide Internet connectivity, follow the steps
+      below:
+    </p><div class="procedure" id="id-1.6.4.6" data-id-title="Submitting information to support on servers without Internet connectivity"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 2: </span><span class="title-name">Submitting information to support on servers without Internet connectivity </span></span><a title="Permalink" class="permalink" href="index.html#id-1.6.4.6">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Run the following:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> supportconfig -r <em class="replaceable">12345678901</em></pre></div></li><li class="step"><p>
+          Manually upload the
+          <code class="filename">/var/log/scc_<em class="replaceable">SR12345678901</em>*txz</code>
+          archive to one of our servers. The selection of a server depends on
+          your location in the world:
+        </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+              
+              North America: HTTPS
+              <code class="uri">https://support-ftp.us.suse.com/incoming/upload.php?file=<em class="replaceable">TARBALL</em></code>,
+              FTPS
+              <code class="uri">ftps://support-ftp.us.suse.com/incoming/</code>
+            </p></li><li class="listitem"><p>
+              EMEA, Europe, the Middle East, and Africa: FTP
+              <code class="uri">https://support-ftp.emea.suse.com/incoming/upload.php?file=<em class="replaceable">TARBALL</em></code>,
+              FTPS
+              <code class="uri">ftps://support-ftp.emea.suse.com/incoming/</code>
+            </p></li></ul></div></li><li class="step"><p>
+          After the TAR archive arrives in the incoming directory of our FTP
+          server, it becomes automatically attached to your service request.
+        </p></li></ol></div></div></section></section><section xml:lang="en" class="sect1" id="supportconfig-more-info" data-id-title="More information"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">More information</span></span> <a title="Permalink" class="permalink" href="index.html#supportconfig-more-info">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    The SUSE Technical Support Handbook provides detailed information on how to work with SUSE technical support.
+    Below are links to key sections, but you may also find it helpful to review the full handbook.
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        <a class="link" href="https://www.suse.com/support/handbook/what-is-technical-support/" target="_blank">
+       Types of support and what is technical support</a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://www.suse.com/support/handbook/what-is-supported/" target="_blank">
+        What is supported</a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://www.suse.com/support/handbook/severity-types/" target="_blank">
+          Severity Types</a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://www.suse.com/support/handbook/how-to-effectively-work-with-support/" target="_blank">
+          How to effectively work with support</a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://www.suse.com/support/handbook/additional-support-options/" target="_blank">
+         Additional support options</a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://www.suse.com/support/handbook/support-self-help/" target="_blank">
+        Support policies</a>
+      </p></li></ul></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#collect-system-support"><span class="title-number">1 </span><span class="title-name">Why collect system information and logs? </span></a></span></li><li><span class="section"><a href="index.html#supportconfig-overview"><span class="title-number">2 </span><span class="title-name">The <code class="command">supportconfig</code> tool</span></a></span></li><li><span class="section"><a href="index.html#supportconfig-collecting-information"><span class="title-number">3 </span><span class="title-name">Collecting system information with <code class="command">supportconfig</code></span></a></span></li><li><span class="section"><a href="index.html#supportconfig-archive-content"><span class="title-number">4 </span><span class="title-name">Overview of the archive content</span></a></span></li><li><span class="section"><a href="index.html#supportconfig-submitting-archive"><span class="title-number">5 </span><span class="title-name">Submitting information to Global Technical Support</span></a></span></li><li><span class="section"><a href="index.html#supportconfig-more-info"><span class="title-number">6 </span><span class="title-name">More information</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">7 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

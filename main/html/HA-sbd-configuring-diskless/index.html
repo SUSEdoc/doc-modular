@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Configuring Diskless SBD in an Existing High Availability Cluster | SUSE Linux Enterprise High Availability 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2026-01-15"/>
+<meta name="dcterms.modified" content="2026-01-15"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-26"/>
+<meta name="title" content="Configuring Diskless SBD in an Existing High Availabil…"/>
+<meta name="description" content="How to configure diskless SBD in a High Availability cluster that is already installed and running"/>
+<meta name="product-name" content="SUSE Linux Enterprise High Availability"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="Configuring Diskless SBD in an Existing High Availability Cluster"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="tahlia.richardson@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="&#10;            SUSE Linux Enterprise High Availability 16.1&#10;          "/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="tahlia.richardson@suse.com"/><meta property="og:title" content="Configuring Diskless SBD in an Existing HA Cluster"/>
+<meta property="og:description" content="Set up diskless SBD in an existing HA cluster"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Configuring Diskless SBD in an Existing HA Cluster"/>
+<meta name="twitter:description" content="Set up diskless SBD in an existing HA cluster"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Configuring Diskless SBD in an Existing HA Cluster | SUSE Linux Enterprise High Availability 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Configuring Diskless SBD in an Existing HA Cluster",
+    "description": "How to configure diskless SBD in a High Availability cluster that is already installed and running",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2026-01-15T00:00+02:00",
+    "dateModified": "2026-01-15T00:00+02:00",
+    "datePublished": "2026-08-26T09:48+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Administration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Clustering"
+      },
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      },
+      {
+        "@type": "Thing",
+        "name": "High Availability"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise High Availability",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER, IBM Z"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Configuring Diskless SBD in an Existing High Availability Cluster</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Configuring Diskless SBD in an Existing High Availability Cluster</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="ha-sbd-configuring-diskless" data-id-title="Configuring Diskless SBD in an Existing High Availability Cluster"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise High Availability</span></span></span> 16.1</div><div><h1 class="title">Configuring Diskless SBD in an Existing High Availability Cluster</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>26 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+                SBD provides a node fencing mechanism without using an external power-off device.
+                Node fencing protects the cluster from data corruption by resetting failed nodes.
+              </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
+                To be supported, all SUSE Linux Enterprise High Availability clusters <span><em class="emphasis">must</em></span> have node fencing
+                configured.
+              </p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                  Configuring diskless SBD in an existing cluster only takes a few minutes and
+                  does not require any downtime for cluster resources.
+                </p></dd><dt id="id-1.1.12.1.4"><span class="term">GOAL</span></dt><dd><p>
+                  SBD can be configured during the initial cluster setup or later in a running
+                  cluster. This article explains how to configure SBD in a High Availability cluster that is
+                  already installed and running.
+                </p></dd><dt id="id-1.1.12.1.5"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                    An existing SUSE Linux Enterprise High Availability cluster.
+                  </p></li><li class="listitem"><p>
+                    A hardware watchdog device on all cluster nodes.
+                  </p></li></ul></div></dd></dl></div><p>
+          To configure disk-based SBD instead, see
+          <a class="link" href="https://documentation.suse.com/sle-ha/16.0/html/HA-sbd-configuring-diskbased/" target="_blank">
+          <em class="citetitle">Configuring Disk-Based SBD in an Existing High Availability Cluster</em></a>.
+        </p><p>
+          If the SBD service is already running, see
+          <a class="link" href="https://documentation.suse.com/sle-ha/16.0/html/HA-sbd-changing-configuration/" target="_blank">
+          <em class="citetitle">Changing the Configuration of SBD</em></a>.
+        </p></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Configuring Diskless SBD in an Existing High Availability Cluster" hreflang="en" href="rh-ha-sbd-configuring-diskless.html" target="_blank">Revision History: Configuring Diskless SBD in an Existing High Availability Cluster</a></div></div></div></div><section xml:lang="en" class="sect1" id="ha-fencing-what-is" data-id-title="What is node fencing?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">What is node fencing?</span></span> <a title="Permalink" class="permalink" href="index.html#ha-fencing-what-is">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+  In a <span><em class="emphasis">split-brain scenario</em></span>, cluster nodes are divided into two or more
+  groups (or <span><em class="emphasis">partitions</em></span>) that do not know about each other. This might be
+  because of a hardware or software failure, or a failed network connection, for example. A
+  split-brain scenario can be resolved by <span><em class="emphasis">fencing</em></span> (resetting or powering off)
+  one or more of the nodes. Node fencing prevents a failed node from accessing shared resources and
+  prevents cluster resources from running on a node with an uncertain status. This helps protect
+  the cluster from data corruption.
+</p><p>
+  To be supported, all SUSE Linux Enterprise High Availability clusters <span><em class="emphasis">must</em></span> have at least one node fencing
+  device configured. For critical workloads, we recommend using two or three fencing devices.
+  A fencing device can be either a physical device (a power switch) or a software mechanism
+  (SBD in combination with a watchdog).
+</p></div></div></div></div><section class="sect2" id="ha-fencing-what-is-components" data-id-title="Components"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">Components</span></span> <a title="Permalink" class="permalink" href="index.html#ha-fencing-what-is-components">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.2.2.1"><span class="term">pacemaker-fenced</span></dt><dd><p>
+            The <code class="systemitem">pacemaker-fenced</code> daemon runs on every node in the High Availability
+            cluster. It accepts fencing requests from <code class="systemitem">pacemaker-controld</code>.
+            It can also check the status of the fencing device.
+        </p></dd><dt id="id-1.2.2.2.2"><span class="term">Fence agent</span></dt><dd><p>
+  Each type of fencing device can be controlled by a specific <span><em class="emphasis">fence agent</em></span>,
+  a <code class="literal">stonith</code>-class resource agent that acts as an interface between the cluster
+  and the fencing device. Starting or stopping a fencing resource means registering or deregistering
+  the fencing device with the <code class="systemitem">pacemaker-fenced</code> daemon and does not perform
+  any operation on the device itself. Monitoring a fencing resource means logging in to the device
+  to verify that it works.
+</p></dd><dt id="id-1.2.2.2.3"><span class="term">Fencing device</span></dt><dd><p>
+            The fencing device is the actual physical device that resets or powers off a node when
+            requested by the cluster via the fence agent. The device you use depends on your budget
+            and hardware.
+          </p></dd></dl></div></section><section class="sect2" id="ha-fencing-what-is-device-types" data-id-title="Fencing devices"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Fencing devices</span></span> <a title="Permalink" class="permalink" href="index.html#ha-fencing-what-is-device-types">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.3.2.1"><span class="term">Physical devices</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                <span><em class="emphasis">Power Distribution Units (PDU)</em></span> are devices with multiple power
+                outlets that can provide remote load monitoring and power recycling.
+              </p></li><li class="listitem"><p>
+                <span><em class="emphasis">Uninterruptible Power Supplies (UPS)</em></span> provide emergency power to
+                connected equipment in the event of a power failure.
+              </p></li><li class="listitem"><p>
+                <span><em class="emphasis">Blade power control devices</em></span> can be used for fencing if the
+                cluster nodes are running on a set of blades. This device must be capable of
+                managing single-blade computers.
+              </p></li><li class="listitem"><p>
+                <span><em class="emphasis">Lights-out devices</em></span> are network-connected devices that allow
+                remote management and monitoring of servers.
+              </p></li></ul></div></dd><dt id="id-1.2.3.2.2"><span class="term">Software mechanisms</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                <span><em class="emphasis">Disk-based SBD</em></span> fences nodes by exchanging messages via shared
+                block storage. It works together with a watchdog on each node to ensure that
+                misbehaving nodes are really stopped.
+              </p></li><li class="listitem"><p>
+                <span><em class="emphasis">Diskless SBD</em></span> fences nodes by using only the watchdog, without
+                a shared storage device. Unlike other node fencing mechanisms, diskless SBD does
+                not need a fence agent.
+              </p></li><li class="listitem"><p>
+  The <span><em class="emphasis">fence_kdump</em></span> agent checks if a node is performing a kernel dump
+  (<code class="systemitem">kdump</code>). If a <code class="systemitem">kdump</code> is in progress,
+  the cluster acts as if the node was fenced, because the node will reboot after the
+  <code class="systemitem">kdump</code> is complete. If a <code class="systemitem">kdump</code> is not in
+  progress, the next fencing device fences the node. This fence agent must be used together
+  with a physical fencing device. It cannot be used with SBD.
+</p></li></ul></div></dd></dl></div></section><section class="sect2" id="ha-fencing-what-is-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.3 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="index.html#ha-fencing-what-is-more-info">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      For more information, see
+      <a class="link" href="https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/fencing.html" target="_blank">https://clusterlabs.org/projects/pacemaker/doc/3.0/Pacemaker_Explained/html/fencing.html</a>.
+    </p><p>
+      For a full list of available fence agents, run the <code class="command">crm ra list stonith</code>
+      command.
+    </p><p>
+      For details about a specific fence agent, run the
+      <code class="command">crm ra info stonith:fence_<em class="replaceable">AGENT</em></code> command.
+    </p></section></section><section xml:lang="en" class="sect1" id="ha-sbd-what-is" data-id-title="What is SBD?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">What is SBD?</span></span> <a title="Permalink" class="permalink" href="index.html#ha-sbd-what-is">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        SBD (STONITH Block Device or Storage-Based Death) provides a node fencing mechanism without using
+        an external power-off device. The software component (the SBD daemon) works together with
+        a watchdog device to ensure that misbehaving nodes are fenced. SBD can be used in
+        disk-based mode with shared block storage, or in diskless mode using only the watchdog.
+      </p><p>
+        Diskless SBD fences nodes by using only the watchdog, without a shared storage device.
+        A node is fenced if it loses quorum, if any monitored daemon is lost and cannot be
+        recovered, or if Pacemaker determines that the node requires fencing.
+      </p></div></div></div></div><section class="sect2" id="ha-sbd-what-is-components" data-id-title="Components"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">Components</span></span> <a title="Permalink" class="permalink" href="index.html#ha-sbd-what-is-components">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.3.2.2.1"><span class="term">SBD daemon</span></dt><dd><p>
+            The SBD daemon starts on each node before the rest of the cluster stack and stops
+            in the reverse order. This ensures that cluster resources are never active without
+            SBD supervision.
+          </p></dd><dt id="id-1.3.2.2.2"><span class="term">Watchdog</span></dt><dd><p>
+  SBD needs a watchdog on each node to ensure that misbehaving nodes are really stopped.
+  SBD <span class="quote">“<span class="quote">feeds</span>”</span> the watchdog by regularly writing a service pulse to it. If SBD
+  stops feeding the watchdog, the hardware enforces a system restart. This protects against
+  failures of the SBD process itself, such as becoming stuck on an I/O error.
+</p></dd></dl></div></section><section class="sect2" id="ha-sbd-limitations-recommendations" data-id-title="Limitations and recommendations"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.2 </span><span class="title-name">Limitations and recommendations</span></span> <a title="Permalink" class="permalink" href="index.html#ha-sbd-limitations-recommendations">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.3.3.2.1"><span class="term">Diskless SBD</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                Diskless SBD cannot handle a split-brain scenario for a two-node cluster. This
+                configuration should only be used for clusters with more than two nodes, or in
+                combination with QDevice to help handle split-brain scenarios.
+              </p></li></ul></div></dd></dl></div></section><section class="sect2" id="ha-sbd-what-is-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.3 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="index.html#ha-sbd-what-is-more-info">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      For more information, see the man page <code class="literal">sbd</code> or run the
+      <code class="command">crm sbd help</code> command.
+    </p></section></section><section xml:lang="en" class="sect1" id="ha-sbd-setting-up-watchdog" data-id-title="Setting up the SBD watchdog"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Setting up the SBD watchdog</span></span> <a title="Permalink" class="permalink" href="index.html#ha-sbd-setting-up-watchdog">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+  SBD needs a watchdog on each node to ensure that misbehaving nodes are really stopped.
+  SBD <span class="quote">“<span class="quote">feeds</span>”</span> the watchdog by regularly writing a service pulse to it. If SBD
+  stops feeding the watchdog, the hardware enforces a system restart. This protects against
+  failures of the SBD process itself, such as becoming stuck on an I/O error.
+</p></div></div></div></div><p>
+    Hardware-specific watchdog drivers are available as kernel modules. However, sometimes the wrong
+    watchdog module loads automatically. Use this procedure to make sure the correct
+    module is loaded.
+  </p><div id="id-1.4.3" data-id-title="softdog limitations" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: <code class="systemitem">softdog</code> limitations</div><p>
+          If no hardware watchdog is available, <code class="systemitem">crmsh</code> automatically configures the software
+          watchdog (<code class="systemitem">softdog</code>) when configuring SBD. This watchdog can be
+          used for testing purposes, but is <span><em class="emphasis">not</em></span> recommended for production
+          environments.
+        </p><p>
+          The <code class="systemitem">softdog</code> driver assumes that at least one CPU is still
+          running, so if all CPUs are stuck, <code class="systemitem">softdog</code> cannot reboot the
+          system. Hardware watchdogs work even if all CPUs are stuck.
+        </p></div><p>
+    Perform this procedure on <span><em class="emphasis">all</em></span> nodes in the cluster:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        List the drivers that are installed with your kernel version:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">rpm -ql kernel-<em class="replaceable">VERSION</em> | grep watchdog</code></pre></div><p>
+        To help you find the correct driver for your hardware, see <a class="xref" href="index.html#ha-watchdog-drivers" title="Commonly used watchdog drivers">Table 1, “Commonly used watchdog drivers”</a>.
+        However, this is not a complete list and might not be accurate for your specific system.
+        Check your system's hardware configuration if possible, or ask your hardware or system
+        vendor for details about system-specific watchdog configuration.
+      </p></li><li class="step"><p>
+        Check whether any watchdog modules are already loaded in the kernel:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">lsmod | egrep "(wdt|dog)"</code></pre></div><p>
+        If the correct watchdog module is already loaded, you can skip to
+        <a class="xref" href="index.html#sbd-watchdog-device-verify" title="Step 7">Step 7</a>.
+      </p></li><li class="step"><p>
+        If the wrong watchdog module is loaded, you can unload it with the following command:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo rmmod <em class="replaceable">WRONG_MODULE</em></code></pre></div></li><li class="step"><p>
+        Enable the watchdog module that matches your hardware:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo bash -c "echo <em class="replaceable">WATCHDOG_MODULE</em> &gt; /etc/modules-load.d/watchdog.conf"</code></pre></div><div id="id-1.4.5.4.3" class="admonition tip compact"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><p>
+          If you run this command as the <code class="systemitem">root</code> user, you can omit <code class="command">bash -c</code> and
+          the quotes (""):
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">echo <em class="replaceable">WATCHDOG_MODULE</em> &gt; /etc/modules-load.d/watchdog.conf</code></pre></div></div></li><li class="step"><p>
+        Reload the kernel modules:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo systemctl restart systemd-modules-load</code></pre></div></li><li class="step"><p>
+        Check whether the watchdog module is loaded correctly:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">lsmod | egrep "(wdt|dog)"</code></pre></div></li><li class="step" id="sbd-watchdog-device-verify"><p>
+        Verify that at least one watchdog device is available:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo sbd query-watchdog</code></pre></div><p>
+        If no watchdog device is available, you might need to use a different driver.
+      </p></li><li class="step"><p>
+        Verify that the watchdog device works:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo sbd -w /dev/<em class="replaceable">WATCHDOG_DEVICE</em> test-watchdog</code></pre></div><p>
+        If the test is successful, the node reboots.
+      </p></li></ol></div></div><div id="id-1.4.6" data-id-title="Accessing the watchdog timer" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Accessing the watchdog timer</div><p>
+      SBD must be the only software that accesses the watchdog timer. Some hardware vendors ship
+      systems management software that uses the watchdog for system resets (for example, the HP ASR
+      daemon). If this is the case, disable the additional software.
+    </p></div><div class="table" id="ha-watchdog-drivers" data-id-title="Commonly used watchdog drivers"><div class="title-container"><div class="table-title-wrap"><div class="table-title"><span class="title-number-name"><span class="title-number">Table 1: </span><span class="title-name">Commonly used watchdog drivers </span></span><a title="Permalink" class="permalink" href="index.html#ha-watchdog-drivers">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="table-contents"><table style="width: 100%; border-collapse: collapse; border-top: 1px solid ; border-bottom: 1px solid ; border-left: 1px solid ; border-right: 1px solid ; "><colgroup><col/><col/></colgroup><thead><tr><th style="border-right: 1px solid ; border-bottom: 1px solid ; ">Hardware</th><th style="border-bottom: 1px solid ; ">Driver</th></tr></thead><tbody><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">HPE</td><td style="border-bottom: 1px solid ; "><code class="systemitem">hpwdt</code></td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Dell, Lenovo (Intel TCO)</td><td style="border-bottom: 1px solid ; "><code class="systemitem">iTCO_wdt</code></td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Fujitsu</td><td style="border-bottom: 1px solid ; "><code class="systemitem">ipmi_watchdog</code></td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">LPAR on IBM Power</td><td style="border-bottom: 1px solid ; "><code class="systemitem">pseries-wdt</code></td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">VM on IBM z/VM</td><td style="border-bottom: 1px solid ; "><code class="systemitem">vmwatchdog</code></td></tr><tr><td style="border-right: 1px solid ; ">VM on VMware vSphere</td><td><code class="systemitem">wdat_wdt</code></td></tr></tbody></table></div></div></section><section xml:lang="en" class="sect1" id="ha-sbd-setting-up-diskless" data-id-title="Setting up diskless SBD"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Setting up diskless SBD</span></span> <a title="Permalink" class="permalink" href="index.html#ha-sbd-setting-up-diskless">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Diskless SBD fences nodes by using only the watchdog, without a shared storage device.
+        However, diskless SBD cannot handle a split-brain scenario for a two-node cluster.
+        This configuration should only be used for clusters with more than two nodes, or in
+        combination with QDevice to help handle split-brain scenarios.
+      </p><p>
+        This procedure explains how to configure SBD after the cluster is already installed and
+        running, not during the initial cluster setup.
+      </p></div></div></div></div><div id="id-1.5.2" data-id-title="Cluster restart required" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Cluster restart required</div><p>
+      In this procedure, the setup script has to restart the cluster services before it can modify
+      the <code class="literal">stonith-watchdog-timeout</code>. Therefore, if any resources are running, you
+      must put the cluster into maintenance mode before running the script. This allows the services
+      managed by the resources to keep running while the cluster restarts. However, be aware that
+      the resources won't have cluster protection while in maintenance mode.
+    </p></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Requirements </span></span><a title="Permalink" class="permalink" href="index.html#id-1.5.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        An existing High Availability cluster is already running.
+      </p></li><li class="listitem"><p>
+        SBD is not configured yet.
+      </p></li><li class="listitem"><p>
+        All nodes have a watchdog device, and the correct watchdog kernel module is loaded.
+      </p></li></ul></div><p>
+    Perform this procedure on only one cluster node:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code> privileges.
+      </p></li><li class="step"><p>
+        Check whether any resources are running:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div></li><li class="step"><p>
+        If any resources are running, put the cluster into maintenance mode:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance on</code></pre></div><p>
+        In this state, the cluster stops monitoring all resources. This allows the services
+        managed by the resources to keep running while the cluster restarts. However, be aware
+        that the resources won't have cluster protection while in maintenance mode.
+      </p></li><li class="step"><p>
+        Run the SBD stage of the cluster setup script, using the option <code class="option">--enable-sbd</code>
+        (or <code class="option">-S</code>) to specify diskless SBD:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster init sbd --enable-sbd </code></pre></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Additional options </span></span><a title="Permalink" class="permalink" href="index.html#id-1.5.5.4.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+            If multiple watchdogs are available, you can use the option <code class="option">--watchdog</code>
+            (or <code class="option">-w</code>) to choose which watchdog to use. Specify either the device name
+            (for example, <code class="literal">/dev/watchdog1</code>) or the driver name (for example,
+            <code class="literal">iTCO_wdt</code>).
+          </p></li></ul></div><p>
+        The script updates the SBD configuration file and restarts the cluster services, then
+        updates additional timeout settings. Unlike other node fencing mechanisms, diskless SBD
+        does not need a fence agent.
+      </p></li><li class="step"><p>
+        If the cluster is still in maintenance mode, put it back into normal operation:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance off</code></pre></div></li><li class="step"><p>
+        Check the SBD configuration:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm sbd configure show</code></pre></div><p>
+        The output of this command shows the enabled settings in the
+        <code class="filename">/etc/sysconfig/sbd</code> file and the SBD-related cluster settings.
+      </p></li><li class="step"><p>
+        Check the status of SBD:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm sbd status</code></pre></div><p>
+        The output of this command shows the type of SBD configured, information about the SBD
+        watchdog, and the status of the SBD service.
+      </p></li></ol></div></div></section><section xml:lang="en" class="sect1" id="ha-testing-cluster-failures" data-id-title="Testing SBD and node fencing"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Testing SBD and node fencing</span></span> <a title="Permalink" class="permalink" href="index.html#ha-testing-cluster-failures">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+            The <code class="command">crm cluster crash_test</code> command simulates cluster failures and
+            reports the results. To test SBD and node fencing, you can run one or more of the
+            tests <code class="option">--fence-node</code>, <code class="option">--kill-sbd</code> and
+            <code class="option">--split-brain-iptables</code>.
+          </p></div></div></div></div><p>
+    The command supports the following checks:
+  </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.6.3.1"><span class="term"><code class="option">--fence-node <em class="replaceable">NODE</em></code></span></dt><dd><p>
+          Fences a specific node passed from the command line.
+        </p></dd><dt id="id-1.6.3.2"><span class="term"><code class="option">--kill-sbd</code>/<code class="option">--kill-corosync</code>/
+       <code class="option">--kill-pacemakerd</code></span></dt><dd><p>
+          Kills the daemons for SBD, Corosync, or Pacemaker. After running one of these tests,
+          you can find a report in the directory <code class="filename">/var/lib/crmsh/crash_test/</code>.
+          The report includes a test case description, action logging, and an explanation of
+          possible results.
+        </p></dd><dt id="id-1.6.3.3"><span class="term"><code class="option">--split-brain-iptables</code></span></dt><dd><p>
+          Simulates a split-brain scenario by blocking the Corosync port, and checks whether one
+          node can be fenced as expected. You must install <span class="package">iptables</span> before you
+          can run this test.
+        </p></dd></dl></div><p>
+    For more information, run the <code class="command">crm cluster crash_test --help</code> command.
+  </p><p>
+    This example uses nodes called <code class="systemitem">alice</code> and
+    <code class="systemitem">bob</code>, and tests fencing <code class="systemitem">bob</code>. To watch
+    <code class="systemitem">bob</code> change status during the test, you can log in to Hawk and
+    navigate to <span class="guimenu">Status</span> › <span class="guimenu">Nodes</span>, or
+    run <code class="command">crm status</code> from another node.
+  </p><div class="example" id="id-1.6.6" data-id-title="Manually triggering node fencing"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 1: </span><span class="title-name">Manually triggering node fencing </span></span><a title="Permalink" class="permalink" href="index.html#id-1.6.6">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">admin@alice&gt;</code> <code class="command">sudo crm cluster crash_test --fence-node bob</code>
+
+==============================================
+Testcase:          Fence node bob
+Fence action:      reboot
+Fence timeout:     95
+
+!!! WARNING WARNING WARNING !!!
+THIS CASE MAY LEAD TO NODE BE FENCED.
+TYPE Yes TO CONTINUE, OTHER INPUTS WILL CANCEL THIS CASE [Yes/No](No): <code class="command">Yes</code>
+INFO: Trying to fence node "bob"
+INFO: Waiting 95s for node "bob" reboot...
+INFO: Node "bob" will be fenced by "alice"!
+INFO: Node "bob" was fenced by "alice" at <em class="replaceable">DATE</em> <em class="replaceable">TIME</em></pre></div></div></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#ha-fencing-what-is"><span class="title-number">1 </span><span class="title-name">What is node fencing?</span></a></span></li><li><span class="section"><a href="index.html#ha-sbd-what-is"><span class="title-number">2 </span><span class="title-name">What is SBD?</span></a></span></li><li><span class="section"><a href="index.html#ha-sbd-setting-up-watchdog"><span class="title-number">3 </span><span class="title-name">Setting up the SBD watchdog</span></a></span></li><li><span class="section"><a href="index.html#ha-sbd-setting-up-diskless"><span class="title-number">4 </span><span class="title-name">Setting up diskless SBD</span></a></span></li><li><span class="section"><a href="index.html#ha-testing-cluster-failures"><span class="title-number">5 </span><span class="title-name">Testing SBD and node fencing</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">6 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li><li><span class="glossary"><a href="ha-glossary.html"><span class="title-name">HA glossary</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>
