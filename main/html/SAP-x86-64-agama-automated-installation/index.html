@@ -2,7 +2,7 @@
 <!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Automated Installation Using Agama | SUSE Linux Enterprise Server for SAP applications 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
 <link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
 <meta name="dcterms.created" content="2025-11-04"/>
-<meta name="dcterms.modified" content="2026-08-25"/>
+<meta name="dcterms.modified" content="2026-08-26"/>
 <meta name="dcterms.dateSubmitted" content="2026-08-28"/>
 <meta name="title" content="Automated Installation Using Agama | SUSE Linux Enterp…"/>
 <meta name="description" content="Automate unattended SUSE Linux Enterprise Server for SAP applications installations at scale by writing an Agama JSON profile and booting with the inst.au…"/>
@@ -40,8 +40,8 @@
       }
     ],
     "dateCreated": "2025-11-04T00:00+02:00",
-    "dateModified": "2026-08-25T00:00+02:00",
-    "datePublished": "2026-08-28T09:11+02:00",
+    "dateModified": "2026-08-26T00:00+02:00",
+    "datePublished": "2026-08-28T11:12+02:00",
     "about": [
       {
         "@type": "Thing",
@@ -275,7 +275,14 @@
       what to install, and a <code class="literal">root</code> section with credentials for the root user.
       Agama uses the defaults for the rest of the profile. As a best practice, also configure
       the following:
-    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Product registration</p></li><li class="listitem"><p>A host name</p></li><li class="listitem"><p>A non-root user</p></li><li class="listitem"><p>Minimal localization settings</p></li></ul></div><div class="example" id="agama-minimal-profile" data-id-title="A basic Agama profile for automated installation"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 1: </span><span class="title-name">A basic Agama profile for automated installation </span></span><a title="Permalink" class="permalink" href="index.html#agama-minimal-profile">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">{
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Product registration</p></li><li class="listitem"><p>A host name</p></li><li class="listitem"><p>A non-root user</p></li><li class="listitem"><p>Minimal localization settings</p></li></ul></div><div id="id-1.4.3.4" data-id-title="Registration on air-gapped systems" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Registration on air-gapped systems</div><p>
+        Registration is only relevant when installing from <code class="literal">Online</code>
+        installation media, which retrieves packages from a registered repository. When
+        installing from <code class="literal">Full</code> installation media, which already contains the
+        installation repository, you can omit the <code class="literal">registrationCode</code> and
+        <code class="literal">registrationEmail</code> fields, including in air-gapped environments with no
+        access to a registration server.
+      </p></div><div class="example" id="agama-minimal-profile" data-id-title="A basic Agama profile for automated installation"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 1: </span><span class="title-name">A basic Agama profile for automated installation </span></span><a title="Permalink" class="permalink" href="index.html#agama-minimal-profile">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen">{
   "product": {
     "id": "<em class="replaceable">PRODUCT_ID</em>",
     "registrationCode": "<em class="replaceable">REGISTRATION_CODE</em>",
@@ -497,6 +504,11 @@
             The registration code for the product obtained from the SUSE Customer Center and used to activate
             repositories and receive updates. Registration is available only for the SUSE Linux
             Enterprise family of products.
+          </p><p>
+            Registration is required only when installing from <code class="literal">Online</code>
+            installation media, which needs a registered repository to obtain packages.
+            Installing from <code class="literal">Full</code> installation media, which already includes
+            the installation repository, does not require registration.
           </p></dd><dt id="id-1.6.2.5.4"><span class="term">registrationEmail</span></dt><dd><p>
             The e-mail address associated with the registration account used during product
             activation.
