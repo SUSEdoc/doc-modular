@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Introduction to the CRM Shell | SUSE Linux Enterprise High Availability 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2026-09-03"/>
+<meta name="dcterms.modified" content="2026-09-03"/>
+<meta name="dcterms.dateSubmitted" content="2026-09-03"/>
+<meta name="title" content="Introduction to the CRM Shell | SUSE Linux Enterprise …"/>
+<meta name="description" content="How to install, configure and manage High Availability clusters using the CRM Shell command-line interface"/>
+<meta name="product-name" content="SUSE Linux Enterprise High Availability"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="Introduction to the CRM Shell"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="tahlia.richardson@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise High Availability 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="category" content="."/><meta name="dc.creator" content="tahlia.richardson@suse.com"/><meta property="og:title" content="Introduction to the CRM Shell"/>
+<meta property="og:description" content="Manage High Availability clusters with the CRM Shell"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Introduction to the CRM Shell"/>
+<meta name="twitter:description" content="Manage High Availability clusters with the CRM Shell"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Introduction to the CRM Shell | SUSE Linux Enterprise High Availability 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Introduction to the CRM Shell",
+    "description": "How to install, configure and manage High Availability clusters using the CRM Shell command-line interface",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2026-09-03T00:00+02:00",
+    "dateModified": "2026-09-03T00:00+02:00",
+    "datePublished": "2026-09-03T12:22+02:00",
+
+    "articleSection": [ 
+        "Administration"
+        
+    ],
+        "about": [
+      {
+        "@type": "Thing",
+        "name": "Administration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Clustering"
+      },
+      {
+        "@type": "Thing",
+        "name": "High Availability"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise High Availability",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER, IBM Z"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Introduction to the CRM Shell</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Introduction to the CRM Shell</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="ha-crmsh-introduction" data-id-title="Introduction to the CRM Shell"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise High Availability</span></span></span> 16.1</div><div><h1 class="title">Introduction to the CRM Shell</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>03 Sep 2026</div><div><div class="abstract"><p>
+          The CRM Shell (<code class="systemitem">crmsh</code>) is a command-line interface for installing, configuring and
+          managing SUSE Linux Enterprise High Availability clusters. It simplifies complex cluster operations by providing a more
+          readable line-based syntax for interacting with Pacemaker's XML configuration format.
+          This article introduces some of the CRM Shell's basic concepts and usage.
+        </p><p><span><em class="emphasis">Requirements:</em></span></p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Access to a cluster node with <code class="systemitem">root</code> privileges or <code class="command">sudo</code> authorization</p></li><li class="listitem"><p>Passwordless SSH key authentication between the cluster nodes</p></li></ul></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Introduction to the CRM Shell" hreflang="en" href="rh-ha-crmsh-introduction.html" target="_blank">Revision History: Introduction to the CRM Shell</a></div></div></div></div><section xml:lang="en" class="sect1" id="ha-crmsh-what-is" data-id-title="What is the CRM Shell?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">What is the CRM Shell?</span></span> <a title="Permalink" class="permalink" href="index.html#ha-crmsh-what-is">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        The CRM Shell (<code class="systemitem">crmsh</code>) is a command-line interface for installing, configuring and
+        managing SUSE Linux Enterprise High Availability clusters. It simplifies complex cluster operations by providing a more
+        readable line-based syntax for interacting with Pacemaker's XML configuration format.
+      </p><p>
+        The top level of the CRM Shell is the <code class="command">crm</code> command.
+        The <code class="command">crm</code> command includes multiple subcommands to manage resources, CIBs,
+        nodes, resource agents, and others. It also has a thorough help system with embedded
+        examples. You can run most <code class="command">crm</code> commands from any node in the cluster.
+      </p><p>
+        CRM Shell events are logged to <code class="filename">/var/log/crmsh/crmsh.log</code>.
+      </p></div></div></div></div><section class="sect2" id="ha-crmsh-what-is-using" data-id-title="Using the CRM Shell"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">Using the CRM Shell</span></span> <a title="Permalink" class="permalink" href="index.html#ha-crmsh-what-is-using">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      You can use the CRM Shell in multiple ways:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.2.3.1"><span class="term">Command line (single-shot)</span></dt><dd><p>
+            Run a single <code class="command">crm</code> command in full, including a subcommand
+            and parameters. Tab completion is supported. For example,
+            <code class="command">crm config</code><span class="keycap">→|</span> completes the word, and
+            <code class="command">crm configure</code><span class="keycap">→|</span><span class="keycap">→|</span>
+            lists the available subcommands.
+          </p></dd><dt id="id-1.2.2.3.2"><span class="term">Interactive mode</span></dt><dd><p>
+  The CRM Shell's interactive mode is a dedicated, internal command shell that allows you to run
+  multiple commands without needing to repeatedly type the <code class="command">crm</code> prefix. You can
+  also move down a level to a subcommand, such as <code class="command">crm configure</code>, to run multiple
+  commands at the same level. Changes you make in interactive mode are only applied to the live
+  cluster after you <code class="command">commit</code> them, which can be useful when configuring resources
+  that are dependent on one another and require constraints. Interactive mode also supports tab
+  completion.
+</p></dd><dt id="id-1.2.2.3.3"><span class="term">Shell scripts</span></dt><dd><p>
+  You can create CRM Shell scripts to group multiple <code class="systemitem">crmsh</code> subcommands in a single file,
+  making it easier to rerun them later. A shell script can <span><em class="emphasis">only</em></span> contain
+  <code class="command">crm</code> subcommands. Any other commands are not allowed.
+</p></dd></dl></div></section><section class="sect2" id="ha-crmsh-what-is-authentication" data-id-title="User privileges"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">User privileges</span></span> <a title="Permalink" class="permalink" href="index.html#ha-crmsh-what-is-authentication">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Managing a cluster requires sufficient privileges. The following users can run the
+      <code class="command">crm</code> command and its subcommands:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          The <code class="systemitem">root</code> user or a user with <code class="command">sudo</code> privileges. These users have
+          full privileges for <code class="systemitem">crmsh</code> operations such as <code class="command">crm cluster init</code>
+          and <code class="command">crm report</code>. They can also make changes to the CIB, such as adding
+          resources and constraints.
+        </p></li><li class="listitem"><p>
+          The CRM owner user. This is typically the user <code class="systemitem">hacluster</code>, which
+          is created by default if you install the cluster with <code class="command">crm cluster init</code>.
+          This user can make changes to the CIB but has limited privileges for operations that use
+          SSH, such as <code class="command">crm report</code>.
+        </p></li></ul></div></section><section class="sect2" id="ha-crmsh-what-is-ssh-key-authentication" data-id-title="SSH key authentication"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.3 </span><span class="title-name">SSH key authentication</span></span> <a title="Permalink" class="permalink" href="index.html#ha-crmsh-what-is-ssh-key-authentication">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      For operations that use SSH, the cluster uses passwordless SSH access for communication
+      between the nodes. If you install the cluster with <code class="command">crm cluster init</code>, the
+      script checks for SSH keys and generates them if they don't already exist. If you install
+      the cluster manually, you must configure the SSH keys yourself.
+    </p><p>
+      In most cases, the <code class="systemitem">root</code> or <code class="command">sudo</code> user's SSH keys must exist (or be
+      generated) on the node. Alternatively, a <code class="command">sudo</code> user's SSH keys can exist
+      on a local machine and be passed to the node via SSH agent forwarding. This can be useful
+      if you need to avoid storing SSH keys on the nodes.
+    </p></section><section class="sect2" id="ha-crmsh-what-is-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.4 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="index.html#ha-crmsh-what-is-more-info">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          <code class="command">man crm</code>
+        </p></li><li class="listitem"><p>
+          <code class="command">crm help overview</code>
+        </p></li><li class="listitem"><p>
+          <a class="link" href="https://crmsh.github.io/documentation" target="_blank">https://crmsh.github.io/documentation</a>
+        </p></li></ul></div></section></section><section xml:lang="en" class="sect1" id="ha-crmsh-help-commands" data-id-title="Help commands"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Help commands</span></span> <a title="Permalink" class="permalink" href="index.html#ha-crmsh-help-commands">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        The <code class="command">crm</code> command has multiple options for showing help text:
+      </p></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        Show the usage of <code class="command">crm</code> and its command-line options:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm --help</code></pre></div></li><li class="listitem"><p>
+        List the conceptual help topics:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm help topics</code></pre></div></li><li class="listitem"><p>
+        List all the available subcommands:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm help</code></pre></div></li><li class="listitem"><p>
+        Show the help text for a subcommand. For example:
+     </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure help</code></pre></div></li><li class="listitem"><p>
+        Show the syntax, usage, and examples for a command within a subcommand. For example:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure help group</code></pre></div><p>
+        This command also has the same result:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm help configure group</code></pre></div></li></ul></div><p>
+    Unlike the <code class="option">--help</code> option, the <code class="command">help</code> subcommand opens a text
+    viewer. The text viewer allows you to scroll up or down and read the output more comfortably.
+    To leave the text viewer, press the <span class="keycap">Q</span> key.
+  </p></section><section xml:lang="en" class="sect1" id="ha-crmsh-showing-cluster-status" data-id-title="Status commands"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Status commands</span></span> <a title="Permalink" class="permalink" href="index.html#ha-crmsh-showing-cluster-status">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        The <code class="command">crm</code> command has multiple options for showing information about the cluster:
+      </p></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        Show the status of the cluster services:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster status</code></pre></div></li><li class="listitem"><p>
+        Show the status of the cluster, including a summary of the cluster details, a list and
+        status of all the nodes, and a list and status of all the resources:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div></li><li class="listitem"><p>
+        Show the status of the cluster, but with the resources listed under the nodes they're
+        currently running on:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status bynode</code></pre></div></li><li class="listitem"><p>
+        Show the status of the cluster, but expanded to also list the primitive resources that
+        are included in resource groups and clone sets:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status detail</code></pre></div></li><li class="listitem"><p>
+        Show the status of the cluster, a summary of the resource operations on each node,
+        and the migration threshold of each resource:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status ops</code></pre></div></li><li class="listitem"><p>
+        Show the status of the cluster with more information, such as details about the resource
+        operations and a list of inactive resources:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status full</code></pre></div></li><li class="listitem"><p>
+        Show additional options:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm help status</code></pre></div></li></ul></div><p>
+    If the output is longer than the terminal window, these commands open a text viewer.
+    The text viewer allows you to scroll up or down and read the output more comfortably.
+    To leave the text viewer, press the <span class="keycap">Q</span> key.
+  </p></section><section xml:lang="en" class="sect1" id="ha-crmsh-using-interactive-mode" data-id-title="Using interactive mode"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Using interactive mode</span></span> <a title="Permalink" class="permalink" href="index.html#ha-crmsh-using-interactive-mode">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+  The CRM Shell's interactive mode is a dedicated, internal command shell that allows you to run
+  multiple commands without needing to repeatedly type the <code class="command">crm</code> prefix. You can
+  also move down a level to a subcommand, such as <code class="command">crm configure</code>, to run multiple
+  commands at the same level. Changes you make in interactive mode are only applied to the live
+  cluster after you <code class="command">commit</code> them, which can be useful when configuring resources
+  that are dependent on one another and require constraints. Interactive mode also supports tab
+  completion.
+</p></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code> privileges.
+      </p></li><li class="step"><p>
+        Start interactive mode:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm</code></pre></div><p>
+        The prompt changes to <code class="prompt user">crm(live/HOSTNAME)#</code>. However, for better readability
+        we omit the host name in our documentation:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">crm(live)#</code></pre></div><div id="id-1.5.2.2.5" data-id-title="Starting a subcommand directly" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Starting a subcommand directly</div><p>
+          You can also start interactive mode directly at the subcommand level. For example:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure</code>
+<code class="prompt custom">crm(live)configure# </code></pre></div></div></li><li class="step"><p>
+        You can navigate interactive mode with the following options:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            List the available subcommands:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt custom">crm(live)# </code><code class="command">ls</code></pre></div></li><li class="listitem"><p>
+            Enter the name of a subcommand to switch to that level. For example:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt custom">crm(live)# </code><code class="command">resource</code>
+<code class="prompt user">crm(live)resource#</code></pre></div></li><li class="listitem"><p>
+            Switch between subcommands with <code class="command">cd</code>. For example:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">crm(live)resource#</code> <code class="command">cd ../node</code>
+<code class="prompt user">crm(live)node#</code></pre></div></li><li class="listitem"><p>
+            Go back one level with <code class="command">up</code> or <code class="command">cd</code>:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">crm(live)node#</code> <code class="command">up</code>
+<code class="prompt custom">crm(live)# </code></pre></div></li></ul></div></li><li class="step"><p>
+        Make your changes. This example shows commands for configuring a virtual IP address
+        and adding a location constraint to keep the IP address running on a node named
+        <code class="literal">alice</code>. Because both commands are under the <code class="command">crm configure</code>
+        subcommand, you can switch to the <code class="command">configure</code> level to shorten the actual
+        commands you need to type.
+      </p><div class="example" id="id-1.5.2.4.2" data-id-title="Adding a virtual IP address with a location constraint for node alice"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 1: </span><span class="title-name">Adding a virtual IP address with a location constraint for node alice </span></span><a title="Permalink" class="permalink" href="index.html#id-1.5.2.4.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen"><code class="prompt custom">crm(live)# </code><code class="command">configure</code>
+<code class="prompt custom">crm(live)configure# </code><code class="command">primitive vip1 IPaddr2 params ip=192.168.1.5</code>
+<code class="prompt custom">crm(live)configure# </code><code class="command">location loc-vip1-on-alice vip1 inf: alice</code>
+<code class="prompt custom">crm(live)configure# </code><code class="command">show changed</code></pre></div></div></div></li><li class="step"><p>
+        Commit your changes to apply them to the live cluster:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt custom">crm(live)configure# </code><code class="command">commit</code></pre></div><p>
+        You must commit your changes before you exit interactive mode, switch back to the
+        <code class="command">crm</code> level, or switch to another subcommand. The changes will be lost
+        if you don't commit them, but the CRM Shell will warn you before this happens.
+      </p></li><li class="step"><p>
+        Exit interactive mode:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt custom">crm(live)configure# </code><code class="command">quit</code></pre></div></li></ol></div></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">For more information </span></span><a title="Permalink" class="permalink" href="index.html#id-1.5.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        <a class="link" href="https://crmsh.github.io/man-5.0/#topics.Introduction.Interface" target="_blank">https://crmsh.github.io/man-5.0/#topics.Introduction.Interface</a>
+      </p></li></ul></div></section><section xml:lang="en" class="sect1" id="ha-crmsh-using-shell-scripts" data-id-title="Using shell scripts"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Using shell scripts</span></span> <a title="Permalink" class="permalink" href="index.html#ha-crmsh-using-shell-scripts">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+  You can create CRM Shell scripts to group multiple <code class="systemitem">crmsh</code> subcommands in a single file,
+  making it easier to rerun them later. A shell script can <span><em class="emphasis">only</em></span> contain
+  <code class="command">crm</code> subcommands. Any other commands are not allowed.
+</p></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code> privileges.
+      </p></li><li class="step"><p>
+        Create a file and add the <code class="command">crm</code> subcommands you want to run together. For
+        example, the commands in this file print the status of the cluster and a list of all nodes:
+      </p><div class="verbatim-wrap"><pre class="screen"># A small example file with some crm subcommands
+<code class="command">status</code>
+<code class="command">node show</code></pre></div><p>
+        Any line starting with the hash symbol (<code class="literal">#</code>) is a comment and is ignored.
+      </p><p>
+        If a line is too long, add a backslash (<code class="literal">\</code>) at the end and continue in
+        the next line. We recommend indenting lines belonging to a certain subcommand to improve
+        readability.
+      </p></li><li class="step"><p>
+        Run the script:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm -f <em class="replaceable">SCRIPT</em></code></pre></div><p>
+        For example, this CRM Shell script is named <code class="filename">example.cli</code>:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm -f example.cli</code></pre></div></li></ol></div></div></section><section xml:lang="en" class="sect1" id="ha-crmsh-testing-with-shadow-configuration" data-id-title="Testing cluster changes with a shadow CIB"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Testing cluster changes with a shadow CIB</span></span> <a title="Permalink" class="permalink" href="index.html#ha-crmsh-testing-with-shadow-configuration">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        A <span><em class="emphasis">shadow CIB</em></span>, or shadow configuration, is a copy of the live cluster
+        configuration. Changes to a shadow CIB have no effect on the live cluster's resources.
+        You can use a shadow CIB to test different configuration scenarios. You can also create
+        multiple shadow CIBs and test them one by one to see the effects of different changes.
+      </p></div></div></div></div><p>
+    This example procedure shows the process for creating and using a shadow CIB:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code> privileges.
+      </p></li><li class="step"><p>
+        Start <code class="systemitem">crmsh</code>'s interactive mode at the <code class="literal">configure</code> level:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure</code></pre></div></li><li class="step"><p>
+        Create a new shadow CIB:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt custom">crm(live)configure# </code><code class="command">cib new test1</code>
+INFO: configure.cib.new: test1 shadow CIB created
+<code class="prompt user">crm(test1)configure#</code></pre></div><p>
+        The prompt changes from <code class="literal">live</code> to the name of the shadow CIB.
+        If you don't specify a name, the temporary name <code class="literal">@tmp@</code> is used instead.
+      </p></li><li class="step"><p>
+        Make the changes you want to test.
+      </p></li><li class="step"><p>
+        Save the changes to see their effect on the cluster:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">crm(test1)configure#</code> <code class="command">commit</code></pre></div></li><li class="step"><p>
+        Switch back to the live CIB:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">crm(test1)configure#</code> <code class="command">cib use live</code></pre></div><p>
+        The prompt changes back to <code class="literal">live</code>.
+      </p></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+        To apply the changes from the shadow CIB to the live CIB, run the following command:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt custom">crm(live)configure# </code><code class="command">cib commit test1</code>
+INFO: configure.cib.commit: committed 'test1' shadow CIB to the cluster</pre></div></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+        You can switch back to the shadow CIB if you need to use it again later:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt custom">crm(live)configure# </code><code class="command">cib use test1</code></pre></div></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+        To undo the changes in the shadow CIB, or to update the shadow CIB to match the latest
+        live CIB, run the following command:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">crm(test1)configure#</code> <code class="command">cib reset test1</code>
+INFO: configure.cib.reset: copied live CIB to test1</pre></div></li></ol></div></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">For more information </span></span><a title="Permalink" class="permalink" href="index.html#id-1.7.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        <code class="command">crm help shadows</code>
+      </p></li><li class="listitem"><p>
+        <code class="command">crm help cib</code>
+      </p></li></ul></div></section><section xml:lang="en" class="sect1" id="ha-crmsh-debugging-cluster-configuration-changes" data-id-title="Reviewing cluster changes before committing"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Reviewing cluster changes before committing</span></span> <a title="Permalink" class="permalink" href="index.html#ha-crmsh-debugging-cluster-configuration-changes">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        When you make changes to the cluster configuration in <code class="systemitem">crmsh</code>'s interactive mode,
+        the changes only apply to the live cluster after you <code class="command">commit</code> them.
+        This procedure shows how to review your changes before you commit them to the live cluster.
+      </p></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code> privileges.
+      </p></li><li class="step"><p>
+        Start <code class="systemitem">crmsh</code>'s interactive mode at the <code class="literal">configure</code> level:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure</code></pre></div></li><li class="step"><p>
+        Make your changes.
+      </p></li><li class="step"><p>
+        Show a diff of the changes to the cluster configuration:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt custom">crm(live)configure# </code><code class="command">show changed</code></pre></div></li><li class="step"><p>
+        Show a projection of the changes to the cluster status:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt custom">crm(live)configure# </code><code class="command">ptest</code></pre></div><p>
+        This command displays the following information:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            The current cluster status
+          </p></li><li class="listitem"><p>
+            A summary of the actions the cluster will take after the changes are committed
+          </p></li><li class="listitem"><p>
+            The projected cluster status after the changes are committed
+          </p></li></ul></div></li><li class="step"><p>
+        If you're happy with the changes, commit the new configuration:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt custom">crm(live)configure# </code><code class="command">commit</code></pre></div><p>
+        Alternatively, you can discard the changes before committing them by exiting
+        interactive mode with <code class="command">quit</code>.
+      </p></li></ol></div></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">For more information </span></span><a title="Permalink" class="permalink" href="index.html#id-1.8.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        <code class="command">crm configure help ptest</code>
+      </p></li></ul></div></section><section xml:lang="en" class="sect1" id="ha-crmsh-managing-sensitive-parameters" data-id-title="Managing sensitive parameters"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name">Managing sensitive parameters</span></span> <a title="Permalink" class="permalink" href="index.html#ha-crmsh-managing-sensitive-parameters">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        By default, the CRM Shell obscures passwords in the output of commands like
+        <code class="command">crm configure show</code>. To further obscure sensitive values in the raw CIB
+        data, you can use the <code class="command">crm resource secret</code> command. This command replaces
+        a resource parameter's value with a special string that points to a separate file containing
+        the actual value. The file is not encrypted, but only the <code class="systemitem">root</code> user has permission to
+        read or modify it. This helps to prevent accidental data exposure.
+      </p></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code> privileges.
+      </p></li><li class="step"><p>
+        Check the resource's current parameters:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm configure show <em class="replaceable">RESOURCE</em></code></pre></div></li><li class="step"><p>
+        Hide the value of a sensitive parameter:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            To hide the value of an existing parameter, use the <code class="command">stash</code> command:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm resource secret <em class="replaceable">RESOURCE</em> stash <em class="replaceable">PARAMETER</em></code></pre></div><p>
+            For example:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm resource secret mydb stash passwd</code></pre></div></li><li class="listitem"><p>
+            To add a new parameter, use the <code class="command">set</code> command:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm resource secret <em class="replaceable">RESOURCE</em> set <em class="replaceable">PARAMETER VALUE</em></code></pre></div><p>
+            For example:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm resource secret mydb set passwd linux</code></pre></div></li></ul></div><p>
+        Both of these commands move the value of the sensitive parameter to a separate file under
+        the <code class="filename">/var/lib/</code> directory. The file is not encrypted, but only the
+        <code class="systemitem">root</code> user has permission to read or modify it.
+      </p></li><li class="step"><p>
+        The cluster automatically synchronizes the change across the other nodes. However, if any
+        nodes are unavailable, you might see the following output:
+      </p><div class="verbatim-wrap"><pre class="screen">Node bob is down - you'll need to update it with `cibsecret sync` later</pre></div><p>
+        When the node is available again, or if you add a new node to the cluster, you must
+        manually synchronize the change:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo cibsecret sync</code></pre></div></li><li class="step"><p>
+        You can view the hidden value with the following command:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm resource secret <em class="replaceable">RESOURCE</em> show <em class="replaceable">PARAMETER</em></code></pre></div><p>
+        For example:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm resource secret mydb show passwd</code></pre></div></li></ol></div></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">For more information </span></span><a title="Permalink" class="permalink" href="index.html#id-1.9.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        <code class="command">crm resource help secret</code>
+      </p></li><li class="listitem"><p>
+        <code class="command">cibsecret --help</code>
+      </p></li></ul></div><div id="id-1.9.4" class="admonition tip compact"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><p>
+      <code class="command">crm resource secret</code> is the <code class="command">crm</code> front end for Pacemaker's
+      <code class="command">cibsecret</code> command.
+    </p></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">9 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#ha-crmsh-what-is"><span class="title-number">1 </span><span class="title-name">What is the CRM Shell?</span></a></span></li><li><span class="section"><a href="index.html#ha-crmsh-help-commands"><span class="title-number">2 </span><span class="title-name">Help commands</span></a></span></li><li><span class="section"><a href="index.html#ha-crmsh-showing-cluster-status"><span class="title-number">3 </span><span class="title-name">Status commands</span></a></span></li><li><span class="section"><a href="index.html#ha-crmsh-using-interactive-mode"><span class="title-number">4 </span><span class="title-name">Using interactive mode</span></a></span></li><li><span class="section"><a href="index.html#ha-crmsh-using-shell-scripts"><span class="title-number">5 </span><span class="title-name">Using shell scripts</span></a></span></li><li><span class="section"><a href="index.html#ha-crmsh-testing-with-shadow-configuration"><span class="title-number">6 </span><span class="title-name">Testing cluster changes with a shadow CIB</span></a></span></li><li><span class="section"><a href="index.html#ha-crmsh-debugging-cluster-configuration-changes"><span class="title-number">7 </span><span class="title-name">Reviewing cluster changes before committing</span></a></span></li><li><span class="section"><a href="index.html#ha-crmsh-managing-sensitive-parameters"><span class="title-number">8 </span><span class="title-name">Managing sensitive parameters</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">9 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li><li><span class="glossary"><a href="ha-glossary.html"><span class="title-name">HA glossary</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>
