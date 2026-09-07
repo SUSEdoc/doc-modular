@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>SUSE Linux Real Time Hardware Testing and Latency | SUSE Linux 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2026-08-26"/>
+<meta name="dcterms.modified" content="2026-08-26"/>
+<meta name="dcterms.dateSubmitted" content="2026-09-07"/>
+<meta name="title" content="SUSE Linux Real Time Hardware Testing and Latency | SU…"/>
+<meta name="description" content="Learn how to test whether your hardware meets real-time latency requirements on SUSE Linux 16.1 using the hwlatdetect and cyclictest tools"/>
+<meta name="product-name" content="SUSE Linux"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="SUSE Linux Real Time Hardware Testing and Latency"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="daria.vladykina@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="daria.vladykina@suse.com"/><meta property="og:title" content="SUSE Linux Real Time Latency Testing"/>
+<meta property="og:description" content="hwlatdetect and cyclictest on SUSE Linux 16.1"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SUSE Linux Real Time Latency Testing"/>
+<meta name="twitter:description" content="hwlatdetect and cyclictest on SUSE Linux 16.1"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "SUSE Linux Real Time Latency Testing | SUSE Linux 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "SUSE Linux Real Time Latency Testing",
+    "description": "Learn how to test whether your hardware meets real-time latency requirements on SUSE Linux 16.1 using the hwlatdetect and cyclictest tools",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2026-08-26T00:00+02:00",
+    "dateModified": "2026-08-26T00:00+02:00",
+    "datePublished": "2026-09-07T10:02+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "About"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#rt-hardware-testing">SUSE Linux Real Time Hardware Testing and Latency</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="rt-hardware-testing" data-id-title="SUSE Linux Real Time Hardware Testing and Latency"><div class="titlepage"><div><div class="big-version-info"><span class="productname">SUSE Linux</span> 16.1</div><div><h1 class="title">SUSE Linux Real Time Hardware Testing and Latency</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>07 Sep 2026</div><div><div class="abstract"><p>
+          SUSE Linux 16.1 provides integrated real-time capabilities. To confirm that a
+          server can meet real-time deadlines, measure its latency with the hardware latency
+          detector and with <code class="systemitem">cyclictest</code>. The hardware latency detector
+          exposes delays caused by firmware and hardware. The <code class="systemitem">cyclictest</code>
+          tool adds the scheduling overhead of the operating system to the measurement. This
+          article explains how to prepare the platform, run both tools on SUSE Linux 16.1 and
+          interpret the results.
+        </p></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: SUSE Linux Real Time Hardware Testing and Latency" hreflang="en" href="rh-rt-hardware-testing.html" target="_blank">Revision History: SUSE Linux Real Time Hardware Testing and Latency</a></div></div></div></div><section xml:lang="en" class="sect1" id="rt-hardware-testing-concept" data-id-title="Understanding real-time hardware latency testing"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Understanding real-time hardware latency testing</span></span> <a title="Permalink" class="permalink" href="#rt-hardware-testing-concept">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Real-time hardware capabilities require predictable response times within a specified
+        margin. This section explains fundamental real-time concepts and the sources of platform
+        interference. It details how to distinguish hardware-induced delays from the scheduling
+        overhead of the operating system using latency tools. Understanding these concepts helps
+        you isolate low-level firmware bottlenecks before deploying production workloads.
+      </p></div></div></div></div><p>
+    You must distinguish between hardware-induced and operating-system-induced latencies. The
+    hardware latency detector runs independently of the Linux kernel scheduler. It polls the CPU
+    Time Stamp Counter (TSC) to find gaps. These gaps indicate when the hardware or firmware
+    disturbed the CPU.
+  </p><p>
+    Conversely, <code class="systemitem">cyclictest</code> measures operating system latencies. It runs
+    closer to a real computing situation by including operating system overhead in its results.
+  </p><p>
+    <code class="systemitem">cyclictest</code> measures a superset of what the hardware latency detector
+    measures, plus the scheduling and interrupt handling overhead added by the operating system. On
+    a correctly tuned system, expect <code class="systemitem">cyclictest</code> to report somewhat higher
+    latencies than the hardware latency detector, because it includes this additional software
+    overhead. If <code class="systemitem">cyclictest</code> reports latencies that are much higher, for
+    example, hundreds of microseconds or more where the hardware latency detector reports only a
+    few microseconds, this points to a source of latency in the operating system rather than in the
+    hardware. In that case, contact SUSE for support.
+  </p></section><section xml:lang="en" class="sect1" id="rt-hardware-testing-install-kernel" data-id-title="Installing the real-time kernel"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Installing the real-time kernel</span></span> <a title="Permalink" class="permalink" href="#rt-hardware-testing-install-kernel">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Before testing latencies, you must activate the real-time capabilities on your system. The
+    <span class="package">kernel-rt</span> package provides the preemption capabilities necessary for
+    real-time operations.
+  </p><div class="procedure" id="pro-install-kernel-rt" data-id-title="Installing and activating the kernel-rt package"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 1: </span><span class="title-name">Installing and activating the <span class="package">kernel-rt</span> package </span></span><a title="Permalink" class="permalink" href="#pro-install-kernel-rt">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Install the real-time kernel package:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper install kernel-rt</code></pre></div></li><li class="step"><p>
+        Reboot your system.
+      </p></li><li class="step"><p>
+        Select the <code class="systemitem">kernel-rt</code> kernel from the boot menu to activate the
+        real-time capabilities.
+      </p></li></ol></div></div></section><section xml:lang="en" class="sect1" id="rt-hardware-testing-prep" data-id-title="Preparing the hardware platform"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Preparing the hardware platform</span></span> <a title="Permalink" class="permalink" href="#rt-hardware-testing-prep">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Real-time applications require a hardware foundation configured for minimal latency. This
+        section describes how to configure server BIOS and firmware settings. These adjustments
+        eliminate low-level platform interference before you begin latency testing.
+      </p></div></div></div></div><p>
+    Before you start measuring hardware or operating system latencies, you must optimize your
+    machine settings:
+  </p><div class="procedure" id="pro-firmware-prep" data-id-title="Optimizing server firmware settings"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 2: </span><span class="title-name">Optimizing server firmware settings </span></span><a title="Permalink" class="permalink" href="#pro-firmware-prep">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Access your server BIOS or firmware settings.
+      </p></li><li class="step"><p>
+        Disable power-management features that introduce variable latency, since these are common
+        sources of SMIs and scheduling jitter. Menu labels vary by vendor, but look for and
+        disable:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            C-states (CPU idle power states)
+          </p></li><li class="listitem"><p>
+            P-states and frequency scaling (SpeedStep, Cool'n'Quiet or similar)
+          </p></li><li class="listitem"><p>
+            Turbo Boost or turbo core
+          </p></li><li class="listitem"><p>
+            Hyper-threading or SMT
+          </p></li><li class="listitem"><p>
+            Any other SMI-generating power management feature
+          </p></li></ul></div></li><li class="step"><p>
+        Reduce memory patrol scrubbing to its lowest available rate or disable it, since scrubbing
+        cycles can introduce firmware-level latency spikes.
+      </p></li></ol></div></div></section><section xml:lang="en" class="sect1" id="rt-hardware-testing-evaluate-with-hwlat" data-id-title="Evaluating hardware latencies with the hardware latency detector"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Evaluating hardware latencies with the hardware latency detector</span></span> <a title="Permalink" class="permalink" href="#rt-hardware-testing-evaluate-with-hwlat">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        The hardware latency detector (<code class="command">hwlatdetect</code>) drives the built-in
+        <code class="literal">hwlat</code> ftrace tracer of the kernel through <code class="literal">tracefs</code>,
+        and identifies system delays introduced directly by platform firmware and hardware,
+        independent of the operating system scheduler.
+      </p></div></div></div></div><p>
+    Before you run this test, make sure that the platform firmware is optimized as described in
+    <a class="xref" href="#rt-hardware-testing-prep" title="3. Preparing the hardware platform">Section 3, “Preparing the hardware platform”</a>, that the system is running the
+    <code class="systemitem">kernel-rt</code> kernel installed in
+    <a class="xref" href="#rt-hardware-testing-install-kernel" title="2. Installing the real-time kernel">Section 2, “Installing the real-time kernel”</a>, and that you are logged in as <code class="systemitem">root</code>
+    or can run commands with <code class="command">sudo</code>.
+  </p><div class="procedure" id="pro-hwtest-hwlat-run" data-id-title="Executing hwlatdetect"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 3: </span><span class="title-name">Executing <code class="command">hwlatdetect</code> </span></span><a title="Permalink" class="permalink" href="#pro-hwtest-hwlat-run">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Start the detector with a specified threshold:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">hwlatdetect --threshold=10</code></pre></div><p>
+        This command monitors system management interrupts (SMIs) with a minimum latency threshold
+        of 10 microseconds.
+      </p></li><li class="step"><p>
+        Check the measured latencies.
+      </p><p>
+        A run against a tuned, real-time-capable system produces output similar to the following:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">hwlatdetect --threshold=10 --duration=120</code>
+hwlatdetect:  test duration 120 seconds
+detector: hwlat
+parameters:
+Latency threshold: 10us
+Sample window:     1000000us
+Sample width:      500000us
+Non-sampling period:  500000us
+Output File:       None
+                
+Starting test
+test finished
+Max Latency: 3us
+Samples recorded: 0
+Samples exceeding threshold: 0</pre></div><p>
+        <code class="literal">Max Latency</code> reports the largest gap observed between the CPU Time Stamp
+        Counter reads, in microseconds. <code class="literal">Samples exceeding threshold</code> counts how
+        many of those gaps were larger than the value you passed with <code class="option">--threshold</code>.
+      </p><p>
+        A hardware platform suitable for real-time workloads should report <code class="literal">Samples
+        exceeding threshold: 0</code> over the full test duration, with <code class="literal">Max
+        Latency</code> below the threshold you set. If <code class="literal">Samples exceeding
+        threshold</code> is greater than zero, or <code class="literal">Max Latency</code> approaches or
+        exceeds your threshold, the platform firmware or hardware is introducing delays your
+        application deadline cannot tolerate. Treat this as a hardware or firmware-level failure
+        regardless of what <code class="command">cyclictest</code> reports later, and use a different
+        hardware platform.
+      </p></li></ol></div></div></section><section xml:lang="en" class="sect1" id="rt-hardware-testing-measure-cyclictest" data-id-title="Measuring latencies with cyclictest"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Measuring latencies with <code class="systemitem">cyclictest</code></span></span> <a title="Permalink" class="permalink" href="#rt-hardware-testing-measure-cyclictest">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        This section describes how to measure operating system latencies using the
+        <code class="systemitem">cyclictest</code> tool. It guides you through installing the test suite
+        on SUSE Linux 16.1. It also details running the benchmark to generate latency
+        histogram files.
+      </p></div></div></div></div><p>
+    The <code class="command">cyclictest</code> command is part of the real-time kernel test suite, contained
+    in the <code class="systemitem">rt-tests</code> RPM package distributed as part of
+    SUSE Linux 16.1.
+  </p><p>
+    Before you run this test, make sure your hardware is configured as described in
+    <a class="xref" href="#rt-hardware-testing-prep" title="3. Preparing the hardware platform">Section 3, “Preparing the hardware platform”</a>, and that you are logged in as <code class="systemitem">root</code> or can run
+    commands with <code class="command">sudo</code>.
+  </p><div class="procedure" id="pro-hwtest-cyclictest-run" data-id-title="Running the cyclictest tool"><div class="title-container"><div class="procedure-title-wrap"><div class="procedure-title"><span class="title-number-name"><span class="title-number">Procedure 4: </span><span class="title-name">Running the cyclictest tool </span></span><a title="Permalink" class="permalink" href="#pro-hwtest-cyclictest-run">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Install the <code class="systemitem">rt-tests</code> package if it is not already present:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper install rt-tests</code></pre></div></li><li class="step"><p>
+        Determine your test parameters from the <code class="command">cyclictest</code> options listed in
+        <a class="xref" href="#rt-hardware-testing-tool-options" title="6. hwlatdetect and cyclictest command-line options">Section 6, “<code class="command">hwlatdetect</code> and <code class="command">cyclictest</code> command-line options”</a>.
+      </p></li><li class="step"><p>
+        Start <code class="command">cyclictest</code>. For example, to run 1000 cycles with a latency
+        histogram tracked up to 1000 microseconds, execute:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">cyclictest --loops=1000 --histogram=1000</code></pre></div><p>
+        By default, <code class="command">cyclictest</code> writes the histogram data to standard output
+        after the run. To save it to a file for later analysis instead, redirect the output:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">cyclictest --loops=1000 --histogram=1000 &gt; histogram</code></pre></div></li><li class="step"><p>
+        Analyze the recorded minimal, actual, average and maximum latencies.
+      </p><p>
+        A typical result on a multi-core system looks like:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="command">cyclictest --loops=1000 --histogram=1000</code>
+policy: fifo: loadavg: 0.12 0.08 0.03 1/342 4821
+            
+T: 0 ( 4822) P:99 I:1000 C:  1000 Min:      4 Act:    6 Avg:    7 Max:      31
+T: 1 ( 4823) P:99 I:1500 C:   667 Min:      3 Act:    5 Avg:    6 Max:      24</pre></div><p>
+        Each line reports one measurement thread (<code class="literal">T:</code>), its process ID,
+        scheduling priority (<code class="literal">P:</code>) and interval in microseconds
+        (<code class="literal">I:</code>). Four values matter for evaluation: <code class="literal">Min</code>,
+        <code class="literal">Act</code> (the latency of the most recent cycle), <code class="literal">Avg</code> and
+        <code class="literal">Max</code>. All four are reported in microseconds by default. Use
+        <code class="option">--nsec</code> if you need nanosecond resolution.
+      </p><p>
+        <code class="literal">Max</code> is the value to compare against the deadline of your application: it
+        is the single worst-case scheduling latency observed during the run. As a rough order of
+        magnitude, well-tuned real-time systems generally report <code class="literal">Max</code> values in
+        the tens of microseconds. Results climbing into the hundreds of microseconds suggest an
+        unresolved source of interference, and results in the thousands of microseconds indicate
+        the system is not meeting real-time deadlines at all. These figures vary by hardware,
+        workload and kernel configuration. Compare this <code class="literal">Max</code> value against the
+        <code class="literal">Max Latency</code> reported by <code class="command">hwlatdetect</code> in
+        <a class="xref" href="#rt-hardware-testing-evaluate-with-hwlat" title="4. Evaluating hardware latencies with the hardware latency detector">Section 4, “Evaluating hardware latencies with the hardware latency detector”</a>. Per
+        <a class="xref" href="#rt-hardware-testing-concept" title="1. Understanding real-time hardware latency testing">Section 1, “Understanding real-time hardware latency testing”</a>, <code class="command">cyclictest</code> is expected to
+        report somewhat higher latencies, since it includes scheduling and interrupt handling
+        overhead that <code class="command">hwlatdetect</code> does not measure.
+      </p><p>
+        The <code class="literal">Max</code> value from <code class="command">cyclictest</code> includes hardware
+        latency plus kernel scheduling overhead. The <code class="literal">Max Latency</code> value from
+        <code class="command">hwlatdetect</code> does not. So <code class="command">cyclictest</code> is expected to
+        report a higher number. The two tools are not measuring the same thing.
+      </p><p>
+        What matters is the size of the gap. A small gap is normal software overhead. A gap of
+        orders of magnitude points to a real problem in the operating system, not the hardware.
+      </p></li></ol></div></div></section><section xml:lang="en" class="sect1" id="rt-hardware-testing-tool-options" data-id-title="hwlatdetect and cyclictest command-line options"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name"><code class="command">hwlatdetect</code> and <code class="command">cyclictest</code> command-line options</span></span> <a title="Permalink" class="permalink" href="#rt-hardware-testing-tool-options">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Real-time latency measurement tools support multiple runtime parameters. This section
+        provides a structured reference table of the command-line options for
+        <code class="command">hwlatdetect</code> and <code class="command">cyclictest</code>. These parameters help you
+        customize sampling duration, sample windows and thread execution.
+      </p></div></div></div></div><p>
+    The <code class="command">hwlatdetect</code> and <code class="command">cyclictest</code> commands support several
+    configuration options to modify their behavior.
+  </p><div class="table" id="tab-hwtest-hwlat-options" data-id-title="hwlatdetect options"><div class="title-container"><div class="table-title-wrap"><div class="table-title"><span class="title-number-name"><span class="title-number">Table 1: </span><span class="title-name"><code class="command">hwlatdetect</code> options </span></span><a title="Permalink" class="permalink" href="#tab-hwtest-hwlat-options">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="table-contents"><table style="border-collapse: collapse; border-top: 1px solid ; border-bottom: 1px solid ; border-left: 1px solid ; border-right: 1px solid ; "><colgroup><col class="col_opt"/><col class="col_desc"/></colgroup><thead><tr><th style="border-right: 1px solid ; border-bottom: 1px solid ; ">Option</th><th style="border-bottom: 1px solid ; ">Description</th></tr></thead><tbody><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><code class="option">--duration</code>
+          </td><td style="border-bottom: 1px solid ; ">Run the detector logic for the specified duration.</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><code class="option">--threshold</code>
+          </td><td style="border-bottom: 1px solid ; ">Specify the TSC gap used to detect an SMI.</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><code class="option">--hardlimit</code>
+          </td><td style="border-bottom: 1px solid ; ">Define the failure limit.</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><code class="option">--window</code>
+          </td><td style="border-bottom: 1px solid ; ">Specify the size of the sample window.</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><code class="option">--width</code>
+          </td><td style="border-bottom: 1px solid ; ">Specify the sampling duration within the window.</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><code class="option">--report</code>
+          </td><td style="border-bottom: 1px solid ; ">
+                        Specify the output file name of the detector report.
+                    </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><code class="option">--debug</code>
+          </td><td style="border-bottom: 1px solid ; ">Turn on debug output.</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><code class="option">--quiet</code>
+          </td><td style="border-bottom: 1px solid ; ">Turn off information output.</td></tr><tr><td style="border-right: 1px solid ; "><code class="option">--watch</code>
+          </td><td>
+                        Print sample data to standard output as it arrives.
+                    </td></tr></tbody></table></div></div><div class="table" id="tab-hwtest-cyclictest-options" data-id-title="cyclictest options"><div class="title-container"><div class="table-title-wrap"><div class="table-title"><span class="title-number-name"><span class="title-number">Table 2: </span><span class="title-name"><code class="command">cyclictest</code> options </span></span><a title="Permalink" class="permalink" href="#tab-hwtest-cyclictest-options">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="table-contents"><table style="border-collapse: collapse; border-top: 1px solid ; border-bottom: 1px solid ; border-left: 1px solid ; border-right: 1px solid ; "><colgroup><col class="col_opt"/><col class="col_desc"/></colgroup><thead><tr><th style="border-right: 1px solid ; border-bottom: 1px solid ; ">Option</th><th style="border-bottom: 1px solid ; ">Description</th></tr></thead><tbody><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><code class="option">--nsec</code>
+          </td><td style="border-bottom: 1px solid ; ">
+                        Use nanoseconds instead of microseconds for the displayed latency values.
+                    </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><code class="option">--loops</code>
+          </td><td style="border-bottom: 1px solid ; ">
+                        Limit the number of test cycles. By default, the tool runs forever.
+                    </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><code class="option">--threads</code>
+          </td><td style="border-bottom: 1px solid ; ">
+                        Specify the number of threads. Without a number, <code class="command">cyclictest</code> runs on all 
+                        available processors.
+                    </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><code class="option">--affinity</code>
+          </td><td style="border-bottom: 1px solid ; ">
+                        Pin test threads to the processors with the same thread number.
+                    </td></tr><tr><td style="border-right: 1px solid ; "><code class="option">--histogram</code>
+          </td><td>
+                        Create a histogram with the latency values up to the maximum tracking time.
+                    </td></tr></tbody></table></div></div></section><section xml:lang="en" class="sect1" id="rt-hardware-testing-next-steps" data-id-title="Next steps"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Next steps</span></span> <a title="Permalink" class="permalink" href="#rt-hardware-testing-next-steps">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Completing latency benchmarks is only the first part of system preparation. This section
+        details essential post-testing tasks to optimize your real-time server. It guides you to
+        document your system configuration and perform regular regression testing.
+      </p></div></div></div></div><p>
+    Latency testing is only one step in preparing your system. After completing your measurements,
+    analyze the results and tune your system.
+  </p><p>
+    Document your test environment thoroughly. Record the following:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        server model
+      </p></li><li class="listitem"><p>
+        processor details
+      </p></li><li class="listitem"><p>
+        firmware versions
+      </p></li><li class="listitem"><p>
+        enabled features
+      </p></li><li class="listitem"><p>
+        operating system version
+      </p></li><li class="listitem"><p>
+        running kernel
+      </p></li><li class="listitem"><p>
+        tool options
+      </p></li><li class="listitem"><p>
+        workloads
+      </p></li></ul></div><p>
+    Repeat your latency testing after making significant system changes. Regular retesting helps
+    identify performance regressions before they affect production workloads.
+  </p></section><section xml:lang="en" class="sect1" id="rt-hardware-testing-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="#rt-hardware-testing-more-info">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        This section lists external resources and technical documentation for real-time latency
+        analysis. It guides you to relevant command man pages and kernel source documentation.
+        These materials provide deeper insights into platform tuning.
+      </p></div></div></div></div><p>
+    To learn more about real-time latency testing and analysis, refer to the following resources:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        For more details on <code class="command">cyclictest</code> options and outputs, see the man page
+        <code class="command">man 8 cyclictest</code>.
+      </p></li><li class="listitem"><p>
+        For more information on the hardware latency detector and the <code class="literal">hwlat</code>
+        ftrace tracer, see <a class="link" href="https://docs.kernel.org/trace/hwlat_detector.html" target="_blank">https://docs.kernel.org/trace/hwlat_detector.html</a>.
+      </p></li></ul></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">9 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section><div class="legal-section"><section class="appendix" translate="no" id="doc-gfdl-license" data-id-title="GNU Free Documentation License"><div class="titlepage"><div><div><h1 class="title">GNU Free Documentation License</h1></div></div></div><p>
+    Copyright (C) 2000, 2001, 2002 Free Software Foundation, Inc. 51 Franklin St, Fifth Floor,
+    Boston, MA 02110-1301 USA. Everyone is permitted to copy and distribute verbatim copies of this
+    license document, but changing it is not allowed.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.3"><span class="name">
+    0. PREAMBLE
+  </span><a title="Permalink" class="permalink" href="#id-1.11.3">#</a></h5></div><p>
+    The purpose of this License is to make a manual, textbook, or other functional and useful
+    document "free" in the sense of freedom: to assure everyone the effective freedom to copy and
+    redistribute it, with or without modifying it, either commercially or non-commercially.
+    Secondarily, this License preserves for the author and publisher a way to get credit for their
+    work, while not being considered responsible for modifications made by others.
+  </p><p>
+    This License is a kind of "copyleft", which means that derivative works of the document must
+    themselves be free in the same sense. It complements the GNU General Public License, which is a
+    copyleft license designed for free software.
+  </p><p>
+    We have designed this License to use it for manuals for free software, because free software
+    needs free documentation: a free program should come with manuals providing the same freedoms
+    that the software does. But this License is not limited to software manuals; it can be used for
+    any textual work, regardless of subject matter or whether it is published as a printed book. We
+    recommend this License principally for works whose purpose is instruction or reference.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.7"><span class="name">
+    1. APPLICABILITY AND DEFINITIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.11.7">#</a></h5></div><p>
+    This License applies to any manual or other work, in any medium, that contains a notice placed
+    by the copyright holder saying it can be distributed under the terms of this License. Such a
+    notice grants a world-wide, royalty-free license, unlimited in duration, to use that work under
+    the conditions stated herein. The "Document", below, refers to any such manual or work. Any
+    member of the public is a licensee, and is addressed as "you". You accept the license if you
+    copy, modify or distribute the work in a way requiring permission under copyright law.
+  </p><p>
+    A "Modified Version" of the Document means any work containing the Document or a portion of it,
+    either copied verbatim, or with modifications and/or translated into another language.
+  </p><p>
+    A "Secondary Section" is a named appendix or a front-matter section of the Document that deals
+    exclusively with the relationship of the publishers or authors of the Document to the
+    Document's overall subject (or to related matters) and contains nothing that could fall
+    directly within that overall subject. (Thus, if the Document is in part a textbook of
+    mathematics, a Secondary Section may not explain any mathematics.) The relationship could be a
+    matter of historical connection with the subject or with related matters, or of legal,
+    commercial, philosophical, ethical or political position regarding them.
+  </p><p>
+    The "Invariant Sections" are certain Secondary Sections whose titles are designated, as being
+    those of Invariant Sections, in the notice that says that the Document is released under this
+    License. If a section does not fit the above definition of Secondary then it is not allowed to
+    be designated as Invariant. The Document may contain zero Invariant Sections. If the Document
+    does not identify any Invariant Sections then there are none.
+  </p><p>
+    The "Cover Texts" are certain short passages of text that are listed, as Front-Cover Texts or
+    Back-Cover Texts, in the notice that says that the Document is released under this License. A
+    Front-Cover Text may be at most 5 words, and a Back-Cover Text may be at most 25 words.
+  </p><p>
+    A "Transparent" copy of the Document means a machine-readable copy, represented in a format
+    whose specification is available to the general public, that is suitable for revising the
+    document straightforwardly with generic text editors or (for images composed of pixels) generic
+    paint programs or (for drawings) some widely available drawing editor, and that is suitable for
+    input to text formatters or for automatic translation to a variety of formats suitable for
+    input to text formatters. A copy made in an otherwise Transparent file format whose markup, or
+    absence of markup, has been arranged to thwart or discourage subsequent modification by readers
+    is not Transparent. An image format is not Transparent if used for any substantial amount of
+    text. A copy that is not "Transparent" is called "Opaque".
+  </p><p>
+    Examples of suitable formats for Transparent copies include plain ASCII without markup, Texinfo
+    input format, LaTeX input format, SGML or XML using a publicly available DTD, and
+    standard-conforming simple HTML, PostScript or PDF designed for human modification. Examples of
+    transparent image formats include PNG, XCF and JPG. Opaque formats include proprietary formats
+    that can be read and edited only by proprietary word processors, SGML or XML for which the DTD
+    and/or processing tools are not generally available, and the machine-generated HTML, PostScript
+    or PDF produced by some word processors for output purposes only.
+  </p><p>
+    The "Title Page" means, for a printed book, the title page itself, plus such following pages as
+    are needed to hold, legibly, the material this License requires to appear in the title page.
+    For works in formats which do not have any title page as such, "Title Page" means the text near
+    the most prominent appearance of the work's title, preceding the beginning of the body of the
+    text.
+  </p><p>
+    A section "Entitled XYZ" means a named subunit of the Document whose title either is precisely
+    XYZ or contains XYZ in parentheses following text that translates XYZ in another language.
+    (Here XYZ stands for a specific section name mentioned below, such as "Acknowledgements",
+    "Dedications", "Endorsements", or "History".) To "Preserve the Title" of such a section when
+    you modify the Document means that it remains a section "Entitled XYZ" according to this
+    definition.
+  </p><p>
+    The Document may include Warranty Disclaimers next to the notice which states that this License
+    applies to the Document. These Warranty Disclaimers are considered to be included by reference
+    in this License, but only as regards disclaiming warranties: any other implication that these
+    Warranty Disclaimers may have is void and has no effect on the meaning of this License.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.18"><span class="name">
+    2. VERBATIM COPYING
+  </span><a title="Permalink" class="permalink" href="#id-1.11.18">#</a></h5></div><p>
+    You may copy and distribute the Document in any medium, either commercially or
+    non-commercially, provided that this License, the copyright notices, and the license notice
+    saying this License applies to the Document are reproduced in all copies, and that you add no
+    other conditions whatsoever to those of this License. You may not use technical measures to
+    obstruct or control the reading or further copying of the copies you make or distribute.
+    However, you may accept compensation in exchange for copies. If you distribute a large enough
+    number of copies you must also follow the conditions in section 3.
+  </p><p>
+    You may also lend copies, under the same conditions stated above, and you may publicly display
+    copies.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.21"><span class="name">
+    3. COPYING IN QUANTITY
+  </span><a title="Permalink" class="permalink" href="#id-1.11.21">#</a></h5></div><p>
+    If you publish printed copies (or copies in media that commonly have printed covers) of the
+    Document, numbering more than 100, and the Document's license notice requires Cover Texts, you
+    must enclose the copies in covers that carry, clearly and legibly, all these Cover Texts:
+    Front-Cover Texts on the front cover, and Back-Cover Texts on the back cover. Both covers must
+    also clearly and legibly identify you as the publisher of these copies. The front cover must
+    present the full title with all words of the title equally prominent and visible. You may add
+    other material on the covers in addition. Copying with changes limited to the covers, as long
+    as they preserve the title of the Document and satisfy these conditions, can be treated as
+    verbatim copying in other respects.
+  </p><p>
+    If the required texts for either cover are too voluminous to fit legibly, you should put the
+    first ones listed (as many as fit reasonably) on the actual cover, and continue the rest onto
+    adjacent pages.
+  </p><p>
+    If you publish or distribute Opaque copies of the Document numbering more than 100, you must
+    either include a machine-readable Transparent copy along with each Opaque copy, or state in or
+    with each Opaque copy a computer-network location from which the general network-using public
+    has access to download using public-standard network protocols a complete Transparent copy of
+    the Document, free of added material. If you use the latter option, you must take reasonably
+    prudent steps, when you begin distribution of Opaque copies in quantity, to ensure that this
+    Transparent copy will remain thus accessible at the stated location until at least one year
+    after the last time you distribute an Opaque copy (directly or through your agents or
+    retailers) of that edition to the public.
+  </p><p>
+    It is requested, but not required, that you contact the authors of the Document well before
+    redistributing any large number of copies, to give them a chance to provide you with an updated
+    version of the Document.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.26"><span class="name">
+    4. MODIFICATIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.11.26">#</a></h5></div><p>
+    You may copy and distribute a Modified Version of the Document under the conditions of sections
+    2 and 3 above, provided that you release the Modified Version under precisely this License,
+    with the Modified Version filling the role of the Document, thus licensing distribution and
+    modification of the Modified Version to whoever possesses a copy of it. In addition, you must
+    do these things in the Modified Version:
+  </p><div class="orderedlist"><ol class="orderedlist" type="A"><li class="listitem"><p>
+        Use in the Title Page (and on the covers, if any) a title distinct from that of the
+        Document, and from those of previous versions (which should, if there were any, be listed
+        in the History section of the Document). You may use the same title as a previous version
+        if the original publisher of that version gives permission.
+      </p></li><li class="listitem"><p>
+        List on the Title Page, as authors, one or more persons or entities responsible for
+        authorship of the modifications in the Modified Version, together with at least five of the
+        principal authors of the Document (all of its principal authors, if it has fewer than
+        five), unless they release you from this requirement.
+      </p></li><li class="listitem"><p>
+        State on the Title page the name of the publisher of the Modified Version, as the
+        publisher.
+      </p></li><li class="listitem"><p>
+        Preserve all the copyright notices of the Document.
+      </p></li><li class="listitem"><p>
+        Add an appropriate copyright notice for your modifications adjacent to the other copyright
+        notices.
+      </p></li><li class="listitem"><p>
+        Include, immediately after the copyright notices, a license notice giving the public
+        permission to use the Modified Version under the terms of this License, in the form shown
+        in the Addendum below.
+      </p></li><li class="listitem"><p>
+        Preserve in that license notice the full lists of Invariant Sections and required Cover
+        Texts given in the Document's license notice.
+      </p></li><li class="listitem"><p>
+        Include an unaltered copy of this License.
+      </p></li><li class="listitem"><p>
+        Preserve the section Entitled "History", Preserve its Title, and add to it an item stating
+        at least the title, year, new authors, and publisher of the Modified Version as given on
+        the Title Page. If there is no section Entitled "History" in the Document, create one
+        stating the title, year, authors, and publisher of the Document as given on its Title Page,
+        then add an item describing the Modified Version as stated in the previous sentence.
+      </p></li><li class="listitem"><p>
+        Preserve the network location, if any, given in the Document for public access to a
+        Transparent copy of the Document, and likewise the network locations given in the Document
+        for previous versions it was based on. These may be placed in the "History" section. You
+        may omit a network location for a work that was published at least four years before the
+        Document itself, or if the original publisher of the version it refers to gives permission.
+      </p></li><li class="listitem"><p>
+        For any section Entitled "Acknowledgements" or "Dedications", Preserve the Title of the
+        section, and preserve in the section all the substance and tone of each of the contributor
+        acknowledgements and/or dedications given therein.
+      </p></li><li class="listitem"><p>
+        Preserve all the Invariant Sections of the Document, unaltered in their text and in their
+        titles. Section numbers or the equivalent are not considered part of the section titles.
+      </p></li><li class="listitem"><p>
+        Delete any section Entitled "Endorsements". Such a section may not be included in the
+        Modified Version.
+      </p></li><li class="listitem"><p>
+        Do not retitle any existing section to be Entitled "Endorsements" or to conflict in title
+        with any Invariant Section.
+      </p></li><li class="listitem"><p>
+        Preserve any Warranty Disclaimers.
+      </p></li></ol></div><p>
+    If the Modified Version includes new front-matter sections or appendices that qualify as
+    Secondary Sections and contain no material copied from the Document, you may at your option
+    designate some or all of these sections as invariant. To do this, add their titles to the list
+    of Invariant Sections in the Modified Version's license notice. These titles must be distinct
+    from any other section titles.
+  </p><p>
+    You may add a section Entitled "Endorsements", provided it contains nothing but endorsements of
+    your Modified Version by various parties--for example, statements of peer review or that the
+    text has been approved by an organization as the authoritative definition of a standard.
+  </p><p>
+    You may add a passage of up to five words as a Front-Cover Text, and a passage of up to 25
+    words as a Back-Cover Text, to the end of the list of Cover Texts in the Modified Version. Only
+    one passage of Front-Cover Text and one of Back-Cover Text may be added by (or through
+    arrangements made by) any one entity. If the Document already includes a cover text for the
+    same cover, previously added by you or by arrangement made by the same entity you are acting on
+    behalf of, you may not add another; but you may replace the old one, on explicit permission
+    from the previous publisher that added the old one.
+  </p><p>
+    The author(s) and publisher(s) of the Document do not by this License give permission to use
+    their names for publicity for or to assert or imply endorsement of any Modified Version.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.33"><span class="name">
+    5. COMBINING DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.11.33">#</a></h5></div><p>
+    You may combine the Document with other documents released under this License, under the terms
+    defined in section 4 above for modified versions, provided that you include in the combination
+    all of the Invariant Sections of all of the original documents, unmodified, and list them all
+    as Invariant Sections of your combined work in its license notice, and that you preserve all
+    their Warranty Disclaimers.
+  </p><p>
+    The combined work need only contain one copy of this License, and multiple identical Invariant
+    Sections may be replaced with a single copy. If there are multiple Invariant Sections with the
+    same name but different contents, make the title of each such section unique by adding at the
+    end of it, in parentheses, the name of the original author or publisher of that section if
+    known, or else a unique number. Make the same adjustment to the section titles in the list of
+    Invariant Sections in the license notice of the combined work.
+  </p><p>
+    In the combination, you must combine any sections Entitled "History" in the various original
+    documents, forming one section Entitled "History"; likewise combine any sections Entitled
+    "Acknowledgements", and any sections Entitled "Dedications". You must delete all sections
+    Entitled "Endorsements".
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.37"><span class="name">
+    6. COLLECTIONS OF DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.11.37">#</a></h5></div><p>
+    You may make a collection consisting of the Document and other documents released under this
+    License, and replace the individual copies of this License in the various documents with a
+    single copy that is included in the collection, provided that you follow the rules of this
+    License for verbatim copying of each of the documents in all other respects.
+  </p><p>
+    You may extract a single document from such a collection, and distribute it individually under
+    this License, provided you insert a copy of this License into the extracted document, and
+    follow this License in all other respects regarding verbatim copying of that document.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.40"><span class="name">
+    7. AGGREGATION WITH INDEPENDENT WORKS
+  </span><a title="Permalink" class="permalink" href="#id-1.11.40">#</a></h5></div><p>
+    A compilation of the Document or its derivatives with other separate and independent documents
+    or works, in or on a volume of a storage or distribution medium, is called an "aggregate" if
+    the copyright resulting from the compilation is not used to limit the legal rights of the
+    compilation's users beyond what the individual works permit. When the Document is included in
+    an aggregate, this License does not apply to the other works in the aggregate which are not
+    themselves derivative works of the Document.
+  </p><p>
+    If the Cover Text requirement of section 3 is applicable to these copies of the Document, then
+    if the Document is less than one half of the entire aggregate, the Document's Cover Texts may
+    be placed on covers that bracket the Document within the aggregate, or the electronic
+    equivalent of covers if the Document is in electronic form. Otherwise they must appear on
+    printed covers that bracket the whole aggregate.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.43"><span class="name">
+    8. TRANSLATION
+  </span><a title="Permalink" class="permalink" href="#id-1.11.43">#</a></h5></div><p>
+    Translation is considered a kind of modification, so you may distribute translations of the
+    Document under the terms of section 4. Replacing Invariant Sections with translations requires
+    special permission from their copyright holders, but you may include translations of some or
+    all Invariant Sections in addition to the original versions of these Invariant Sections. You
+    may include a translation of this License, and all the license notices in the Document, and any
+    Warranty Disclaimers, provided that you also include the original English version of this
+    License and the original versions of those notices and disclaimers. In case of a disagreement
+    between the translation and the original version of this License or a notice or disclaimer, the
+    original version will prevail.
+  </p><p>
+    If a section in the Document is Entitled "Acknowledgements", "Dedications", or "History", the
+    requirement (section 4) to Preserve its Title (section 1) will typically require changing the
+    actual title.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.46"><span class="name">
+    9. TERMINATION
+  </span><a title="Permalink" class="permalink" href="#id-1.11.46">#</a></h5></div><p>
+    You may not copy, modify, sublicense, or distribute the Document except as expressly provided
+    for under this License. Any other attempt to copy, modify, sublicense or distribute the
+    Document is void, and will automatically terminate your rights under this License. However,
+    parties who have received copies, or rights, from you under this License will not have their
+    licenses terminated so long as such parties remain in full compliance.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.48"><span class="name">
+    10. FUTURE REVISIONS OF THIS LICENSE
+  </span><a title="Permalink" class="permalink" href="#id-1.11.48">#</a></h5></div><p>
+    The Free Software Foundation may publish new, revised versions of the GNU Free Documentation
+    License from time to time. Such new versions will be similar in spirit to the present version,
+    but may differ in detail to address new problems or concerns. See
+    <a class="link" href="https://www.gnu.org/copyleft/" target="_blank">https://www.gnu.org/copyleft/</a>.
+  </p><p>
+    Each version of the License is given a distinguishing version number. If the Document specifies
+    that a particular numbered version of this License "or any later version" applies to it, you
+    have the option of following the terms and conditions either of that specified version or of
+    any later version that has been published (not as a draft) by the Free Software Foundation. If
+    the Document does not specify a version number of this License, you may choose any version ever
+    published (not as a draft) by the Free Software Foundation.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.11.51"><span class="name">
+    ADDENDUM: How to use this License for your documents
+  </span><a title="Permalink" class="permalink" href="#id-1.11.51">#</a></h5></div><div class="verbatim-wrap"><pre class="screen">Copyright (c) YEAR YOUR NAME.
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+A copy of the license is included in the section entitled “GNU
+Free Documentation License”.</pre></div><p>
+    If you have Invariant Sections, Front-Cover Texts and Back-Cover Texts, replace the
+    “with...Texts.” line with this:
+  </p><div class="verbatim-wrap"><pre class="screen">with the Invariant Sections being LIST THEIR TITLES, with the
+Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.</pre></div><p>
+    If you have Invariant Sections without Cover Texts, or some other combination of the three,
+    merge those two alternatives to suit the situation.
+  </p><p>
+    If your document contains nontrivial examples of program code, we recommend releasing these
+    examples in parallel under your choice of free software license, such as the GNU General Public
+    License, to permit their use in free software.
+  </p></section></div></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="#rt-hardware-testing-concept"><span class="title-number">1 </span><span class="title-name">Understanding real-time hardware latency testing</span></a></span></li><li><span class="section"><a href="#rt-hardware-testing-install-kernel"><span class="title-number">2 </span><span class="title-name">Installing the real-time kernel</span></a></span></li><li><span class="section"><a href="#rt-hardware-testing-prep"><span class="title-number">3 </span><span class="title-name">Preparing the hardware platform</span></a></span></li><li><span class="section"><a href="#rt-hardware-testing-evaluate-with-hwlat"><span class="title-number">4 </span><span class="title-name">Evaluating hardware latencies with the hardware latency detector</span></a></span></li><li><span class="section"><a href="#rt-hardware-testing-measure-cyclictest"><span class="title-number">5 </span><span class="title-name">Measuring latencies with <code class="systemitem">cyclictest</code></span></a></span></li><li><span class="section"><a href="#rt-hardware-testing-tool-options"><span class="title-number">6 </span><span class="title-name"><code class="command">hwlatdetect</code> and <code class="command">cyclictest</code> command-line options</span></a></span></li><li><span class="section"><a href="#rt-hardware-testing-next-steps"><span class="title-number">7 </span><span class="title-name">Next steps</span></a></span></li><li><span class="section"><a href="#rt-hardware-testing-more-info"><span class="title-number">8 </span><span class="title-name">For more information</span></a></span></li><li><span class="section"><a href="#legal-disclaimer"><span class="title-number">9 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="#doc-gfdl-license"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>
