@@ -3,9 +3,9 @@
 <link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
 <meta name="dcterms.created" content="2026-05-07"/>
 <meta name="dcterms.modified" content="2026-08-07"/>
-<meta name="dcterms.dateSubmitted" content="2026-09-03"/>
+<meta name="dcterms.dateSubmitted" content="2026-09-07"/>
 <meta name="title" content="Migrating to SUSE Linux 16: Key Technical Differences …"/>
-<meta name="description" content="Plan your migration to SUSE Linux 16 with this guide covering the Agama installer, SELinux security and the transition from SLE 15 to a 10-year lifecycle"/>
+<meta name="description" content="Migrate from SLE 15 to SUSE Linux 16 with key updates on Agama, NetworkManager, SELinux, kernel 6.12, saptune and simple-mount HA"/>
 <meta name="product-name" content="SUSE Linux"/>
 <meta name="product-number" content="16.1"/>
 <meta name="book-title" content="Migrating to SUSE Linux 16: Key Technical Differences from SLE 15"/>
@@ -31,7 +31,7 @@
     },
     "inLanguage": "en",
     "headline": "SLE 15 to SUSE Linux 16: Key Technical Differences",
-    "description": "Plan your migration to SUSE Linux 16 with this guide covering the Agama installer, SELinux security and the transition from SLE 15 to a 10-year lifecycle",
+    "description": "Migrate from SLE 15 to SUSE Linux 16 with key updates on Agama, NetworkManager, SELinux, kernel 6.12, saptune and simple-mount HA",
     "author": [
       {
         "@type": "Corporation",
@@ -41,7 +41,7 @@
     ],
     "dateCreated": "2026-05-07T00:00+02:00",
     "dateModified": "2026-08-07T00:00+02:00",
-    "datePublished": "2026-09-03T19:26+02:00",
+    "datePublished": "2026-09-07T05:32+02:00",
     "about": [
       {
         "@type": "Thing",
@@ -73,20 +73,11 @@
       }
     }
   }</script>
-<link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#migration-guide-sle16">Migrating to SUSE Linux 16: Key Technical Differences from SLE 15</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="migration-guide-sle16" data-id-title="Migrating to SUSE Linux 16: Key Technical Differences from SLE 15"><div class="titlepage"><div><div class="big-version-info"><span class="productname">SUSE Linux</span> 16.1</div><div><h1 class="title">Migrating to SUSE Linux 16: Key Technical Differences from SLE 15</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>03 Sep 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
-                Key changes in the SUSE Linux 16 migration include replacing YaST with
-                Agama, shifting from Service Packs to annual releases and adopting Wayland over
-                X11. This version mandates 64-bit architectures while fully removing legacy support
-                for Xen (PV), <code class="systemitem">wicked</code> and SysV init scripts.
-              </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
-                Use this guide to plan your transition from SLE 15 to SUSE Linux 16
-                by understanding these foundational technical shifts.
-              </p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
-                It takes approximately 20 minutes to read the article.
-              </p></dd><dt id="id-1.1.12.1.4"><span class="term">GOAL</span></dt><dd><p>
-                Assess migration impact and adapt your infrastructure to the new
-                SUSE Linux 16 standards.
-              </p></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Migrating to SUSE Linux 16: Key Technical Differences from SLE 15" hreflang="en" href="rh-migration-guide-sle16.html" target="_blank">Revision History: Migrating to SUSE Linux 16: Key Technical Differences from SLE 15</a></div></div></div></div><section xml:lang="en" class="sect1" id="migration-guide-sle16-version" data-id-title="What is the release cycle and lifecycle for SUSE Linux 16?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">What is the release cycle and lifecycle for SUSE Linux 16?</span></span> <a title="Permalink" class="permalink" href="#migration-guide-sle16-version">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+<link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#migration-guide-sle16">Migrating to SUSE Linux 16: Key Technical Differences from SLE 15</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="migration-guide-sle16" data-id-title="Migrating to SUSE Linux 16: Key Technical Differences from SLE 15"><div class="titlepage"><div><div class="big-version-info"><span class="productname">SUSE Linux</span> 16.1</div><div><h1 class="title">Migrating to SUSE Linux 16: Key Technical Differences from SLE 15</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>07 Sep 2026</div><div><div class="abstract"><p>SUSE Linux 16 introduces major architectural changes from SLE 15. 
+          Key changes include replacing YaST with Agama, switching from AppArmor to SELinux
+          and adopting NetworkManager. It mandates 64-bit architectures, adopts kernel 6.12 and consolidates 
+          SAP tuning into <span class="package">saptune</span>. Support shifts to annual minor releases 
+          with 24-month general support windows.</p></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Migrating to SUSE Linux 16: Key Technical Differences from SLE 15" hreflang="en" href="rh-migration-guide-sle16.html" target="_blank">Revision History: Migrating to SUSE Linux 16: Key Technical Differences from SLE 15</a></div></div></div></div><section xml:lang="en" class="sect1" id="migration-guide-sle16-version" data-id-title="What is the release cycle and lifecycle for SUSE Linux 16?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">What is the release cycle and lifecycle for SUSE Linux 16?</span></span> <a title="Permalink" class="permalink" href="#migration-guide-sle16-version">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
         SUSE Linux 16 changes both how releases are named and how long they are supported.
       </p></div></div></div></div><section class="sect2" id="migration-changes-release" data-id-title="New versioning scheme"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">New versioning scheme</span></span> <a title="Permalink" class="permalink" href="#migration-changes-release">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
       SLE 15 used Service Packs (SP1 through SP7) for annual updates. SUSE Linux 16
@@ -474,15 +465,90 @@
         full Linux kernel with complete system call compatibility.
       </p></li></ul></div></section><section xml:lang="en" class="sect1" id="migration-guide-sle16-ha" data-id-title="High Availability stack components"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">12 </span><span class="title-name">High Availability stack components</span></span> <a title="Permalink" class="permalink" href="#migration-guide-sle16-ha">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
     The SUSE Linux Enterprise High Availability stack has been modernized:
-  </p><div class="table" id="migration-sle16-ha-stack-changes" data-id-title="Changes in the SLE HA stack"><div class="title-container"><div class="table-title-wrap"><div class="table-title"><span class="title-number-name"><span class="title-number">Table 3: </span><span class="title-name">Changes in the SLE HA stack </span></span><a title="Permalink" class="permalink" href="#migration-sle16-ha-stack-changes">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="table-contents"><table style="border-collapse: collapse; border-top: 1px solid ; border-bottom: 1px solid ; border-left: 1px solid ; border-right: 1px solid ; "><colgroup><col class="component"/><col class="sleha15"/><col class="sleha16"/></colgroup><thead><tr><th style="border-right: 1px solid ; border-bottom: 1px solid ; ">Component</th><th style="border-right: 1px solid ; border-bottom: 1px solid ; ">SLE HA 15</th><th style="border-bottom: 1px solid ; ">SLE HA 16</th></tr></thead><tbody><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Pacemaker</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Version 2</td><td style="border-bottom: 1px solid ; ">Version 3</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Corosync</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Version 2</td><td style="border-bottom: 1px solid ; ">Version 3</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Distributed file system</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">OCFS2, GFS2 (read-only)</td><td style="border-bottom: 1px solid ; ">GFS2 (full read/write support)</td></tr><tr><td style="border-right: 1px solid ; ">Fence agents</td><td style="border-right: 1px solid ; ">All agents in a single package</td><td>Agents packaged separately</td></tr></tbody></table></div></div></section><section xml:lang="en" class="sect1" id="migration-guide-sle16-summary" data-id-title="Which technologies were removed or replaced in SUSE Linux 16?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">13 </span><span class="title-name">Which technologies were removed or replaced in SUSE Linux 16?</span></span> <a title="Permalink" class="permalink" href="#migration-guide-sle16-summary">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+  </p><div class="table" id="migration-sle16-ha-stack-changes" data-id-title="Changes in the SLE HA stack"><div class="title-container"><div class="table-title-wrap"><div class="table-title"><span class="title-number-name"><span class="title-number">Table 3: </span><span class="title-name">Changes in the SLE HA stack </span></span><a title="Permalink" class="permalink" href="#migration-sle16-ha-stack-changes">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="table-contents"><table style="border-collapse: collapse; border-top: 1px solid ; border-bottom: 1px solid ; border-left: 1px solid ; border-right: 1px solid ; "><colgroup><col class="component"/><col class="sleha15"/><col class="sleha16"/></colgroup><thead><tr><th style="border-right: 1px solid ; border-bottom: 1px solid ; ">Component</th><th style="border-right: 1px solid ; border-bottom: 1px solid ; ">SLE HA 15</th><th style="border-bottom: 1px solid ; ">SLE HA 16</th></tr></thead><tbody><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Pacemaker</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Version 2</td><td style="border-bottom: 1px solid ; ">Version 3</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Corosync</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Version 2</td><td style="border-bottom: 1px solid ; ">Version 3</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Distributed file system</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">OCFS2, GFS2 (read-only)</td><td style="border-bottom: 1px solid ; ">GFS2 (full read/write support)</td></tr><tr><td style="border-right: 1px solid ; ">Fence agents</td><td style="border-right: 1px solid ; ">All agents in a single package</td><td>Agents packaged separately</td></tr></tbody></table></div></div></section><section xml:lang="en" class="sect1" id="migration-guide-sle16-sap" data-id-title="SAP on SUSE Linux 16"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">13 </span><span class="title-name">SAP on SUSE Linux 16</span></span> <a title="Permalink" class="permalink" href="#migration-guide-sle16-sap">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+                SUSE Linux 16 modernizes SAP workloads by consolidating system tuning into <span class="package">saptune</span>
+                and removing <span class="package">sapconf</span>. For High Availability, the platform standardizes on the next-generation 
+                <span class="package">SAPHanaSR-angi</span> resource agent for SAP HANA and mandates a static simple-mount architecture
+                for SAP S/4HANA. These changes accelerate failover times, simplify cluster management and safeguard custom settings 
+                during upgrades.
+            </p></div></div></div></div><div class="table" id="tab-sap-comparison" data-id-title="Key SAP-specific feature changes in SUSE Linux 16"><div class="title-container"><div class="table-title-wrap"><div class="table-title"><span class="title-number-name"><span class="title-number">Table 4: </span><span class="title-name">Key SAP-specific feature changes in SUSE Linux 16 </span></span><a title="Permalink" class="permalink" href="#tab-sap-comparison">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="table-contents"><table style="border-collapse: collapse; border-top: 1px solid ; border-bottom: 1px solid ; border-left: 1px solid ; border-right: 1px solid ; "><colgroup><col class="c1"/><col class="c2"/><col class="c3"/><col class="c4"/></colgroup><thead><tr><th style="border-right: 1px solid ; border-bottom: 1px solid ; ">Component / Feature</th><th style="border-right: 1px solid ; border-bottom: 1px solid ; ">SLE 15</th><th style="border-right: 1px solid ; border-bottom: 1px solid ; ">SUSE Linux 16</th><th style="border-bottom: 1px solid ; ">Primary technical benefit</th></tr></thead><tbody><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><span><span class="emphasis"><strong>SAP OS Tuning</strong></span></span></td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Dual utilities: <span class="package">sapconf</span> (basic systemd tuning) and 
+                        <span class="package">saptune</span> (advanced profile tuning)</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><span class="package">sapconf</span> is fully removed: <span class="package">saptune</span> is the 
+                        single consolidated tuning tool</td><td style="border-bottom: 1px solid ; ">Configurations moved out of <code class="filename">/etc</code>. Safe <code class="command">saptune configure</code> 
+                        commands introduced.</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><span><span class="emphasis"><strong>SAP HANA High Availability</strong></span></span></td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Classic resource agents: <span class="package">SAPHanaSR</span> (scale-up) and <span class="package">SAPHanaSR-ScaleOut</span> (scale-out).</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><span class="package">SAPHanaSR-angi</span> (Advanced Next Generation Interface) is the sole
+                        standard.</td><td style="border-bottom: 1px solid ; ">Unified codebase with faster failover response times.</td></tr><tr><td style="border-right: 1px solid ; "><span><span class="emphasis"><strong>SAP S/4HANA Application HA</strong></span></span></td><td style="border-right: 1px solid ; ">Dynamic shared file system resources mounted/unmounted at runtime via Pacemaker</td><td style="border-right: 1px solid ; ">Mandatory simple-mount file system structure</td><td>Eliminates storage bottlenecks and node fencing loops.</td></tr></tbody></table></div></div><section class="sect2" id="sec-sapconf-to-saptune" data-id-title="OS tuning for SAP workloads: moving from sapconf to saptune"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">13.1 </span><span class="title-name">OS tuning for SAP workloads: moving from <span class="package">sapconf</span> to <span class="package">saptune</span></span></span> <a title="Permalink" class="permalink" href="#sec-sapconf-to-saptune">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+            In SLE 15, SAP operating system tuning was handled by two separate packages:
+            <span class="package">sapconf</span>, which provided basic, systemd-based tuning, and <span class="package">saptune</span> 
+            which offered advanced, profile-based tuning with active monitoring and verification.
+        </p><p>
+            SUSE Linux 16 simplifies this model by fully removing <span class="package">sapconf</span>. 
+            <span class="package">saptune</span> is now the single, consolidated tool for tuning the operating system 
+            for SAP workloads and is included directly in the base SUSE Linux 16 product repositories, 
+            making it universally available.
+        </p><p>
+            Key architectural modifications in <span class="package">saptune</span> on SUSE Linux 16 include:
+        </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                    <span><span class="emphasis"><strong>Moving configuration out of <code class="filename">/etc</code>:</strong></span></span> 
+                    To align with the SUSE Linux 16 <code class="filename">/usr/etc</code> transition, 
+                    <span class="package">saptune</span> vendor default configurations have been moved away from 
+                    <code class="filename">/etc</code>. This ensures that any subsequent package or OS updates will 
+                    not silently overwrite custom parameters.
+                </p></li><li class="listitem"><p>
+                    <span><span class="emphasis"><strong>Introduction of <code class="command">saptune configure</code> commands:</strong></span></span> 
+                    SUSE Linux 16 introduces an interactive and safe configuration editing model. 
+                    Users must use commands such as <code class="command">saptune configure <em class="replaceable">OPTION VALUE</em></code>. 
+                    This command performs immediate sanity checks and verification before saving, preventing unworkable 
+                    tuning configurations.
+                </p></li><li class="listitem"><p>
+                    <span><span class="emphasis"><strong>Built-in safeguards:</strong></span></span> Safeguards prevent administrators from saving 
+                    broken values, ensuring the stability of the kernel and memory parameters required for SAP HANA databases 
+                    and NetWeaver.
+                </p></li></ul></div></section><section class="sect2" id="sec-saphanasr-angi" data-id-title="How is SAP HANA High Availability managed in SUSE Linux 16?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">13.2 </span><span class="title-name">How is SAP HANA High Availability managed in SUSE Linux 16?</span></span> <a title="Permalink" class="permalink" href="#sec-saphanasr-angi">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+            For SAP HANA System Replication (SR) setups, SLE 15 supported classic resource agents:
+            <span class="package">SAPHanaSR</span> for scale-up and <span class="package">SAPHanaSR-ScaleOut</span> for scale-out 
+            setups.
+        </p><p>
+            In SUSE Linux Enterprise Server for SAP applications 16, <span class="package">SAPHanaSR-angi</span> 
+            completely replaces these legacy resource agents for all new installations.
+        </p><p>
+            Benefits of <span class="package">SAPHanaSR-angi</span> over the legacy agents include:
+        </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                    <span><span class="emphasis"><strong>Reduced complexity:</strong></span></span> Scale-up and scale-out 
+                    scenarios use the identical software package and highly similar configuration files, 
+                    unifying deployment logic across the landscape.
+                </p></li><li class="listitem"><p>
+                    <span><span class="emphasis"><strong>Faster takeovers:</strong></span></span> The agent features optimized, 
+                    low-latency failure detection. It triggers significantly faster database takeover 
+                    times during critical events, such as file system outages, node crashes or an 
+                    unresponsive HANA database.
+                </p></li><li class="listitem"><p>
+                    <span><span class="emphasis"><strong>Resilience to administrative errors:</strong></span></span> ANGI is 
+                    designed to be more robust and forgiving during manual cluster maintenance. It 
+                    reduces the likelihood of false failover triggers caused by administrator missteps.
+                </p></li></ul></div></section><section class="sect2" id="sec-simple-mount" data-id-title="Configuring SAP S/4HANA High Availability"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">13.3 </span><span class="title-name">Configuring SAP S/4HANA High Availability</span></span> <a title="Permalink" class="permalink" href="#sec-simple-mount">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+            Legacy SLE HA environments configured shared file systems, such as NFS or EFS mounts 
+            for the ABAP Central Services (ASCS) and Enqueue Replication Server (ERS), as individual 
+            Pacemaker cluster resources. Pacemaker mounted and unmounted these file systems dynamically 
+            during failovers, a model that frequently caused storage bottlenecks, 
+            hung mount points and node fencing loops.
+        </p><p>
+            In SUSE Linux Enterprise Server for SAP applications 16, the simple-mount file system structure is mandatory for all new 
+            SAP S/4HANA high availability deployments.
+        </p><section class="sect3" id="sec-what-is-simple-mount" data-id-title="What is the simple mount architecture?"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">13.3.1 </span><span class="title-name">What is the simple mount architecture?</span></span> <a title="Permalink" class="permalink" href="#sec-what-is-simple-mount">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+                Instead of Pacemaker controlling NFS/EFS resources at runtime, file systems are 
+                statically mounted on all cluster nodes at boot time via systemd (configured in 
+                <code class="filename">/etc/fstab</code>). Pacemaker no longer manages file system mounting. 
+                It only manages the start, stop and monitoring of SAP service instances using 
+                the lightweight <span class="package">SAPStartSrv</span> resource agent, leading to highly 
+                robust and stable failover behavior.
+            </p></section></section></section><section xml:lang="en" class="sect1" id="migration-guide-sle16-summary" data-id-title="Which technologies were removed or replaced in SUSE Linux 16?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">14 </span><span class="title-name">Which technologies were removed or replaced in SUSE Linux 16?</span></span> <a title="Permalink" class="permalink" href="#migration-guide-sle16-summary">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
     The following technologies are removed in SUSE Linux 16:
-  </p><div class="table" id="migration-sle16-removed-technologies" data-id-title="Technologies removed in SUSE Linux 16"><div class="title-container"><div class="table-title-wrap"><div class="table-title"><span class="title-number-name"><span class="title-number">Table 4: </span><span class="title-name">Technologies removed in SUSE Linux 16 </span></span><a title="Permalink" class="permalink" href="#migration-sle16-removed-technologies">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="table-contents"><table style="border-collapse: collapse; border-top: 1px solid ; border-bottom: 1px solid ; border-left: 1px solid ; border-right: 1px solid ; "><colgroup><col class="area"/><col class="removed"/><col class="replacement"/></colgroup><thead><tr><th style="border-right: 1px solid ; border-bottom: 1px solid ; ">Area</th><th style="border-right: 1px solid ; border-bottom: 1px solid ; ">Removed</th><th style="border-bottom: 1px solid ; ">Replacement</th></tr></thead><tbody><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Architecture</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">32-bit application support</td><td style="border-bottom: 1px solid ; "><span class="package">grub2-compat-ia32</span> (SUSE Package Hub) for
+  </p><div class="table" id="migration-sle16-removed-technologies" data-id-title="Technologies removed in SUSE Linux 16"><div class="title-container"><div class="table-title-wrap"><div class="table-title"><span class="title-number-name"><span class="title-number">Table 5: </span><span class="title-name">Technologies removed in SUSE Linux 16 </span></span><a title="Permalink" class="permalink" href="#migration-sle16-removed-technologies">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="table-contents"><table style="border-collapse: collapse; border-top: 1px solid ; border-bottom: 1px solid ; border-left: 1px solid ; border-right: 1px solid ; "><colgroup><col class="area"/><col class="removed"/><col class="replacement"/></colgroup><thead><tr><th style="border-right: 1px solid ; border-bottom: 1px solid ; ">Area</th><th style="border-right: 1px solid ; border-bottom: 1px solid ; ">Removed</th><th style="border-bottom: 1px solid ; ">Replacement</th></tr></thead><tbody><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Architecture</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">32-bit application support</td><td style="border-bottom: 1px solid ; "><span class="package">grub2-compat-ia32</span> (SUSE Package Hub) for
                             32-bit kernel syscalls only</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Architecture</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Intel 32-bit and IBM POWER 32-bit libraries</td><td style="border-bottom: 1px solid ; ">No replacement—use 64-bit builds</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Init system</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">SysV init scripts</td><td style="border-bottom: 1px solid ; "><code class="systemitem">systemd</code> units</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Installer</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">YaST / AutoYaST</td><td style="border-bottom: 1px solid ; ">Agama (Web, CLI, API)</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Management</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">YaST (system management)</td><td style="border-bottom: 1px solid ; ">Cockpit (1:1), Ansible / SUSE Multi-Linux Manager (automation)</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Management</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">WBEM / SBLIM</td><td style="border-bottom: 1px solid ; ">No direct replacement</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Network</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><code class="systemitem">wicked</code>
           </td><td style="border-bottom: 1px solid ; ">NetworkManager</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Network</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">NIS / Yellow Pages</td><td style="border-bottom: 1px solid ; ">LDAP</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Network</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">ISC DHCP server</td><td style="border-bottom: 1px solid ; ">Kea DHCP</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Network</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><code class="systemitem">nscd</code>
           </td><td style="border-bottom: 1px solid ; ">No replacement (use system resolver)</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Security</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">AppArmor</td><td style="border-bottom: 1px solid ; ">SELinux with policies for 400+ modules</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">File systems</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; "><code class="systemitem">reiserfs</code>, <code class="systemitem">hfsplus</code>, 
                         <code class="systemitem">UFS</code>, <code class="systemitem">OCFS2</code>, <code class="systemitem">quota v1</code>
           </td><td style="border-bottom: 1px solid ; "><code class="systemitem">btrfs</code> (default), <code class="systemitem">xfs</code>, 
-    <code class="systemitem">ext</code>, <code class="systemitem">gfs2</code> (High Availability only)</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Virtualization</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Xen host and PV guest</td><td style="border-bottom: 1px solid ; ">KVM</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Desktop</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">X11</td><td style="border-bottom: 1px solid ; ">Wayland</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Desktop</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">VNC server</td><td style="border-bottom: 1px solid ; ">RDP</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Desktop</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">GTK2, Qt5, wxWidgets</td><td style="border-bottom: 1px solid ; ">GTK4, Qt6</td></tr><tr><td style="border-right: 1px solid ; ">WSL</td><td style="border-right: 1px solid ; ">WSL1</td><td>WSL2</td></tr></tbody></table></div></div></section><section xml:lang="en" class="sect1" id="migration-guide-sle16-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">14 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="#migration-guide-sle16-more-info">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    <code class="systemitem">ext</code>, <code class="systemitem">gfs2</code> (High Availability only)</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Virtualization</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Xen host and PV guest</td><td style="border-bottom: 1px solid ; ">KVM</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Desktop</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">X11</td><td style="border-bottom: 1px solid ; ">Wayland</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Desktop</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">VNC server</td><td style="border-bottom: 1px solid ; ">RDP</td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Desktop</td><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">GTK2, Qt5, wxWidgets</td><td style="border-bottom: 1px solid ; ">GTK4, Qt6</td></tr><tr><td style="border-right: 1px solid ; ">WSL</td><td style="border-right: 1px solid ; ">WSL1</td><td>WSL2</td></tr></tbody></table></div></div></section><section xml:lang="en" class="sect1" id="migration-guide-sle16-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">15 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="#migration-guide-sle16-more-info">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
     For more information on the topics covered in this article, refer to the following resources:
   </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
         <a class="link" href="https://documentation.suse.com/sles/16.0/html/SLES-x86-64-agama-automated-installation/index.html" target="_blank">Agama
@@ -496,7 +562,7 @@
       </p></li><li class="listitem"><p>
         <a class="link" href="https://documentation.suse.com/sles/16.0/html/SLES-upgrading/" target="_blank">Upgrading
         to SUSE Linux 16</a>
-      </p></li></ul></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">15 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      </p></li></ul></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">16 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
     Copyright© 2006–
 2026
 
@@ -519,9 +585,9 @@
     Copyright (C) 2000, 2001, 2002 Free Software Foundation, Inc. 51 Franklin St, Fifth Floor,
     Boston, MA 02110-1301 USA. Everyone is permitted to copy and distribute verbatim copies of this
     license document, but changing it is not allowed.
-  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.17.3"><span class="name">
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.18.3"><span class="name">
     0. PREAMBLE
-  </span><a title="Permalink" class="permalink" href="#id-1.17.3">#</a></h5></div><p>
+  </span><a title="Permalink" class="permalink" href="#id-1.18.3">#</a></h5></div><p>
     The purpose of this License is to make a manual, textbook, or other functional and useful
     document "free" in the sense of freedom: to assure everyone the effective freedom to copy and
     redistribute it, with or without modifying it, either commercially or non-commercially.
@@ -537,9 +603,9 @@
     that the software does. But this License is not limited to software manuals; it can be used for
     any textual work, regardless of subject matter or whether it is published as a printed book. We
     recommend this License principally for works whose purpose is instruction or reference.
-  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.17.7"><span class="name">
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.18.7"><span class="name">
     1. APPLICABILITY AND DEFINITIONS
-  </span><a title="Permalink" class="permalink" href="#id-1.17.7">#</a></h5></div><p>
+  </span><a title="Permalink" class="permalink" href="#id-1.18.7">#</a></h5></div><p>
     This License applies to any manual or other work, in any medium, that contains a notice placed
     by the copyright holder saying it can be distributed under the terms of this License. Such a
     notice grants a world-wide, royalty-free license, unlimited in duration, to use that work under
@@ -603,9 +669,9 @@
     applies to the Document. These Warranty Disclaimers are considered to be included by reference
     in this License, but only as regards disclaiming warranties: any other implication that these
     Warranty Disclaimers may have is void and has no effect on the meaning of this License.
-  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.17.18"><span class="name">
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.18.18"><span class="name">
     2. VERBATIM COPYING
-  </span><a title="Permalink" class="permalink" href="#id-1.17.18">#</a></h5></div><p>
+  </span><a title="Permalink" class="permalink" href="#id-1.18.18">#</a></h5></div><p>
     You may copy and distribute the Document in any medium, either commercially or
     non-commercially, provided that this License, the copyright notices, and the license notice
     saying this License applies to the Document are reproduced in all copies, and that you add no
@@ -616,9 +682,9 @@
   </p><p>
     You may also lend copies, under the same conditions stated above, and you may publicly display
     copies.
-  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.17.21"><span class="name">
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.18.21"><span class="name">
     3. COPYING IN QUANTITY
-  </span><a title="Permalink" class="permalink" href="#id-1.17.21">#</a></h5></div><p>
+  </span><a title="Permalink" class="permalink" href="#id-1.18.21">#</a></h5></div><p>
     If you publish printed copies (or copies in media that commonly have printed covers) of the
     Document, numbering more than 100, and the Document's license notice requires Cover Texts, you
     must enclose the copies in covers that carry, clearly and legibly, all these Cover Texts:
@@ -646,9 +712,9 @@
     It is requested, but not required, that you contact the authors of the Document well before
     redistributing any large number of copies, to give them a chance to provide you with an updated
     version of the Document.
-  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.17.26"><span class="name">
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.18.26"><span class="name">
     4. MODIFICATIONS
-  </span><a title="Permalink" class="permalink" href="#id-1.17.26">#</a></h5></div><p>
+  </span><a title="Permalink" class="permalink" href="#id-1.18.26">#</a></h5></div><p>
     You may copy and distribute a Modified Version of the Document under the conditions of sections
     2 and 3 above, provided that you release the Modified Version under precisely this License,
     with the Modified Version filling the role of the Document, thus licensing distribution and
@@ -729,9 +795,9 @@
   </p><p>
     The author(s) and publisher(s) of the Document do not by this License give permission to use
     their names for publicity for or to assert or imply endorsement of any Modified Version.
-  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.17.33"><span class="name">
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.18.33"><span class="name">
     5. COMBINING DOCUMENTS
-  </span><a title="Permalink" class="permalink" href="#id-1.17.33">#</a></h5></div><p>
+  </span><a title="Permalink" class="permalink" href="#id-1.18.33">#</a></h5></div><p>
     You may combine the Document with other documents released under this License, under the terms
     defined in section 4 above for modified versions, provided that you include in the combination
     all of the Invariant Sections of all of the original documents, unmodified, and list them all
@@ -749,9 +815,9 @@
     documents, forming one section Entitled "History"; likewise combine any sections Entitled
     "Acknowledgements", and any sections Entitled "Dedications". You must delete all sections
     Entitled "Endorsements".
-  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.17.37"><span class="name">
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.18.37"><span class="name">
     6. COLLECTIONS OF DOCUMENTS
-  </span><a title="Permalink" class="permalink" href="#id-1.17.37">#</a></h5></div><p>
+  </span><a title="Permalink" class="permalink" href="#id-1.18.37">#</a></h5></div><p>
     You may make a collection consisting of the Document and other documents released under this
     License, and replace the individual copies of this License in the various documents with a
     single copy that is included in the collection, provided that you follow the rules of this
@@ -760,9 +826,9 @@
     You may extract a single document from such a collection, and distribute it individually under
     this License, provided you insert a copy of this License into the extracted document, and
     follow this License in all other respects regarding verbatim copying of that document.
-  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.17.40"><span class="name">
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.18.40"><span class="name">
     7. AGGREGATION WITH INDEPENDENT WORKS
-  </span><a title="Permalink" class="permalink" href="#id-1.17.40">#</a></h5></div><p>
+  </span><a title="Permalink" class="permalink" href="#id-1.18.40">#</a></h5></div><p>
     A compilation of the Document or its derivatives with other separate and independent documents
     or works, in or on a volume of a storage or distribution medium, is called an "aggregate" if
     the copyright resulting from the compilation is not used to limit the legal rights of the
@@ -775,9 +841,9 @@
     be placed on covers that bracket the Document within the aggregate, or the electronic
     equivalent of covers if the Document is in electronic form. Otherwise they must appear on
     printed covers that bracket the whole aggregate.
-  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.17.43"><span class="name">
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.18.43"><span class="name">
     8. TRANSLATION
-  </span><a title="Permalink" class="permalink" href="#id-1.17.43">#</a></h5></div><p>
+  </span><a title="Permalink" class="permalink" href="#id-1.18.43">#</a></h5></div><p>
     Translation is considered a kind of modification, so you may distribute translations of the
     Document under the terms of section 4. Replacing Invariant Sections with translations requires
     special permission from their copyright holders, but you may include translations of some or
@@ -791,17 +857,17 @@
     If a section in the Document is Entitled "Acknowledgements", "Dedications", or "History", the
     requirement (section 4) to Preserve its Title (section 1) will typically require changing the
     actual title.
-  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.17.46"><span class="name">
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.18.46"><span class="name">
     9. TERMINATION
-  </span><a title="Permalink" class="permalink" href="#id-1.17.46">#</a></h5></div><p>
+  </span><a title="Permalink" class="permalink" href="#id-1.18.46">#</a></h5></div><p>
     You may not copy, modify, sublicense, or distribute the Document except as expressly provided
     for under this License. Any other attempt to copy, modify, sublicense or distribute the
     Document is void, and will automatically terminate your rights under this License. However,
     parties who have received copies, or rights, from you under this License will not have their
     licenses terminated so long as such parties remain in full compliance.
-  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.17.48"><span class="name">
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.18.48"><span class="name">
     10. FUTURE REVISIONS OF THIS LICENSE
-  </span><a title="Permalink" class="permalink" href="#id-1.17.48">#</a></h5></div><p>
+  </span><a title="Permalink" class="permalink" href="#id-1.18.48">#</a></h5></div><p>
     The Free Software Foundation may publish new, revised versions of the GNU Free Documentation
     License from time to time. Such new versions will be similar in spirit to the present version,
     but may differ in detail to address new problems or concerns. See
@@ -813,9 +879,9 @@
     any later version that has been published (not as a draft) by the Free Software Foundation. If
     the Document does not specify a version number of this License, you may choose any version ever
     published (not as a draft) by the Free Software Foundation.
-  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.17.51"><span class="name">
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.18.51"><span class="name">
     ADDENDUM: How to use this License for your documents
-  </span><a title="Permalink" class="permalink" href="#id-1.17.51">#</a></h5></div><div class="verbatim-wrap"><pre class="screen">Copyright (c) YEAR YOUR NAME.
+  </span><a title="Permalink" class="permalink" href="#id-1.18.51">#</a></h5></div><div class="verbatim-wrap"><pre class="screen">Copyright (c) YEAR YOUR NAME.
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.2
 or any later version published by the Free Software Foundation;
@@ -832,5 +898,5 @@ Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.</pre></d
     If your document contains nontrivial examples of program code, we recommend releasing these
     examples in parallel under your choice of free software license, such as the GNU General Public
     License, to permit their use in free software.
-  </p></section></div></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="#migration-guide-sle16-version"><span class="title-number">1 </span><span class="title-name">What is the release cycle and lifecycle for SUSE Linux 16?</span></a></span></li><li><span class="section"><a href="#migration-guide-sle16-architecture"><span class="title-number">2 </span><span class="title-name">Hardware and system requirements</span></a></span></li><li><span class="section"><a href="#migration-guide-sle16-installation"><span class="title-number">3 </span><span class="title-name">How to install and deploy SUSE Linux 16 with Agama</span></a></span></li><li><span class="section"><a href="#migration-guide-sle16-migration"><span class="title-number">4 </span><span class="title-name">How to migrate from SLE 15 to SUSE Linux 16</span></a></span></li><li><span class="section"><a href="#migration-guide-sle16-base-system"><span class="title-number">5 </span><span class="title-name">Base system and boot process changes</span></a></span></li><li><span class="section"><a href="#migration-guide-sle16-kernel-storage"><span class="title-number">6 </span><span class="title-name">Supported file systems and storage configurations</span></a></span></li><li><span class="section"><a href="#migration-guide-sle16-security"><span class="title-number">7 </span><span class="title-name">What are the new security features and sudo policies?</span></a></span></li><li><span class="section"><a href="#migration-guide-sle16-networking"><span class="title-number">8 </span><span class="title-name">How is networking managed in SUSE Linux 16?</span></a></span></li><li><span class="section"><a href="#migration-guide-sle16-system-management"><span class="title-number">9 </span><span class="title-name">How to manage systems and packages in SUSE Linux 16</span></a></span></li><li><span class="section"><a href="#migration-guide-sle16-desktop"><span class="title-number">10 </span><span class="title-name">Desktop environment in SUSE Linux 16</span></a></span></li><li><span class="section"><a href="#migration-guide-sle16-virtualization"><span class="title-number">11 </span><span class="title-name">Supported virtualization and hypervisor technologies</span></a></span></li><li><span class="section"><a href="#migration-guide-sle16-ha"><span class="title-number">12 </span><span class="title-name">High Availability stack components</span></a></span></li><li><span class="section"><a href="#migration-guide-sle16-summary"><span class="title-number">13 </span><span class="title-name">Which technologies were removed or replaced in SUSE Linux 16?</span></a></span></li><li><span class="section"><a href="#migration-guide-sle16-more-info"><span class="title-number">14 </span><span class="title-name">For more information</span></a></span></li><li><span class="section"><a href="#legal-disclaimer"><span class="title-number">15 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="#doc-gfdl-license"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+  </p></section></div></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="#migration-guide-sle16-version"><span class="title-number">1 </span><span class="title-name">What is the release cycle and lifecycle for SUSE Linux 16?</span></a></span></li><li><span class="section"><a href="#migration-guide-sle16-architecture"><span class="title-number">2 </span><span class="title-name">Hardware and system requirements</span></a></span></li><li><span class="section"><a href="#migration-guide-sle16-installation"><span class="title-number">3 </span><span class="title-name">How to install and deploy SUSE Linux 16 with Agama</span></a></span></li><li><span class="section"><a href="#migration-guide-sle16-migration"><span class="title-number">4 </span><span class="title-name">How to migrate from SLE 15 to SUSE Linux 16</span></a></span></li><li><span class="section"><a href="#migration-guide-sle16-base-system"><span class="title-number">5 </span><span class="title-name">Base system and boot process changes</span></a></span></li><li><span class="section"><a href="#migration-guide-sle16-kernel-storage"><span class="title-number">6 </span><span class="title-name">Supported file systems and storage configurations</span></a></span></li><li><span class="section"><a href="#migration-guide-sle16-security"><span class="title-number">7 </span><span class="title-name">What are the new security features and sudo policies?</span></a></span></li><li><span class="section"><a href="#migration-guide-sle16-networking"><span class="title-number">8 </span><span class="title-name">How is networking managed in SUSE Linux 16?</span></a></span></li><li><span class="section"><a href="#migration-guide-sle16-system-management"><span class="title-number">9 </span><span class="title-name">How to manage systems and packages in SUSE Linux 16</span></a></span></li><li><span class="section"><a href="#migration-guide-sle16-desktop"><span class="title-number">10 </span><span class="title-name">Desktop environment in SUSE Linux 16</span></a></span></li><li><span class="section"><a href="#migration-guide-sle16-virtualization"><span class="title-number">11 </span><span class="title-name">Supported virtualization and hypervisor technologies</span></a></span></li><li><span class="section"><a href="#migration-guide-sle16-ha"><span class="title-number">12 </span><span class="title-name">High Availability stack components</span></a></span></li><li><span class="section"><a href="#migration-guide-sle16-sap"><span class="title-number">13 </span><span class="title-name">SAP on SUSE Linux 16</span></a></span></li><li><span class="section"><a href="#migration-guide-sle16-summary"><span class="title-number">14 </span><span class="title-name">Which technologies were removed or replaced in SUSE Linux 16?</span></a></span></li><li><span class="section"><a href="#migration-guide-sle16-more-info"><span class="title-number">15 </span><span class="title-name">For more information</span></a></span></li><li><span class="section"><a href="#legal-disclaimer"><span class="title-number">16 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="#doc-gfdl-license"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
 <script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>
