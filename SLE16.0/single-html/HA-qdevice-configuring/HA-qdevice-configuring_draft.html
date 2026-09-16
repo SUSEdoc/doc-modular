@@ -2,8 +2,8 @@
 <!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Configuring QDevice and QNetd in an Existing High Availability Cluster | SUSE Linux Enterprise High Availability 16.0</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
 <link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
 <meta name="dcterms.created" content="2025-11-04"/>
-<meta name="dcterms.modified" content="2025-11-04"/>
-<meta name="dcterms.dateSubmitted" content="2026-09-15"/>
+<meta name="dcterms.modified" content="2026-09-10"/>
+<meta name="dcterms.dateSubmitted" content="2026-09-16"/>
 <meta name="title" content="Configuring QDevice and QNetd in an Existing High Avai…"/>
 <meta name="description" content="How to configure QDevice and QNetd in a High Availability cluster that is already installed and running"/>
 <meta name="product-name" content="SUSE Linux Enterprise High Availability"/>
@@ -40,8 +40,8 @@
       }
     ],
     "dateCreated": "2025-11-04T00:00+02:00",
-    "dateModified": "2025-11-04T00:00+02:00",
-    "datePublished": "2026-09-15T08:12+02:00",
+    "dateModified": "2026-09-10T00:00+02:00",
+    "datePublished": "2026-09-16T03:00+02:00",
     "about": [
       {
         "@type": "Thing",
@@ -85,7 +85,7 @@
       }
     }
   }</script>
-<link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#ha-qdevice-configuring">Configuring QDevice and QNetd in an Existing High Availability Cluster</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="ha-qdevice-configuring" data-id-title="Configuring QDevice and QNetd in an Existing High Availability Cluster"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise High Availability</span></span></span> 16.0</div><div><h1 class="title">Configuring QDevice and QNetd in an Existing High Availability Cluster</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>15 Sep 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+<link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#ha-qdevice-configuring">Configuring QDevice and QNetd in an Existing High Availability Cluster</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="ha-qdevice-configuring" data-id-title="Configuring QDevice and QNetd in an Existing High Availability Cluster"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise High Availability</span></span></span> 16.0</div><div><h1 class="title">Configuring QDevice and QNetd in an Existing High Availability Cluster</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>16 Sep 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
               QDevice and the arbitrator QNetd help the cluster make quorum calculations in a
               split-brain scenario. This allows the cluster to sustain more node failures than
               the standard quorum rules allow.
@@ -94,7 +94,8 @@
               especially two-node clusters.
             </p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
                 Configuring QDevice and QNetd in an existing cluster only takes a few minutes
-                and does not require any downtime for cluster resources.
+                and doesn't require any downtime for most cluster resources (except for DLM and
+                DLM-dependent resources).
               </p></dd><dt id="id-1.1.12.1.4"><span class="term">GOAL</span></dt><dd><p>
                 QDevice and QNetd can be configured during the initial cluster setup or later in
                 a running cluster. This article explains how to configure them in a High Availability cluster
@@ -202,7 +203,14 @@
       you to restart the cluster services manually. This allows you to put the cluster into
       maintenance mode first to avoid resource downtime. However, be aware that the resources won't
       have cluster protection while in maintenance mode.
-    </p></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Requirements </span></span><a title="Permalink" class="permalink" href="#id-1.4.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+    </p></div><div id="id-1.4.3" data-id-title="Stop DLM before putting the cluster into maintenance mode" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning: Stop DLM before putting the cluster into maintenance mode</div><p>
+    To put the cluster into maintenance mode and then stop or restart the cluster services,
+    you must first stop DLM and any resources that depend on it, such as GFS2 or
+    <code class="systemitem">lvmlockd</code>. When the cluster is in maintenance mode, DLM keeps
+    running even if the cluster services are offline. However, DLM depends on Corosync,
+    so if Corosync stops but DLM is still running, the DLM instances on each node consider
+    the other instances lost and request node fencing.
+  </p></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Requirements </span></span><a title="Permalink" class="permalink" href="#id-1.4.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
         An existing High Availability cluster is already running.
       </p></li><li class="listitem"><p>
         The latest <span class="package">corosync-qdevice</span> package is installed on all nodes.
@@ -295,14 +303,21 @@
         non-<code class="literal">stonith</code> resources are running, the script warns you to restart
         the cluster services manually.
       </p></li><li class="step"><p>
-    If you need to restart the cluster services manually, follow these steps to avoid
+    If you need to restart the cluster services manually, follow these steps to minimize
     resource downtime:
   </p><ol type="a" class="substeps"><li class="step"><p>
+        If DLM and any DLM-dependent resources are running, stop them first. If the resources
+        are in a group, you can just stop the group. If the resources aren't in a group, stop the
+        DLM-dependent resources first and then stop DLM. You can stop multiple resources at once:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm --wait resource stop <em class="replaceable">RESOURCE1 RESOURCE2</em></code></pre></div><p>
+        Use <code class="option">--wait</code> to make sure the resources have really stopped before the
+        command returns.
+      </p></li><li class="step"><p>
         Put the cluster into maintenance mode:
       </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance on</code></pre></div><p>
         In this state, the cluster stops monitoring all resources. This allows the services
         managed by the resources to keep running while the cluster restarts. However, be aware
-        that the resources won't have cluster protection while in maintenance mode.
+        that the resources won't be highly available while in maintenance mode.
       </p></li><li class="step"><p>
         Restart the cluster services on all nodes:
       </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster restart --all</code></pre></div></li><li class="step"><p>
@@ -312,7 +327,12 @@
         change to <code class="literal">Online</code>.
       </p></li><li class="step"><p>
         When the nodes are back online, put the cluster back into normal operation:
-      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance off</code></pre></div></li></ol></li></ol></div></div></section><section xml:lang="en" class="sect1" id="ha-qdevice-checking-setup" data-id-title="Checking the QDevice and QNetd setup"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Checking the QDevice and QNetd setup</span></span> <a title="Permalink" class="permalink" href="#ha-qdevice-checking-setup">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance off</code></pre></div></li><li class="step"><p>
+        If you stopped DLM and any DLM-dependent resources, you can start them again now.
+        If the resources are in a group, you can just start the group. If the resources aren't
+        in a group, start DLM first and then start the DLM-dependent resources. You can start
+        multiple resources at once:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm resource start <em class="replaceable">RESOURCE1 RESOURCE2</em></code></pre></div></li></ol></li></ol></div></div></section><section xml:lang="en" class="sect1" id="ha-qdevice-checking-setup" data-id-title="Checking the QDevice and QNetd setup"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Checking the QDevice and QNetd setup</span></span> <a title="Permalink" class="permalink" href="#ha-qdevice-checking-setup">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
        Use the <code class="command">crm corosync status</code> command to check the cluster's quorum status
        and the status of QDevice and QNetd. You can run this command from any node in the cluster.
       </p></div></div></div></div><p>

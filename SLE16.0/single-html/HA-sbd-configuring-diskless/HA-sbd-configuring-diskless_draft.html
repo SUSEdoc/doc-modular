@@ -2,8 +2,8 @@
 <!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Configuring Diskless SBD in an Existing High Availability Cluster | SUSE Linux Enterprise High Availability 16.0</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
 <link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
 <meta name="dcterms.created" content="2026-01-15"/>
-<meta name="dcterms.modified" content="2026-01-15"/>
-<meta name="dcterms.dateSubmitted" content="2026-09-15"/>
+<meta name="dcterms.modified" content="2026-09-10"/>
+<meta name="dcterms.dateSubmitted" content="2026-09-16"/>
 <meta name="title" content="Configuring Diskless SBD in an Existing High Availabil…"/>
 <meta name="description" content="How to configure diskless SBD in a High Availability cluster that is already installed and running"/>
 <meta name="product-name" content="SUSE Linux Enterprise High Availability"/>
@@ -40,8 +40,8 @@
       }
     ],
     "dateCreated": "2026-01-15T00:00+02:00",
-    "dateModified": "2026-01-15T00:00+02:00",
-    "datePublished": "2026-09-15T08:11+02:00",
+    "dateModified": "2026-09-10T00:00+02:00",
+    "datePublished": "2026-09-16T02:59+02:00",
     "about": [
       {
         "@type": "Thing",
@@ -85,7 +85,7 @@
       }
     }
   }</script>
-<link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#ha-sbd-configuring-diskless">Configuring Diskless SBD in an Existing High Availability Cluster</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="ha-sbd-configuring-diskless" data-id-title="Configuring Diskless SBD in an Existing High Availability Cluster"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise High Availability</span></span></span> 16.0</div><div><h1 class="title">Configuring Diskless SBD in an Existing High Availability Cluster</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>15 Sep 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
+<link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#ha-sbd-configuring-diskless">Configuring Diskless SBD in an Existing High Availability Cluster</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="ha-sbd-configuring-diskless" data-id-title="Configuring Diskless SBD in an Existing High Availability Cluster"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise High Availability</span></span></span> 16.0</div><div><h1 class="title">Configuring Diskless SBD in an Existing High Availability Cluster</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>16 Sep 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.12.1.1"><span class="term">WHAT?</span></dt><dd><p>
                 SBD provides a node fencing mechanism without using an external power-off device.
                 Node fencing protects the cluster from data corruption by resetting failed nodes.
               </p></dd><dt id="id-1.1.12.1.2"><span class="term">WHY?</span></dt><dd><p>
@@ -93,7 +93,8 @@
                 configured.
               </p></dd><dt id="id-1.1.12.1.3"><span class="term">EFFORT</span></dt><dd><p>
                   Configuring diskless SBD in an existing cluster only takes a few minutes and
-                  does not require any downtime for cluster resources.
+                  doesn't require any downtime for most cluster resources (except for DLM and
+                  DLM-dependent resources).
                 </p></dd><dt id="id-1.1.12.1.4"><span class="term">GOAL</span></dt><dd><p>
                   SBD can be configured during the initial cluster setup or later in a running
                   cluster. This article explains how to configure SBD in a High Availability cluster that is
@@ -269,7 +270,14 @@
       must put the cluster into maintenance mode before running the script. This allows the services
       managed by the resources to keep running while the cluster restarts. However, be aware that
       the resources won't have cluster protection while in maintenance mode.
-    </p></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Requirements </span></span><a title="Permalink" class="permalink" href="#id-1.5.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+    </p></div><div id="id-1.5.3" data-id-title="Stop DLM before putting the cluster into maintenance mode" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning: Stop DLM before putting the cluster into maintenance mode</div><p>
+    To put the cluster into maintenance mode and then stop or restart the cluster services,
+    you must first stop DLM and any resources that depend on it, such as GFS2 or
+    <code class="systemitem">lvmlockd</code>. When the cluster is in maintenance mode, DLM keeps
+    running even if the cluster services are offline. However, DLM depends on Corosync,
+    so if Corosync stops but DLM is still running, the DLM instances on each node consider
+    the other instances lost and request node fencing.
+  </p></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Requirements </span></span><a title="Permalink" class="permalink" href="#id-1.5.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
         An existing High Availability cluster is already running.
       </p></li><li class="listitem"><p>
         SBD is not configured yet.
@@ -282,15 +290,22 @@
       </p></li><li class="step"><p>
         Check whether any resources are running:
       </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div></li><li class="step"><p>
-        If any resources are running, put the cluster into maintenance mode:
+    If DLM and any DLM-dependent resources are running, stop them first. If the resources
+    are in a group, you can just stop the group. If the resources aren't in a group, stop the
+    DLM-dependent resources first and then stop DLM. You can stop multiple resources at once:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm --wait resource stop <em class="replaceable">RESOURCE1 RESOURCE2</em></code></pre></div><p>
+    Use <code class="option">--wait</code> to make sure the resources have really stopped before the
+    command returns.
+  </p></li><li class="step"><p>
+        If any other resources are running, put the cluster into maintenance mode:
       </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance on</code></pre></div><p>
         In this state, the cluster stops monitoring all resources. This allows the services
         managed by the resources to keep running while the cluster restarts. However, be aware
-        that the resources won't have cluster protection while in maintenance mode.
+        that the resources won't be highly available while in maintenance mode.
       </p></li><li class="step"><p>
         Run the SBD stage of the cluster setup script, using the option <code class="option">--enable-sbd</code>
         (or <code class="option">-S</code>) to specify diskless SBD:
-      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster init sbd --enable-sbd </code></pre></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Additional options </span></span><a title="Permalink" class="permalink" href="#id-1.5.5.4.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster init sbd --enable-sbd </code></pre></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Additional options </span></span><a title="Permalink" class="permalink" href="#id-1.5.6.5.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
             If multiple watchdogs are available, you can use the option <code class="option">--watchdog</code>
             (or <code class="option">-w</code>) to choose which watchdog to use. Specify either the device name
             (for example, <code class="literal">/dev/watchdog1</code>) or the driver name (for example,
@@ -302,6 +317,11 @@
       </p></li><li class="step"><p>
         If the cluster is still in maintenance mode, put it back into normal operation:
       </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance off</code></pre></div></li><li class="step"><p>
+    If you stopped DLM and any DLM-dependent resources, you can start them again now.
+    If the resources are in a group, you can just start the group. If the resources aren't
+    in a group, start DLM first and then start the DLM-dependent resources. You can start
+    multiple resources at once:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm resource start <em class="replaceable">RESOURCE1 RESOURCE2</em></code></pre></div></li><li class="step"><p>
         Check the SBD configuration:
       </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm sbd configure show</code></pre></div><p>
         The output of this command shows the enabled settings in the
