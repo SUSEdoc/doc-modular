@@ -1,0 +1,944 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Hardening SUSE Linux with OpenSCAP | SUSE Linux 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2026-02-18"/>
+<meta name="dcterms.modified" content="2026-02-18"/>
+<meta name="dcterms.dateSubmitted" content="2026-09-16"/>
+<meta name="title" content="Hardening SUSE Linux with OpenSCAP | SUSE Linux 16.1"/>
+<meta name="description" content="How to audit and harden SUSE Linux Enterprise Server for NVIDIA using OpenSCAP and the SCAP Security Guide"/>
+<meta name="product-name" content="SUSE Linux"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="Hardening SUSE Linux with OpenSCAP"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="souvik.sarkar@suse.com"/>
+<meta name="tracker-bsc-component" content="Security"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="category" content="."/><meta name="dc.creator" content="souvik.sarkar@suse.com"/><meta property="og:title" content="Hardening SUSE Linux Enterprise Server for NVIDIA with…"/>
+<meta property="og:description" content="Harden SLE for NVIDIA with OpenSCAP and SSG"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Hardening SUSE Linux Enterprise Server for NVIDIA with…"/>
+<meta name="twitter:description" content="Harden SLE for NVIDIA with OpenSCAP and SSG"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Hardening SUSE Linux Enterprise Server for NVIDIA with OpenSCAP | SUSE Linux 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Hardening SUSE Linux Enterprise Server for NVIDIA with OpenSCAP",
+    "description": "How to audit and harden SUSE Linux Enterprise Server for NVIDIA using OpenSCAP and the SCAP Security Guide",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2026-02-18T00:00+02:00",
+    "dateModified": "2026-02-18T00:00+02:00",
+    "datePublished": "2026-09-16T01:55+02:00",
+
+    "articleSection": [ 
+        "Security"
+        
+    ],
+        "about": [
+      {
+        "@type": "Thing",
+        "name": "Auditing"
+      },
+      {
+        "@type": "Thing",
+        "name": "Compliance"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER, IBM Z, AArch64"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#openscap-system-hardening">Hardening SUSE Linux with OpenSCAP</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="openscap-system-hardening" data-id-title="Hardening SUSE Linux with OpenSCAP"><div class="titlepage"><div><div class="big-version-info"><span class="productname">SUSE Linux</span> 16.1</div><div><h1 class="title">Hardening SUSE Linux with OpenSCAP</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>16 Sep 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.13.1.1"><span class="term">WHAT?</span></dt><dd><p>
+                OpenSCAP is an open source toolset that implements the Security Content
+                Automation Protocol (SCAP) framework. Combined with the SCAP Security Guide (SSG), it enables automated
+                security auditing and hardening of SUSE Linux.
+              </p></dd><dt id="id-1.1.13.1.2"><span class="term">WHY?</span></dt><dd><p>
+                Automated scanning and remediation reduce manual effort, ensure consistent policy
+                enforcement across systems, and support compliance with regulations such as HIPAA,
+                PCI-DSS v4 and ANSSI-BP-028.
+              </p></dd><dt id="id-1.1.13.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                Reading time: approximately 30 minutes. A full scan and remediation cycle takes 1–2
+                hours depending on the number of rules and the initial state of the target system.
+                Familiarity with the Linux command line is required.
+              </p></dd><dt id="id-1.1.13.1.4"><span class="term">GOAL</span></dt><dd><p>
+                After completing this article, you can install the required packages, select a
+                security profile, scan your system for policy violations, and remediate identified
+                issues automatically or manually.
+              </p></dd><dt id="id-1.1.13.1.5"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                    A running installation of SUSE Linux.
+                  </p></li><li class="listitem"><p>
+                    <code class="systemitem">root</code> or <code class="command">sudo</code> privileges on the
+                    target system.
+                  </p></li><li class="listitem"><p>
+                    Access to SUSE repositories for package installation, or an offline package
+                    source.
+                  </p></li><li class="listitem"><p>
+                    A non-production test environment for validating remediation before applying it
+                    to production systems.
+                  </p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Hardening SUSE Linux with OpenSCAP" hreflang="en" href="rh-openscap-system-hardening.html" target="_blank">Revision History: Hardening SUSE Linux with OpenSCAP</a></div></div></div></div><section xml:lang="en" class="sect1" id="openscap-intro" data-id-title="Auditing and hardening SUSE Linux with OpenSCAP"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Auditing and hardening SUSE Linux with OpenSCAP</span></span> <a title="Permalink" class="permalink" href="#openscap-intro">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   This article explains how to use OpenSCAP and SSG to audit and harden SUSE Linux systems against recognized security baselines.
+  </p><p>
+    The following sections describe how to prepare your environment, install the required packages,
+    select a security profile, scan your system for policy violations, and remediate any issues
+    found. The sections are arranged in the order of a typical hardening workflow, but the scanning
+    and remediation steps can also be performed independently once the prerequisites are in place.
+  </p></section><section xml:lang="en" class="sect1" id="openscap-scap-overview" data-id-title="SCAP and OpenSCAP"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">SCAP and OpenSCAP</span></span> <a title="Permalink" class="permalink" href="#openscap-scap-overview">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        SCAP is a framework of specifications for automating security compliance. OpenSCAP
+        implements this framework for Linux, and together with the SCAP Security Guide, enables automated
+        auditing and hardening of SUSE Linux.
+      </p></div></div></div></div><section class="sect2" id="openscap-scap-overview-what-is-scap" data-id-title="What is SCAP?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">What is SCAP?</span></span> <a title="Permalink" class="permalink" href="#openscap-scap-overview-what-is-scap">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      SCAP stands for <span><em class="emphasis">Security Content Automation Protocol</em></span>. It is a framework
+      of specifications developed and maintained by the National Institute of Standards and
+      Technology (NIST) that supports automated configuration, vulnerability scanning, and policy
+      compliance evaluation of systems in an organization. SCAP also standardizes how
+      vulnerabilities and security configurations are communicated, both to machines and to human
+      beings.
+    </p></section><section class="sect2" id="openscap-scap-overview-what-is-openscap" data-id-title="What is OpenSCAP?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.2 </span><span class="title-name">What is OpenSCAP?</span></span> <a title="Permalink" class="permalink" href="#openscap-scap-overview-what-is-openscap">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      OpenSCAP is a collection of open source tools that implement the SCAP framework for Linux.
+      It received the SCAP 1.2 certification from NIST in 2014. OpenSCAP works together with the
+      <code class="literal">SCAP Security Guide</code> (SSG), which implements security guidelines recommended by respected
+      authorities in a machine-readable format. This allows OpenSCAP to automatically audit and
+      harden your SUSE Linux system against recognized security baselines.
+    </p></section><section class="sect2" id="openscap-scap-overview-components" data-id-title="Key SCAP components"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.3 </span><span class="title-name">Key SCAP components</span></span> <a title="Permalink" class="permalink" href="#openscap-scap-overview-components">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      SCAP consists of the following components, which interact to describe,
+      evaluate and report on the security state of a system.
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.3.4.3.1"><span class="term">Open Vulnerability and Assessment Language (OVAL)</span></dt><dd><p>
+            An XML format for testing the presence of a specific state on a system.
+          </p></dd><dt id="id-1.3.4.3.2"><span class="term">Extensible Configuration Checklist Description Format (XCCDF)</span></dt><dd><p>
+            An XML format that specifies security checklists, benchmarks, and configuration
+            documentation. An XCCDF file contains a benchmark consisting of different profiles,
+            where each profile is a set of rules with OVAL definitions. Profiles correspond to
+            security practices such as HIPAA, PCI-DSS, and ANSSI-BP-028.
+          </p></dd><dt id="id-1.3.4.3.3"><span class="term">Common Platform Enumeration (CPE)</span></dt><dd><p>
+            A structured naming scheme maintained by NIST for identifying IT systems, platforms,
+            and software packages. A CPE name has the following format:
+            <code class="literal">cpe:/<em class="replaceable">part</em>:<em class="replaceable">vendor</em>:<em class="replaceable">product</em>:<em class="replaceable">version</em>:<em class="replaceable">update</em>:<em class="replaceable">edition</em>:<em class="replaceable">language</em></code>
+          </p></dd><dt id="id-1.3.4.3.4"><span class="term">DataStream (DS)</span></dt><dd><p>
+            An XML format that bundles multiple SCAP components (CPE, XCCDF, OVAL) into a single
+            file for distribution over a network. DataStream files are the primary input format for
+            OpenSCAP when hardening and auditing a SUSE Linux system.
+          </p></dd><dt id="id-1.3.4.3.5"><span class="term">Common Configuration Enumeration (CCE)</span></dt><dd><p>
+            Unique identifiers assigned to security-related system configuration issues, used to
+            track individual rules across profiles and tools.
+          </p></dd></dl></div></section><section class="sect2" id="scap-security-guide-whatis" data-id-title="What is the SCAP Security Guide?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.4 </span><span class="title-name">What is the SCAP Security Guide?</span></span> <a title="Permalink" class="permalink" href="#scap-security-guide-whatis">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The <code class="literal">SCAP Security Guide</code> is an open source project that provides machine-readable
+      security policies for Linux systems. It translates established security benchmarks, such as
+      <span class="orgname">Defense Information Systems Agency (DISA)</span>
+      STIGs and
+      <span class="orgname">Center for
+      Internet Security (CIS)</span>
+      benchmarks, into SCAP content that can be automatically applied and verified. The
+      <code class="literal">SCAP Security Guide</code> delivers XCCDF checklists, OVAL checks, and ready-to-use remediation
+      scripts in the form of Ansible playbooks and Bash scripts.
+    </p></section><section class="sect2" id="openscap-scap-overview-benefits" data-id-title="Benefits of using OpenSCAP with the SCAP Security Guide"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.5 </span><span class="title-name">Benefits of using OpenSCAP with the SCAP Security Guide</span></span> <a title="Permalink" class="permalink" href="#openscap-scap-overview-benefits">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Using OpenSCAP together with the SCAP Security Guide provides the following benefits:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          Security guidelines from recognized authorities are transformed into a machine-readable
+          format, removing the need for manual interpretation.
+        </p></li><li class="listitem"><p>
+          Scanning and remediation can be automated and run repeatedly, ensuring consistent policy
+          enforcement across all systems in your infrastructure.
+        </p></li><li class="listitem"><p>
+          Results are stored in standardized XML formats and can be rendered as human-readable HTML
+          reports for audit and compliance purposes.
+        </p></li><li class="listitem"><p>
+          Multiple security profiles are available out of the box, covering regulations such as
+          HIPAA, PCI-DSS v4, and ANSSI-BP-028, reducing the effort required to achieve and
+          demonstrate compliance.
+        </p></li></ul></div></section></section><section xml:lang="en" class="sect1" id="openscap-infrastructure-preparing" data-id-title="Preparing the IT infrastructure"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Preparing the IT infrastructure</span></span> <a title="Permalink" class="permalink" href="#openscap-infrastructure-preparing">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Before installing and applying the SCAP Security Guide, prepare your IT infrastructure to ensure a
+        controlled and repeatable hardening process.
+      </p></div></div></div></div><section class="sect2" id="openscap-infrastructure-preparing-intro" data-id-title="Introduction"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.1 </span><span class="title-name">Introduction</span></span> <a title="Permalink" class="permalink" href="#openscap-infrastructure-preparing-intro">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Applying security hardening without prior planning can lead to service disruptions,
+      misconfigurations, and incomplete compliance. The steps below help you assess your
+      environment, define the scope of hardening, and set up a safe testing workflow before
+      touching production systems.
+    </p></section><section class="sect2" id="openscap-infrastructure-preparing-procedure" data-id-title="What pre-hardening steps should you follow?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.2 </span><span class="title-name">What pre-hardening steps should you follow?</span></span> <a title="Permalink" class="permalink" href="#openscap-infrastructure-preparing-procedure">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Create an inventory of the hosts on which the SCAP Security Guide will be installed.
+        </p></li><li class="step"><p>
+          Create an inventory of the IT and business services that will be in scope for the
+          installation.
+        </p></li><li class="step"><p>
+          Divide the inventory into groups. Hosts within the same group will share an identical
+          configuration.
+        </p></li><li class="step"><p>
+          Select the security standard or profile you plan to implement. For SUSE Linux, the
+          available profiles include ANSSI-BP-028 (at four levels), HIPAA, and PCI-DSS v4. For the
+          full list of supported profiles, refer to <a class="xref" href="#openscap-profiles" title="5. SSG Content, directories and profiles">Section 5, “SSG Content, directories and profiles”</a>.
+        </p></li><li class="step"><p>
+          For each group, create a list of rules and recommendations you plan to implement.
+          Consider the following for each rule:
+        </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+              Preconditions required by the rule
+            </p></li><li class="listitem"><p>
+              Configuration parameters, if any
+            </p></li><li class="listitem"><p>
+              Whether the rule will be applied manually or automatically
+            </p></li><li class="listitem"><p>
+              Rules to be excluded, and the additional security controls that will compensate for
+              each exclusion
+            </p></li></ul></div></li><li class="step"><p>
+          Set up a test environment that closely mirrors your production environment. Use it to
+          validate hardening before applying it to production. Keep the following in mind:
+        </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+              Run remediation more than once. Rules are applied in alphabetical order. Dependencies
+              exist between some rules, and a system restart is required after each pass.
+            </p></li><li class="listitem"><p>
+              A 100% pass rate is not achievable in practice. Define an acceptable number of
+              non-passing rules for each group, document them, and apply compensating security
+              controls.
+            </p></li></ul></div></li><li class="step"><p>
+          Use the test environment to validate new patches and updated versions of the SCAP Security Guide before
+          rolling them out.
+        </p></li><li class="step"><p>
+          If a rule fails during remediation, consider one of the following approaches:
+        </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+              Apply the rule manually.
+            </p></li><li class="listitem"><p>
+              Exclude the rule using a tailoring file and apply a compensating security control
+              instead.
+            </p></li><li class="listitem"><p>
+              File a bug report, including the SCAP Security Guide version, execution logs, and the steps you
+              performed.
+            </p></li></ul></div></li><li class="step"><p>
+          Create an implementation plan covering your production environment.
+        </p></li><li class="step"><p>
+          Create backups of all target systems before proceeding.
+        </p></li></ol></div></div></section></section><section xml:lang="en" class="sect1" id="openscap-packages-installing" data-id-title="Installing OpenSCAP and the SCAP Security Guide"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Installing OpenSCAP and the SCAP Security Guide</span></span> <a title="Permalink" class="permalink" href="#openscap-packages-installing">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Install the core packages required to scan and remediate SUSE Linux with OpenSCAP and
+        the SCAP Security Guide, and optionally install the graphical SCAP Workbench for a GUI-based workflow.
+      </p></div></div></div></div><section class="sect2" id="openscap-packages-installing-core" data-id-title="Installing the core packages"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.1 </span><span class="title-name">Installing the core packages</span></span> <a title="Permalink" class="permalink" href="#openscap-packages-installing-core">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The following two packages are required for all scanning and remediation workflows described
+      in this article:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          <span class="package">openscap-utils</span>: provides the <code class="command">oscap</code> and
+          <code class="command">oscap-ssh</code> command-line tools.
+        </p></li><li class="listitem"><p>
+          <span class="package">scap-security-guide</span>: provides the SCAP Security Guide security content, including
+          DataStream files, profiles, fix scripts, and Ansible playbooks.
+        </p></li></ul></div><p>
+      Install both packages with the following command:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper install openscap-utils scap-security-guide</code></pre></div></section><section class="sect2" id="openscap-packages-installing-optional" data-id-title="Installing optional packages"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.2 </span><span class="title-name">Installing optional packages</span></span> <a title="Permalink" class="permalink" href="#openscap-packages-installing-optional">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The following packages are optional and extend the core workflow:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          <span class="package">scap-workbench</span>: a graphical utility for performing common
+          <code class="command">oscap</code> tasks, including scanning and profile customization. Available
+          only for desktop installations of SUSE Linux.
+        </p></li><li class="listitem"><p>
+          <span class="package">ssg-apply</span>: used together with SCAP Workbench to conveniently apply a
+          tailoring file for customized hardening.
+        </p></li></ul></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper install scap-workbench ssg-apply</code></pre></div><div id="id-1.5.3.5" data-id-title="Security best practice for SCAP Workbench" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Security best practice for SCAP Workbench</div><p>
+        Avoid installing SCAP Workbench on the target system you plan to harden. Instead, install
+        it on a separate client machine and apply hardening to the target system remotely,
+        maintaining an air gap until the target is connected to a potentially insecure network.
+      </p></div></section></section><section xml:lang="en" class="sect1" id="openscap-profiles" data-id-title="SSG Content, directories and profiles"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">SSG Content, directories and profiles</span></span> <a title="Permalink" class="permalink" href="#openscap-profiles">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Reference information on the SCAP Security Guide directory layout, the content available after
+        installation, and the security profiles supported for SUSE Linux.
+      </p></div></div></div></div><section class="sect2" id="openscap-profiles-directories" data-id-title="SSG directories and files"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.1 </span><span class="title-name">SSG directories and files</span></span> <a title="Permalink" class="permalink" href="#openscap-profiles-directories">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      After installing the <span class="package">scap-security-guide</span> package, the SSG security content
+      is available in the following directories:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.6.2.3.1"><span class="term"><code class="filename">/usr/share/xml/scap/ssg/content/</code></span></dt><dd><p>
+            Contains the SSG security content in XML format. All files are named according to the
+            SCAP component and the product they apply to. To list all available DataStream files,
+            run:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ls -l /usr/share/xml/scap/ssg/content/ssg-*-ds.xml</code></pre></div></dd><dt id="id-1.6.2.3.2"><span class="term"><code class="filename">/usr/share/doc/scap-security-guide/guides/</code></span></dt><dd><p>
+            Contains human-readable HTML versions of the profiles. Each guide describes the rules
+            included in a profile, the rationale behind each rule, severity levels, CCE
+            identifiers, and available remediation options. To list all available guides, run:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ls -l /usr/share/doc/scap-security-guide/guides/ssg*.html</code></pre></div><p>
+            To view a specific guide in a web browser, for example the
+            <code class="literal">anssi_bp28_high</code> profile for SUSE Linux, run:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">firefox /usr/share/doc/scap-security-guide/guides/ssg-sle16-guide-anssi_bp28_high.html</code></pre></div><p>
+            The same content is also available online as static HTML pages at
+            <a class="link" href="https://complianceascode.github.io/content-pages/guides/index.html" target="_blank">https://complianceascode.github.io/content-pages/guides/index.html</a>.
+          </p></dd><dt id="id-1.6.2.3.3"><span class="term"><code class="filename">/usr/share/scap-security-guide/</code></span></dt><dd><p>
+            Contains fix scripts for remediating vulnerabilities found during a scan, in the
+            following formats:
+          </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                Shell scripts: <code class="filename">bash/*.sh</code>
+              </p></li><li class="listitem"><p>
+                Ansible playbooks: <code class="filename">ansible/*.yml</code>
+              </p></li></ul></div></dd></dl></div></section><section class="sect2" id="openscap-profiles-supported" data-id-title="Supported profiles for SUSE Linux"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.2 </span><span class="title-name">Supported profiles for SUSE Linux</span></span> <a title="Permalink" class="permalink" href="#openscap-profiles-supported">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The following security profiles are supported by SUSE for SUSE Linux. The profiles are
+      maintained in the
+      <a class="link" href="https://github.com/ComplianceAsCode/content/tree/master/products/sle16/profiles" target="_blank">ComplianceAsCode</a>
+      repository.
+    </p><div class="table" id="openscap-profiles-supported-table" data-id-title="Supported SCAP Security Guide profiles for SUSE Linux"><div class="title-container"><div class="table-title-wrap"><div class="table-title"><span class="title-number-name"><span class="title-number">Table 1: </span><span class="title-name">Supported SCAP Security Guide profiles for SUSE Linux </span></span><a title="Permalink" class="permalink" href="#openscap-profiles-supported-table">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="table-contents"><table style="border-collapse: collapse; border-top: 1px solid ; border-bottom: 1px solid ; border-left: 1px solid ; border-right: 1px solid ; "><colgroup><col/><col/></colgroup><thead><tr><th style="border-right: 1px solid ; border-bottom: 1px solid ; ">Profile name</th><th style="border-bottom: 1px solid ; ">Profile ID</th></tr></thead><tbody><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">ANSSI-BP-028 (minimal)</td><td style="border-bottom: 1px solid ; "><code class="literal">xccdf_org.ssgproject.content_profile_anssi_bp28_minimal</code>
+            </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">ANSSI-BP-028 (intermediary)</td><td style="border-bottom: 1px solid ; "><code class="literal">xccdf_org.ssgproject.content_profile_anssi_bp28_intermediary</code>
+            </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">ANSSI-BP-028 (enhanced)</td><td style="border-bottom: 1px solid ; "><code class="literal">xccdf_org.ssgproject.content_profile_anssi_bp28_enhanced</code>
+            </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">ANSSI-BP-028 (high)</td><td style="border-bottom: 1px solid ; "><code class="literal">xccdf_org.ssgproject.content_profile_anssi_bp28_high</code>
+            </td></tr><tr><td style="border-right: 1px solid ; border-bottom: 1px solid ; ">Health Insurance Portability and Accountability Act (HIPAA)</td><td style="border-bottom: 1px solid ; "><code class="literal">xccdf_org.ssgproject.content_profile_hipaa</code>
+            </td></tr><tr><td style="border-right: 1px solid ; ">PCI-DSS v4 Control Baseline for SUSE Linux</td><td><code class="literal">xccdf_org.ssgproject.content_profile_pci-dss</code>
+            </td></tr></tbody></table></div></div><p>
+      To view the full list of profiles available in the DataStream file, including their IDs, run:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">oscap info /usr/share/xml/scap/ssg/content/ssg-sle16-ds.xml</code></pre></div></section></section><section xml:lang="en" class="sect1" id="openscap-system-scanning" data-id-title="Scanning the system for vulnerabilities"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Scanning the system for vulnerabilities</span></span> <a title="Permalink" class="permalink" href="#openscap-system-scanning">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Use <code class="command">oscap</code> to evaluate your SUSE Linux system against a security profile
+        and generate a report of the results.
+      </p></div></div></div></div><section class="sect2" id="openscap-system-scanning-intro" data-id-title="Introduction"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.1 </span><span class="title-name">Introduction</span></span> <a title="Permalink" class="permalink" href="#openscap-system-scanning-intro">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The <code class="command">oscap xccdf eval</code> command evaluates a system against the rules defined
+      in a security profile and produces results in XML format. An HTML report can be generated
+      alongside the XML results for human review. The evaluation typically takes a few minutes,
+      depending on the number of rules in the selected profile.
+    </p><p>
+      Before scanning, ensure that the <span class="package">openscap-utils</span> and
+      <span class="package">scap-security-guide</span> packages are installed as described in
+      <a class="xref" href="#openscap-packages-installing" title="4. Installing OpenSCAP and the SCAP Security Guide">Section 4, “Installing OpenSCAP and the SCAP Security Guide”</a>, and that you have selected a profile as
+      described in <a class="xref" href="#openscap-profiles" title="5. SSG Content, directories and profiles">Section 5, “SSG Content, directories and profiles”</a>.
+    </p></section><section class="sect2" id="openscap-system-scanning-basic" data-id-title="Running a basic scan"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.2 </span><span class="title-name">Running a basic scan</span></span> <a title="Permalink" class="permalink" href="#openscap-system-scanning-basic">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      To scan your system locally against a profile and save the results, run the following
+      command:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">oscap xccdf eval \
+  --profile <em class="replaceable">PROFILE-ID</em> \
+  --results <em class="replaceable">/tmp/results.xml</em> \
+  --report <em class="replaceable">/tmp/report.html</em> \
+  /usr/share/xml/scap/ssg/content/ssg-sle16-ds.xml</code></pre></div><p>
+      Replace <em class="replaceable">PROFILE-ID</em> with one of the profile IDs listed in
+      <a class="xref" href="#openscap-profiles-supported-table" title="Supported SCAP Security Guide profiles for SUSE Linux">Table 1, “Supported SCAP Security Guide profiles for SUSE Linux”</a>. For example, to scan against the HIPAA
+      profile:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">oscap xccdf eval \
+  --profile xccdf_org.ssgproject.content_profile_hipaa \
+  --results /tmp/results.xml \
+  --report /tmp/report.html \
+  /usr/share/xml/scap/ssg/content/ssg-sle16-ds.xml</code></pre></div><p>
+      The results are saved to <code class="filename">/tmp/results.xml</code> and the HTML report to
+      <code class="filename">/tmp/report.html</code>. Open the report in a web browser to review the
+      evaluation results.
+    </p></section><section class="sect2" id="openscap-system-scanning-remote-resources" data-id-title="Using remote resources during a scan"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.3 </span><span class="title-name">Using remote resources during a scan</span></span> <a title="Permalink" class="permalink" href="#openscap-system-scanning-remote-resources">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Some SCAP Security Guide content references external OVAL files, for example, to check whether the system is
+      patched against known CVEs. By default, OpenSCAP skips these remote resources and displays
+      a warning. The following options control this behavior.
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.7.4.3.1"><span class="term">Fetching remote resources automatically</span></dt><dd><p>
+            If the target system has Internet access and you trust the remote content, use the
+            <code class="option">--fetch-remote-resources</code> option to download referenced files
+            automatically during the scan:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">oscap xccdf eval \
+  --fetch-remote-resources \
+  --profile xccdf_org.ssgproject.content_profile_hipaa \
+  --results /tmp/results.xml \
+  --report /tmp/report.html \
+  /usr/share/xml/scap/ssg/content/ssg-sle16-ds.xml</code></pre></div></dd><dt id="id-1.7.4.3.2"><span class="term">Using locally downloaded remote resources</span></dt><dd><p>
+            On systems without Internet access, or in security-sensitive deployments, download the
+            required remote files in advance and pass them to <code class="command">oscap</code> using the
+            <code class="option">--local-files</code> option:
+          </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+                Create a directory for storing the downloaded files:
+              </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">mkdir ~/scap-files</code></pre></div></li><li class="step"><p>
+                Download the required remote resource:
+              </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">wget -O ~/scap-files/pub-projects-security-oval-suse.linux.enterprise.15-patch.xml.bz2 \
+  https://ftp.suse.com/pub/projects/security/oval/suse.linux.enterprise.15-patch.xml.bz2</code></pre></div><div id="id-1.7.4.3.2.2.2.2.3" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
+                  Use the most specific file available for your product version to reduce resource
+                  usage and scan time. For example, if you are interested only in a specific
+                  service pack, use the corresponding SP-specific file from
+                  <a class="link" href="https://ftp.suse.com/pub/projects/security/oval/" target="_blank">https://ftp.suse.com/pub/projects/security/oval/</a>.
+                </p></div></li><li class="step"><p>
+                Run the scan using the locally downloaded files:
+              </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">oscap xccdf eval \
+  --local-files ~/scap-files \
+  --profile xccdf_org.ssgproject.content_profile_hipaa \
+  --results /tmp/results.xml \
+  --report /tmp/report.html \
+  /usr/share/xml/scap/ssg/content/ssg-sle16-ds.xml</code></pre></div></li><li class="step"><p>
+                Optionally, generate an HTML report separately from the XML results file:
+              </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">oscap xccdf generate report /tmp/results.xml &gt; /tmp/report.html</code></pre></div><div id="id-1.7.4.3.2.2.2.4.3" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
+                  Separating the scan and the report generation steps reduces resource usage on the
+                  target system during the scan itself.
+                </p></div></li></ol></div></div></dd></dl></div></section><section class="sect2" id="openscap-system-scanning-rules" data-id-title="Scanning with specific rules"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.4 </span><span class="title-name">Scanning with specific rules</span></span> <a title="Permalink" class="permalink" href="#openscap-system-scanning-rules">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      By default, <code class="command">oscap xccdf eval</code> evaluates all rules in the selected profile.
+      You can narrow the scope of evaluation using the following options.
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.7.5.3.1"><span class="term">Evaluating a single rule</span></dt><dd><p>
+            Use the <code class="option">--rule</code> option to evaluate only a specific rule, identified by
+            its rule ID:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">oscap xccdf eval \
+  --profile xccdf_org.ssgproject.content_profile_hipaa \
+  --rule xccdf_org.ssgproject.content_rule_package_aide_installed \
+  --report /tmp/report.html \
+  /usr/share/xml/scap/ssg/content/ssg-sle16-ds.xml</code></pre></div></dd><dt id="id-1.7.5.3.2"><span class="term">Skipping a specific rule</span></dt><dd><p>
+            Use the <code class="option">--skip-rule</code> option to exclude a specific rule from the
+            evaluation:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">oscap xccdf eval \
+  --profile xccdf_org.ssgproject.content_profile_hipaa \
+  --skip-rule xccdf_org.ssgproject.content_rule_package_aide_installed \
+  --report /tmp/report.html \
+  /usr/share/xml/scap/ssg/content/ssg-sle16-ds.xml</code></pre></div></dd></dl></div></section><section class="sect2" id="openscap-system-scanning-remote-machine" data-id-title="Scanning a remote machine"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.5 </span><span class="title-name">Scanning a remote machine</span></span> <a title="Permalink" class="permalink" href="#openscap-system-scanning-remote-machine">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      To scan a remote machine over SSH, use <code class="command">oscap-ssh</code> instead of
+      <code class="command">oscap</code>. The <span class="package">openscap-utils</span> package must be installed on
+      both the local and the remote machine. The interface mirrors that of
+      <code class="command">oscap</code>:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">oscap-ssh <em class="replaceable">user</em>@<em class="replaceable">host</em> <em class="replaceable">22</em> xccdf eval \
+  --profile xccdf_org.ssgproject.content_profile_hipaa \
+  --results /tmp/results.xml \
+  --report /tmp/report.html \
+  /usr/share/xml/scap/ssg/content/ssg-sle16-ds.xml</code></pre></div></section></section><section xml:lang="en" class="sect1" id="openscap-system-remediating" data-id-title="Remediating vulnerabilities"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Remediating vulnerabilities</span></span> <a title="Permalink" class="permalink" href="#openscap-system-remediating">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Apply fixes to bring your SUSE Linux system into compliance with a security profile using
+        <code class="command">oscap</code>, SCAP Security Guide shell scripts, or Ansible playbooks.
+      </p></div></div></div></div><section class="sect2" id="openscap-system-remediating-intro" data-id-title="Introduction"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.1 </span><span class="title-name">Introduction</span></span> <a title="Permalink" class="permalink" href="#openscap-system-remediating-intro">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      After scanning your system, you can remediate identified policy violations automatically or
+      manually. The SCAP Security Guide provides fix scripts in two formats — shell scripts and Ansible playbooks
+      — that <code class="command">oscap</code> can apply directly, or that you can review and run
+      independently.
+    </p><div id="id-1.8.2.3" data-id-title="Automatic remediation not always available" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Automatic remediation not always available</div><p>
+        Automatic remediation is not offered for fixes that are too disruptive to apply safely on a
+        running system. Such rules must be remediated manually.
+      </p></div><p>
+      The overall remediation process is as follows:
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          <code class="command">oscap</code> scans the system and marks each failing rule as a candidate for
+          remediation.
+        </p></li><li class="step"><p>
+          For each failing rule, <code class="command">oscap</code> locates the corresponding
+          <code class="sgmltag-element">xccdf:fix</code> element in the XCCDF file, prepares the environment,
+          and executes the fix script.
+        </p></li><li class="step"><p>
+          After executing the fix, <code class="command">oscap</code> re-evaluates the rule to confirm
+          whether the fix was successful.
+        </p></li><li class="step"><p>
+          All remediation results are stored in an output XCCDF file.
+        </p></li></ol></div></div><div id="id-1.8.2.6" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+        Remediation must be run more than once. Rules are applied in alphabetical order. Some rules
+        have dependencies on others, and the system may need to be restarted between passes for
+        changes to take effect.
+      </p></div></section><section class="sect2" id="openscap-system-remediating-fly" data-id-title="Remediating on the fly"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.2 </span><span class="title-name">Remediating on the fly</span></span> <a title="Permalink" class="permalink" href="#openscap-system-remediating-fly">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The simplest approach is to scan and remediate in a single command using the
+      <code class="option">--remediate</code> option. The system is first scanned, and then
+      <code class="command">oscap</code> immediately attempts to fix each failing rule.
+    </p><div id="id-1.8.3.3" data-id-title="Usage of the --skip-rule option" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning: Usage of the <code class="option">--skip-rule</code> option</div><p>
+        Always use <code class="option">--skip-rule</code> to skip the rule
+        <code class="literal">xccdf_org.ssgproject.content_rule_accounts_authorized_local_users</code> unless
+        you have explicitly configured the variable
+        <code class="literal">var_accounts_authorized_local_users_regex</code>. Failing to do so may prevent
+        <code class="command">sudo</code> from working after a reboot.
+      </p></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">oscap xccdf eval --remediate \
+  --profile xccdf_org.ssgproject.content_profile_hipaa \
+  --results /tmp/results.xml \
+  --report /tmp/report.html \
+  --skip-rule xccdf_org.ssgproject.content_rule_accounts_authorized_local_users \
+  /usr/share/xml/scap/ssg/content/ssg-sle16-ds.xml</code></pre></div><p>
+      For the changes to take effect, reboot the system.
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">reboot</code></pre></div><p>
+      In the resulting <code class="filename">/tmp/results.xml</code> file, the first
+      <code class="sgmltag-element">TestResult</code> element contains the scan results before remediation.
+      The second <code class="sgmltag-element">TestResult</code> element contains the results after
+      remediation, where a rule result of <code class="literal">fixed</code> indicates a successful fix, and
+      <code class="literal">error</code> indicates that the fix was not successful.
+    </p></section><section class="sect2" id="openscap-system-remediating-post-scan" data-id-title="Remediating after scanning"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.3 </span><span class="title-name">Remediating after scanning</span></span> <a title="Permalink" class="permalink" href="#openscap-system-remediating-post-scan">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Alternatively, you can separate the scan and remediation into two steps. This allows you to
+      review the scan results before applying any fixes.
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Scan the system and save the results:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">oscap xccdf eval \
+  --profile xccdf_org.ssgproject.content_profile_hipaa \
+  --results /tmp/results.xml \
+  /usr/share/xml/scap/ssg/content/ssg-sle16-ds.xml</code></pre></div><p>
+          The results are stored in a <code class="sgmltag-element">TestResult</code> element in
+          <code class="filename">/tmp/results.xml</code>. The system is evaluated only — no changes are made
+          at this stage.
+        </p></li><li class="step"><p>
+          Run remediation using the results file from the previous step as input:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">oscap xccdf remediate \
+  --results /tmp/results.xml \
+  /tmp/results.xml</code></pre></div><p>
+          <code class="command">oscap</code> creates a new <code class="sgmltag-element">xccdf:TestResult</code>
+          element in the same file, inheriting data from the first result and applying fixes only
+          to the rules that failed in the initial scan.
+        </p></li></ol></div></div></section><section class="sect2" id="openscap-system-remediating-review" data-id-title="Generating remediation scripts for review"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.4 </span><span class="title-name">Generating remediation scripts for review</span></span> <a title="Permalink" class="permalink" href="#openscap-system-remediating-review">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      To inspect the remediation instructions before applying them, use <code class="command">oscap xccdf
+      generate fix</code> to save the fix content to a file without executing it.
+    </p><p>
+      To generate a shell script:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">oscap xccdf generate fix \
+  --template urn:xccdf:fix:script:sh \
+  --profile xccdf_org.ssgproject.content_profile_hipaa \
+  --output my-remediation-script.sh \
+  /usr/share/xml/scap/ssg/content/ssg-sle16-ds.xml</code></pre></div><p>
+      To generate an Ansible playbook:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">oscap xccdf generate fix \
+  --template urn:xccdf:fix:script:ansible \
+  --profile xccdf_org.ssgproject.content_profile_hipaa \
+  --output my-remediation-playbook.yml \
+  /usr/share/xml/scap/ssg/content/ssg-sle16-ds.xml</code></pre></div></section><section class="sect2" id="openscap-system-remediating-shell-scripts" data-id-title="Remediating with SSG shell scripts"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.5 </span><span class="title-name">Remediating with SSG shell scripts</span></span> <a title="Permalink" class="permalink" href="#openscap-system-remediating-shell-scripts">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The SCAP Security Guide ships pre-built shell scripts for each supported profile. These can be used for
+      straightforward remediation without conditions or tailoring.
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          List the available shell scripts:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ls -l /usr/share/scap-security-guide/bash/</code></pre></div><p>
+          Script names follow the format
+          <code class="filename">sle16-script-<em class="replaceable">PROFILE-NAME</em>.sh</code>. The
+          supported profile names are: <code class="literal">anssi_bp28_minimal</code>,
+          <code class="literal">anssi_bp28_intermediary</code>, <code class="literal">anssi_bp28_enhanced</code>,
+          <code class="literal">anssi_bp28_high</code>, <code class="literal">hipaa</code>, and
+          <code class="literal">pci-dss-4</code>.
+        </p></li><li class="step"><p>
+          Make the script executable:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">chmod +x sle16-script-<em class="replaceable">PROFILE-NAME</em>.sh</code></pre></div></li><li class="step"><p>
+          Run the script:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">./sle16-script-<em class="replaceable">PROFILE-NAME</em>.sh</code></pre></div></li></ol></div></div><div id="id-1.8.6.4" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+        Within each script, rules follow the format: <code class="literal"># BEGIN fix
+        (<em class="replaceable">N</em>/<em class="replaceable">TOTAL</em>) for
+        <em class="replaceable">RULE-ID</em></code> through to <code class="literal"># END fix for
+        <em class="replaceable">RULE-ID</em></code>. Rules that contain a line ending with
+        <code class="literal">IS MISSING!</code> have no automatic remediation and must be applied manually.
+      </p></div></section><section class="sect2" id="openscap-system-remediating-ansible" data-id-title="Remediating with Ansible playbooks"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.6 </span><span class="title-name">Remediating with Ansible playbooks</span></span> <a title="Permalink" class="permalink" href="#openscap-system-remediating-ansible">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      For each supported profile, the SCAP Security Guide also ships Ansible playbooks that you can use for
+      remediation.
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Install the <span class="package">ansible</span> package.
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper install ansible</code></pre></div></li><li class="step"><p>
+          List the available Ansible playbooks:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ls -l /usr/share/scap-security-guide/ansible/</code></pre></div><p>
+          Playbook names follow the format
+          <code class="filename">sle16-playbook-<em class="replaceable">PROFILE-NAME</em>.yml</code>.
+        </p></li><li class="step"><p>
+          Create an inventory file <code class="filename">ansible_inventory.yml</code> with the following
+          content:
+        </p><div class="verbatim-wrap"><pre class="screen">all:
+  hosts:
+    localhost
+  vars:
+    ansible_connection: local</pre></div></li><li class="step"><p>
+          Run the playbook:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">ansible-playbook -i ansible_inventory.yml \
+  sle16-playbook-<em class="replaceable">PROFILE-NAME</em>.yml</code></pre></div></li><li class="step"><p>
+          To skip specific rules during execution, use the <code class="option">--tags</code> option. Find the
+          tag for a rule by searching for it in the playbook file. For example:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">ansible-playbook -i ansible_inventory.yml \
+  sle16-playbook-<em class="replaceable">PROFILE-NAME</em>.yml \
+  --tags "package_aide_installed,aide_build_database"</code></pre></div></li></ol></div></div><div id="id-1.8.7.4" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+        You may need to repeat the remediation steps more than once. Some rules require a system
+        restart to take effect, and rules are executed in alphabetical order, which means
+        dependencies between rules may not be resolved in a single pass.
+      </p></div></section><section class="sect2" id="openscap-system-remediating-customizing" data-id-title="Customizing the SCAP Security Guide with SCAP Workbench"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">7.7 </span><span class="title-name">Customizing the SCAP Security Guide with SCAP Workbench</span></span> <a title="Permalink" class="permalink" href="#openscap-system-remediating-customizing">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      If the available profiles do not fully match your requirements, you can create a customized
+      profile using SCAP Workbench and save it as a tailoring file. The tailoring file can then be
+      applied with <code class="command">oscap</code> using the <code class="option">--tailoring-file</code> option.
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Start SCAP Workbench:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">scap-workbench</code></pre></div></li><li class="step"><p>
+          Select <code class="literal">SLE16</code> as the target system variant, then select <span class="guilabel">Load
+          Content</span>.
+        </p></li><li class="step"><p>
+          Select a base profile from the <span class="guilabel">Profile</span> drop-down list, then select
+          <span class="guilabel">Customize</span>.
+        </p></li><li class="step"><p>
+          Set a unique ID for the custom profile in the following format:
+          <code class="literal">xccdf_<em class="replaceable">REVERSE-DNS</em>_profile_<em class="replaceable">PROFILE-NAME</em></code>.
+          For example:
+          <code class="literal">xccdf_org.<em class="replaceable">mycompany</em>_profile_<em class="replaceable">server</em></code>.
+        </p><div id="id-1.8.8.3.4.2" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning</div><p>
+            The profile ID cannot be changed after it is set in SCAP Workbench.
+          </p></div></li><li class="step"><p>
+          Deselect any rules you do not want to include, then select <span class="guilabel">OK</span>.
+        </p></li><li class="step"><p>
+          Save the customization as a tailoring file: select <span class="guilabel">Select customization
+          file</span> &gt; <span class="guilabel">Open</span> &gt; <span class="guilabel">Save customization
+          only</span>.
+        </p></li><li class="step"><p>
+          Apply the tailoring file with <code class="command">oscap</code>:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">oscap xccdf eval \
+  --profile xccdf_org.<em class="replaceable">mycompany</em>_profile_<em class="replaceable">server</em> \
+  --tailoring-file <em class="replaceable">ssg-sle16-ds-tailoring.xml</em> \
+  --report /tmp/report.html \
+  /usr/share/xml/scap/ssg/content/ssg-sle16-ds.xml</code></pre></div></li></ol></div></div></section></section><section xml:lang="en" class="sect1" id="openscap-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="#openscap-more-info">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        The OpenSCAP project and documentation:
+        <a class="link" href="https://www.open-scap.org/security-policies/scap-security-guide/" target="_blank">https://www.open-scap.org/security-policies/scap-security-guide/</a>
+      </p></li><li class="listitem"><p>
+        The OpenSCAP User Manual:
+        <a class="link" href="https://static.open-scap.org/openscap-1.2/oscap_user_manual.html" target="_blank">https://static.open-scap.org/openscap-1.2/oscap_user_manual.html</a>
+      </p></li><li class="listitem"><p>
+        The <code class="literal">SCAP Security Guide</code> upstream repository and README:
+        <a class="link" href="https://github.com/ComplianceAsCode/content/" target="_blank">https://github.com/ComplianceAsCode/content/</a>
+      </p></li><li class="listitem"><p>
+        Online profile guides for all products:
+        <a class="link" href="https://complianceascode.github.io/content-pages/guides/index.html" target="_blank">https://complianceascode.github.io/content-pages/guides/index.html</a>
+      </p></li><li class="listitem"><p>
+        OVAL security data provided by SUSE:
+        <a class="link" href="https://www.suse.com/support/security/oval/" target="_blank">https://www.suse.com/support/security/oval/</a>
+      </p></li></ul></div></section><section xml:lang="en" class="sect1" id="openscap-whats-next" data-id-title="Whats next"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">9 </span><span class="title-name">What's next</span></span> <a title="Permalink" class="permalink" href="#openscap-whats-next">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    After hardening your system, consider the following steps to maintain and improve your security
+    posture:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        Schedule regular scans to detect configuration drift and verify that the system remains
+        compliant after updates or changes.
+      </p></li><li class="listitem"><p>
+        Use the test environment established during infrastructure preparation to validate new
+        versions of the SCAP Security Guide before applying them to production.
+      </p></li><li class="listitem"><p>
+        Review and document any rules that could not be remediated automatically, and ensure
+        compensating controls are in place for each.
+      </p></li><li class="listitem"><p>
+        Consider integrating OpenSCAP scanning into your CI/CD or configuration management
+        pipeline for continuous compliance monitoring.
+      </p></li><li class="listitem"><p>
+        Keep the <span class="package">scap-security-guide</span> package up to date to benefit from the
+        latest security rules and profile improvements.
+      </p></li></ul></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">10 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section><div class="legal-section"><section class="appendix" translate="no" id="doc-gfdl-license" data-id-title="GNU Free Documentation License"><div class="titlepage"><div><div><h1 class="title">GNU Free Documentation License</h1></div></div></div><p>
+    Copyright (C) 2000, 2001, 2002 Free Software Foundation, Inc. 51 Franklin St, Fifth Floor,
+    Boston, MA 02110-1301 USA. Everyone is permitted to copy and distribute verbatim copies of this
+    license document, but changing it is not allowed.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.3"><span class="name">
+    0. PREAMBLE
+  </span><a title="Permalink" class="permalink" href="#id-1.12.3">#</a></h5></div><p>
+    The purpose of this License is to make a manual, textbook, or other functional and useful
+    document "free" in the sense of freedom: to assure everyone the effective freedom to copy and
+    redistribute it, with or without modifying it, either commercially or non-commercially.
+    Secondarily, this License preserves for the author and publisher a way to get credit for their
+    work, while not being considered responsible for modifications made by others.
+  </p><p>
+    This License is a kind of "copyleft", which means that derivative works of the document must
+    themselves be free in the same sense. It complements the GNU General Public License, which is a
+    copyleft license designed for free software.
+  </p><p>
+    We have designed this License to use it for manuals for free software, because free software
+    needs free documentation: a free program should come with manuals providing the same freedoms
+    that the software does. But this License is not limited to software manuals; it can be used for
+    any textual work, regardless of subject matter or whether it is published as a printed book. We
+    recommend this License principally for works whose purpose is instruction or reference.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.7"><span class="name">
+    1. APPLICABILITY AND DEFINITIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.12.7">#</a></h5></div><p>
+    This License applies to any manual or other work, in any medium, that contains a notice placed
+    by the copyright holder saying it can be distributed under the terms of this License. Such a
+    notice grants a world-wide, royalty-free license, unlimited in duration, to use that work under
+    the conditions stated herein. The "Document", below, refers to any such manual or work. Any
+    member of the public is a licensee, and is addressed as "you". You accept the license if you
+    copy, modify or distribute the work in a way requiring permission under copyright law.
+  </p><p>
+    A "Modified Version" of the Document means any work containing the Document or a portion of it,
+    either copied verbatim, or with modifications and/or translated into another language.
+  </p><p>
+    A "Secondary Section" is a named appendix or a front-matter section of the Document that deals
+    exclusively with the relationship of the publishers or authors of the Document to the
+    Document's overall subject (or to related matters) and contains nothing that could fall
+    directly within that overall subject. (Thus, if the Document is in part a textbook of
+    mathematics, a Secondary Section may not explain any mathematics.) The relationship could be a
+    matter of historical connection with the subject or with related matters, or of legal,
+    commercial, philosophical, ethical or political position regarding them.
+  </p><p>
+    The "Invariant Sections" are certain Secondary Sections whose titles are designated, as being
+    those of Invariant Sections, in the notice that says that the Document is released under this
+    License. If a section does not fit the above definition of Secondary then it is not allowed to
+    be designated as Invariant. The Document may contain zero Invariant Sections. If the Document
+    does not identify any Invariant Sections then there are none.
+  </p><p>
+    The "Cover Texts" are certain short passages of text that are listed, as Front-Cover Texts or
+    Back-Cover Texts, in the notice that says that the Document is released under this License. A
+    Front-Cover Text may be at most 5 words, and a Back-Cover Text may be at most 25 words.
+  </p><p>
+    A "Transparent" copy of the Document means a machine-readable copy, represented in a format
+    whose specification is available to the general public, that is suitable for revising the
+    document straightforwardly with generic text editors or (for images composed of pixels) generic
+    paint programs or (for drawings) some widely available drawing editor, and that is suitable for
+    input to text formatters or for automatic translation to a variety of formats suitable for
+    input to text formatters. A copy made in an otherwise Transparent file format whose markup, or
+    absence of markup, has been arranged to thwart or discourage subsequent modification by readers
+    is not Transparent. An image format is not Transparent if used for any substantial amount of
+    text. A copy that is not "Transparent" is called "Opaque".
+  </p><p>
+    Examples of suitable formats for Transparent copies include plain ASCII without markup, Texinfo
+    input format, LaTeX input format, SGML or XML using a publicly available DTD, and
+    standard-conforming simple HTML, PostScript or PDF designed for human modification. Examples of
+    transparent image formats include PNG, XCF and JPG. Opaque formats include proprietary formats
+    that can be read and edited only by proprietary word processors, SGML or XML for which the DTD
+    and/or processing tools are not generally available, and the machine-generated HTML, PostScript
+    or PDF produced by some word processors for output purposes only.
+  </p><p>
+    The "Title Page" means, for a printed book, the title page itself, plus such following pages as
+    are needed to hold, legibly, the material this License requires to appear in the title page.
+    For works in formats which do not have any title page as such, "Title Page" means the text near
+    the most prominent appearance of the work's title, preceding the beginning of the body of the
+    text.
+  </p><p>
+    A section "Entitled XYZ" means a named subunit of the Document whose title either is precisely
+    XYZ or contains XYZ in parentheses following text that translates XYZ in another language.
+    (Here XYZ stands for a specific section name mentioned below, such as "Acknowledgements",
+    "Dedications", "Endorsements", or "History".) To "Preserve the Title" of such a section when
+    you modify the Document means that it remains a section "Entitled XYZ" according to this
+    definition.
+  </p><p>
+    The Document may include Warranty Disclaimers next to the notice which states that this License
+    applies to the Document. These Warranty Disclaimers are considered to be included by reference
+    in this License, but only as regards disclaiming warranties: any other implication that these
+    Warranty Disclaimers may have is void and has no effect on the meaning of this License.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.18"><span class="name">
+    2. VERBATIM COPYING
+  </span><a title="Permalink" class="permalink" href="#id-1.12.18">#</a></h5></div><p>
+    You may copy and distribute the Document in any medium, either commercially or
+    non-commercially, provided that this License, the copyright notices, and the license notice
+    saying this License applies to the Document are reproduced in all copies, and that you add no
+    other conditions whatsoever to those of this License. You may not use technical measures to
+    obstruct or control the reading or further copying of the copies you make or distribute.
+    However, you may accept compensation in exchange for copies. If you distribute a large enough
+    number of copies you must also follow the conditions in section 3.
+  </p><p>
+    You may also lend copies, under the same conditions stated above, and you may publicly display
+    copies.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.21"><span class="name">
+    3. COPYING IN QUANTITY
+  </span><a title="Permalink" class="permalink" href="#id-1.12.21">#</a></h5></div><p>
+    If you publish printed copies (or copies in media that commonly have printed covers) of the
+    Document, numbering more than 100, and the Document's license notice requires Cover Texts, you
+    must enclose the copies in covers that carry, clearly and legibly, all these Cover Texts:
+    Front-Cover Texts on the front cover, and Back-Cover Texts on the back cover. Both covers must
+    also clearly and legibly identify you as the publisher of these copies. The front cover must
+    present the full title with all words of the title equally prominent and visible. You may add
+    other material on the covers in addition. Copying with changes limited to the covers, as long
+    as they preserve the title of the Document and satisfy these conditions, can be treated as
+    verbatim copying in other respects.
+  </p><p>
+    If the required texts for either cover are too voluminous to fit legibly, you should put the
+    first ones listed (as many as fit reasonably) on the actual cover, and continue the rest onto
+    adjacent pages.
+  </p><p>
+    If you publish or distribute Opaque copies of the Document numbering more than 100, you must
+    either include a machine-readable Transparent copy along with each Opaque copy, or state in or
+    with each Opaque copy a computer-network location from which the general network-using public
+    has access to download using public-standard network protocols a complete Transparent copy of
+    the Document, free of added material. If you use the latter option, you must take reasonably
+    prudent steps, when you begin distribution of Opaque copies in quantity, to ensure that this
+    Transparent copy will remain thus accessible at the stated location until at least one year
+    after the last time you distribute an Opaque copy (directly or through your agents or
+    retailers) of that edition to the public.
+  </p><p>
+    It is requested, but not required, that you contact the authors of the Document well before
+    redistributing any large number of copies, to give them a chance to provide you with an updated
+    version of the Document.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.26"><span class="name">
+    4. MODIFICATIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.12.26">#</a></h5></div><p>
+    You may copy and distribute a Modified Version of the Document under the conditions of sections
+    2 and 3 above, provided that you release the Modified Version under precisely this License,
+    with the Modified Version filling the role of the Document, thus licensing distribution and
+    modification of the Modified Version to whoever possesses a copy of it. In addition, you must
+    do these things in the Modified Version:
+  </p><div class="orderedlist"><ol class="orderedlist" type="A"><li class="listitem"><p>
+        Use in the Title Page (and on the covers, if any) a title distinct from that of the
+        Document, and from those of previous versions (which should, if there were any, be listed
+        in the History section of the Document). You may use the same title as a previous version
+        if the original publisher of that version gives permission.
+      </p></li><li class="listitem"><p>
+        List on the Title Page, as authors, one or more persons or entities responsible for
+        authorship of the modifications in the Modified Version, together with at least five of the
+        principal authors of the Document (all of its principal authors, if it has fewer than
+        five), unless they release you from this requirement.
+      </p></li><li class="listitem"><p>
+        State on the Title page the name of the publisher of the Modified Version, as the
+        publisher.
+      </p></li><li class="listitem"><p>
+        Preserve all the copyright notices of the Document.
+      </p></li><li class="listitem"><p>
+        Add an appropriate copyright notice for your modifications adjacent to the other copyright
+        notices.
+      </p></li><li class="listitem"><p>
+        Include, immediately after the copyright notices, a license notice giving the public
+        permission to use the Modified Version under the terms of this License, in the form shown
+        in the Addendum below.
+      </p></li><li class="listitem"><p>
+        Preserve in that license notice the full lists of Invariant Sections and required Cover
+        Texts given in the Document's license notice.
+      </p></li><li class="listitem"><p>
+        Include an unaltered copy of this License.
+      </p></li><li class="listitem"><p>
+        Preserve the section Entitled "History", Preserve its Title, and add to it an item stating
+        at least the title, year, new authors, and publisher of the Modified Version as given on
+        the Title Page. If there is no section Entitled "History" in the Document, create one
+        stating the title, year, authors, and publisher of the Document as given on its Title Page,
+        then add an item describing the Modified Version as stated in the previous sentence.
+      </p></li><li class="listitem"><p>
+        Preserve the network location, if any, given in the Document for public access to a
+        Transparent copy of the Document, and likewise the network locations given in the Document
+        for previous versions it was based on. These may be placed in the "History" section. You
+        may omit a network location for a work that was published at least four years before the
+        Document itself, or if the original publisher of the version it refers to gives permission.
+      </p></li><li class="listitem"><p>
+        For any section Entitled "Acknowledgements" or "Dedications", Preserve the Title of the
+        section, and preserve in the section all the substance and tone of each of the contributor
+        acknowledgements and/or dedications given therein.
+      </p></li><li class="listitem"><p>
+        Preserve all the Invariant Sections of the Document, unaltered in their text and in their
+        titles. Section numbers or the equivalent are not considered part of the section titles.
+      </p></li><li class="listitem"><p>
+        Delete any section Entitled "Endorsements". Such a section may not be included in the
+        Modified Version.
+      </p></li><li class="listitem"><p>
+        Do not retitle any existing section to be Entitled "Endorsements" or to conflict in title
+        with any Invariant Section.
+      </p></li><li class="listitem"><p>
+        Preserve any Warranty Disclaimers.
+      </p></li></ol></div><p>
+    If the Modified Version includes new front-matter sections or appendices that qualify as
+    Secondary Sections and contain no material copied from the Document, you may at your option
+    designate some or all of these sections as invariant. To do this, add their titles to the list
+    of Invariant Sections in the Modified Version's license notice. These titles must be distinct
+    from any other section titles.
+  </p><p>
+    You may add a section Entitled "Endorsements", provided it contains nothing but endorsements of
+    your Modified Version by various parties--for example, statements of peer review or that the
+    text has been approved by an organization as the authoritative definition of a standard.
+  </p><p>
+    You may add a passage of up to five words as a Front-Cover Text, and a passage of up to 25
+    words as a Back-Cover Text, to the end of the list of Cover Texts in the Modified Version. Only
+    one passage of Front-Cover Text and one of Back-Cover Text may be added by (or through
+    arrangements made by) any one entity. If the Document already includes a cover text for the
+    same cover, previously added by you or by arrangement made by the same entity you are acting on
+    behalf of, you may not add another; but you may replace the old one, on explicit permission
+    from the previous publisher that added the old one.
+  </p><p>
+    The author(s) and publisher(s) of the Document do not by this License give permission to use
+    their names for publicity for or to assert or imply endorsement of any Modified Version.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.33"><span class="name">
+    5. COMBINING DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.12.33">#</a></h5></div><p>
+    You may combine the Document with other documents released under this License, under the terms
+    defined in section 4 above for modified versions, provided that you include in the combination
+    all of the Invariant Sections of all of the original documents, unmodified, and list them all
+    as Invariant Sections of your combined work in its license notice, and that you preserve all
+    their Warranty Disclaimers.
+  </p><p>
+    The combined work need only contain one copy of this License, and multiple identical Invariant
+    Sections may be replaced with a single copy. If there are multiple Invariant Sections with the
+    same name but different contents, make the title of each such section unique by adding at the
+    end of it, in parentheses, the name of the original author or publisher of that section if
+    known, or else a unique number. Make the same adjustment to the section titles in the list of
+    Invariant Sections in the license notice of the combined work.
+  </p><p>
+    In the combination, you must combine any sections Entitled "History" in the various original
+    documents, forming one section Entitled "History"; likewise combine any sections Entitled
+    "Acknowledgements", and any sections Entitled "Dedications". You must delete all sections
+    Entitled "Endorsements".
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.37"><span class="name">
+    6. COLLECTIONS OF DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.12.37">#</a></h5></div><p>
+    You may make a collection consisting of the Document and other documents released under this
+    License, and replace the individual copies of this License in the various documents with a
+    single copy that is included in the collection, provided that you follow the rules of this
+    License for verbatim copying of each of the documents in all other respects.
+  </p><p>
+    You may extract a single document from such a collection, and distribute it individually under
+    this License, provided you insert a copy of this License into the extracted document, and
+    follow this License in all other respects regarding verbatim copying of that document.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.40"><span class="name">
+    7. AGGREGATION WITH INDEPENDENT WORKS
+  </span><a title="Permalink" class="permalink" href="#id-1.12.40">#</a></h5></div><p>
+    A compilation of the Document or its derivatives with other separate and independent documents
+    or works, in or on a volume of a storage or distribution medium, is called an "aggregate" if
+    the copyright resulting from the compilation is not used to limit the legal rights of the
+    compilation's users beyond what the individual works permit. When the Document is included in
+    an aggregate, this License does not apply to the other works in the aggregate which are not
+    themselves derivative works of the Document.
+  </p><p>
+    If the Cover Text requirement of section 3 is applicable to these copies of the Document, then
+    if the Document is less than one half of the entire aggregate, the Document's Cover Texts may
+    be placed on covers that bracket the Document within the aggregate, or the electronic
+    equivalent of covers if the Document is in electronic form. Otherwise they must appear on
+    printed covers that bracket the whole aggregate.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.43"><span class="name">
+    8. TRANSLATION
+  </span><a title="Permalink" class="permalink" href="#id-1.12.43">#</a></h5></div><p>
+    Translation is considered a kind of modification, so you may distribute translations of the
+    Document under the terms of section 4. Replacing Invariant Sections with translations requires
+    special permission from their copyright holders, but you may include translations of some or
+    all Invariant Sections in addition to the original versions of these Invariant Sections. You
+    may include a translation of this License, and all the license notices in the Document, and any
+    Warranty Disclaimers, provided that you also include the original English version of this
+    License and the original versions of those notices and disclaimers. In case of a disagreement
+    between the translation and the original version of this License or a notice or disclaimer, the
+    original version will prevail.
+  </p><p>
+    If a section in the Document is Entitled "Acknowledgements", "Dedications", or "History", the
+    requirement (section 4) to Preserve its Title (section 1) will typically require changing the
+    actual title.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.46"><span class="name">
+    9. TERMINATION
+  </span><a title="Permalink" class="permalink" href="#id-1.12.46">#</a></h5></div><p>
+    You may not copy, modify, sublicense, or distribute the Document except as expressly provided
+    for under this License. Any other attempt to copy, modify, sublicense or distribute the
+    Document is void, and will automatically terminate your rights under this License. However,
+    parties who have received copies, or rights, from you under this License will not have their
+    licenses terminated so long as such parties remain in full compliance.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.48"><span class="name">
+    10. FUTURE REVISIONS OF THIS LICENSE
+  </span><a title="Permalink" class="permalink" href="#id-1.12.48">#</a></h5></div><p>
+    The Free Software Foundation may publish new, revised versions of the GNU Free Documentation
+    License from time to time. Such new versions will be similar in spirit to the present version,
+    but may differ in detail to address new problems or concerns. See
+    <a class="link" href="https://www.gnu.org/copyleft/" target="_blank">https://www.gnu.org/copyleft/</a>.
+  </p><p>
+    Each version of the License is given a distinguishing version number. If the Document specifies
+    that a particular numbered version of this License "or any later version" applies to it, you
+    have the option of following the terms and conditions either of that specified version or of
+    any later version that has been published (not as a draft) by the Free Software Foundation. If
+    the Document does not specify a version number of this License, you may choose any version ever
+    published (not as a draft) by the Free Software Foundation.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.12.51"><span class="name">
+    ADDENDUM: How to use this License for your documents
+  </span><a title="Permalink" class="permalink" href="#id-1.12.51">#</a></h5></div><div class="verbatim-wrap"><pre class="screen">Copyright (c) YEAR YOUR NAME.
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+A copy of the license is included in the section entitled “GNU
+Free Documentation License”.</pre></div><p>
+    If you have Invariant Sections, Front-Cover Texts and Back-Cover Texts, replace the
+    “with...Texts.” line with this:
+  </p><div class="verbatim-wrap"><pre class="screen">with the Invariant Sections being LIST THEIR TITLES, with the
+Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.</pre></div><p>
+    If you have Invariant Sections without Cover Texts, or some other combination of the three,
+    merge those two alternatives to suit the situation.
+  </p><p>
+    If your document contains nontrivial examples of program code, we recommend releasing these
+    examples in parallel under your choice of free software license, such as the GNU General Public
+    License, to permit their use in free software.
+  </p></section></div></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="#openscap-intro"><span class="title-number">1 </span><span class="title-name">Auditing and hardening SUSE Linux with OpenSCAP</span></a></span></li><li><span class="section"><a href="#openscap-scap-overview"><span class="title-number">2 </span><span class="title-name">SCAP and OpenSCAP</span></a></span></li><li><span class="section"><a href="#openscap-infrastructure-preparing"><span class="title-number">3 </span><span class="title-name">Preparing the IT infrastructure</span></a></span></li><li><span class="section"><a href="#openscap-packages-installing"><span class="title-number">4 </span><span class="title-name">Installing OpenSCAP and the SCAP Security Guide</span></a></span></li><li><span class="section"><a href="#openscap-profiles"><span class="title-number">5 </span><span class="title-name">SSG Content, directories and profiles</span></a></span></li><li><span class="section"><a href="#openscap-system-scanning"><span class="title-number">6 </span><span class="title-name">Scanning the system for vulnerabilities</span></a></span></li><li><span class="section"><a href="#openscap-system-remediating"><span class="title-number">7 </span><span class="title-name">Remediating vulnerabilities</span></a></span></li><li><span class="section"><a href="#openscap-more-info"><span class="title-number">8 </span><span class="title-name">For more information</span></a></span></li><li><span class="section"><a href="#openscap-whats-next"><span class="title-number">9 </span><span class="title-name">What's next</span></a></span></li><li><span class="section"><a href="#legal-disclaimer"><span class="title-number">10 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="#doc-gfdl-license"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

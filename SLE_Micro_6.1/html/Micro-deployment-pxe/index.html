@@ -1,0 +1,929 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Deploying SUSE Linux Micro Using Network PXE Boot | SUSE Linux Micro 6.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2024-11-01"/>
+<meta name="dcterms.modified" content="2024-11-01"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-25"/>
+<meta name="title" content="Deploying SUSE Linux Micro Using Network PXE Boot | SU…"/>
+<meta name="description" content="Deploying SUSE Linux Micro using the PXE boot"/>
+<meta name="product-name" content="SUSE Linux Micro"/>
+<meta name="product-number" content="6.1"/>
+<meta name="book-title" content="Deploying SUSE Linux Micro Using Network PXE Boot"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="jsindelarova@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Micro 6.1"/>
+<meta name="publisher" content="SUSE"/><meta name="dcterms.modified" content="2024-11-01"/><meta name="dc.creator" content="jsindelarova@suse.com"/><meta property="og:title" content="Remote deployment of SUSE Linux Micro"/>
+<meta property="og:description" content="Deploying SUSE Linux Micro using the PXE boot"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Remote deployment of SUSE Linux Micro"/>
+<meta name="twitter:description" content="Deploying SUSE Linux Micro using the PXE boot"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Remote deployment of SUSE Linux Micro | SUSE Linux Micro 6.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Remote deployment of SUSE Linux Micro",
+    "description": "Deploying SUSE Linux Micro using the PXE boot",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2024-11-01T00:00+02:00",
+    "dateModified": "2024-11-01T00:00+02:00",
+    "datePublished": "2026-08-25T07:09+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Deployment"
+      },
+      {
+        "@type": "Thing",
+        "name": "Installation"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Micro",
+        "softwareVersion": "6.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, AArch64"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Deploying SUSE Linux Micro Using Network PXE Boot</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Deploying <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span> Using Network PXE Boot</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="deployment-pxe-boot" data-id-title="Deploying SUSE Linux Micro Using Network PXE Boot"><div class="titlepage"><div><div class="big-version-info"><span class="productname">SUSE Linux Micro</span> 6.1</div><div><h1 class="title">Deploying <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span> Using Network PXE Boot</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>25 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.13.1.1"><span class="term">WHAT?</span></dt><dd><p>
+              <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span> provides images that can be deployed remotely using the PXE boot of the
+              target device.
+            </p></dd><dt id="id-1.1.13.1.2"><span class="term">WHY?</span></dt><dd><p>
+              You want to deploy <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span> remotely.
+            </p></dd><dt id="id-1.1.13.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                It takes about 15 minutes to read the article.
+              </p></dd><dt id="id-1.1.13.1.4"><span class="term">GOAL</span></dt><dd><p>
+                A properly configured instance of <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span>.
+              </p></dd><dt id="id-1.1.13.1.5"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                    A properly configured DHCP server
+                  </p></li><li class="listitem"><p>
+                    An installed TFTP server
+                  </p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Deploying SUSE Linux Micro Using Network PXE Boot" hreflang="en" href="rh-deployment-pxe-boot.html" target="_blank">Revision History: Deploying SUSE Linux Micro Using Network PXE Boot</a></div></div></div></div><section xml:lang="en" class="sect1" id="deployment-pxe-introduction" data-id-title="Introduction to the PXE installation of SUSE Linux Micro"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Introduction to the PXE installation of <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span></span></span> <a title="Permalink" class="permalink" href="index.html#deployment-pxe-introduction">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span> can be installed via a Preboot Execution Environment (PXE). The client hardware needs to support booting via PXE. The network needs to provide a DHCP server and a TFTP server providing the required data to the clients. 
+  </p><p>
+    The deployment procedure can be summarized to the following steps:    
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p><span class="step-optional">(Optional)</span> 
+        To perform a more complex firstboot configuration or installation without user interaction,
+        prepare the firstboot configuration used by Combustion or Ignition. For example, 
+        you can define users of the system, install packages, configure host name, register the
+        system and many other task. For details, refer to <a class="xref" href="index.html#deployment-configuring-with-combustion" title="2.2. Configuring SUSE Linux Micro deployment with Combustion">Section 2.2, “Configuring <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span> deployment with Combustion”</a> or <a class="xref" href="index.html#deployment-configuring-with-ignition" title="2.3. Configuring SUSE Linux Micro deployment with Ignition">Section 2.3, “Configuring <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span> deployment with Ignition”</a>.
+      </p></li><li class="step"><p>
+        Make sure the DHCP server is configured properly.
+      </p></li><li class="step"><p>
+        Prepare the TFTP server by adding the installation image, configuring the boot settings, and placing the
+        Combustion/Ignition configuration on the TFTP server. For details, refer to <a class="xref" href="index.html#pxe-boot-prepare-tftp" title="3. Preparing the TFTP server">Section 3, “Preparing the TFTP server”</a>.
+      </p></li><li class="step"><p>
+        On the target machine select PXE boot and boot the machine. For details, refer to <a class="xref" href="index.html#deployment-network-image" title="4. Deploying the image remotely">Section 4, “Deploying the image remotely”</a>.
+      </p></li></ol></div></div></section><section xml:lang="en" class="sect1" id="deployment-pxe-glue" data-id-title="Creating firstboot configuration"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Creating firstboot configuration</span></span> <a title="Permalink" class="permalink" href="index.html#deployment-pxe-glue">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    The following sections provide information about two tools that you can use to configure
+    <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span> on the first boot. You can use either Combustion and write a configuration BASH
+    script, or you can use Ignition and use JSON. Alternatively, if you do not need a complex
+    configuration or unattended configuration, you can skip this step as basic configuration can be
+    performed using JeOS Firstboot as described in <a class="xref" href="index.html#deployment-jeos-firstboot" title="4.1. Configuring SUSE Linux Micro with JeOS Firstboot">Section 4.1, “Configuring <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span> with JeOS Firstboot”</a>.
+  </p><section xml:lang="en" class="sect2" id="deployment-first-boot-detection" data-id-title="First boot detection"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">First boot detection</span></span> <a title="Permalink" class="permalink" href="index.html#deployment-first-boot-detection">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    The deployment configuration runs on the first boot only. To distinguish
+    between the first and subsequent boots, the file
+    <code class="filename">/etc/machine-id</code> is created after the
+    first boot finishes. If the file is not present in the file system, the system assumes that
+    this is a first boot and triggers the configuration process. After completing the first boot, the
+    <code class="filename">/etc/machine-id</code> file is
+    created.
+  </p><div id="id-1.3.3.3" data-id-title="The /etc/machine-id file is always created" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: The <code class="filename">/etc/machine-id</code> file is always created</div><p>
+      Even though the configuration may not be successful because of improper
+      or missing configuration files, the
+      <code class="filename">/etc/machine-id</code> file is
+      created.
+    </p></div><section class="sect3" id="deployment-first-boot-invokation" data-id-title="Force system reconfiguration on a subsequent boot"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">2.1.1 </span><span class="title-name">Force system reconfiguration on a subsequent boot</span></span> <a title="Permalink" class="permalink" href="index.html#deployment-first-boot-invokation">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      If you need to reconfigure your system after the first boot happened, you
+      can force the reconfiguration on the subsequent boot. Here you have two
+      options.
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          You can pass the <code class="literal">ignition.firstboot</code> or <code class="literal">combustion.firstboot</code> attribute to
+          the kernel command line.
+        </p></li><li class="listitem"><p>
+          You can delete the file
+          <code class="filename">/etc/machine-id</code> and reboot the system.
+        </p></li></ul></div></section></section><section xml:lang="en" class="sect2" id="deployment-configuring-with-combustion" data-id-title="Configuring SUSE Linux Micro deployment with Combustion"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.2 </span><span class="title-name">Configuring <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span> deployment with Combustion</span></span> <a title="Permalink" class="permalink" href="index.html#deployment-configuring-with-combustion">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Combustion is a dracut module that enables you to configure your
+        system on the first boot. You can use Combustion, for example, to
+        change the default partitions, set user passwords, create files, or
+        install packages.
+      </p></div></div></div></div><section class="sect3" id="how-it-works-combustion" data-id-title="How does Combustion work?"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">2.2.1 </span><span class="title-name">How does Combustion work?</span></span> <a title="Permalink" class="permalink" href="index.html#how-it-works-combustion">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Combustion is invoked after the <code class="literal">ignition.firstboot</code>
+      argument is passed to the kernel command line. Combustion reads a
+      provided file named <code class="filename">script</code>, executes included
+      commands, and thus performs changes to the file system. If
+      <code class="filename">script</code> includes the network flag, Combustion tries
+      to configure the network. After <code class="literal">/sysroot</code> is mounted,
+      Combustion tries to activate all mount points in
+      <code class="filename">/etc/fstab</code> and then calls
+      <code class="command">transactional-update</code> to apply other changes, for
+      example, setting <code class="systemitem">root</code> password or installing packages.
+    </p><p>
+    The configuration script must reside on the TFTP server and during the boot, its URL must be
+    provided to the kernel using the <code class="literal">combustion.url</code> parameter. For details,
+    refer to <a class="xref" href="index.html#pxe-boot-prepare-tftp" title="3. Preparing the TFTP server">Section 3, “Preparing the TFTP server”</a>.
+   </p><div id="id-1.3.4.2.4" data-id-title="Using Combustion together with Ignition" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Using Combustion together with Ignition</div><p>
+          Combustion can be used along with Ignition. If you intend to do
+          so, label your configuration medium <code class="literal">ignition</code> and
+          include the <code class="filename">ignition</code> directory with the
+          <code class="filename">config.ign</code> to your directory structure as shown
+          below:
+        </p><div class="verbatim-wrap"><pre class="screen">&lt;root directory&gt;
+└── combustion
+    └── script
+    └── other files
+└── ignition
+    └── config.ign</pre></div><p>
+          In this scenario, Ignition runs before Combustion.
+        </p></div></section><section xml:lang="en" class="sect3" id="deployment-combustion-configuration" data-id-title="Combustion configuration examples"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">2.2.2 </span><span class="title-name">Combustion configuration examples</span></span> <a title="Permalink" class="permalink" href="index.html#deployment-combustion-configuration">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><section class="sect4" id="configuring-combustion-script" data-id-title="The script configuration file"><div class="titlepage"><div><div><div class="title-container"><h5 class="title"><span class="title-number-name"><span class="title-number">2.2.2.1 </span><span class="title-name">The <code class="filename">script</code> configuration file</span></span> <a title="Permalink" class="permalink" href="index.html#configuring-combustion-script">#</a></h5><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The <code class="filename">script</code> configuration file is a set of commands
+      that are parsed and executed by Combustion in a <code class="command">transactional-update</code> shell. This
+      article provides examples of configuration tasks performed by
+      Combustion.
+    </p><div id="id-1.3.4.3.2.3" data-id-title="Use Fuel Ignition to generate the Combustion script" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Use Fuel Ignition to generate the Combustion script</div><p>
+        To create the Combustion script, you can use the Fuel Ignition Web application. There
+        you can select appropriate parameters and the application generates a Combustion script
+        that you can download.
+      </p></div><div id="id-1.3.4.3.2.4" data-id-title="Include interpreter declaration" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Include interpreter declaration</div><p>
+        As the <code class="filename">script</code> file is interpreted by the shell,
+        always start the file with the interpreter declaration on its first
+        line. For example, in case of Bash:
+      </p><div class="verbatim-wrap"><pre class="screen">#!/bin/<em class="replaceable">bash</em></pre></div></div><p>
+      To log in to your system, include at least the <code class="systemitem">root</code> password.
+      However, it is recommended to establish the authentication using SSH
+      keys. If you need to use a <code class="systemitem">root</code> password, make sure to configure a
+      secure password. For a randomly generated password, use at least 10
+      characters. If you create your password manually, use even more than 10
+      characters and combine uppercase and lowercase letters and numbers.
+    </p><section xml:lang="en" class="sect5" id="id-1.3.4.3.2.6" data-id-title="Default partitioning"><div class="titlepage"><div><div><div class="title-container"><h6 class="title"><span class="title-number-name"><span class="title-number">2.2.2.1.1 </span><span class="title-name">Default partitioning</span></span> <a title="Permalink" class="permalink" href="index.html#id-1.3.4.3.2.6">#</a></h6><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Each image has the following subvolumes:
+  </p><div class="verbatim-wrap"><pre class="screen">/home
+/root
+/opt
+/srv
+/usr/local
+/var</pre></div><p>
+    The <code class="literal">/etc</code> directory is mounted as overlayFS, where the
+    upper directory is mounted to <code class="filename">/var/lib/overlay/1/etc/</code>.
+  </p><p>
+    You can recognize the subvolumes mounted by default by the option
+    <code class="literal">x-initrd.mount</code> in <code class="filename">/etc/fstab</code>. Other
+    subvolumes or partitions must be configured either by Ignition or
+    Combustion.
+  </p><p>
+    If you want to
+        add a new user or modify any of the files on a subvolume that is not
+        mounted by default, you need to declare such subvolume first so that it
+        is mounted as well.
+  </p></section><section class="sect5" id="deployment-combustion-network" data-id-title="Network configuration"><div class="titlepage"><div><div><div class="title-container"><h6 class="title"><span class="title-number-name"><span class="title-number">2.2.2.1.2 </span><span class="title-name">Network configuration</span></span> <a title="Permalink" class="permalink" href="index.html#deployment-combustion-network">#</a></h6><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        To configure and use the network connection during the first boot, add
+        the following statement to <code class="filename">script</code>:
+      </p><div class="verbatim-wrap"><pre class="screen"># combustion: network</pre></div><p>
+        Using this statement passes the <code class="literal">rd.neednet=1</code>
+        argument to dracut. The network configuration defaults to using DHCP.
+        If a different network configuration is needed, proceed as described in
+        <a class="xref" href="index.html#combustion-prepare-statement" title="2.2.2.1.3. Performing modifications in the initramfs">Section 2.2.2.1.3, “Performing modifications in the initramfs”</a>.
+      </p><p>
+        If you do not use the statement, the system remains configured without
+        any network connection.
+      </p></section><section class="sect5" id="combustion-prepare-statement" data-id-title="Performing modifications in the initramfs"><div class="titlepage"><div><div><div class="title-container"><h6 class="title"><span class="title-number-name"><span class="title-number">2.2.2.1.3 </span><span class="title-name">Performing modifications in the initramfs</span></span> <a title="Permalink" class="permalink" href="index.html#combustion-prepare-statement">#</a></h6><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        You may need to perform changes to the initramfs environment, for
+        example, to write a custom network configuration for NetworkManager into
+        <code class="filename">/etc/NetworkManager/system-connections/</code>. To do so,
+        use the <code class="literal">prepare</code> statement.
+      </p><p>
+        For example, to create a connection with a static IP address and
+        configure DNS:
+      </p><div class="verbatim-wrap"><pre class="screen">#!/bin/bash
+# combustion: network prepare
+set -euxo pipefail
+          
+nm_config() {
+  umask 077 # Required for NM config
+  mkdir -p /etc/NetworkManager/system-connections/
+  cat &gt;/etc/NetworkManager/system-connections/static.nmconnection &lt;&lt;-EOF
+  [connection]
+  id=static
+  type=ethernet
+  autoconnect=true
+          
+  [ipv4]
+  method=manual
+  dns=192.168.100.1
+  address1=192.168.100.42/24,192.168.100.1
+EOF
+}
+          
+if [ "${1-}" = "--prepare" ]; then
+  nm_config # Configure NM in the initrd
+  exit 0
+fi
+          
+# Redirect output to the console
+exec &gt; &gt;(exec tee -a /dev/tty0) 2&gt;&amp;1
+          
+  nm_config # Configure NM in the system
+  curl example.com
+
+# Close outputs and wait for tee to finish
+exec 1&gt;&amp;- 2&gt;&amp;-; wait;
+
+# Leave a marker
+echo "Configured with combustion" &gt; /etc/issue.d/combustion</pre></div></section><section class="sect5" id="combustion-script-wait" data-id-title="Waiting for the task to complete"><div class="titlepage"><div><div><div class="title-container"><h6 class="title"><span class="title-number-name"><span class="title-number">2.2.2.1.4 </span><span class="title-name">Waiting for the task to complete</span></span> <a title="Permalink" class="permalink" href="index.html#combustion-script-wait">#</a></h6><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        Some processes may be run in background, for example, the <code class="command">tee</code> process
+        that redirects output to the terminal. To ensure that all running processes are completed before the
+        <code class="filename">script</code>
+        execution finishes, add the following line:
+      </p><div class="verbatim-wrap"><pre class="screen">exec 1&gt;&amp;- 2&gt;&amp;-; wait;</pre></div></section><section class="sect5" id="combustion-script-partitioning" data-id-title="Partitioning"><div class="titlepage"><div><div><div class="title-container"><h6 class="title"><span class="title-number-name"><span class="title-number">2.2.2.1.5 </span><span class="title-name">Partitioning</span></span> <a title="Permalink" class="permalink" href="index.html#combustion-script-partitioning">#</a></h6><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span> raw images are delivered with a default partitioning
+        scheme. You might want to
+        use a different partitioning. The following set of example snippets
+        moves the <code class="filename">/home</code> to a different partition.
+      </p><div id="id-1.3.4.3.2.10.3" data-id-title="Certain directories must reside on the same partition as /" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Certain directories must reside on the same partition as / </div><p>
+        When changing partitioning, do not place the following directories on a different partition
+        than the root file system: <code class="filename">/boot</code>, <code class="filename">/usr</code>,
+        <code class="filename">/etc</code>, <code class="filename">/dev</code>. 
+        </p></div><div id="id-1.3.4.3.2.10.4" data-id-title="Performing changes outside of directories included in snapshots" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Performing changes outside of directories included in snapshots</div><p>
+          The following script performs changes that are not included in
+          snapshots. If the script fails and the snapshot is discarded, certain
+          changes remain visible and cannot be reverted, for example, the
+          changes to the <code class="literal">/dev/vdb</code> device.
+        </p></div><p>
+        The following snippet creates a GPT partitioning schema with a single
+        partition on the <code class="literal">/dev/vdb</code> device:
+      </p><div class="verbatim-wrap"><pre class="screen">sfdisk /dev/vdb &lt;&lt;EOF
+sleep 1
+label: gpt
+type=linux
+EOF
+
+partition=/dev/vdb1</pre></div><p>
+  As the <code class="command">sfdisk</code> command may take longer time to complete, postpone
+  <code class="command">label</code> by using the
+  <code class="command">sleep</code> command after <code class="command">sfdisk</code>.
+</p><p>
+        The partition is formatted to Btrfs:
+      </p><div class="verbatim-wrap"><pre class="screen">wipefs --all ${partition}
+mkfs.btrfs ${partition}</pre></div><p>
+        Possible content of <code class="filename">/home</code> is moved to the new
+        <code class="filename">/home</code> folder location by the following snippet:
+      </p><div class="verbatim-wrap"><pre class="screen">mount /home
+mount ${partition} /mnt
+rsync -aAXP /home/ /mnt/
+umount /home /mnt</pre></div><p>
+        The snippet below removes an old entry in
+        <code class="filename">/etc/fstab</code> and creates a new entry:
+      </p><div class="verbatim-wrap"><pre class="screen">awk -i inplace '$2 != "/home"' /etc/fstab
+echo "$(blkid -o export ${partition} | grep ^UUID=) /home btrfs defaults 0 0" &gt;&gt;/etc/fstab</pre></div></section><section class="sect5" id="combustion-adding-users" data-id-title="Creating new users"><div class="titlepage"><div><div><div class="title-container"><h6 class="title"><span class="title-number-name"><span class="title-number">2.2.2.1.6 </span><span class="title-name">Creating new users</span></span> <a title="Permalink" class="permalink" href="index.html#combustion-adding-users">#</a></h6><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        As some services, such as Cockpit, require login using a non-root user, define at
+        least one unprivileged user here. Alternatively, you can create such a user from a running
+        system as described in <a class="xref" href="index.html#deployment-postinstall-adding-users" title="5.2. Adding users">Section 5.2, “Adding users”</a>.
+      </p><p>
+        To add a new user account, first create a hash string that represents
+        the user's password. Use the <code class="command">openssl passwd -6</code>
+        command.
+      </p><p>
+        After you obtain the password hash, add the following lines to the
+        <code class="filename">script</code>:
+      </p><div class="verbatim-wrap"><pre class="screen">mount /home
+useradd -m <em class="replaceable">EXAMPLE_USER</em>
+echo '<em class="replaceable">EXAMPLE_USER</em>:<em class="replaceable">PASSWORD_HASH</em>' | chpasswd -e</pre></div></section><section class="sect5" id="combustion-script-security" data-id-title="Setting a password for root"><div class="titlepage"><div><div><div class="title-container"><h6 class="title"><span class="title-number-name"><span class="title-number">2.2.2.1.7 </span><span class="title-name">Setting a password for <code class="systemitem">root</code></span></span> <a title="Permalink" class="permalink" href="index.html#combustion-script-security">#</a></h6><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        Before you set the <code class="systemitem">root</code> password, generate a hash of the
+        password, for example, by using the <code class="command">openssl passwd
+        -6</code>. To set the password, add the following line to the
+        <code class="filename">script</code>:
+      </p><div class="verbatim-wrap"><pre class="screen">echo 'root:<em class="replaceable">PASSWORD_HASH</em>' | chpasswd -e</pre></div></section><section class="sect5" id="combustion-script-sshkeys" data-id-title="Adding SSH keys"><div class="titlepage"><div><div><div class="title-container"><h6 class="title"><span class="title-number-name"><span class="title-number">2.2.2.1.8 </span><span class="title-name">Adding SSH keys</span></span> <a title="Permalink" class="permalink" href="index.html#combustion-script-sshkeys">#</a></h6><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        The following snippet creates a directory to store the <code class="systemitem">root</code>'s SSH
+        key and then copies the public SSH key located on the configuration
+        device to the <code class="filename">authorized_keys</code> file.
+      </p><div class="verbatim-wrap"><pre class="screen">mkdir -pm700 /root/.ssh/
+cat id_rsa_new.pub &gt;&gt; /root/.ssh/authorized_keys</pre></div><div id="id-1.3.4.3.2.13.4" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+          The SSH service must be enabled in case you need to use remote login
+          via SSH. For details, refer to
+          <a class="xref" href="index.html#combustion-script-services" title="2.2.2.1.9. Enabling services">Section 2.2.2.1.9, “Enabling services”</a>.
+        </p></div></section><section class="sect5" id="combustion-script-services" data-id-title="Enabling services"><div class="titlepage"><div><div><div class="title-container"><h6 class="title"><span class="title-number-name"><span class="title-number">2.2.2.1.9 </span><span class="title-name">Enabling services</span></span> <a title="Permalink" class="permalink" href="index.html#combustion-script-services">#</a></h6><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        To enable system services, for example, the SSH service, add the
+        following line to <code class="filename">script</code>:
+      </p><div class="verbatim-wrap"><pre class="screen">systemctl enable sshd.service</pre></div></section><section class="sect5" id="combustion-script-install" data-id-title="Installing packages"><div class="titlepage"><div><div><div class="title-container"><h6 class="title"><span class="title-number-name"><span class="title-number">2.2.2.1.10 </span><span class="title-name">Installing packages</span></span> <a title="Permalink" class="permalink" href="index.html#combustion-script-install">#</a></h6><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div id="id-1.3.4.3.2.15.2" data-id-title="Network connection and registering your system may be necessary" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Network connection and registering your system may be necessary</div><p>
+          As certain packages may require additional subscription, you may need
+          to register your system beforehand. An available network connection
+          may also be needed to install additional packages.
+        </p></div><p>
+        During the first boot configuration, you can install additional
+        packages to your system. For example, you can install the
+        <code class="literal">vim</code> editor by adding:
+      </p><div class="verbatim-wrap"><pre class="screen">zypper --non-interactive install vim-small</pre></div><div id="id-1.3.4.3.2.15.5" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+          Bear in mind that you will not be able to use
+          <code class="command">zypper</code> after the configuration is complete and you
+          boot to the configured system. To perform changes later, you must use
+          the <code class="command">transactional-update</code> command to create a
+          changed snapshot.
+        </p></div></section></section></section></section><section xml:lang="en" class="sect2" id="deployment-configuring-with-ignition" data-id-title="Configuring SUSE Linux Micro deployment with Ignition"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.3 </span><span class="title-name">Configuring <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span> deployment with Ignition</span></span> <a title="Permalink" class="permalink" href="index.html#deployment-configuring-with-ignition">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        <a class="link" href="https://coreos.github.io/ignition/" target="_blank">Ignition</a>
+        is a provisioning tool that enables you to configure a system according
+        to your specification on the first boot.
+      </p></div></div></div></div><section class="sect3" id="how-it-works-ignition" data-id-title="How does Ignition work?"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">2.3.1 </span><span class="title-name">How does Ignition work?</span></span> <a title="Permalink" class="permalink" href="index.html#how-it-works-ignition">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      When the system is booted for the first time, Ignition is loaded as
+      part of an <code class="filename">initramfs</code> and searches for a
+      configuration file within a specific directory (on a USB flash disk, or
+      you can provide a URL). All changes are performed before the kernel
+      switches from the temporary file system to the real root file system
+      (before the <code class="literal">switch_root</code> command is issued).
+    </p><p>
+      Ignition uses a configuration file in the JSON format named
+      <code class="filename">config.ign</code>. You can either write the configuration
+      manually or use the Fuel Ignition Web application at
+      <a class="link" href="https://ignite.opensuse.org" target="_blank">https://ignite.opensuse.org</a> to generate it.
+    </p><div id="id-1.3.5.2.4" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important</div><p>
+        Fuel Ignition does not cover the complete Ignition vocabulary yet,
+        and the resulting JSON file may need additional manual tweaking.
+      </p></div><section class="sect4" id="deployment-ignition-config-file" data-id-title="config.ign"><div class="titlepage"><div><div><div class="title-container"><h5 class="title"><span class="title-number-name"><span class="title-number">2.3.1.1 </span><span class="title-name"><code class="filename">config.ign</code></span></span> <a title="Permalink" class="permalink" href="index.html#deployment-ignition-config-file">#</a></h5><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        The <code class="filename">config.ign</code> contains multiple data types:
+        objects, strings, integers, booleans and lists of objects. For a
+        complete specification, refer to
+        <a class="link" href="https://coreos.github.io/ignition/configuration-v3_3/" target="_blank">Ignition
+        specification v3.3.0</a>.
+      </p><p>
+        The <code class="literal">version</code> attribute is mandatory and in case of
+        <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span>, its value must be set either to
+        <code class="literal">3.4.0</code> or to any lower version. Otherwise, Ignition
+        will fail.
+      </p><p>
+        To log in to your system as <code class="systemitem">root</code>, you must at least
+        include a password for <code class="systemitem">root</code>. However, it is recommended to
+        establish access via SSH keys. To configure a password, make sure to
+        use a secure one. If you use a randomly generated password, use at
+        least 10 characters. If you create your password manually, use even
+        more than 10 characters and combine uppercase and lowercase letters and
+        numbers.
+      </p></section></section><section xml:lang="en" class="sect3" id="reference-ignition-configuration" data-id-title="Ignition configuration examples"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">2.3.2 </span><span class="title-name">Ignition configuration examples</span></span> <a title="Permalink" class="permalink" href="index.html#reference-ignition-configuration">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      This section provides several examples of the Ignition configuration in
+       the built-in JSON format.
+    </p><div id="id-1.3.5.3.3" data-id-title="The version attribute is mandatory" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: The <code class="literal">version</code> attribute is mandatory</div><p>
+        Each <code class="filename">config.ign</code> must include version 3.4.0 or
+        lower that is then converted to the corresponding Ignition
+        specification.
+      </p></div><section xml:lang="en" class="sect4" id="id-1.3.5.3.4" data-id-title="Default partitioning"><div class="titlepage"><div><div><div class="title-container"><h5 class="title"><span class="title-number-name"><span class="title-number">2.3.2.1 </span><span class="title-name">Default partitioning</span></span> <a title="Permalink" class="permalink" href="index.html#id-1.3.5.3.4">#</a></h5><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Each image has the following subvolumes:
+  </p><div class="verbatim-wrap"><pre class="screen">/home
+/root
+/opt
+/srv
+/usr/local
+/var</pre></div><p>
+    The <code class="literal">/etc</code> directory is mounted as overlayFS, where the
+    upper directory is mounted to <code class="filename">/var/lib/overlay/1/etc/</code>.
+  </p><p>
+    You can recognize the subvolumes mounted by default by the option
+    <code class="literal">x-initrd.mount</code> in <code class="filename">/etc/fstab</code>. Other
+    subvolumes or partitions must be configured either by Ignition or
+    Combustion.
+  </p><p>
+    If you want to
+        add a new user or modify any of the files on a subvolume that is not
+        mounted by default, you need to declare such subvolume first so that it
+        is mounted as well.
+  </p></section><section class="sect4" id="sec-ignition-storage" data-id-title="Storage configuration"><div class="titlepage"><div><div><div class="title-container"><h5 class="title"><span class="title-number-name"><span class="title-number">2.3.2.2 </span><span class="title-name">Storage configuration</span></span> <a title="Permalink" class="permalink" href="index.html#sec-ignition-storage">#</a></h5><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        The <code class="literal">storage</code> attribute is used to configure
+        partitions, RAID, define file systems, create files, etc. To define
+        partitions, use the <code class="literal">disks</code> attribute. The
+        <code class="literal">filesystems</code> attribute is used to format partitions. The
+        <code class="literal">files</code> attribute can be used to create files in the
+        file system. 
+      </p><p>
+        The example below configures four partitions, including a dedicated swap partition, and creates a file system on each partition.
+        </p><div class="verbatim-wrap"><pre class="screen">{
+  "ignition": {
+    "version": "3.0.0"
+  },
+  "storage": {
+    "disks": [
+      {
+        "device": "/dev/vda",
+        "partitions": [
+          {
+            "label": "root",
+            "number": 1,
+            "sizeMiB": 30720
+          },
+          {
+            "label": "boot",
+            "number": 2,
+            "sizeMiB": 8720
+          },
+          {
+            "label": "swap",
+            "number": 3,
+            "sizeMiB": 4096
+          },
+          {
+            "label": "home",
+            "number": 4,
+            "sizeMiB": 30720
+          }
+        ],
+        "wipeTable": true        
+      }
+    ]
+    "filesystems": [
+      {
+        "device": "/dev/disk/by-partlabel/root",  
+        "format": "btrfs",  
+        "label": "root"
+      },
+      {
+        "device": "/dev/disk/by-partlabel/swap",  
+        "format": "swap",  
+        "label": "swap"
+      }
+      {
+        "device": "/dev/disk/by-partlabel/boot",  
+        "format": "btrfs",  
+        "label": "boot"
+      }
+      {
+        "device": "/dev/disk/by-partlabel/home",  
+        "format": "ext4",  
+        "label": "home"
+      }
+    ]
+  }
+}</pre></div><p>
+      Each of the mentioned attributes is described in the
+        following sections.
+      </p><section class="sect5" id="sec-storage-disks" data-id-title="The disks attribute"><div class="titlepage"><div><div><div class="title-container"><h6 class="title"><span class="title-number-name"><span class="title-number">2.3.2.2.1 </span><span class="title-name">The <code class="literal">disks</code> attribute</span></span> <a title="Permalink" class="permalink" href="index.html#sec-storage-disks">#</a></h6><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+          The <code class="literal">disks</code> attribute is a list of devices that
+          enables you to define partitions on these devices. The
+          <code class="literal">disks</code> attribute must contain at least one
+          <code class="literal">device</code>, other attributes are optional. Keep in mind that at least the
+          <code class="literal">root</code> and <code class="literal">boot</code> partitions (<code class="literal">swap</code> if configured) need to be formatted to bear a file
+          system.
+          </p><p>
+         The
+          following example uses a single virtual device and divides the
+          disk into four partitions:
+        </p><div class="verbatim-wrap"><pre class="screen">...
+  "storage": {
+    "disks": [
+      {
+        "device": "/dev/vda",
+        "partitions": [
+          {
+            "label": "root", <span class="callout" id="label">1</span>
+            "number": 1, <span class="callout" id="number">2</span>
+            "sizeMiB": 30720 <span class="callout" id="size">3</span>
+          },
+          {
+            "label": "boot",
+            "number": 2,
+            "startMiB": 30720, <span class="callout" id="start">4</span>
+            "sizeMiB": 8720
+          },
+          {
+            "label": "swap",
+            "number": 3,
+            "sizeMiB": 4096
+          },
+          {
+            "label": "home",
+            "number": 4,
+            "sizeMiB": 30720
+          }
+        ],
+        "wipeTable": true        
+      }
+    ]
+   ...</pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#label"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>The partition identification. Depending on the partition file system, it can have up to 16
+    characters for EXT-type file systems and 256 characters in the case of Btrfs.</p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#number"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>The position of the partition in the partition table. If set to 0, the next free position
+    is used.</p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#size"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>The size of the partition in MiB.</p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#start"><span class="callout">4</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>Identifies the starting point of the particular partition.</p></td></tr></table></div></section><section class="sect5" id="sec-storage-raid" data-id-title="The raid attribute"><div class="titlepage"><div><div><div class="title-container"><h6 class="title"><span class="title-number-name"><span class="title-number">2.3.2.2.2 </span><span class="title-name">The <code class="literal">raid</code> attribute</span></span> <a title="Permalink" class="permalink" href="index.html#sec-storage-raid">#</a></h6><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+          The <code class="literal">raid</code> is a list of RAID arrays. The following
+          attributes of <code class="literal">raid</code> are mandatory:
+        </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.3.5.3.5.7.3.1"><span class="term">level</span></dt><dd><p>
+                a level of the particular RAID array (linear, raid0, raid1,
+                raid2, raid3, raid4, raid5, raid6)
+              </p></dd><dt id="id-1.3.5.3.5.7.3.2"><span class="term">devices</span></dt><dd><p>
+                a list of devices in the array referenced by their absolute
+                paths
+              </p></dd><dt id="id-1.3.5.3.5.7.3.3"><span class="term">name</span></dt><dd><p>
+                a name that will be used for the md device
+              </p></dd></dl></div><p>
+         For example:
+        </p><div class="verbatim-wrap"><pre class="screen">{
+  "ignition": {
+    "version": "3.0.0"
+  },
+  "storage": {
+    "raid": [
+      {
+        "devices": [
+          "/dev/sda",
+          "/dev/sdb"
+        ],
+        "level": "raid1",
+        "name": "system"
+      }
+    ]
+  }
+}</pre></div></section><section class="sect5" id="sec-storage-filesystem" data-id-title="The filesystems attribute"><div class="titlepage"><div><div><div class="title-container"><h6 class="title"><span class="title-number-name"><span class="title-number">2.3.2.2.3 </span><span class="title-name">The <code class="literal">filesystems</code> attribute</span></span> <a title="Permalink" class="permalink" href="index.html#sec-storage-filesystem">#</a></h6><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div id="id-1.3.5.3.5.8.2" data-id-title="Ignition does not perform modifications to mount units" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Ignition does not perform modifications to mount units</div><p>
+            The <code class="literal">filesystems</code> attribute does not modify mount units. If you add a new partition or remove an
+            existing partition, you must manually adjust the mount units. 
+          </p></div><div id="id-1.3.5.3.5.8.3" data-id-title="Certain directories must reside on the same partition as /" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Certain directories must reside on the same partition as / </div><p>
+        When changing partitioning, do not place the following directories on a different partition
+        than the root file system: <code class="filename">/boot</code>, <code class="filename">/usr</code>,
+        <code class="filename">/etc</code>, <code class="filename">/dev</code>. 
+        </p></div><p>
+          <code class="literal">filesystems</code> must contain the following attributes:
+        </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.3.5.3.5.8.5.1"><span class="term">device</span></dt><dd><p>
+                the absolute path to the device, typically
+                <code class="literal">/dev/sda</code> in case of physical disk
+              </p></dd><dt id="id-1.3.5.3.5.8.5.2"><span class="term">format</span></dt><dd><p>
+                the file system format (btrfs, ext4, ext3, xfs, vfat or swap)
+              </p><div id="id-1.3.5.3.5.8.5.2.2.2" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+                  In case of <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span>, the <code class="literal">root</code>
+                  file system must be formatted to Btrfs.
+                </p></div></dd></dl></div><p>
+          The following example demonstrates using the
+          <code class="literal">filesystems</code> attribute. The
+          <code class="filename">/opt</code> directory will be mounted to the
+          <code class="literal">/dev/sda1</code> partition, which is formatted to Btrfs.
+          The device will not be erased.
+        </p><p>
+          For example:
+        </p><div class="verbatim-wrap"><pre class="screen">{
+  "ignition": {
+    "version": "3.0.0"
+  },
+  "storage": {
+    "filesystems": [
+      {
+        "device": "/dev/sda1",
+        "format": "btrfs",
+        "path": "/opt",
+        "wipeFilesystem": false
+      }
+    ]
+  }
+}</pre></div><p>
+          Normally, a regular user's home directory is located in the
+          <code class="filename">/home/<em class="replaceable">USER_NAME</em></code>
+          directory. Since <code class="filename">/home</code> is not mounted by default
+          in the initrd, the mount has to be explicitly defined for the user
+          creation to succeed:
+        </p><div class="verbatim-wrap"><pre class="screen">{
+  "ignition": {
+    "version": "3.1.0"
+  },
+  "passwd": {
+    "users": [
+      {
+        "name": "root",
+        "passwordHash": "<em class="replaceable">PASSWORD_HASH</em>",
+        "sshAuthorizedKeys": [
+          "ssh-rsa <em class="replaceable">SSH_KEY_HASH</em>"
+        ]
+      }
+    ]
+  },
+  "storage": {
+    "filesystems": [
+      {
+        "device": "/dev/sda3",
+        "format": "btrfs",
+        "mountOptions": [
+          "subvol=/@/home"
+        ],
+        "path": "/home",
+        "wipeFilesystem": false
+      }
+    ]
+  }
+}</pre></div></section><section class="sect5" id="sec-storage-files" data-id-title="The files attribute"><div class="titlepage"><div><div><div class="title-container"><h6 class="title"><span class="title-number-name"><span class="title-number">2.3.2.2.4 </span><span class="title-name">The <code class="literal">files</code> attribute</span></span> <a title="Permalink" class="permalink" href="index.html#sec-storage-files">#</a></h6><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+          You can use the <code class="literal">files</code> attribute to create any
+          files on your machine. Bear in mind that to create files
+          outside the default partitioning schema, you need to define the
+          directories by using the <code class="literal">filesystems</code> attribute.
+        </p><p>
+          In the following example, a host name is created by using the
+          <code class="literal">files</code> attribute. The file
+          <code class="filename">/etc/hostname</code> will be created with the
+          <span><em class="emphasis">sl-micro1</em></span> host name:
+        </p><div id="id-1.3.5.3.5.9.4" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important</div><p>
+            Keep in mind that JSON accepts file modes in decimal numbers, for
+            example, <code class="literal">420</code>.
+          </p></div><p>
+          JSON:
+        </p><div class="verbatim-wrap"><pre class="screen">{
+  "ignition": {
+    "version": "3.0.0"
+  },
+  "storage": {
+    "files": [
+      {
+        "overwrite": true,
+        "path": "/etc/hostname",
+        "contents": {
+          "source": "data:,sl-micro1"
+        },
+        "mode": 420
+      }
+    ]
+  }
+}</pre></div></section><section class="sect5" id="sec-storage-directories" data-id-title="The directories attribute"><div class="titlepage"><div><div><div class="title-container"><h6 class="title"><span class="title-number-name"><span class="title-number">2.3.2.2.5 </span><span class="title-name">The <code class="literal">directories</code> attribute</span></span> <a title="Permalink" class="permalink" href="index.html#sec-storage-directories">#</a></h6><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+          The <code class="literal">directories</code> attribute is a list of directories
+          that will be created in the file system. The
+          <code class="literal">directories</code> attribute must contain at least one
+          <code class="literal">path</code> attribute.
+        </p><p>
+          For example:
+        </p><div class="verbatim-wrap"><pre class="screen">{
+  "ignition": {
+    "version": "3.0.0"
+  },
+  "storage": {
+    "directories": [
+      {
+        "path": "/home/tux",
+        "user": {
+          "name": "tux"
+        }
+      }
+    ]
+  }
+}</pre></div></section></section><section class="sect4" id="sec-ignition-users" data-id-title="Users administration"><div class="titlepage"><div><div><div class="title-container"><h5 class="title"><span class="title-number-name"><span class="title-number">2.3.2.3 </span><span class="title-name">Users administration</span></span> <a title="Permalink" class="permalink" href="index.html#sec-ignition-users">#</a></h5><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        The <code class="literal">passwd</code> attribute is used to add users. As some services, such as Cockpit, require login using a non-root user, define at
+        least one unprivileged user here. Alternatively, you can create such a user from a running
+        system as described in <a class="xref" href="index.html#deployment-postinstall-adding-users" title="5.2. Adding users">Section 5.2, “Adding users”</a>.
+      </p><p>
+        To log in to your system, create <code class="systemitem">root</code> and a regular user and set their
+        passwords. You need to hash the passwords, for example, by
+        using the <code class="command">openssl</code> command:
+      </p><div class="verbatim-wrap"><pre class="screen"> openssl passwd -6</pre></div><p>
+        The command creates a hash of the password you chose. Use this hash as
+        the value of the <code class="literal">password_hash</code> attribute.
+      </p><p>
+       For example:
+      </p><div class="verbatim-wrap"><pre class="screen">{
+  "ignition": {
+    "version": "3.0.0"
+  },
+  "passwd": {
+    "users": [
+      {
+        "name": "root",
+        "passwordHash": "<em class="replaceable">PASSWORD_HASH</em>",
+        "sshAuthorizedKeys": [
+          "ssh-rsa <em class="replaceable">SSH_KEY_HASH</em> <em class="replaceable">USER</em>@<em class="replaceable">HOST</em>"
+        ]
+      }
+    ]
+  }
+}</pre></div><p>
+        The <code class="literal">users</code> attribute must contain at least one
+        <code class="literal">name</code> attribute.
+        <code class="literal">ssh_authorized_keys</code> is a list of ssh keys for the
+        user.
+      </p></section><section class="sect4" id="sec-ignition-systemd" data-id-title="Enabling systemd services"><div class="titlepage"><div><div><div class="title-container"><h5 class="title"><span class="title-number-name"><span class="title-number">2.3.2.4 </span><span class="title-name">Enabling <code class="literal">systemd</code> services</span></span> <a title="Permalink" class="permalink" href="index.html#sec-ignition-systemd">#</a></h5><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        You can enable <code class="systemitem">systemd</code> services by specifying them in the
+        <code class="literal">systemd</code> attribute.
+      </p><p>
+        For example:
+      </p><div class="verbatim-wrap"><pre class="screen">{
+  "ignition": {
+    "version": "3.0.0"
+  },
+  "systemd": {
+    "units": [
+      {
+        "enabled": true,
+        "name": "sshd.service"
+      }
+    ]
+  }
+}</pre></div></section></section></section></section><section xml:lang="en" class="sect1" id="pxe-boot-prepare-tftp" data-id-title="Preparing the TFTP server"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Preparing the TFTP server</span></span> <a title="Permalink" class="permalink" href="index.html#pxe-boot-prepare-tftp">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    To deploy <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span> using the PXE client, you need to perform the following steps:
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Review the <code class="systemitem">tftpd</code> configuration in
+      <code class="filename">/etc/sysconfig/tftp</code> and add or change options as
+      required. Refer to <code class="command">man 8 tftpd</code> for more details.
+      The TFTP daemon works without changing the configuration. The default root
+      directory for the files is <code class="filename">/srv/tftpboot</code>.
+        </p></li><li class="step"><p>
+          Ensure that <code class="systemitem">tftpd</code> is started at
+          boot time, and restart it to read the new configuration.
+         </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">systemctl enable tftp.socket</code>
+<code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">systemctl restart tftp.socket</code></pre></div><p>
+      Ensure that <code class="literal">tftp.socket</code> remains active during the whole deployment
+      process, which may take several minutes. 
+    </p></li><li class="step"><p>
+          Prepare the directory structure:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> mkdir /srv/tftpboot/sl-micro</pre></div></li><li class="step"><p>
+          Navigate to the directory:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">cd /srv/tftpboot/sl-micro</code></pre></div></li><li class="step"><p>
+          Download the
+          <code class="literal">SL-Micro.<em class="replaceable">ARCHITECTURE</em>-6.1-<em class="replaceable">IMAGE_TYPE</em>-GM.install.tar</code>
+          to the TFTP server.
+        </p></li><li class="step"><p>
+          Unpack the TAR file:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">tar xvf <em class="replaceable">IMAGE_TAR</em> -C .</code></pre></div><p>
+          Make sure that all necessary files are present in the
+          <code class="filename">/srv/tftpboot/sl-micro</code>:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ls</code>
+
+pxeboot.SL-Micro.<em class="replaceable">ARCH</em>-<em class="replaceable">VERSION</em>.kernel
+pxeboot.SL-Micro.<em class="replaceable">ARCH</em>-<em class="replaceable">VERSION</em>.initrd
+SL-Micro.<em class="replaceable">ARCH</em>-<em class="replaceable">VERSION</em>.append 
+SL-Micro.<em class="replaceable">ARCH</em>-<em class="replaceable">VERSION</em>.config.bootoptions
+SL-Micro.<em class="replaceable">ARCH</em>-<em class="replaceable">VERSION</em>.initrd
+SL-Micro.<em class="replaceable">ARCH</em>-<em class="replaceable">VERSION</em>.kernel
+SL-Micro.<em class="replaceable">ARCH</em>-<em class="replaceable">VERSION</em>.md5
+SL-Micro.<em class="replaceable">ARCH</em>-<em class="replaceable">VERSION</em>.xz</pre></div></li><li class="step"><p>
+          Create symlinks as follows:
+                </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">ln -s pxeboot.*.kernel linux</code>
+
+<code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">ln -s pxeboot.*.initrd initrd</code></pre></div></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+          Create directories for the first boot configuration:        
+          
+        </p><ol type="a" class="substeps"><li class="step"><p>
+              for the Combustion configuration:
+            </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">mkdir combustion</code></pre></div></li><li class="step"><p>
+  for the Ignition configuration:
+</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">mkdir ignition</code></pre></div></li></ol></li><li class="step"><p>
+          Place the Combustion and/or Ignition configuration to corresponding directories.
+        </p></li><li class="step"><p>
+          Adjust the <code class="filename">/srv/tftpboot/grub2/grub.cfg
+          </code> file to include <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span>:
+        </p><div class="verbatim-wrap"><pre class="screen">menuentry 'Install SUSE Linux Micro' {
+    linux sl-micro/linux <em class="replaceable">PARAMETERS_TO_PASS_TO_KERNEL</em>
+    initrd sl-micro/initrd
+}</pre></div><p>
+          The <em class="replaceable">PARAMETERS_TO_PASS_TO_KERNEL</em> are listed in the file
+          <code class="filename">SL-Micro.<em class="replaceable">ARCH</em>-<span class="phrase"><span class="phrase">6.1</span></span>.append</code>.
+          Their explanations follow:
+        </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.4.3.10.4.1"><span class="term"><code class="literal">rd.kiwi.install.image</code></span></dt><dd><p>
+              Provide the path to the
+              installation image
+              <code class="literal">SL-Micro.<em class="replaceable">ARCH</em><span class="phrase"><span class="phrase">6.1</span></span>.xz</code>. The
+              path must include the protocol, IP address and the relative path to the installation
+              image:
+            </p><div class="verbatim-wrap"><pre class="screen">tftp://<em class="replaceable">TFTP_SERVER</em>/sl-micro/<em class="replaceable">IMAGE_NAME</em></pre></div><p>
+              If the TFTP root directory is defined, make sure to omit it from the path. The
+              default directory <code class="literal">/srv/tftboot</code> can be configured in
+              <code class="filename">/etc/sysconfig/tftp</code>, or you can specify the directory 
+              in a service unit file attribute that defines the binary to run using the 
+              <code class="literal">-s</code> option.
+            </p></dd><dt id="id-1.4.3.10.4.2"><span class="term"><code class="literal">rd.kiwi.oem.installdevice</code></span></dt><dd><p>
+                Passing this parameter enables you to perform unattended installation.
+              </p></dd><dt id="id-1.4.3.10.4.3"><span class="term"><code class="literal">rd.kiwi.install.pass.bootparam</code></span></dt><dd><p>
+              After the image is copied to the target disk, kiwi performs a kexec. This parameter instructs kiwi that it must
+             pass additional parameters to the kernel. For example, the ones described below.
+            </p></dd><dt id="id-1.4.3.10.4.4"><span class="term"><code class="literal">combustion.url</code></span></dt><dd><p>
+                If needed, provide a full URL to the
+              Combustion script that is passed to the kernel CLI.
+              </p></dd><dt id="id-1.4.3.10.4.5"><span class="term"><code class="literal">ignition.config.url</code></span></dt><dd><p>
+                  If needed, provide a full URL to the
+                  Ignition configuration file that is passed to the kernel CLI. Can be used along with Combustion.
+                </p></dd></dl></div></li></ol></div></div></section><section xml:lang="en" class="sect1" id="deployment-network-image" data-id-title="Deploying the image remotely"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Deploying the image remotely</span></span> <a title="Permalink" class="permalink" href="index.html#deployment-network-image">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    After you prepared the DHCP and TFTP servers, you can start deployment of <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span> on the
+    target machine.
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Power on the target machine.
+      </p></li><li class="step"><p>
+        Enter the UEFI boot menu and select PXE booting.
+      </p></li><li class="step"><p>
+        The machine should start the deployment. Kernel and initrd are downloaded from the TFTP.
+        Boot loader is started.
+      </p></li><li class="step"><p>
+        Select <code class="literal">Install SUSE Linux Micro</code>. This item may be different if you
+        used a different value in <code class="filename">/srv/tftpboot/grub2/grub.cfg
+        </code>.
+      </p></li><li class="step"><p>
+        Select a disk to deploy <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span> and confirm deleting data on that device. The image
+        is then copied to the disk.
+      </p></li><li class="step"><p>
+        Using Kexec, your system reboots and is then prepared for the configuration process.
+      </p></li><li class="step"><p>
+        Start the configuration process by selecting <span class="guimenu">SL Micro</span>. If the Ignition or Combustion instructions have not been provided, JeOS Firstboot is
+        triggered. For details, refer to <a class="xref" href="index.html#deployment-jeos-firstboot" title="4.1. Configuring SUSE Linux Micro with JeOS Firstboot">Section 4.1, “Configuring <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span> with JeOS Firstboot”</a>.
+      </p></li></ol></div></div><section xml:lang="en" class="sect2" id="deployment-jeos-firstboot" data-id-title="Configuring SUSE Linux Micro with JeOS Firstboot"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.1 </span><span class="title-name">Configuring <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span> with JeOS Firstboot</span></span> <a title="Permalink" class="permalink" href="index.html#deployment-jeos-firstboot">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"/></div></div></div><p>
+    To configure the system with <span><em class="emphasis">JeOS Firstboot</em></span>, proceed
+    as follows:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        <span class="guimenu">JeOS Firstboot</span> displays a welcome screen. Confirm
+        with <span class="keycap">Enter</span>.
+      </p></li><li class="step"><p>
+        On the next screens, select keyboard, confirm the license agreement and
+        select the time zone.
+      </p></li><li class="step"><p>
+        In the <span class="guimenu">Enter root password</span> dialog window, enter a
+        password for the <code class="systemitem">root</code> and confirm it.
+      </p><div class="figure" id="id-1.5.4.3.3.2"><div class="figure-contents"><div class="mediaobject"><a href="images/alp-deploy-rootpwd.png"><img src="images/alp-deploy-rootpwd.png" width="50%" alt="Enter root password" title="Enter root password"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 1: </span><span class="title-name">Enter root password </span></span><a title="Permalink" class="permalink" href="index.html#id-1.5.4.3.3.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+        To enroll SSH keys for access, press <span class="keycap">Yes</span>. If you 
+        pressed <span class="keycap">YES</span>, proceed as described below:
+      </p><ol type="a" class="substeps"><li class="step"><p>
+            Using SSH, connect to the displayed IP address.
+          </p></li><li class="step"><p>
+            If you received a public key properly, confirm it in the next screen.
+          </p></li><li class="step"><p>
+            A prompt to import an SSH key appears. Select the option according to your preferences.
+          </p></li></ol></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+        If desired, you can create an unprivileged user in the <code class="literal">User Creation</code>
+        form. Fill in the user name, full name and a password twice. Confirm with <span class="keycap">OK</span>.
+      </p></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+To set up MFA for accessing Cockpit, open a TOTP application and 
+scan the QR code. Enter the OTP value provided by the application. 
+Proceed with <span class="keycap">OK</span>.
+</p></li><li class="step"><p>
+        After successful deployment, register your system as described in
+        <a class="xref" href="index.html#deployment-registering-system" title="5.1. Registering SUSE Linux Micro from CLI">Section 5.1, “Registering <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span> from CLI”</a>.
+      </p></li></ol></div></div></section></section><section class="sect1" id="id-1.6" data-id-title="Post-deployment steps"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Post-deployment steps</span></span> <a title="Permalink" class="permalink" href="index.html#id-1.6">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><section xml:lang="en" class="sect2" id="deployment-registering-system" data-id-title="Registering SUSE Linux Micro from CLI"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.1 </span><span class="title-name">Registering <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span> from CLI</span></span> <a title="Permalink" class="permalink" href="index.html#deployment-registering-system">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        After successful deployment, you need to register the system to get
+        technical support and receive updates. Registering the system is
+        possible from the command line using the <code class="command">transactional-update
+        register</code> command.
+      </p></div></div></div></div><p>
+    To register <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span> with SUSE Customer Center, proceed as follows:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Run <code class="command">transactional-update register</code> as follows:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>transactional-update register -r <em class="replaceable">REGISTRATION_CODE</em> -e <em class="replaceable">EMAIL_ADDRESS</em></pre></div><p>
+        To register with a local registration server, additionally provide the
+        URL to the server:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>transactional-update register -r <em class="replaceable">REGISTRATION_CODE</em> -e <em class="replaceable">EMAIL_ADDRESS</em> \
+ --url "https://suse_register.example.com/"</pre></div><p>
+        Replace <em class="replaceable">REGISTRATION_CODE</em> with the
+        registration code you received with your copy of <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span>. Replace
+        <em class="replaceable">EMAIL_ADDRESS</em> with the e-mail address
+        associated with the SUSE account you or your organization uses to
+        manage subscriptions.
+      </p></li><li class="step"><p>
+        Reboot your system to switch to the latest snapshot.
+      </p></li><li class="step"><p>
+        <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span> is now registered.
+      </p></li></ol></div></div><div id="id-1.6.2.4" data-id-title="Other registration options" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Other registration options</div><p>
+      For information that goes beyond the scope of this section, refer to the
+      inline documentation with <code class="command">SUSEConnect --help</code>.
+    </p></div></section><section xml:lang="en" class="sect2" id="deployment-postinstall-adding-users" data-id-title="Adding users"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.2 </span><span class="title-name">Adding users</span></span> <a title="Permalink" class="permalink" href="index.html#deployment-postinstall-adding-users">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Since <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span> requires having an unprivileged user to log in via SSH or to
+        access Cockpit by default, we recommend to create such an account.
+      </p></div></div></div></div><p>
+    This step is optional if you have defined an unprivileged user during the deployment of the
+    system. If not, you can proceed as described below:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Run the <code class="command">useradd</code> command as follows:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">useradd -m <em class="replaceable">USER_NAME</em></code></pre></div></li><li class="step"><p>
+        Set a password for that account:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>passwd <em class="replaceable">USER_NAME</em></pre></div></li><li class="step"><p>
+        If needed, add the user to the <code class="literal">wheel</code> group:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code>usermod -aG wheel <em class="replaceable">USER_NAME</em></pre></div></li></ol></div></div></section></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#deployment-pxe-introduction"><span class="title-number">1 </span><span class="title-name">Introduction to the PXE installation of <span class="phrase"><span class="phrase">SUSE Linux Micro</span></span></span></a></span></li><li><span class="section"><a href="index.html#deployment-pxe-glue"><span class="title-number">2 </span><span class="title-name">Creating firstboot configuration</span></a></span></li><li><span class="section"><a href="index.html#pxe-boot-prepare-tftp"><span class="title-number">3 </span><span class="title-name">Preparing the TFTP server</span></a></span></li><li><span class="section"><a href="index.html#deployment-network-image"><span class="title-number">4 </span><span class="title-name">Deploying the image remotely</span></a></span></li><li><span class="section"><a href="index.html#id-1.6"><span class="title-number">5 </span><span class="title-name">Post-deployment steps</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">6 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

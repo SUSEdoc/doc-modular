@@ -1,0 +1,882 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Configuring GPU pass-through for NVIDIA Cards</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2026-07-01"/>
+<meta name="dcterms.modified" content="2026-07-01"/>
+<meta name="dcterms.dateSubmitted" content="2026-09-16"/>
+<meta name="title" content="Configuring GPU pass-through for NVIDIA Cards"/>
+<meta name="description" content="Configure NVIDIA GPU pass-through to assign a physical GPU to a virtual machine for compute-intensive workloads"/>
+<meta name="book-title" content="Configuring GPU pass-through for NVIDIA Cards"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="souvik.sarkar@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="souvik.sarkar@suse.com"/><meta property="og:title" content="GPU pass-through for NVIDIA Cards"/>
+<meta property="og:description" content="Assign an NVIDIA GPU to a VM for compute workloads"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="GPU pass-through for NVIDIA Cards"/>
+<meta name="twitter:description" content="Assign an NVIDIA GPU to a VM for compute workloads"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "GPU pass-through for NVIDIA Cards",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "GPU pass-through for NVIDIA Cards",
+    "description": "Configure NVIDIA GPU pass-through to assign a physical GPU to a virtual machine for compute-intensive workloads",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2026-07-01T00:00+02:00",
+    "dateModified": "2026-07-01T00:00+02:00",
+    "datePublished": "2026-09-16T01:56+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Virtualization"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#gpu-passthru">Configuring GPU pass-through for NVIDIA Cards</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="gpu-passthru" data-id-title="Configuring GPU pass-through for NVIDIA Cards"><div class="titlepage"><div><div><h1 class="title">Configuring GPU pass-through for NVIDIA Cards</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>16 Sep 2026</div><div><div class="abstract"><p>
+          GPU pass-through assigns a physical NVIDIA* GPU directly to a virtual
+          machine, giving it near-native graphics and compute performance
+          instead of a shared, virtualized device. Use it for machine
+          learning, AI workloads, 3D rendering, and other compute-intensive
+          tasks that need direct hardware access. After configuring
+          pass-through on the host and installing the guest driver, the
+          virtual machine can use the GPU as if it were installed locally.
+         </p><p><span><em class="emphasis">Prerequisites:</em></span></p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            GPU pass-through is supported on the AMD64/Intel 64 architecture only.
+           </p></li><li class="listitem"><p>
+            The host operating system needs to be SUSE Linux Enterprise Server 16 or newer.
+           </p></li><li class="listitem"><p>
+            This article covers GPU pass-through for NVIDIA Tesla, Data Center, and RTX series cards, for GPU computation purposes only.
+           </p></li><li class="listitem"><p>
+            For optimal CUDA compute performance with System-Allocated Memory (SAM) migration, kernel 6.12 or newer is recommended to include required HMM fixes.
+           </p></li><li class="listitem"><p>
+            To manage the host system after configuring GPU pass-through, you need
+            either an additional display card on the host or a functional
+            SSH connection.
+           </p></li></ul></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Configuring GPU pass-through for NVIDIA Cards" hreflang="en" href="rh-gpu-passthru.html" target="_blank">Revision History: Configuring GPU pass-through for NVIDIA Cards</a></div></div></div></div><section xml:lang="en" class="sect1" id="gpu-passthru-host" data-id-title="Configuring the host"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Configuring the host</span></span> <a title="Permalink" class="permalink" href="#gpu-passthru-host">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+    Complete the following steps on the host to prepare an NVIDIA GPU for
+    pass-through to a virtualized guest.
+   </p></div></div></div></div><section class="sect2" id="gpu-passthru-verify-host" data-id-title="Verify the host environment"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">Verify the host environment</span></span> <a title="Permalink" class="permalink" href="#gpu-passthru-verify-host">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+     Verify that the host supports
+     VT-d technology and that it is
+     already enabled in the firmware settings:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">dmesg | grep -e "Directed I/O"</code>
+
+[   12.819760] DMAR: Intel(R) Virtualization Technology for Directed I/O</pre></div><ol type="a" class="substeps"><li class="step"><p>
+       If VT-d is not enabled in the firmware, enable it.
+      </p></li><li class="step"><p>
+       Reboot the host.
+      </p></li></ol></li><li class="step"><p>
+      Verify that the host has an extra GPU or VGA card:
+     </p><ul class="stepalternatives">
+      <li class="step"><p>
+        Check for a generic VGA-compatible controller:
+       </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">lspci | grep -i "vga"</code>
+
+07:00.0 VGA compatible controller: Matrox Electronics Systems Ltd. \
+  MGA G200e [Pilot] ServerEngines (SEP1) (rev 05)</pre></div></li>
+      <li class="step"><p>
+        Check for an NVIDIA card directly, for example with a Tesla V100 card:
+       </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">lspci | grep -i nvidia</code>
+
+03:00.0 3D controller: NVIDIA Corporation GV100 [Tesla V100 PCIe] (rev a1)</pre></div><p>
+        The output varies by card model, for example:
+       </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Tesla V100: <code class="literal">NVIDIA Corporation GV100 [Tesla V100 PCIe]</code></p></li><li class="listitem"><p>A100: <code class="literal">NVIDIA Corporation A100-SXM4-40GB</code></p></li><li class="listitem"><p>L4: <code class="literal">NVIDIA Corporation L4</code></p></li></ul></div></li>
+     </ul></li></ol></div></div></section><section class="sect2" id="gpu-passthru-enable-iommu" data-id-title="Enable IOMMU"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Enable IOMMU</span></span> <a title="Permalink" class="permalink" href="#gpu-passthru-enable-iommu">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    IOMMU is disabled by default. You
+    need to enable it at boot time in the
+    <code class="filename">/etc/default/grub</code> configuration file.
+   </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+      For Intel-based hosts:
+     </p><div class="verbatim-wrap"><pre class="screen">GRUB_CMDLINE_LINUX="intel_iommu=on iommu=pt rd.driver.pre=vfio-pci"</pre></div><p>
+      For AMD-based hosts:
+     </p><div class="verbatim-wrap"><pre class="screen">GRUB_CMDLINE_LINUX="iommu=pt amd_iommu=on rd.driver.pre=vfio-pci"</pre></div></li><li class="step"><p>
+      When you save the modified <code class="filename">/etc/default/grub</code>
+      file, re-generate the main GRUB 2 configuration file
+      <code class="filename">/boot/grub2/grub.cfg</code>:
+     </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">grub2-mkconfig -o /boot/grub2/grub.cfg</code></pre></div></li><li class="step"><p>
+      Reboot the host and verify that
+      IOMMU is enabled:
+     </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">dmesg |  grep -e DMAR -e IOMMU</code></pre></div></li></ol></div></div></section><section class="sect2" id="gpu-passthru-blacklist-nouveau" data-id-title="Blacklist the Nouveau driver"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.3 </span><span class="title-name">Blacklist the Nouveau driver</span></span> <a title="Permalink" class="permalink" href="#gpu-passthru-blacklist-nouveau">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    To assign the NVIDIA card to a VM guest, prevent the host OS from
+    loading the built-in <code class="literal">nouveau</code> driver for NVIDIA
+    GPUs. Create the file
+    <code class="filename">/etc/modprobe.d/60-blacklist-nouveau.conf</code> with the
+    following content:
+   </p><div class="verbatim-wrap"><pre class="screen">blacklist nouveau</pre></div></section><section class="sect2" id="gpu-passthru-configure-vfio" data-id-title="Configure VFIO and isolate the GPU used for pass-through"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.4 </span><span class="title-name">Configure VFIO and isolate the GPU used for pass-through</span></span> <a title="Permalink" class="permalink" href="#gpu-passthru-configure-vfio">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+      Find the card vendor and model IDs. Use the bus number
+      identified in the host verification step, for
+      example, <code class="literal">03:00.0</code>:
+     </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">lspci -nn | grep 03:00.0</code>
+
+03:00.0 3D controller [0302]: NVIDIA Corporation GV100 [Tesla V100 PCIe] [10de:1db4] (rev a1)</pre></div></li><li class="step"><p>
+      Create the file <code class="filename">/etc/modprobe.d/vfio.conf</code> with
+      the following content:
+     </p><div class="verbatim-wrap"><pre class="screen">options vfio-pci ids=10de:1db4</pre></div><div id="id-1.2.5.2.2.3" data-id-title="Cards requiring an additional device ID" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Cards requiring an additional device ID</div><p>
+       Some cards expose a separate audio function on the same bus and
+       slot, for example, <code class="literal">03:00.1</code>. Check for one with
+       <code class="command">lspci -nn | grep 03:00</code>: if an audio device
+       shows up alongside the GPU, add its ID to the
+       <code class="option">ids=</code> parameter too, otherwise you cannot use the
+       card.
+      </p></div></li></ol></div></div></section><section class="sect2" id="gpu-passthru-load-vfio" data-id-title="Load the VFIO driver"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.5 </span><span class="title-name">Load the VFIO driver</span></span> <a title="Permalink" class="permalink" href="#gpu-passthru-load-vfio">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+     There are three ways you can load the
+     VFIO driver.
+    </p><div id="id-1.2.6.3" data-id-title="IOMMUFD in kernel 6.12" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: IOMMUFD in kernel 6.12</div><p>
+      Kernel 6.12 introduces IOMMUFD as the new user API for VFIO. The legacy <code class="literal">vfio_iommu_type1</code> container/group model is still supported but gradually being superseded. For libvirt-based passthrough (virt-manager, virt-install), no changes are required as libvirt abstracts the VFIO interface.
+     </p></div><section class="sect3" id="gpu-passthru-load-vfio-initrd" data-id-title="Including the driver in the initrd file"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">1.5.1 </span><span class="title-name">Including the driver in the initrd file</span></span> <a title="Permalink" class="permalink" href="#gpu-passthru-load-vfio-initrd">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+       Create the file
+       <code class="filename">/etc/dracut.conf.d/gpu-passthrough.conf</code> with
+       the following content (mind the leading whitespace):
+      </p><div class="verbatim-wrap"><pre class="screen">add_drivers+=" vfio vfio_iommu_type1 vfio_pci vfio_virqfd"</pre></div></li><li class="step"><p>
+       Re-generate the initrd file:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">dracut --force /boot/initrd $(uname -r)</code></pre></div></li></ol></div></div></section><section class="sect3" id="gpu-passthru-load-vfio-modules" data-id-title="Adding the driver to the list of auto-loaded modules"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">1.5.2 </span><span class="title-name">Adding the driver to the list of auto-loaded modules</span></span> <a title="Permalink" class="permalink" href="#gpu-passthru-load-vfio-modules">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+     Create the file
+     <code class="filename">/etc/modules-load.d/vfio-pci.conf</code> and add the
+     following content:
+    </p><div class="verbatim-wrap"><pre class="screen">vfio
+vfio_iommu_type1
+vfio_pci
+kvm
+kvm_intel</pre></div></section><section class="sect3" id="gpu-passthru-load-vfio-manual" data-id-title="Loading the driver manually"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">1.5.3 </span><span class="title-name">Loading the driver manually</span></span> <a title="Permalink" class="permalink" href="#gpu-passthru-load-vfio-manual">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+     To load the driver manually at runtime, execute the following
+     command:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">modprobe vfio-pci</code></pre></div></section></section><section class="sect2" id="gpu-passthru-disable-msr" data-id-title="Disable MSR for Microsoft Windows guests"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.6 </span><span class="title-name">Disable MSR for Microsoft Windows guests</span></span> <a title="Permalink" class="permalink" href="#gpu-passthru-disable-msr">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    For Microsoft Windows guests, we recommend disabling MSR (model-specific
+    register) to avoid the guest crashing. Create the file
+    <code class="filename">/etc/modprobe.d/kvm.conf</code> and add the following
+    content:
+   </p><div class="verbatim-wrap"><pre class="screen">options kvm ignore_msrs=1</pre></div></section><section class="sect2" id="gpu-passthru-ovmf" data-id-title="Install UEFI firmware"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.7 </span><span class="title-name">Install UEFI firmware</span></span> <a title="Permalink" class="permalink" href="#gpu-passthru-ovmf">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    For proper GPU pass-through functionality, the host needs to boot using UEFI
+    firmware, not a legacy-style BIOS boot sequence. Install the
+    <span class="package">qemu-ovmf</span> package if not already installed:
+   </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper install qemu-ovmf</code></pre></div></section><section class="sect2" id="gpu-passthru-reboot" data-id-title="Reboot the host machine"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.8 </span><span class="title-name">Reboot the host machine</span></span> <a title="Permalink" class="permalink" href="#gpu-passthru-reboot">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    For most of the changes in the above steps to take effect, you need to
+    reboot the host machine:
+   </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">shutdown -r now</code></pre></div></section></section><section xml:lang="en" class="sect1" id="gpu-passthru-guest" data-id-title="Configuring the guest"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Configuring the guest</span></span> <a title="Permalink" class="permalink" href="#gpu-passthru-guest">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+    This section describes how to configure the guest virtual machine so that
+    it can use the host's NVIDIA GPU. Use virt-manager or
+    <code class="command">virt-install</code> to install the guest VM. Find more
+    details in <a class="link" href="https://documentation.suse.com/sles/16.0/html/SLES-virtualization-libvirt/index.html#libvirt-guest-installation" target="_blank">Guest installation</a>.
+   </p></div></div></div></div><section class="sect2" id="gpu-passthru-guest-general" data-id-title="Requirements for the guest configuration"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">Requirements for the guest configuration</span></span> <a title="Permalink" class="permalink" href="#gpu-passthru-guest-general">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   During the guest VM installation, select <span class="guimenu">Customize
+   configuration before install</span> and configure the following
+   devices:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+      Use Q35 chipset for proper PCIe passthrough with modern GPUs.
+     </p></li><li class="listitem"><p>
+      Install the guest VM using UEFI firmware.
+     </p></li><li class="listitem"><p>
+      Add the following emulated devices:
+     </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        Graphic: VNC
+       </p></li><li class="listitem"><p>
+        Device: virtio-gpu, VGA or Virtio
+       </p></li></ul></div><p>
+      Find more information in <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/task-configure-virtual-machine-manager/task-configure-virtual-machine-manager.html" target="_blank">Configuring
+      Virtual Machines with Virtual Machine Manager</a>.
+     </p></li><li class="listitem"><p>
+      Add the host PCI device (for example, <code class="literal">03:00.0</code>)
+      to the guest. Find more information in <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/vm-assign-pci-device/vm-assign-pci-device.html" target="_blank">Assigning
+      Host Devices to Virtual Machines</a>.
+     </p></li><li class="listitem"><p>
+      For the best performance, we recommend using virtio drivers for the
+      network card and storage.
+     </p></li></ul></div></section><section class="sect2" id="gpu-passthru-guest-driver" data-id-title="Install the graphic card driver"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.2 </span><span class="title-name">Install the graphic card driver</span></span> <a title="Permalink" class="permalink" href="#gpu-passthru-guest-driver">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><section class="sect3" id="gpu-passthru-guest-driver-linux-rpm" data-id-title="RPM-based Linux distributions"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">2.2.1 </span><span class="title-name">RPM-based Linux distributions</span></span> <a title="Permalink" class="permalink" href="#gpu-passthru-guest-driver-linux-rpm">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+       Download the driver RPM package from the official NVIDIA driver download page at <a class="link" href="https://www.nvidia.com/Download/index.aspx" target="_blank">https://www.nvidia.com/Download/index.aspx</a>.
+      </p></li><li class="step"><p>
+       Install the downloaded RPM package:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">rpm -i nvidia-diag-driver-local-repo-sles*.rpm</code></pre></div></li><li class="step"><p>
+       Refresh repositories and install <span class="package">cuda-drivers</span>:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper refresh &amp;&amp; zypper install cuda-drivers</code></pre></div></li><li class="step"><p>
+       Reboot the guest VM:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">shutdown -r now</code></pre></div></li></ol></div></div><div id="id-1.3.3.2.3" data-id-title="Minimum driver version for CUDA" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Minimum driver version for CUDA</div><p>
+      CUDA 13.3 requires driver version 610.43.02 or newer. The minimum driver version for CUDA 13.x is 580.
+     </p></div></section><section class="sect3" id="gpu-passthru-guest-driver-generic" data-id-title="Generic Linux installer"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">2.2.2 </span><span class="title-name">Generic Linux installer</span></span> <a title="Permalink" class="permalink" href="#gpu-passthru-guest-driver-generic">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+       Because the installer needs to compile the NVIDIA driver
+       modules, install the <span class="package">gcc-c++</span> and
+       <span class="package">kernel-devel</span> packages.
+      </p></li><li class="step"><p>
+        NVIDIA driver modules are unsigned, so disable Secure Boot on
+        the guest. Either disable it in the UEFI firmware setup, or use
+        <code class="command">mokutil</code> to enroll a Machine Owner Key. Find
+        more information about UEFI Secure Boot in
+        <a class="link" href="https://documentation.suse.com/sles/16.0/html/SLES-virtualization-libvirt/index.html#vle-libvirt-inst-virt-install-ovmf" target="_blank">Using UEFI Secure Boot</a>.
+       </p></li><li class="step"><p>
+       Download the driver installation script from
+       <a class="link" href="https://www.nvidia.com/Download/index.aspx?lang=en-us" target="_blank">https://www.nvidia.com/Download/index.aspx?lang=en-us</a>
+       and make it executable:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">chmod +x NVIDIA-Linux-x86_64-*.run</code></pre></div></li><li class="step"><p>
+       Run the script to complete the driver installation:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">./NVIDIA-Linux-x86_64-*.run</code></pre></div></li><li class="step"><p>
+       Download CUDA drivers from
+       <a class="link" href="https://developer.nvidia.com/cuda-downloads" target="_blank">https://developer.nvidia.com/cuda-downloads</a>
+       and install following the on-screen instructions.
+      </p></li></ol></div></div></section><section class="sect3" id="gpu-passthru-guest-driver-verify" data-id-title="Testing the Linux driver installation"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">2.2.3 </span><span class="title-name">Testing the Linux driver installation</span></span> <a title="Permalink" class="permalink" href="#gpu-passthru-guest-driver-verify">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+     Regardless of which installation method you used, verify the driver
+     installation as follows.
+    </p><div id="id-1.3.3.4.3" data-id-title="Display issues" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Display issues</div><p>
+      After you have installed the NVIDIA drivers, the virt-manager display
+      loses its connection to the guest OS. To access the guest VM, you
+      must either login via <code class="command">ssh</code>, change to the console
+      interface, or install a dedicated VNC server in the guest. To avoid
+      a flickering screen, stop and disable the display manager:
+     </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">systemctl stop display-manager &amp;&amp; systemctl disable display-manager</code></pre></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+       Verify the installation with the NVIDIA System Management Interface:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">nvidia-smi</code></pre></div></li><li class="step"><p>
+       Change to the directory of a CUDA sample. For example, the deviceQuery sample:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">cd /usr/local/cuda/samples/1_Utilities/deviceQuery</code></pre></div></li><li class="step"><p>
+       Compile the sample:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo make</code></pre></div></li><li class="step"><p>
+       Run the compiled sample:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">./deviceQuery</code></pre></div></li></ol></div></div></section><section class="sect3" id="gpu-passthru-guest-driver-windows" data-id-title="Microsoft Windows guest"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">2.2.4 </span><span class="title-name">Microsoft Windows guest</span></span> <a title="Permalink" class="permalink" href="#gpu-passthru-guest-driver-windows">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div id="id-1.3.3.5.2" data-id-title="Hide the hypervisor from the guest drivers" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Hide the hypervisor from the guest drivers</div><p>
+       Before you install the NVIDIA drivers, you need to hide the
+       hypervisor from the drivers by using the <code class="literal">&lt;hidden
+       state='on'/&gt;</code> directive in the guest's <code class="systemitem">libvirt</code>
+       definition, for example:
+      </p><div class="verbatim-wrap"><pre class="screen">&lt;features&gt;
+ &lt;acpi/&gt;
+ &lt;apic/&gt;
+ &lt;kvm&gt;
+  &lt;hidden state='on'/&gt;
+ &lt;/kvm&gt;
+&lt;/features&gt;</pre></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Download and install the NVIDIA driver from
+        <a class="link" href="https://www.nvidia.com/Download/index.aspx" target="_blank">https://www.nvidia.com/Download/index.aspx</a>.
+       </p></li><li class="step"><p>
+        Download and install the CUDA toolkit from
+        <a class="link" href="https://developer.nvidia.com/cuda-downloads?target_os=Windows&amp;target_arch=x86_64" target="_blank">https://developer.nvidia.com/cuda-downloads?target_os=Windows&amp;target_arch=x86_64</a>.
+       </p></li><li class="step"><p>
+        Find several NVIDIA demo samples in the directory
+        <code class="filename">Program Files\NVIDIA GPU Computing
+        Toolkit\CUDA\v12.x\extras\demo_suite</code> on the guest.
+       </p></li></ol></div></div><div id="id-1.3.3.5.4" data-id-title="Microsoft Windows driver no longer bundled with the CUDA Toolkit" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Microsoft Windows driver no longer bundled with the CUDA Toolkit</div><p>
+       Starting with CUDA 13.1, the Microsoft Windows display driver is no longer bundled with the CUDA Toolkit. You must download and install the appropriate NVIDIA driver separately from the official NVIDIA driver download page.
+      </p></div></section></section></section><section xml:lang="en" class="sect1" id="glue-alp-containers-podman-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="#glue-alp-containers-podman-more-info">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    For further steps in virtualization, refer to the following sources:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/concept-manage-virtual-machines-libvirt/concept-manage-virtual-machines-libvirt.html" target="_blank">Managing
+        virtual machines with <code class="systemitem">libvirt</code></a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/task-configure-virtual-machine-manager/task-configure-virtual-machine-manager.html" target="_blank">Configuring
+        Virtual Machines with Virtual Machine Manager</a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/vm-assign-pci-device/vm-assign-pci-device.html" target="_blank">Assigning
+        Host Devices to Virtual Machines</a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/virtual-disk-cache-mode-configure/virtual-disk-cache-mode-configure.html" target="_blank">Configuring
+        a Virtual Disk Cache Mode</a>
+      </p></li><li class="listitem"><p>
+        Converting VMware Virtual Machines to KVM with virt-v2v
+      </p></li></ul></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section><div class="legal-section"><section class="appendix" translate="no" id="doc-gfdl-license" data-id-title="GNU Free Documentation License"><div class="titlepage"><div><div><h1 class="title">GNU Free Documentation License</h1></div></div></div><p>
+    Copyright (C) 2000, 2001, 2002 Free Software Foundation, Inc. 51 Franklin St, Fifth Floor,
+    Boston, MA 02110-1301 USA. Everyone is permitted to copy and distribute verbatim copies of this
+    license document, but changing it is not allowed.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.6.3"><span class="name">
+    0. PREAMBLE
+  </span><a title="Permalink" class="permalink" href="#id-1.6.3">#</a></h5></div><p>
+    The purpose of this License is to make a manual, textbook, or other functional and useful
+    document "free" in the sense of freedom: to assure everyone the effective freedom to copy and
+    redistribute it, with or without modifying it, either commercially or non-commercially.
+    Secondarily, this License preserves for the author and publisher a way to get credit for their
+    work, while not being considered responsible for modifications made by others.
+  </p><p>
+    This License is a kind of "copyleft", which means that derivative works of the document must
+    themselves be free in the same sense. It complements the GNU General Public License, which is a
+    copyleft license designed for free software.
+  </p><p>
+    We have designed this License to use it for manuals for free software, because free software
+    needs free documentation: a free program should come with manuals providing the same freedoms
+    that the software does. But this License is not limited to software manuals; it can be used for
+    any textual work, regardless of subject matter or whether it is published as a printed book. We
+    recommend this License principally for works whose purpose is instruction or reference.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.6.7"><span class="name">
+    1. APPLICABILITY AND DEFINITIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.6.7">#</a></h5></div><p>
+    This License applies to any manual or other work, in any medium, that contains a notice placed
+    by the copyright holder saying it can be distributed under the terms of this License. Such a
+    notice grants a world-wide, royalty-free license, unlimited in duration, to use that work under
+    the conditions stated herein. The "Document", below, refers to any such manual or work. Any
+    member of the public is a licensee, and is addressed as "you". You accept the license if you
+    copy, modify or distribute the work in a way requiring permission under copyright law.
+  </p><p>
+    A "Modified Version" of the Document means any work containing the Document or a portion of it,
+    either copied verbatim, or with modifications and/or translated into another language.
+  </p><p>
+    A "Secondary Section" is a named appendix or a front-matter section of the Document that deals
+    exclusively with the relationship of the publishers or authors of the Document to the
+    Document's overall subject (or to related matters) and contains nothing that could fall
+    directly within that overall subject. (Thus, if the Document is in part a textbook of
+    mathematics, a Secondary Section may not explain any mathematics.) The relationship could be a
+    matter of historical connection with the subject or with related matters, or of legal,
+    commercial, philosophical, ethical or political position regarding them.
+  </p><p>
+    The "Invariant Sections" are certain Secondary Sections whose titles are designated, as being
+    those of Invariant Sections, in the notice that says that the Document is released under this
+    License. If a section does not fit the above definition of Secondary then it is not allowed to
+    be designated as Invariant. The Document may contain zero Invariant Sections. If the Document
+    does not identify any Invariant Sections then there are none.
+  </p><p>
+    The "Cover Texts" are certain short passages of text that are listed, as Front-Cover Texts or
+    Back-Cover Texts, in the notice that says that the Document is released under this License. A
+    Front-Cover Text may be at most 5 words, and a Back-Cover Text may be at most 25 words.
+  </p><p>
+    A "Transparent" copy of the Document means a machine-readable copy, represented in a format
+    whose specification is available to the general public, that is suitable for revising the
+    document straightforwardly with generic text editors or (for images composed of pixels) generic
+    paint programs or (for drawings) some widely available drawing editor, and that is suitable for
+    input to text formatters or for automatic translation to a variety of formats suitable for
+    input to text formatters. A copy made in an otherwise Transparent file format whose markup, or
+    absence of markup, has been arranged to thwart or discourage subsequent modification by readers
+    is not Transparent. An image format is not Transparent if used for any substantial amount of
+    text. A copy that is not "Transparent" is called "Opaque".
+  </p><p>
+    Examples of suitable formats for Transparent copies include plain ASCII without markup, Texinfo
+    input format, LaTeX input format, SGML or XML using a publicly available DTD, and
+    standard-conforming simple HTML, PostScript or PDF designed for human modification. Examples of
+    transparent image formats include PNG, XCF and JPG. Opaque formats include proprietary formats
+    that can be read and edited only by proprietary word processors, SGML or XML for which the DTD
+    and/or processing tools are not generally available, and the machine-generated HTML, PostScript
+    or PDF produced by some word processors for output purposes only.
+  </p><p>
+    The "Title Page" means, for a printed book, the title page itself, plus such following pages as
+    are needed to hold, legibly, the material this License requires to appear in the title page.
+    For works in formats which do not have any title page as such, "Title Page" means the text near
+    the most prominent appearance of the work's title, preceding the beginning of the body of the
+    text.
+  </p><p>
+    A section "Entitled XYZ" means a named subunit of the Document whose title either is precisely
+    XYZ or contains XYZ in parentheses following text that translates XYZ in another language.
+    (Here XYZ stands for a specific section name mentioned below, such as "Acknowledgements",
+    "Dedications", "Endorsements", or "History".) To "Preserve the Title" of such a section when
+    you modify the Document means that it remains a section "Entitled XYZ" according to this
+    definition.
+  </p><p>
+    The Document may include Warranty Disclaimers next to the notice which states that this License
+    applies to the Document. These Warranty Disclaimers are considered to be included by reference
+    in this License, but only as regards disclaiming warranties: any other implication that these
+    Warranty Disclaimers may have is void and has no effect on the meaning of this License.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.6.18"><span class="name">
+    2. VERBATIM COPYING
+  </span><a title="Permalink" class="permalink" href="#id-1.6.18">#</a></h5></div><p>
+    You may copy and distribute the Document in any medium, either commercially or
+    non-commercially, provided that this License, the copyright notices, and the license notice
+    saying this License applies to the Document are reproduced in all copies, and that you add no
+    other conditions whatsoever to those of this License. You may not use technical measures to
+    obstruct or control the reading or further copying of the copies you make or distribute.
+    However, you may accept compensation in exchange for copies. If you distribute a large enough
+    number of copies you must also follow the conditions in section 3.
+  </p><p>
+    You may also lend copies, under the same conditions stated above, and you may publicly display
+    copies.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.6.21"><span class="name">
+    3. COPYING IN QUANTITY
+  </span><a title="Permalink" class="permalink" href="#id-1.6.21">#</a></h5></div><p>
+    If you publish printed copies (or copies in media that commonly have printed covers) of the
+    Document, numbering more than 100, and the Document's license notice requires Cover Texts, you
+    must enclose the copies in covers that carry, clearly and legibly, all these Cover Texts:
+    Front-Cover Texts on the front cover, and Back-Cover Texts on the back cover. Both covers must
+    also clearly and legibly identify you as the publisher of these copies. The front cover must
+    present the full title with all words of the title equally prominent and visible. You may add
+    other material on the covers in addition. Copying with changes limited to the covers, as long
+    as they preserve the title of the Document and satisfy these conditions, can be treated as
+    verbatim copying in other respects.
+  </p><p>
+    If the required texts for either cover are too voluminous to fit legibly, you should put the
+    first ones listed (as many as fit reasonably) on the actual cover, and continue the rest onto
+    adjacent pages.
+  </p><p>
+    If you publish or distribute Opaque copies of the Document numbering more than 100, you must
+    either include a machine-readable Transparent copy along with each Opaque copy, or state in or
+    with each Opaque copy a computer-network location from which the general network-using public
+    has access to download using public-standard network protocols a complete Transparent copy of
+    the Document, free of added material. If you use the latter option, you must take reasonably
+    prudent steps, when you begin distribution of Opaque copies in quantity, to ensure that this
+    Transparent copy will remain thus accessible at the stated location until at least one year
+    after the last time you distribute an Opaque copy (directly or through your agents or
+    retailers) of that edition to the public.
+  </p><p>
+    It is requested, but not required, that you contact the authors of the Document well before
+    redistributing any large number of copies, to give them a chance to provide you with an updated
+    version of the Document.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.6.26"><span class="name">
+    4. MODIFICATIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.6.26">#</a></h5></div><p>
+    You may copy and distribute a Modified Version of the Document under the conditions of sections
+    2 and 3 above, provided that you release the Modified Version under precisely this License,
+    with the Modified Version filling the role of the Document, thus licensing distribution and
+    modification of the Modified Version to whoever possesses a copy of it. In addition, you must
+    do these things in the Modified Version:
+  </p><div class="orderedlist"><ol class="orderedlist" type="A"><li class="listitem"><p>
+        Use in the Title Page (and on the covers, if any) a title distinct from that of the
+        Document, and from those of previous versions (which should, if there were any, be listed
+        in the History section of the Document). You may use the same title as a previous version
+        if the original publisher of that version gives permission.
+      </p></li><li class="listitem"><p>
+        List on the Title Page, as authors, one or more persons or entities responsible for
+        authorship of the modifications in the Modified Version, together with at least five of the
+        principal authors of the Document (all of its principal authors, if it has fewer than
+        five), unless they release you from this requirement.
+      </p></li><li class="listitem"><p>
+        State on the Title page the name of the publisher of the Modified Version, as the
+        publisher.
+      </p></li><li class="listitem"><p>
+        Preserve all the copyright notices of the Document.
+      </p></li><li class="listitem"><p>
+        Add an appropriate copyright notice for your modifications adjacent to the other copyright
+        notices.
+      </p></li><li class="listitem"><p>
+        Include, immediately after the copyright notices, a license notice giving the public
+        permission to use the Modified Version under the terms of this License, in the form shown
+        in the Addendum below.
+      </p></li><li class="listitem"><p>
+        Preserve in that license notice the full lists of Invariant Sections and required Cover
+        Texts given in the Document's license notice.
+      </p></li><li class="listitem"><p>
+        Include an unaltered copy of this License.
+      </p></li><li class="listitem"><p>
+        Preserve the section Entitled "History", Preserve its Title, and add to it an item stating
+        at least the title, year, new authors, and publisher of the Modified Version as given on
+        the Title Page. If there is no section Entitled "History" in the Document, create one
+        stating the title, year, authors, and publisher of the Document as given on its Title Page,
+        then add an item describing the Modified Version as stated in the previous sentence.
+      </p></li><li class="listitem"><p>
+        Preserve the network location, if any, given in the Document for public access to a
+        Transparent copy of the Document, and likewise the network locations given in the Document
+        for previous versions it was based on. These may be placed in the "History" section. You
+        may omit a network location for a work that was published at least four years before the
+        Document itself, or if the original publisher of the version it refers to gives permission.
+      </p></li><li class="listitem"><p>
+        For any section Entitled "Acknowledgements" or "Dedications", Preserve the Title of the
+        section, and preserve in the section all the substance and tone of each of the contributor
+        acknowledgements and/or dedications given therein.
+      </p></li><li class="listitem"><p>
+        Preserve all the Invariant Sections of the Document, unaltered in their text and in their
+        titles. Section numbers or the equivalent are not considered part of the section titles.
+      </p></li><li class="listitem"><p>
+        Delete any section Entitled "Endorsements". Such a section may not be included in the
+        Modified Version.
+      </p></li><li class="listitem"><p>
+        Do not retitle any existing section to be Entitled "Endorsements" or to conflict in title
+        with any Invariant Section.
+      </p></li><li class="listitem"><p>
+        Preserve any Warranty Disclaimers.
+      </p></li></ol></div><p>
+    If the Modified Version includes new front-matter sections or appendices that qualify as
+    Secondary Sections and contain no material copied from the Document, you may at your option
+    designate some or all of these sections as invariant. To do this, add their titles to the list
+    of Invariant Sections in the Modified Version's license notice. These titles must be distinct
+    from any other section titles.
+  </p><p>
+    You may add a section Entitled "Endorsements", provided it contains nothing but endorsements of
+    your Modified Version by various parties--for example, statements of peer review or that the
+    text has been approved by an organization as the authoritative definition of a standard.
+  </p><p>
+    You may add a passage of up to five words as a Front-Cover Text, and a passage of up to 25
+    words as a Back-Cover Text, to the end of the list of Cover Texts in the Modified Version. Only
+    one passage of Front-Cover Text and one of Back-Cover Text may be added by (or through
+    arrangements made by) any one entity. If the Document already includes a cover text for the
+    same cover, previously added by you or by arrangement made by the same entity you are acting on
+    behalf of, you may not add another; but you may replace the old one, on explicit permission
+    from the previous publisher that added the old one.
+  </p><p>
+    The author(s) and publisher(s) of the Document do not by this License give permission to use
+    their names for publicity for or to assert or imply endorsement of any Modified Version.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.6.33"><span class="name">
+    5. COMBINING DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.6.33">#</a></h5></div><p>
+    You may combine the Document with other documents released under this License, under the terms
+    defined in section 4 above for modified versions, provided that you include in the combination
+    all of the Invariant Sections of all of the original documents, unmodified, and list them all
+    as Invariant Sections of your combined work in its license notice, and that you preserve all
+    their Warranty Disclaimers.
+  </p><p>
+    The combined work need only contain one copy of this License, and multiple identical Invariant
+    Sections may be replaced with a single copy. If there are multiple Invariant Sections with the
+    same name but different contents, make the title of each such section unique by adding at the
+    end of it, in parentheses, the name of the original author or publisher of that section if
+    known, or else a unique number. Make the same adjustment to the section titles in the list of
+    Invariant Sections in the license notice of the combined work.
+  </p><p>
+    In the combination, you must combine any sections Entitled "History" in the various original
+    documents, forming one section Entitled "History"; likewise combine any sections Entitled
+    "Acknowledgements", and any sections Entitled "Dedications". You must delete all sections
+    Entitled "Endorsements".
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.6.37"><span class="name">
+    6. COLLECTIONS OF DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.6.37">#</a></h5></div><p>
+    You may make a collection consisting of the Document and other documents released under this
+    License, and replace the individual copies of this License in the various documents with a
+    single copy that is included in the collection, provided that you follow the rules of this
+    License for verbatim copying of each of the documents in all other respects.
+  </p><p>
+    You may extract a single document from such a collection, and distribute it individually under
+    this License, provided you insert a copy of this License into the extracted document, and
+    follow this License in all other respects regarding verbatim copying of that document.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.6.40"><span class="name">
+    7. AGGREGATION WITH INDEPENDENT WORKS
+  </span><a title="Permalink" class="permalink" href="#id-1.6.40">#</a></h5></div><p>
+    A compilation of the Document or its derivatives with other separate and independent documents
+    or works, in or on a volume of a storage or distribution medium, is called an "aggregate" if
+    the copyright resulting from the compilation is not used to limit the legal rights of the
+    compilation's users beyond what the individual works permit. When the Document is included in
+    an aggregate, this License does not apply to the other works in the aggregate which are not
+    themselves derivative works of the Document.
+  </p><p>
+    If the Cover Text requirement of section 3 is applicable to these copies of the Document, then
+    if the Document is less than one half of the entire aggregate, the Document's Cover Texts may
+    be placed on covers that bracket the Document within the aggregate, or the electronic
+    equivalent of covers if the Document is in electronic form. Otherwise they must appear on
+    printed covers that bracket the whole aggregate.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.6.43"><span class="name">
+    8. TRANSLATION
+  </span><a title="Permalink" class="permalink" href="#id-1.6.43">#</a></h5></div><p>
+    Translation is considered a kind of modification, so you may distribute translations of the
+    Document under the terms of section 4. Replacing Invariant Sections with translations requires
+    special permission from their copyright holders, but you may include translations of some or
+    all Invariant Sections in addition to the original versions of these Invariant Sections. You
+    may include a translation of this License, and all the license notices in the Document, and any
+    Warranty Disclaimers, provided that you also include the original English version of this
+    License and the original versions of those notices and disclaimers. In case of a disagreement
+    between the translation and the original version of this License or a notice or disclaimer, the
+    original version will prevail.
+  </p><p>
+    If a section in the Document is Entitled "Acknowledgements", "Dedications", or "History", the
+    requirement (section 4) to Preserve its Title (section 1) will typically require changing the
+    actual title.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.6.46"><span class="name">
+    9. TERMINATION
+  </span><a title="Permalink" class="permalink" href="#id-1.6.46">#</a></h5></div><p>
+    You may not copy, modify, sublicense, or distribute the Document except as expressly provided
+    for under this License. Any other attempt to copy, modify, sublicense or distribute the
+    Document is void, and will automatically terminate your rights under this License. However,
+    parties who have received copies, or rights, from you under this License will not have their
+    licenses terminated so long as such parties remain in full compliance.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.6.48"><span class="name">
+    10. FUTURE REVISIONS OF THIS LICENSE
+  </span><a title="Permalink" class="permalink" href="#id-1.6.48">#</a></h5></div><p>
+    The Free Software Foundation may publish new, revised versions of the GNU Free Documentation
+    License from time to time. Such new versions will be similar in spirit to the present version,
+    but may differ in detail to address new problems or concerns. See
+    <a class="link" href="https://www.gnu.org/copyleft/" target="_blank">https://www.gnu.org/copyleft/</a>.
+  </p><p>
+    Each version of the License is given a distinguishing version number. If the Document specifies
+    that a particular numbered version of this License "or any later version" applies to it, you
+    have the option of following the terms and conditions either of that specified version or of
+    any later version that has been published (not as a draft) by the Free Software Foundation. If
+    the Document does not specify a version number of this License, you may choose any version ever
+    published (not as a draft) by the Free Software Foundation.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.6.51"><span class="name">
+    ADDENDUM: How to use this License for your documents
+  </span><a title="Permalink" class="permalink" href="#id-1.6.51">#</a></h5></div><div class="verbatim-wrap"><pre class="screen">Copyright (c) YEAR YOUR NAME.
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+A copy of the license is included in the section entitled “GNU
+Free Documentation License”.</pre></div><p>
+    If you have Invariant Sections, Front-Cover Texts and Back-Cover Texts, replace the
+    “with...Texts.” line with this:
+  </p><div class="verbatim-wrap"><pre class="screen">with the Invariant Sections being LIST THEIR TITLES, with the
+Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.</pre></div><p>
+    If you have Invariant Sections without Cover Texts, or some other combination of the three,
+    merge those two alternatives to suit the situation.
+  </p><p>
+    If your document contains nontrivial examples of program code, we recommend releasing these
+    examples in parallel under your choice of free software license, such as the GNU General Public
+    License, to permit their use in free software.
+  </p></section></div><section xml:lang="en" class="glossary"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number"> </span><span class="title-name">Acronyms</span></span> <a title="Permalink" class="permalink" href="#vt-acronyms">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="line"/><dl><dt id="gloss-vt-acpi"><span><span class="glossterm">ACPI</span> <a title="Permalink" class="permalink" href="#gloss-vt-acpi">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Advanced Configuration and Power Interface</strong></span></span></p><p>An open standard that provides uniform device configuration and power 
+        management capabilities directly to the operating system.</p></dd><dt id="gloss-vt-acronym-aer"><span><span class="glossterm">AER</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-aer">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Advanced Error Reporting</strong></span></span></p><p>A capability within the PCI Express specification that enables 
+        advanced reporting, logging and recovery from PCI bus errors.</p></dd><dt id="gloss-vt-apic"><span><span class="glossterm">APIC</span> <a title="Permalink" class="permalink" href="#gloss-vt-apic">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Advanced Programmable Interrupt Controller</strong></span></span></p><p>An architecture of interrupt controllers designed to efficiently 
+        manage and route hardware interrupts across multiprocessing systems.</p></dd><dt id="gloss-xmtoxl-vt-bdf"><span><span class="glossterm">BDF</span> <a title="Permalink" class="permalink" href="#gloss-xmtoxl-vt-bdf">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Bus:Device:Function</strong></span></span></p><p>A standard notation used to uniquely address and identify individual 
+        physical or virtual devices on a PCI/PCIe bus.</p></dd><dt id="gloss-vt-acronym-cg"><span><span class="glossterm">CG</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-cg">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Control Groups (cgroups)</strong></span></span></p><p>A Linux kernel feature used to limit, account for, isolate and 
+        prioritize the resource usage (such as CPU, memory and disk I/O) of 
+        collections of processes.</p></dd><dt id="gloss-xmtoxl-vt-edf"><span><span class="glossterm">EDF</span> <a title="Permalink" class="permalink" href="#gloss-xmtoxl-vt-edf">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Earliest Deadline First</strong></span></span></p><p>A dynamic priority scheduling algorithm that provides intuitive, 
+        real-time CPU resource sharing based on strict time guarantees.</p></dd><dt id="gloss-vt-acronym-ept"><span><span class="glossterm">EPT</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-ept">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Extended Page Tables</strong></span></span></p><p>
+        Performance in a virtualized environment is close to that in a native
+        environment. However, virtualization does create overhead. It
+        comes from the virtualization of the CPU, the
+        <a class="xref" href="#gloss-vt-acronym-mmu" title="MMU">MMU</a>, and the I/O devices. In some
+        recent x86 processors, AMD and Intel have begun to provide hardware
+        extensions to help bridge this performance gap. In 2006, both vendors
+        introduced their first-generation hardware support for x86
+        virtualization with AMD-Virtualization (AMD-V) and Intel® VT-x
+        technologies. Intel introduced its second generation of
+        hardware support that incorporates MMU-virtualization, called Extended
+        Page Tables (EPT). EPT-enabled systems can improve performance compared
+        to using shadow paging for <a class="xref" href="#gloss-vt-acronym-mmu" title="MMU">MMU</a>
+        virtualization. EPT increases memory access latencies for a few
+        workloads. This cost can be reduced by effectively using large pages in
+        the guest and the hypervisor.
+      </p></dd><dt id="gloss-vt-acronym-hvm"><span><span class="glossterm">HVM</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-hvm">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Hardware Virtual Machine</strong></span></span></p><p>A fully virtualized operating system instance running on hardware 
+        that natively supports virtualization extensions (such as Intel VT-x or AMD-V).</p></dd><dt id="gloss-vt-acronym-iommu"><span><span class="glossterm">IOMMU</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-iommu">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Input/Output Memory Management Unit</strong></span></span></p><p>IOMMU (AMD* technology) is a memory management unit
+        (<a class="xref" href="#gloss-vt-acronym-mmu" title="MMU">MMU</a>) that connects a direct memory
+        access-capable (DMA-capable) I/O bus to the main memory.
+      </p></dd><dt id="gloss-vt-acronym-ksm"><span><span class="glossterm">KSM</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-ksm">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Kernel Same-page Merging</strong></span></span></p><p>A Linux kernel feature that allows for automatic sharing of 
+        identical memory pages between guests to save host memory. KVM is 
+        optimized to use KSM if enabled on the VM Host Server.</p></dd><dt id="gloss-vt-acronym-mmu"><span><span class="glossterm">MMU</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-mmu">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Memory Management Unit</strong></span></span></p><p>
+        A hardware component responsible for handling accesses to
+        memory requested by the CPU. Its functions include translation of
+        virtual addresses to physical addresses (that is, virtual memory
+        management), memory protection, cache control, bus arbitration and, in
+        simpler computer architectures (especially 8-bit systems), bank
+        switching.
+      </p></dd><dt id="gloss-vt-acronym-pae"><span><span class="glossterm">PAE</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-pae">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Physical Address Extension</strong></span></span></p><p>A memory management feature that allows 32-bit x86 operating systems 
+        to address more than 4 GB of physical memory by expanding page table 
+        entries to 64 bits.</p></dd><dt id="gloss-vt-acronym-pcid"><span><span class="glossterm">PCID</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-pcid">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Process-Context Identifiers</strong></span></span></p><p>
+        A processor facility that caches information
+        for multiple linear-address spaces so that the processor may retain
+        cached information when software switches to a different linear address
+        space. The INVPCID instruction is used for fine-grained
+        <a class="xref" href="#gloss-vt-acronym-tlb" title="TLB">TLB</a> flush, which benefits the kernel.
+      </p></dd><dt id="gloss-vt-acronym-pcie"><span><span class="glossterm">PCIe</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-pcie">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Peripheral Component Interconnect Express</strong></span></span></p><p>
+        A high-speed serial expansion bus standard designed to replace older 
+        PCI, PCI-X and AGP bus standards. PCIe has numerous improvements,
+        including a higher maximum system bus throughput, a lower I/O pin count 
+        and a smaller physical footprint.
+        Moreover, it also has a more detailed error detection and reporting
+        mechanism (<a class="xref" href="#gloss-vt-acronym-aer" title="AER">AER</a>) and a native
+        hotplug functionality. It is also backward compatible with PCI.
+      </p></dd><dt id="gloss-vt-acronym-pse-pse36"><span><span class="glossterm">PSE / PSE36</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-pse-pse36">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Page Size Extension / Page Size Extension 36-Bit</strong></span></span></p><p>
+        Hardware features in x86 processors that allow for pages larger
+        than the traditional 4 KiB size. PSE-36 capability offers 4 more bits,
+        in addition to the normal 10 bits, which are used inside a page
+        directory entry pointing to a large page. This allows a large page to be
+        located in a 36-bit address space.
+      </p></dd><dt id="gloss-vt-acronym-pt"><span><span class="glossterm">PT</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-pt">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Page Table</strong></span></span></p><p>
+        The data structure used by a virtual memory system in a
+        computer operating system to store the mapping between virtual addresses
+        and physical addresses. Virtual addresses are those unique to the
+        accessing process. Physical addresses are those unique to the hardware
+        (RAM).
+      </p></dd><dt id="gloss-vt-acronym-qxl"><span><span class="glossterm">QXL</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-qxl">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>QXL Display Device</strong></span></span></p><p>
+        QXL is a cirrus VGA framebuffer (8M) driver for virtualized environment.
+      </p></dd><dt id="gloss-vt-acronym-rvi-npt"><span><span class="glossterm">RVI / NPT</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-rvi-npt">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Rapid Virtualization Indexing / Nested Page Tables</strong></span></span></p><p>
+        AMD's second-generation hardware-assisted virtualization technology for
+        the processor memory management unit (<a class="xref" href="#gloss-vt-acronym-mmu" title="MMU">MMU</a>).
+      </p></dd><dt id="gloss-vt-acronym-sata"><span><span class="glossterm">SATA</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-sata">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Serial ATA</strong></span></span></p><p>
+        A computer bus interface that connects host bus adapters to mass
+        storage devices, such as hard disks and optical drives.
+      </p></dd><dt id="gloss-vt-acronym-seccomp2-based-sandboxing"><span><span class="glossterm">Seccomp2-based sandboxing</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-seccomp2-based-sandboxing">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Secure Computing Mode sandboxing</strong></span></span></p><p>
+        A sandboxed environment where only predetermined system calls are
+        permitted for added protection against malicious behavior.
+      </p></dd><dt id="gloss-vt-acronym-spice"><span><span class="glossterm">SPICE</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-spice">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Simple Protocol for Independent Computing Environments</strong></span></span></p><p>An open-source remote display protocol designed for virtual environments to deliver 
+        high-quality graphics and audio streaming over networks.</p></dd><dt id="gloss-vt-acronym-tcg"><span><span class="glossterm">TCG</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-tcg">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Tiny Code Generator</strong></span></span></p><p>The core component of the QEMU emulator that acts as a just-in-time compiler, 
+        translating target CPU instructions into host system architecture instructions.</p></dd><dt id="gloss-vt-acronym-thp"><span><span class="glossterm">THP</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-thp">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Transparent Huge Pages</strong></span></span></p><p>
+        A Linux kernel feature that allows CPUs to address memory using pages 
+        larger than the default 4 KB. This helps reduce memory consumption and 
+        CPU cache usage. KVM is optimized to use THP (via madvise and opportunistic 
+        methods) if enabled on the VM Host Server.
+      </p></dd><dt id="gloss-vt-acronym-tlb"><span><span class="glossterm">TLB</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-tlb">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Translation Lookaside Buffer</strong></span></span></p><p>
+        A hardware cache that memory management hardware uses to improve virtual
+        address translation speed. All current desktop, notebook and server
+        processors use a TLB to map virtual and physical address spaces, and it
+        is nearly always present in any hardware that uses virtual memory.
+      </p></dd><dt id="gloss-vt-acronym-vcpu"><span><span class="glossterm">VCPU</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-vcpu">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Virtual Central Processing Unit</strong></span></span></p><p>A software-defined scheduling entity managed by a hypervisor that represents 
+        a single physical CPU core allocated to a virtual machine.</p></dd><dt id="gloss-vt-acronym-vdi"><span><span class="glossterm">VDI</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-vdi">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Virtual Desktop Infrastructure</strong></span></span></p><p>An IT architecture that hosts user desktop environments within virtual 
+        machines running on centralized data center servers.</p></dd><dt id="gloss-vt-acronym-vfio"><span><span class="glossterm">VFIO</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-vfio">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Virtual Function I/O</strong></span></span></p><p>A Linux kernel framework that provides secure, direct user-space 
+        access to PCI devices.</p></dd><dt id="gloss-vt-acronym-vhs"><span><span class="glossterm">VHS</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-vhs">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Virtualization Host Server</strong></span></span></p><p>A physical server hardware platform explicitly configured with a 
+        hypervisor to host, manage and run multiple virtual machines.</p></dd><dt id="gloss-vt-acronym-vmcs"><span><span class="glossterm">VMCS</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-vmcs">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Virtual Machine Control Structure</strong></span></span></p><p>
+        VMX non-root operation and VMX transitions are controlled by a data
+        structure called a virtual-machine control structure (VMCS). Access to
+        the VMCS is managed through a component of processor state called the
+        VMCS pointer (one per logical processor). The value of the VMCS pointer
+        is the 64-bit address of the VMCS. The VMCS pointer is read and written
+        using the instructions VMPTRST and VMPTRLD. The
+        <a class="xref" href="#gloss-vt-acronym-hypervisor-vmm" title="VMM">VMM</a> configures a VMCS
+        using the VMREAD, VMWRITE, and VMCLEAR instructions. A
+        <a class="xref" href="#gloss-vt-acronym-hypervisor-vmm" title="VMM">VMM</a> could use a different
+        VMCS for each virtual machine that it supports. For a virtual machine
+        with multiple logical processors (virtual processors), the
+        <a class="xref" href="#gloss-vt-acronym-hypervisor-vmm" title="VMM">VMM</a> could use a different
+        VMCS for each virtual processor.
+      </p></dd><dt id="gloss-vt-acronym-vmdq"><span><span class="glossterm">VMDq</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-vmdq">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Virtual Machine Device Queues</strong></span></span></p><p>
+        Multi-queue network adapters that support multiple VMs at the
+        hardware level, having separate packet queues associated with the
+        different hosted VMs (by means of the IP addresses of the VMs).
+      </p></dd><dt id="gloss-vt-acronym-hypervisor-vmm"><span><span class="glossterm">VMM</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-hypervisor-vmm">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Virtual Machine Monitor (Hypervisor)</strong></span></span></p><p>
+        Software, firmware or hardware that creates, runs and manages
+        virtual machines, mediating access to the underlying physical resources. 
+      </p></dd><dt id="gloss-vt-acronym-vmx"><span><span class="glossterm">VMX</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-vmx">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Virtual Machine Extensions</strong></span></span></p><p>Intel’s hardware-assisted virtualization technology architecture 
+        added to x86 processors to support native hypervisor execution.</p></dd><dt id="gloss-vt-acronym-vmroot"><span><span class="glossterm">VMX Root / Non-Root Operation</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-vmroot">#</a></span></dt><dd class="glossdef"><p>
+        Processor execution modes introduced by
+        <a class="xref" href="#gloss-vt-acronym-vmx" title="VMX">VMX</a>.
+        The <a class="xref" href="#gloss-vt-acronym-hypervisor-vmm" title="VMM">VMM</a> runs in
+        VMX root operation, while guest software runs in VMX non-root
+        operation. Transitions between the two modes are called
+        VMX transitions.
+      </p></dd><dt id="gloss-vt-acronym-vpid"><span><span class="glossterm">VPID</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-vpid">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Virtual Processor Identifiers</strong></span></span></p><p>New support for software control of
+        <a class="xref" href="#gloss-vt-acronym-tlb" title="TLB">TLB</a> (VPID improves
+        <a class="xref" href="#gloss-vt-acronym-tlb" title="TLB">TLB</a> performance with small
+        <a class="xref" href="#gloss-vt-acronym-hypervisor-vmm" title="VMM">VMM</a> development effort).
+      </p></dd><dt id="gloss-vt-acronym-vtd"><span><span class="glossterm">VT-d</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-vtd">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Virtualization Technology for Directed I/O</strong></span></span></p><p>
+        <a class="link" href="https://software.intel.com/en-us/articles/intel-virtualization-technology-for-directed-io-vt-d-enhancing-intel-platforms-for-efficient-virtualization-of-io-devices" target="_blank">Intel's</a> 
+        hardware implementation of an <a class="xref" href="#gloss-vt-acronym-iommu" title="IOMMU">IOMMU</a>, providing
+        device isolation and direct memory access (DMA) translation for virtualized environments.
+      </p></dd><dt id="gloss-vt-acronym-vtpm"><span><span class="glossterm">vTPM</span> <a title="Permalink" class="permalink" href="#gloss-vt-acronym-vtpm">#</a></span></dt><dd class="glossdef"><p><span><span class="emphasis"><strong>Virtual Trusted Platform Module</strong></span></span></p><p>
+        Component to establish end-to-end integrity for guests via Trusted
+        Computing.
+      </p></dd></dl></section><section xml:lang="en" class="glossary"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number"> </span><span class="title-name">Glossary</span></span> <a title="Permalink" class="permalink" href="#vt-glossary">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="line"/><div class="glossdiv" id="gloss-vt-general" data-id-title="General"><h3 class="title">General</h3><dl><dt id="gloss-vt-createvm"><span><span class="glossterm">Create Virtual Machine Wizard</span> <a title="Permalink" class="permalink" href="#gloss-vt-createvm">#</a></span></dt><dd class="glossdef"><p>
+          Virtual Machine Manager
+          provides a graphical interface to guide you through the steps to
+          create virtual machines. It can also be run in text mode by entering
+          <code class="command">virt-install</code> at a command prompt in the host
+          environment.
+        </p></dd><dt id="gloss-vt-hwassisted"><span><span class="glossterm">Hardware-assisted</span> <a title="Permalink" class="permalink" href="#gloss-vt-hwassisted">#</a></span></dt><dd class="glossdef"><p>
+          Intel* and AMD* provide virtualization hardware-assisted technology.
+          This reduces the frequency of VM IN/OUT (fewer VM traps), because
+          software is a major source of overhead, and increases the efficiency
+          (the execution is done by the hardware). Moreover, this reduces the
+          memory footprint, provides better resource control, and allows secure
+          assignment of specific I/O devices.
+        </p></dd><dt id="gloss-vt-hostenv"><span><span class="glossterm">Host Environment</span> <a title="Permalink" class="permalink" href="#gloss-vt-hostenv">#</a></span></dt><dd class="glossdef"><p>
+          The desktop or command line environment that allows interaction with
+          the host computer's environment. It provides a command line
+          environment and can also include a graphical desktop, such as GNOME
+          or IceWM. The host environment runs as a special type of virtual
+          machine that has privileges to control and manage other virtual
+          machines.
+        </p></dd><dt id="gloss-vt-hypervisor"><span><span class="glossterm">Hypervisor</span> <a title="Permalink" class="permalink" href="#gloss-vt-hypervisor">#</a></span></dt><dd class="glossdef"><p>
+          The software that coordinates the low-level interaction between
+          virtual machines and the underlying physical computer hardware.
+        </p></dd><dt id="gloss-vt-parafb"><span><span class="glossterm">Paravirtualized Frame Buffer</span> <a title="Permalink" class="permalink" href="#gloss-vt-parafb">#</a></span></dt><dd class="glossdef"><p>
+          The video output device that drives a video display from a memory
+          buffer containing a complete frame of data for virtual machine
+          displays running in paravirtual mode.
+        </p></dd><dt id="gloss-vt-vhs"><span><span class="glossterm">VHS</span> <a title="Permalink" class="permalink" href="#gloss-vt-vhs">#</a></span></dt><dd class="glossdef"><p>
+          A Virtualization Host Server (VHS) is the physical computer running 
+          SUSE virtualization platform software. The virtualization environment 
+          consists of the hypervisor, the host environment, virtual machines 
+          and associated tools, commands and configuration files. Other commonly 
+          used terms include host, Host Computer, Host Machine (HM), Virtual Server (VS), 
+          Virtual Machine Host (VMH) and VM Host Server (VHS).
+        </p></dd><dt id="gloss-vt-virtfs"><span><span class="glossterm">VirtFS</span> <a title="Permalink" class="permalink" href="#gloss-vt-virtfs">#</a></span></dt><dd class="glossdef"><p>
+          VirtFS is a new paravirtualized file system interface designed for
+          improving pass-through technologies in the KVM environment. It is
+          based on the VirtIO framework.
+        </p></dd><dt id="gloss-vt-vm"><span><span class="glossterm">Virtual Machine</span> <a title="Permalink" class="permalink" href="#gloss-vt-vm">#</a></span></dt><dd class="glossdef"><p>
+          A software-defined computer environment (VM) capable of hosting an independent 
+          guest operating system and its associated applications. Also commonly referred 
+          to as a VM Guest.
+        </p></dd><dt id="gloss-vt-vmm"><span><span class="glossterm">Virtual Machine Manager</span> <a title="Permalink" class="permalink" href="#gloss-vt-vmm">#</a></span></dt><dd class="glossdef"><p>
+          A software program that provides a graphical user interface for
+          creating and managing virtual machines.
+        </p></dd><dt id="gloss-vt-virtualized"><span><span class="glossterm">Virtualized</span> <a title="Permalink" class="permalink" href="#gloss-vt-virtualized">#</a></span></dt><dd class="glossdef"><p>
+          The status or condition of a guest operating system or application 
+          executing within an isolated virtual machine environment.
+        </p></dd></dl></div><div class="glossdiv" id="gloss-vt-cpu" data-id-title="CPU"><h3 class="title">CPU</h3><dl><dt id="gloss-vt-cpu-capping"><span><span class="glossterm">CPU capping</span> <a title="Permalink" class="permalink" href="#gloss-vt-cpu-capping">#</a></span></dt><dd class="glossdef"><p>
+          The resource restriction process that limits a virtual CPU's allocation window to a 
+          defined percentage (from 1 to 100 percent) of available physical CPU capacity.
+        </p></dd><dt id="gloss-vt-cpu-hotplug"><span><span class="glossterm">CPU hotplugging</span> <a title="Permalink" class="permalink" href="#gloss-vt-cpu-hotplug">#</a></span></dt><dd class="glossdef"><p>
+          CPU hotplugging is used to describe the functions of
+          replacing/adding/removing a CPU without shutting down the system.
+        </p></dd><dt id="gloss-vt-cpu-overcommit"><span><span class="glossterm">CPU over-commitment</span> <a title="Permalink" class="permalink" href="#gloss-vt-cpu-overcommit">#</a></span></dt><dd class="glossdef"><p>
+          Virtual CPU over-commitment is the ability to assign more virtual
+          CPUs to VMs than the actual number of physical CPUs present in the
+          physical system. This procedure does not increase the overall
+          performance of the system, but may be useful for testing purposes.
+        </p></dd><dt id="gloss-vt-cpu-pinning"><span><span class="glossterm">CPU pinning</span> <a title="Permalink" class="permalink" href="#gloss-vt-cpu-pinning">#</a></span></dt><dd class="glossdef"><p>
+          Also referred to as processor affinity; CPU pinning enables the binding and unbinding
+          of a process or a thread to a central processing unit (CPU) or a
+          range of CPUs.
+        </p></dd></dl></div><div class="glossdiv" id="gloss-vt-network" data-id-title="Network"><h3 class="title">Network</h3><dl><dt id="gloss-vt-network-bridgenet"><span><span class="glossterm">Bridged Networking</span> <a title="Permalink" class="permalink" href="#gloss-vt-network-bridgenet">#</a></span></dt><dd class="glossdef"><p>
+          A type of network connection that lets a virtual machine be
+          identified on an external network as a unique identity that is
+          separate from and unrelated to its host computer.
+        </p></dd><dt id="gloss-vt-network-emptybridge"><span><span class="glossterm">Empty Bridge</span> <a title="Permalink" class="permalink" href="#gloss-vt-network-emptybridge">#</a></span></dt><dd class="glossdef"><p>
+          A type of network bridge that has no physical network device or
+          virtual network device provided by the host. This lets virtual
+          machines communicate with other virtual machines on the same host, but
+          not with the host or on an external network.
+        </p></dd><dt id="gloss-vt-network-externalnet"><span><span class="glossterm">External Network</span> <a title="Permalink" class="permalink" href="#gloss-vt-network-externalnet">#</a></span></dt><dd class="glossdef"><p>
+          The network outside a host's internal network environment.
+        </p></dd><dt id="gloss-vt-network-internalnetwork"><span><span class="glossterm">Internal Network</span> <a title="Permalink" class="permalink" href="#gloss-vt-network-internalnetwork">#</a></span></dt><dd class="glossdef"><p>
+          A type of network configuration that restricts virtual machines to
+          their host environment.
+        </p></dd><dt id="gloss-vt-network-localbridge"><span><span class="glossterm">Local Bridge</span> <a title="Permalink" class="permalink" href="#gloss-vt-network-localbridge">#</a></span></dt><dd class="glossdef"><p>
+          A type of network bridge that has a virtual network device but no
+          physical network device provided by the host. This lets virtual
+          machines communicate with the host and other virtual machines on the
+          host. Virtual machines can communicate on an external network through
+          the host.
+        </p></dd><dt id="gloss-vt-network-nat"><span><span class="glossterm">Network Address Translation (NAT)</span> <a title="Permalink" class="permalink" href="#gloss-vt-network-nat">#</a></span></dt><dd class="glossdef"><p>
+          A type of network connection that lets a virtual machine use the IP
+          address and MAC address of the host.
+        </p></dd><dt id="gloss-vt-network-nohostbridge"><span><span class="glossterm">No Host Bridge</span> <a title="Permalink" class="permalink" href="#gloss-vt-network-nohostbridge">#</a></span></dt><dd class="glossdef"><p>
+          A type of network bridge that has a physical network device but no
+          virtual network device provided by the host. This lets virtual
+          machines communicate on an external network but not with the host.
+          This lets you separate virtual machine network communications from
+          the host environment.
+        </p></dd><dt id="gloss-vt-network-traditionalbridge"><span><span class="glossterm">Traditional Bridge</span> <a title="Permalink" class="permalink" href="#gloss-vt-network-traditionalbridge">#</a></span></dt><dd class="glossdef"><p>
+          A type of network bridge that has both a physical network device and
+          a virtual network device provided by the host.
+        </p></dd></dl></div><div class="glossdiv" id="gloss-vt-storage" data-id-title="Storage"><h3 class="title">Storage</h3><dl><dt id="gloss-vt-storage-ahci"><span><span class="glossterm">AHCI</span> <a title="Permalink" class="permalink" href="#gloss-vt-storage-ahci">#</a></span></dt><dd class="glossdef"><p>
+          The Advanced Host Controller Interface (AHCI) is a technical standard
+          defined by Intel* that specifies the operation of Serial ATA (SATA)
+          host bus adapters in a non-implementation-specific manner.
+        </p></dd><dt id="gloss-vt-storage-bd"><span><span class="glossterm">Block Device</span> <a title="Permalink" class="permalink" href="#gloss-vt-storage-bd">#</a></span></dt><dd class="glossdef"><p>
+          Data storage components, such as CD-ROM drives or disk drives, that move
+          data in the form of blocks. Partitions and volumes are also
+          considered block devices.
+        </p></dd><dt id="gloss-vt-storage-fbvd"><span><span class="glossterm">File-Backed Virtual Disk</span> <a title="Permalink" class="permalink" href="#gloss-vt-storage-fbvd">#</a></span></dt><dd class="glossdef"><p>
+          A virtual disk based on a file, also called a disk image file.
+        </p></dd><dt id="gloss-vt-storage-rawdisk"><span><span class="glossterm">Raw Disk</span> <a title="Permalink" class="permalink" href="#gloss-vt-storage-rawdisk">#</a></span></dt><dd class="glossdef"><p>
+          A method of accessing data on a disk at the individual byte level
+          instead of through its file system.
+        </p></dd><dt id="gloss-vt-storage-sparse"><span><span class="glossterm">Sparse image file</span> <a title="Permalink" class="permalink" href="#gloss-vt-storage-sparse">#</a></span></dt><dd class="glossdef"><p>
+          A disk image file that does not reserve its entire amount of disk
+          space but expands as data is written to it.
+        </p></dd><dt id="gloss-vt-storage-xvda"><span><span class="glossterm">xvda</span> <a title="Permalink" class="permalink" href="#gloss-vt-storage-xvda">#</a></span></dt><dd class="glossdef"><p>
+          The drive designation given to the first virtual disk on a
+          paravirtual machine.
+        </p></dd></dl></div></section></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="#gpu-passthru-host"><span class="title-number">1 </span><span class="title-name">Configuring the host</span></a></span></li><li><span class="section"><a href="#gpu-passthru-guest"><span class="title-number">2 </span><span class="title-name">Configuring the guest</span></a></span></li><li><span class="section"><a href="#glue-alp-containers-podman-more-info"><span class="title-number">3 </span><span class="title-name">For more information</span></a></span></li><li><span class="section"><a href="#legal-disclaimer"><span class="title-number">4 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="#doc-gfdl-license"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li><li><span class="glossary"><a href="#vt-acronyms"><span class="title-name">Acronyms</span></a></span></li><li><span class="glossary"><a href="#vt-glossary"><span class="title-name">Glossary</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>

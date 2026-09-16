@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Configuring GPU pass-through for NVIDIA Cards</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2026-07-01"/>
+<meta name="dcterms.modified" content="2026-07-01"/>
+<meta name="dcterms.dateSubmitted" content="2026-09-16"/>
+<meta name="title" content="Configuring GPU pass-through for NVIDIA Cards"/>
+<meta name="description" content="Configure NVIDIA GPU pass-through to assign a physical GPU to a virtual machine for compute-intensive workloads"/>
+<meta name="book-title" content="Configuring GPU pass-through for NVIDIA Cards"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="souvik.sarkar@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="souvik.sarkar@suse.com"/><meta property="og:title" content="GPU pass-through for NVIDIA Cards"/>
+<meta property="og:description" content="Assign an NVIDIA GPU to a VM for compute workloads"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="GPU pass-through for NVIDIA Cards"/>
+<meta name="twitter:description" content="Assign an NVIDIA GPU to a VM for compute workloads"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "GPU pass-through for NVIDIA Cards",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "GPU pass-through for NVIDIA Cards",
+    "description": "Configure NVIDIA GPU pass-through to assign a physical GPU to a virtual machine for compute-intensive workloads",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2026-07-01T00:00+02:00",
+    "dateModified": "2026-07-01T00:00+02:00",
+    "datePublished": "2026-09-16T01:56+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Virtualization"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Configuring GPU pass-through for NVIDIA Cards</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Configuring GPU pass-through for NVIDIA Cards</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="gpu-passthru" data-id-title="Configuring GPU pass-through for NVIDIA Cards"><div class="titlepage"><div><div><h1 class="title">Configuring GPU pass-through for NVIDIA Cards</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>16 Sep 2026</div><div><div class="abstract"><p>
+          GPU pass-through assigns a physical NVIDIA* GPU directly to a virtual
+          machine, giving it near-native graphics and compute performance
+          instead of a shared, virtualized device. Use it for machine
+          learning, AI workloads, 3D rendering, and other compute-intensive
+          tasks that need direct hardware access. After configuring
+          pass-through on the host and installing the guest driver, the
+          virtual machine can use the GPU as if it were installed locally.
+         </p><p><span><em class="emphasis">Prerequisites:</em></span></p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            GPU pass-through is supported on the AMD64/Intel 64 architecture only.
+           </p></li><li class="listitem"><p>
+            The host operating system needs to be SUSE Linux Enterprise Server 16 or newer.
+           </p></li><li class="listitem"><p>
+            This article covers GPU pass-through for NVIDIA Tesla, Data Center, and RTX series cards, for GPU computation purposes only.
+           </p></li><li class="listitem"><p>
+            For optimal CUDA compute performance with System-Allocated Memory (SAM) migration, kernel 6.12 or newer is recommended to include required HMM fixes.
+           </p></li><li class="listitem"><p>
+            To manage the host system after configuring GPU pass-through, you need
+            either an additional display card on the host or a functional
+            SSH connection.
+           </p></li></ul></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Configuring GPU pass-through for NVIDIA Cards" hreflang="en" href="rh-gpu-passthru.html" target="_blank">Revision History: Configuring GPU pass-through for NVIDIA Cards</a></div></div></div></div><section xml:lang="en" class="sect1" id="gpu-passthru-host" data-id-title="Configuring the host"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Configuring the host</span></span> <a title="Permalink" class="permalink" href="index.html#gpu-passthru-host">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+    Complete the following steps on the host to prepare an NVIDIA GPU for
+    pass-through to a virtualized guest.
+   </p></div></div></div></div><section class="sect2" id="gpu-passthru-verify-host" data-id-title="Verify the host environment"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">Verify the host environment</span></span> <a title="Permalink" class="permalink" href="index.html#gpu-passthru-verify-host">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+     Verify that the host supports
+     VT-d technology and that it is
+     already enabled in the firmware settings:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">dmesg | grep -e "Directed I/O"</code>
+
+[   12.819760] DMAR: Intel(R) Virtualization Technology for Directed I/O</pre></div><ol type="a" class="substeps"><li class="step"><p>
+       If VT-d is not enabled in the firmware, enable it.
+      </p></li><li class="step"><p>
+       Reboot the host.
+      </p></li></ol></li><li class="step"><p>
+      Verify that the host has an extra GPU or VGA card:
+     </p><ul class="stepalternatives">
+      <li class="step"><p>
+        Check for a generic VGA-compatible controller:
+       </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">lspci | grep -i "vga"</code>
+
+07:00.0 VGA compatible controller: Matrox Electronics Systems Ltd. \
+  MGA G200e [Pilot] ServerEngines (SEP1) (rev 05)</pre></div></li>
+      <li class="step"><p>
+        Check for an NVIDIA card directly, for example with a Tesla V100 card:
+       </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">lspci | grep -i nvidia</code>
+
+03:00.0 3D controller: NVIDIA Corporation GV100 [Tesla V100 PCIe] (rev a1)</pre></div><p>
+        The output varies by card model, for example:
+       </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Tesla V100: <code class="literal">NVIDIA Corporation GV100 [Tesla V100 PCIe]</code></p></li><li class="listitem"><p>A100: <code class="literal">NVIDIA Corporation A100-SXM4-40GB</code></p></li><li class="listitem"><p>L4: <code class="literal">NVIDIA Corporation L4</code></p></li></ul></div></li>
+     </ul></li></ol></div></div></section><section class="sect2" id="gpu-passthru-enable-iommu" data-id-title="Enable IOMMU"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Enable IOMMU</span></span> <a title="Permalink" class="permalink" href="index.html#gpu-passthru-enable-iommu">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    IOMMU is disabled by default. You
+    need to enable it at boot time in the
+    <code class="filename">/etc/default/grub</code> configuration file.
+   </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+      For Intel-based hosts:
+     </p><div class="verbatim-wrap"><pre class="screen">GRUB_CMDLINE_LINUX="intel_iommu=on iommu=pt rd.driver.pre=vfio-pci"</pre></div><p>
+      For AMD-based hosts:
+     </p><div class="verbatim-wrap"><pre class="screen">GRUB_CMDLINE_LINUX="iommu=pt amd_iommu=on rd.driver.pre=vfio-pci"</pre></div></li><li class="step"><p>
+      When you save the modified <code class="filename">/etc/default/grub</code>
+      file, re-generate the main GRUB 2 configuration file
+      <code class="filename">/boot/grub2/grub.cfg</code>:
+     </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">grub2-mkconfig -o /boot/grub2/grub.cfg</code></pre></div></li><li class="step"><p>
+      Reboot the host and verify that
+      IOMMU is enabled:
+     </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">dmesg |  grep -e DMAR -e IOMMU</code></pre></div></li></ol></div></div></section><section class="sect2" id="gpu-passthru-blacklist-nouveau" data-id-title="Blacklist the Nouveau driver"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.3 </span><span class="title-name">Blacklist the Nouveau driver</span></span> <a title="Permalink" class="permalink" href="index.html#gpu-passthru-blacklist-nouveau">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    To assign the NVIDIA card to a VM guest, prevent the host OS from
+    loading the built-in <code class="literal">nouveau</code> driver for NVIDIA
+    GPUs. Create the file
+    <code class="filename">/etc/modprobe.d/60-blacklist-nouveau.conf</code> with the
+    following content:
+   </p><div class="verbatim-wrap"><pre class="screen">blacklist nouveau</pre></div></section><section class="sect2" id="gpu-passthru-configure-vfio" data-id-title="Configure VFIO and isolate the GPU used for pass-through"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.4 </span><span class="title-name">Configure VFIO and isolate the GPU used for pass-through</span></span> <a title="Permalink" class="permalink" href="index.html#gpu-passthru-configure-vfio">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+      Find the card vendor and model IDs. Use the bus number
+      identified in the host verification step, for
+      example, <code class="literal">03:00.0</code>:
+     </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">lspci -nn | grep 03:00.0</code>
+
+03:00.0 3D controller [0302]: NVIDIA Corporation GV100 [Tesla V100 PCIe] [10de:1db4] (rev a1)</pre></div></li><li class="step"><p>
+      Create the file <code class="filename">/etc/modprobe.d/vfio.conf</code> with
+      the following content:
+     </p><div class="verbatim-wrap"><pre class="screen">options vfio-pci ids=10de:1db4</pre></div><div id="id-1.2.5.2.2.3" data-id-title="Cards requiring an additional device ID" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Cards requiring an additional device ID</div><p>
+       Some cards expose a separate audio function on the same bus and
+       slot, for example, <code class="literal">03:00.1</code>. Check for one with
+       <code class="command">lspci -nn | grep 03:00</code>: if an audio device
+       shows up alongside the GPU, add its ID to the
+       <code class="option">ids=</code> parameter too, otherwise you cannot use the
+       card.
+      </p></div></li></ol></div></div></section><section class="sect2" id="gpu-passthru-load-vfio" data-id-title="Load the VFIO driver"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.5 </span><span class="title-name">Load the VFIO driver</span></span> <a title="Permalink" class="permalink" href="index.html#gpu-passthru-load-vfio">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+     There are three ways you can load the
+     VFIO driver.
+    </p><div id="id-1.2.6.3" data-id-title="IOMMUFD in kernel 6.12" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: IOMMUFD in kernel 6.12</div><p>
+      Kernel 6.12 introduces IOMMUFD as the new user API for VFIO. The legacy <code class="literal">vfio_iommu_type1</code> container/group model is still supported but gradually being superseded. For libvirt-based passthrough (virt-manager, virt-install), no changes are required as libvirt abstracts the VFIO interface.
+     </p></div><section class="sect3" id="gpu-passthru-load-vfio-initrd" data-id-title="Including the driver in the initrd file"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">1.5.1 </span><span class="title-name">Including the driver in the initrd file</span></span> <a title="Permalink" class="permalink" href="index.html#gpu-passthru-load-vfio-initrd">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+       Create the file
+       <code class="filename">/etc/dracut.conf.d/gpu-passthrough.conf</code> with
+       the following content (mind the leading whitespace):
+      </p><div class="verbatim-wrap"><pre class="screen">add_drivers+=" vfio vfio_iommu_type1 vfio_pci vfio_virqfd"</pre></div></li><li class="step"><p>
+       Re-generate the initrd file:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">dracut --force /boot/initrd $(uname -r)</code></pre></div></li></ol></div></div></section><section class="sect3" id="gpu-passthru-load-vfio-modules" data-id-title="Adding the driver to the list of auto-loaded modules"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">1.5.2 </span><span class="title-name">Adding the driver to the list of auto-loaded modules</span></span> <a title="Permalink" class="permalink" href="index.html#gpu-passthru-load-vfio-modules">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+     Create the file
+     <code class="filename">/etc/modules-load.d/vfio-pci.conf</code> and add the
+     following content:
+    </p><div class="verbatim-wrap"><pre class="screen">vfio
+vfio_iommu_type1
+vfio_pci
+kvm
+kvm_intel</pre></div></section><section class="sect3" id="gpu-passthru-load-vfio-manual" data-id-title="Loading the driver manually"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">1.5.3 </span><span class="title-name">Loading the driver manually</span></span> <a title="Permalink" class="permalink" href="index.html#gpu-passthru-load-vfio-manual">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+     To load the driver manually at runtime, execute the following
+     command:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">modprobe vfio-pci</code></pre></div></section></section><section class="sect2" id="gpu-passthru-disable-msr" data-id-title="Disable MSR for Microsoft Windows guests"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.6 </span><span class="title-name">Disable MSR for Microsoft Windows guests</span></span> <a title="Permalink" class="permalink" href="index.html#gpu-passthru-disable-msr">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    For Microsoft Windows guests, we recommend disabling MSR (model-specific
+    register) to avoid the guest crashing. Create the file
+    <code class="filename">/etc/modprobe.d/kvm.conf</code> and add the following
+    content:
+   </p><div class="verbatim-wrap"><pre class="screen">options kvm ignore_msrs=1</pre></div></section><section class="sect2" id="gpu-passthru-ovmf" data-id-title="Install UEFI firmware"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.7 </span><span class="title-name">Install UEFI firmware</span></span> <a title="Permalink" class="permalink" href="index.html#gpu-passthru-ovmf">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    For proper GPU pass-through functionality, the host needs to boot using UEFI
+    firmware, not a legacy-style BIOS boot sequence. Install the
+    <span class="package">qemu-ovmf</span> package if not already installed:
+   </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper install qemu-ovmf</code></pre></div></section><section class="sect2" id="gpu-passthru-reboot" data-id-title="Reboot the host machine"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.8 </span><span class="title-name">Reboot the host machine</span></span> <a title="Permalink" class="permalink" href="index.html#gpu-passthru-reboot">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    For most of the changes in the above steps to take effect, you need to
+    reboot the host machine:
+   </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">shutdown -r now</code></pre></div></section></section><section xml:lang="en" class="sect1" id="gpu-passthru-guest" data-id-title="Configuring the guest"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Configuring the guest</span></span> <a title="Permalink" class="permalink" href="index.html#gpu-passthru-guest">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+    This section describes how to configure the guest virtual machine so that
+    it can use the host's NVIDIA GPU. Use virt-manager or
+    <code class="command">virt-install</code> to install the guest VM. Find more
+    details in <a class="link" href="https://documentation.suse.com/sles/16.0/html/SLES-virtualization-libvirt/index.html#libvirt-guest-installation" target="_blank">Guest installation</a>.
+   </p></div></div></div></div><section class="sect2" id="gpu-passthru-guest-general" data-id-title="Requirements for the guest configuration"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">Requirements for the guest configuration</span></span> <a title="Permalink" class="permalink" href="index.html#gpu-passthru-guest-general">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+   During the guest VM installation, select <span class="guimenu">Customize
+   configuration before install</span> and configure the following
+   devices:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+      Use Q35 chipset for proper PCIe passthrough with modern GPUs.
+     </p></li><li class="listitem"><p>
+      Install the guest VM using UEFI firmware.
+     </p></li><li class="listitem"><p>
+      Add the following emulated devices:
+     </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        Graphic: VNC
+       </p></li><li class="listitem"><p>
+        Device: virtio-gpu, VGA or Virtio
+       </p></li></ul></div><p>
+      Find more information in <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/task-configure-virtual-machine-manager/task-configure-virtual-machine-manager.html" target="_blank">Configuring
+      Virtual Machines with Virtual Machine Manager</a>.
+     </p></li><li class="listitem"><p>
+      Add the host PCI device (for example, <code class="literal">03:00.0</code>)
+      to the guest. Find more information in <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/vm-assign-pci-device/vm-assign-pci-device.html" target="_blank">Assigning
+      Host Devices to Virtual Machines</a>.
+     </p></li><li class="listitem"><p>
+      For the best performance, we recommend using virtio drivers for the
+      network card and storage.
+     </p></li></ul></div></section><section class="sect2" id="gpu-passthru-guest-driver" data-id-title="Install the graphic card driver"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.2 </span><span class="title-name">Install the graphic card driver</span></span> <a title="Permalink" class="permalink" href="index.html#gpu-passthru-guest-driver">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><section class="sect3" id="gpu-passthru-guest-driver-linux-rpm" data-id-title="RPM-based Linux distributions"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">2.2.1 </span><span class="title-name">RPM-based Linux distributions</span></span> <a title="Permalink" class="permalink" href="index.html#gpu-passthru-guest-driver-linux-rpm">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+       Download the driver RPM package from the official NVIDIA driver download page at <a class="link" href="https://www.nvidia.com/Download/index.aspx" target="_blank">https://www.nvidia.com/Download/index.aspx</a>.
+      </p></li><li class="step"><p>
+       Install the downloaded RPM package:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">rpm -i nvidia-diag-driver-local-repo-sles*.rpm</code></pre></div></li><li class="step"><p>
+       Refresh repositories and install <span class="package">cuda-drivers</span>:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper refresh &amp;&amp; zypper install cuda-drivers</code></pre></div></li><li class="step"><p>
+       Reboot the guest VM:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">shutdown -r now</code></pre></div></li></ol></div></div><div id="id-1.3.3.2.3" data-id-title="Minimum driver version for CUDA" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Minimum driver version for CUDA</div><p>
+      CUDA 13.3 requires driver version 610.43.02 or newer. The minimum driver version for CUDA 13.x is 580.
+     </p></div></section><section class="sect3" id="gpu-passthru-guest-driver-generic" data-id-title="Generic Linux installer"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">2.2.2 </span><span class="title-name">Generic Linux installer</span></span> <a title="Permalink" class="permalink" href="index.html#gpu-passthru-guest-driver-generic">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+       Because the installer needs to compile the NVIDIA driver
+       modules, install the <span class="package">gcc-c++</span> and
+       <span class="package">kernel-devel</span> packages.
+      </p></li><li class="step"><p>
+        NVIDIA driver modules are unsigned, so disable Secure Boot on
+        the guest. Either disable it in the UEFI firmware setup, or use
+        <code class="command">mokutil</code> to enroll a Machine Owner Key. Find
+        more information about UEFI Secure Boot in
+        <a class="link" href="https://documentation.suse.com/sles/16.0/html/SLES-virtualization-libvirt/index.html#vle-libvirt-inst-virt-install-ovmf" target="_blank">Using UEFI Secure Boot</a>.
+       </p></li><li class="step"><p>
+       Download the driver installation script from
+       <a class="link" href="https://www.nvidia.com/Download/index.aspx?lang=en-us" target="_blank">https://www.nvidia.com/Download/index.aspx?lang=en-us</a>
+       and make it executable:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">chmod +x NVIDIA-Linux-x86_64-*.run</code></pre></div></li><li class="step"><p>
+       Run the script to complete the driver installation:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">./NVIDIA-Linux-x86_64-*.run</code></pre></div></li><li class="step"><p>
+       Download CUDA drivers from
+       <a class="link" href="https://developer.nvidia.com/cuda-downloads" target="_blank">https://developer.nvidia.com/cuda-downloads</a>
+       and install following the on-screen instructions.
+      </p></li></ol></div></div></section><section class="sect3" id="gpu-passthru-guest-driver-verify" data-id-title="Testing the Linux driver installation"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">2.2.3 </span><span class="title-name">Testing the Linux driver installation</span></span> <a title="Permalink" class="permalink" href="index.html#gpu-passthru-guest-driver-verify">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+     Regardless of which installation method you used, verify the driver
+     installation as follows.
+    </p><div id="id-1.3.3.4.3" data-id-title="Display issues" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Display issues</div><p>
+      After you have installed the NVIDIA drivers, the virt-manager display
+      loses its connection to the guest OS. To access the guest VM, you
+      must either login via <code class="command">ssh</code>, change to the console
+      interface, or install a dedicated VNC server in the guest. To avoid
+      a flickering screen, stop and disable the display manager:
+     </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">systemctl stop display-manager &amp;&amp; systemctl disable display-manager</code></pre></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+       Verify the installation with the NVIDIA System Management Interface:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">nvidia-smi</code></pre></div></li><li class="step"><p>
+       Change to the directory of a CUDA sample. For example, the deviceQuery sample:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">cd /usr/local/cuda/samples/1_Utilities/deviceQuery</code></pre></div></li><li class="step"><p>
+       Compile the sample:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo make</code></pre></div></li><li class="step"><p>
+       Run the compiled sample:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">./deviceQuery</code></pre></div></li></ol></div></div></section><section class="sect3" id="gpu-passthru-guest-driver-windows" data-id-title="Microsoft Windows guest"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">2.2.4 </span><span class="title-name">Microsoft Windows guest</span></span> <a title="Permalink" class="permalink" href="index.html#gpu-passthru-guest-driver-windows">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div id="id-1.3.3.5.2" data-id-title="Hide the hypervisor from the guest drivers" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Hide the hypervisor from the guest drivers</div><p>
+       Before you install the NVIDIA drivers, you need to hide the
+       hypervisor from the drivers by using the <code class="literal">&lt;hidden
+       state='on'/&gt;</code> directive in the guest's <code class="systemitem">libvirt</code>
+       definition, for example:
+      </p><div class="verbatim-wrap"><pre class="screen">&lt;features&gt;
+ &lt;acpi/&gt;
+ &lt;apic/&gt;
+ &lt;kvm&gt;
+  &lt;hidden state='on'/&gt;
+ &lt;/kvm&gt;
+&lt;/features&gt;</pre></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Download and install the NVIDIA driver from
+        <a class="link" href="https://www.nvidia.com/Download/index.aspx" target="_blank">https://www.nvidia.com/Download/index.aspx</a>.
+       </p></li><li class="step"><p>
+        Download and install the CUDA toolkit from
+        <a class="link" href="https://developer.nvidia.com/cuda-downloads?target_os=Windows&amp;target_arch=x86_64" target="_blank">https://developer.nvidia.com/cuda-downloads?target_os=Windows&amp;target_arch=x86_64</a>.
+       </p></li><li class="step"><p>
+        Find several NVIDIA demo samples in the directory
+        <code class="filename">Program Files\NVIDIA GPU Computing
+        Toolkit\CUDA\v12.x\extras\demo_suite</code> on the guest.
+       </p></li></ol></div></div><div id="id-1.3.3.5.4" data-id-title="Microsoft Windows driver no longer bundled with the CUDA Toolkit" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Microsoft Windows driver no longer bundled with the CUDA Toolkit</div><p>
+       Starting with CUDA 13.1, the Microsoft Windows display driver is no longer bundled with the CUDA Toolkit. You must download and install the appropriate NVIDIA driver separately from the official NVIDIA driver download page.
+      </p></div></section></section></section><section xml:lang="en" class="sect1" id="glue-alp-containers-podman-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="index.html#glue-alp-containers-podman-more-info">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    For further steps in virtualization, refer to the following sources:
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/concept-manage-virtual-machines-libvirt/concept-manage-virtual-machines-libvirt.html" target="_blank">Managing
+        virtual machines with <code class="systemitem">libvirt</code></a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/task-configure-virtual-machine-manager/task-configure-virtual-machine-manager.html" target="_blank">Configuring
+        Virtual Machines with Virtual Machine Manager</a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/vm-assign-pci-device/vm-assign-pci-device.html" target="_blank">Assigning
+        Host Devices to Virtual Machines</a>
+      </p></li><li class="listitem"><p>
+        <a class="link" href="https://documentation.suse.com/smart/virtualization-cloud/html/virtual-disk-cache-mode-configure/virtual-disk-cache-mode-configure.html" target="_blank">Configuring
+        a Virtual Disk Cache Mode</a>
+      </p></li><li class="listitem"><p>
+        Converting VMware Virtual Machines to KVM with virt-v2v
+      </p></li></ul></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#gpu-passthru-host"><span class="title-number">1 </span><span class="title-name">Configuring the host</span></a></span></li><li><span class="section"><a href="index.html#gpu-passthru-guest"><span class="title-number">2 </span><span class="title-name">Configuring the guest</span></a></span></li><li><span class="section"><a href="index.html#glue-alp-containers-podman-more-info"><span class="title-number">3 </span><span class="title-name">For more information</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">4 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li><li><span class="glossary"><a href="vt-acronyms.html"><span class="title-name">Acronyms</span></a></span></li><li><span class="glossary"><a href="vt-glossary.html"><span class="title-name">Glossary</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>
