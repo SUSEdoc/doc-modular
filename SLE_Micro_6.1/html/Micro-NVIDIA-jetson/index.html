@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Deploying SUSE Linux Micro on NVIDIA Jetson platforms | SUSE Linux Micro 6.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2025-01-31"/>
+<meta name="dcterms.modified" content="2026-04-01"/>
+<meta name="dcterms.dateSubmitted" content="2026-08-25"/>
+<meta name="title" content="Deploying SUSE Linux Micro on NVIDIA Jetson platforms …"/>
+<meta name="description" content="How to configure and complement SUSE Linux on NVIDIA Jetson platforms"/>
+<meta name="product-name" content="SUSE Linux Micro"/>
+<meta name="product-number" content="6.1"/>
+<meta name="book-title" content="Deploying SUSE Linux Micro on NVIDIA Jetson platforms"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="afaerber@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Micro 6.1"/>
+<meta name="publisher" content="SUSE"/><meta name="category" content="."/><meta name="category" content="."/><meta name="dcterms.modified" content="2025-01-31"/><meta name="dc.creator" content="andreas.faerber@suse.com"/><meta property="og:title" content="NVIDIA Jetson on SUSE how-to"/>
+<meta property="og:description" content="Installing SUSE Linux on your NVIDIA Jetson device"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="NVIDIA Jetson on SUSE how-to"/>
+<meta name="twitter:description" content="Installing SUSE Linux on your NVIDIA Jetson device"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "NVIDIA Jetson on SUSE how-to | SUSE Linux Micro 6.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "NVIDIA Jetson on SUSE how-to",
+    "description": "How to configure and complement SUSE Linux on NVIDIA Jetson platforms",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2025-01-31T00:00+02:00",
+    "dateModified": "2026-04-01T00:00+02:00",
+    "datePublished": "2026-08-25T07:09+02:00",
+
+    "articleSection": [ 
+        "3rd Party"
+        ,
+      
+        "Systems Management"
+        
+    ],
+        "about": [
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Deployment"
+      },
+      {
+        "@type": "Thing",
+        "name": "Installation"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Micro",
+        "softwareVersion": "6.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AArch64"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Deploying SUSE Linux Micro on NVIDIA Jetson platforms</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Deploying SUSE Linux Micro on NVIDIA Jetson platforms</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="nvidia-jetson" data-id-title="Deploying SUSE Linux Micro on NVIDIA Jetson platforms"><div class="titlepage"><div><div class="big-version-info"><span class="productname">SUSE Linux Micro</span> 6.1</div><div><h1 class="title">Deploying SUSE Linux Micro on NVIDIA Jetson platforms</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>25 Aug 2026</div><div><div class="abstract"><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.14.1.1"><span class="term">WHAT?</span></dt><dd><p>
+              How to combine SUSE and third-party software for NVIDIA* Jetson* platforms
+            </p></dd><dt id="id-1.1.14.1.2"><span class="term">WHY?</span></dt><dd><p>
+              SUSE Linux software can install on NVIDIA Jetson systems
+              but does not include drivers for all hardware functionality.
+            </p></dd><dt id="id-1.1.14.1.3"><span class="term">EFFORT</span></dt><dd><p>
+                What's the effort one has to put in?
+              </p></dd><dt id="id-1.1.14.1.4"><span class="term">GOAL</span></dt><dd><p>
+                Fully exploit NVIDIA Jetson hardware capabilities
+                while enjoying SUSE software security and support services
+              </p></dd><dt id="id-1.1.14.1.5"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                    NVIDIA Jetson based system with NVIDIA Orin* chipset
+                  </p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Deploying SUSE Linux Micro on NVIDIA Jetson platforms" hreflang="en" href="rh-nvidia-jetson.html" target="_blank">Revision History: Deploying SUSE Linux Micro on NVIDIA Jetson platforms</a></div></div></div></div><section xml:lang="en" class="sect1" id="nvidia-jetson-firmware" data-id-title="Preparing firmware for NVIDIA Jetson platforms"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Preparing firmware for NVIDIA Jetson platforms</span></span> <a title="Permalink" class="permalink" href="index.html#nvidia-jetson-firmware">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       UEFI system firmware allows SUSE Linux media and installations to boot.
+      </p></div></div></div></div><section class="sect2" id="nvidia-jetson-firmware-introduction" data-id-title="Introduction"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">Introduction</span></span> <a title="Permalink" class="permalink" href="index.html#nvidia-jetson-firmware-introduction">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      SUSE Linux installation media are formatted as UEFI Removable Media
+      and require Arm* SystemReady compliant boot firmware on the system.
+    </p></section><section class="sect2" id="nvidia-jetson-firmware-requirements" data-id-title="Requirements"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Requirements</span></span> <a title="Permalink" class="permalink" href="index.html#nvidia-jetson-firmware-requirements">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          NVIDIA* Jetson* Xavier*, Orin* or later System-on-Module
+        </p></li><li class="listitem"><p>
+          For NVIDIA Jetson Orin Nano developer kit: 0.01 in jumper
+        </p></li><li class="listitem"><p>
+          Second system (e.g., notebook) with USB connection to your NVIDIA based system
+        </p></li></ul></div></section><section class="sect2" id="nvidia-jetson-firmware-flash" data-id-title="Flashing the firmware"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.3 </span><span class="title-name">Flashing the firmware</span></span> <a title="Permalink" class="permalink" href="index.html#nvidia-jetson-firmware-flash">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Follow NVIDIA or OEM provided instructions for flashing your system.
+      SUSE Linux installation will be easiest if boot firmware and operating system
+      do not share the same storage device, i.e., SPI flash for firmware.
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Power on the NVIDIA system and enter Force Recovery Mode (RCM)
+          according to its vendor instructions.
+        </p><div id="id-1.2.4.3.1.2" data-id-title="Force Recovery Mode on NVIDIA Developer Kits" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Force Recovery Mode on NVIDIA Developer Kits</div><p>
+            Refer to NVIDIA instructions for specific developer kits:
+          </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><a class="link" href="https://developer.nvidia.com/embedded/learn/jetson-agx-orin-devkit-user-guide/howto.html#force-recovery-mode" target="_blank">https://developer.nvidia.com/embedded/learn/jetson-agx-orin-devkit-user-guide/howto.html#force-recovery-mode</a></p></li><li class="listitem"><p><a class="link" href="https://developer.nvidia.com/embedded/learn/jetson-orin-nano-devkit-user-guide/howto.html#force-recovery-mode" target="_blank">https://developer.nvidia.com/embedded/learn/jetson-orin-nano-devkit-user-guide/howto.html#force-recovery-mode</a></p></li></ul></div></div></li><li class="step"><p>
+          Flash the boot firmware via USB from the secondary system:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">./flash.sh <em class="replaceable">target-board-config</em> external</code></pre></div><div id="id-1.2.4.3.2.3" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>
+            The target board parameter depends on your system and your intended usage.
+          </p></div></li></ol></div></div><div id="id-1.2.4.4" data-id-title="Finding the right config for your system" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Finding the right config for your system</div><p>
+        Only some board config files have human-recognizable aliases.
+      </p><p>
+        You can try resolving the aliases to the product codes for module and board and
+        checking for any additional <code class="literal">-qspi</code> config files:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ls -l jetson-orin*</code>
+lrwxrwxrwx 1 <code class="systemitem">tux</code> <code class="systemitem">users</code> 29  4. Jun 15:37 jetson-orin-nano-devkit.conf -&gt; p3768-0000-p3767-0000-a0.conf
+lrwxrwxrwx 1 <code class="systemitem">tux</code> <code class="systemitem">users</code> 34  4. Jun 15:38 jetson-orin-nano-devkit-nvme.conf -&gt; p3768-0000-p3767-0000-a0-nvme.conf
+<code class="prompt user">&gt; </code><code class="command">ls -1 p3768-0000-p3767-0000-a0*</code>
+p3768-0000-p3767-0000-a0.conf
+p3768-0000-p3767-0000-a0-maxn.conf
+p3768-0000-p3767-0000-a0-nvme.conf
+p3768-0000-p3767-0000-a0<span><span class="emphasis"><strong>-qspi</strong></span></span>.conf</pre></div><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ls -l jetson-agx-orin*</code>
+lrwxrwxrwx 1 <code class="systemitem">tux</code> <code class="systemitem">users</code> 40  4. Jun 15:37 jetson-agx-orin-devkit-as-jao-32gb.conf -&gt; p3737-0000-p3701-0000-as-p3701-0004.conf
+lrwxrwxrwx 1 <code class="systemitem">tux</code> <code class="systemitem">users</code> 40  4. Jun 15:38 jetson-agx-orin-devkit-as-nano4gb.conf -&gt; p3737-0000-p3701-0000-as-p3767-0004.conf
+lrwxrwxrwx 1 <code class="systemitem">tux</code> <code class="systemitem">users</code> 40  4. Jun 15:38 jetson-agx-orin-devkit-as-nano8gb.conf -&gt; p3737-0000-p3701-0000-as-p3767-0003.conf
+lrwxrwxrwx 1 <code class="systemitem">tux</code> <code class="systemitem">users</code> 40  4. Jun 15:37 jetson-agx-orin-devkit-as-nx-16gb.conf -&gt; p3737-0000-p3701-0000-as-p3767-0000.conf
+lrwxrwxrwx 1 <code class="systemitem">tux</code> <code class="systemitem">users</code> 40  4. Jun 15:37 jetson-agx-orin-devkit-as-nx-8gb.conf -&gt; p3737-0000-p3701-0000-as-p3767-0001.conf
+lrwxrwxrwx 1 <code class="systemitem">tux</code> <code class="systemitem">users</code> 26  4. Jun 15:38 jetson-agx-orin-devkit.conf -&gt; p3737-0000-p3701-0000.conf
+lrwxrwxrwx 1 <code class="systemitem">tux</code> <code class="systemitem">users</code> 26  4. Jun 15:37 jetson-agx-orin-devkit-industrial.conf -&gt; p3737-0000-p3701-0008.conf
+lrwxrwxrwx 1 <code class="systemitem">tux</code> <code class="systemitem">users</code> 31  4. Jun 15:38 jetson-agx-orin-devkit-industrial-maxn.conf -&gt; p3737-0000-p3701-0008-maxn.conf
+lrwxrwxrwx 1 <code class="systemitem">tux</code> <code class="systemitem">users</code> 31  4. Jun 15:37 jetson-agx-orin-devkit-industrial<span><span class="emphasis"><strong>-qspi</strong></span></span>.conf -&gt; p3737-0000-p3701-0008<span><span class="emphasis"><strong>-qspi</strong></span></span>.conf
+lrwxrwxrwx 1 <code class="systemitem">tux</code> <code class="systemitem">users</code> 31  4. Jun 15:37 jetson-agx-orin-devkit-maxn.conf -&gt; p3737-0000-p3701-0000-maxn.conf
+<code class="prompt user">&gt; </code><code class="command">ls -1 p3737-0000-p3701-0000*</code>
+p3737-0000-p3701-0000-as-p3701-0004.conf
+p3737-0000-p3701-0000-as-p3767-0000.conf
+p3737-0000-p3701-0000-as-p3767-0001.conf
+p3737-0000-p3701-0000-as-p3767-0003.conf
+p3737-0000-p3701-0000-as-p3767-0004.conf
+p3737-0000-p3701-0000.conf
+p3737-0000-p3701-0000.conf.common
+p3737-0000-p3701-0000-maxn.conf
+p3737-0000-p3701-0000<span><span class="emphasis"><strong>-qspi</strong></span></span>.conf</pre></div></div></section><section class="sect2" id="nvidia-jetson-firmware-summary" data-id-title="Summary"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.4 </span><span class="title-name">Summary</span></span> <a title="Permalink" class="permalink" href="index.html#nvidia-jetson-firmware-summary">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      You have updated the boot firmware and possibly changed its storage location.
+      During system boot it should identify on serial console similar to:
+    </p><div class="verbatim-wrap"><pre class="screen">Jetson UEFI firmware (version 36.3.1-gcid-36302503 built on 2024-05-17T04:47:03+00:00)</pre></div></section><section class="sect2" id="nvidia-jetson-firmware-troubleshooting" data-id-title="Troubleshooting"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.5 </span><span class="title-name">Troubleshooting</span></span> <a title="Permalink" class="permalink" href="index.html#nvidia-jetson-firmware-troubleshooting">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Refer to NVIDIA documentation.
+    </p></section></section><section xml:lang="en" class="sect1" id="nvidia-jetson-sidecar-kmp" data-id-title="Installing kernel modules for NVIDIA Jetson platforms"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Installing kernel modules for NVIDIA Jetson platforms</span></span> <a title="Permalink" class="permalink" href="index.html#nvidia-jetson-sidecar-kmp">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       A Kernel Module Package (KMP) provides additional kernel drivers.
+      </p></div></div></div></div><section class="sect2" id="nvidia-jetson-sidecar-kmp-introduction" data-id-title="Introduction"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">Introduction</span></span> <a title="Permalink" class="permalink" href="index.html#nvidia-jetson-sidecar-kmp-introduction">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      SUSE Linux products contain drivers to boot on NVIDIA* Orin*
+      and earlier NVIDIA Jetson* platforms.
+      But as documented in the Release Notes,
+      certain drivers are not included.
+    </p><p>
+      NVIDIA JetPack* SDK 6.0 and its Jetson Linux Driver Pack 36.3 and later releases
+      provide additional kernel driver modules in source form.
+    </p></section><section class="sect2" id="nvidia-jetson-sidecar-kmp-requirements" data-id-title="Requirements"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.2 </span><span class="title-name">Requirements</span></span> <a title="Permalink" class="permalink" href="index.html#nvidia-jetson-sidecar-kmp-requirements">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          NVIDIA Jetson Orin System-on-Module
+        </p></li></ul></div><p>
+      NVIDIA Jetson Xavier* and earlier System-on-Module generations
+      are no longer supported in NVIDIA JetPack SDK 6.0 and later releases.
+    </p></section><section class="sect2" id="nvidia-jetson-sidecar-kmp-install" data-id-title="Installing the drivers"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.3 </span><span class="title-name">Installing the drivers</span></span> <a title="Permalink" class="permalink" href="index.html#nvidia-jetson-sidecar-kmp-install">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Install third-party kernel drivers provided via SUSE SolidDriver Program.
+    </p><div class="procedure"><div class="procedure-contents"><p>
+        Perform the following steps on your NVIDIA based system.
+      </p><ol class="procedure" type="1"><li class="step"><p>
+          Add the repositories for the Kernel Module Package:
+        </p><ul class="stepalternatives">
+          <li class="step"><p>For NVIDIA JetPack 6.2.2 firmware:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper addrepo \
+https://drivers.suse.com/nvidia/Jetson/NVIDIA_JetPack_6.2.2/sl-micro-6.0-aarch64/1.0/install/ \
+ssdp_jetpack</code>
+<code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper addrepo \
+https://drivers.suse.com/nvidia/Jetson/NVIDIA_JetPack_6.2.2/sl-micro-6.0-aarch64/1.0/update/ \
+ssdp_jetpack_update</code></pre></div></li>
+          <li class="step"><p>For NVIDIA JetPack 6.1 firmware:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper addrepo \
+https://drivers.suse.com/nvidia/Jetson/NVIDIA_JetPack_6.1/sl-micro-6.0-aarch64/1.0/install/ \
+ssdp_jetpack</code>
+<code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper addrepo \
+https://drivers.suse.com/nvidia/Jetson/NVIDIA_JetPack_6.1/sl-micro-6.0-aarch64/1.0/update/ \
+ssdp_jetpack_update</code></pre></div></li>
+        </ul><div id="id-1.3.4.3.2.3" data-id-title="SUSE Linux Micro 6.1 repositories" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: SUSE Linux Micro 6.1 repositories</div><p>SUSE Linux Enterprise Micro 6.0 and SUSE Linux Micro 6.1 share a kernel.</p><p>The <code class="literal">sl-micro-6.0-aarch64</code> packages
+            have been tested to work on SUSE Linux Micro 6.1.</p></div></li><li class="step"><p>
+          Refresh the repository cache:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper --gpg-auto-import-keys refresh</code></pre></div></li><li class="step"><p>
+          Check whether kernel flavor <code class="literal">default</code> or <code class="literal">64kb</code> is used:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">uname -r</code>
+6.4.0-150600.42-<em class="replaceable">default</em></pre></div></li><li class="step"><p>
+          Install the KMP for that same kernel flavor:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">transactional-update pkg install -y nvidia-jetson-kmp-<em class="replaceable">default</em></code></pre></div><div id="id-1.3.4.3.5.3" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note</div><p>Installing <span class="package">nvidia-jetson-kmp-<em class="replaceable">default</em></span>
+            will by default also install <span class="package">nvidia-jetson-extra-kmp-<em class="replaceable">default</em></span>
+            with further drivers beyond the GPU.</p></div></li><li class="step"><p>
+          Reboot the system:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">reboot</code></pre></div></li></ol></div></div></section><section class="sect2" id="nvidia-jetson-sidecar-kmp-summary" data-id-title="Summary"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.4 </span><span class="title-name">Summary</span></span> <a title="Permalink" class="permalink" href="index.html#nvidia-jetson-sidecar-kmp-summary">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      You have installed third-party kernel driver modules on your system and
+      rebooted it for them to get loaded.
+    </p><p>
+      However, these drivers are not supported by the SUSE provided
+      <code class="literal">Mesa</code> graphics libraries or <code class="literal">Xorg</code> modules
+      and instead require to install proprietary third-party libraries.
+    </p></section><section class="sect2" id="nvidia-jetson-sidecar-kmp-troubleshooting" data-id-title="Troubleshooting"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.5 </span><span class="title-name">Troubleshooting</span></span> <a title="Permalink" class="permalink" href="index.html#nvidia-jetson-sidecar-kmp-troubleshooting">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      If the kernel modules are not probed at all,
+      verify that you installed the right flavor.
+    </p><p>
+      If the kernel modules are not probed successfully (in <code class="command">dmesg</code>),
+      verify that your system is based on NVIDIA Orin chipset and that
+      no conflicting NVIDIA drivers for discrete GPUs are installed.
+    </p><p>
+      Linux kernel driver modules like these cannot provide a kernel console.
+      You will still need to use the serial console, same as before.
+    </p></section></section><section xml:lang="en" class="sect1" id="nvidia-jetson-sidecar-libs" data-id-title="Installing NVIDIA libraries for NVIDIA Jetson platforms"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Installing NVIDIA libraries for NVIDIA Jetson platforms</span></span> <a title="Permalink" class="permalink" href="index.html#nvidia-jetson-sidecar-libs">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        NVIDIA* libraries consume the NVIDIA Jetson* graphics drivers.
+      </p></div></div></div></div><section class="sect2" id="nvidia-jetson-sidecar-libs-introduction" data-id-title="Introduction"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.1 </span><span class="title-name">Introduction</span></span> <a title="Permalink" class="permalink" href="index.html#nvidia-jetson-sidecar-libs-introduction">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      To exploit the NVIDIA Orin* GPU and DLA, third-party kernel drivers and
+      libraries are needed.
+    </p></section><section class="sect2" id="nvidia-jetson-sidecar-libs-requirements" data-id-title="Requirements"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.2 </span><span class="title-name">Requirements</span></span> <a title="Permalink" class="permalink" href="index.html#nvidia-jetson-sidecar-libs-requirements">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          NVIDIA Jetson Orin System-on-Module
+        </p></li><li class="listitem"><p>
+          Linux kernel modules for NVIDIA Orin GPU
+        </p></li></ul></div><p>
+      NVIDIA Jetson Xavier* and earlier System-on-Module generations
+      are no longer supported in NVIDIA JetPack* SDK 6.0 and later releases.
+    </p></section><section class="sect2" id="nvidia-jetson-sidecar-libs-install" data-id-title="Installing the libraries"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.3 </span><span class="title-name">Installing the libraries</span></span> <a title="Permalink" class="permalink" href="index.html#nvidia-jetson-sidecar-libs-install">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Install third-party libraries provided by NVIDIA.
+    </p><div class="procedure"><div class="procedure-contents"><p>
+        Perform the following steps on your NVIDIA based system.
+      </p><ol class="procedure" type="1"><li class="step"><p>
+          Add the NVIDIA hosted package repository for JetPack:
+        </p><ul class="stepalternatives">
+          <li class="step"><p>For NVIDIA JetPack 6.2.2 kernel modules:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper addrepo https://repo.download.nvidia.com/jetson/sle15-sp6/jp6.2.2/ nvidia-jetpack</code></pre></div></li>
+          <li class="step"><p>For NVIDIA JetPack 6.1 kernel modules:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper addrepo https://repo.download.nvidia.com/jetson/sle15-sp6/jp6.1/ nvidia-jetpack</code></pre></div></li>
+        </ul></li><li class="step"><p>
+          Refresh the repository cache:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper --gpg-auto-import-keys refresh</code></pre></div></li><li class="step"><p>
+          Install the third-party packages:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">transactional-update pkg install -y nvidia-jetpack-all</code></pre></div></li><li class="step"><p>
+          Reboot the system:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">reboot</code></pre></div></li></ol></div></div></section><section class="sect2" id="nvidia-jetson-sidecar-cuda-verify" data-id-title="Verifying driver and library installation"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.4 </span><span class="title-name">Verifying driver and library installation</span></span> <a title="Permalink" class="permalink" href="index.html#nvidia-jetson-sidecar-cuda-verify">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The NVIDIA System Management Interface (SMI) utility uses the
+      just installed NVIDIA Management Library (NVML) to query the kernel
+      drivers for hardware status.
+    </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          If you haven't installed package <span class="package">nvidia-jetpack-all</span> above,
+          you may need to install package <span class="package">nvidia-jetpack-tools</span>:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">transactional-update pkg install nvidia-jetpack-tools</code></pre></div></li><li class="step"><p>
+          Run <code class="command">nvidia-smi</code> tool:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">nvidia-smi</code></pre></div></li></ol></div></div><p>
+      For more information:
+      <a class="link" href="https://developer.nvidia.com/system-management-interface" target="_blank">https://developer.nvidia.com/system-management-interface</a>
+    </p></section><section class="sect2" id="nvidia-jetson-sidecar-libs-summary" data-id-title="Summary"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.5 </span><span class="title-name">Summary</span></span> <a title="Permalink" class="permalink" href="index.html#nvidia-jetson-sidecar-libs-summary">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      You have installed libraries and tools and checked that they work in principle.
+    </p></section><section class="sect2" id="nvidia-jetson-sidecar-libs-troubleshooting" data-id-title="Troubleshooting"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.6 </span><span class="title-name">Troubleshooting</span></span> <a title="Permalink" class="permalink" href="index.html#nvidia-jetson-sidecar-libs-troubleshooting">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      RPM packages for discrete NVIDIA GPUs and these packages for integrated GPUs
+      cannot be installed side-by-side.
+      
+      <span class="phrase">Discrete GPUs are currently not supported on NVIDIA Jetson platforms.</span>
+    </p></section></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#nvidia-jetson-firmware"><span class="title-number">1 </span><span class="title-name">Preparing firmware for NVIDIA Jetson platforms</span></a></span></li><li><span class="section"><a href="index.html#nvidia-jetson-sidecar-kmp"><span class="title-number">2 </span><span class="title-name">Installing kernel modules for NVIDIA Jetson platforms</span></a></span></li><li><span class="section"><a href="index.html#nvidia-jetson-sidecar-libs"><span class="title-number">3 </span><span class="title-name">Installing NVIDIA libraries for NVIDIA Jetson platforms</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">4 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>
