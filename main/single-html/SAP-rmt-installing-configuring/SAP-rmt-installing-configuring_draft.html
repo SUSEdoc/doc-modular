@@ -1,0 +1,981 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Installing and configuring an RMT server | SUSE Linux Enterprise Server for SAP applications 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2026-07-20"/>
+<meta name="dcterms.modified" content="2026-07-20"/>
+<meta name="dcterms.dateSubmitted" content="2026-10-14"/>
+<meta name="title" content="Installing and configuring an RMT server | SUSE Linux …"/>
+<meta name="description" content="Learn how to install the Repository Mirroring Tool and configure it with the Ansible playbook workflow"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server for SAP applications"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="Installing and configuring an RMT server"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="amrita.sakthivel@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="category" content="."/><meta name="dc.creator" content="amrita.sakthivel@suse.com"/><meta property="og:title" content="Install and configure a SUSE RMT server"/>
+<meta property="og:description" content="Install and configure an RMT server&#10;      on SUSE Linux"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Install and configure a SUSE RMT server"/>
+<meta name="twitter:description" content="Install and configure an RMT server&#10;      on SUSE Linux"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Install and configure a SUSE RMT server | SUSE Linux Enterprise Server for SAP applications 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Install and configure a SUSE RMT server",
+    "description": "Learn how to install the Repository Mirroring Tool and configure it with the Ansible playbook workflow",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2026-07-20T00:00+02:00",
+    "dateModified": "2026-07-20T00:00+02:00",
+    "datePublished": "2026-10-14T11:21+02:00",
+
+    "articleSection": [ 
+        "Systems Management"
+        
+    ],
+        "about": [
+      {
+        "@type": "Thing",
+        "name": "Installation"
+      },
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server for SAP applications",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#rmt-installing-configuring">Installing and configuring an RMT server</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="rmt-installing-configuring" data-id-title="Installing and configuring an RMT server"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span></span> 16.1</div><div><h1 class="title">Installing and configuring an RMT server</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>14 Oct 2026</div><div><div class="abstract"><p> RMT (Repository Mirroring Tool) is a proxy system that mirrors software repositories and registers client machines within a private network. By acting as a local intermediary for SUSE Customer Center, RMT enables administrators to manage package updates and client registrations locally without direct external Internet access for every system, significantly enhancing network security and reducing bandwidth usage.</p><div class="variablelist"><dl class="variablelist"><dt id="id-1.1.13.2.1"><span class="term">REQUIREMENTS</span></dt><dd><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>A <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> 16.1 system. </p></li><li class="listitem"><p>Valid SUSE Customer Center organization credentials. </p></li><li class="listitem"><p>Sufficient local storage space (approximately 1.5 times the size of all enabled repositories). </p></li></ul></div></dd></dl></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Installing and configuring an RMT server" hreflang="en" href="rh-rmt-installing-configuring.html" target="_blank">Revision History: Installing and configuring an RMT server</a></div></div></div></div><section xml:lang="en" class="sect1" id="rmt-installing-intro" data-id-title="Introduction"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Introduction</span></span> <a title="Permalink" class="permalink" href="#rmt-installing-intro">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    This article describes how to run an RMT server on
+    <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> 16.1. Install RMT directly during the
+    installation of <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> or install it on a running system. After the
+    packages are installed, use Ansible to do an initial configuration.
+  </p><div id="id-1.2.3" data-id-title="RMT server conflicts with installation server" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning: RMT server conflicts with installation server</div><p>
+      Configuring a server to be an RMT server installs and configures the
+      NGINX Web server, listening on port 80. However, configuring a machine to be an installation server automatically
+      installs the Apache Web server and configures it to listen on port 80.
+    </p><p>
+      Do not try to enable both these functions on the same server. It is not
+      possible for a single server to host both simultaneously.
+    </p></div></section><section xml:lang="en" class="sect1" id="rmt-storage-requirements" data-id-title="RMT server storage and disk space requirements"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">RMT server storage and disk space requirements</span></span> <a title="Permalink" class="permalink" href="#rmt-storage-requirements">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        The amount of storage your RMT server requires depends on several
+        variables: the number of repositories and architectures that you mirror,
+        and the number of products that are enabled.
+        As a general guide, 1.5
+        times the total size of all enabled repositories should be sufficient.
+        This is about 200 GB per SUSE Linux Enterprise release, including all extensions.
+      </p></div></div></div></div><p>
+    Downloaded packages are stored in
+    <code class="filename">/var/lib/rmt/public/repo/</code>. Plan the size of the file
+    system that contains <code class="filename">/var/lib/rmt</code> accordingly.
+  </p><p>
+    The <span class="package">rmt-server</span> package also installs the symbolic link
+    <code class="filename">/usr/share/rmt/public/repo</code>, which points to
+    <code class="filename">/var/lib/rmt/public/repo/</code>. Because the link is part
+    of the package and RMT writes only to
+    <code class="filename">/var/lib/rmt</code>, mirroring also works on systems where
+    <code class="filename">/usr</code> is read-only, such as immutable systems.
+  </p><div id="id-1.3.4" data-id-title="RMT mirroring fails when /tmp runs out of space" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: RMT mirroring fails when <code class="filename">/tmp</code> runs out of space</div><p>
+      When RMT mirrors repositories from SUSE Customer Center, it writes large temporary files in <code class="filename">/tmp</code>.
+      If <code class="filename">/tmp</code> is too small, or is part of the <code class="filename">/root</code> file system, and
+      this file system is small in size, <code class="filename">/tmp</code> quickly runs out of space, resulting in a mirroring failure.
+      For more information, refer to <a class="link" href="https://support.scc.suse.com/s/kb/RMT-mirroring-fails-when-tmp-runs-out-of-disk-space?language=en_US" target="_blank">https://support.scc.suse.com/s/kb/RMT-mirroring-fails-when-tmp-runs-out-of-disk-space?language=en_US</a>.
+    </p></div></section><section xml:lang="en" class="sect1" id="rmt-installing-during-installation" data-id-title="Installing RMT during system installation"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Installing RMT during system installation</span></span> <a title="Permalink" class="permalink" href="#rmt-installing-during-installation">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Install RMT while installing <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> with Agama by adding the
+        <span class="package">rmt-server</span> package to the installation profile.
+      </p></div></div></div></div><p>
+    RMT is not available as a software pattern, and the Agama Web
+    interface only lets you select patterns. To install RMT during
+    installation, add the <span class="package">rmt-server</span> package to the
+    <code class="literal">software</code> section of an Agama installation profile:
+  </p><div class="verbatim-wrap"><pre class="screen">"software": {
+  "packages": [
+    "rmt-server"
+  ]
+}</pre></div><div class="figure" id="id-1.4.4"><div class="figure-contents"><div class="mediaobject"><a href="images/rmt_installation.png"><img src="images/rmt_installation.png" width="70%" alt="RMT pattern" title="RMT pattern"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 1: </span><span class="title-name">RMT pattern </span></span><a title="Permalink" class="permalink" href="#id-1.4.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><p>
+    The <span class="package">rmt-server</span> package is available from the
+    <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> product repository, so no additional repository is
+    required. If you install with the Agama Web interface instead, install
+    RMT after the installation as described in
+    <a class="xref" href="#rmt-installing-existing-system" title="4. Installing RMT on an existing SLES for SAP">Section 4, “Installing RMT on an existing  <span class="phrase"><span class="phrase">SLES for SAP</span></span> ”</a>.
+  </p><div id="id-1.4.6" data-id-title="Using the same machine as installation server and RMT server" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Using the same machine as installation server and RMT server</div><p>
+      You can use the same machine both as an installation server that
+      provides the installation media and as the RMT server. When
+      installing client systems, specify this machine as the registration
+      server.
+    </p></div><p>
+    Check for available RMT updates immediately after installing <span class="phrase"><span class="phrase">SLES for SAP</span></span>
+    using the <code class="command">zypper patch</code> command because SUSE
+    continuously releases maintenance updates for RMT.
+  </p></section><section xml:lang="en" class="sect1" id="rmt-installing-existing-system" data-id-title="Installing RMT on an existing SLES for SAP"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Installing RMT on an existing  <span class="phrase"><span class="phrase">SLES for SAP</span></span> </span></span> <a title="Permalink" class="permalink" href="#rmt-installing-existing-system">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Install RMT on a running <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> system with
+        <code class="command">zypper</code>.
+      </p></div></div></div></div><p>
+    To install RMT on a running <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> installation, use the
+    <code class="command">zypper</code> command:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper in rmt-server</code></pre></div></section><section xml:lang="en" class="sect1" id="rmt-upgrading-sle15-to-sle16" data-id-title="Upgrading an RMT server from SUSE Linux Enterprise 15 to SLES for SAP 16.1"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Upgrading an RMT server from SUSE Linux Enterprise 15 to
+     <span class="phrase"><span class="phrase">SLES for SAP</span></span> 16.1</span></span> <a title="Permalink" class="permalink" href="#rmt-upgrading-sle15-to-sle16">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Carrying an existing RMT server across the distribution upgrade from
+        SUSE Linux Enterprise 15 SP7 to <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> 16.1 requires repairing
+        two platform changes that leave RMT unavailable afterwards.
+        </p></div></div></div></div><p>These two platform changes are:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p><span><span class="emphasis"><strong>Network stack replacement:</strong></span></span> <span class="phrase"><span class="phrase">SLES for SAP</span></span> 16.1 completely removes the legacy <code class="literal">wicked</code> networking
+  framework and standardizes on NetworkManager as the sole network control stack.</p></li><li class="listitem"><p><span><span class="emphasis"><strong>Mandatory Access Control Framework:</strong></span></span> <span class="phrase"><span class="phrase">SLES for SAP</span></span> 16.1 replaces <code class="literal">AppArmor</code> with SELinux to <code class="literal">enforcing</code>
+    mode by default.</p></li></ul></div><p>
+    Upgrade the host itself using the distribution migration system, as described
+    in <a class="link" href="https://documentation.suse.com/sles/html/SLES-upgrading/" target="_blank">Upgrading
+    to <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> 16.1</a>. This section covers only the
+    steps specific to a host running RMT.
+  </p><div id="id-1.6.5" data-id-title="A successful upgrade can still leave RMT unavailable" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: A successful upgrade can still leave RMT unavailable</div><p>
+      The distribution migration system reports success for the distribution
+      upgrade, not for the services running on the host. Even when every
+      <code class="literal">suse-migration-*</code> unit finishes with
+      <code class="literal">Result=success</code> and
+      <code class="filename">/var/log/distro_migration.exitcode</code> contains
+      <code class="literal">0</code>, RMT does not start until you complete the steps
+      below.
+    </p></div><section class="sect2" id="rmt-upgrading-sle15-to-sle16-before" data-id-title="Before the upgrade"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.1 </span><span class="title-name">Before the upgrade</span></span> <a title="Permalink" class="permalink" href="#rmt-upgrading-sle15-to-sle16-before">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Back up the RMT configuration file and the RMT database to a
+          location outside the host:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">cp /etc/rmt.conf /root/rmt.conf.backup</code>
+<code class="prompt root"># </code><code class="command">mysqldump --single-transaction rmt &gt; /root/rmt.sql</code></pre></div></li><li class="step"><p>
+          Record the ownership of the MariaDB data directory. On
+          SUSE Linux Enterprise 15, as it belongs to the group <code class="literal">root</code>, which
+          breaks MariaDB after the upgrade:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">ls -ld /var/lib/mysql</code>
+drwx------ 1 mysql root 442 /var/lib/mysql</pre></div></li></ol></div></div><div id="id-1.6.6.3" data-id-title="Registered clients follow the RMT server address" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Registered clients follow the RMT server address</div><p>
+        The upgrade replaces <code class="systemitem">wicked</code>
+        with NetworkManager, which changes the DHCP client identifier. Consequently, a host using DHCP
+        is likely to receive a new IP address. Because clients registered
+        against this RMT server reach it through the URL stored in their
+        Zypper service definitions, assign the server a stable IP address or
+        host name before upgrading.
+      </p></div></section><section class="sect2" id="rmt-upgrading-sle15-to-sle16-after" data-id-title="After the upgrade"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.2 </span><span class="title-name">After the upgrade</span></span> <a title="Permalink" class="permalink" href="#rmt-upgrading-sle15-to-sle16-after">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Check which services are running. RMT depends on MariaDB through
+          <code class="literal">Requires=mariadb.service</code>, so a failed database
+          keeps RMT inactive:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">systemctl --failed</code>
+<code class="prompt root"># </code><code class="command">systemctl is-active mariadb nginx rmt-server</code></pre></div></li><li class="step"><p>
+          Correct the group ownership of the MariaDB data directory:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">chgrp -R mysql /var/lib/mysql</code></pre></div><p>
+          On <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> 16.1,
+          <code class="filename">mariadb.service</code> combines
+          <code class="literal">StateDirectory=mysql</code> with
+          <code class="literal">User=mysql</code> and <code class="literal">Group=mysql</code>.
+          systemd therefore adjusts the ownership of
+          <code class="filename">/var/lib/mysql</code> on every start, and the
+          <code class="literal">mysql:root</code> ownership inherited from
+          SUSE Linux Enterprise 15 makes that fail:
+        </p><div class="verbatim-wrap"><pre class="screen">mariadb.service: Failed to set up special execution directory in /var/lib: Permission denied
+mariadb.service: Control process exited, code=exited, status=238/STATE_DIRECTORY</pre></div><p>
+          The error is reported as a permission problem rather than an
+          ownership one, which makes it easy to mistake for a file system or
+          SELinux fault.
+        </p></li><li class="step"><p>
+          Start MariaDB:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">systemctl start mariadb</code></pre></div></li><li class="step"><p>
+          Allow nginx to connect to the RMT back-end:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">setsebool -P httpd_can_network_connect on</code></pre></div><p>
+          <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> 16.1 uses SELinux in enforcing mode
+          instead of AppArmor. The
+          <code class="literal">httpd_can_network_connect</code> boolean is off by
+          default, which prevents nginx from opening a connection to the RMT
+          back-end on <code class="literal">127.0.0.1:4224</code>. Without this setting,
+          nginx answers every request that it proxies to RMT with
+          <code class="literal">502</code>.
+        </p></li><li class="step"><p>
+          Verify that RMT answers correctly:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">curl -o /dev/null -w '%{http_code}\n' http://localhost/connect/subscriptions/products</code>
+401
+<code class="prompt root"># </code><code class="command">curl -o /dev/null -w '%{http_code}\n' http://localhost/repo/</code>
+200</pre></div><p>
+          <code class="literal">401</code> is the expected answer on the registration
+          endpoint: it shows that the RMT application is reachable and
+          requires authentication. A <code class="literal">502</code> means that the
+          previous step is incomplete.
+        </p></li><li class="step"><p>
+          Restart the host and repeat the checks.
+          Confirming the changes across a reboot is essential:
+        SELinux boolean only persists when it is set with <code class="option">-P</code>, and MariaDB may not be independently enabled since
+        <code class="filename">rmt-server.service</code> manages it via <code class="literal">Requires=</code>.
+        </p></li></ol></div></div><div id="id-1.6.7.3" data-id-title="RMT 2 is upgraded to RMT 3" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: RMT 2 is upgraded to RMT 3</div><p>
+        SUSE Linux Enterprise 15 SP7 offers both RMT 2 and RMT 3, while
+        <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> 16.1 ships only RMT 3. A host
+        still running RMT 2 therefore moves to RMT 3 as part of
+        the distribution upgrade.
+      </p><p>
+        No action is required. <code class="filename">/etc/rmt.conf</code> and the
+        contents of the database are preserved, and
+        <code class="filename">rmt-server-migration.service</code> updates the database
+        schema before <code class="filename">rmt-server.service</code> starts. RMT 3
+        differs from RMT 2 in the Ruby and Rails versions it runs on,
+        not in its configuration file or its
+        <code class="command">rmt-cli</code> commands.
+      </p><p>
+        Confirm the version after the upgrade:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">rmt-cli version</code></pre></div></div><div id="id-1.6.7.4" data-id-title="Mirrored repositories keep working while registration is broken" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning: Mirrored repositories keep working while registration is broken</div><p>
+        nginx serves <code class="literal">/repo/</code> directly from disk, so clients
+        continue to download packages even when the RMT application is
+        unreachable and no client can register. Check the registration
+        endpoint, not just the repository paths.
+      </p></div></section></section><section xml:lang="en" class="sect1" id="rmt-deploying-on-kubernetes" data-id-title="Deploying RMT on top of the Kubernetes cluster"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Deploying RMT on top of the Kubernetes cluster</span></span> <a title="Permalink" class="permalink" href="#rmt-deploying-on-kubernetes">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+       This section describes how to deploy RMT on a Kubernetes cluster.
+          It uses <span class="productname">Helm</span> as the package manager to interact with
+          the Kubernetes cluster. Find more details about using <span class="productname">Helm</span> at
+          <a class="link" href="https://helm.sh/docs/intro/using_helm/" target="_blank">https://helm.sh/docs/intro/using_helm/</a>.
+      </p></div></div></div></div><section class="sect2" id="rmt-deploying-on-kubernetes-prerequisites" data-id-title="Prerequisites"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.1 </span><span class="title-name">Prerequisites</span></span> <a title="Permalink" class="permalink" href="#rmt-deploying-on-kubernetes-prerequisites">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          Running Kubernetes cluster
+        </p></li><li class="listitem"><p>
+          <code class="command">helm</code> command configured to interact with the
+          cluster
+        </p></li><li class="listitem"><p>
+          A storage class for the persistent volumes of RMT and MariaDB.
+          The example in <a class="xref" href="#rmt-deploying-on-kubernetes-values" title="6.3. The values.yaml file">Section 6.3, “The <code class="filename">values.yaml</code> file”</a>
+          uses the <code class="literal">local-path</code> storage class, which is only
+          available in Rancher workloads. On other clusters, install the
+          <code class="literal">local-path</code> storage provisioner:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.26/deploy/local-path-storage.yaml</pre></div><p>
+          Alternatively, set <code class="literal">app.storage.class</code> and
+          <code class="literal">db.storage.class</code> to a storage class that already
+          exists in your cluster.
+        </p></li></ul></div></section><section class="sect2" id="rmt-deploying-on-kubernetes-components" data-id-title="Application components"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.2 </span><span class="title-name">Application components</span></span> <a title="Permalink" class="permalink" href="#rmt-deploying-on-kubernetes-components">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Each component of the RMT application is deployed in its own
+      container. RMT consists of the following components:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.7.3.3.1"><span class="term">RMT server</span></dt><dd><p>
+            Containerized version of the RMT application server with the
+            ability to pass its configuration via Helm values. Storage is
+            done on a volume that is allocated to the Kubernetes cluster. You
+            need to adjust the size of the storage depending on the number of
+            repositories you need to mirror.
+          </p></dd><dt id="id-1.7.3.3.2"><span class="term">MariaDB</span></dt><dd><p>
+            The database back-end for RMT. No post-installation task is
+            needed since RMT creates the required database and tables
+            at start-up. If passwords are not
+            specified in the <code class="filename">values.yaml</code> file, they are
+            generated automatically.
+          </p></dd><dt id="id-1.7.3.3.3"><span class="term">nginx</span></dt><dd><p>
+            A Web server configured for RMT routes. Having a properly
+            configured Web server allows you to target your Ingress traffic
+            (for RMT) to this nginx service directly. You do not need to
+            configure Ingress for RMT -specific path handling, as nginx is
+            configured to take care of this itself.
+          </p></dd></dl></div></section><section class="sect2" id="rmt-deploying-on-kubernetes-values" data-id-title="The values.yaml file"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">6.3 </span><span class="title-name">The <code class="filename">values.yaml</code> file</span></span> <a title="Permalink" class="permalink" href="#rmt-deploying-on-kubernetes-values">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The RMT chart includes the <code class="filename">values.yaml</code> file
+      where all parameters are documented and their default values are
+      defined. You can override these values by providing your own values
+      file, for example:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>cat &lt;&lt; EOF &gt; rmt-config.yaml
+---
+app:
+  storage:
+    class: local-path<span class="callout" id="co-kubernetes-values-appstorage">1</span>
+  scc:
+    enabled: false
+    username: "UXXXXXXX"
+    password: "PASSXXXX"
+    products_enable:
+      - SLES/15.3/x86_64
+      - sle-module-python2/15.3/x86_64
+    products_disable:
+      - sle-module-legacy/15.3/x86_64
+      - sle-module-cap-tools/15.3/x86_64
+db:
+  storage:
+    class: local-path<span class="callout" id="co-kubernetes-values-dbstorage">2</span>
+ingress:
+  enabled: true
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: "/"
+          pathType: Prefix
+  tls:
+    - secretName: rmt-cert
+      hosts:
+        - chart-example.local
+EOF</pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-kubernetes-values-appstorage"><span class="callout">1</span></a> <a href="#co-kubernetes-values-dbstorage"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+          The storage class for the RMT and MariaDB persistent volumes.
+          The storage class must exist in the cluster, see
+          <a class="xref" href="#rmt-deploying-on-kubernetes-prerequisites" title="6.1. Prerequisites">Section 6.1, “Prerequisites”</a>.
+        </p></td></tr></table></div><p>
+      And to install RMT, run:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code>helm install rmtsle oci://registry.suse.com/suse/rmt-helm -f rmt-config.yaml</pre></div><section class="sect3" id="rmt-deploying-on-kubernetes-required-values" data-id-title="Required values"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">6.3.1 </span><span class="title-name">Required values</span></span> <a title="Permalink" class="permalink" href="#rmt-deploying-on-kubernetes-required-values">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="variablelist"><dl class="variablelist"><dt id="id-1.7.4.7.2.1"><span class="term"><span><span class="emphasis"><strong>Key</strong></span></span>: app.scc.password</span></dt><dd><p>
+              <span><span class="emphasis"><strong>Type</strong></span></span>: string
+            </p><p>
+              <span><span class="emphasis"><strong>Default</strong></span></span>:
+              <code class="literal">nil</code>
+            </p><p>
+              <span><span class="emphasis"><strong>Description</strong></span></span>: <a class="link" href="https://scc.suse.com/" target="_blank">SUSE Customer Center</a> proxy password. The password string needs to be
+              put inside quotes. If the quote character <code class="literal">"</code> is part of the
+              string, it has to be escaped with <code class="literal">\</code>.
+            </p></dd><dt id="id-1.7.4.7.2.2"><span class="term"><span><span class="emphasis"><strong>Key</strong></span></span>: app.scc.username</span></dt><dd><p>
+              <span><span class="emphasis"><strong>Type</strong></span></span>: string
+            </p><p>
+              <span><span class="emphasis"><strong>Default</strong></span></span>:
+              <code class="literal">nil</code>
+            </p><p>
+              <span><span class="emphasis"><strong>Description</strong></span></span>: <a class="link" href="https://scc.suse.com/" target="_blank">SUSE Customer Center</a> proxy user name. The user name string needs to be
+              put inside quotes. If the quote character <code class="literal">"</code> is part of the
+              string, it has to be escaped with <code class="literal">\</code>.
+            </p></dd><dt id="id-1.7.4.7.2.3"><span class="term"><span><span class="emphasis"><strong>Key</strong></span></span>: app.scc.products_enable</span></dt><dd><p>
+              <span><span class="emphasis"><strong>Type</strong></span></span>: list
+            </p><p>
+              <span><span class="emphasis"><strong>Default</strong></span></span>:
+              <code class="literal">[]</code>
+            </p><p>
+              <span><span class="emphasis"><strong>Description</strong></span></span>: list of
+              products to enable for mirroring
+            </p></dd><dt id="id-1.7.4.7.2.4"><span class="term"><span><span class="emphasis"><strong>Key</strong></span></span>: app.scc.products_disable</span></dt><dd><p>
+              <span><span class="emphasis"><strong>Type</strong></span></span>: list
+            </p><p>
+              <span><span class="emphasis"><strong>Default</strong></span></span>:
+              <code class="literal">[]</code>
+            </p><p>
+              <span><span class="emphasis"><strong>Description</strong></span></span>: list of
+              products to disable for mirroring
+            </p></dd><dt id="id-1.7.4.7.2.5"><span class="term"><span><span class="emphasis"><strong>Key</strong></span></span>: app.storage.class</span></dt><dd><p>
+              <span><span class="emphasis"><strong>Type</strong></span></span>: string
+            </p><p>
+              <span><span class="emphasis"><strong>Default</strong></span></span>:
+              <code class="literal">""</code>
+            </p><p>
+              <span><span class="emphasis"><strong>Description</strong></span></span>: Kubernetes
+              <code class="literal">storageclass</code>.
+            </p></dd><dt id="id-1.7.4.7.2.6"><span class="term"><span><span class="emphasis"><strong>Key</strong></span></span>: db.storage.class</span></dt><dd><p>
+              <span><span class="emphasis"><strong>Type</strong></span></span>: string
+            </p><p>
+              <span><span class="emphasis"><strong>Default</strong></span></span>:
+              <code class="literal">""</code>
+            </p><p>
+              <span><span class="emphasis"><strong>Description</strong></span></span>: Kubernetes
+              <code class="literal">storageclass</code>.
+            </p></dd><dt id="id-1.7.4.7.2.7"><span class="term"><span><span class="emphasis"><strong>Key</strong></span></span>: ingress.enabled</span></dt><dd><p>
+              <span><span class="emphasis"><strong>Type</strong></span></span>: bool
+            </p><p>
+              <span><span class="emphasis"><strong>Default</strong></span></span>:
+              <code class="literal">false</code>
+            </p><p>
+              <span><span class="emphasis"><strong>Description</strong></span></span>: Ingress Enabled
+            </p></dd><dt id="id-1.7.4.7.2.8"><span class="term"><span><span class="emphasis"><strong>Key</strong></span></span>: ingress.hosts[0]</span></dt><dd><p>
+              <span><span class="emphasis"><strong>Type</strong></span></span>: object
+            </p><p>
+              <span><span class="emphasis"><strong>Default</strong></span></span>:
+              <code class="literal">{"host":"chart-example.local","paths":[{"path":"/","pathType":"Prefix"}]}</code>
+            </p><p>
+              <span><span class="emphasis"><strong>Description</strong></span></span>: DNS name at
+              which the RMT service will be accessible from clients
+            </p></dd><dt id="id-1.7.4.7.2.9"><span class="term"><span><span class="emphasis"><strong>Key</strong></span></span>: ingress.tls[0].hosts[0]</span></dt><dd><p>
+              <span><span class="emphasis"><strong>Type</strong></span></span>: string
+            </p><p>
+              <span><span class="emphasis"><strong>Default</strong></span></span>:
+              <code class="literal">"chart-example.local"</code>
+            </p><p>
+              <span><span class="emphasis"><strong>Description</strong></span></span>: DNS name at
+              which the RMT service will be accessible from clients
+            </p></dd><dt id="id-1.7.4.7.2.10"><span class="term"><span><span class="emphasis"><strong>Key</strong></span></span>: ingress.tls[0].secretName</span></dt><dd><p>
+              <span><span class="emphasis"><strong>Type</strong></span></span>: string
+            </p><p>
+              <span><span class="emphasis"><strong>Default</strong></span></span>:
+              <code class="literal">"rmt-cert"</code>
+            </p><p>
+              <span><span class="emphasis"><strong>Description</strong></span></span>: TLS Ingress
+              Certificate
+            </p></dd></dl></div></section></section></section><section xml:lang="en" class="sect1" id="rmt-configuring-with-ansible" data-id-title="Configuring RMT with Ansible"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Configuring RMT with Ansible</span></span> <a title="Permalink" class="permalink" href="#rmt-configuring-with-ansible">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+          Configure RMT with Ansible as described in the following procedure.
+          The <span class="package">ansible-rmt-server</span> package provides pre-built
+          playbooks and roles for automated RMT configuration.
+        </p></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Navigate to the Ansible configuration directory:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">cd /usr/share/ansible/rmt</code></pre></div></li><li class="step"><p>
+        Create the configuration file <code class="filename">group_vars/all.yml</code>
+        based on the provided example:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">cp group_vars/all.yml.example group_vars/all.yml</code></pre></div></li><li class="step"><p>
+        Edit <code class="filename">group_vars/all.yml</code> and configure the
+        following variables:
+      </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.8.2.3.2.1"><span class="term"><code class="literal">rmt_db_username</code></span></dt><dd><p>
+              Database user name for RMT (default: <code class="literal">rmt</code>)
+            </p></dd><dt id="id-1.8.2.3.2.2"><span class="term"><code class="literal">rmt_db_password</code></span></dt><dd><p>
+              Secure password for the RMT database user
+            </p></dd><dt id="id-1.8.2.3.2.3"><span class="term"><code class="literal">RMT_ORGANIZATION_USERNAME</code></span></dt><dd><p>
+              Your SUSE Customer Center organization credentials. To retrieve your
+              credentials, refer to
+              <a class="link" href="https://documentation.suse.com/sles/15-SP7/single-html/SLES-rmt/#sec-rmt-mirroring-credentials" target="_blank">Mirroring credentials</a>.
+            </p></dd><dt id="id-1.8.2.3.2.4"><span class="term"><code class="literal">RMT_ORGANIZATION_PASSWORD</code></span></dt><dd><p>
+              Your SUSE Customer Center organization password
+            </p></dd></dl></div><p>
+        Example configuration:
+      </p><div class="verbatim-wrap"><pre class="screen">---
+rmt_db_username: rmt
+rmt_db_password: "your_secure_password"
+
+rmt:
+  RMT_ORGANIZATION_USERNAME: "your_scc_username"
+  RMT_ORGANIZATION_PASSWORD: "your_scc_password"</pre></div></li><li class="step"><p>
+        Run the Ansible playbook to configure RMT:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">ansible-playbook site.yml</code></pre></div><p>
+        The playbook will automatically perform the following tasks:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Install required dependencies (MariaDB, nginx, Python modules)</p></li><li class="listitem"><p>Configure and start the MariaDB database service</p></li><li class="listitem"><p>Create the RMT database and database user</p></li><li class="listitem"><p>Generate SSL certificates for HTTPS</p></li><li class="listitem"><p>Configure nginx virtual hosts</p></li><li class="listitem"><p>Create <code class="filename">/etc/rmt.conf</code> configuration file</p></li><li class="listitem"><p>Run database migrations</p></li><li class="listitem"><p>Start and enable the RMT server service</p></li></ul></div></li><li class="step"><p>
+        On systems with SELinux in enforcing mode, allow nginx to connect to
+        the RMT back end service:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">setsebool -P httpd_can_network_connect 1</code></pre></div></li><li class="step"><p>
+        Verify the installation by checking the API health status:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">curl -s http://localhost/api/health/status</code>
+{"state":"online"}</pre></div></li></ol></div></div><div id="id-1.8.3" data-id-title="SSL certificate locations" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: SSL certificate locations</div><p>
+      The Ansible playbook generates SSL certificates at the following
+      locations:
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.8.3.3.1"><span class="term">CA certificate</span></dt><dd><p> <code class="filename">/etc/rmt/ssl/rmt-ca.crt</code></p></dd><dt id="id-1.8.3.3.2"><span class="term">CA private key</span></dt><dd><p> <code class="filename">/etc/rmt/ssl/rmt-ca.key</code></p></dd><dt id="id-1.8.3.3.3"><span class="term">Server certificate</span></dt><dd><p> <code class="filename">/etc/rmt/ssl/rmt-server.crt</code></p></dd><dt id="id-1.8.3.3.4"><span class="term">Server private key</span></dt><dd><p> <code class="filename">/etc/rmt/ssl/rmt-server.key</code></p></dd></dl></div></div></section><section xml:lang="en" class="sect1" id="rmt-enabling-slp-announcements" data-id-title="Enabling SLP announcements"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name">Enabling SLP announcements</span></span> <a title="Permalink" class="permalink" href="#rmt-enabling-slp-announcements">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Enable SLP (Service Location Protocol) announcements so that clients can discover the RMT
+        service on the network.
+      </p></div></div></div></div><p>
+    RMT includes the SLP service description file
+    <code class="filename">/etc/slp.reg.d/rmt-server.reg</code>. To enable SLP
+    announcements of the RMT service, follow these steps:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        If <code class="systemitem">firewalld</code> is running:</p><ol type="a" class="substeps"><li class="step"><p>Open relevant ports:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> firewall-cmd --permanent --add-port=427/tcp
+    success</pre></div><div class="verbatim-wrap"><pre class="screen">      <code class="prompt user">&gt; </code><code class="command">sudo</code> firewall-cmd --permanent --add-port=427/udp
+      success</pre></div></li><li class="step"><p>Reload the  <code class="systemitem">firewalld</code> configuration:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> firewall-cmd --reload</pre></div></li></ol></li><li class="step"><p>
+        Verify that the SLP server is installed and install it if it is not:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> zypper install openslp-server</pre></div></li><li class="step"><p>
+        Enable and start the SLP service:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl enable --now slpd.service</pre></div></li></ol></div></div></section><section xml:lang="en" class="sect1" id="rmt-accessing-scc-behind-firewall" data-id-title="Accessing SUSE Customer Center from behind a firewall"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">9 </span><span class="title-name">Accessing SUSE Customer Center from behind a firewall</span></span> <a title="Permalink" class="permalink" href="#rmt-accessing-scc-behind-firewall">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Allow the RMT server to reach SUSE Customer Center when it is located behind a
+        firewall that does not support host name <code class="literal">allowlisting</code>.
+      </p></div></div></div></div><p>
+    If the RMT server is behind a firewall and cannot access SUSE Customer Center
+    directly, you need to allow connections to the following domains on both
+    80 and 443 ports on the firewall.
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        scc.suse.com
+      </p></li><li class="listitem"><p>
+        updates.suse.com
+      </p></li><li class="listitem"><p>
+        installer-updates.suse.com
+      </p></li></ul></div><p>
+    If the firewall you are using does not support allowing connections from
+    host names —such as <code class="systemitem">firewalld</code>— allow connections to the below corresponding IP addresses.
+     </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Resolve the IP address of the domain, for example,
+        <code class="literal">installer-updates.suse.com</code>.
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">nslookup installer-updates.suse.com</code>
+[...]
+Address: 152.199.22.115</pre></div></li><li class="step"><p>
+        Add firewall rules for ports 80 and 443 for each discovered IP
+        address.
+      </p><ol type="a" class="substeps"><li class="step"><p>Port 80:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">firewall-cmd --permanent --zone=public \
+--add-rich-rule='rule family="ipv4" source address="152.199.22.115" \
+ port protocol="tcp" port="80" accept'</code></pre></div></li><li class="step"><p>Port 443:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">firewall-cmd --permanent --zone=public \      --add-rich-rule='rule family="ipv4" source address="152.199.22.115" \
+port protocol="tcp" port="443" accept'</code></pre></div></li></ol></li><li class="step"><p>
+        Reload the firewall configuration.
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> firewall-cmd --reload</pre></div></li></ol></div></div></section><section xml:lang="en" class="sect1" id="rmt-configuration-files" data-id-title="RMT configuration files"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">10 </span><span class="title-name">RMT configuration files</span></span> <a title="Permalink" class="permalink" href="#rmt-configuration-files">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Reference of the options in the main RMT configuration file
+        <code class="filename">/etc/rmt.conf</code> and of the SSL certificate
+        locations used by RMT.
+      </p></div></div></div></div><p>
+    The main RMT configuration file is <code class="filename">/etc/rmt.conf</code>.
+    Configuration is performed using the Ansible playbooks provided in the
+    <span class="package">ansible-rmt-server</span> package.
+  </p><section class="sect2" id="rmt-configuration-files-rmtconf" data-id-title="Main configuration file /etc/rmt.conf"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">10.1 </span><span class="title-name">Main configuration file <code class="filename">/etc/rmt.conf</code></span></span> <a title="Permalink" class="permalink" href="#rmt-configuration-files-rmtconf">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The initial configuration is performed using Ansible. Only the
+      proxy configuration needs to be entered manually. The other configuration
+      parameters are documented for reference.
+    </p><p>
+      All available configuration options can be found in the
+      <code class="filename">/etc/rmt.conf</code> file.
+    </p><section class="sect3" id="rmt-configuration-files-rmtconf-mirror" data-id-title="Mirroring settings"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">10.1.1 </span><span class="title-name">Mirroring settings</span></span> <a title="Permalink" class="permalink" href="#rmt-configuration-files-rmtconf-mirror">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        The <code class="literal">mirroring</code> section lets you adjust mirroring
+        behavior.
+      </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.11.3.4.3.1"><span class="term"><code class="literal">mirror_src</code></span></dt><dd><p>
+              Decides whether to mirror source RPM packages (architecture is
+              <code class="literal">src</code>).
+            </p></dd><dt id="id-1.11.3.4.3.2"><span class="term"><code class="literal">dedup_method</code></span></dt><dd><p>
+              Creates hard links during mirroring when set to <code class="literal">hardlink</code>.
+              If the file system does not support hard links, it can be set to <code class="literal">copy</code> instead.
+              Possible values: <code class="literal">hardlink</code>,
+              <code class="literal">copy</code>.
+            </p></dd></dl></div></section><section class="sect3" id="rmt-configuration-files-rmtconf-client" data-id-title="HTTP client settings"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">10.1.2 </span><span class="title-name">HTTP client settings</span></span> <a title="Permalink" class="permalink" href="#rmt-configuration-files-rmtconf-client">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        The <code class="literal">http_client</code> section defines the global HTTP
+        connection settings of RMT.
+      </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.11.3.5.3.1"><span class="term"><code class="literal">verbose</code></span></dt><dd><p>
+              Enables additional debug output to the <code class="systemitem">systemd</code> journal.
+            </p></dd><dt id="id-1.11.3.5.3.2"><span class="term"><code class="literal">proxy</code></span></dt><dd><p>
+              The proxy server URL including the protocol and the port number. For
+              example: <code class="literal">http://proxy_url:8080</code>.
+            </p></dd><dt id="id-1.11.3.5.3.3"><span class="term"><code class="literal">noproxy</code></span></dt><dd><p>
+              A list of domains that should <span><em class="emphasis">not</em></span> go through the
+              proxy, separated by commas. For example:
+              <code class="literal">localhost.mylocaldomain</code>.
+            </p></dd><dt id="id-1.11.3.5.3.4"><span class="term"><code class="literal">proxy_auth</code></span></dt><dd><p>
+              This setting determines the
+              proxy authentication mechanism. Possible values are:
+              <code class="option">none</code>, <code class="option">basic</code>,
+              <code class="option">digest</code>, <code class="option">gssnegotiate</code>,
+              <code class="option">ntlm</code>, <code class="option">digest_ie</code>,
+              <code class="option">ntlm_wb</code>.
+            </p></dd><dt id="id-1.11.3.5.3.5"><span class="term"><code class="literal">proxy_user</code></span></dt><dd><p>
+              The proxy server user name.
+            </p></dd><dt id="id-1.11.3.5.3.6"><span class="term"><code class="literal">proxy_password</code></span></dt><dd><p>
+              The proxy server password.
+            </p></dd><dt id="id-1.11.3.5.3.7"><span class="term"><code class="literal">low_speed_limit</code></span></dt><dd><p>
+              Lower speed limit when a download should be aborted in bytes/sec.
+            </p></dd><dt id="id-1.11.3.5.3.8"><span class="term"><code class="literal">low_speed_time</code></span></dt><dd><p>
+              Time until a download gets aborted, when download speed is below
+              <code class="literal">low_speed_limit</code>.
+            </p></dd></dl></div></section><section class="sect3" id="rmt-configuration-files-rmtconf-access-scc" data-id-title="Settings for accessing SUSE repositories"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">10.1.3 </span><span class="title-name">Settings for accessing SUSE repositories</span></span> <a title="Permalink" class="permalink" href="#rmt-configuration-files-rmtconf-access-scc">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        The <code class="literal">scc</code> section contains your mirroring
+        credentials for contacting SUSE Customer Center. To obtain your mirroring
+        credentials, see
+        <a class="link" href="https://documentation.suse.com/sles/15-SP7/single-html/SLES-rmt/#sec-rmt-mirroring-credentials" target="_blank">Mirroring credentials</a>.
+      </p><p>
+        Valid configuration keys for the section are:
+      </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.11.3.6.4.1"><span class="term"><code class="literal">username</code></span></dt><dd><p>
+              Mirroring credentials user name.
+            </p></dd><dt id="id-1.11.3.6.4.2"><span class="term"><code class="literal">password</code></span></dt><dd><p>
+              Mirroring credentials password.
+            </p></dd></dl></div></section><section class="sect3" id="rmt-configuration-files-web-server-settings" data-id-title="Web server settings"><div class="titlepage"><div><div><div class="title-container"><h4 class="title"><span class="title-number-name"><span class="title-number">10.1.4 </span><span class="title-name">Web server settings</span></span> <a title="Permalink" class="permalink" href="#rmt-configuration-files-web-server-settings">#</a></h4><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+        The <code class="literal">web_server</code> section lets you tune the performance of your RMT server.
+      </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.11.3.7.3.1"><span class="term"><code class="literal">min_threads</code></span></dt><dd><p>
+              Specifies the minimum number of threads that an RMT server worker should spawn.
+            </p><p>
+              Acceptable values: Integer greater than or equal to 1.
+            </p></dd><dt id="id-1.11.3.7.3.2"><span class="term"><code class="literal">max_threads</code></span></dt><dd><p>
+              Specifies the maximum number of threads that an RMT server worker should spawn.
+            </p><p>
+              Acceptable values: Integer greater than or equal to 1.
+            </p></dd><dt id="id-1.11.3.7.3.3"><span class="term"><code class="literal">workers</code></span></dt><dd><p>
+              Specifies the number of Web workers for RMT.
+            </p><p>
+              Acceptable values: Integer greater than or equal to 1.
+            </p></dd></dl></div></section></section></section><section xml:lang="en" class="sect1" id="rmt-regenerating-certificates" data-id-title="Managing TLS/SSL certificates"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">11 </span><span class="title-name">Managing TLS/SSL certificates</span></span> <a title="Permalink" class="permalink" href="#rmt-regenerating-certificates">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Regenerate the TLS/SSL certificates of your RMT server using the
+        Ansible playbook when they expire.
+      </p></div></div></div></div><section class="sect2" id="rmt-configuration-files-ssl" data-id-title="SSL certificates and HTTPS"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">11.1 </span><span class="title-name">SSL certificates and HTTPS</span></span> <a title="Permalink" class="permalink" href="#rmt-configuration-files-ssl">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      By default access to API endpoints consumed by
+      <code class="command">SUSEConnect</code> is limited to HTTPS only. nginx is
+      configured to use an SSL certificate and a private key from the following
+      locations:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Certificate: <code class="filename">/etc/rmt/ssl/rmt-server.crt</code></p></li><li class="listitem"><p>Private key: <code class="filename">/etc/rmt/ssl/rmt-server.key</code></p></li></ul></div><p>
+      The Ansible playbook generates a custom certificate authority which
+      is used to sign HTTPS certificates. This means that to register,
+      this certificate authority must be trusted by the client machines:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          For registrations during installation from the media or with
+          YaST Registration module, a message will appear, prompting to
+          trust the server certificate.
+        </p></li><li class="listitem"><p>
+          For registering a client system on the command line, use the
+          <code class="command">rmt-client-setup</code> script. </p></li></ul></div></section><section class="sect2" id="rmt-regenerating-certificates-https" data-id-title="Regenerating HTTPS certificates"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">11.2 </span><span class="title-name">Regenerating HTTPS certificates</span></span> <a title="Permalink" class="permalink" href="#rmt-regenerating-certificates-https">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      HTTPS certificates should be regenerated before they expire. No
+      additional actions are required on the client machines registered to the
+      RMT server if only HTTPS certificates are regenerated.
+    </p><div id="id-1.12.3.3" data-id-title="Certificates generated by the playbook are self-signed" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Certificates generated by the playbook are self-signed</div><p>
+        The playbook generates a self-signed server certificate that carries
+        neither a common name nor subject alternative names, and that is not
+        signed by the CA certificate in
+        <code class="filename">/etc/rmt/ssl/rmt-ca.crt</code>. Clients that verify host
+        names reject such a certificate. If your clients verify the server
+        certificate, issue one yourself with a common name, the required
+        subject alternative names and a signature from your CA, then store it
+        as <code class="filename">/etc/rmt/ssl/rmt-server.crt</code> together with its
+        key in <code class="filename">/etc/rmt/ssl/rmt-server.key</code>. Note that any
+        subsequent run of the playbook overwrites both files.
+      </p></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Stop nginx and rmt-server services.
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">systemctl stop nginx</code>
+<code class="prompt root"># </code><code class="command">systemctl stop rmt-server</code></pre></div></li><li class="step"><p>
+          Remove previously generated certificates.
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">rm /etc/rmt/ssl/rmt-server.*</code></pre></div></li><li class="step"><p>
+          Regenerate certificates using the Ansible playbook:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">cd /usr/share/ansible/rmt</code>
+<code class="prompt root"># </code><code class="command">ansible-playbook site.yml</code></pre></div></li></ol></div></div></section><section class="sect2" id="rmt-regenerating-certificates-ca" data-id-title="Regenerating CA certificates and HTTPS certificates"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">11.3 </span><span class="title-name">Regenerating CA certificates and HTTPS certificates</span></span> <a title="Permalink" class="permalink" href="#rmt-regenerating-certificates-ca">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      CA certificates can be regenerated after they have expired or in case of
+      security issues.
+    </p><div id="id-1.12.4.3" data-id-title="Import CA certificate on all clients" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning: Import CA certificate on all clients</div><p>
+        The newly generated CA certificate must be imported on all clients
+        registered to the RMT server. This can be done by running the
+        <code class="command">rmt-client-setup</code> script on the client machines. </p></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+          Stop nginx service. rmt-server services.
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">systemctl stop nginx</code></pre></div></li><li class="step"><p>Stop rmt-server service.</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">systemctl stop rmt-server</code></pre></div></li><li class="step"><p>
+          Remove previously generated CA and HTTPS certificates.
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">rm /etc/rmt/ssl/rmt-ca.*
+  rm /etc/rmt/ssl/rmt-server.*</code></pre></div></li><li class="step"><p>
+          Regenerate certificates using the Ansible playbook:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">cd /usr/share/ansible/rmt</code>
+<code class="prompt root"># </code><code class="command">ansible-playbook site.yml</code></pre></div></li></ol></div></div></section></section><section xml:lang="en" class="sect1" id="rmt-installing-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">12 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="#rmt-installing-more-info">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        To learn more about RMT, refer to the following resource:
+      </p></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        <a class="link" href="https://github.com/SUSE/rmt" target="_blank">RMT source code and issue tracker on GitHub</a>.
+      </p></li></ul></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">13 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section><div class="legal-section"><section class="appendix" translate="no" id="doc-gfdl-license" data-id-title="GNU Free Documentation License"><div class="titlepage"><div><div><h1 class="title">GNU Free Documentation License</h1></div></div></div><p>
+    Copyright (C) 2000, 2001, 2002 Free Software Foundation, Inc. 51 Franklin St, Fifth Floor,
+    Boston, MA 02110-1301 USA. Everyone is permitted to copy and distribute verbatim copies of this
+    license document, but changing it is not allowed.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.15.3"><span class="name">
+    0. PREAMBLE
+  </span><a title="Permalink" class="permalink" href="#id-1.15.3">#</a></h5></div><p>
+    The purpose of this License is to make a manual, textbook, or other functional and useful
+    document "free" in the sense of freedom: to assure everyone the effective freedom to copy and
+    redistribute it, with or without modifying it, either commercially or non-commercially.
+    Secondarily, this License preserves for the author and publisher a way to get credit for their
+    work, while not being considered responsible for modifications made by others.
+  </p><p>
+    This License is a kind of "copyleft", which means that derivative works of the document must
+    themselves be free in the same sense. It complements the GNU General Public License, which is a
+    copyleft license designed for free software.
+  </p><p>
+    We have designed this License to use it for manuals for free software, because free software
+    needs free documentation: a free program should come with manuals providing the same freedoms
+    that the software does. But this License is not limited to software manuals; it can be used for
+    any textual work, regardless of subject matter or whether it is published as a printed book. We
+    recommend this License principally for works whose purpose is instruction or reference.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.15.7"><span class="name">
+    1. APPLICABILITY AND DEFINITIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.15.7">#</a></h5></div><p>
+    This License applies to any manual or other work, in any medium, that contains a notice placed
+    by the copyright holder saying it can be distributed under the terms of this License. Such a
+    notice grants a world-wide, royalty-free license, unlimited in duration, to use that work under
+    the conditions stated herein. The "Document", below, refers to any such manual or work. Any
+    member of the public is a licensee, and is addressed as "you". You accept the license if you
+    copy, modify or distribute the work in a way requiring permission under copyright law.
+  </p><p>
+    A "Modified Version" of the Document means any work containing the Document or a portion of it,
+    either copied verbatim, or with modifications and/or translated into another language.
+  </p><p>
+    A "Secondary Section" is a named appendix or a front-matter section of the Document that deals
+    exclusively with the relationship of the publishers or authors of the Document to the
+    Document's overall subject (or to related matters) and contains nothing that could fall
+    directly within that overall subject. (Thus, if the Document is in part a textbook of
+    mathematics, a Secondary Section may not explain any mathematics.) The relationship could be a
+    matter of historical connection with the subject or with related matters, or of legal,
+    commercial, philosophical, ethical or political position regarding them.
+  </p><p>
+    The "Invariant Sections" are certain Secondary Sections whose titles are designated, as being
+    those of Invariant Sections, in the notice that says that the Document is released under this
+    License. If a section does not fit the above definition of Secondary then it is not allowed to
+    be designated as Invariant. The Document may contain zero Invariant Sections. If the Document
+    does not identify any Invariant Sections then there are none.
+  </p><p>
+    The "Cover Texts" are certain short passages of text that are listed, as Front-Cover Texts or
+    Back-Cover Texts, in the notice that says that the Document is released under this License. A
+    Front-Cover Text may be at most 5 words, and a Back-Cover Text may be at most 25 words.
+  </p><p>
+    A "Transparent" copy of the Document means a machine-readable copy, represented in a format
+    whose specification is available to the general public, that is suitable for revising the
+    document straightforwardly with generic text editors or (for images composed of pixels) generic
+    paint programs or (for drawings) some widely available drawing editor, and that is suitable for
+    input to text formatters or for automatic translation to a variety of formats suitable for
+    input to text formatters. A copy made in an otherwise Transparent file format whose markup, or
+    absence of markup, has been arranged to thwart or discourage subsequent modification by readers
+    is not Transparent. An image format is not Transparent if used for any substantial amount of
+    text. A copy that is not "Transparent" is called "Opaque".
+  </p><p>
+    Examples of suitable formats for Transparent copies include plain ASCII without markup, Texinfo
+    input format, LaTeX input format, SGML or XML using a publicly available DTD, and
+    standard-conforming simple HTML, PostScript or PDF designed for human modification. Examples of
+    transparent image formats include PNG, XCF and JPG. Opaque formats include proprietary formats
+    that can be read and edited only by proprietary word processors, SGML or XML for which the DTD
+    and/or processing tools are not generally available, and the machine-generated HTML, PostScript
+    or PDF produced by some word processors for output purposes only.
+  </p><p>
+    The "Title Page" means, for a printed book, the title page itself, plus such following pages as
+    are needed to hold, legibly, the material this License requires to appear in the title page.
+    For works in formats which do not have any title page as such, "Title Page" means the text near
+    the most prominent appearance of the work's title, preceding the beginning of the body of the
+    text.
+  </p><p>
+    A section "Entitled XYZ" means a named subunit of the Document whose title either is precisely
+    XYZ or contains XYZ in parentheses following text that translates XYZ in another language.
+    (Here XYZ stands for a specific section name mentioned below, such as "Acknowledgements",
+    "Dedications", "Endorsements", or "History".) To "Preserve the Title" of such a section when
+    you modify the Document means that it remains a section "Entitled XYZ" according to this
+    definition.
+  </p><p>
+    The Document may include Warranty Disclaimers next to the notice which states that this License
+    applies to the Document. These Warranty Disclaimers are considered to be included by reference
+    in this License, but only as regards disclaiming warranties: any other implication that these
+    Warranty Disclaimers may have is void and has no effect on the meaning of this License.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.15.18"><span class="name">
+    2. VERBATIM COPYING
+  </span><a title="Permalink" class="permalink" href="#id-1.15.18">#</a></h5></div><p>
+    You may copy and distribute the Document in any medium, either commercially or
+    non-commercially, provided that this License, the copyright notices, and the license notice
+    saying this License applies to the Document are reproduced in all copies, and that you add no
+    other conditions whatsoever to those of this License. You may not use technical measures to
+    obstruct or control the reading or further copying of the copies you make or distribute.
+    However, you may accept compensation in exchange for copies. If you distribute a large enough
+    number of copies you must also follow the conditions in section 3.
+  </p><p>
+    You may also lend copies, under the same conditions stated above, and you may publicly display
+    copies.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.15.21"><span class="name">
+    3. COPYING IN QUANTITY
+  </span><a title="Permalink" class="permalink" href="#id-1.15.21">#</a></h5></div><p>
+    If you publish printed copies (or copies in media that commonly have printed covers) of the
+    Document, numbering more than 100, and the Document's license notice requires Cover Texts, you
+    must enclose the copies in covers that carry, clearly and legibly, all these Cover Texts:
+    Front-Cover Texts on the front cover, and Back-Cover Texts on the back cover. Both covers must
+    also clearly and legibly identify you as the publisher of these copies. The front cover must
+    present the full title with all words of the title equally prominent and visible. You may add
+    other material on the covers in addition. Copying with changes limited to the covers, as long
+    as they preserve the title of the Document and satisfy these conditions, can be treated as
+    verbatim copying in other respects.
+  </p><p>
+    If the required texts for either cover are too voluminous to fit legibly, you should put the
+    first ones listed (as many as fit reasonably) on the actual cover, and continue the rest onto
+    adjacent pages.
+  </p><p>
+    If you publish or distribute Opaque copies of the Document numbering more than 100, you must
+    either include a machine-readable Transparent copy along with each Opaque copy, or state in or
+    with each Opaque copy a computer-network location from which the general network-using public
+    has access to download using public-standard network protocols a complete Transparent copy of
+    the Document, free of added material. If you use the latter option, you must take reasonably
+    prudent steps, when you begin distribution of Opaque copies in quantity, to ensure that this
+    Transparent copy will remain thus accessible at the stated location until at least one year
+    after the last time you distribute an Opaque copy (directly or through your agents or
+    retailers) of that edition to the public.
+  </p><p>
+    It is requested, but not required, that you contact the authors of the Document well before
+    redistributing any large number of copies, to give them a chance to provide you with an updated
+    version of the Document.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.15.26"><span class="name">
+    4. MODIFICATIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.15.26">#</a></h5></div><p>
+    You may copy and distribute a Modified Version of the Document under the conditions of sections
+    2 and 3 above, provided that you release the Modified Version under precisely this License,
+    with the Modified Version filling the role of the Document, thus licensing distribution and
+    modification of the Modified Version to whoever possesses a copy of it. In addition, you must
+    do these things in the Modified Version:
+  </p><div class="orderedlist"><ol class="orderedlist" type="A"><li class="listitem"><p>
+        Use in the Title Page (and on the covers, if any) a title distinct from that of the
+        Document, and from those of previous versions (which should, if there were any, be listed
+        in the History section of the Document). You may use the same title as a previous version
+        if the original publisher of that version gives permission.
+      </p></li><li class="listitem"><p>
+        List on the Title Page, as authors, one or more persons or entities responsible for
+        authorship of the modifications in the Modified Version, together with at least five of the
+        principal authors of the Document (all of its principal authors, if it has fewer than
+        five), unless they release you from this requirement.
+      </p></li><li class="listitem"><p>
+        State on the Title page the name of the publisher of the Modified Version, as the
+        publisher.
+      </p></li><li class="listitem"><p>
+        Preserve all the copyright notices of the Document.
+      </p></li><li class="listitem"><p>
+        Add an appropriate copyright notice for your modifications adjacent to the other copyright
+        notices.
+      </p></li><li class="listitem"><p>
+        Include, immediately after the copyright notices, a license notice giving the public
+        permission to use the Modified Version under the terms of this License, in the form shown
+        in the Addendum below.
+      </p></li><li class="listitem"><p>
+        Preserve in that license notice the full lists of Invariant Sections and required Cover
+        Texts given in the Document's license notice.
+      </p></li><li class="listitem"><p>
+        Include an unaltered copy of this License.
+      </p></li><li class="listitem"><p>
+        Preserve the section Entitled "History", Preserve its Title, and add to it an item stating
+        at least the title, year, new authors, and publisher of the Modified Version as given on
+        the Title Page. If there is no section Entitled "History" in the Document, create one
+        stating the title, year, authors, and publisher of the Document as given on its Title Page,
+        then add an item describing the Modified Version as stated in the previous sentence.
+      </p></li><li class="listitem"><p>
+        Preserve the network location, if any, given in the Document for public access to a
+        Transparent copy of the Document, and likewise the network locations given in the Document
+        for previous versions it was based on. These may be placed in the "History" section. You
+        may omit a network location for a work that was published at least four years before the
+        Document itself, or if the original publisher of the version it refers to gives permission.
+      </p></li><li class="listitem"><p>
+        For any section Entitled "Acknowledgements" or "Dedications", Preserve the Title of the
+        section, and preserve in the section all the substance and tone of each of the contributor
+        acknowledgements and/or dedications given therein.
+      </p></li><li class="listitem"><p>
+        Preserve all the Invariant Sections of the Document, unaltered in their text and in their
+        titles. Section numbers or the equivalent are not considered part of the section titles.
+      </p></li><li class="listitem"><p>
+        Delete any section Entitled "Endorsements". Such a section may not be included in the
+        Modified Version.
+      </p></li><li class="listitem"><p>
+        Do not retitle any existing section to be Entitled "Endorsements" or to conflict in title
+        with any Invariant Section.
+      </p></li><li class="listitem"><p>
+        Preserve any Warranty Disclaimers.
+      </p></li></ol></div><p>
+    If the Modified Version includes new front-matter sections or appendices that qualify as
+    Secondary Sections and contain no material copied from the Document, you may at your option
+    designate some or all of these sections as invariant. To do this, add their titles to the list
+    of Invariant Sections in the Modified Version's license notice. These titles must be distinct
+    from any other section titles.
+  </p><p>
+    You may add a section Entitled "Endorsements", provided it contains nothing but endorsements of
+    your Modified Version by various parties--for example, statements of peer review or that the
+    text has been approved by an organization as the authoritative definition of a standard.
+  </p><p>
+    You may add a passage of up to five words as a Front-Cover Text, and a passage of up to 25
+    words as a Back-Cover Text, to the end of the list of Cover Texts in the Modified Version. Only
+    one passage of Front-Cover Text and one of Back-Cover Text may be added by (or through
+    arrangements made by) any one entity. If the Document already includes a cover text for the
+    same cover, previously added by you or by arrangement made by the same entity you are acting on
+    behalf of, you may not add another; but you may replace the old one, on explicit permission
+    from the previous publisher that added the old one.
+  </p><p>
+    The author(s) and publisher(s) of the Document do not by this License give permission to use
+    their names for publicity for or to assert or imply endorsement of any Modified Version.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.15.33"><span class="name">
+    5. COMBINING DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.15.33">#</a></h5></div><p>
+    You may combine the Document with other documents released under this License, under the terms
+    defined in section 4 above for modified versions, provided that you include in the combination
+    all of the Invariant Sections of all of the original documents, unmodified, and list them all
+    as Invariant Sections of your combined work in its license notice, and that you preserve all
+    their Warranty Disclaimers.
+  </p><p>
+    The combined work need only contain one copy of this License, and multiple identical Invariant
+    Sections may be replaced with a single copy. If there are multiple Invariant Sections with the
+    same name but different contents, make the title of each such section unique by adding at the
+    end of it, in parentheses, the name of the original author or publisher of that section if
+    known, or else a unique number. Make the same adjustment to the section titles in the list of
+    Invariant Sections in the license notice of the combined work.
+  </p><p>
+    In the combination, you must combine any sections Entitled "History" in the various original
+    documents, forming one section Entitled "History"; likewise combine any sections Entitled
+    "Acknowledgements", and any sections Entitled "Dedications". You must delete all sections
+    Entitled "Endorsements".
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.15.37"><span class="name">
+    6. COLLECTIONS OF DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.15.37">#</a></h5></div><p>
+    You may make a collection consisting of the Document and other documents released under this
+    License, and replace the individual copies of this License in the various documents with a
+    single copy that is included in the collection, provided that you follow the rules of this
+    License for verbatim copying of each of the documents in all other respects.
+  </p><p>
+    You may extract a single document from such a collection, and distribute it individually under
+    this License, provided you insert a copy of this License into the extracted document, and
+    follow this License in all other respects regarding verbatim copying of that document.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.15.40"><span class="name">
+    7. AGGREGATION WITH INDEPENDENT WORKS
+  </span><a title="Permalink" class="permalink" href="#id-1.15.40">#</a></h5></div><p>
+    A compilation of the Document or its derivatives with other separate and independent documents
+    or works, in or on a volume of a storage or distribution medium, is called an "aggregate" if
+    the copyright resulting from the compilation is not used to limit the legal rights of the
+    compilation's users beyond what the individual works permit. When the Document is included in
+    an aggregate, this License does not apply to the other works in the aggregate which are not
+    themselves derivative works of the Document.
+  </p><p>
+    If the Cover Text requirement of section 3 is applicable to these copies of the Document, then
+    if the Document is less than one half of the entire aggregate, the Document's Cover Texts may
+    be placed on covers that bracket the Document within the aggregate, or the electronic
+    equivalent of covers if the Document is in electronic form. Otherwise they must appear on
+    printed covers that bracket the whole aggregate.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.15.43"><span class="name">
+    8. TRANSLATION
+  </span><a title="Permalink" class="permalink" href="#id-1.15.43">#</a></h5></div><p>
+    Translation is considered a kind of modification, so you may distribute translations of the
+    Document under the terms of section 4. Replacing Invariant Sections with translations requires
+    special permission from their copyright holders, but you may include translations of some or
+    all Invariant Sections in addition to the original versions of these Invariant Sections. You
+    may include a translation of this License, and all the license notices in the Document, and any
+    Warranty Disclaimers, provided that you also include the original English version of this
+    License and the original versions of those notices and disclaimers. In case of a disagreement
+    between the translation and the original version of this License or a notice or disclaimer, the
+    original version will prevail.
+  </p><p>
+    If a section in the Document is Entitled "Acknowledgements", "Dedications", or "History", the
+    requirement (section 4) to Preserve its Title (section 1) will typically require changing the
+    actual title.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.15.46"><span class="name">
+    9. TERMINATION
+  </span><a title="Permalink" class="permalink" href="#id-1.15.46">#</a></h5></div><p>
+    You may not copy, modify, sublicense, or distribute the Document except as expressly provided
+    for under this License. Any other attempt to copy, modify, sublicense or distribute the
+    Document is void, and will automatically terminate your rights under this License. However,
+    parties who have received copies, or rights, from you under this License will not have their
+    licenses terminated so long as such parties remain in full compliance.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.15.48"><span class="name">
+    10. FUTURE REVISIONS OF THIS LICENSE
+  </span><a title="Permalink" class="permalink" href="#id-1.15.48">#</a></h5></div><p>
+    The Free Software Foundation may publish new, revised versions of the GNU Free Documentation
+    License from time to time. Such new versions will be similar in spirit to the present version,
+    but may differ in detail to address new problems or concerns. See
+    <a class="link" href="https://www.gnu.org/copyleft/" target="_blank">https://www.gnu.org/copyleft/</a>.
+  </p><p>
+    Each version of the License is given a distinguishing version number. If the Document specifies
+    that a particular numbered version of this License "or any later version" applies to it, you
+    have the option of following the terms and conditions either of that specified version or of
+    any later version that has been published (not as a draft) by the Free Software Foundation. If
+    the Document does not specify a version number of this License, you may choose any version ever
+    published (not as a draft) by the Free Software Foundation.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.15.51"><span class="name">
+    ADDENDUM: How to use this License for your documents
+  </span><a title="Permalink" class="permalink" href="#id-1.15.51">#</a></h5></div><div class="verbatim-wrap"><pre class="screen">Copyright (c) YEAR YOUR NAME.
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+A copy of the license is included in the section entitled “GNU
+Free Documentation License”.</pre></div><p>
+    If you have Invariant Sections, Front-Cover Texts and Back-Cover Texts, replace the
+    “with...Texts.” line with this:
+  </p><div class="verbatim-wrap"><pre class="screen">with the Invariant Sections being LIST THEIR TITLES, with the
+Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.</pre></div><p>
+    If you have Invariant Sections without Cover Texts, or some other combination of the three,
+    merge those two alternatives to suit the situation.
+  </p><p>
+    If your document contains nontrivial examples of program code, we recommend releasing these
+    examples in parallel under your choice of free software license, such as the GNU General Public
+    License, to permit their use in free software.
+  </p></section></div></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="#rmt-installing-intro"><span class="title-number">1 </span><span class="title-name">Introduction</span></a></span></li><li><span class="section"><a href="#rmt-storage-requirements"><span class="title-number">2 </span><span class="title-name">RMT server storage and disk space requirements</span></a></span></li><li><span class="section"><a href="#rmt-installing-during-installation"><span class="title-number">3 </span><span class="title-name">Installing RMT during system installation</span></a></span></li><li><span class="section"><a href="#rmt-installing-existing-system"><span class="title-number">4 </span><span class="title-name">Installing RMT on an existing  <span class="phrase"><span class="phrase">SLES for SAP</span></span> </span></a></span></li><li><span class="section"><a href="#rmt-upgrading-sle15-to-sle16"><span class="title-number">5 </span><span class="title-name">Upgrading an RMT server from SUSE Linux Enterprise 15 to
+     <span class="phrase"><span class="phrase">SLES for SAP</span></span> 16.1</span></a></span></li><li><span class="section"><a href="#rmt-deploying-on-kubernetes"><span class="title-number">6 </span><span class="title-name">Deploying RMT on top of the Kubernetes cluster</span></a></span></li><li><span class="section"><a href="#rmt-configuring-with-ansible"><span class="title-number">7 </span><span class="title-name">Configuring RMT with Ansible</span></a></span></li><li><span class="section"><a href="#rmt-enabling-slp-announcements"><span class="title-number">8 </span><span class="title-name">Enabling SLP announcements</span></a></span></li><li><span class="section"><a href="#rmt-accessing-scc-behind-firewall"><span class="title-number">9 </span><span class="title-name">Accessing SUSE Customer Center from behind a firewall</span></a></span></li><li><span class="section"><a href="#rmt-configuration-files"><span class="title-number">10 </span><span class="title-name">RMT configuration files</span></a></span></li><li><span class="section"><a href="#rmt-regenerating-certificates"><span class="title-number">11 </span><span class="title-name">Managing TLS/SSL certificates</span></a></span></li><li><span class="section"><a href="#rmt-installing-more-info"><span class="title-number">12 </span><span class="title-name">For more information</span></a></span></li><li><span class="section"><a href="#legal-disclaimer"><span class="title-number">13 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="#doc-gfdl-license"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>
