@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Preparing a System for Disaster Recovery with ReaR | SUSE Linux Enterprise High Availability 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2026-10-26"/>
+<meta name="dcterms.modified" content="2026-10-26"/>
+<meta name="dcterms.dateSubmitted" content="2026-11-02"/>
+<meta name="title" content="Preparing a System for Disaster Recovery with ReaR | S…"/>
+<meta name="description" content="How to configure ReaR (Relax-and-Recover) to build recovery images and restore systems after failure"/>
+<meta name="product-name" content="SUSE Linux Enterprise High Availability"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="Preparing a System for Disaster Recovery with ReaR"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="tahlia.richardson@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise High Availability 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="category" content="."/><meta name="dc.creator" content="tahlia.richardson@suse.com"/><meta property="og:title" content="Configuring Disaster Recovery with ReaR"/>
+<meta property="og:description" content="Prepare your production system for disaster recovery"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Configuring Disaster Recovery with ReaR"/>
+<meta name="twitter:description" content="Prepare your production system for disaster recovery"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Configuring Disaster Recovery with ReaR | SUSE Linux Enterprise High Availability 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Configuring Disaster Recovery with ReaR",
+    "description": "How to configure ReaR (Relax-and-Recover) to build recovery images and restore systems after failure",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2026-10-26T00:00+02:00",
+    "dateModified": "2026-10-26T00:00+02:00",
+    "datePublished": "2026-11-02T11:47+02:00",
+
+    "articleSection": [ 
+        "Storage &amp; Data Replication"
+        
+    ],
+        "about": [
+      {
+        "@type": "Thing",
+        "name": "Administration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Backup &amp; Recovery"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise High Availability",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Preparing a System for Disaster Recovery with ReaR</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Preparing a System for Disaster Recovery with ReaR</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="rear-disaster-recovery" data-id-title="Preparing a System for Disaster Recovery with ReaR"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise High Availability</span></span></span> 16.1</div><div><h1 class="title">Preparing a System for Disaster Recovery with ReaR</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>02 Nov 2026</div><div><div class="abstract"><p>
+          ReaR (Relax-and-Recover) is a disaster recovery framework that helps system administrators
+          re-create Linux infrastructure after a system failure. Using ReaR, you can create a
+          bootable recovery system that re-creates the failed system's storage layout, restores
+          files from a backup, and reinstalls the boot loader. To recover from a disaster as
+          quickly as possible, prepare a disaster recovery system <span><em class="emphasis">before</em></span> the
+          disaster happens and test it regularly on identical test hardware.
+        </p><p><span><span class="emphasis"><strong>Prerequisites</strong></span></span></p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Two systems: the machine to back up and an identical test machine.
+          <span class="quote">“<span class="quote">Identical</span>”</span> in this context means that you can, for example, replace a
+          network card with another one using the same kernel driver.</p></li><li class="listitem"><p>An internal backup tool, such as <code class="command">tar</code>, or a supported
+          third-party backup tool, such as EMC NetWorker.</p></li></ul></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Preparing a System for Disaster Recovery with ReaR" hreflang="en" href="rh-rear-disaster-recovery.html" target="_blank">Revision History: Preparing a System for Disaster Recovery with ReaR</a></div></div></div></div><section xml:lang="en" class="sect1" id="rear-what-is" data-id-title="What is ReaR?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">What is ReaR?</span></span> <a title="Permalink" class="permalink" href="index.html#rear-what-is">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        ReaR (Relax-and-Recover) is a disaster recovery framework designed to help system administrators
+        re-create Linux infrastructure after a system failure. Using ReaR, you can create a
+        bootable recovery system that re-creates the failed system's storage layout and restores
+        files from a backup.
+      </p></div></div></div></div><section class="sect2" id="rear-what-is-disaster-recovery" data-id-title="What is disaster recovery?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">What is disaster recovery?</span></span> <a title="Permalink" class="permalink" href="index.html#rear-what-is-disaster-recovery">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      A system in a production environment might be destroyed unexpectedly because of broken
+      hardware, misconfiguration or software problems. <span><em class="emphasis">Disaster recovery</em></span> means
+      re-creating the system, either on the same hardware or on identical replacement hardware.
+      Re-creating a system involves not just restoring the system's files from a backup, but also
+      preparing the system's storage layout (such as partitioning, file systems and mount points)
+      and reinstalling the boot loader.
+    </p><p>
+      No disaster recovery solution works out-of-the-box. Therefore, you must prepare for a
+      disaster <span><em class="emphasis">before</em></span> it happens.
+      </p></section><section class="sect2" id="rear-what-is-disaster-recovery-plan" data-id-title="What is a disaster recovery plan?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">What is a disaster recovery plan?</span></span> <a title="Permalink" class="permalink" href="index.html#rear-what-is-disaster-recovery-plan">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      <span><em class="emphasis">Before</em></span> a disaster happens, create a disaster recovery plan so that any
+      system administrator knows exactly what to do and has a complete procedure to follow
+      <span><em class="emphasis">when</em></span> the disaster happens.
+    </p><div class="variablelist"><dl class="variablelist"><dt id="id-1.2.3.3.1"><span class="term">Risk analysis</span></dt><dd><p>
+            Conduct a risk analysis of your infrastructure. List all the possible threats and
+            evaluate how serious they are. Determine how likely these threats are and what their
+            impact would be.
+          </p></dd><dt id="id-1.2.3.3.2"><span class="term">Budget planning</span></dt><dd><p>
+            The outcome of the analysis is an overview of which risks can be tolerated and which
+            would be critical. Determine how you can minimize these risks and how much it costs to
+            do so.
+          </p></dd><dt id="id-1.2.3.3.3"><span class="term">Disaster recovery planning</span></dt><dd><p>
+            Make checklists, test procedures, establish and assign priorities, and inventory your
+            IT infrastructure. Define how to deal with problems if any services in your
+            infrastructure fail.
+          </p></dd><dt id="id-1.2.3.3.4"><span class="term">Disaster recovery testing</span></dt><dd><p>
+            After defining a plan, test it thoroughly and regularly on hardware that is identical
+            to your main IT infrastructure.
+          </p></dd></dl></div></section><section class="sect2" id="rear-how-does-disaster-recovery-work" data-id-title="How does disaster recovery with ReaR work?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.3 </span><span class="title-name">How does disaster recovery with ReaR work?</span></span> <a title="Permalink" class="permalink" href="index.html#rear-how-does-disaster-recovery-work">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      ReaR uses Bash scripts to analyze a running system and create a disaster recovery system,
+      which includes a recovery installer and either an integrated or external file backup.
+      You must configure ReaR for your specific system and infrastructure, including what to
+      back up, how to create and store the recovery system, and what the recovery installer does.
+    </p><p>
+      For the file backup, ReaR can use internal backup tools like <code class="command">tar</code> or work
+      with third-party backup tools like EMC NetWorker. For a full list of supported file backup
+      methods, run <code class="command">man rear</code>.
+    </p><p>
+      If the system is destroyed, you can boot the recovery installer from a physical medium or
+      over the network. The recovery installer re-creates the system by preparing the storage layout
+      (such as partitioning, file systems and mount points), restoring the files from the backup,
+      and reinstalling the boot loader.
+    </p><p>
+      Test your disaster recovery system regularly to make sure it still works as expected.
+      In particular, you should re-validate your disaster recovery system in the following cases:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          When you upgrade your operating system to a new major or minor version.
+        </p></li><li class="listitem"><p>
+          When you update ReaR to a new version.
+        </p></li><li class="listitem"><p>
+          When you update any software that ReaR uses.
+        </p></li><li class="listitem"><p>
+          When you update low-level system components, such as <code class="command">parted</code> or
+          <code class="command">btrfs</code>.
+        </p></li></ul></div><p>
+      If a test fails, you might need to update the ReaR configuration and re-create the
+      disaster recovery system.
+    </p></section><section class="sect2" id="rear-can-i-update" data-id-title="Can I update ReaR?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.4 </span><span class="title-name">Can I update ReaR?</span></span> <a title="Permalink" class="permalink" href="index.html#rear-can-i-update">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Version updates for ReaR are released in separate packages that intentionally conflict with
+      each other. This prevents the installed version from being accidentally replaced with another
+      version. If you have a tested and fully functional disaster recovery system with one version
+      of ReaR, we recommend staying on that version.
+    </p><p>
+      However, if you do need to update ReaR, you can see which versions are available on the
+      current version of your operating system by running the following command:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">zypper search --type package --verbose rear</code></pre></div><p>
+      You can find information about bug fixes, incompatibilities and other issues in the
+      changelogs of the packages.
+    </p></section><section class="sect2" id="id-1.2.6" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.5 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="index.html#id-1.2.6">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          <code class="command">man rear</code>
+        </p></li><li class="listitem"><p>
+          <a class="link" href="https://relax-and-recover.org/" target="_blank">https://relax-and-recover.org/</a>
+        </p></li><li class="listitem"><p>
+          <a class="link" href="https://en.opensuse.org/SDB:Disaster_Recovery" target="_blank">https://en.opensuse.org/SDB:Disaster_Recovery</a>
+        </p></li></ul></div></section></section><section xml:lang="en" class="sect1" id="rear-installing" data-id-title="Installing ReaR"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Installing ReaR</span></span> <a title="Permalink" class="permalink" href="index.html#rear-installing">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Install ReaR on the system you want to back up:
+      </p></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Log in as the <code class="systemitem">root</code> user.
+      </p></li><li class="step"><p>
+        Install ReaR:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            To install the latest version of ReaR, run the following command:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">zypper install rear</code></pre></div></li><li class="listitem"><p>
+            If you need to install a specific version of ReaR, you can specify the package version.
+            For example:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">zypper install rear29a</code></pre></div></li></ul></div></li><li class="step"><p>
+        If your system boots with a UEFI boot loader, make sure the <span class="package">xorriso</span>
+        package is installed:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">zypper install xorriso</code></pre></div><p>
+        This helper tool is used to create a UEFI-bootable ReaR recovery system ISO image.
+      </p></li></ol></div></div></section><section xml:lang="en" class="sect1" id="rear-configuring" data-id-title="Configuring ReaR"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Configuring ReaR</span></span> <a title="Permalink" class="permalink" href="index.html#rear-configuring">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        To configure ReaR, edit the <code class="filename">/etc/rear/local.conf</code> file to define your
+        specific requirements, such as how to back up files and how to create and store the disaster
+        recovery system. This configuration is sufficient for most systems. To re-create a
+        non-standard system, you might also need to adjust the ReaR framework by editing the
+        Bash scripts in <code class="filename">/usr/share/rear/</code>.
+      </p></div></div></div></div><div id="id-1.4.2" data-id-title="Btrfs limitations" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning: Btrfs limitations</div><p>
+      Btrfs snapshot subvolumes can't be backed up and restored in their original state with
+      file-based backup software.
+    </p><p>
+      Snapshot subvolumes on Btrfs file systems need almost no disk space because of Btrfs's
+      copy-on-write functionality. However, file-based backup software backs up the snapshots as
+      complete files, so they are included in the backup twice with their original file size.
+      Therefore, the backed-up snapshots can't be restored to their original state.
+    </p></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Prerequisites </span></span><a title="Permalink" class="permalink" href="index.html#id-1.4.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        ReaR is installed on the system you want to back up.
+      </p></li><li class="listitem"><p>
+        If your system boots with a UEFI boot loader, make sure the <span class="package">xorriso</span>
+        package is installed.
+      </p></li></ul></div><p>
+    Perform this procedure on the system you want to back up:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Log in as the <code class="systemitem">root</code> user.
+      </p></li><li class="step"><p>
+        Copy the closest matching SUSE Linux example from the
+        <code class="filename">/usr/share/rear/conf/examples/</code> directory and paste it into
+        <code class="filename">/etc/rear/local.conf</code>. Use this example as a starting point and
+        adjust it for your specific system.
+      </p><div id="id-1.4.5.2.2" class="admonition important compact"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><p>
+          Currently, the latest example file is <code class="filename">SLE12-SP2-btrfs-example.conf</code>.
+        </p></div><p>
+        All ReaR variables and their default values are explained in
+        <code class="filename">/usr/share/rear/conf/default.conf</code>. Examples of important
+        variables are shown in the next steps:
+      </p></li><li class="step"><p>
+        Configure your file backup method with <code class="literal">BACKUP</code> and where to store the
+        backup with <code class="literal">BACKUP_URL</code>. Use the following resources to learn more about
+        configuring your backup method:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            For a list of supported <code class="literal">BACKUP</code> methods, see
+            <code class="command">man rear</code>, section <em class="citetitle">DESCRIPTION</em>.
+          </p></li><li class="listitem"><p>
+            For more information about <code class="literal">BACKUP_URL</code>, see
+            <code class="command">man rear</code>, section <em class="citetitle">BACKUP SOFTWARE INTEGRATION</em>.
+          </p></li><li class="listitem"><p>
+            For more information about the additional options for each backup method, see the
+            <code class="filename">/usr/share/rear/conf/default.conf</code> file.
+          </p></li></ul></div><p>
+        The following examples show some possible options:
+      </p><div class="complex-example"><div class="example" id="ex-rear-nfs-server-backup" data-id-title="Using an NFS server to store the file backup"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 1: </span><span class="title-name">Using an NFS server to store the file backup </span></span><a title="Permalink" class="permalink" href="index.html#ex-rear-nfs-server-backup">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><p>
+          Make sure the backup directory on the NFS server has the right mount options. For example,
+          you might need <code class="literal">no_root_squash</code> because the <code class="command">rear mkbackup</code>
+          command runs as <code class="systemitem">root</code>. For more information, see <code class="command">man exports</code>.
+        </p><p>
+          Configure ReaR to send the file backup to the NFS server:
+        </p><div class="verbatim-wrap"><pre class="screen">BACKUP=NETFS
+BACKUP_URL=nfs://<em class="replaceable">HOST.EXAMPLE.COM/PATH/TO/REAR/BACKUP</em></pre></div></div></div></div><div class="complex-example"><div class="example" id="ex-rear-config-sles-btrfs" data-id-title="Backing up Btrfs subvolumes with tar"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 2: </span><span class="title-name">Backing up Btrfs subvolumes with <code class="command">tar</code> </span></span><a title="Permalink" class="permalink" href="index.html#ex-rear-config-sles-btrfs">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><p>
+          Btrfs is set up with subvolumes, but <code class="command">tar</code> creates backups with the
+          <code class="option">--one-file-system</code> option, which excludes subvolumes. Therefore, the
+          mount points for the subvolumes must be explicitly included in the ReaR configuration.
+          For example:
+        </p><div class="verbatim-wrap"><pre class="screen">BACKUP=NETFS
+BACKUP_URL=nfs://<em class="replaceable">HOST.EXAMPLE.COM/PATH/TO/REAR/BACKUP</em>
+BACKUP_PROG_INCLUDE=( /boot/grub2/i386-pc /boot/grub2/x86_64-efi /home /opt /root /srv /usr/local /var )</pre></div><div id="id-1.4.5.3.5.4" data-id-title="Mount points for BACKUP_PROG_INCLUDE" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Mount points for <code class="literal">BACKUP_PROG_INCLUDE</code></div><p>
+            You can find the mount points for the subvolumes on your specific system by running the
+            following command:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">findmnt -n -r -o TARGET -t btrfs | grep -v '^/$' | egrep -v 'snapshots|crash'</code></pre></div></div></div></div></div><div class="complex-example"><div class="example" id="ex-rear-config-EMC" data-id-title="Using third-party backup tools like EMC NetWorker"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 3: </span><span class="title-name">Using third-party backup tools like EMC NetWorker </span></span><a title="Permalink" class="permalink" href="index.html#ex-rear-config-EMC">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><p>
+          Third-party backup tools might require additional configuration, like this example for
+          EMC NetWorker. Check <code class="filename">/usr/share/rear/conf/default.conf</code> to see the
+          additional options for your backup tool.
+        </p><div class="verbatim-wrap"><pre class="screen">BACKUP=NSR
+BACKUP_URL=nfs://<em class="replaceable">HOST.EXAMPLE.COM/PATH/TO/REAR/BACKUP</em>
+NSRSERVER=<em class="replaceable">BACKUPSERVER.EXAMPLE.COM</em>
+NSR_RETENTION_TIME="Month"</pre></div></div></div></div></li><li class="step"><p>
+        Configure the boot method for the recovery system with <code class="literal">OUTPUT</code> and,
+        if necessary, where to store the recovery system with <code class="literal">OUTPUT_URL</code>.
+        If you don't specify an <code class="literal">OUTPUT_URL</code>, ReaR stores the recovery system
+        at the location defined by the <code class="literal">BACKUP_URL</code>. Use the following resources
+        to learn more about configuring your boot method:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            For more information about <code class="literal">OUTPUT</code> and <code class="literal">OUTPUT_URL</code>,
+            see <code class="command">man rear</code>, section <em class="citetitle">RESCUE IMAGE CONFIGURATION</em>.
+          </p></li><li class="listitem"><p>
+            For more information about the additional options for each boot method, see the
+            <code class="filename">/usr/share/rear/conf/default.conf</code> file.
+          </p></li></ul></div><p>
+        The following examples show some possible options:
+      </p><div class="complex-example"><div class="example" id="id-1.4.5.4.4" data-id-title="Including the file backup in an ISO image"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 4: </span><span class="title-name">Including the file backup in an ISO image </span></span><a title="Permalink" class="permalink" href="index.html#id-1.4.5.4.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><p>
+          To save both the recovery system and the file backup to the same ISO image, you must use
+          both <code class="literal">BACKUP_URL</code> and <code class="literal">OUTPUT_URL</code>:
+        </p><div class="verbatim-wrap"><pre class="screen">OUTPUT=ISO
+BACKUP_URL=iso:///backup/
+OUTPUT_URL=nfs://<em class="replaceable">HOST.EXAMPLE.COM/PATH/TO/REAR/BACKUP</em></pre></div></div></div></div><div class="complex-example"><div class="example" id="id-1.4.5.4.5" data-id-title="Creating a UEFI-bootable ISO image"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 5: </span><span class="title-name">Creating a UEFI-bootable ISO image </span></span><a title="Permalink" class="permalink" href="index.html#id-1.4.5.4.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><p>
+          If your system boots with a UEFI boot loader, you must configure ReaR to use
+          <span class="package">xorriso</span> to create a UEFI-bootable ISO image:
+        </p><div class="verbatim-wrap"><pre class="screen">OUTPUT=ISO
+ISO_MKISOFS_BIN="/usr/bin/xorrisofs"</pre></div><p>
+          If your system boots with UEFI Secure Boot, you must also add the following line:
+        </p><div class="verbatim-wrap"><pre class="screen">SECURE_BOOT_BOOTLOADER="/boot/efi/EFI/sles/shim.efi"</pre></div></div></div></div><div class="complex-example"><div class="example" id="id-1.4.5.4.6" data-id-title="Saving the recovery system to a USB device"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 6: </span><span class="title-name">Saving the recovery system to a USB device </span></span><a title="Permalink" class="permalink" href="index.html#id-1.4.5.4.6">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><p>
+          To use a USB device as the output, run the following command to format the device and
+          label it <code class="filename">REAR-000</code>:
+        </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">rear format <em class="replaceable">/PATH/TO/DEVICE</em></code></pre></div><p>
+          Configure ReaR to save the recovery system to a bootable USB device:
+        </p><div class="verbatim-wrap"><pre class="screen">OUTPUT=USB
+BACKUP_URL=usb:///dev/disk/by-label/REAR-000</pre></div></div></div></div></li><li class="step"><p>
+        In SUSE Linux 16, <code class="filename">/etc/snapper/config-templates</code> moved to
+        <code class="filename">/usr/share/snapper/config-templates</code>. Change the
+        <code class="literal">COPY_AS_IS</code> line to use the new file path:
+      </p><div class="verbatim-wrap"><pre class="screen">COPY_AS_IS+=( /usr/lib/snapper/installation-helper /usr/share/snapper/config-templates )</pre></div></li><li class="step"><p>
+        If you have file systems on multipath devices, ReaR ignores them by default because it
+        assumes they're on remote storage, not part of the local system. Add the following line to
+        make ReaR include these file systems:
+      </p><div class="verbatim-wrap"><pre class="screen">AUTOEXCLUDE_MULTIPATH=n</pre></div></li><li class="step"><p><span class="step-optional">(Optional)</span> 
+        If necessary, adjust the ReaR Bash scripts for your system's requirements.
+      </p></li><li class="step"><p>
+        Review the ReaR configuration:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">rear dump</code></pre></div><p>
+        This command prints your ReaR configuration, taken from the default settings in
+        <code class="filename">/usr/share/rear/conf/default.conf</code> and your specific settings in
+        <code class="filename">/etc/rear/local.conf</code>.
+      </p></li></ol></div></div></section><section xml:lang="en" class="sect1" id="rear-creating-recovery-system" data-id-title="Creating the recovery system"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Creating the recovery system</span></span> <a title="Permalink" class="permalink" href="index.html#rear-creating-recovery-system">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Generate a ReaR recovery system. The recovery system includes a system-specific recovery
+        installer and might include an internal file backup or reference an external file backup,
+        depending on your backup solution.
+      </p></div></div></div></div><div id="id-1.5.2" data-id-title="Using debugscript mode might log secrets" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Using <code class="option">debugscript</code> mode might log secrets</div><p>
+      This procedure uses <code class="option">debugscript</code> mode to provide the most debugging
+      information, including logging commands and arguments in the ReaR log file. However,
+      be aware that secrets and sensitive information might also be logged. Make sure
+      you remove or obscure this information before sharing the log file.
+    </p></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Prerequisites </span></span><a title="Permalink" class="permalink" href="index.html#id-1.5.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        ReaR is installed on the system you want to back up.
+      </p></li><li class="listitem"><p>
+        ReaR is configured in <code class="filename">/etc/rear/local.conf</code>.
+      </p></li><li class="listitem"><p>
+        If ReaR is configured to use an external storage medium like a USB device, make sure the
+        device is available on the system you want to back up.
+      </p></li><li class="listitem"><p>
+        If your system boots with a UEFI boot loader, make sure the <span class="package">xorriso</span>
+        package is installed.
+      </p></li></ul></div><p>
+    Perform this procedure on the system you want to back up:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Log in as the <code class="systemitem">root</code> user.
+      </p></li><li class="step"><p>
+        Create the recovery system, using the <code class="option">-D</code> option to enable
+        <code class="option">debugscript</code> mode:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            For basic backups with <code class="command">tar</code>, use the <code class="command">rear mkbackup</code>
+            command to create both the file backup and the recovery system:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">rear -D mkbackup</code></pre></div></li><li class="listitem"><p>
+            For third-party backup tools, use the <code class="command">rear mkrescue</code> command to
+            create only the recovery system:
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">rear -D mkrescue</code></pre></div></li></ul></div><p>
+        Both commands perform the following steps:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            Analyze the system and gather information, particularly about the boot loader and the
+            disk layout, including partitioning, file systems, mount points, etc.
+          </p></li><li class="listitem"><p>
+            Create a bootable recovery system with the information gathered in the analysis.
+          </p></li></ul></div><p>
+        The <code class="command">rear mkbackup</code> command also calls the internal backup tool to
+        back up system files and user files. The <code class="command">rear mkrescue</code> command
+        <span><em class="emphasis">doesn't</em></span> create a backup of the files.
+      </p></li><li class="step"><p>
+        If you used <code class="command">rear mkrescue</code>, create a file backup using your third-party
+        backup tool.
+      </p></li></ol></div></div><p>
+    If the command fails, find the issue by reviewing the command output and the log file at
+    <code class="filename">/var/log/rear/</code>. You might need to install a package or adjust the
+    ReaR configuration.
+  </p></section><section xml:lang="en" class="sect1" id="rear-testing-recovery-system" data-id-title="Testing the recovery system"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Testing the recovery system</span></span> <a title="Permalink" class="permalink" href="index.html#rear-testing-recovery-system">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Whenever you create a disaster recovery system with ReaR, you must test it thoroughly on
+        a <span><em class="emphasis">test machine</em></span>. The test machine must be able to serve as an identical
+        replacement for the original machine if needed. We recommend testing the recovery system
+        regularly to ensure everything works as expected.
+      </p></div></div></div></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Prerequisites </span></span><a title="Permalink" class="permalink" href="index.html#id-1.6.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        You created a recovery system on the original machine.
+      </p></li><li class="listitem"><p>
+        The recovery system is available on a bootable recovery medium.
+      </p></li><li class="listitem"><p>
+        The test machine has identical hardware to the original machine.
+      </p></li><li class="listitem"><p>
+        The test storage is clean and as-new. This might mean never-used new storage
+        or existing storage that is completely wiped. For more information, see
+        <a class="link" href="https://en.opensuse.org/SDB:Disaster_Recovery#Prepare_replacement_hardware_for_disaster_recovery" target="_blank">https://en.opensuse.org/SDB:Disaster_Recovery#Prepare_replacement_hardware_for_disaster_recovery</a>.
+      </p></li></ul></div><p>
+    Perform this procedure on the test machine:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Boot the test machine from the recovery medium.
+      </p></li><li class="step"><p>
+        From the menu, select <span class="guimenu">Relax-and-Recover</span>.
+      </p></li><li class="step"><p>
+        Log in as <code class="systemitem">root</code>. No password is needed.
+      </p></li><li class="step"><p>
+        Start the recovery installer, using the <code class="option">-D</code> option to enable
+        <code class="option">debugscript</code> mode:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">rear -D recover</code></pre></div><p>
+        This command performs the following steps:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            Restores the disk layout, including partitions, file systems and mount points.
+          </p></li><li class="listitem"><p>
+            Restores the system files and user files from the backup.
+          </p></li><li class="listitem"><p>
+            Restores the boot loader.
+          </p></li></ul></div><div id="id-1.6.4.4.5" data-id-title="Using debugscript mode might log secrets" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Using <code class="option">debugscript</code> mode might log secrets</div><p>
+          Using <code class="option">debugscript</code> mode provides the most debugging information,
+          including logging commands and arguments in the ReaR log file. However, secrets
+          and sensitive information might also be logged. Make sure you remove or obscure this
+          information before sharing the log file.
+        </p></div></li><li class="step"><p>
+        After the recovery process is finished, reboot the system:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">reboot</code></pre></div></li><li class="step"><p>
+        Log in to the restored system with the original credentials. Check whether the system was
+        successfully re-created and can serve as a replacement for the original machine in the
+        production environment.
+      </p></li><li class="step"><p>
+        When the test is finished, wipe the test storage so that it's ready for the next test or
+        a disaster. Wiping a storage device can take a long time, so we recommend having clean
+        replacement storage ready <span><em class="emphasis">before</em></span> a disaster happens so that you can
+        recover as quickly as possible.
+      </p></li></ol></div></div><p>
+    If the test fails, you might need to update the ReaR configuration and re-create the
+    disaster recovery system.
+  </p></section><section xml:lang="en" class="sect1" id="rear-recovering-from-disaster" data-id-title="Recovering from disaster"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Recovering from disaster</span></span> <a title="Permalink" class="permalink" href="index.html#rear-recovering-from-disaster">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        After a disaster occurs, boot the ReaR recovery system and start the recovery installer
+        on a machine with identical hardware to the original machine. The following procedure
+        refers to this new machine as the <span><em class="emphasis">replacement machine</em></span>.
+        Technically, the replacement machine could be a tested, identical machine that replaces the
+        original machine, or it could be the original machine after replacing any broken hardware.
+      </p></div></div></div></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Prerequisites </span></span><a title="Permalink" class="permalink" href="index.html#id-1.7.2">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+        A recovery system was created on the original machine.
+      </p></li><li class="listitem"><p>
+        The recovery system is available on a bootable recovery medium.
+      </p></li><li class="listitem"><p>
+        The replacement machine has identical hardware to the original machine.
+      </p></li><li class="listitem"><p>
+        The replacement storage is clean and as-new. This might mean never-used new storage
+        or existing storage that is completely wiped. For more information, see
+        <a class="link" href="https://en.opensuse.org/SDB:Disaster_Recovery#Prepare_replacement_hardware_for_disaster_recovery" target="_blank">https://en.opensuse.org/SDB:Disaster_Recovery#Prepare_replacement_hardware_for_disaster_recovery</a>.
+      </p></li></ul></div><p>
+    Perform this procedure on the replacement machine:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        If necessary, replace any broken hardware.
+      </p></li><li class="step"><p>
+        Boot the replacement machine from the recovery medium.
+      </p></li><li class="step"><p>
+        From the menu, select <span class="guimenu">Relax-and-Recover</span>.
+      </p></li><li class="step"><p>
+        Log in as <code class="systemitem">root</code>. No password is needed.
+      </p></li><li class="step"><p>
+        Start the recovery installer, using the <code class="option">-D</code> option to enable
+        <code class="option">debugscript</code> mode:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">rear -D recover</code></pre></div><p>
+        This command performs the following steps:
+      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+            Restores the disk layout, including partitions, file systems and mount points.
+          </p></li><li class="listitem"><p>
+            Restores the system files and user files from the backup.
+          </p></li><li class="listitem"><p>
+            Restores the boot loader.
+          </p></li></ul></div><div id="id-1.7.4.5.5" data-id-title="Using debugscript mode might log secrets" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Using <code class="option">debugscript</code> mode might log secrets</div><p>
+          Using <code class="option">debugscript</code> mode provides the most debugging information,
+          including logging commands and arguments in the ReaR log file. However, secrets
+          and sensitive information might also be logged. Make sure you remove or obscure this
+          information before sharing the log file.
+        </p></div></li><li class="step"><p>
+        After the recovery process is finished, reboot the system:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">reboot</code></pre></div></li><li class="step"><p>
+        Log in to the restored system with the original credentials. Check whether the system was
+        successfully re-created and can serve as a replacement for the original machine in the
+        production environment.
+      </p></li><li class="step"><p>
+        If the checks are successful, add the replacement machine back to the production environment.
+      </p></li></ol></div></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#rear-what-is"><span class="title-number">1 </span><span class="title-name">What is ReaR?</span></a></span></li><li><span class="section"><a href="index.html#rear-installing"><span class="title-number">2 </span><span class="title-name">Installing ReaR</span></a></span></li><li><span class="section"><a href="index.html#rear-configuring"><span class="title-number">3 </span><span class="title-name">Configuring ReaR</span></a></span></li><li><span class="section"><a href="index.html#rear-creating-recovery-system"><span class="title-number">4 </span><span class="title-name">Creating the recovery system</span></a></span></li><li><span class="section"><a href="index.html#rear-testing-recovery-system"><span class="title-number">5 </span><span class="title-name">Testing the recovery system</span></a></span></li><li><span class="section"><a href="index.html#rear-recovering-from-disaster"><span class="title-number">6 </span><span class="title-name">Recovering from disaster</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">7 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>
