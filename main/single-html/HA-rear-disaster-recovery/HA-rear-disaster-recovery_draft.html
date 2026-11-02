@@ -41,7 +41,7 @@
     ],
     "dateCreated": "2026-10-26T00:00+02:00",
     "dateModified": "2026-10-26T00:00+02:00",
-    "datePublished": "2026-11-02T23:03+02:00",
+    "datePublished": "2026-11-02T23:24+02:00",
 
     "articleSection": [ 
         "Storage &amp; Data Replication"
@@ -92,7 +92,7 @@
         </p><p><span><span class="emphasis"><strong>Prerequisites</strong></span></span></p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Two systems: the machine to back up and an identical test machine.
           <span class="quote">“<span class="quote">Identical</span>”</span> in this context means that you can, for example, replace a
           network card with another one using the same kernel driver.</p></li><li class="listitem"><p>An internal backup tool, such as <code class="command">tar</code>, or a supported
-          third-party backup tool, such as EMC NetWorker.</p></li></ul></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Preparing a System for Disaster Recovery with ReaR" hreflang="en" href="rh-rear-disaster-recovery.html" target="_blank">Revision History: Preparing a System for Disaster Recovery with ReaR</a></div></div></div></div><section xml:lang="en" class="sect1" id="rear-what-is" data-id-title="What is ReaR?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">What is ReaR?</span></span> <a title="Permalink" class="permalink" href="#rear-what-is">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+          third-party backup tool.</p></li></ul></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Preparing a System for Disaster Recovery with ReaR" hreflang="en" href="rh-rear-disaster-recovery.html" target="_blank">Revision History: Preparing a System for Disaster Recovery with ReaR</a></div></div></div></div><section xml:lang="en" class="sect1" id="rear-what-is" data-id-title="What is ReaR?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">What is ReaR?</span></span> <a title="Permalink" class="permalink" href="#rear-what-is">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
         ReaR (Relax-and-Recover) is a disaster recovery framework designed to help system administrators
         re-create Linux infrastructure after a system failure. Using ReaR, you can create a
         bootable recovery system that re-creates the failed system's storage layout and restores
@@ -132,9 +132,9 @@
       You must configure ReaR for your specific system and infrastructure, including what to
       back up, how to create and store the recovery system, and what the recovery installer does.
     </p><p>
-      For the file backup, ReaR can use internal backup tools like <code class="command">tar</code> or work
-      with third-party backup tools like EMC NetWorker. For a full list of supported file backup
-      methods, run <code class="command">man rear</code>.
+      For the file backup, ReaR can use internal backup tools, such as <code class="command">tar</code> or
+      <code class="command">rsync</code>, or work with third-party backup tools. For a full list of supported
+      file backup methods, run <code class="command">man rear</code>.
     </p><p>
       If the system is destroyed, you can boot the recovery installer from a physical medium or
       over the network. The recovery installer re-creates the system by preparing the storage layout
@@ -254,14 +254,7 @@ BACKUP_URL=nfs://<em class="replaceable">HOST.EXAMPLE.COM/PATH/TO/REAR/BACKUP</e
 BACKUP_PROG_INCLUDE=( /boot/grub2/i386-pc /boot/grub2/x86_64-efi /home /opt /root /srv /usr/local /var )</pre></div><div id="id-1.4.5.3.5.4" data-id-title="Mount points for BACKUP_PROG_INCLUDE" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Mount points for <code class="literal">BACKUP_PROG_INCLUDE</code></div><p>
             You can find the mount points for the subvolumes on your specific system by running the
             following command:
-          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">findmnt -n -r -o TARGET -t btrfs | grep -v '^/$' | egrep -v 'snapshots|crash'</code></pre></div></div></div></div></div><div class="complex-example"><div class="example" id="ex-rear-config-EMC" data-id-title="Using third-party backup tools like EMC NetWorker"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 3: </span><span class="title-name">Using third-party backup tools like EMC NetWorker </span></span><a title="Permalink" class="permalink" href="#ex-rear-config-EMC">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><p>
-          Third-party backup tools might require additional configuration, like this example for
-          EMC NetWorker. Check <code class="filename">/usr/share/rear/conf/default.conf</code> to see the
-          additional options for your backup tool.
-        </p><div class="verbatim-wrap"><pre class="screen">BACKUP=NSR
-BACKUP_URL=nfs://<em class="replaceable">HOST.EXAMPLE.COM/PATH/TO/REAR/BACKUP</em>
-NSRSERVER=<em class="replaceable">BACKUPSERVER.EXAMPLE.COM</em>
-NSR_RETENTION_TIME="Month"</pre></div></div></div></div></li><li class="step"><p>
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">findmnt -n -r -o TARGET -t btrfs | grep -v '^/$' | egrep -v 'snapshots|crash'</code></pre></div></div></div></div></div></li><li class="step"><p>
         Configure the boot method for the recovery system with <code class="literal">OUTPUT</code> and,
         if necessary, where to store the recovery system with <code class="literal">OUTPUT_URL</code>.
         If you don't specify an <code class="literal">OUTPUT_URL</code>, ReaR stores the recovery system
@@ -275,18 +268,18 @@ NSR_RETENTION_TIME="Month"</pre></div></div></div></div></li><li class="step"><p
             <code class="filename">/usr/share/rear/conf/default.conf</code> file.
           </p></li></ul></div><p>
         The following examples show some possible options:
-      </p><div class="complex-example"><div class="example" id="id-1.4.5.4.4" data-id-title="Including the file backup in an ISO image"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 4: </span><span class="title-name">Including the file backup in an ISO image </span></span><a title="Permalink" class="permalink" href="#id-1.4.5.4.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><p>
+      </p><div class="complex-example"><div class="example" id="id-1.4.5.4.4" data-id-title="Including the file backup in an ISO image"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 3: </span><span class="title-name">Including the file backup in an ISO image </span></span><a title="Permalink" class="permalink" href="#id-1.4.5.4.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><p>
           To save both the recovery system and the file backup to the same ISO image, you must use
           both <code class="literal">BACKUP_URL</code> and <code class="literal">OUTPUT_URL</code>:
         </p><div class="verbatim-wrap"><pre class="screen">OUTPUT=ISO
 BACKUP_URL=iso:///backup/
-OUTPUT_URL=nfs://<em class="replaceable">HOST.EXAMPLE.COM/PATH/TO/REAR/BACKUP</em></pre></div></div></div></div><div class="complex-example"><div class="example" id="id-1.4.5.4.5" data-id-title="Creating a UEFI-bootable ISO image"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 5: </span><span class="title-name">Creating a UEFI-bootable ISO image </span></span><a title="Permalink" class="permalink" href="#id-1.4.5.4.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><p>
+OUTPUT_URL=nfs://<em class="replaceable">HOST.EXAMPLE.COM/PATH/TO/REAR/BACKUP</em></pre></div></div></div></div><div class="complex-example"><div class="example" id="id-1.4.5.4.5" data-id-title="Creating a UEFI-bootable ISO image"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 4: </span><span class="title-name">Creating a UEFI-bootable ISO image </span></span><a title="Permalink" class="permalink" href="#id-1.4.5.4.5">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><p>
           If your system boots with a UEFI boot loader, you must configure ReaR to use
           <span class="package">xorriso</span> to create a UEFI-bootable ISO image:
         </p><div class="verbatim-wrap"><pre class="screen">OUTPUT=ISO
 ISO_MKISOFS_BIN="/usr/bin/xorrisofs"</pre></div><p>
           If your system boots with UEFI Secure Boot, you must also add the following line:
-        </p><div class="verbatim-wrap"><pre class="screen">SECURE_BOOT_BOOTLOADER="/boot/efi/EFI/sles/shim.efi"</pre></div></div></div></div><div class="complex-example"><div class="example" id="id-1.4.5.4.6" data-id-title="Saving the recovery system to a USB device"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 6: </span><span class="title-name">Saving the recovery system to a USB device </span></span><a title="Permalink" class="permalink" href="#id-1.4.5.4.6">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><p>
+        </p><div class="verbatim-wrap"><pre class="screen">SECURE_BOOT_BOOTLOADER="/boot/efi/EFI/sles/shim.efi"</pre></div></div></div></div><div class="complex-example"><div class="example" id="id-1.4.5.4.6" data-id-title="Saving the recovery system to a USB device"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 5: </span><span class="title-name">Saving the recovery system to a USB device </span></span><a title="Permalink" class="permalink" href="#id-1.4.5.4.6">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><p>
           To use a USB device as the output, run the following command to format the device and
           label it <code class="filename">REAR-000</code>:
         </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt root"># </code><code class="command">rear format <em class="replaceable">/PATH/TO/DEVICE</em></code></pre></div><p>
