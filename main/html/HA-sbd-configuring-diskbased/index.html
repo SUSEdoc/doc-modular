@@ -2,7 +2,7 @@
 <!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Configuring Disk-Based SBD in an Existing High Availability Cluster | SUSE Linux Enterprise High Availability 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
 <link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
 <meta name="dcterms.created" content="2025-11-04"/>
-<meta name="dcterms.modified" content="2026-09-18"/>
+<meta name="dcterms.modified" content="2026-10-29"/>
 <meta name="dcterms.dateSubmitted" content="2026-11-02"/>
 <meta name="title" content="Configuring Disk-Based SBD in an Existing High Availab…"/>
 <meta name="description" content="How to configure disk-based SBD in a High Availability cluster that is already installed and running"/>
@@ -40,8 +40,8 @@
       }
     ],
     "dateCreated": "2025-11-04T00:00+02:00",
-    "dateModified": "2026-09-18T00:00+02:00",
-    "datePublished": "2026-11-02T11:47+02:00",
+    "dateModified": "2026-10-29T00:00+02:00",
+    "datePublished": "2026-11-02T23:02+02:00",
     "about": [
       {
         "@type": "Thing",
@@ -278,11 +278,11 @@
         This procedure explains how to configure SBD after the cluster is already installed and
         running, not during the initial cluster setup.
       </p></div></div></div></div><div id="id-1.5.2" data-id-title="Cluster restart required" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Cluster restart required</div><p>
-    In this procedure, the setup script checks whether it is safe to restart the cluster services
-    automatically. If any non-<code class="literal">fence</code> resources are running, the script warns
-    you to restart the cluster services manually. This allows you to put the cluster into
-    maintenance mode first to avoid resource downtime. However, be aware that the resources won't
-    have cluster protection while in maintenance mode.
+    In this procedure, the setup script has to restart the cluster services. If any
+    non-<code class="literal">fence</code> resources are running, put the cluster into maintenance mode
+    before running the script. This allows the services managed by the resources to keep running
+    while the cluster restarts. However, the resources won't be highly available while the cluster
+    is in maintenance mode.
   </p></div><div id="id-1.5.3" data-id-title="Stop DLM before putting the cluster into maintenance mode" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning: Stop DLM before putting the cluster into maintenance mode</div><p>
     To put the cluster into maintenance mode and then stop or restart the cluster services,
     you must first stop DLM and any resources that depend on it, such as GFS2 or
@@ -309,9 +309,24 @@
   </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
         Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code> privileges.
       </p></li><li class="step"><p>
+        Check whether any resources are running:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div></li><li class="step"><p>
+    If DLM and any DLM-dependent resources are running, stop them first. If the resources
+    are in a group, you can just stop the group. If the resources aren't in a group, stop the
+    DLM-dependent resources first and then stop DLM. You can stop multiple resources at once:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm --wait resource stop <em class="replaceable">RESOURCE1 RESOURCE2</em></code></pre></div><p>
+    Use <code class="option">--wait</code> to make sure the resources have really stopped before the
+    command returns.
+  </p></li><li class="step"><p>
+    If any non-<code class="literal">fence</code> resources are running, put the cluster into maintenance mode:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance on</code></pre></div><p>
+    In this state, the cluster stops monitoring all resources. This allows the services managed by
+    the resources to keep running while the cluster restarts. However, the resources won't be
+    highly available while the cluster is in maintenance mode.
+  </p></li><li class="step"><p>
         Run the SBD stage of the cluster setup script, using the option <code class="option">--sbd-device</code>
         (or <code class="option">-s</code>) to specify the shared storage device:
-      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster init sbd --sbd-device /dev/disk/by-id/<em class="replaceable">DEVICE_ID</em></code></pre></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Additional options </span></span><a title="Permalink" class="permalink" href="index.html#id-1.5.7.2.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster init sbd --sbd-device /dev/disk/by-id/<em class="replaceable">DEVICE_ID</em></code></pre></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Additional options </span></span><a title="Permalink" class="permalink" href="index.html#id-1.5.7.5.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
             You can use <code class="option">--sbd-device</code> (or <code class="option">-s</code>) multiple times to
             configure up to three SBD devices. Each SBD device must use a different shared
             storage device.
@@ -322,41 +337,16 @@
             <code class="literal">iTCO_wdt</code>).
           </p></li></ul></div><p>
         The script initializes SBD on the shared storage device, creates a
-        <code class="literal">fence_sbd</code> cluster resource, and updates the SBD configuration
-        file and timeout settings. The script also checks whether it is safe to restart the cluster
-        services automatically. If any non-<code class="literal">fence</code> resources are running, the
-        script warns you to restart the cluster services manually.
+        <code class="literal">fence_sbd</code> cluster resource, updates the SBD configuration
+        file and timeout settings, and restarts the cluster services.
       </p></li><li class="step"><p>
-    If you need to restart the cluster services manually, follow these steps to minimize
-    resource downtime:
-  </p><ol type="a" class="substeps"><li class="step"><p>
-        If DLM and any DLM-dependent resources are running, stop them first. If the resources
-        are in a group, you can just stop the group. If the resources aren't in a group, stop the
-        DLM-dependent resources first and then stop DLM. You can stop multiple resources at once:
-      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm --wait resource stop <em class="replaceable">RESOURCE1 RESOURCE2</em></code></pre></div><p>
-        Use <code class="option">--wait</code> to make sure the resources have really stopped before the
-        command returns.
-      </p></li><li class="step"><p>
-        Put the cluster into maintenance mode:
-      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance on</code></pre></div><p>
-        In this state, the cluster stops monitoring all resources. This allows the services
-        managed by the resources to keep running while the cluster restarts. However, be aware
-        that the resources won't be highly available while in maintenance mode.
-      </p></li><li class="step"><p>
-        Restart the cluster services on all nodes:
-      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster restart --all</code></pre></div></li><li class="step"><p>
-        Check the status of the cluster:
-      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div><p>
-        The nodes will have the status <code class="literal">UNCLEAN (offline)</code>, but will soon
-        change to <code class="literal">Online</code>.
-      </p></li><li class="step"><p>
-        When the nodes are back online, put the cluster back into normal operation:
-      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance off</code></pre></div></li><li class="step"><p>
-        If you stopped DLM and any DLM-dependent resources, you can start them again now.
-        If the resources are in a group, you can just start the group. If the resources aren't
-        in a group, start DLM first and then start the DLM-dependent resources. You can start
-        multiple resources at once:
-      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm resource start <em class="replaceable">RESOURCE1 RESOURCE2</em></code></pre></div></li></ol></li><li class="step"><p>
+    If the cluster is still in maintenance mode, put it back into normal operation:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance off</code></pre></div></li><li class="step"><p>
+    If you stopped DLM and any DLM-dependent resources, you can start them again now.
+    If the resources are in a group, you can just start the group. If the resources aren't
+    in a group, start DLM first and then start the DLM-dependent resources. You can start
+    multiple resources at once:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm resource start <em class="replaceable">RESOURCE1 RESOURCE2</em></code></pre></div></li><li class="step"><p>
         Check the SBD configuration:
       </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm sbd configure show</code></pre></div><p>
         The output of this command shows the SBD device's metadata, the enabled settings in the

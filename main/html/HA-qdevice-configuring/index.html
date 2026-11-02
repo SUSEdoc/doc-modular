@@ -2,7 +2,7 @@
 <!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Configuring QDevice and QNetd in an Existing High Availability Cluster | SUSE Linux Enterprise High Availability 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
 <link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
 <meta name="dcterms.created" content="2025-11-04"/>
-<meta name="dcterms.modified" content="2026-09-18"/>
+<meta name="dcterms.modified" content="2026-10-29"/>
 <meta name="dcterms.dateSubmitted" content="2026-11-02"/>
 <meta name="title" content="Configuring QDevice and QNetd in an Existing High Avai…"/>
 <meta name="description" content="How to configure QDevice and QNetd in a High Availability cluster that is already installed and running"/>
@@ -40,8 +40,8 @@
       }
     ],
     "dateCreated": "2025-11-04T00:00+02:00",
-    "dateModified": "2026-09-18T00:00+02:00",
-    "datePublished": "2026-11-02T11:47+02:00",
+    "dateModified": "2026-10-29T00:00+02:00",
+    "datePublished": "2026-11-02T23:01+02:00",
     "about": [
       {
         "@type": "Thing",
@@ -189,13 +189,13 @@
 </p><p>
         This procedure explains how to configure QDevice after the cluster is already
         installed and running, not during the initial cluster setup.
-      </p></div></div></div></div><div id="id-1.4.2" data-id-title="Cluster restart might be required" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Cluster restart might be required</div><p>
-      The setup script checks if a cluster restart is required and whether it is safe to do so
-      automatically. If any non-<code class="literal">fence</code> resources are running, the script warns
-      you to restart the cluster services manually. This allows you to put the cluster into
-      maintenance mode first to avoid resource downtime. However, be aware that the resources won't
-      have cluster protection while in maintenance mode.
-    </p></div><div id="id-1.4.3" data-id-title="Stop DLM before putting the cluster into maintenance mode" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning: Stop DLM before putting the cluster into maintenance mode</div><p>
+      </p></div></div></div></div><div id="id-1.4.2" data-id-title="Cluster restart required" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Cluster restart required</div><p>
+    In this procedure, the setup script has to restart the cluster services. If any
+    non-<code class="literal">fence</code> resources are running, put the cluster into maintenance mode
+    before running the script. This allows the services managed by the resources to keep running
+    while the cluster restarts. However, the resources won't be highly available while the cluster
+    is in maintenance mode.
+  </p></div><div id="id-1.4.3" data-id-title="Stop DLM before putting the cluster into maintenance mode" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning: Stop DLM before putting the cluster into maintenance mode</div><p>
     To put the cluster into maintenance mode and then stop or restart the cluster services,
     you must first stop DLM and any resources that depend on it, such as GFS2 or
     <code class="systemitem">lvmlockd</code>. When the cluster is in maintenance mode, DLM keeps
@@ -219,112 +219,101 @@
   </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
         Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code> privileges.
       </p></li><li class="step"><p>
-        Run the QDevice stage of the cluster setup script:
-      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster init qdevice</code></pre></div></li><li class="step"><p>
-        Confirm with <code class="literal">y</code> that you want to configure QDevice and QNetd.
-      </p></li><li class="step"><p>
-        Enter the IP address or host name of the QNetd server, with or without a user name:
-      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        Check whether any resources are running:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div></li><li class="step"><p>
+    If DLM and any DLM-dependent resources are running, stop them first. If the resources
+    are in a group, you can just stop the group. If the resources aren't in a group, stop the
+    DLM-dependent resources first and then stop DLM. You can stop multiple resources at once:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm --wait resource stop <em class="replaceable">RESOURCE1 RESOURCE2</em></code></pre></div><p>
+    Use <code class="option">--wait</code> to make sure the resources have really stopped before the
+    command returns.
+  </p></li><li class="step"><p>
+    If any non-<code class="literal">fence</code> resources are running, put the cluster into maintenance mode:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance on</code></pre></div><p>
+    In this state, the cluster stops monitoring all resources. This allows the services managed by
+    the resources to keep running while the cluster restarts. However, the resources won't be
+    highly available while the cluster is in maintenance mode.
+  </p></li><li class="step"><p>
+        Run the QDevice stage of the cluster setup script, using the option
+        <code class="option">--qnetd-hostname</code> to specify the IP address or host name
+        of the QNetd server:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster init qdevice --qnetd-hostname <em class="replaceable">[USER@]QNETD_SERVER</em></code></pre></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
             If you include a non-<code class="systemitem">root</code> user name, a later step will prompt you for the user's
             password and the script will configure passwordless SSH authentication from the nodes
             to the QNetd server.
           </p></li><li class="listitem"><p>
             If you omit a user name, the script defaults to the <code class="systemitem">root</code> user, so passwordless
             SSH authentication must already be configured for the nodes to access the QNetd server.
-          </p></li></ul></div><p>
-        For the remaining fields, you can accept the default values or change them as required:
-      </p></li><li class="step"><p>
-        Accept the proposed port (<code class="literal">5403</code>) or enter a different one.
-      </p></li><li class="step"><p>
-        Choose the algorithm that determines how votes are assigned. The default is
-        <code class="literal">ffsplit</code>.
-      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
-            <code class="literal">ffsplit</code> (<span class="quote">“<span class="quote">fifty-fifty split</span>”</span>): If the cluster splits
-            into two even partitions, one of the partitions gets the vote based on the results of
-            heuristics checks and other factors. This algorithm is helpful for clusters with an
-            even number of nodes.
-          </p></li><li class="listitem"><p>
-            <code class="literal">lms</code> (<span class="quote">“<span class="quote">last man standing</span>”</span>): If only one remaining node
-            can still communicate with the QNetd server, that node gets the vote. This algorithm
-            is helpful for clusters where only one <span><em class="emphasis">active</em></span> node needs to remain
-            quorate.
-          </p></li></ul></div></li><li class="step"><p>
-        Choose the method to use when a tie-breaker is required. The default is
-        <code class="literal">lowest</code>.
-      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
-            <code class="literal">lowest</code>: The node with the lowest node ID gets the vote.
-          </p></li><li class="listitem"><p>
-            <code class="literal">highest</code>: The node with the highest node ID gets the vote.
-          </p></li><li class="listitem"><p>
-            Alternatively, you can enter a specific node ID. The designated node always gets the vote.
-          </p></li></ul></div></li><li class="step"><p>
-        Choose whether to enable TLS for client certificate checking. The default is
-        <code class="literal">on</code>.
-      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
-            <code class="literal">off</code>: TLS is not required and should not be tried.
-          </p></li><li class="listitem"><p>
-            <code class="literal">on</code>: Attempt to connect with TLS, but connect without TLS if it is
-            not available.
-          </p></li><li class="listitem"><p>
-            <code class="literal">required</code>: TLS is mandatory, so QDevice exits with an error if TLS
-            is not available.
-          </p></li></ul></div></li><li class="step"><p>
-        Enter heuristics commands to assist in quorum calculation, or leave the field blank to skip
-        this step.
-      </p><p>
-        You can enter one command, multiple commands separated by semicolons, or the path to a
-        script file. The commands can be written in any programming language.
-      </p><p>
-        If you enter heuristics commands, you must also select the mode of operation. The default is
-        <code class="literal">sync</code>.
-      </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
-            <code class="literal">sync</code>: QDevice runs heuristics when the cluster services start
-            (or restart), when the cluster membership changes, and when nodes connect to the
-            QNetd server.
-          </p></li><li class="listitem"><p>
-            <code class="literal">on</code>: QDevice runs heuristics in the same scenarios as
-            <code class="literal">sync</code> and also at regular intervals.
-          </p></li></ul></div></li><li class="step"><p>
+          </p></li></ul></div><div class="variablelist"><div class="title-container"><div class="variablelist-title-wrap"><div class="variablelist-title"><span class="title-number-name"><span class="title-name">Additional options </span></span><a title="Permalink" class="permalink" href="index.html#id-1.4.6.5.4">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><p>
+          The setup script automatically uses the default values for the QDevice configuration.
+          If you need to change any of these settings, you can use the following options:
+        </p><dl class="variablelist"><dt id="id-1.4.6.5.4.3"><span class="term">QNetd communication port</span></dt><dd><p>
+              The default is <code class="literal">5403</code>. You can use the <code class="option">--qnetd-port</code>
+              option to specify a different port.
+            </p></dd><dt id="id-1.4.6.5.4.4"><span class="term">Voting decision algorithm</span></dt><dd><p>
+              The default is <code class="literal">ffsplit</code>. You can use the
+              <code class="option">--qdevice-algo</code> option to specify a different algorithm.
+            </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                  <code class="literal">ffsplit</code> (fifty-fifty split): If the cluster splits into two
+                  even partitions, one of the partitions gets the vote based on the results of
+                  heuristics checks and other factors. This algorithm is helpful for clusters with
+                  an even number of nodes.
+                </p></li><li class="listitem"><p>
+                  <code class="literal">lms</code> (last man standing): If only one remaining node can still
+                  communicate with the QNetd server, that node gets the vote. This algorithm is
+                  helpful for clusters where only one <span><em class="emphasis">active</em></span> node needs to
+                  remain quorate.
+                </p></li></ul></div></dd><dt id="id-1.4.6.5.4.5"><span class="term">Tie-breaker method</span></dt><dd><p>
+              The default is <code class="literal">lowest</code>. You can use the
+              <code class="option">--qdevice-tie-breaker</code> option to specify a different method.
+            </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                  <code class="literal">lowest</code>: The node with the lowest node ID gets the vote.
+                </p></li><li class="listitem"><p>
+                  <code class="literal">highest</code>: The node with the highest node ID gets the vote.
+                </p></li><li class="listitem"><p>
+                  Alternatively, you can set a specific node ID. The designated node always gets
+                  the vote.
+                </p></li></ul></div></dd><dt id="id-1.4.6.5.4.6"><span class="term">TLS for client certificate checking</span></dt><dd><p>
+              The default is <code class="literal">on</code>. You can use the <code class="option">--qdevice-tls</code>
+              option to specify a different setting.
+            </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                  <code class="literal">off</code>: TLS isn't required and shouldn't be tried.
+                </p></li><li class="listitem"><p>
+                  <code class="literal">on</code>: Attempt to connect with TLS, but connect without TLS if it
+                  isn't available.
+                </p></li><li class="listitem"><p>
+                  <code class="literal">required</code>: TLS is mandatory, so QDevice exits with an error
+                  if TLS isn't available.
+                </p></li></ul></div></dd><dt id="id-1.4.6.5.4.7"><span class="term">Heuristics commands</span></dt><dd><p>
+              You can use the <code class="option">--qdevice-heuristics</code> option to specify heuristics
+              commands to assist in quorum calculation. You can enter one command, multiple commands
+              separated by semicolons, or the path to a script file. The commands can be written in
+              any programming language.
+            </p><p>
+              If you use heuristics commands, you must also use the
+              <code class="option">--qdevice-heuristics-mode</code> option to specify the mode of operation.
+              The default is <code class="literal">sync</code>.
+            </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+                  <code class="literal">sync</code>: QDevice runs heuristics when the cluster services start
+                  (or restart), when the cluster membership changes, and when nodes connect to the
+                  QNetd server.
+                </p></li><li class="listitem"><p>
+                  <code class="literal">on</code>: QDevice runs heuristics in the same scenarios as
+                  <code class="literal">sync</code> and also at regular intervals.
+                </p></li></ul></div></dd></dl></div></li><li class="step"><p>
         If required, the script prompts you for the password of the QNetd server, then configures
         passwordless SSH authentication between the cluster nodes and the QNetd server.
       </p><p>
-        The script configures QDevice on the nodes and completes the QNetd server's
-        configuration, including generating CA and server certificates and starting the
-        <code class="systemitem">corosync-qnetd</code> service. The script also checks whether a
-        cluster restart is required and whether it is safe to do so automatically. If any
-        non-<code class="literal">fence</code> resources are running, the script warns you to restart
-        the cluster services manually.
+        The script configures QDevice on the nodes, completes the QNetd server's configuration,
+        and restarts the cluster services.
       </p></li><li class="step"><p>
-    If you need to restart the cluster services manually, follow these steps to minimize
-    resource downtime:
-  </p><ol type="a" class="substeps"><li class="step"><p>
-        If DLM and any DLM-dependent resources are running, stop them first. If the resources
-        are in a group, you can just stop the group. If the resources aren't in a group, stop the
-        DLM-dependent resources first and then stop DLM. You can stop multiple resources at once:
-      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm --wait resource stop <em class="replaceable">RESOURCE1 RESOURCE2</em></code></pre></div><p>
-        Use <code class="option">--wait</code> to make sure the resources have really stopped before the
-        command returns.
-      </p></li><li class="step"><p>
-        Put the cluster into maintenance mode:
-      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance on</code></pre></div><p>
-        In this state, the cluster stops monitoring all resources. This allows the services
-        managed by the resources to keep running while the cluster restarts. However, be aware
-        that the resources won't be highly available while in maintenance mode.
-      </p></li><li class="step"><p>
-        Restart the cluster services on all nodes:
-      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster restart --all</code></pre></div></li><li class="step"><p>
-        Check the status of the cluster:
-      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div><p>
-        The nodes will have the status <code class="literal">UNCLEAN (offline)</code>, but will soon
-        change to <code class="literal">Online</code>.
-      </p></li><li class="step"><p>
-        When the nodes are back online, put the cluster back into normal operation:
-      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance off</code></pre></div></li><li class="step"><p>
-        If you stopped DLM and any DLM-dependent resources, you can start them again now.
-        If the resources are in a group, you can just start the group. If the resources aren't
-        in a group, start DLM first and then start the DLM-dependent resources. You can start
-        multiple resources at once:
-      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm resource start <em class="replaceable">RESOURCE1 RESOURCE2</em></code></pre></div></li></ol></li></ol></div></div></section><section xml:lang="en" class="sect1" id="ha-qdevice-checking-setup" data-id-title="Checking the QDevice and QNetd setup"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Checking the QDevice and QNetd setup</span></span> <a title="Permalink" class="permalink" href="index.html#ha-qdevice-checking-setup">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+    If the cluster is still in maintenance mode, put it back into normal operation:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance off</code></pre></div></li><li class="step"><p>
+    If you stopped DLM and any DLM-dependent resources, you can start them again now.
+    If the resources are in a group, you can just start the group. If the resources aren't
+    in a group, start DLM first and then start the DLM-dependent resources. You can start
+    multiple resources at once:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm resource start <em class="replaceable">RESOURCE1 RESOURCE2</em></code></pre></div></li></ol></div></div></section><section xml:lang="en" class="sect1" id="ha-qdevice-checking-setup" data-id-title="Checking the QDevice and QNetd setup"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Checking the QDevice and QNetd setup</span></span> <a title="Permalink" class="permalink" href="index.html#ha-qdevice-checking-setup">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
        Use the <code class="command">crm corosync status</code> command to check the cluster's quorum status
        and the status of QDevice and QNetd. You can run this command from any node in the cluster.
       </p></div></div></div></div><p>
@@ -434,13 +423,38 @@ Cluster "hacluster":
         Vote:                   No change (ACK)</pre></div></div></div></section><section xml:lang="en" class="sect1" id="ha-qdevice-changing-configuration" data-id-title="Changing the QDevice or QNetd configuration"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Changing the QDevice or QNetd configuration</span></span> <a title="Permalink" class="permalink" href="index.html#ha-qdevice-changing-configuration">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
         Use this procedure to change the configuration of QDevice or QNetd (for example, to
         change the tie-breaker method from <code class="literal">lowest</code> to <code class="literal">highest</code>).
-      </p></div></div></div></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+      </p></div></div></div></div><div id="id-1.6.2" data-id-title="Cluster restart required" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Cluster restart required</div><p>
+      In this procedure, you must stop the cluster services. If any non-fence resources are running,
+      put the cluster into maintenance mode first. This allows the services managed by the resources
+      to keep running even when you stop the cluster services. However, the resources won't be
+      highly available while the cluster is in maintenance mode.
+    </p></div><div id="id-1.6.3" data-id-title="Stop DLM before putting the cluster into maintenance mode" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning: Stop DLM before putting the cluster into maintenance mode</div><p>
+    To put the cluster into maintenance mode and then stop or restart the cluster services,
+    you must first stop DLM and any resources that depend on it, such as GFS2 or
+    <code class="systemitem">lvmlockd</code>. When the cluster is in maintenance mode, DLM keeps
+    running even if the cluster services are offline. However, DLM depends on Corosync,
+    so if Corosync stops but DLM is still running, the DLM instances on each node consider
+    the other instances lost and request node fencing.
+  </p></div><p>
+    Perform this procedure on only one cluster node:
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
         Log in either as the <code class="systemitem">root</code> user or as a user with <code class="command">sudo</code> privileges.
       </p></li><li class="step"><p>
-        Put the cluster into maintenance mode:
+        Check whether any resources are running:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div></li><li class="step"><p>
+    If DLM and any DLM-dependent resources are running, stop them first. If the resources
+    are in a group, you can just stop the group. If the resources aren't in a group, stop the
+    DLM-dependent resources first and then stop DLM. You can stop multiple resources at once:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm --wait resource stop <em class="replaceable">RESOURCE1 RESOURCE2</em></code></pre></div><p>
+    Use <code class="option">--wait</code> to make sure the resources have really stopped before the
+    command returns.
+  </p></li><li class="step"><p>
+        If any non-<code class="literal">fence</code> resources are running, put the cluster into
+        maintenance mode:
       </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance on</code></pre></div><p>
-        In this state, the cluster stops monitoring all resources. This allows the services
-        managed by the resources to keep running even when you stop the cluster services.
+        In this state, the cluster stops monitoring all resources. This allows the services managed
+        by the resources to keep running even when you stop the cluster services. However, the
+        resources won't be highly available while the cluster is in maintenance mode.
       </p></li><li class="step"><p>
         Stop the cluster services on all nodes:
       </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster stop --all</code></pre></div></li><li class="step"><p>
@@ -460,6 +474,11 @@ Cluster "hacluster":
       </p></li><li class="step"><p>
         When the nodes are back online, put the cluster back into normal operation:
       </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance off</code></pre></div></li><li class="step"><p>
+    If you stopped DLM and any DLM-dependent resources, you can start them again now.
+    If the resources are in a group, you can just start the group. If the resources aren't
+    in a group, start DLM first and then start the DLM-dependent resources. You can start
+    multiple resources at once:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm resource start <em class="replaceable">RESOURCE1 RESOURCE2</em></code></pre></div></li><li class="step"><p>
         Verify that the change was successful:
       </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm corosync status qnetd</code></pre></div></li></ol></div></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
     Copyright© 2006–

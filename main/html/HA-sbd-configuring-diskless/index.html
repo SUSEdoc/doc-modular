@@ -2,7 +2,7 @@
 <!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Configuring Diskless SBD in an Existing High Availability Cluster | SUSE Linux Enterprise High Availability 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
 <link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
 <meta name="dcterms.created" content="2026-01-15"/>
-<meta name="dcterms.modified" content="2026-09-18"/>
+<meta name="dcterms.modified" content="2026-10-29"/>
 <meta name="dcterms.dateSubmitted" content="2026-11-02"/>
 <meta name="title" content="Configuring Diskless SBD in an Existing High Availabil…"/>
 <meta name="description" content="How to configure diskless SBD in a High Availability cluster that is already installed and running"/>
@@ -40,8 +40,8 @@
       }
     ],
     "dateCreated": "2026-01-15T00:00+02:00",
-    "dateModified": "2026-09-18T00:00+02:00",
-    "datePublished": "2026-11-02T11:46+02:00",
+    "dateModified": "2026-10-29T00:00+02:00",
+    "datePublished": "2026-11-02T23:01+02:00",
     "about": [
       {
         "@type": "Thing",
@@ -259,12 +259,12 @@
         This procedure explains how to configure SBD after the cluster is already installed and
         running, not during the initial cluster setup.
       </p></div></div></div></div><div id="id-1.5.2" data-id-title="Cluster restart required" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Cluster restart required</div><p>
-      In this procedure, the setup script has to restart the cluster services before it can modify
-      the <code class="literal">fencing-watchdog-timeout</code>. Therefore, if any resources are running, you
-      must put the cluster into maintenance mode before running the script. This allows the services
-      managed by the resources to keep running while the cluster restarts. However, be aware that
-      the resources won't have cluster protection while in maintenance mode.
-    </p></div><div id="id-1.5.3" data-id-title="Stop DLM before putting the cluster into maintenance mode" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning: Stop DLM before putting the cluster into maintenance mode</div><p>
+    In this procedure, the setup script has to restart the cluster services. If any
+    non-<code class="literal">fence</code> resources are running, put the cluster into maintenance mode
+    before running the script. This allows the services managed by the resources to keep running
+    while the cluster restarts. However, the resources won't be highly available while the cluster
+    is in maintenance mode.
+  </p></div><div id="id-1.5.3" data-id-title="Stop DLM before putting the cluster into maintenance mode" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning: Stop DLM before putting the cluster into maintenance mode</div><p>
     To put the cluster into maintenance mode and then stop or restart the cluster services,
     you must first stop DLM and any resources that depend on it, such as GFS2 or
     <code class="systemitem">lvmlockd</code>. When the cluster is in maintenance mode, DLM keeps
@@ -291,12 +291,12 @@
     Use <code class="option">--wait</code> to make sure the resources have really stopped before the
     command returns.
   </p></li><li class="step"><p>
-        If any other resources are running, put the cluster into maintenance mode:
-      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance on</code></pre></div><p>
-        In this state, the cluster stops monitoring all resources. This allows the services
-        managed by the resources to keep running while the cluster restarts. However, be aware
-        that the resources won't be highly available while in maintenance mode.
-      </p></li><li class="step"><p>
+    If any non-<code class="literal">fence</code> resources are running, put the cluster into maintenance mode:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance on</code></pre></div><p>
+    In this state, the cluster stops monitoring all resources. This allows the services managed by
+    the resources to keep running while the cluster restarts. However, the resources won't be
+    highly available while the cluster is in maintenance mode.
+  </p></li><li class="step"><p>
         Run the SBD stage of the cluster setup script, using the option <code class="option">--enable-sbd</code>
         (or <code class="option">-S</code>) to specify diskless SBD:
       </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster init sbd --enable-sbd </code></pre></div><div class="itemizedlist"><div class="title-container"><div class="itemizedlist-title-wrap"><div class="itemizedlist-title"><span class="title-number-name"><span class="title-name">Additional options </span></span><a title="Permalink" class="permalink" href="index.html#id-1.5.6.5.3">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><ul class="itemizedlist"><li class="listitem"><p>
@@ -309,8 +309,8 @@
         updates additional timeout settings. Unlike other node fencing mechanisms, diskless SBD
         does not need a fence agent.
       </p></li><li class="step"><p>
-        If the cluster is still in maintenance mode, put it back into normal operation:
-      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance off</code></pre></div></li><li class="step"><p>
+    If the cluster is still in maintenance mode, put it back into normal operation:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm maintenance off</code></pre></div></li><li class="step"><p>
     If you stopped DLM and any DLM-dependent resources, you can start them again now.
     If the resources are in a group, you can just start the group. If the resources aren't
     in a group, start DLM first and then start the DLM-dependent resources. You can start
