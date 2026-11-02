@@ -2,7 +2,7 @@
 <!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Installing a Basic Three-Node High Availability Cluster | SUSE Linux Enterprise High Availability 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
 <link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
 <meta name="dcterms.created" content="2025-11-04"/>
-<meta name="dcterms.modified" content="2026-09-17"/>
+<meta name="dcterms.modified" content="2026-10-30"/>
 <meta name="dcterms.dateSubmitted" content="2026-11-02"/>
 <meta name="title" content="Installing a Basic Three-Node High Availability Cluste…"/>
 <meta name="description" content="How to set up a basic three-node High Availability cluster for testing purposes"/>
@@ -40,8 +40,8 @@
       }
     ],
     "dateCreated": "2025-11-04T00:00+02:00",
-    "dateModified": "2026-09-17T00:00+02:00",
-    "datePublished": "2026-11-02T23:23+02:00",
+    "dateModified": "2026-10-30T00:00+02:00",
+    "datePublished": "2026-11-02T23:34+02:00",
     "about": [
       {
         "@type": "Thing",
@@ -234,20 +234,18 @@
           Detects or generates SSH keys for passwordless login between cluster nodes.
         </p></dd><dt id="id-1.6.3.3.3"><span class="term">Firewall</span></dt><dd><p>
           Opens the ports in the firewall that are needed for cluster communication.
-        </p></dd><dt id="id-1.6.3.3.4"><span class="term">Csync2</span></dt><dd><p>
-          Configures Csync2 to replicate configuration files across all nodes in a cluster.
-        </p></dd><dt id="id-1.6.3.3.5"><span class="term">Corosync</span></dt><dd><p>
+        </p></dd><dt id="id-1.6.3.3.4"><span class="term">Corosync</span></dt><dd><p>
           Configures the cluster communication system.
-        </p></dd><dt id="id-1.6.3.3.6"><span class="term">SBD/watchdog</span></dt><dd><p>
+        </p></dd><dt id="id-1.6.3.3.5"><span class="term">SBD/watchdog</span></dt><dd><p>
           Checks if a watchdog exists and asks whether to configure SBD as the node fencing mechanism.
-        </p></dd><dt id="id-1.6.3.3.7"><span class="term">Hawk cluster administration</span></dt><dd><p>
+        </p></dd><dt id="id-1.6.3.3.6"><span class="term">Hawk cluster administration</span></dt><dd><p>
           Enables the Hawk service and displays the URL for the Hawk Web interface.
-        </p></dd><dt id="id-1.6.3.3.8"><span class="term">Virtual floating IP</span></dt><dd><p>
-          Asks whether to configure a virtual IP address for the Hawk Web interface.
-        </p></dd><dt id="id-1.6.3.3.9"><span class="term">QDevice/QNetd</span></dt><dd><p>
+        </p></dd><dt id="id-1.6.3.3.7"><span class="term">QDevice/QNetd</span></dt><dd><p>
           Asks whether to configure QDevice and QNetd to participate in quorum decisions.
           This is recommended for clusters with an even number of nodes,
           and especially for two-node clusters.
+        </p></dd><dt id="id-1.6.3.3.8"><span class="term">Virtual floating IP</span></dt><dd><p>
+          Asks whether to configure a virtual IP address for the Hawk Web interface.
         </p></dd></dl></div><div id="id-1.6.3.4" data-id-title="Pacemaker default settings" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Pacemaker default settings</div><p>
       The options set by the <code class="command">crm cluster init</code> script might not be the same
       as the Pacemaker default settings. You can check which settings the script changed in
@@ -276,8 +274,8 @@
       </p></li><li class="step"><p>
         Start the <code class="command">crm cluster init</code> script:
       </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster init</code></pre></div><p>
-        The script checks whether <code class="systemitem">chrony</code> is running, opens the required firewall ports, configures
-        Csync2, and checks for SSH keys. If no SSH keys are available, the script generates them.
+        The script checks whether <code class="systemitem">chrony</code> is running, opens the required firewall ports and checks
+        for SSH keys. If no SSH keys are available, the script generates them.
       </p></li><li class="step"><p>
         Configure Corosync for cluster communication:
       </p><ol type="a" class="substeps"><li class="step"><p>
@@ -305,6 +303,13 @@
         If no hardware watchdog is available, the script configures the software watchdog
         <code class="systemitem">softdog</code>.
       </p></li><li class="step"><p>
+        Choose whether to configure QDevice and QNetd:
+      </p><p>
+        For the minimal setup described in this document, decline with <code class="literal">n</code>.
+      </p><p>
+        The script creates a default cluster user and password, then starts the cluster services to
+        bring the cluster online and enable Hawk.
+      </p></li><li class="step"><p>
         Configure a virtual IP address for cluster administration with the Hawk Web interface:
       </p><ol type="a" class="substeps"><li class="step"><p>
             Confirm with <code class="literal">y</code> that you want to configure a virtual IP address.
@@ -314,17 +319,13 @@
         Instead of logging in to Hawk on an individual cluster node, you can connect to the
         virtual IP address.
       </p></li><li class="step"><p>
-        Choose whether to configure QDevice and QNetd:
-      </p><p>
-        For the minimal setup described in this document, decline with <code class="literal">n</code>.
-      </p></li></ol></div></div><p>
-    The script starts the cluster services to bring the cluster online and enable Hawk. The URL to
-    use for Hawk is displayed on the screen. You can also check the status of the cluster with the
-    <code class="command">crm status</code> command.
-  </p><div id="id-1.6.4.6" data-id-title="Secure password for hacluster" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Secure password for <code class="systemitem">hacluster</code></div><p>
-      The <code class="command">crm cluster init</code> script creates a default cluster user and password.
-      Replace the default password with a secure one as soon as possible:
-    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo passwd hacluster</code></pre></div></div></section></section><section xml:lang="en" class="sect1" id="ha-adding-nodes" data-id-title="Adding the second and third nodes"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Adding the second and third nodes</span></span> <a title="Permalink" class="permalink" href="#ha-adding-nodes">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        When the installation is complete, replace the default cluster user's password with a
+        secure one:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo passwd hacluster</code></pre></div></li><li class="step"><p>
+        Check the status of the cluster:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div></li><li class="step"><p>
+        Check the status of SBD:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm sbd status</code></pre></div></li></ol></div></div></section></section><section xml:lang="en" class="sect1" id="ha-adding-nodes" data-id-title="Adding the second and third nodes"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">Adding the second and third nodes</span></span> <a title="Permalink" class="permalink" href="#ha-adding-nodes">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
         Add more nodes to the cluster with the <code class="command">crm cluster join</code> script.
         The script only needs access to an existing cluster node and completes the basic
         setup on the current machine automatically. For more information, run the
@@ -357,8 +358,7 @@
           If you set up the first node as a <code class="command">sudo</code> user, you must specify that user with
      the <code class="option">-c</code> option:
         </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm cluster join -c <em class="replaceable">USER@NODE1</em></code></pre></div></li></ul></div><p>
-      The script checks if <code class="systemitem">chrony</code> is running, opens the required firewall ports, and
-      configures Csync2.
+      The script checks if <code class="systemitem">chrony</code> is running and opens the required firewall ports.
     </p></li><li class="step"><p>
       If you did not already specify the first node with <code class="option">-c</code>, you are prompted for
       its IP address or host name.
@@ -376,15 +376,17 @@
            If the cluster has two Corosync communication channels configured, the script prompts
            you for an IP address for <code class="literal">ring1</code>. This IP address must be on the same
            subnet as the IP address used for <code class="literal">ring1</code> on the first node.
-         </p></li></ol></li></ol></div></div><p>
-    The script copies the cluster configuration from the first node, adjusts the timeout settings to
-    consider the new node, and brings the new node online.
-    </p><p>
-    You can check the status of the cluster with the <code class="command">crm status</code> command.
-  </p><div id="id-1.7.7" data-id-title="Secure password for hacluster" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Secure password for <code class="systemitem">hacluster</code></div><p>
-      The <code class="command">crm cluster join</code> script creates a default cluster user and password.
-      On each node, replace the default password with a secure one as soon as possible:
-    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo passwd hacluster</code></pre></div></div></section><section xml:lang="en" class="sect1" id="ha-hawk-logging-in" data-id-title="Logging in to Hawk"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Logging in to Hawk</span></span> <a title="Permalink" class="permalink" href="#ha-hawk-logging-in">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+         </p></li></ol><p>
+        The script copies the cluster configuration from the first node, adjusts the timeout settings
+        to consider the new node, and brings the new node online.
+      </p></li><li class="step"><p>
+        When the installation is complete, replace the default cluster user's password with a
+        secure one:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo passwd hacluster</code></pre></div></li><li class="step"><p>
+        Check the status of the cluster:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm status</code></pre></div></li><li class="step"><p>
+        Check the status of SBD:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo crm sbd status</code></pre></div></li></ol></div></div></section><section xml:lang="en" class="sect1" id="ha-hawk-logging-in" data-id-title="Logging in to Hawk"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Logging in to Hawk</span></span> <a title="Permalink" class="permalink" href="#ha-hawk-logging-in">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
         Hawk allows you to manage a High Availability cluster using a graphical Web browser. You can also
         configure a floating, virtual IP address that allows clients to connect to Hawk no
         matter which node the Hawk service is running on.
