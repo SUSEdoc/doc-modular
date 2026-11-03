@@ -41,7 +41,7 @@
     ],
     "dateCreated": "2025-11-26T00:00+02:00",
     "dateModified": "2026-10-05T00:00+02:00",
-    "datePublished": "2026-11-03T09:17+02:00",
+    "datePublished": "2026-11-03T09:19+02:00",
 
     "articleSection": [ 
         "Systems Management"
@@ -194,22 +194,24 @@ This section describes the generic usage of the <code class="command">journalctl
   </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">journalctl [OPTIONS...] [MATCHES...]</code></pre></div><div id="id-1.4.3.5" data-id-title="Messages related to a specific executable" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip: Messages related to a specific executable</div><p>
     To show all journal messages related to a specific executable, specify the
     full path to the executable:
-   </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl /usr/lib/systemd/systemd</pre></div></div><p>Listed below are the common  useful options to enhance the default <code class="command">journalctl</code> behavior:</p><div class="variablelist"><dl class="variablelist"><dt id="id-1.4.3.8.1"><span class="term">-f</span></dt><dd><p>
+   </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl /usr/lib/systemd/systemd</pre></div></div><p>Listed below are the common  useful options to enhance the default <code class="command">journalctl</code> behavior:</p><div class="variablelist"><dl class="variablelist"><dt id="id-1.4.3.7.1"><span class="term">-f</span></dt><dd><p>
       Shows only the most recent journal messages, and prints new log entries
       as they are added to the journal.
-     </p></dd><dt id="id-1.4.3.8.2"><span class="term"/></dt><dd><p>
+     </p></dd><dt id="id-1.4.3.7.2"><span class="term">-e</span></dt><dd><p>
       Prints the messages and jumps to the end of the journal, so that the
       latest entries are visible within the pager.
-     </p></dd><dt id="id-1.4.3.8.3"><span class="term">-r</span></dt><dd><p>
+     </p></dd><dt id="id-1.4.3.7.3"><span class="term">-r</span></dt><dd><p>
       Prints the messages of the journal in reverse order, so that the latest
       entries are listed first.
-     </p></dd><dt id="id-1.4.3.8.4"><span class="term">-k</span></dt><dd><p>
-      Shows only kernel messages. This is equivalent to the field match
+     </p></dd><dt id="id-1.4.3.7.4"><span class="term">-k</span></dt><dd><p>
+      Shows only kernel messages from the current boot. This is equivalent to
+      <code class="literal">-b</code> with the field match
       <code class="literal">_TRANSPORT=kernel</code>.
-     </p></dd><dt id="id-1.4.3.8.5"><span class="term">-u</span></dt><dd><p>
-      Shows only messages for the specified <code class="systemitem">systemd</code> unit. This is equivalent
-      to the field match
-      <code class="literal">_SYSTEMD_UNIT=<em class="replaceable">UNIT</em></code>.
+     </p></dd><dt id="id-1.4.3.7.5"><span class="term">-u</span></dt><dd><p>
+      Shows only messages for the specified <code class="systemitem">systemd</code> unit. Besides messages
+      with <code class="literal">_SYSTEMD_UNIT=<em class="replaceable">UNIT</em></code>,
+      the output includes what <code class="systemitem">systemd</code> logs about the unit, such as start
+      and stop messages and core dump reports.
      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> journalctl -u apache2</pre></div></dd></dl></div><p>
     For a complete list of options refer to man page, man 1 <code class="command">journalctl</code>.
   </p></section></section><section xml:lang="en" class="sect1" id="journal-filter-journals" data-id-title="Filtering the journal output"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Filtering the journal output</span></span> <a title="Permalink" class="permalink" href="index.html#journal-filter-journals">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
