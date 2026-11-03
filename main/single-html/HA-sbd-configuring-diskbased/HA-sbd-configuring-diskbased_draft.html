@@ -41,7 +41,7 @@
     ],
     "dateCreated": "2025-11-04T00:00+02:00",
     "dateModified": "2026-10-29T00:00+02:00",
-    "datePublished": "2026-11-03T14:23+02:00",
+    "datePublished": "2026-11-03T23:34+02:00",
     "about": [
       {
         "@type": "Thing",
@@ -236,13 +236,6 @@
         </p></div><p>
     Perform this procedure on <span><em class="emphasis">all</em></span> nodes in the cluster:
   </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
-        List the drivers that are installed with your kernel version:
-      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">rpm -ql kernel-<em class="replaceable">VERSION</em> | grep watchdog</code></pre></div><p>
-        To help you find the correct driver for your hardware, see <a class="xref" href="#ha-watchdog-drivers" title="Commonly used watchdog drivers">Table 1, “Commonly used watchdog drivers”</a>.
-        However, this is not a complete list and might not be accurate for your specific system.
-        Check your system's hardware configuration if possible, or ask your hardware or system
-        vendor for details about system-specific watchdog configuration.
-      </p></li><li class="step"><p>
         Check whether any watchdog modules are already loaded in the kernel:
       </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">lsmod | egrep "(wdt|dog)"</code></pre></div><p>
         If the correct watchdog module is already loaded, you can skip to
@@ -250,6 +243,13 @@
       </p></li><li class="step"><p>
         If the wrong watchdog module is loaded, you can unload it with the following command:
       </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo rmmod <em class="replaceable">WRONG_MODULE</em></code></pre></div></li><li class="step"><p>
+        List the drivers that are installed with your kernel version:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">rpm -ql kernel-<em class="replaceable">VERSION</em> | grep watchdog</code></pre></div><p>
+        To help you find the correct driver for your hardware, see <a class="xref" href="#ha-watchdog-drivers" title="Commonly used watchdog drivers">Table 1, “Commonly used watchdog drivers”</a>.
+        However, this is not a complete list and might not be accurate for your specific system.
+        Check your system's hardware configuration if possible, or ask your hardware or system
+        vendor for details about system-specific watchdog configuration.
+      </p></li><li class="step"><p>
         Enable the watchdog module that matches your hardware:
       </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo bash -c "echo <em class="replaceable">WATCHDOG_MODULE</em> &gt; /etc/modules-load.d/watchdog.conf"</code></pre></div><div id="id-1.4.5.4.3" class="admonition tip compact"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><p>
           If you run this command as the <code class="systemitem">root</code> user, you can omit <code class="command">bash -c</code> and
