@@ -1,0 +1,713 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Check and Monitor CPU Temperature | SUSE Linux Enterprise Server for SAP applications 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2023-05-04"/>
+<meta name="dcterms.modified" content="2026-09-04"/>
+<meta name="dcterms.dateSubmitted" content="2026-11-04"/>
+<meta name="title" content="Check and Monitor CPU Temperature | SUSE Linux Enterpr…"/>
+<meta name="description" content="Read the CPU temperature from the ACPI thermal zones without extra software or with the sensors command, and monitor it in real time"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server for SAP applications"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="Check and Monitor CPU Temperature"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="daria.vladykina@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="dc.creator" content="daria.vladykina@suse.com"/><meta property="og:title" content="Check and monitor CPU temperature"/>
+<meta property="og:description" content="Read and monitor CPU temperature"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Check and monitor CPU temperature"/>
+<meta name="twitter:description" content="Read and monitor CPU temperature"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Check and monitor CPU temperature | SUSE Linux Enterprise Server for SAP applications 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Check and monitor CPU temperature",
+    "description": "Read the CPU temperature from the ACPI thermal zones without extra software or with the sensors command, and monitor it in real time",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2023-05-04T00:00+02:00",
+    "dateModified": "2026-09-04T00:00+02:00",
+    "datePublished": "2026-11-04T15:53+02:00",
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Configuration"
+      },
+      {
+        "@type": "Thing",
+        "name": "Monitoring"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server for SAP applications",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER, AArch64"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#cpu-temp-check">Check and Monitor CPU Temperature</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="cpu-temp-check" data-id-title="Check and Monitor CPU Temperature"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span></span> 16.1</div><div><h1 class="title">Check and Monitor CPU Temperature</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>04 Nov 2026</div><div><div class="abstract"><p>
+          <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span> reports CPU and other component temperatures
+          through Advanced Configuration and Power Interface (ACPI) thermal zones
+          and hardware monitoring devices. Read the
+          CPU temperature from the ACPI thermal zones without installing any
+          software, or list all sensors with the <code class="command">sensors</code>
+          command. Monitoring the temperature helps you reduce energy costs and
+          detect cooling problems early.
+        </p><p><span><span class="emphasis"><strong>Prerequisites</strong></span></span></p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+              <code class="literal">sudo</code> privileges to install the
+              <span class="package">sensors</span> package and to run
+              <code class="command">sensors-detect</code> (reading the temperature
+              requires no special privileges)
+            </p></li></ul></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Check and Monitor CPU Temperature" hreflang="en" href="rh-cpu-check-temperature.html" target="_blank">Revision History: Check and Monitor CPU Temperature</a></div></div></div></div><section xml:lang="en" class="sect1" id="cpu-check-temperature-intro" data-id-title="Why monitor CPU temperature?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">Why monitor CPU temperature?</span></span> <a title="Permalink" class="permalink" href="#cpu-check-temperature-intro">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Checking and monitoring CPU temperature has several benefits.
+  </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        Energy savings and cost reduction. When a CPU runs at full speed, it
+        consumes more energy than when it is idling. Keeping CPUs cool is also a
+        major cost factor, especially in data centers.
+      </p></li><li class="listitem"><p>
+        Identifying and monitoring processes that consume too much CPU power.
+        Doing that can help free CPU resources and increase responsiveness.
+      </p></li><li class="listitem"><p>
+        Easier detection of cooling issues. If the CPU temperature approaches
+        or exceeds the high or critical limits that your hardware reports, it
+        indicates that there is a problem with the cooling system or the fan,
+        or that the thermal paste was not applied correctly.
+      </p></li><li class="listitem"><p>
+        A long-term reduction of the carbon footprint can be achieved by
+        adjusting the cooling parameters.
+      </p></li></ul></div><p>
+    You can read the temperature in two ways: from the ACPI thermal zones that
+    the kernel exposes, which needs no additional software, or with the
+    <code class="command">sensors</code> command, which lists all sensors that the kernel
+    provides. For details, see <a class="xref" href="#cpu-check-temperature-get-data" title="3. Reading the CPU temperature">Section 3, “Reading the CPU temperature”</a>.
+  </p></section><section xml:lang="en" class="sect1" id="cpu-check-temperature-configure" data-id-title="Installing and configuring hardware sensors"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Installing and configuring hardware sensors</span></span> <a title="Permalink" class="permalink" href="#cpu-check-temperature-configure">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    The <code class="command">sensors</code> command is part of the
+    <span class="package">sensors</span> package. To read the temperature from the ACPI
+    thermal zones, you do not need the package. For details, see
+    <a class="xref" href="#cpu-check-temperature-get-data-acpi" title="3.1. Reading the ACPI thermal zones">Section 3.1, “Reading the ACPI thermal zones”</a>.
+  </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Install the required package.
+      </p><ul class="stepalternatives">
+        <li class="step"><p>On the mutable system:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper install sensors</code></pre></div></li>
+        <li class="step"><p>On the immutable system:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">transactional-update pkg install sensors</code></pre></div><p>Reboot the system to activate the change.</p></li>
+      </ul></li><li class="step"><p>
+        Check which sensors the kernel already provides:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sensors</code></pre></div><p>
+        The output lists the sensors that the kernel has registered, for
+        example, ACPI thermal zones and NVMe drives. For a sample and an
+        explanation, see <a class="xref" href="#cpu-check-temperature-get-data-sensors" title="3.3. Reading all sensors with the sensors command">Section 3.3, “Reading all sensors with the sensors command”</a>.
+        If the kernel has registered no sensor, the command reports
+        <code class="literal">No sensors found!</code>
+      </p></li><li class="step"><p>
+        Optionally, search for additional hardware monitoring chips that the
+        kernel does not register on its own, for example, on an I2C or SMBus
+        adapter. Do this only if a sensor that you need is missing from the
+        output of <code class="command">sensors</code>.
+      </p><div id="id-1.3.3.3.2" data-id-title="Hardware probing can hang or damage a system" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning: Hardware probing can hang or damage a system</div><p>
+          The <code class="command">sensors-detect</code> command accesses hardware to
+          identify chips. According to its man page, this can lock up the SMBus
+          and, in rare cases, damage hardware. The man page advises against
+          running the command on production servers.
+        </p></div><p>
+        If you accept this risk, run the following command:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">sensors-detect --auto</code></pre></div><p>
+        The <code class="option">--auto</code> option runs the command without
+        interaction and assumes the default answer to every question. Without
+        it, the command asks each question and waits for your answer.
+      </p><p>
+        If the command finds a chip, it prints a summary of the chips that it
+        found. Because of the <code class="option">--auto</code> option, it accepts the
+        default answer to the last question:
+      </p><div class="verbatim-wrap"><pre class="screen">Now follows a summary of the probes I have just done.
+
+Driver `coretemp':
+  * Chip `Intel digital thermal sensor' (confidence: 9)
+
+Driver `to-be-written':
+  * ISA bus, address 0xa40
+    Chip `ITE IT8686E Super IO Sensors' (confidence: 9)
+
+Do you want to generate /etc/sysconfig/lm_sensors? (YES/no):
+Created symlink '/etc/systemd/system/multi-user.target.wants/lm_sensors.service' → '/usr/lib/systemd/system/lm_sensors.service'.</pre></div><p>
+        The command generates the file
+        <code class="filename">/etc/sysconfig/lm_sensors</code> and enables and starts
+        the <code class="literal">lm_sensors</code> service. The unit file of the service
+        is part of the <span class="package">sensors</span> package. To check the status
+        of the service, run:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">systemctl status lm_sensors</code></pre></div><p>
+        Sample output:
+      </p><div class="verbatim-wrap"><pre class="screen">● lm_sensors.service - Initialize hardware monitoring sensors
+     Loaded: loaded (/usr/lib/systemd/system/lm_sensors.service; enabled; preset: disabled)
+     Active: active (exited) since Mon 2026-09-21 07:40:32 CEST; 16ms ago
+ Invocation: e3f984a1d2cf43528b9b753f1d698a65
+    Process: 1433 ExecStart=/sbin/modprobe -qab $BUS_MODULES $HWMON_MODULES (code=exited, status=0/SUCCESS)
+    Process: 1436 ExecStart=/usr/bin/sensors -s (code=exited, status=0/SUCCESS)
+   Main PID: 1436 (code=exited, status=0/SUCCESS)
+        CPU: 34ms</pre></div><p>
+        If the command finds no chip, it reports
+        <code class="literal">Sorry, no sensors were detected</code>. It generates no
+        configuration file, and the service stays disabled. The sensors that
+        the <code class="command">sensors</code> command already lists are not affected.
+      </p></li></ol></div></div><p>
+    To read the temperature, continue with
+    <a class="xref" href="#cpu-check-temperature-get-data" title="3. Reading the CPU temperature">Section 3, “Reading the CPU temperature”</a>.
+  </p></section><section xml:lang="en" class="sect1" id="cpu-check-temperature-get-data" data-id-title="Reading the CPU temperature"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">Reading the CPU temperature</span></span> <a title="Permalink" class="permalink" href="#cpu-check-temperature-get-data">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    This section describes two ways to read the temperature. If neither shows
+    a temperature, the operating system has no access to a temperature sensor,
+    as is the case in a virtual machine that does not emulate one.
+  </p><section class="sect2" id="cpu-check-temperature-get-data-acpi" data-id-title="Reading the ACPI thermal zones"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.1 </span><span class="title-name">Reading the ACPI thermal zones</span></span> <a title="Permalink" class="permalink" href="#cpu-check-temperature-get-data-acpi">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The kernel exposes each ACPI thermal zone as a directory named
+      <code class="filename">/sys/class/thermal/thermal_zone<em class="replaceable">N</em></code>.
+      Reading these files requires neither the <span class="package">sensors</span>
+      package nor special privileges.
+    </p><div class="complex-example"><div class="example" id="ex-cpu-check-temperature-acpi-zones" data-id-title="Listing the type and temperature of all ACPI thermal zones"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 1: </span><span class="title-name">Listing the type and temperature of all ACPI thermal zones </span></span><a title="Permalink" class="permalink" href="#ex-cpu-check-temperature-acpi-zones">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">grep . /sys/class/thermal/thermal_zone*/{type,temp}</code></pre></div><p>
+        Sample output:
+      </p><div class="verbatim-wrap"><pre class="screen">/sys/class/thermal/thermal_zone0/type:acpitz
+/sys/class/thermal/thermal_zone1/type:acpitz
+/sys/class/thermal/thermal_zone0/temp:40900
+/sys/class/thermal/thermal_zone1/temp:52900</pre></div></div></div></div><p>
+      The <code class="command">grep .</code> command prints the name of each file in
+      front of its content, so that every value stays assigned to its zone. The
+      temperature is given in millidegrees Celsius: <code class="literal">40900</code>
+      means 40.9°C. The type <code class="literal">acpitz</code> identifies an ACPI
+      thermal zone.
+    </p><p>
+      If <code class="filename">/sys/class/thermal</code> contains no
+      <code class="filename">thermal_zone<em class="replaceable">N</em></code> directory,
+      the system has no ACPI thermal zone. Use the
+      <code class="command">sensors</code> command instead.
+    </p><p>
+      Each zone can define trip points. To list the first trip point of the
+      first zone, run:
+    </p><div class="complex-example"><div class="example" id="ex-cpu-check-temperature-acpi-trip" data-id-title="Listing the first trip point of an ACPI thermal zone"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 2: </span><span class="title-name">Listing the first trip point of an ACPI thermal zone </span></span><a title="Permalink" class="permalink" href="#ex-cpu-check-temperature-acpi-trip">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">grep . /sys/class/thermal/thermal_zone0/trip_point_0_{type,temp}</code></pre></div><p>
+        Sample output:
+      </p><div class="verbatim-wrap"><pre class="screen">/sys/class/thermal/thermal_zone0/trip_point_0_type:critical
+/sys/class/thermal/thermal_zone0/trip_point_0_temp:100000</pre></div></div></div></div><p>
+      A trip point of type <code class="literal">critical</code> gives the temperature at
+      which the kernel shuts down the system to protect the hardware. Its value
+      is also in millidegrees Celsius: <code class="literal">100000</code> means 100°C.
+      When a zone reaches this temperature, the kernel logs the messages
+      <code class="literal">critical temperature reached</code> and
+      <code class="literal">HARDWARE PROTECTION shutdown (Temperature too high)</code>.
+    </p></section><section class="sect2" id="cpu-check-temperature-get-data-acpi-only" data-id-title="Identifying readings that come through ACPI"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.2 </span><span class="title-name">Identifying readings that come through ACPI</span></span> <a title="Permalink" class="permalink" href="#cpu-check-temperature-get-data-acpi-only">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      You can recognize a reading that comes through ACPI in two ways:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          Its zone in <code class="filename">/sys/class/thermal</code> has the type
+          <code class="literal">acpitz</code>.
+        </p></li><li class="listitem"><p>
+          In the output of the <code class="command">sensors</code> command, its chip
+          name is <code class="literal">acpitz-acpi-0</code> and its adapter is
+          <code class="literal">ACPI interface</code>.
+        </p></li></ul></div><p>
+      To see the name that the system firmware gave to each zone, read the
+      <code class="filename">path</code> file of the zone:
+    </p><div class="complex-example"><div class="example" id="ex-cpu-check-temperature-acpi-path" data-id-title="Listing the firmware names of all ACPI thermal zones"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 3: </span><span class="title-name">Listing the firmware names of all ACPI thermal zones </span></span><a title="Permalink" class="permalink" href="#ex-cpu-check-temperature-acpi-path">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">grep . /sys/class/thermal/thermal_zone*/device/path</code></pre></div><p>
+        Sample output:
+      </p><div class="verbatim-wrap"><pre class="screen">/sys/class/thermal/thermal_zone0/device/path:\_TZ_.TZ00
+/sys/class/thermal/thermal_zone1/device/path:\_TZ_.TZ01</pre></div></div></div></div><p>
+      The kernel reports that a reading comes through ACPI, but not which
+      component the zone measures. The firmware chooses the names.
+    </p><p>
+      Sensors that the <code class="command">sensors</code> command lists under another
+      chip name, such as the NVMe drive <code class="literal">nvme-pci-0090</code> in
+      the following section, are provided by their own kernel drivers and do
+      not come through ACPI.
+    </p></section><section class="sect2" id="cpu-check-temperature-get-data-sensors" data-id-title="Reading all sensors with the sensors command"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">3.3 </span><span class="title-name">Reading all sensors with the sensors command</span></span> <a title="Permalink" class="permalink" href="#cpu-check-temperature-get-data-sensors">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      The <code class="command">sensors</code> command lists every temperature sensor
+      that the kernel has registered, not only the ACPI thermal zones. It needs
+      the <span class="package">sensors</span> package, as described in
+      <a class="xref" href="#cpu-check-temperature-configure" title="2. Installing and configuring hardware sensors">Section 2, “Installing and configuring hardware sensors”</a>, but no special
+      privileges. To obtain a snapshot of the current temperatures, run:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sensors</code></pre></div><p>
+      Sample output:
+    </p><div class="verbatim-wrap"><pre class="screen">nvme-pci-0090 <span class="callout" id="co-nvme-chip">1</span>
+Adapter: PCI adapter <span class="callout" id="co-adapter-label">2</span>
+Composite:    +49.9°C  (low  = -273.1°C, high = +69.8°C)<span class="callout" id="co-composite">3</span>
+                       (crit = +99.8°C)
+
+acpitz-acpi-0 <span class="callout" id="co-acpitz">4</span>
+Adapter: ACPI interface
+temp1:        +40.9°C
+temp2:        +52.9°C</pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-nvme-chip"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+          The device that reports the values. The name consists of the driver
+          (<code class="literal">nvme</code>), the bus (<code class="literal">pci</code>) and the
+          address of the device on that bus.
+        </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-adapter-label"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+          The interface through which the device is accessed, for example,
+          <code class="literal">PCI adapter</code> or <code class="literal">ACPI interface</code>.
+        </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-composite"><span class="callout">3</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+          The temperature of the device, followed by the low, high and
+          critical limits that the device reports.
+        </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-acpitz"><span class="callout">4</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
+          The ACPI thermal zones. Each zone is one temperature. In this
+          example, <code class="literal">temp1</code> is <code class="literal">thermal_zone0</code>
+          (40.9°C) and <code class="literal">temp2</code> is
+          <code class="literal">thermal_zone1</code> (52.9°C).
+        </p></td></tr></table></div><p>
+      The <code class="command">sensors</code> command lists the sensors that the kernel
+      has already registered. It does not depend on
+      <code class="command">sensors-detect</code>, which only searches for additional
+      chips (see <a class="xref" href="#cpu-check-temperature-configure" title="2. Installing and configuring hardware sensors">Section 2, “Installing and configuring hardware sensors”</a>). The kernel
+      drivers <code class="literal">coretemp</code> for Intel processors and
+      <code class="literal">k10temp</code> for AMD processors provide the CPU
+      temperature.
+    </p><div id="id-1.4.5.8" data-id-title="Output depends on the type of hardware" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Output depends on the type of hardware</div><p>
+        The output of the <code class="command">sensors</code> command depends on the
+        type of hardware installed on your machine, as different hardware
+        components have different sensors.
+      </p></div></section></section><section xml:lang="en" class="sect1" id="cpu-check-temperature-realtime" data-id-title="Monitoring CPU temperature in real time"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Monitoring CPU temperature in real time</span></span> <a title="Permalink" class="permalink" href="#cpu-check-temperature-realtime">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    To monitor the temperature in real time, run the <code class="command">sensors</code>
+    command with the <code class="command">watch</code> command:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">watch sensors</code></pre></div><p>
+    The <code class="command">watch</code> command is part of the
+    <span class="package">procps</span> package. It runs a command at regular intervals
+    and shows its output in the terminal. Sample output:
+  </p><div class="verbatim-wrap"><pre class="screen">Every 2.0s: sensors                                          sles16: 07:23:01 AM
+                                                                   in 0.007s (0)
+nvme-pci-0090
+Adapter: PCI adapter
+Composite:    +49.9°C  (low  = -273.1°C, high = +69.8°C)
+                       (crit = +99.8°C)
+
+acpitz-acpi-0
+Adapter: ACPI interface
+temp1:        +40.9°C
+temp2:        +52.9°C</pre></div><p>
+    By default, the <code class="command">watch</code> command updates the output every
+    two seconds. You can change this interval with the <code class="option">-n</code>
+    option followed by the number of seconds. For example, to change the
+    interval to 5 seconds, run:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">watch -n 5 sensors</code></pre></div><p>
+    Press <span class="keycap">Ctrl</span><span class="key-connector">–</span><span class="keycap">C</span>
+    to stop the <code class="command">watch</code> command.
+  </p></section><section xml:lang="en" class="sect1" id="cpu-check-temperature-troubleshoot" data-id-title="Troubleshooting"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">5 </span><span class="title-name">Troubleshooting</span></span> <a title="Permalink" class="permalink" href="#cpu-check-temperature-troubleshoot">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        This part describes potential problems when monitoring CPU temperatures
+        and their solutions.
+      </p></div></div></div></div><section class="sect2" id="cpu-check-temperature-troubleshoot-unrealistic-temperatures-shown" data-id-title="Why are the displayed temperatures unrealistic?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.1 </span><span class="title-name">Why are the displayed temperatures unrealistic?</span></span> <a title="Permalink" class="permalink" href="#cpu-check-temperature-troubleshoot-unrealistic-temperatures-shown">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      If you suspect that the displayed temperature is too low or too high, you
+      can try the following:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          Compare the temperatures of the ACPI thermal zones with the
+          <code class="literal">acpitz</code> entries in the output of the
+          <code class="command">sensors</code> command. Both show the same zones, so the
+          values should agree. For the commands, see
+          <a class="xref" href="#cpu-check-temperature-get-data" title="3. Reading the CPU temperature">Section 3, “Reading the CPU temperature”</a>.
+        </p></li><li class="listitem"><p>
+          Use a different tool that reads the same kernel sensors, for example,
+          <code class="command">s-tui</code>, a terminal utility that shows the
+          temperatures that the system reports together with the CPU frequency
+          and utilization. It is provided by SUSE Package Hub, whose packages
+          are community-maintained and delivered without L3 support. If Package
+          Hub is not enabled, run
+          <code class="command">SUSEConnect --list-extensions</code>, which prints the
+          command to enable it.
+        </p><p>Install the <span class="package">s-tui</span> package:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>On the mutable system:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper install s-tui</code></pre></div></li><li class="listitem"><p>On the immutable system:</p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">transactional-update pkg install s-tui</code></pre></div><p>Reboot the system to activate the change.</p></li></ul></div><p>
+          Then run <code class="command">s-tui</code> from the terminal.
+        </p></li></ul></div><p>
+      If none of these recommendations solve the issue, the problem might be
+      due to unsupported or faulty hardware. In this case, you need to seek
+      help from your hardware manufacturer.
+    </p></section><section class="sect2" id="cpu-check-temperature-troubleshoot-wrong-temperature" data-id-title="Why is the displayed temperature too high?"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">5.2 </span><span class="title-name">Why is the displayed temperature too high?</span></span> <a title="Permalink" class="permalink" href="#cpu-check-temperature-troubleshoot-wrong-temperature">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      If the CPU temperature is too high, here are actions you can take:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          Verify that the CPU cooling system, such as the fan or heat sink, 
+          works correctly. Ensure that the fan is spinning properly and that
+          the heat sink is making proper contact with the CPU. If necessary,
+          you may need to replace the thermal paste between the CPU and the
+          heat sink to improve heat transfer.
+        </p></li><li class="listitem"><p>
+          Adjust the power settings on your system to reduce heat generation.
+          Lowering the CPU frequency or enabling power-saving features can help
+          keep the temperature in check.
+        </p></li><li class="listitem"><p>
+          Monitor the system load and CPU usage. High CPU usage for extended
+          periods can lead to increased temperatures. Identify
+          resource-intensive processes with tools such as
+          <code class="command">top</code> or <code class="command">ps</code>, then consider
+          optimizing or limiting their usage. For more information, see
+          <a class="link" href="https://www.suse.com/support/kb/doc/?id=000016916" target="_blank">https://www.suse.com/support/kb/doc/?id=000016916</a>.
+        </p></li></ul></div></section></section><section xml:lang="en" class="sect1" id="cpu-check-temperature-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">6 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="#cpu-check-temperature-more-info">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        For more information about the <code class="command">sensors</code> command and
+        its configuration, see the man pages
+        <code class="command">man sensors</code>,
+        <code class="command">man sensors-detect</code> and
+        <code class="command">man 5 sensors.conf</code>.
+      </p></li><li class="listitem"><p>
+        For more information about monitoring CPU load and other system
+        metrics from a Web interface, see
+        <a class="link" href="https://documentation.suse.com/sles-sap/16.0/html/SAP-cockpit/index.html#cockpit-cockpit-metrics" target="_blank">Viewing
+        metrics and history</a> in Cockpit.
+      </p></li><li class="listitem"><p>
+        For more information about making your computing more environmentally
+        sustainable, see
+        <a class="link" href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1009324" target="_blank">https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1009324</a>.
+      </p></li></ul></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">7 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section><div class="legal-section"><section class="appendix" translate="no" id="doc-gfdl-license" data-id-title="GNU Free Documentation License"><div class="titlepage"><div><div><h1 class="title">GNU Free Documentation License</h1></div></div></div><p>
+    Copyright (C) 2000, 2001, 2002 Free Software Foundation, Inc. 51 Franklin St, Fifth Floor,
+    Boston, MA 02110-1301 USA. Everyone is permitted to copy and distribute verbatim copies of this
+    license document, but changing it is not allowed.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.3"><span class="name">
+    0. PREAMBLE
+  </span><a title="Permalink" class="permalink" href="#id-1.9.3">#</a></h5></div><p>
+    The purpose of this License is to make a manual, textbook, or other functional and useful
+    document "free" in the sense of freedom: to assure everyone the effective freedom to copy and
+    redistribute it, with or without modifying it, either commercially or non-commercially.
+    Secondarily, this License preserves for the author and publisher a way to get credit for their
+    work, while not being considered responsible for modifications made by others.
+  </p><p>
+    This License is a kind of "copyleft", which means that derivative works of the document must
+    themselves be free in the same sense. It complements the GNU General Public License, which is a
+    copyleft license designed for free software.
+  </p><p>
+    We have designed this License to use it for manuals for free software, because free software
+    needs free documentation: a free program should come with manuals providing the same freedoms
+    that the software does. But this License is not limited to software manuals; it can be used for
+    any textual work, regardless of subject matter or whether it is published as a printed book. We
+    recommend this License principally for works whose purpose is instruction or reference.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.7"><span class="name">
+    1. APPLICABILITY AND DEFINITIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.9.7">#</a></h5></div><p>
+    This License applies to any manual or other work, in any medium, that contains a notice placed
+    by the copyright holder saying it can be distributed under the terms of this License. Such a
+    notice grants a world-wide, royalty-free license, unlimited in duration, to use that work under
+    the conditions stated herein. The "Document", below, refers to any such manual or work. Any
+    member of the public is a licensee, and is addressed as "you". You accept the license if you
+    copy, modify or distribute the work in a way requiring permission under copyright law.
+  </p><p>
+    A "Modified Version" of the Document means any work containing the Document or a portion of it,
+    either copied verbatim, or with modifications and/or translated into another language.
+  </p><p>
+    A "Secondary Section" is a named appendix or a front-matter section of the Document that deals
+    exclusively with the relationship of the publishers or authors of the Document to the
+    Document's overall subject (or to related matters) and contains nothing that could fall
+    directly within that overall subject. (Thus, if the Document is in part a textbook of
+    mathematics, a Secondary Section may not explain any mathematics.) The relationship could be a
+    matter of historical connection with the subject or with related matters, or of legal,
+    commercial, philosophical, ethical or political position regarding them.
+  </p><p>
+    The "Invariant Sections" are certain Secondary Sections whose titles are designated, as being
+    those of Invariant Sections, in the notice that says that the Document is released under this
+    License. If a section does not fit the above definition of Secondary then it is not allowed to
+    be designated as Invariant. The Document may contain zero Invariant Sections. If the Document
+    does not identify any Invariant Sections then there are none.
+  </p><p>
+    The "Cover Texts" are certain short passages of text that are listed, as Front-Cover Texts or
+    Back-Cover Texts, in the notice that says that the Document is released under this License. A
+    Front-Cover Text may be at most 5 words, and a Back-Cover Text may be at most 25 words.
+  </p><p>
+    A "Transparent" copy of the Document means a machine-readable copy, represented in a format
+    whose specification is available to the general public, that is suitable for revising the
+    document straightforwardly with generic text editors or (for images composed of pixels) generic
+    paint programs or (for drawings) some widely available drawing editor, and that is suitable for
+    input to text formatters or for automatic translation to a variety of formats suitable for
+    input to text formatters. A copy made in an otherwise Transparent file format whose markup, or
+    absence of markup, has been arranged to thwart or discourage subsequent modification by readers
+    is not Transparent. An image format is not Transparent if used for any substantial amount of
+    text. A copy that is not "Transparent" is called "Opaque".
+  </p><p>
+    Examples of suitable formats for Transparent copies include plain ASCII without markup, Texinfo
+    input format, LaTeX input format, SGML or XML using a publicly available DTD, and
+    standard-conforming simple HTML, PostScript or PDF designed for human modification. Examples of
+    transparent image formats include PNG, XCF and JPG. Opaque formats include proprietary formats
+    that can be read and edited only by proprietary word processors, SGML or XML for which the DTD
+    and/or processing tools are not generally available, and the machine-generated HTML, PostScript
+    or PDF produced by some word processors for output purposes only.
+  </p><p>
+    The "Title Page" means, for a printed book, the title page itself, plus such following pages as
+    are needed to hold, legibly, the material this License requires to appear in the title page.
+    For works in formats which do not have any title page as such, "Title Page" means the text near
+    the most prominent appearance of the work's title, preceding the beginning of the body of the
+    text.
+  </p><p>
+    A section "Entitled XYZ" means a named subunit of the Document whose title either is precisely
+    XYZ or contains XYZ in parentheses following text that translates XYZ in another language.
+    (Here XYZ stands for a specific section name mentioned below, such as "Acknowledgements",
+    "Dedications", "Endorsements", or "History".) To "Preserve the Title" of such a section when
+    you modify the Document means that it remains a section "Entitled XYZ" according to this
+    definition.
+  </p><p>
+    The Document may include Warranty Disclaimers next to the notice which states that this License
+    applies to the Document. These Warranty Disclaimers are considered to be included by reference
+    in this License, but only as regards disclaiming warranties: any other implication that these
+    Warranty Disclaimers may have is void and has no effect on the meaning of this License.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.18"><span class="name">
+    2. VERBATIM COPYING
+  </span><a title="Permalink" class="permalink" href="#id-1.9.18">#</a></h5></div><p>
+    You may copy and distribute the Document in any medium, either commercially or
+    non-commercially, provided that this License, the copyright notices, and the license notice
+    saying this License applies to the Document are reproduced in all copies, and that you add no
+    other conditions whatsoever to those of this License. You may not use technical measures to
+    obstruct or control the reading or further copying of the copies you make or distribute.
+    However, you may accept compensation in exchange for copies. If you distribute a large enough
+    number of copies you must also follow the conditions in section 3.
+  </p><p>
+    You may also lend copies, under the same conditions stated above, and you may publicly display
+    copies.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.21"><span class="name">
+    3. COPYING IN QUANTITY
+  </span><a title="Permalink" class="permalink" href="#id-1.9.21">#</a></h5></div><p>
+    If you publish printed copies (or copies in media that commonly have printed covers) of the
+    Document, numbering more than 100, and the Document's license notice requires Cover Texts, you
+    must enclose the copies in covers that carry, clearly and legibly, all these Cover Texts:
+    Front-Cover Texts on the front cover, and Back-Cover Texts on the back cover. Both covers must
+    also clearly and legibly identify you as the publisher of these copies. The front cover must
+    present the full title with all words of the title equally prominent and visible. You may add
+    other material on the covers in addition. Copying with changes limited to the covers, as long
+    as they preserve the title of the Document and satisfy these conditions, can be treated as
+    verbatim copying in other respects.
+  </p><p>
+    If the required texts for either cover are too voluminous to fit legibly, you should put the
+    first ones listed (as many as fit reasonably) on the actual cover, and continue the rest onto
+    adjacent pages.
+  </p><p>
+    If you publish or distribute Opaque copies of the Document numbering more than 100, you must
+    either include a machine-readable Transparent copy along with each Opaque copy, or state in or
+    with each Opaque copy a computer-network location from which the general network-using public
+    has access to download using public-standard network protocols a complete Transparent copy of
+    the Document, free of added material. If you use the latter option, you must take reasonably
+    prudent steps, when you begin distribution of Opaque copies in quantity, to ensure that this
+    Transparent copy will remain thus accessible at the stated location until at least one year
+    after the last time you distribute an Opaque copy (directly or through your agents or
+    retailers) of that edition to the public.
+  </p><p>
+    It is requested, but not required, that you contact the authors of the Document well before
+    redistributing any large number of copies, to give them a chance to provide you with an updated
+    version of the Document.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.26"><span class="name">
+    4. MODIFICATIONS
+  </span><a title="Permalink" class="permalink" href="#id-1.9.26">#</a></h5></div><p>
+    You may copy and distribute a Modified Version of the Document under the conditions of sections
+    2 and 3 above, provided that you release the Modified Version under precisely this License,
+    with the Modified Version filling the role of the Document, thus licensing distribution and
+    modification of the Modified Version to whoever possesses a copy of it. In addition, you must
+    do these things in the Modified Version:
+  </p><div class="orderedlist"><ol class="orderedlist" type="A"><li class="listitem"><p>
+        Use in the Title Page (and on the covers, if any) a title distinct from that of the
+        Document, and from those of previous versions (which should, if there were any, be listed
+        in the History section of the Document). You may use the same title as a previous version
+        if the original publisher of that version gives permission.
+      </p></li><li class="listitem"><p>
+        List on the Title Page, as authors, one or more persons or entities responsible for
+        authorship of the modifications in the Modified Version, together with at least five of the
+        principal authors of the Document (all of its principal authors, if it has fewer than
+        five), unless they release you from this requirement.
+      </p></li><li class="listitem"><p>
+        State on the Title page the name of the publisher of the Modified Version, as the
+        publisher.
+      </p></li><li class="listitem"><p>
+        Preserve all the copyright notices of the Document.
+      </p></li><li class="listitem"><p>
+        Add an appropriate copyright notice for your modifications adjacent to the other copyright
+        notices.
+      </p></li><li class="listitem"><p>
+        Include, immediately after the copyright notices, a license notice giving the public
+        permission to use the Modified Version under the terms of this License, in the form shown
+        in the Addendum below.
+      </p></li><li class="listitem"><p>
+        Preserve in that license notice the full lists of Invariant Sections and required Cover
+        Texts given in the Document's license notice.
+      </p></li><li class="listitem"><p>
+        Include an unaltered copy of this License.
+      </p></li><li class="listitem"><p>
+        Preserve the section Entitled "History", Preserve its Title, and add to it an item stating
+        at least the title, year, new authors, and publisher of the Modified Version as given on
+        the Title Page. If there is no section Entitled "History" in the Document, create one
+        stating the title, year, authors, and publisher of the Document as given on its Title Page,
+        then add an item describing the Modified Version as stated in the previous sentence.
+      </p></li><li class="listitem"><p>
+        Preserve the network location, if any, given in the Document for public access to a
+        Transparent copy of the Document, and likewise the network locations given in the Document
+        for previous versions it was based on. These may be placed in the "History" section. You
+        may omit a network location for a work that was published at least four years before the
+        Document itself, or if the original publisher of the version it refers to gives permission.
+      </p></li><li class="listitem"><p>
+        For any section Entitled "Acknowledgements" or "Dedications", Preserve the Title of the
+        section, and preserve in the section all the substance and tone of each of the contributor
+        acknowledgements and/or dedications given therein.
+      </p></li><li class="listitem"><p>
+        Preserve all the Invariant Sections of the Document, unaltered in their text and in their
+        titles. Section numbers or the equivalent are not considered part of the section titles.
+      </p></li><li class="listitem"><p>
+        Delete any section Entitled "Endorsements". Such a section may not be included in the
+        Modified Version.
+      </p></li><li class="listitem"><p>
+        Do not retitle any existing section to be Entitled "Endorsements" or to conflict in title
+        with any Invariant Section.
+      </p></li><li class="listitem"><p>
+        Preserve any Warranty Disclaimers.
+      </p></li></ol></div><p>
+    If the Modified Version includes new front-matter sections or appendices that qualify as
+    Secondary Sections and contain no material copied from the Document, you may at your option
+    designate some or all of these sections as invariant. To do this, add their titles to the list
+    of Invariant Sections in the Modified Version's license notice. These titles must be distinct
+    from any other section titles.
+  </p><p>
+    You may add a section Entitled "Endorsements", provided it contains nothing but endorsements of
+    your Modified Version by various parties--for example, statements of peer review or that the
+    text has been approved by an organization as the authoritative definition of a standard.
+  </p><p>
+    You may add a passage of up to five words as a Front-Cover Text, and a passage of up to 25
+    words as a Back-Cover Text, to the end of the list of Cover Texts in the Modified Version. Only
+    one passage of Front-Cover Text and one of Back-Cover Text may be added by (or through
+    arrangements made by) any one entity. If the Document already includes a cover text for the
+    same cover, previously added by you or by arrangement made by the same entity you are acting on
+    behalf of, you may not add another; but you may replace the old one, on explicit permission
+    from the previous publisher that added the old one.
+  </p><p>
+    The author(s) and publisher(s) of the Document do not by this License give permission to use
+    their names for publicity for or to assert or imply endorsement of any Modified Version.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.33"><span class="name">
+    5. COMBINING DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.9.33">#</a></h5></div><p>
+    You may combine the Document with other documents released under this License, under the terms
+    defined in section 4 above for modified versions, provided that you include in the combination
+    all of the Invariant Sections of all of the original documents, unmodified, and list them all
+    as Invariant Sections of your combined work in its license notice, and that you preserve all
+    their Warranty Disclaimers.
+  </p><p>
+    The combined work need only contain one copy of this License, and multiple identical Invariant
+    Sections may be replaced with a single copy. If there are multiple Invariant Sections with the
+    same name but different contents, make the title of each such section unique by adding at the
+    end of it, in parentheses, the name of the original author or publisher of that section if
+    known, or else a unique number. Make the same adjustment to the section titles in the list of
+    Invariant Sections in the license notice of the combined work.
+  </p><p>
+    In the combination, you must combine any sections Entitled "History" in the various original
+    documents, forming one section Entitled "History"; likewise combine any sections Entitled
+    "Acknowledgements", and any sections Entitled "Dedications". You must delete all sections
+    Entitled "Endorsements".
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.37"><span class="name">
+    6. COLLECTIONS OF DOCUMENTS
+  </span><a title="Permalink" class="permalink" href="#id-1.9.37">#</a></h5></div><p>
+    You may make a collection consisting of the Document and other documents released under this
+    License, and replace the individual copies of this License in the various documents with a
+    single copy that is included in the collection, provided that you follow the rules of this
+    License for verbatim copying of each of the documents in all other respects.
+  </p><p>
+    You may extract a single document from such a collection, and distribute it individually under
+    this License, provided you insert a copy of this License into the extracted document, and
+    follow this License in all other respects regarding verbatim copying of that document.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.40"><span class="name">
+    7. AGGREGATION WITH INDEPENDENT WORKS
+  </span><a title="Permalink" class="permalink" href="#id-1.9.40">#</a></h5></div><p>
+    A compilation of the Document or its derivatives with other separate and independent documents
+    or works, in or on a volume of a storage or distribution medium, is called an "aggregate" if
+    the copyright resulting from the compilation is not used to limit the legal rights of the
+    compilation's users beyond what the individual works permit. When the Document is included in
+    an aggregate, this License does not apply to the other works in the aggregate which are not
+    themselves derivative works of the Document.
+  </p><p>
+    If the Cover Text requirement of section 3 is applicable to these copies of the Document, then
+    if the Document is less than one half of the entire aggregate, the Document's Cover Texts may
+    be placed on covers that bracket the Document within the aggregate, or the electronic
+    equivalent of covers if the Document is in electronic form. Otherwise they must appear on
+    printed covers that bracket the whole aggregate.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.43"><span class="name">
+    8. TRANSLATION
+  </span><a title="Permalink" class="permalink" href="#id-1.9.43">#</a></h5></div><p>
+    Translation is considered a kind of modification, so you may distribute translations of the
+    Document under the terms of section 4. Replacing Invariant Sections with translations requires
+    special permission from their copyright holders, but you may include translations of some or
+    all Invariant Sections in addition to the original versions of these Invariant Sections. You
+    may include a translation of this License, and all the license notices in the Document, and any
+    Warranty Disclaimers, provided that you also include the original English version of this
+    License and the original versions of those notices and disclaimers. In case of a disagreement
+    between the translation and the original version of this License or a notice or disclaimer, the
+    original version will prevail.
+  </p><p>
+    If a section in the Document is Entitled "Acknowledgements", "Dedications", or "History", the
+    requirement (section 4) to Preserve its Title (section 1) will typically require changing the
+    actual title.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.46"><span class="name">
+    9. TERMINATION
+  </span><a title="Permalink" class="permalink" href="#id-1.9.46">#</a></h5></div><p>
+    You may not copy, modify, sublicense, or distribute the Document except as expressly provided
+    for under this License. Any other attempt to copy, modify, sublicense or distribute the
+    Document is void, and will automatically terminate your rights under this License. However,
+    parties who have received copies, or rights, from you under this License will not have their
+    licenses terminated so long as such parties remain in full compliance.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.48"><span class="name">
+    10. FUTURE REVISIONS OF THIS LICENSE
+  </span><a title="Permalink" class="permalink" href="#id-1.9.48">#</a></h5></div><p>
+    The Free Software Foundation may publish new, revised versions of the GNU Free Documentation
+    License from time to time. Such new versions will be similar in spirit to the present version,
+    but may differ in detail to address new problems or concerns. See
+    <a class="link" href="https://www.gnu.org/copyleft/" target="_blank">https://www.gnu.org/copyleft/</a>.
+  </p><p>
+    Each version of the License is given a distinguishing version number. If the Document specifies
+    that a particular numbered version of this License "or any later version" applies to it, you
+    have the option of following the terms and conditions either of that specified version or of
+    any later version that has been published (not as a draft) by the Free Software Foundation. If
+    the Document does not specify a version number of this License, you may choose any version ever
+    published (not as a draft) by the Free Software Foundation.
+  </p><div class="sect4 bridgehead"><h5 class="title legal" id="id-1.9.51"><span class="name">
+    ADDENDUM: How to use this License for your documents
+  </span><a title="Permalink" class="permalink" href="#id-1.9.51">#</a></h5></div><div class="verbatim-wrap"><pre class="screen">Copyright (c) YEAR YOUR NAME.
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+A copy of the license is included in the section entitled “GNU
+Free Documentation License”.</pre></div><p>
+    If you have Invariant Sections, Front-Cover Texts and Back-Cover Texts, replace the
+    “with...Texts.” line with this:
+  </p><div class="verbatim-wrap"><pre class="screen">with the Invariant Sections being LIST THEIR TITLES, with the
+Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST.</pre></div><p>
+    If you have Invariant Sections without Cover Texts, or some other combination of the three,
+    merge those two alternatives to suit the situation.
+  </p><p>
+    If your document contains nontrivial examples of program code, we recommend releasing these
+    examples in parallel under your choice of free software license, such as the GNU General Public
+    License, to permit their use in free software.
+  </p></section></div></section></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="#cpu-check-temperature-intro"><span class="title-number">1 </span><span class="title-name">Why monitor CPU temperature?</span></a></span></li><li><span class="section"><a href="#cpu-check-temperature-configure"><span class="title-number">2 </span><span class="title-name">Installing and configuring hardware sensors</span></a></span></li><li><span class="section"><a href="#cpu-check-temperature-get-data"><span class="title-number">3 </span><span class="title-name">Reading the CPU temperature</span></a></span></li><li><span class="section"><a href="#cpu-check-temperature-realtime"><span class="title-number">4 </span><span class="title-name">Monitoring CPU temperature in real time</span></a></span></li><li><span class="section"><a href="#cpu-check-temperature-troubleshoot"><span class="title-number">5 </span><span class="title-name">Troubleshooting</span></a></span></li><li><span class="section"><a href="#cpu-check-temperature-more-info"><span class="title-number">6 </span><span class="title-name">For more information</span></a></span></li><li><span class="section"><a href="#legal-disclaimer"><span class="title-number">7 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="#doc-gfdl-license"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>
