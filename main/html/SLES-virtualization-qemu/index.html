@@ -41,7 +41,7 @@
     ],
     "dateCreated": "2026-07-02T00:00+02:00",
     "dateModified": "2026-08-20T00:00+02:00",
-    "datePublished": "2026-11-05T07:23+02:00",
+    "datePublished": "2026-11-05T08:51+02:00",
     "about": [
       {
         "@type": "Thing",
@@ -95,18 +95,18 @@
       includes information about your CPU features.
     </p><p>
 	    To find out whether your system supports virtualization, see the section <span><em class="emphasis">Architecture
-	    Support</em></span> in the article <a class="link" href="https://documentation.suse.com/sles/16.0/html/SLES-virtualization-support/" target="_blank">Virtualization
+	    Support</em></span> in the article <a class="link" href="https://documentation.suse.com/sles/16.1/html/SLES-virtualization-support/" target="_blank">Virtualization
 	    Limits and Support</a>.
     </p></section><section class="sect2" id="kvm-host-soft" data-id-title="Required software"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">Required software</span></span> <a title="Permalink" class="permalink" href="index.html#kvm-host-soft">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
       The KVM host requires several packages to be installed. To install all
       necessary packages, do the following:
     </p><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
-          Install the <span class="package">patterns-server-kvm_server</span> and <span class="package">patterns-server-kvm_tools</span>. For a full list of available virtualization patterns, see <a class="link" href="https://documentation.suse.com/sles/16.0/html/SLES-virtualization/index.html#virt-components-installation-patterns" target="_blank">Installation of virtualization components</a>.
+          Install the <span class="package">patterns-server-kvm_server</span> and <span class="package">patterns-server-kvm_tools</span>. For a full list of available virtualization patterns, see <a class="link" href="https://documentation.suse.com/sles/16.1/html/SLES-virtualization/index.html#virt-components-installation-patterns" target="_blank">Installation of virtualization components</a>.
         </p></li><li class="step"><p>
           Create a <span class="guimenu">Network Bridge</span>. If you do
           not plan to dedicate an additional physical network card to your
           virtual guests, network bridging is a standard way to connect the guest
-          machines to the network. For details on creating network bridges, see <a class="link" href="https://documentation.suse.com/sles/16.0/html/SLES-virtualization-libvirt/index.html#libvirt-networks-bridged" target="_blank">Network bridge</a>.
+          machines to the network. For details on creating network bridges, see <a class="link" href="https://documentation.suse.com/sles/16.1/html/SLES-virtualization-libvirt/index.html#libvirt-networks-bridged" target="_blank">Network bridge</a>.
         </p></li><li class="step"><p>
           After all the required packages are installed (and the new network setup
           activated), try to load the KVM kernel module relevant for your CPU
@@ -1367,7 +1367,7 @@ ID<span class="callout" id="co-qemu-monitor-snapshot-l-id">1</span>      TAG<spa
     </p><p>
       The requirements for live migration:
     </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
-          libvirt requirements apply. See <a class="link" href="https://documentation.suse.com/sles/16.0/html/SLES-virtualization-libvirt/index.html#libvirt-admin-live-migration-requirements" target="_blank">Migration requirements</a> for the full list of migration requirements.
+          libvirt requirements apply. See <a class="link" href="https://documentation.suse.com/sles/16.1/html/SLES-virtualization-libvirt/index.html#libvirt-admin-live-migration-requirements" target="_blank">Migration requirements</a> for the full list of migration requirements.
         </p></li><li class="listitem"><p>
           Live migration is only possible between VM Host Servers with the same CPU
           features.
@@ -1780,7 +1780,7 @@ QEMU waiting for connection on: unix:./qmp-sock,server</pre></div><p>
               <code class="literal">writeback</code>. <code class="literal">none</code> disables
               the host page cache and, therefore, is the safest option. The default
               for image files is <code class="literal">writeback</code>. For more
-              information, see <a class="link" href="https://documentation.suse.com/sles/16.0/html/SLES-virtualization-disk-cache/index.html#virtual-disk-cache" target="_blank">Virtual disk cache</a>.
+              information, see <a class="link" href="https://documentation.suse.com/sles/16.1/html/SLES-virtualization-disk-cache/index.html#virtual-disk-cache" target="_blank">Virtual disk cache</a>.
             </p></dd></dl></div><div id="id-1.5.5.4.5" class="admonition tip normal"><img class="symbol" alt="Tip" title="Tip" src="static/images/icon-tip.svg"/><div class="admon-title">Tip</div><p>
           To simplify defining block devices, QEMU understands several
           shortcuts which you may find handy when entering the
@@ -2506,8 +2506,8 @@ sudo tunctl -d $tap<span class="callout" id="co-qemu-net-bridge-deltap">10</span
         combine several authentication methods in one QEMU command.
       </p><p>
         For more information about configuring x509 certificates on a VM Host Server,
-        see <a class="link" href="https://documentation.suse.com/sles/16.0/html/SLES-virtualization-libvirt/index.html#sec-libvirt-connect-remote-tls" target="_blank">Remote TLS/SSL connection with x509 certificate</a>. For
-        the client side, see <a class="link" href="https://documentation.suse.com/sles/16.0/html/SLES-virtualization-libvirt/index.html#sec-libvirt-connect-remote-tls-client" target="_blank">Configuring the client and testing the setup</a>.
+        see <a class="link" href="https://documentation.suse.com/sles/16.1/html/SLES-virtualization-libvirt/index.html#sec-libvirt-connect-remote-tls" target="_blank">Remote TLS/SSL connection with x509 certificate</a>. For
+        the client side, see <a class="link" href="https://documentation.suse.com/sles/16.1/html/SLES-virtualization-libvirt/index.html#sec-libvirt-connect-remote-tls-client" target="_blank">Configuring the client and testing the setup</a>.
       </p><p>
         The Remmina VNC viewer supports advanced authentication mechanisms. For
         this example, let us assume that the server x509 certificates
@@ -2570,7 +2570,7 @@ Password: ****</pre></div><p>
      than with full virtualization. However, paravirtualization requires either
      the guest operating system to be modified to support the
 	    paravirtualization API, or availability of paravirtualized drivers. <span class="phrase"> For a list of guest operating systems supporting paravirtualization, refer to
-     the section <span><em class="emphasis">Availability of paravirtualized drivers</em></span> in the article <a class="link" href="https://documentation.suse.com/sles/16.0/html/SLES-virtualization-support/" target="_blank">Virtualization
+     the section <span><em class="emphasis">Availability of paravirtualized drivers</em></span> in the article <a class="link" href="https://documentation.suse.com/sles/16.1/html/SLES-virtualization-support/" target="_blank">Virtualization
 	    Limits and Support</a>.</span>
     </p></dd><dt id="vt-io-pvhvm"><span class="term">PVHVM</span></dt><dd><p>
      This type of virtualization enhances HVM (see
@@ -2779,7 +2779,7 @@ Manufacturer Info:   49424d00</pre></div></li></ol></div></div></section><sectio
       <a class="link" href="https://en.wikipedia.org/wiki/Trusted_Platform_Module" target="_blank">https://en.wikipedia.org/wiki/Trusted_Platform_Module</a>.
      </p></li><li class="listitem"><p>
       Configuring a specific virtualization environment on <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span> is
-      described in <a class="link" href="https://documentation.suse.com/sles/16.0/html/SLES-virtualization/index.html#virt-components-installation-patterns" target="_blank">Installation of virtualization components</a>.
+      described in <a class="link" href="https://documentation.suse.com/sles/16.1/html/SLES-virtualization/index.html#virt-components-installation-patterns" target="_blank">Installation of virtualization components</a>.
      </p></li><li class="listitem"><p>
       Details on the use of <span class="package">swtpm</span> are on its man page
       (<code class="command">man 8 swtpm</code>).
@@ -2787,7 +2787,7 @@ Manufacturer Info:   49424d00</pre></div></li></ol></div></div></section><sectio
       A detailed <code class="systemitem">libvirt</code> specification of TPM is at
       <a class="link" href="https://libvirt.org/formatdomain.html#elementsTpm" target="_blank">https://libvirt.org/formatdomain.html#elementsTpm</a>.
      </p></li><li class="listitem"><p>
-      A description of enabling UEFI firmware by using OVMF is available in <a class="link" href="https://documentation.suse.com/sles/16.0/html/SLES-virtualization-libvirt/index.html#cha-kvm-inst-virtman-advanced-uefi" target="_blank">Advanced UEFI configuration</a>.
+      A description of enabling UEFI firmware by using OVMF is available in <a class="link" href="https://documentation.suse.com/sles/16.1/html/SLES-virtualization-libvirt/index.html#cha-kvm-inst-virtman-advanced-uefi" target="_blank">Advanced UEFI configuration</a>.
      </p></li></ul></div></section></section><section xml:lang="en" class="sect1" id="virtual-guestfs" data-id-title="libguestfs"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">8 </span><span class="title-name">libguestfs</span></span> <a title="Permalink" class="permalink" href="index.html#virtual-guestfs">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
     VM Guests consist of disk images and definition files. Manually accessing and manipulating these guest components (outside of normal hypervisor processes) is possible, but inherently dangerous and risks compromising data integrity. libguestfs is a C library and a corresponding set of tools designed for safely accessing and modifying VM Guest disk images—outside of normal hypervisor processes, but without the risk normally associated with manual editing.
    </p></div></div></div></div><div id="id-1.9.2" data-id-title="Supported architecture" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Supported architecture</div><p>
