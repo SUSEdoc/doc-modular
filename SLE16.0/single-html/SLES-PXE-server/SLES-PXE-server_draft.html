@@ -3,7 +3,7 @@
 <link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
 <meta name="dcterms.created" content="2025-11-04"/>
 <meta name="dcterms.modified" content="2026-08-13"/>
-<meta name="dcterms.dateSubmitted" content="2026-11-09"/>
+<meta name="dcterms.dateSubmitted" content="2026-11-12"/>
 <meta name="title" content="Setting Up a PXE Boot Server | SUSE Linux Enterprise S…"/>
 <meta name="description" content="How to configure a PXE boot server with GRUB 2, TFTP and DHCP to automate SUSE Linux Enterprise Server installations using the Agama installer"/>
 <meta name="product-name" content="SUSE Linux Enterprise Server"/>
@@ -41,7 +41,7 @@
     ],
     "dateCreated": "2025-11-04T00:00+02:00",
     "dateModified": "2026-08-13T00:00+02:00",
-    "datePublished": "2026-11-09T13:42+02:00",
+    "datePublished": "2026-11-12T08:42+02:00",
     "about": [
       {
         "@type": "Thing",
@@ -77,7 +77,7 @@
       }
     }
   }</script>
-<link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#sles-pxe-server-setup">Setting Up a PXE Boot Server</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="sles-pxe-server-setup" data-id-title="Setting Up a PXE Boot Server"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span></span> 16.0</div><div><h1 class="title">Setting Up a PXE Boot Server</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>09 Nov 2026</div><div><div class="abstract"><p>
+<link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft single normal offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="#sles-pxe-server-setup">Setting Up a PXE Boot Server</a></div></div><main id="_content"><nav class="side-toc placebo" id="_side-toc-overall"> </nav><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="sles-pxe-server-setup" data-id-title="Setting Up a PXE Boot Server"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise Server</span></span></span> 16.0</div><div><h1 class="title">Setting Up a PXE Boot Server</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>12 Nov 2026</div><div><div class="abstract"><p>
           Preboot Execution Environment (PXE) is a network boot standard that enables systems 
           to boot and install an operating system over the network instead of using local 
           installation media. A PXE boot server simplifies and automates operating system 
@@ -115,8 +115,8 @@
       installer as the installation interface. Boot loaders and installer files are provided over
       the network using HTTP or TFTP, with GRUB 2 fetching the kernel, initrd and live image. PXE
       clients can use a variety of firmware (including the most common ones such as BIOS or UEFI),
-      boot loader executable or image formats, as required by their architectures such as AMD64/Intel 64,
-      AArch64, ppc64le and s390x. In addition, they must work in both IPv4 and IPv6 networks.
+      boot loader executable or image formats, as required by their architectures such as <span class="phrase">AMD64/Intel 64,
+      AArch64, ppc64le and s390x</span>. In addition, they must work in both IPv4 and IPv6 networks.
     </p><p>
       The boot loader passes kernel parameters such as <code class="literal">root=live:</code> to load the
       squashfs-based root file system from a live ISO image, starting the Agama interface either
@@ -179,7 +179,7 @@
                     to identify the vendor,</span>”</span> back to the client and is currently not supported.
                   </p></li></ul></div></div></dd></dl></div><div class="figure" id="sles-pxe-server-setup-workflow"><div class="figure-contents"><div class="mediaobject"><a href="images/sles-pxe-server-setup-workflow.svg"><img src="images/sles-pxe-server-setup-workflow.svg" alt="Workflow diagram of setting up a PXE boot server" title="Workflow diagram of setting up a PXE boot server"/></a></div></div><div class="title-container"><div class="figure-title-wrap"><div class="figure-title"><span class="title-number-name"><span class="title-number">Figure 1: </span><span class="title-name">Sample PXE server setup workflow </span></span><a title="Permalink" class="permalink" href="#sles-pxe-server-setup-workflow">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div id="id-1.2.4.5.5" data-id-title="Reading the workflow diagram for ppc64le" class="admonition note normal"><img class="symbol" alt="Note" title="Note" src="static/images/icon-note.svg"/><div class="admon-title">Note: Reading the workflow diagram for ppc64le</div><p>
         The <span class="quote">“<span class="quote">HTTP with nginx</span>”</span> and <span class="quote">“<span class="quote">TFTP Delivery</span>”</span> branches in the figure
-        apply to UEFI-capable architectures (AMD64/Intel 64, AArch64) only. As noted above, TFTP
+        apply to UEFI-capable architectures (AMD64/Intel 64<span class="phrase">, AArch64</span>) only. As noted above, TFTP
         delivery is mandatory for ppc64le, and HTTP Boot does not apply to it.
        </p></div></section></section></section><section xml:lang="en" class="sect1" id="sles-pxe-server-prepare-network" data-id-title="Preparing the network for PXE boot services"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Preparing the network for PXE boot services</span></span> <a title="Permalink" class="permalink" href="#sles-pxe-server-prepare-network">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
         This module describes the network infrastructure requirements for deploying PXE boot
@@ -390,12 +390,12 @@
             The GRUB 2 architecture-specific <span class="package">noarch.rpm</span> packages are included in
             the <code class="filename">noarch</code> subdirectory of the installation media/repository,
             regardless of the architecture of the machine on which the PXE server is set up. That
-            is, you can install <span class="package">grub2-arm64-efi</span> and
-            <span class="package">grub2-powerpc-ieee1275</span> packages in a PXE server running on an
+            is, you can install <span class="phrase"><span class="package">grub2-arm64-efi</span> and
+            <span class="package">grub2-powerpc-ieee1275</span> packages</span> in a PXE server running on an
             AMD64/Intel 64 machine, in order to support clients with other architectures.
           </p></div></li><li class="step"><p>
           Optionally, you may install the <span class="package">shim</span> package if you need UEFI Secure
-          Boot for AMD64/Intel 64 or AArch64, but do not want to use the files from the installation media ISO.
+          Boot for AMD64/Intel 64<span class="phrase"> or AArch64</span>, but do not want to use the files from the installation media ISO.
         </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper install shim</code></pre></div></li><li class="step"><p>
           Optionally, install the router advertisement daemon <span class="package">radvd</span> if you want
           to use the PXE server as a router (not recommended for production networks).
@@ -408,7 +408,7 @@
         </p></li></ol></div></div></section></section><section xml:lang="en" class="sect1" id="sles-pxe-server-netboot-directories-uefi-secure-boot" data-id-title="Creating GRUB 2 NetBoot directories for PXE server"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Creating GRUB 2 NetBoot directories for PXE server</span></span> <a title="Permalink" class="permalink" href="#sles-pxe-server-netboot-directories-uefi-secure-boot">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
         This section explains creating GRUB 2 NetBoot directories for PXE servers using
         <code class="command">grub2-mknetdir</code>, which generates architecture-specific directories for
-        AMD64/Intel 64 (UEFI and BIOS), AArch64 and ppc64le systems. For Secure Boot support,
+        AMD64/Intel 64 (UEFI and BIOS)<span class="phrase">, AArch64</span> and ppc64le systems. For Secure Boot support,
         administrators must copy signed EFI files from installation media or use the
         <span class="package">shim</span> package to replace the default unsigned boot loader files.
       </p></div></div></div></div><section class="sect2" id="sles-pxe-server-netboot-directories-uefi-secure-boot-introduction" data-id-title="GRUB 2NetBoot directory structure for PXE boot"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">4.1 </span><span class="title-name">GRUB 2NetBoot directory structure for PXE boot</span></span> <a title="Permalink" class="permalink" href="#sles-pxe-server-netboot-directories-uefi-secure-boot-introduction">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
@@ -416,14 +416,14 @@
       across multiple architectures. The <code class="command">grub2-mknetdir</code> command creates
       architecture-specific directories under <code class="filename">/srv/tftpboot/boot/grub2/</code> for
       different platforms. For example, AMD64/Intel 64 systems generate both UEFI
-      (<code class="filename">x86_64-efi</code>) and legacy BIOS (<code class="filename">i386-pc</code>) directories,
+      (<code class="filename">x86_64-efi</code>) and legacy BIOS (<code class="filename">i386-pc</code>) directories<span class="phrase">,
       and AArch64 systems create their UEFI directory in
-      <code class="filename">arm64-efi</code>. ppc64le systems (<code class="filename">powerpc-ieee1275</code>) use
+      <code class="filename">arm64-efi</code></span>. ppc64le systems (<code class="filename">powerpc-ieee1275</code>) use
       OpenFirmware/OPAL rather than UEFI, and have their own Secure Boot mechanism separate from
       UEFI Secure Boot; the GRUB 2 boot loader is in <code class="filename">/boot/grub2/grub.elf</code> on the
       ISOs.
     </p><div id="id-1.5.2.3" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important</div><p>
-      In the context of this section, Secure Boot applies to AMD64/Intel 64 and AArch64 architectures. GRUB 2 PXE Secure Boot for ppc64le (which uses a different platform-specific mechanism) is not covered here.
+      In the context of this section, Secure Boot applies to AMD64/Intel 64 <span class="phrase">and AArch64 architectures</span>. GRUB 2 PXE Secure Boot for ppc64le (which uses a different platform-specific mechanism) is not covered here.
      </p></div><p>
      For Secure Boot support, which is not provided by the default unsigned
      <code class="filename">core.efi</code> files, administrators must obtain signed EFI files.
@@ -464,15 +464,14 @@
        installed, this creates
        <code class="filename">/srv/tftpboot/boot/grub2/x86_64-efi</code>,
        <code class="filename">/srv/tftpboot/boot/grub2/i386-pc</code>,
-       <code class="filename">/srv/tftpboot/boot/grub2/arm64-efi</code>, and
+       <code class="filename">/srv/tftpboot/boot/grub2/arm64-efi</code> and
        <code class="filename">/srv/tftpboot/boot/grub2/powerpc-ieee1275</code>.
       </p><div id="id-1.5.4.3.1.4" class="admonition warning normal"><img class="symbol" alt="Warning" title="Warning" src="static/images/icon-warning.svg"/><div class="admon-title">Warning</div><p>
         Do not manually overwrite the <code class="filename">grub.cfg</code> file created by <code class="command">grub2-mknetdir</code>.
        </p></div></li><li class="step" id="sles-pxe-server-netboot-directories-uefi-secure-boot-core-efi-fallback"><p>
           You can use the
           <code class="filename">/srv/tftpboot/boot/grub2/<em class="replaceable">ARCH</em>-efi/core.efi</code>
-          file installed by the <code class="command">grub2-mknetdir</code> command for AMD64/Intel 64 or AArch64
-          architectures for UEFI PXE as well, without performing any of the steps below. However,
+          file installed by the <code class="command">grub2-mknetdir</code> command for AMD64/Intel 64 <span class="phrase">or AArch64 architectures</span> for UEFI PXE as well, without performing any of the steps below. However,
           it is <span><em class="emphasis">not signed</em></span>: a client with UEFI Secure Boot enabled in firmware
           rejects it and fails to boot. This is not a concern if UEFI Secure Boot is disabled in the
           client's firmware, which is the default on most hardware. Only perform the following
@@ -486,7 +485,7 @@
            <code class="filename">shim</code> and <code class="filename">grub.efi</code> from the installation
            media ISO or the <span class="package">shim</span> package instead, as described below.
          </p></div><p>
-         To optionally enable UEFI Secure Boot for the supported AMD64/Intel 64 and AArch64 architectures, perform any of the following steps:
+         To optionally enable UEFI Secure Boot for the supported AMD64/Intel 64 <span class="phrase">and AArch64 architectures</span>, perform any of the following steps:
         </p><ul class="stepalternatives">
           <li class="step"><p>
               Copy the necessary files from the installation media ISO:
@@ -497,13 +496,13 @@
                 </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">cp -v /mnt/EFI/BOOT/*.efi
 /srv/tftpboot/boot/grub2/<em class="replaceable">ARCH</em>-efi/</code> <span class="callout" id="copy-efi-files">1</span></pre></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#copy-efi-files"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
                       Replace <code class="filename"><em class="replaceable">ARCH</em>-efi</code> with
-                      <code class="filename">x86_64-efi</code> or <code class="filename">arm64-efi</code>, the
-                      architectures that support Secure Boot.
+                      <code class="filename">x86_64-efi</code><span class="phrase"> or <code class="filename">arm64-efi</code>, the
+                      architectures that support</span> Secure Boot.
                     </p></td></tr></table></div></li><li class="step"><p>
                   Unmount the installation media ISO.
                 </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">umount /mnt</code></pre></div></li></ol></li>
           <li class="step"><p>
-             For AMD64/Intel 64 and AArch64 architectures, use the <span class="package">shim</span> package if you do not want to use the files from the installation media ISO:
+             For AMD64/Intel 64 <span class="phrase">and AArch64 architectures</span>, use the <span class="package">shim</span> package if you do not want to use the files from the installation media ISO:
             </p><ol type="a" class="substeps"><li class="step"><p>
                   If not already installed, install the <span class="package">shim</span> package.
                 </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">zypper install shim</code></pre></div></li><li class="step"><p>
@@ -843,9 +842,9 @@ tftpboot-agama-installer-SUSE_SLE_16-ppc64le</code></pre></div></li>
 │   │   │   ├── bootx64.efi
 │   │   │   └── grub.cfg
 │   │   ├── i386-pc/
-│   │   │   └── core.0
+│   │   │   └── core.0<span class="phrase">
 │   │   ├── arm64-efi/
-│   │   │   └── bootaa64.efi
+│   │   │   └── bootaa64.efi</span>
 │   │   └── powerpc-ieee1275/
 │   │       └── core.elf
 │   └── images/
@@ -853,13 +852,13 @@ tftpboot-agama-installer-SUSE_SLE_16-ppc64le</code></pre></div></li>
 │           ├── x86_64/
 │           │   ├── linux <span class="callout" id="co-kernel">1</span>
 │           │   ├── initrd <span class="callout" id="co-initrd">2</span>
-│           │   └── squashfs.img <span class="callout" id="co-squashfs">3</span>
-│           ├── aarch64/
+│           │   └── squashfs.img <span class="callout" id="co-squashfs">3</span><span class="phrase">
+│           ├── aarch64/</span>
 │           └── ppc64le/
 /srv/www/htdocs/install/
 └── SLES-16.0/
-    ├── x86_64/ <span class="callout" id="co-install-repo">4</span>
-    ├── aarch64/
+    ├── x86_64/ <span class="callout" id="co-install-repo">4</span><span class="phrase">
+    ├── aarch64/</span>
     └── ppc64le/</pre></div></div></div><div class="calloutlist"><table style="border: 0; "><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-kernel"><span class="callout">1</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
           Kernel image extracted from installation media
         </p></td></tr><tr><td style="width: 5%; vertical-align: top; text-align: left; "><p><a href="#co-initrd"><span class="callout">2</span></a> </p></td><td style="vertical-align: top; text-align: left; "><p>
@@ -950,9 +949,9 @@ tftpboot-agama-installer-SUSE_SLE_16-ppc64le</code></pre></div></li>
 if [ "$grub_cpu" == "i386" ]; then
   set arch='x86_64'
 elif [ "$grub_cpu" == "x86_64" ]; then
-  set arch='x86_64'
+  set arch='x86_64'<span class="phrase">
 elif [ "$grub_cpu" == "arm64" ]; then
-  set arch='aarch64'
+  set arch='aarch64'</span>
 elif [ "$grub_cpu" == "powerpc" ]; then
   set arch='ppc64le'
 fi
@@ -1188,7 +1187,7 @@ EOF</pre></div></li><li class="step"><p>
             For aarch64 systems, verify ARM64 EFI files:
           </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">ls -la /srv/tftpboot/boot/grub2/arm64-efi/*.efi</code></pre></div></li><li class="step"><p>
             Check that the DHCP configuration provides the correct boot loader paths:
-          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">grep -n "bootx64.efi\|shim.efi\|bootaa64.efi"
+          </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">grep -n "bootx64.efi\|shim.efi<span class="phrase">\|bootaa64.efi</span>"
 /etc/dnsmasq.d/dhcp.conf /etc/kea/kea-dhcp?.conf /etc/dhcpd?.conf</code></pre></div></li><li class="step"><p>
             If files are missing, recopy them from the ISO mounted at <code class="filename">/mnt</code> or
             from the <span class="package">shim</span> package files:
@@ -1878,21 +1877,21 @@ dhcp-no-override
 # Match client type in PXEClient:Arch and map to a tag
 dhcp-vendorclass=set:tftp_bios_x86_pc,PXEClient:Arch:00000
 dhcp-vendorclass=set:tftp_uefi_x86_64,PXEClient:Arch:00007
-dhcp-vendorclass=set:tftp_ieee_ppc_64,PXEClient:Arch:0000e
-dhcp-vendorclass=set:tftp_uefi_arm_64,PXEClient:Arch:00011
+dhcp-vendorclass=set:tftp_ieee_ppc_64,PXEClient:Arch:0000e<span class="phrase">
+dhcp-vendorclass=set:tftp_uefi_arm_64,PXEClient:Arch:00011</span>
 # Match client type in HTTPClient:Arch and map to a tag
-dhcp-vendorclass=set:http_uefi_x86_64,HTTPClient:Arch:00016
-dhcp-vendorclass=set:http_uefi_arm_64,HTTPClient:Arch:00019
+dhcp-vendorclass=set:http_uefi_x86_64,HTTPClient:Arch:00016<span class="phrase">
+dhcp-vendorclass=set:http_uefi_arm_64,HTTPClient:Arch:00019</span>
 
 # IPv6 PXE/HTTP boot client matches (enterprise:343 intel)
 # Match client type in PXEClient:Arch and map to a tag
 dhcp-vendorclass=set:tftp_bios_x86_pc,enterprise:343,PXEClient:Arch:00000
 dhcp-vendorclass=set:tftp_uefi_x86_64,enterprise:343,PXEClient:Arch:00007
-dhcp-vendorclass=set:tftp_ieee_ppc_64,enterprise:343,PXEClient:Arch:0000e
-dhcp-vendorclass=set:tftp_uefi_arm_64,enterprise:343,PXEClient:Arch:00011
+dhcp-vendorclass=set:tftp_ieee_ppc_64,enterprise:343,PXEClient:Arch:0000e<span class="phrase">
+dhcp-vendorclass=set:tftp_uefi_arm_64,enterprise:343,PXEClient:Arch:00011</span>
 # Match client type in HTTPClient:Arch and map to a tag
-dhcp-vendorclass=set:http_uefi_x86_64,enterprise:343,HTTPClient:Arch:00016
-dhcp-vendorclass=set:http_uefi_arm_64,enterprise:343,HTTPClient:Arch:00019
+dhcp-vendorclass=set:http_uefi_x86_64,enterprise:343,HTTPClient:Arch:00016<span class="phrase">
+dhcp-vendorclass=set:http_uefi_arm_64,enterprise:343,HTTPClient:Arch:00019</span>
 EOF</pre></div></li><li class="step"><p>
           Configure IPv4 DHCP range and options:
         </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">cat &gt;&gt; /etc/dnsmasq.d/dhcp.conf &lt;&lt; 'EOF'</code>
@@ -1910,14 +1909,14 @@ EOF</pre></div></li><li class="step"><p>
 # IPv4 PXEClient boot
 dhcp-boot=tag:net0v4,tag:tftp_bios_x86_pc,/boot/grub2/i386-pc/core.0,192.168.1.200
 dhcp-boot=tag:net0v4,tag:tftp_uefi_x86_64,/boot/grub2/x86_64-efi/bootx64.efi,192.168.1.200
-dhcp-boot=tag:net0v4,tag:tftp_ieee_ppc_64,/boot/grub2/powerpc-ieee1275/core.elf,192.168.1.200
-dhcp-boot=tag:net0v4,tag:tftp_uefi_arm_64,/boot/grub2/arm64-efi/bootaa64.efi,192.168.1.200
+dhcp-boot=tag:net0v4,tag:tftp_ieee_ppc_64,/boot/grub2/powerpc-ieee1275/core.elf,192.168.1.200<span class="phrase">
+dhcp-boot=tag:net0v4,tag:tftp_uefi_arm_64,/boot/grub2/arm64-efi/bootaa64.efi,192.168.1.200</span>
 
 # IPv4 HTTPClient boot
 dhcp-option-force=tag:net0v4,tag:http_uefi_x86_64,option:vendor-class,HTTPClient
-dhcp-boot=tag:net0v4,tag:http_uefi_x86_64,http://192.168.1.200/boot/grub2/x86_64-efi/bootx64.efi
+dhcp-boot=tag:net0v4,tag:http_uefi_x86_64,http://192.168.1.200/boot/grub2/x86_64-efi/bootx64.efi<span class="phrase">
 dhcp-option-force=tag:net0v4,tag:http_uefi_arm_64,option:vendor-class,HTTPClient
-dhcp-boot=tag:net0v4,tag:http_uefi_arm_64,http://192.168.1.200/boot/grub2/arm64-efi/bootaa64.efi
+dhcp-boot=tag:net0v4,tag:http_uefi_arm_64,http://192.168.1.200/boot/grub2/arm64-efi/bootaa64.efi</span>
 EOF</pre></div></li><li class="step"><p>
           Configure IPv6 DHCP range and options:
         </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code> <code class="command">cat &gt;&gt; /etc/dnsmasq.d/dhcp.conf &lt;&lt; 'EOF'</code>
@@ -1934,8 +1933,8 @@ EOF</pre></div></li><li class="step"><p>
 # IPv6 PXEClient boot
 dhcp-option=tag:net0v6,tag:tftp_bios_x86_pc,option6:bootfile-url,tftp://[2001:db8:0:1::200]/boot/grub2/i386-pc/core.0
 dhcp-option=tag:net0v6,tag:tftp_uefi_x86_64,option6:bootfile-url,tftp://[2001:db8:0:1::200]/boot/grub2/x86_64-efi/bootx64.efi
-dhcp-option=tag:net0v6,tag:tftp_ieee_ppc_64,option6:bootfile-url,tftp://[2001:db8:0:1::200]/boot/grub2/powerpc-ieee1275/core.elf
-dhcp-option=tag:net0v6,tag:tftp_uefi_arm_64,option6:bootfile-url,tftp://[2001:db8:0:1::200]/boot/grub2/arm64-efi/bootaa64.efi
+dhcp-option=tag:net0v6,tag:tftp_ieee_ppc_64,option6:bootfile-url,tftp://[2001:db8:0:1::200]/boot/grub2/powerpc-ieee1275/core.elf<span class="phrase">
+dhcp-option=tag:net0v6,tag:tftp_uefi_arm_64,option6:bootfile-url,tftp://[2001:db8:0:1::200]/boot/grub2/arm64-efi/bootaa64.efi</span>
 
 # IPv6 HTTPClient boot
 # Note: dnsmasq &lt;= 2.90 does not support sending vendor-class option6:16 back to client
@@ -2092,13 +2091,13 @@ EOF</pre></div></li><li class="step"><p>
         "test": "substring(option[60].hex,0,20) == 'PXEClient:Arch:0000e'",
         "next-server": "192.168.1.200",
         "boot-file-name": "/boot/grub2/powerpc-ieee1275/core.elf"
-      },
+      },<span class="phrase">
       {
         "name": "pxeclients#00011",
         "test": "substring(option[60].hex,0,20) == 'PXEClient:Arch:00011'",
         "next-server": "192.168.1.200",
         "boot-file-name": "/boot/grub2/arm64-efi/bootaa64.efi"
-      },
+      },</span>
       {
         "name": "httpclients#00016",
         "test": "substring(option[60].hex,0,21) == 'HTTPClient:Arch:00016'",
@@ -2109,7 +2108,7 @@ EOF</pre></div></li><li class="step"><p>
             "data": "HTTPClient"
           }
         ]
-      },
+      }<span class="phrase">,
       {
         "name": "httpclients#00019",
         "test": "substring(option[60].hex,0,21) == 'HTTPClient:Arch:00019'",
@@ -2120,7 +2119,7 @@ EOF</pre></div></li><li class="step"><p>
             "data": "HTTPClient"
           }
         ]
-      }
+      }</span>
     ],
     "subnet4": [
       {
@@ -2239,7 +2238,7 @@ EOF</pre></div></li><li class="step"><p>
             "data": "tftp://[2001:db8:0:1::200]/boot/grub2/powerpc-ieee1275/core.elf"
           }
         ]
-      },
+      }<span class="phrase">,
       {
         "name": "pxeclients#00011",
         "test": "substring(option[16].hex,6,20) == 'PXEClient:Arch:00011'",
@@ -2249,7 +2248,7 @@ EOF</pre></div></li><li class="step"><p>
             "data": "tftp://[2001:db8:0:1::200]/boot/grub2/arm64-efi/bootaa64.efi"
           }
         ]
-      }
+      }</span>
     ],
     "subnet6": [
       {
@@ -2458,20 +2457,20 @@ subclass "pxeclients"   "PXEClient:Arch:00007" {
 subclass "pxeclients"   "PXEClient:Arch:0000e" {
         next-server     192.168.1.200;
         filename        "/boot/grub2/powerpc-ieee1275/core.elf";
-}
+}<span class="phrase">
 subclass "pxeclients"   "PXEClient:Arch:00011" {
         next-server     192.168.1.200;
         filename        "/boot/grub2/arm64-efi/bootaa64.efi";
-}
+}</span>
 
 subclass "httpclients"  "HTTPClient:Arch:00016" {
         option vendor-class-identifier "HTTPClient";
         filename        "http://192.168.1.200/boot/grub2/x86_64-efi/bootx64.efi";
-}
+}<span class="phrase">
 subclass "httpclients"  "HTTPClient:Arch:00019" {
         option vendor-class-identifier "HTTPClient";
         filename        "http://192.168.1.200/boot/grub2/arm64-efi/bootaa64.efi";
-}
+}</span>
 
 ##
 ## Subnet declaration for the pxe network
@@ -2563,19 +2562,19 @@ subclass "pxeclients"   "PXEClient:Arch:00007" {
 }
 subclass "pxeclients"   "PXEClient:Arch:0000e" {
         option dhcp6.bootfile-url "tftp://[2001:db8:0:1::200]/boot/grub2/powerpc-ieee1275/core.elf";
-}
+}<span class="phrase">
 subclass "pxeclients"   "PXEClient:Arch:00011" {
         option dhcp6.bootfile-url "tftp://[2001:db8:0:1::200]/boot/grub2/arm64-efi/bootaa64.efi";
-}
+}</span>
 
 subclass "httpclients"  "HTTPClient:Arch:00016" {
         option dhcp6.vendor-class-en-len-tag 343 10 "HTTPClient";
         option dhcp6.bootfile-url "http://[2001:db8:0:1::200]/boot/grub2/x86_64-efi/bootx64.efi";
-}
+}<span class="phrase">
 subclass "httpclients"  "HTTPClient:Arch:00019" {
         option dhcp6.vendor-class-en-len-tag 343 10 "HTTPClient";
         option dhcp6.bootfile-url "http://[2001:db8:0:1::200]/boot/grub2/arm64-efi/bootaa64.efi";
-}
+}</span>
 
 ##
 ## Subnet declaration for the pxe network
