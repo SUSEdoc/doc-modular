@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><title>Using Kexec for Faster Reboots | SUSE Linux Enterprise Server for SAP applications 16.1</title><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/><link rel="stylesheet" type="text/css" href="static/css/style-new.css"/>
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/><link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<meta name="dcterms.created" content="2026-10-30"/>
+<meta name="dcterms.modified" content="2026-10-30"/>
+<meta name="dcterms.dateSubmitted" content="2026-11-20"/>
+<meta name="title" content="Using Kexec for Faster Reboots | SUSE Linux Enterprise…"/>
+<meta name="description" content="Learn how to reboot SUSE Linux Enterprise faster with kexec, which starts the new kernel directly without the firmware and the boot loader"/>
+<meta name="product-name" content="SUSE Linux Enterprise Server for SAP applications"/>
+<meta name="product-number" content="16.1"/>
+<meta name="book-title" content="Using Kexec for Faster Reboots"/>
+<meta name="tracker-url" content="https://bugzilla.suse.com/enter_bug.cgi"/>
+<meta name="tracker-type" content="bsc"/>
+<meta name="tracker-bsc-assignee" content="ssarkar@suse.com"/>
+<meta name="tracker-bsc-component" content="Documentation"/>
+<meta name="tracker-bsc-product" content="SUSE Linux Enterprise Server 16.1"/>
+<meta name="publisher" content="SUSE"/><meta name="category" content="."/><meta name="dc.creator" content="ssarkar@suse.com"/><meta property="og:title" content="Using Kexec for Faster Reboots"/>
+<meta property="og:description" content="Reboot faster with kexec by skipping the firmware"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Using Kexec for Faster Reboots"/>
+<meta name="twitter:description" content="Reboot faster with kexec by skipping the firmware"/>
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": ["TechArticle"],
+    "image": "https://www.suse.com/assets/img/suse-white-logo-green.svg",
+    "name": "Using Kexec for Faster Reboots | SUSE Linux Enterprise Server for SAP applications 16.1",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Products &amp; Solutions"
+    },
+    "inLanguage": "en",
+    "headline": "Using Kexec for Faster Reboots",
+    "description": "Learn how to reboot SUSE Linux Enterprise faster with kexec, which starts the new kernel directly without the firmware and the boot loader",
+    "author": [
+      {
+        "@type": "Corporation",
+        "name": "SUSE Product &amp; Solution Documentation Team",
+        "url": "https://documentation.suse.com"
+      }
+    ],
+    "dateCreated": "2026-10-30T00:00+02:00",
+    "dateModified": "2026-10-30T00:00+02:00",
+    "datePublished": "2026-11-20T14:02+02:00",
+
+    "articleSection": [ 
+        "Systems Management"
+        
+    ],
+        "about": [
+      {
+        "@type": "Thing",
+        "name": "Administration"
+      }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication",
+        "name": "SUSE Linux Enterprise Server for SAP applications",
+        "softwareVersion": "16.1",
+        "applicationCategory": "Operating System",
+        "operatingSystem": "Linux",
+        "processorRequirements": "AMD64/Intel 64, POWER"
+      }
+    ],
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
+    "publisher": {
+      "@type": "Corporation",
+      "name": "SUSE",
+      "url": "https://documentation.suse.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
+      }
+    }
+  }</script>
+<link rel="next" href="doc-gfdl-license.html" title="A. GNU Free Documentation License"/><link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"/><script src="static/js/script-purejs.js" type="text/javascript"></script><script src="static/js/highlight.js" type="text/javascript"></script><script>hljs.highlightAll();</script><script src="static/js/ui-modifiers.js" type="text/javascript"></script></head><body class="draft wide offline js-off" onload="$('#betawarn-button-wrap').toggle();if (document.cookie.length > 0) {if (document.cookie.indexOf('betawarn=closed') != -1){$('#betawarn').toggle()}};"><div id="betawarn" style="position:fixed;bottom:0;z-index:9025;background-color:#FDE8E8;padding:1em;margin-left:10%;margin-right:10%;display:block;border-top:.75em solid #E11;width:80%"><p style="color:#333;margin:1em 0;padding:0;">This is a draft document that was built and uploaded automatically. It may document beta software and be incomplete or even incorrect. <strong>Use this document at your own risk.</strong></p> <div id="betawarn-button-wrap" style="display:none;margin:0;padding:0;"><a href="#" onclick="$('#betawarn').toggle();var d=new Date();d.setTime(d.getTime()+(0.5*24*60*60*1000));document.cookie='betawarn=closed; expires='+d.toUTCString()+'; path=/'; return false;" style="color:#333;text-decoration:underline;float:left;margin-top:.5em;padding:1em;display:block;background-color:#FABEBE;">I understand this is a draft</a></div></div><div class="bypass-block"><a href="#_content">Jump to content</a><a href="#_bottom-pagination">Jump to page navigation: previous page [access key p]/next page [access key n]</a></div><header id="_mainnav"><div class="growth-inhibitor"><img src="static/images/logo.svg" alt="Logo" class="logo"/></div></header><div class="crumbs"><div class="growth-inhibitor"><a class="crumb" href="index.html">Using Kexec for Faster Reboots</a></div></div><main id="_content"><nav id="_side-toc-overall" tabindex="0" class="side-toc"><div class="side-title">Using Kexec for Faster Reboots</div> </nav><button id="_open-side-toc-overall" title="Contents"> </button><article class="documentation"><button id="_unfold-side-toc-page">On this page</button><section xml:lang="en" class="article" id="kexec-rebooting-faster" data-id-title="Using Kexec for Faster Reboots"><div class="titlepage"><div><div class="big-version-info"><span class="productname"><span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span></span> 16.1</div><div><h1 class="title">Using Kexec for Faster Reboots</h1></div><div class="date"><span class="imprint-label">Publication Date: </span>20 Nov 2026</div><div><div class="abstract"><p>
+          Kexec boots a new Linux kernel directly from a running kernel, bypassing firmware
+          initialization and the boot loader. A normal reboot runs these steps before the new
+          kernel starts, which takes time, especially on servers. With Kexec, you can skip both
+          steps and reduce server downtime during routine kernel updates. This article explains
+          when a Kexec reboot is useful, when you still need a full reboot and how to reboot
+          with Kexec on <span class="phrase"><span class="phrase">SUSE Linux Enterprise Server for SAP applications</span></span>.
+        </p><p><span><span class="emphasis"><strong>Prerequisites</strong></span></span></p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+              The <span class="package">kexec-tools</span> and <span class="package">update-bootloader</span>
+              packages, which are installed by default
+            </p></li></ul></div></div></div><div><div class="titlepage-revhistory"><a aria-label="Revision History: Using Kexec for Faster Reboots" hreflang="en" href="rh-kexec-rebooting-faster.html" target="_blank">Revision History: Using Kexec for Faster Reboots</a></div></div></div></div><section xml:lang="en" class="sect1" id="kexec-reboot-basics" data-id-title="What is Kexec?"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">1 </span><span class="title-name">What is Kexec?</span></span> <a title="Permalink" class="permalink" href="index.html#kexec-reboot-basics">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Kexec is a Linux kernel mechanism that starts a new kernel directly from the running
+        kernel, without going through the firmware and the boot loader. A reboot with Kexec is
+        therefore faster than a normal reboot.
+      </p></div></div></div></div><p>
+    The <code class="command">kexec</code> command from the <span class="package">kexec-tools</span> package loads
+    the new kernel into memory through the <code class="literal">kexec</code> system call. The running
+    kernel then hands control to the new kernel.
+  </p><section class="sect2" id="kexec-reboot-basics-uses" data-id-title="When to reboot with Kexec"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.1 </span><span class="title-name">When to reboot with Kexec</span></span> <a title="Permalink" class="permalink" href="index.html#kexec-reboot-basics-uses">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          <span><span class="emphasis"><strong>Faster reboots.</strong></span></span> Skipping the firmware and the boot
+          loader saves time, which matters if you reboot a system often, for example,
+          after kernel updates.
+        </p></li><li class="listitem"><p>
+          <span><span class="emphasis"><strong>Booting another kernel once.</strong></span></span> You can load any kernel
+          image with the kernel options you choose, without changing the boot loader
+          configuration.
+        </p></li></ul></div></section><section class="sect2" id="kexec-reboot-basics-full-reboot" data-id-title="When to use a full reboot"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">1.2 </span><span class="title-name">When to use a full reboot</span></span> <a title="Permalink" class="permalink" href="index.html#kexec-reboot-basics-full-reboot">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      Use a full reboot when you need the firmware or the boot loader to run:
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          <span><span class="emphasis"><strong>Firmware updates.</strong></span></span> Changes to the firmware take effect
+          only when the firmware runs during a full reboot.
+        </p></li><li class="listitem"><p>
+          <span><span class="emphasis"><strong>Selecting an entry in the boot menu.</strong></span></span> A Kexec reboot
+          does not show the boot menu, so you cannot select another boot entry or an older
+          snapshot there.
+        </p></li><li class="listitem"><p>
+          <span><span class="emphasis"><strong>Devices that do not work after a Kexec reboot.</strong></span></span> A
+          full reboot lets the firmware reset and initialize the hardware.
+        </p></li></ul></div><p>
+      If a kernel is already loaded for Kexec, unload it before a full reboot. Otherwise,
+      <code class="command">systemctl reboot</code> also reboots with Kexec. See
+      <a class="xref" href="index.html#kexec-fast-reboot" title="2. Rebooting a system with Kexec">Section 2, “Rebooting a system with Kexec”</a>.
+    </p></section></section><section xml:lang="en" class="sect1" id="kexec-fast-reboot" data-id-title="Rebooting a system with Kexec"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">2 </span><span class="title-name">Rebooting a system with Kexec</span></span> <a title="Permalink" class="permalink" href="index.html#kexec-fast-reboot">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div><div><div class="abstract"><p>
+        Rebooting with Kexec is a two-step process: loading a target kernel and its initrd
+        into memory, either automatically from the default boot loader entry or manually with
+        custom parameters, and triggering the reboot with <code class="command">systemctl kexec</code>.
+      </p></div></div></div></div><p>
+    The <span class="package">kexec-tools</span> package provides the <code class="command">kexec</code> command.
+    <code class="command">kexec-bootloader</code>, which loads the default boot entry, is part of the
+    <span class="package">update-bootloader</span> package. Both packages are installed by default. To
+    confirm that they are present:
+  </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code> rpm -q kexec-tools update-bootloader</pre></div><div id="id-1.3.4" data-id-title="Unapplied boot loader changes take effect" class="admonition important normal"><img class="symbol" alt="Important" title="Important" src="static/images/icon-important.svg"/><div class="admon-title">Important: Unapplied boot loader changes take effect</div><p>
+      <code class="command">kexec-bootloader</code> loads the default boot entry with the kernel options
+      that are currently set in the boot loader configuration. These options include changes in
+      <code class="filename">/etc/default/grub</code> that you have not applied yet.
+    </p></div><div class="procedure"><div class="procedure-contents"><ol class="procedure" type="1"><li class="step"><p>
+        Make sure no important services are running and no users other than yourself are
+        logged in, since a Kexec reboot restarts the system immediately once triggered.
+      </p></li><li class="step"><p>
+        Optional: Check which kernel, initrd and kernel options will be loaded, without loading
+        anything:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  kexec-bootloader --dry-run -D</pre></div><p>Sample output from an AMD64/Intel 64 system:</p><div class="verbatim-wrap"><pre class="screen">Image  : /usr/lib/modules/6.12.0-160099.49-default/vmlinuz
+Initrd : /boot/initrd-6.12.0-160099.49-default
+Append : splash=silent mitigations=auto quiet security=selinux crashkernel=72M,low crashkernel=394M,high
+Root   : root=UUID=b06935f0-ff2e-49e7-9aec-e72b252abc7d
+Kexec call: kexec --kexec-syscall-auto --load '/usr/lib/modules/6.12.0-160099.49-default/vmlinuz' --initrd='/boot/initrd-6.12.0-160099.49-default' --append='root=UUID=b06935f0-ff2e-49e7-9aec-e72b252abc7d splash=silent mitigations=auto quiet security=selinux crashkernel=72M,low crashkernel=394M,high'</pre></div></li><li class="step"><p>
+        Load the default boot entry into memory:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  kexec-bootloader</pre></div></li><li class="step"><p>
+        Optional: To do a full reboot after all, for example, for a pending firmware update,
+        unload the kernel:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  kexec -u</pre></div><p>
+        As long as a kernel is loaded, every reboot uses Kexec, including a reboot with
+        <code class="command">systemctl reboot</code>. After unloading, reboot with <code class="command">systemctl
+        reboot</code> instead of continuing with the next step.
+      </p></li><li class="step"><p>
+        Reboot with Kexec:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  systemctl kexec</pre></div><p>
+        <code class="command">systemctl kexec</code> shuts down the system cleanly and then starts the
+        loaded kernel. If no kernel is loaded, the command tries to find one itself. Automatic
+        loading only works on systems that boot with UEFI and use boot entries that follow the
+        Boot Loader Specification. Otherwise, the command fails with <code class="literal">No kexec kernel loaded and
+        autodetection failed.</code> In that case, load the kernel first with
+        <code class="command">kexec-bootloader</code>.
+      </p></li><li class="step"><p>
+        Once the system is back, check the kernel messages of the current boot for warnings:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  journalctl -k -p warning -b</pre></div><p>
+        Then confirm that the system is running the expected kernel:
+      </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code> uname -r</pre></div></li></ol></div></div><section class="sect2" id="kexec-fast-reboot-manual" data-id-title="Loading a kernel manually"><div class="titlepage"><div><div><div class="title-container"><h3 class="title"><span class="title-number-name"><span class="title-number">2.1 </span><span class="title-name">Loading a kernel manually</span></span> <a title="Permalink" class="permalink" href="index.html#kexec-fast-reboot-manual">#</a></h3><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+      To start a kernel other than the default boot entry, or a kernel with different options,
+      load it with <code class="command">kexec -l</code> and name the kernel, initrd and kernel options
+      yourself:
+    </p><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  kexec -l <em class="replaceable">KERNEL_IMAGE</em> --initrd=<em class="replaceable">INITRD_IMAGE</em> --append="<em class="replaceable">KERNEL_OPTIONS</em>"</pre></div><p>
+      On <span class="phrase"><span class="phrase">SLES for SAP</span></span>, kernel images are in
+      <code class="filename">/usr/lib/modules/<em class="replaceable">KERNEL_VERSION</em>/</code>, and
+      initrds are in <code class="filename">/boot/initrd-<em class="replaceable">KERNEL_VERSION</em></code>.
+      <span class="phrase">The name of the kernel
+      image file, <em class="replaceable">IMAGE_NAME</em>, depends on the architecture:</span>
+    </p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+          AMD64/Intel 64: <code class="filename">vmlinuz</code>
+        </p></li><li class="listitem"><p>
+          POWER: <code class="filename">vmlinux</code>
+        </p></li></ul></div><p>
+      To reuse the kernel options of the running system, use <code class="option">--reuse-cmdline</code>
+      instead of <code class="option">--append</code>.
+    </p><div class="example" id="id-1.3.7.7" data-id-title="Loading the running kernel again with its current options"><div class="title-container"><div class="example-title-wrap"><div class="example-title"><span class="title-number-name"><span class="title-number">Example 1: </span><span class="title-name">Loading the running kernel again with its current options </span></span><a title="Permalink" class="permalink" href="index.html#id-1.3.7.7">#</a></div></div><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div><div class="example-contents"><div class="verbatim-wrap"><pre class="screen"><code class="prompt user">&gt; </code><code class="command">sudo</code>  kexec -l /usr/lib/modules/$(uname -r)/<em class="replaceable">IMAGE_NAME</em> \
+    --initrd=/boot/initrd-$(uname -r) --reuse-cmdline</pre></div></div></div><p>
+      Then reboot with <code class="command">systemctl kexec</code>, which shuts down the system cleanly
+      before it starts the loaded kernel. <code class="command">kexec -e</code> also starts the loaded
+      kernel, but immediately and without calling <code class="command">shutdown</code>(8), so services
+      are not stopped cleanly.
+    </p></section></section><section xml:lang="en" class="sect1" id="kexec-more-info" data-id-title="For more information"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">3 </span><span class="title-name">For more information</span></span> <a title="Permalink" class="permalink" href="index.html#kexec-more-info">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>
+        Man pages: <code class="literal">man 8 kexec</code>, <code class="literal">man 8 kexec-bootloader</code>,
+        <code class="literal">man 1 systemctl</code>.
+      </p></li><li class="listitem"><p>
+        For capturing kernel crash dumps with Kdump, which also uses Kexec, see the article
+        <span class="quote">“<span class="quote">Capturing and Analyzing Kernel Crash Dumps with Kdump</span>”</span>.
+      </p></li><li class="listitem"><p>
+        Man page for Kexec with the full set of command-line options:
+        <a class="link" href="https://man7.org/linux/man-pages/man8/kexec.8.html" target="_blank">https://man7.org/linux/man-pages/man8/kexec.8.html</a>.
+      </p></li></ul></div></section><section class="sect1" id="legal-disclaimer" data-id-title="Legal Notice"><div class="titlepage"><div><div><div class="title-container"><h2 class="title"><span class="title-number-name"><span class="title-number">4 </span><span class="title-name">Legal Notice</span></span> <a title="Permalink" class="permalink" href="index.html#legal-disclaimer">#</a></h2><div class="icons"><a target="_blank" class="icon-reportbug" title="Report an issue"> </a></div></div></div></div></div><p>
+    Copyright© 2006–
+2026
+
+    SUSE LLC and contributors. All rights reserved.
+  </p><p>
+    Permission is granted to copy, distribute and/or modify this document under the terms of the
+    GNU Free Documentation License, Version 1.2 or (at your option) version 1.3; with the Invariant
+    Section being this copyright notice and license. A copy of the license version 1.2 is included
+    in the section entitled <span class="quote">“<span class="quote">GNU Free Documentation License</span>”</span>.
+  </p><p>
+    For SUSE trademarks, see <a class="link" href="https://www.suse.com/company/legal/" target="_blank">https://www.suse.com/company/legal/</a>. All other
+    third-party trademarks are the property of their respective owners. Trademark symbols (®, ™
+    etc.) denote trademarks of SUSE and its affiliates. Asterisks (*) denote third-party
+    trademarks.
+  </p><p>
+    All information found in this book has been compiled with utmost attention to detail. However,
+    this does not guarantee complete accuracy. Neither SUSE LLC, its affiliates, the authors, nor
+    the translators shall be held liable for possible errors or the consequences thereof.
+  </p></section></section><nav class="bottom-pagination"><div> </div><div><a class="pagination-link next" href="doc-gfdl-license.html"><span class="pagination-relation">Next</span><span class="pagination-label"><span class="title-number">Appendix A </span>GNU Free Documentation License</span></a> </div></nav></article><aside id="_side-toc-page" class="side-toc"><div class="side-title">On this page</div><div class="toc"><ul><li><span class="section"><a href="index.html#kexec-reboot-basics"><span class="title-number">1 </span><span class="title-name">What is Kexec?</span></a></span></li><li><span class="section"><a href="index.html#kexec-fast-reboot"><span class="title-number">2 </span><span class="title-name">Rebooting a system with Kexec</span></a></span></li><li><span class="section"><a href="index.html#kexec-more-info"><span class="title-number">3 </span><span class="title-name">For more information</span></a></span></li><li><span class="section"><a href="index.html#legal-disclaimer"><span class="title-number">4 </span><span class="title-name">Legal Notice</span></a></span></li><li><span class="appendix"><a href="doc-gfdl-license.html"><span class="title-number">A </span><span class="title-name">GNU Free Documentation License</span></a></span></li></ul></div><div class="side-title">Share this page</div><ul class="share"><li><a id="_share-mail" href="#" title="E-Mail"> </a></li><li><a id="_print-button" href="#" title="Print this page"> </a></li></ul> </aside></main><footer id="_footer"><div class="growth-inhibitor"><div class="copy"><span class="copy__rights">© SUSE  2026</span></div></div></footer>
+<script type="text/javascript" src="static/js/language-switcher.js"> </script></body></html>
